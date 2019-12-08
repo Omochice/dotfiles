@@ -1,0 +1,9 @@
+/*
+/.**
+
+
+# white list
+!/.gitignore
+!/.config/yapf/style
+!/.bin/
+!/.bin/install.sh
