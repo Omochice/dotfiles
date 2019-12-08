@@ -4,6 +4,7 @@
 
 # white list
 !/.gitignore
+!/.gitconfig
 !/.config/yapf/style
 !/.bin/
 !/.bin/install.sh
