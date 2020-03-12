@@ -1,3 +1,4 @@
+# init ignore
 /*
 /.**
 
@@ -5,6 +6,21 @@
 # white list
 !/.gitignore
 !/.gitconfig
+!/.config
 !/.config/yapf/style
+!/.config/pip/pip.conf
+!/.config/Code/User/snippets/*
+!/.config/Code/User/settings.json
 !/.bin/
 !/.bin/install.sh
+!/.tmux.conf
+!/.zprezto/*
+!/.zlogin
+!/.zlogout
+!/.zpreztorc
+!/.zprofile
+!/.zshenv
+!/.zshrc
+
+# ignore list
+.config
