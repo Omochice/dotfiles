@@ -13,6 +13,7 @@
 !/.config/Code/User/settings.json
 !/.bin/
 !/.bin/install.sh
+!/.bin/commamd_install.sh
 !/.tmux.conf
 !/.zprezto/*
 !/.zlogin
