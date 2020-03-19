@@ -7,6 +7,7 @@
 !/.gitignore
 !/.gitconfig
 !/.config
+!/.config/autostart/gnome-terminal.desktop
 !/.config/yapf/style
 !/.config/pip/pip.conf
 !/.config/Code/User/snippets/*
