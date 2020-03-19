@@ -71,5 +71,10 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "python.dataScience.askForKernelRestart": false,
-    "vsicons.dontShowNewVersionMessage": true
+    "vsicons.dontShowNewVersionMessage": true,
+    "files.exclude": {
+        "**/.venv": true,
+        "**/.vscode": true,
+        "**/venv": true
+    }
 }
