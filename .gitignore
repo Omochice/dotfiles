@@ -10,11 +10,10 @@
 !/.config/autostart/gnome-terminal.desktop
 !/.config/yapf/style
 !/.config/pip/pip.conf
+!/.config/Code/_install.sh
 !/.config/Code/User/snippets/*
 !/.config/Code/User/settings.json
-!/.bin/
-!/.bin/install.sh
-!/.bin/commamd_install.sh
+!/.bin/*
 !/.tmux.conf
 !/.zprezto/*
 !/.zlogin
