@@ -10,7 +10,7 @@ if ! type "bat" > /dev/null 2>&1; then
     wget -c -P ~/ $target
     sudo apt install ~/bat_0.12.1_amd64.deb
     rm ~/bat_0.12.1_amd64.deb
-    echo "alial cat=bat" >> ~/.zshrc
+    echo "alias cat=bat" >> ~/.zshrc
 fi
 
 echo -------------------------------------------------

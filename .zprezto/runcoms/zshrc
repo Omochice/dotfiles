@@ -26,6 +26,8 @@ elif test $count -eq 1; then
     echo `tmux a`
 fi
 
-alias ls="exa -g --time-style=long-iso"
+alias cat=bat
+alias ls='exa -g --time-style=long-iso'
 alias ll='ls -l'
 alias la='ls -al'
+alias pbcopy='xsel --clipboard --input'
