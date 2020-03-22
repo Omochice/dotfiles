@@ -1,0 +1,3 @@
+[alias]
+    st = statu
+    co = switch -c
