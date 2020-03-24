@@ -14,7 +14,13 @@ fi
 
 alias shutdown='sudo shutdown -h now'
 alias myupdate='sudo apt update && sudo apt autoremove -y && sudo apt upgrade -y'
+
 alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
+
+
+# リダイレクトの許可(>で上書きできるように)
+set +C
 
 alias tmux="tmux -u2"
 
@@ -30,5 +36,5 @@ alias cat='bat'
 alias ls='exa -g --time-style=long-iso'
 alias ll='ls -l'
 alias la='ls -al'
-alias pbcopy='xsel --clipboard --input'
-set +C
+
+
