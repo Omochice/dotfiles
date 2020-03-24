@@ -13,7 +13,9 @@
 !/.config/Code/_install.sh
 !/.config/Code/User/snippets/*
 !/.config/Code/User/settings.json
-!/.bin/*
+!/.bin/command_install.sh
+!/.bin/install.sh
+!/.bin/marging_environment.sh
 !/.tmux.conf
 !/.zprezto/*
 !/.zlogin

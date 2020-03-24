@@ -59,3 +59,13 @@ if ! type "tmux" > /dev/null 2>&1; then
 # fi
 # EOF
 fi
+
+echo -------------------------------------------------
+echo
+echo "git (lastest)"
+echo
+echo -------------------------------------------------
+
+sudo add-apt-repository ppa:git-core/ppa 
+sudo apt update
+sudo apt install git 
