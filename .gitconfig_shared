@@ -1,3 +1,4 @@
 [alias]
     st = status
     co = switch -c
+    cm = commit -m
