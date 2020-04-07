@@ -10,12 +10,13 @@ if ! type "zsh" > /dev/null 2>&1; then
 fi
 
 local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-for rcfile in ${script_dir}.zprezto/runcoms/^README.md(.N); do
+# script_dir にはコマンド実行時のpwdが入る
+for rcfile in $(ls -d ${script_dir}/.zprezto/runcoms/z*) ; do
     ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
 chsh -s /bin/zsh
-git clone https://github.com/powerline/fonts.git --depth=1
-bash ./fonts/install.sh && rm -rf ./fonts
+git clone https://github.com/powerline/fonts.git ~/ --depth=1
+bash ~/fonts/install.sh && rm -rf ~/fonts
 
 
 echo -------------------------------------------------
@@ -56,6 +57,11 @@ echo -------------------------------------------------
 if ! type "xsel" > /dev/null 2>&1; then
     sudo apt install xsel -y
     # echo "alias pbcopy='xsel --clipboard --input'" >> ~/.zshrc
+fi
+
+
+fi ! type "ytop" > /dev/null 2>&1; then
+    cargo install -f --git https://github.com/cjbassi/ytop ytop
 fi
 
 echo -------------------------------------------------
@@ -132,3 +138,9 @@ fi
 
 
 
+echo "-------------------"
+echo "手動で設定するもの"
+echo "\t ターミナルのfontの設定"
+echo "\t\t 1. font -> cousine for Powerfile Regular"
+echo "\t\t 2. fontsize -> 14"
+echo "\t VS code setting sync"

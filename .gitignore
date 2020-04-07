@@ -17,13 +17,8 @@
 !/.bin/install.sh
 !/.bin/marging_environment.sh
 !/.tmux.conf
-!/.zprezto/*
-!/.zlogin
-!/.zlogout
-!/.zpreztorc
-!/.zprofile
-!/.zshenv
-!/.zshrc
+!/.zprezto/runcoms*
+!/.gitignore_shared
 
 # ignore list
 .config
