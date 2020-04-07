@@ -1,0 +1,80 @@
+{
+    "latex-workshop.latex.tools": [
+        {
+            "name": "ptex2pdf (uplatex)",
+            "command": "ptex2pdf",
+            "args": [
+                "-l",
+                "-u",
+                "-ot",
+                "-kanji=utf8 -synctex=1",
+                "%DOC%"
+            ]
+        },
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "ptex2pdf (uplatex) *2",
+            "tools": [
+                "ptex2pdf (uplatex)",
+                "ptex2pdf (uplatex)"
+            ]
+        },
+    ],
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "latex-workshop.view.pdf.viewer": "tab",
+    "editor.detectIndentation": false,
+    "editor.fontSize": 18,
+    "editor.renderIndentGuides": false,
+    "markdown-pdf.displayHeaderFooter": false,
+    "markdown-pdf.styles": [
+        "~/workspace/md/style.css"
+    ],
+    "files.associations": {
+        "*.Rmd": "markdown"
+    },
+    "[markdown]": {
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": true
+    },
+    "[python]": {
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        },
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.formatOnSave": true
+    },
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.jediEnabled": false,
+    "editor.fontFamily": "'Cousine for Powerline', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "revealjs.highlightTheme": "\"Github gist\"",
+    "revealjs.backgroundTransition": "slide",
+    "markdown.marp.exportType": "html",
+    "kite.showWelcomeNotificationOnStartup": false,
+    "editor.quickSuggestionsDelay": 5,
+    "editor.renderWhitespace": "boundary",
+    "workbench.colorTheme": "Monokai",
+    "latex-workshop.bibtex-format.tab": "4 spaces",
+    "python.formatting.provider": "yapf",
+    "editor.formatOnSave": true,
+    "python.formatting.yapfPath": "/home/mochi/.local/bin/yapf",
+    "editor.minimap.maxColumn": 90,
+    "editor.wordWrapColumn": 90,
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "prettier.tabWidth": 4,
+    "workbench.iconTheme": "vscode-icons",
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "python.dataScience.askForKernelRestart": false,
+    "vsicons.dontShowNewVersionMessage": true,
+    "files.exclude": {
+        "**/.venv": true,
+        "**/.vscode": true,
+        "**/venv": true
+    }
+}
