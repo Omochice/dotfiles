@@ -13,11 +13,11 @@
 !/.config/Code/_install.sh
 !/.config/Code/User/snippets/*
 !/.config/Code/User/settings.json
-!/.bin/command_install.sh
-!/.bin/install.sh
-!/.bin/marging_environment.sh
+!/.bin
+!/.bin/*
 !/.tmux.conf
-!/.zprezto/runcoms*
+!/.zprezto
+!/.zprezto/runcoms/*
 !/.gitignore_shared
 
 # ignore list

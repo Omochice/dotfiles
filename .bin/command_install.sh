@@ -59,10 +59,27 @@ if ! type "xsel" > /dev/null 2>&1; then
     # echo "alias pbcopy='xsel --clipboard --input'" >> ~/.zshrc
 fi
 
-
-fi ! type "ytop" > /dev/null 2>&1; then
-    cargo install -f --git https://github.com/cjbassi/ytop ytop
+echo -------------------------------------------------
+echo
+echo                    ripgrep
+echo
+echo -------------------------------------------------
+if ! type "rg" > /dev/null 2>&1; then
+    curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.0.1/ripgrep_12.0.1_amd64.deb
+    sudo dpkg -i ripgrep_12.0.1_amd64.deb
+    rm ripgrep_12.0.1_amd64.deb
 fi
+
+
+echo -------------------------------------------------
+echo
+echo                    peco
+echo
+echo -------------------------------------------------
+if ! type "peco" > /dev/null 2>&1; then
+    sudo apt install peco -y
+fi
+
 
 echo -------------------------------------------------
 echo
