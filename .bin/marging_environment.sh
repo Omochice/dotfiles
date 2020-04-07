@@ -12,7 +12,7 @@ marge_env(){
     command echo "same install src dest"
   fi
 }
-}
+
 
 marge_env
 command echo "complete merging !"
