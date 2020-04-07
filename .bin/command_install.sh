@@ -2,6 +2,24 @@
 
 echo -------------------------------------------------
 echo
+echo                    zsh
+echo
+echo -------------------------------------------------
+if ! type "zsh" > /dev/null 2>&1; then
+    sudo apt install zsh
+fi
+
+local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+for rcfile in ${script_dir}.zprezto/runcoms/^README.md(.N); do
+    ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+chsh -s /bin/zsh
+git clone https://github.com/powerline/fonts.git --depth=1
+bash ./fonts/install.sh && rm -rf ./fonts
+
+
+echo -------------------------------------------------
+echo
 echo                    bat
 echo
 echo -------------------------------------------------
