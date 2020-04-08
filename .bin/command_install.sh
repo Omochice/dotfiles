@@ -39,10 +39,12 @@ echo                    exa
 echo
 echo -------------------------------------------------
 if ! type "exa" > /dev/null 2>&1; then
-    sudo apt install curl -y
+    if ! type "curl" > /dev/null 2>&1; then
+        sudo apt install curl -y
+    fi
     curl https://sh.rustup.rs -sSf | sh
     wget -c -P ~/ https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip
-    unzip ~/exa-linux-x86_64-0.9.0.zip
+    unzip ~/exa-linux-x86_64-0.9.0.zip -d ~
     rm ~/exa-linux-x86_64-0.9.0.zip
     sudo mv ~/exa-linux-x86_64 /bin/exa
     # echo "alias ls='exa -g --time-style=long-iso'" >> ~/.zshrc
