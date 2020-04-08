@@ -9,13 +9,14 @@ if ! type "zsh" > /dev/null 2>&1; then
     sudo apt install zsh
 fi
 
-local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # script_dir にはコマンド実行時のpwdが入る
-for rcfile in $(ls -d ${script_dir}/.zprezto/runcoms/z*) ; do
-    ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+for rcfile in $(ls -d $HOME/dotfiles/.zprezto/runcoms/z*) ; do
+    rm -rf "${ZDOTDIR:-$HOME}/.$(basename $rcfile)"
+    ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.$(basename $rcfile)"
 done
 chsh -s /bin/zsh
-git clone https://github.com/powerline/fonts.git ~/ --depth=1
+git clone https://github.com/powerline/fonts.git ~/fonts --depth=1
 bash ~/fonts/install.sh && rm -rf ~/fonts
 
 
