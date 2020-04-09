@@ -12,7 +12,7 @@ fi
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 for rcfile in $(ls -d $HOME/dotfiles/zshell/z*) ; do
     rm -rf "${ZDOTDIR:-$HOME}/.$(basename $rcfile)"
-    ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.$(basename $rcfile)"
+    ln -fs "$rcfile" "${ZDOTDIR:-$HOME}/.$(basename $rcfile)"
 done
 chsh -s /bin/zsh
 git clone https://github.com/powerline/fonts.git ~/fonts --depth=1
