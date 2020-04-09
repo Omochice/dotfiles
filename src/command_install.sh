@@ -2,16 +2,15 @@
 
 echo -------------------------------------------------
 echo
-echo                    zsh
+echo                    zsh(zprezto) 
 echo
 echo -------------------------------------------------
 if ! type "zsh" > /dev/null 2>&1; then
     sudo apt install zsh
 fi
 
-script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# script_dir にはコマンド実行時のpwdが入る
-for rcfile in $(ls -d $HOME/dotfiles/.zprezto/runcoms/z*) ; do
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+for rcfile in $(ls -d $HOME/dotfiles/zshell/z*) ; do
     rm -rf "${ZDOTDIR:-$HOME}/.$(basename $rcfile)"
     ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.$(basename $rcfile)"
 done
@@ -164,3 +163,4 @@ echo "\t ターミナルのfontの設定"
 echo "\t\t 1. font -> cousine for Powerfile Regular"
 echo "\t\t 2. fontsize -> 14"
 echo "\t VS code setting sync"
+zsh
