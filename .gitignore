@@ -13,11 +13,9 @@
 !/.config/Code/_install.sh
 !/.config/Code/User/snippets/*
 !/.config/Code/User/settings.json
-!/.bin
-!/.bin/*
+!/src
+!/zshell
 !/.tmux.conf
-!/.zprezto
-!/.zprezto/runcoms/*
 !/.gitignore_shared
 
 # ignore list
