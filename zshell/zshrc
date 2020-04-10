@@ -32,8 +32,15 @@ elif test $count -eq 1; then
     echo `tmux a`
 fi
 
-alias cat='bat'
-alias ls='exa -g --time-style=long-iso'
+if type "bat" > /dev/null 2>&1; then
+    alias cat='bat'
+elif type "batcat" > /dev/null 2>&1; then
+    alias cat='batcat'
+fi
+
+if type "exa" > /dev/null 2>&1; then
+    alias ls='exa -g --time-style=long-iso'
+fi
 alias ll='ls -l'
 alias la='ls -al'
 
