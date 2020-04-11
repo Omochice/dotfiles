@@ -6,7 +6,7 @@
 # white list
 !/.gitignore
 !/.gitconfig
-!.vimrc
+!/.vimrc
 !/.config
 !/.config/autostart/gnome-terminal.desktop
 !/.config/yapf/style
