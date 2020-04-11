@@ -25,11 +25,13 @@ echo                    bat
 echo
 echo -------------------------------------------------
 if ! type "bat" > /dev/null 2>&1; then
-    target="https://github.com/sharkdp/bat/releases/download/v0.12.1/bat_0.12.1_amd64.deb"
-    wget -c -P ~/ $target
-    sudo apt install ~/bat_0.12.1_amd64.deb
-    rm ~/bat_0.12.1_amd64.deb
-    # echo "alias cat='bat'" >> ~/.zshrc
+    if ! type "batcat" > /dev/null 2>&1; then # orの書き方がわからない
+        target="https://github.com/sharkdp/bat/releases/download/v0.12.1/bat_0.12.1_amd64.deb"
+        wget -c -P ~/ $target
+        sudo apt install ~/bat_0.12.1_amd64.deb
+        rm ~/bat_0.12.1_amd64.deb
+        # echo "alias cat='bat'" >> ~/.zshrc
+    fi
 fi
 
 echo -------------------------------------------------
