@@ -12,71 +12,17 @@ fi
 
 # Customize to your needs...
 
-alias shutdown='sudo shutdown -h now'
-alias myupdate='sudo apt update && sudo apt autoremove -y && sudo apt upgrade -y'
-
-alias pbcopy='xsel --clipboard --input'
-alias pbpaste='xsel --clipboard --output'
-
+function load_settings(){
+    local func_dir="$(dirname $(readlink ~/.zshrc))/.zsh.d"
+    
+    if [ -d $func_dir -a -r $func_dir -a -x $func_dir ]; then
+        for i in $func_dir/*; do
+            [[ ${i##*/} = *.zsh ]] && [ \( -f $i -o -h $i \) -a -r $i ] && . $i
+        done
+    fi
+}
 
 # リダイレクトの許可(>で上書きできるように)
 set +C
 
-alias tmux="tmux -u2"
-
-# tmuxの自動起動
-count=`ps aux | grep tmux | grep -v grep | wc -l`
-if test $count -eq 0; then
-    echo `tmux`
-elif test $count -eq 1; then
-    echo `tmux a`
-fi
-
-if type "bat" > /dev/null 2>&1; then
-    alias cat='bat'
-elif type "batcat" > /dev/null 2>&1; then
-    alias cat='batcat'
-fi
-
-if type "exa" > /dev/null 2>&1; then
-    alias ls='exa -g --time-style=long-iso'
-fi
-alias ll='ls -l'
-alias la='ls -al'
-
-# -----
-# peco
-# -----
-
-setopt hist_ignore_dups
-export HISTSIZE=1000
-export SAVEHIST=100000
-
-function peco-history-selection() {
-    BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | peco`
-    CURSOR=$#BUFFER
-    zle reset-prompt
-}
-
-zle -N peco-history-selection
-bindkey '^R' peco-history-selection
-
-# cdr
-if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
-    autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-    add-zsh-hook chpwd chpwd_recent_dirs
-    zstyle ':completion:*' recent-dirs-insert both
-    zstyle ':chpwd:*' recent-dirs-default true
-    zstyle ':chpwd:*' recent-dirs-max 1000
-    zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
-fi
-
-function peco-cdr () {
-    local selected_dir="$(cdr -l | sed 's/^[0-9]\+ \+//' | peco --prompt="cdr >" --query "$LBUFFER")"
-    if [ -n "$selected_dir" ]; then
-        BUFFER="cd ${selected_dir}"
-        zle accept-line
-    fi
-}
-zle -N peco-cdr
-bindkey '^E' peco-cdr
+load_settings

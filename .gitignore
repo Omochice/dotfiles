@@ -16,6 +16,7 @@
 !/.config/Code/User/settings.json
 !/src
 !/zshell
+!/zshell/.zsh.d
 !/.tmux.conf
 !/.gitignore_shared
 
