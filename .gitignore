@@ -7,6 +7,7 @@
 !/.gitignore
 !/.gitconfig
 !/.vimrc
+!/keymap.txt
 !/.config
 !/.config/autostart/gnome-terminal.desktop
 !/.config/yapf/style
