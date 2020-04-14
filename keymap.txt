@@ -82,6 +82,10 @@ Composition	Hankaku/Zenkaku	IMEOff
 Conversion	Hankaku/Zenkaku	IMEOff
 DirectInput	Hankaku/Zenkaku	IMEOn
 Precomposition	Hankaku/Zenkaku	IMEOff
+Composition	Henkan	IMEOff
+Conversion	Henkan	IMEOff
+DirectInput	Henkan	IMEOn
+Precomposition	Henkan	IMEOff
 Composition	Hiragana	InputModeHiragana
 Conversion	Hiragana	InputModeHiragana
 DirectInput	Hiragana	IMEOn
