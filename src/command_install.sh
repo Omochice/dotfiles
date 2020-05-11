@@ -2,7 +2,7 @@
 
 echo -------------------------------------------------
 echo
-echo                    zsh(zprezto) 
+echo                    zsh
 echo
 echo -------------------------------------------------
 if ! type "zsh" > /dev/null 2>&1; then
@@ -104,6 +104,18 @@ if ! type "tmux" > /dev/null 2>&1; then
 # fi
 # EOF
 fi
+
+echo -------------------------------------------------
+echo
+echo "anyenv"
+echo
+echo ----------------
+
+if ! type "anyenv" > /dev/null 2>&1; then
+    git clone https://github.com/anyenv/anyenv ~/.anyenv
+    anyenv install --init
+fi
+
 
 echo -------------------------------------------------
 echo
