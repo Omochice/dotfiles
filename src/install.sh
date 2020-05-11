@@ -43,7 +43,9 @@ link_to_homedir() {
     local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     local dotdir=$(readlink -f ${script_dir}/..)
     for f in ${dotdir}/.??*; do
-        [[ `basename $f` == ".git" -o `basename $f` == ".gitignore"]] && continue
+        if [ `basename $f` == ".git" -o `basename $f` == ".gitignore" ] ;then
+            continue
+        fi
         if [[ -L "$HOME/`basename $f`" ]];then
             command rm -f "$HOME/`basename $f`"
         fi
