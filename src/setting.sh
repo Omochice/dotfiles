@@ -15,3 +15,7 @@ gsettings set org.gnome.desktop.interface clock-show-date true
 
 # ホームディレクトリを英語へ
 LANG=C xdg-user-dirs-gtk-update
+
+# VPNの設定
+sudo apt install openconnect network-manager-openconnect network-manager-openconnect-gnome
+sudo systemctl restart network-manager.service
