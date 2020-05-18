@@ -20,6 +20,7 @@
 !/zshell/.zsh.d
 !/.tmux.conf
 !/.gitignore_shared
+!/xfce_panel.tar.bz2
 
 # ignore list
 .config
