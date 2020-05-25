@@ -15,6 +15,7 @@
 !/.config/Code/_install.sh
 !/.config/Code/User/snippets/*
 !/.config/Code/User/settings.json
+!/.config/Code/User/keybindings.json
 !/src
 !/zshell
 !/zshell/.zsh.d
