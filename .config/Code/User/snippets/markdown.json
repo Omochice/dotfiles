@@ -20,13 +20,14 @@
             "paginate: true",
             "theme: ",
             "style: |",
-            "\tsection.title * , h1{",
+            "\tsection.title * {",
             "\t\ttext-align: center;",
             "\t}",
             "---",
             "",
             "<!-- _class: title -->",
             "${1:title}",
+            "",
             "---"
         ]
     },

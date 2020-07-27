@@ -13,7 +13,7 @@
 !/.config/yapf/style
 !/.config/pip/pip.conf
 !/.config/Code/_install.sh
-!/.config/Code/User/snippets/*
+!/.config/Code/User/snippets/**
 !/.config/Code/User/settings.json
 !/.config/Code/User/keybindings.json
 !/src
