@@ -22,6 +22,13 @@
 !/.tmux.conf
 !/.gitignore_shared
 !/xfce_panel.tar.bz2
+!/.config/fish
+!/.config/fish/function
+!/.config/fish/function/peco-recentd.fish
+!/.config/fish/function/fish_prompt.fish
+!/.config/fish/config.fish
+
+
 
 # ignore list
 .config
