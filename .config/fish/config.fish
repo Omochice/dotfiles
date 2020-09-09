@@ -21,8 +21,6 @@ function fish_user_key_bindings
     bind \ce "peco-recentd"
 end
 
-echo "config run"
-
 # aliases 
 alias shutdown "sudo shutdown -h now"
 alias myupdate "sudo apt update && sudo apt autoremove -y && sudo apt upgrade -y"
