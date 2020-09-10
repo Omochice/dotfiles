@@ -22,7 +22,6 @@ function main(){
     # appearance
     if test ! -e ~/.theme; then
         mkdir ~/.theme
-
     fi
     git clone https://github.com/rouchage/Hitori.git ~/.theme/
     xfconf-query -c xsettings -p /Net/ThemeName -s "Hitori"
