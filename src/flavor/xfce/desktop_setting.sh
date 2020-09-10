@@ -6,31 +6,31 @@ function main(){
     local dotdir=$(readlink -f ${work_dir}/../../..)
 
     # ターミナルの設定
-    local dst="${dotdir}/.config/autostart/xfce-terminal.desktop"
+    local dst="$HOME/.config/autostart/xfce-terminal.desktop"
     if [ -e dst ]; then
         rm -f dst
     elif ! [ -e $(dirname $dst) ]; then
         mkdir -p $(dirname $dst)
     fi
-    ln -snf "${conf_dir}/xfce-terminal.desktop" "$(dirname $dst)"
+    ln -snf "${conf_dir}/xfce-terminal.desktop" $dst
 
 
-    local dst="${dotdir}/.config/xfce4/terminal/teminalrc"
+    local dst="$HOME/.config/xfce4/terminal/terminalrc"
     if [ -e dst ]; then
         rm -f dst
     elif ! [ -e $(dirname $dst) ]; then
         mkdir -p $(dirname $dst)
     fi
-    ln -snf "${conf_dir}/terminalrc" "$(dirname $dst)"
+    ln -snf "${conf_dir}/terminalrc"  $dst
 
     # keyboard shortchut
-    local dst="${dotdir}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml"
+    local dst="$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml"
     if [ -e dst ]; then
         rm -f dst
     elif ! [ -e $(dirname $dst) ]; then
         mkdir -p $(dirname $dst)
     fi
-    ln -snf "${conf_dir}/xfce4-keyboard-shortcuts.xml" "$(dirname $dst)"
+    ln -snf "${conf_dir}/xfce4-keyboard-shortcuts.xml" $dst
 
     # appearance
     if ! [ -e ~/.theme ]; then
@@ -39,7 +39,9 @@ function main(){
         mkdir -p $(dirname $dst)
     fi
     git clone https://github.com/rouchage/Hitori.git ~/.theme/
+    sudo cp ~/.theme/Hitori /usr/share/themes
     xfconf-query -c xsettings -p /Net/ThemeName -s "Hitori"
+    xfconf-query -c xfwm4 -p /general/theme "Hitori"
 
 }
 

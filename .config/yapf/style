@@ -1,7 +1,0 @@
-[style]
-based_on_style = pep8
-spaces_before_comment = 4
-split_before_logical_operator = true
-SPLIT_BEFORE_BITWISE_OPERATOR = true
-COLUMN_LIMIT = 88
-NO_SPACES_AROUND_SELECTED_BINARY_OPERATORS = true
