@@ -32,8 +32,7 @@ function merge_env(){
     done
 }
 
-link_to_homedir() {
-    command echo "backup old dotfiles..."
+function link_to_homedir() {
     if [ ! -d "$HOME/.dotbackup" ];then
         command echo "$HOME/.dotbackup not found. Auto Make it"
         command mkdir "$HOME/.dotbackup"
@@ -53,6 +52,13 @@ link_to_homedir() {
             command mv "$HOME/`basename $f`" "$HOME/.dotbackup"
         fi
         command ln -snf $f $HOME
+    done
+
+    # 
+    rsync -a "$dotdir/config/" "$HOME/.config"
+    for f in $(find $dotdir/config -name "*" -type f); do
+        local path=$(echo $f | sed -e "s@$dotdir/config/@@")
+        command ln -snf $f "$HOME/.config/$path"
     done
 }
 

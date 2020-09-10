@@ -12,7 +12,6 @@ function run_by_flavor(){
         exit 1
     fi
     source "${flavordir}/desktop_setting.sh"
-    ln -snf "${flavordir}/${flavor}-terminal.desktop" "${dotdir}/.config/autostart/"
 }
 
 
@@ -20,6 +19,7 @@ function run_by_flavor(){
 function read_user_input() {
     local start=$1
     local end=$2
+    read input
     if [ $input -ge $start ] && [ $input -le $end ]; then
         echo $input 
     else
@@ -41,20 +41,10 @@ function main() {
     local flavor=$(read_user_input 1 6)
     echo
     local flavors=("gnome3" "gnome2" "xfce" "KDE" "LXDE" "i3")
-    run_by_flavor ${flavors[$flavor]}
+    run_by_flavor ${flavors[$(($flavor - 1))]}
 }
 
 
-
-
-
-
 main
-
-
 # ホームディレクトリを英語へ
 LANG=C xdg-user-dirs-gtk-update
-
-# VPNの設定
-sudo apt install openconnect network-manager-openconnect network-manager-openconnect-gnome
-sudo systemctl restart network-manager.service

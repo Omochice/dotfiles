@@ -126,7 +126,7 @@ fi
 printf "VScode... "
 if ! [ -x "$(command -v code)" ]; then
     printf "installing... "
-    sudo yay -S visual-studio-code-bin
+    yay -S visual-studio-code-bin
     echo "done."
 else
     echo "already installed."
@@ -135,7 +135,7 @@ fi
 printf "vivaldi... "
 if ! [ -x "$(command -v vivaldi)" ]; then
     printf "installing... "
-    sudo yay -S vivaldi
+    yay -S vivaldi
     echo "done."
 else
     echo "already installed."

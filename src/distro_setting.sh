@@ -15,12 +15,14 @@ function run_by_distro() {
 function read_user_input() {
     local start=$1
     local end=$2
+    read input
     if [ $input -ge $start ] && [ $input -le $end ]; then
         echo $input 
     else
         echo "Your input is not in range[$start, $end]."
         exit 1
     fi
+}
 
 function main() {
     echo "What is your Distro\'s package manager ?"
@@ -29,9 +31,8 @@ function main() {
     echo "    3) pacman (Arch, etc)"
     printf "Input > "
     local distro=$(read_user_input 1 3)
-    echo 
     local distros=("debian" "RedHat" "arch")
-    run_by_distro ${distros[$distro]}
+    run_by_distro ${distros[$(($distro - 1))]}
 }
 
 function other_settings() {
