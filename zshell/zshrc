@@ -26,3 +26,6 @@ function load_settings(){
 set +C
 
 load_settings
+
+# fishの起動
+exec fish
