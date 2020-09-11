@@ -1,8 +1,16 @@
 # dotfiles
 
-###　手動で設定するもの
-* mozcのキーマップ -> ツール/プロパティ/キー設定の選択/編集/インポート　> keymap.txt
-* ターミナルのfontの設定
-    1. font -> cousine for Powerfile Regular"
-    2. fontsize -> 14"
-*
+## How to use 
+
+1. clone this repo.
+
+    `git clone <this repo>`
+2. link dotfiles.
+
+    `bash dotfiles/src/sync.sh`
+3. run settings for distro.
+
+    `bash dotfiles/src/distro_setting.sh`
+4. run settings for flavor.
+
+    `bash dotfiles/src/flavor_setting.sh`
