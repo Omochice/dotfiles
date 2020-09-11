@@ -134,3 +134,17 @@ if ! [ -x "$(command -v vivaldi)" ]; then
 else
     echo "already installed."
 fi
+
+printf "Fish shell"
+if ! type "fish" >/dev/null 2>&1; then
+    sudo pacman -S fish
+    curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+    fisher add jethrokuan/z
+    fisher add oh-my-fish/plugin-extract
+    fisher add oh-my-fish/plugin-peco
+fi
+
+# 手動設定
+# 入力メソッド設定 -> 変換キーをIMEの切り替えに
+# Mozcのキーボードレイアウト
+# セッションと起動 -> 起動時にgnomeを有効化(キーリングの無効化)
