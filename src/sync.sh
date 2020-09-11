@@ -1,34 +1,11 @@
-#!/usr/bin/env bash
-set -ue
+#!/usr/bin/env bash -ue
 
 function helpmsg() {
     command echo "usage: bash path/to/install.sh"
-    command echo "       [-m] [-h]"
-    command echo "        m: mergin existing enviroment"
-    command echo "           if you run this script in not new enviroment, add this option."
+    command echo "        [-h]"
     command echo "        h: help"
     command echo "           show help message"
     exit 1
-}
-
-function position_verification() {
-    if [[ "$HOME" == "$dotdir" ]]; then
-        command echo "\$HOME is dotfiles..."
-        command echo "type 'git clone xxx' in your \$HOME and run this is dotfiles."
-        exit 1
-    fi
-}
-
-function merge_env() {
-    command echo "merging existing dotfiles..."
-    local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-    local dotdir=$(readlink -f ${script_dir}/..)
-    for f in ${dotdir}/.??*; do
-        [[ $(basename $f) == ".git" ]] && continue
-        if [[ ! -L "$HOME/$(basename $f)" ]]; then
-            command cp -ru "$HOME/$(basename $f)" "${dotdir}/"
-        fi
-    done
 }
 
 function link_to_homedir() {
@@ -53,17 +30,18 @@ function link_to_homedir() {
         command ln -snf $f $HOME
     done
 
-    #
-    rsync -a "$dotdir/config/" "$HOME/.config"
-    for f in $(find $dotdir/config -name "*" -type f); do
-        local path=$(echo $f | sed -e "s@$dotdir/config/@@")
-        command ln -snf $f "$HOME/.config/$path"
+    for config in "$dotdir/config/*"; do
+        local dst="$HOME/.config/$(basename $conf)"
+        if [ -d dst ]; then
+            command rsync -a "$dst/" conf
+            command rm -rf dst
+        fi
+        command ln -snf $conf $dst
     done
 }
 
 while getopts mh OPT; do
     case $OPT in
-    m) merge_env ;;
     h) helpmsg ;;
     \?) helpmsg ;;
     esac
