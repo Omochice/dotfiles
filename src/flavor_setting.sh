@@ -1,7 +1,6 @@
 #!/bin/bash -ue
 
-
-function run_by_flavor(){
+function run_by_flavor() {
     local flavor=$1
     local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     local dotdir=$(readlink -f ${script_dir}/..)
@@ -14,20 +13,17 @@ function run_by_flavor(){
     source "${flavordir}/desktop_setting.sh"
 }
 
-
-
 function read_user_input() {
     local start=$1
     local end=$2
     read input
     if [ $input -ge $start ] && [ $input -le $end ]; then
-        echo $input 
+        echo $input
     else
         echo "Your input is not in range[$start, $end]."
         exit 1
     fi
 }
-
 
 function main() {
     echo "What is your Desktop environment ?"
@@ -44,7 +40,4 @@ function main() {
     run_by_flavor ${flavors[$(($flavor - 1))]}
 }
 
-
 main
-# ホームディレクトリを英語へ
-LANG=C xdg-user-dirs-gtk-update

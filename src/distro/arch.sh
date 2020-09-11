@@ -4,26 +4,20 @@ sudo pacman-mirrors --fasttrack
 
 sudo pacman -Syyu
 
-
-
 sudo pacman -S fcitx-im fcitx-mozc
 
 sudo pacman -S xdg-user-dirs-gtk
 
 sudo pacman -S yay
 
-
-
-sudo pacman -S vim 
-
-
+sudo pacman -S vim
 
 printf "zsh... "
-if ! type "zsh" > /dev/null 2>&1; then
+if ! type "zsh" >/dev/null 2>&1; then
     printf " installing... "
     sudo pacman -S zsh
-    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" > /dev/null
-    for rcfile in $(ls -d $HOME/dotfiles/zshell/z*) ; do
+    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" >/dev/null
+    for rcfile in $(ls -d $HOME/dotfiles/zshell/z*); do
         rm -rf "${ZDOTDIR:-$HOME}/.$(basename $rcfile)"
         ln -fs "$rcfile" "${ZDOTDIR:-$HOME}/.$(basename $rcfile)"
     done
@@ -33,12 +27,12 @@ else
 fi
 
 printf "PowerLine Fonts ..."
-git clone https://github.com/powerline/fonts.git ~/fonts --depth=1 > /dev/null
+git clone https://github.com/powerline/fonts.git ~/fonts --depth=1 >/dev/null
 bash ~/fonts/install.sh && rm -rf ~/fonts /dev/null
 echo "done."
 
 printf "bat... "
-if ! [ -x "$(command -v bat)" ] && ! [ -x "$(command -v batcat)" ]; then 
+if ! [ -x "$(command -v bat)" ] && ! [ -x "$(command -v batcat)" ]; then
     printf "installing... "
     sudo pacman -S bat
     echo "done."
@@ -105,7 +99,7 @@ fi
 printf "anyenv... "
 if ! [ -x "$(command -v anyenv)" ]; then
     printf "installing... "
-    git clone https://github.com/anyenv/anyenv ~/.anyenv > /dev/null
+    git clone https://github.com/anyenv/anyenv ~/.anyenv >/dev/null
     anyenv install --init
     echo "done."
 else
@@ -115,7 +109,7 @@ fi
 # printf "git(latest)... "
 # if ! [ -x "$(command -v git)" ]; then
 #     printf "installing... "
-#     sudo add-apt-repository ppa:git-core/ppa 
+#     sudo add-apt-repository ppa:git-core/ppa
 #     sudo apt update > /dev/null
 #     sudo apt install git > /dev/null
 #     echo "done."
@@ -140,5 +134,3 @@ if ! [ -x "$(command -v vivaldi)" ]; then
 else
     echo "already installed."
 fi
-
-

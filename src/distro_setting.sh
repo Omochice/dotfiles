@@ -17,7 +17,7 @@ function read_user_input() {
     local end=$2
     read input
     if [ $input -ge $start ] && [ $input -le $end ]; then
-        echo $input 
+        echo $input
     else
         echo "Your input is not in range[$start, $end]."
         exit 1
@@ -41,5 +41,4 @@ function other_settings() {
 }
 
 main
-
-
+other_settings
