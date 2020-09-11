@@ -17,14 +17,14 @@ if ! type "zsh" >/dev/null 2>&1; then
     printf " installing... "
     sudo pacman -S zsh
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" >/dev/null
-    for rcfile in $(ls -d $HOME/dotfiles/zshell/z*); do
-        rm -rf "${ZDOTDIR:-$HOME}/.$(basename $rcfile)"
-        ln -fs "$rcfile" "${ZDOTDIR:-$HOME}/.$(basename $rcfile)"
-    done
     printf "done.\n"
 else
     printf " already installed.\n"
 fi
+for rcfile in $(ls -d $HOME/dotfiles/zshell/z*); do
+    rm -rf "${ZDOTDIR:-$HOME}/.$(basename $rcfile)"
+    ln -fs "$rcfile" "${ZDOTDIR:-$HOME}/.$(basename $rcfile)"
+done
 
 printf "PowerLine Fonts ..."
 git clone https://github.com/powerline/fonts.git ~/fonts --depth=1 >/dev/null

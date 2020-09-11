@@ -18,7 +18,7 @@ function fish_prompt
     set_color normal
 
     # Git 
-    set last_status $status 
+    set last_status $status
     printf '%s ' (__fish_git_prompt)
     set_color normal
 
@@ -28,7 +28,7 @@ function fish_prompt
         printf "(%s) " (set_color blue)(basename $VIRTUAL_ENV)(set_color normal)
     end
 
-     if test $finish_status -gt 0
+    if test $finish_status -gt 0
         set_color red
     end
 

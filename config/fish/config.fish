@@ -18,7 +18,7 @@ set __fish_git_prompt_char_upstream_behind '-'
 
 function fish_user_key_bindings
     bind \cr "peco_select_history (commandline -b)"
-    bind \ce "peco-recentd"
+    bind \ce "peco_recentd"
 end
 
 # aliases 
@@ -30,15 +30,15 @@ alias pbpaste "xsel --clipboard --output"
 
 alias tmux "tmux -u2"
 
-if type "bat" > /dev/null 2>&1
+if type "bat" >/dev/null 2>&1
     alias cat "bat"
-else if type "batcat" > /dev/null 2>&1
+else if type "batcat" >/dev/null 2>&1
     alias cat "batcat"
-end 
+end
 
-if type "exa" > /dev/null 2>&1
+if type "exa" >/dev/null 2>&1
     alias ls "exa -g --time-style=long-iso"
-end 
+end
 
 alias diff "git diff"
 
