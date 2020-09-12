@@ -23,7 +23,6 @@ end
 
 # aliases 
 alias shutdown "sudo shutdown -h now"
-alias myupdate "sudo apt update && sudo apt autoremove -y && sudo apt upgrade -y"
 
 alias pbcopy "xsel --clipboard --input"
 alias pbpaste "xsel --clipboard --output"
