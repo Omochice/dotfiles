@@ -38,6 +38,7 @@ function main() {
 function other_settings() {
     LANG=C xdg-user-dirs-gtk-update
     sudo sed -i "s/XKBOPTIONS.*/XKBOPTIONS=\"ctrl:nocaps\"/" /etc/default/keyboard
+    wget -O - https://github.com/shvchk/poly-dark/raw/master/install.sh | bash
 }
 
 main
