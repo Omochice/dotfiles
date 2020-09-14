@@ -18,7 +18,7 @@ set __fish_git_prompt_char_upstream_behind '-'
 
 function fish_user_key_bindings
     bind \cr "peco_select_history (commandline -b)"
-    bind \ce "peco_recentd"
+    # bind \ce "peco_recentd"
 end
 
 # aliases 
