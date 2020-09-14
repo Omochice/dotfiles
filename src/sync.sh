@@ -1,7 +1,7 @@
 #!/usr/bin/env bash -ue
 
 function helpmsg() {
-    command echo "usage: bash path/to/install.sh"
+    command echo "usage: bash path/to/sync.sh"
     command echo "        [-h]"
     command echo "        h: help"
     command echo "           show help message"
@@ -30,14 +30,16 @@ function link_to_homedir() {
         command ln -snf $f $HOME
     done
 
-    for config in "$dotdir/config/*"; do
+    for conf in ${dotdir}/config/*; do
         local dst="$HOME/.config/$(basename $conf)"
-        if [ -d dst ]; then
-            command rsync -a "$dst/" conf
-            command rm -rf dst
+        if [ -d $dst ]; then
+            command rsync -a "$dst/" $conf
+            command rm -rf $dst
         fi
         command ln -snf $conf $dst
     done
+
+    command ln -snf $dotdir/bash/.bashrc ~/.bashrc
 }
 
 while getopts mh OPT; do
