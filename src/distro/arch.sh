@@ -81,7 +81,7 @@ fi
 printf "peco... "
 if ! [ -x "$(command -v peco)" ]; then
     printf "installing... "
-    sudo pacman -S peco
+    yay install peco
     echo "done."
 else
     echo "already installed."
@@ -139,12 +139,12 @@ printf "Fish shell"
 if ! type "fish" >/dev/null 2>&1; then
     sudo pacman -S fish
     curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
-    fisher add jethrokuan/z
-    fisher add oh-my-fish/plugin-extract
-    fisher add oh-my-fish/plugin-peco
+    fisher add jethrokuan/z oh-my-fish/plugin-extract oh-my-fish/plugin-peco rstacruz/fish-autols
 fi
 
+# Toggle IME
+sed -i "s/TriggerKey=.*/TriggerKey=HENKAN ZENKAKUHANKAKU/" $HOME/.config/fcitx/config
+
 # 手動設定
-# 入力メソッド設定 -> 変換キーをIMEの切り替えに
 # Mozcのキーボードレイアウト
 # セッションと起動 -> 起動時にgnomeを有効化(キーリングの無効化)
