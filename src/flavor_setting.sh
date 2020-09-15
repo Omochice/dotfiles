@@ -13,31 +13,13 @@ function run_by_flavor() {
     source "${flavordir}/desktop_setting.sh"
 }
 
-function read_user_input() {
-    local start=$1
-    local end=$2
-    read input
-    if [ $input -ge $start ] && [ $input -le $end ]; then
-        echo $input
-    else
-        echo "Your input is not in range[$start, $end]."
-        exit 1
-    fi
-}
-
 function main() {
-    echo "What is your Desktop environment ?"
-    echo "    1) GNOME3"
-    echo "    2) GNOME2"
-    echo "    3) Xfce   "
-    echo "    4) KDE    "
-    echo "    5) LXDE   "
-    echo "    6) i3   "
-    printf "Input > "
-    local flavor=$(read_user_input 1 6)
-    echo
-    local flavors=("gnome3" "gnome2" "xfce" "KDE" "LXDE" "i3")
-    run_by_flavor ${flavors[$(($flavor - 1))]}
+    PS3="Input your Desktop Environment > "
+    local de="gnome3 gnome2 xfce kde lxde i3"
+    select flavor in de; do
+        break
+    done
+    run_by_flavor ${flavor}
 }
 
 main

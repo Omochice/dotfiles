@@ -12,27 +12,17 @@ function run_by_distro() {
     source $distro_script
 }
 
-function read_user_input() {
-    local start=$1
-    local end=$2
-    read input
-    if [ $input -ge $start ] && [ $input -le $end ]; then
-        echo $input
-    else
-        echo "Your input is not in range[$start, $end]."
-        exit 1
-    fi
-}
-
 function main() {
-    echo "What is your Distro\'s package manager ?"
-    echo "    1) apt (Debian, etc)"
-    echo "    2) yum (Red Hat, etc)"
-    echo "    3) pacman (Arch, etc)"
-    printf "Input > "
-    local distro=$(read_user_input 1 3)
-    local distros=("debian" "RedHat" "arch")
-    run_by_distro ${distros[$(($distro - 1))]}
+    local -A distros
+    PS3="Input your Distro\' package manager > "
+    local pm="apt yum pacman"
+    select distro in $pm; do
+        break
+    done
+    declare -A distros
+    distros=(["apt"]="debian" ["yum"]="redhat" ["pacman"]="arch")
+
+    run_by_distro ${distros[$distro]}
 }
 
 function other_settings() {
