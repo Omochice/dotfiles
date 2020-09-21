@@ -15,6 +15,11 @@ set __fish_git_prompt_char_stashstate '↩'
 set __fish_git_prompt_char_upstream_ahead '+'
 set __fish_git_prompt_char_upstream_behind '-'
 
+# Tesseract
+if [ -d /usr/share/tessdata ]
+    set TESSDATA_PREFIX /usr/share/tessdata
+end
+
 
 function fish_user_key_bindings
     bind \cr "peco_select_history (commandline -b)"
