@@ -1,6 +1,11 @@
+! caps -> ctrl
 clear lock
 clear control
 keycode 66 = Control_L
 add control = Control_L Control_R
 
+! 半角全角 -> ECS
 keycode 49 = Escape
+
+! 変換 -> 半角全角
+keycode 100 = Zenkaku_Hankaku
