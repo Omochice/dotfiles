@@ -9,3 +9,6 @@ keycode 49 = Escape
 
 ! 変換 -> 半角全角
 keycode 100 = Zenkaku_Hankaku
+
+! 無変換 -> ESC
+keysym Muhenkan = Escape
