@@ -24,9 +24,7 @@ function fish_prompt
 
     # Line 2
     echo
-    if test $VIRTUAL_ENV
-        printf "(%s) " (set_color blue)(basename $VIRTUAL_ENV)(set_color normal)
-    end
+
 
     if test $last_status -gt 0
         set_color red
@@ -44,5 +42,8 @@ end
 
 
 function fish_right_prompt
+    if test $VIRTUAL_ENV
+        printf "(%s) " (set_color blue)(basename $VIRTUAL_ENV)(set_color normal)
+    end
     date +"[ %H:%M ]"
 end
