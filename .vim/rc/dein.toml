@@ -1,0 +1,19 @@
+[[plugins]]
+hook_add = '''
+    augroup colorcshemeSetting
+        autocmd!
+        autocmd VimEnter * ++nested colorscheme night-owl
+        autocmd Colorscheme * highlight Normal ctermbg=none
+        autocmd Colorscheme * highlight NonText ctermbg=none
+        autocmd Colorscheme * highlight LineNr ctermbg=none
+        autocmd Colorscheme * highlight Folded ctermbg=none
+        autocmd Colorscheme * highlight EndOfBuffer ctermbg=none 
+    augroup END
+'''
+repo = 'haishanh/night-owl.vim'
+
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+
+[[plugins]]
+repo = 'cocopon/vaffle.vim'
