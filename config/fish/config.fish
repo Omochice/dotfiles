@@ -33,7 +33,6 @@ alias pbcopy "xsel --clipboard --input"
 alias pbpaste "xsel --clipboard --output"
 
 alias tmux "tmux -u2"
-
 if type "bat" >/dev/null 2>&1
     alias cat "bat"
 else if type "batcat" >/dev/null 2>&1
@@ -53,3 +52,6 @@ if test $count -eq 0
 else if test $count -eq 1
     command tmux a
 end
+
+# Github CLI
+eval (gh completion -s fish | source) 
