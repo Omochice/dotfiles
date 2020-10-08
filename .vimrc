@@ -13,7 +13,7 @@ if dein#load_state('$HOME/.vim/dein')
   " Let dein manage dein
   " Required:
   call dein#add('$HOME/.vim/dein/repos/github.com/Shougo/dein.vim')
-  
+  call dein#add("haishanh/night-owl.vim") 
   call dein#add("mattn/vim-molder")
 
   " Add or remove your plugins here like this:
