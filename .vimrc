@@ -52,3 +52,8 @@ endif
 
 syntax on
 set clipboard+=unnamed
+set expandtab
+set tabstop=4
+set nowritebackup
+set nobackup 
+set noswapfile
