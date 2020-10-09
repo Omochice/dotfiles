@@ -1,37 +1,62 @@
-"dein Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
+" dein.vim settings {{{
+" install dir {{{
+let s:dein_dir = expand('~/.vim/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+" }}}
+
+" dein installation check {{{
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . s:dein_repo_dir
 endif
+" }}}
 
-" Required:
-set runtimepath+=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
+" begin settings {{{
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
 
-" Required:
-if dein#load_state('$HOME/.vim/dein')
-  call dein#begin('$HOME/.vim/dein')
+  " .toml file
+  let s:rc_dir = expand('~/.vim/rc')
+  if !isdirectory(s:rc_dir)
+    call mkdir(s:rc_dir, 'p')
+  endif
+  let s:toml = s:rc_dir . '/dein.toml'
 
-  " Let dein manage dein
-  " Required:
-  call dein#add('$HOME/.vim/dein/repos/github.com/Shougo/dein.vim')
-  call dein#add("haishanh/night-owl.vim") 
-  call dein#add("mattn/vim-molder")
+  " read toml and cache
+  call dein#load_toml(s:toml, {'lazy': 0})
 
-  " Add or remove your plugins here like this:
-  "call dein#add('Shougo/neosnippet.vim')
-  "call dein#add('Shougo/neosnippet-snippets')
-
-  " Required:
+  " end settings
   call dein#end()
   call dein#save_state()
 endif
+" }}}
 
-" Required:
-filetype plugin indent on
-syntax enable
+" plugin installation check {{{
+if dein#check_install()
+  call dein#install()
+endif
+" }}}
 
-" If you want to install not installed plugins on startup.
-"if dein#check_install()
-"  call dein#install()
-"endif
+" plugin remove check {{{
+let s:removed_plugins = dein#check_clean()
+if len(s:removed_plugins) > 0
+  call map(s:removed_plugins, "delete(v:val, 'rf')")
+  call dein#recache_runtimepath()
+endif
+" }}}
 
-"End dein Scripts-------------------------
+
+" user settings 
+
+syntax on
+set clipboard+=unnamed
+set expandtab
+set tabstop=4
+set nowritebackup
+set nobackup 
+set noswapfile
+set smartindent 
+set autoindent
+
