@@ -1,12 +1,4 @@
 [Configuration]
-ColorForeground=#b7b7b7
-ColorBackground=#131926
-ColorCursor=#0f4999
-ColorSelection=#163b59
-ColorSelectionUseDefault=FALSE
-ColorBold=#ffffff
-ColorBoldUseDefault=FALSE
-ColorPalette=#000000;#aa0000;#44aa44;#aa5500;#0039aa;#aa22aa;#1a92aa;#aaaaaa;#777777;#ff8787;#4ce64c;#ded82c;#295fcc;#cc58cc;#4ccce6;#ffffff
 FontName=Cousine for Powerline 14
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
@@ -35,7 +27,6 @@ MiscSlimTabs=FALSE
 MiscNewTabAdjacent=FALSE
 MiscSearchDialogOpacity=100
 MiscShowUnsafePasteDialog=TRUE
-TabActivityColor=#0f4999
 BackgroundMode=TERMINAL_BACKGROUND_TRANSPARENT
 BackgroundDarkness=0.830000
 
