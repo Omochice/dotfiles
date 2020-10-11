@@ -7,14 +7,14 @@
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+    source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
 # Customize to your needs...
 
-function load_settings(){
+function load_settings() {
     local func_dir="$(dirname $(readlink ~/.zshrc))/.zsh.d"
-    
+
     if [ -d $func_dir -a -r $func_dir -a -x $func_dir ]; then
         for i in $func_dir/*; do
             [[ ${i##*/} = *.zsh ]] && [ \( -f $i -o -h $i \) -a -r $i ] && . $i
@@ -22,10 +22,18 @@ function load_settings(){
     fi
 }
 
+function prompt_settings() {
+    PROMPT="
+${_prompt_steeef_colors[3]}%n%f at ${_prompt_steeef_colors[2]}%m%f in ${_prompt_steeef_colors[5]}$(prompt-pwd)%f "'${vcs_info_msg_0_}'"
+"'${editor_info[keymap]} '
+    RPROMPT="$python_info[virtualenv] [ %D{%H:%M} ]"
+}
+
 # リダイレクトの許可(>で上書きできるように)
 set +C
 
 load_settings
+prompt_settings
 
 # fishの起動
-exec fish
+# exec fish
