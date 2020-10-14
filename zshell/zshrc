@@ -1,20 +1,42 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+export ZPLUG_HOME=~/.zplug
+source $ZPLUG_HOME/init.zsh
 
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-    source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+zplug "zsh-users/zsh-autosuggestions", defer:2
+zplug "zsh-users/zsh-completions"
+zplug "chrissicool/zsh-256color"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+
+
+zplug "modules/prompt", from:prezto
+
+
+
+if ! zplug check; then
+    zplug install
 fi
 
-# Customize to your needs...
+
+zplug load
+
+autoload -U colors && colors
+#prompt steeef
+
+function abbr_pwd() {
+    local abbr=$(echo $(pwd) | sed -e "s@$HOME@~@" -e "s@\(\.\?[^\/]\)[^\/]*\/@\1\/@g")
+    echo $abbr
+}
+
+local prompt_location="$fg[yellow]%n$reset_color at $fg[magenta]%m$reset_color in $fg[green]$(abbr_pwd)$reset_color"
+local git_info=""
+PROMPT="
+${prompt_location} ${git_info}
+↪ %# "
+RPROMPT="[ %T ]"
+
+
 
 function load_settings() {
     local func_dir="$(dirname $(readlink ~/.zshrc))/.zsh.d"
-
     if [ -d $func_dir -a -r $func_dir -a -x $func_dir ]; then
         for i in $func_dir/*; do
             [[ ${i##*/} = *.zsh ]] && [ \( -f $i -o -h $i \) -a -r $i ] && . $i
@@ -22,18 +44,4 @@ function load_settings() {
     fi
 }
 
-function prompt_settings() {
-    PROMPT="
-${_prompt_steeef_colors[3]}%n%f at ${_prompt_steeef_colors[2]}%m%f in ${_prompt_steeef_colors[5]}$(prompt-pwd)%f "'${vcs_info_msg_0_}'"
-"'${editor_info[keymap]} '
-    RPROMPT="$python_info[virtualenv] [ %D{%H:%M} ]"
-}
-
-# リダイレクトの許可(>で上書きできるように)
-set +C
-
 load_settings
-prompt_settings
-
-# fishの起動
-# exec fish
