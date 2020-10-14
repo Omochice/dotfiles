@@ -24,19 +24,8 @@ function git_branch() {
 }
 
 function abbr_pwd() {
-    local p=$(echo $(pwd) | sed "s@$HOME@~@")
-    local directories=(${p//\// })
-    local _n_d=${#directories[@]}
-    local _last=${directories[_n_d - 1]}
-    local _abbr_pwd=""
-    if [ ${directories[0]} != "~" ]; then
-        _abbr_pwd=$_abbr_pwd/
-    fi
-    # 本当はif [[ $p =~ (.?[^\/]{1})[^\/]*\/ ]]で処理したい
-    for d in "${directories[@]:0:_n_d-1}"; do
-        _abbr_pwd=$_abbr_pwd${d:0:1}/
-    done
-    echo $_abbr_pwd$_last
+    local p=$(echo $(pwd) | sed -e "s@$HOME@~@" -e "s@\(\.\?[^\/]\)[^\/]*\/@\1\/@g")
+    echo $p
 }
 
 # line 1
