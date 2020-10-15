@@ -5,16 +5,13 @@ zplug "zsh-users/zsh-autosuggestions", defer:2
 zplug "zsh-users/zsh-completions"
 zplug "chrissicool/zsh-256color"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
-
+zplug "agkozak/zsh-z"
 
 zplug "modules/prompt", from:prezto
-
-
 
 if ! zplug check; then
     zplug install
 fi
-
 
 zplug load
 
@@ -32,8 +29,6 @@ PROMPT="
 ${prompt_location} ${git_info}
 ↪ %# "
 RPROMPT="[ %T ]"
-
-
 
 function load_settings() {
     local func_dir="$(dirname $(readlink ~/.zshrc))/.zsh.d"
