@@ -1,13 +1,21 @@
 export ZPLUG_HOME=~/.zplug
+
+if [[ ! -d $ZPLUG_HOME ]] ;then
+    git clone https://github.com/zplug/zplug $ZPLUG_HOME
+fi
 source $ZPLUG_HOME/init.zsh
 
+zplug "zplug/zplug", hook-build:"zplug --self-manage"
 zplug "zsh-users/zsh-autosuggestions", defer:2
 zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-history-substring-search", defer:2
 zplug "chrissicool/zsh-256color"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "agkozak/zsh-z"
+zplug "plugins/git", from:oh-my-zsh
+zplug "peterhurford/git-aliases.zsh"
 
-zplug "modules/prompt", from:prezto
+#zplug "modules/prompt", from:prezto
 
 if ! zplug check; then
     zplug install
@@ -16,18 +24,46 @@ fi
 zplug load
 
 autoload -U colors && colors
-#prompt steeef
+autoload -Uz compinit && compinit
+autoload -Uz vcs_info
+
+
+
+
+setopt share_history
+setopt histignorealldups
+setopt auto_cd 
+setopt prompt_subst
+
+bindkey -e
+
+zstyle ":completion:*:default" menu select=1
+zstyle ":completion:*", matcher-list "m:{a-z}={A-Z}"
+zstyle ":vcs_info:git:*" check-for-changes true
+zstyle ":vcs_info:git:*" stagedstr "%F{green}+" 
+zstyle ":vcs_info:git:*" unstagedstr "%F{red}!" 
+zstyle ":vcs_info:*" formats "(%F{yellow}%b %c%u%f)"
+zstyle ":vcs_info:*" actionformats "[%b|%a]"
 
 function abbr_pwd() {
-    local abbr=$(echo $(pwd) | sed -e "s@$HOME@~@" -e "s@\(\.\?[^\/]\)[^\/]*\/@\1\/@g")
-    echo $abbr
+    local p=$(pwd | sed -e "s@$HOME@~@" -e "s@\(\.\?[^\/]\)[^\/]*\/@\1\/@g")
+    echo $p 
 }
 
-local prompt_location="$fg[yellow]%n$reset_color at $fg[magenta]%m$reset_color in $fg[green]$(abbr_pwd)$reset_color"
-local git_info=""
-PROMPT="
+function autols() {
+    [[ ${AUTOLS_DIR:-$PWD} != $PWD ]] && ls
+    AUTOLS_DIR=$PWD
+}
+precmd() {
+    autols
+    vcs_info
+    prompt_location="$fg[yellow]%n$reset_color at $fg[magenta]%m$reset_color in $fg[green]$(abbr_pwd)$reset_color"
+    git_info=$vcs_info_msg_0_
+    PROMPT="
 ${prompt_location} ${git_info}
 ↪ %# "
+}
+
 RPROMPT="[ %T ]"
 
 function load_settings() {
@@ -40,3 +76,4 @@ function load_settings() {
 }
 
 load_settings
+

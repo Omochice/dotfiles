@@ -1,5 +1,5 @@
 # Fish git prompt
-set __fish_git_prompt_showdirtystate 'yes'
+set __fish_git_prompt_showdirtystate 'no'
 set __fish_git_prompt_showstashstate 'yes'
 set __fish_git_prompt_showuntrackedfiles 'yes'
 set __fish_git_prompt_showupstream 'yes'
@@ -8,10 +8,10 @@ set __fish_git_prompt_color_upstream_ahead green
 set __fish_git_prompt_color_upstream_behind red
 
 # Status Chars
-set __fish_git_prompt_char_dirtystate '⚡'
-set __fish_git_prompt_char_stagedstate '→'
-set __fish_git_prompt_char_untrackedfiles '☡'
-set __fish_git_prompt_char_stashstate '↩'
+set __fish_git_prompt_char_dirtystate ''
+set __fish_git_prompt_char_stagedstate '+'
+set __fish_git_prompt_char_untrackedfiles '!'
+set __fish_git_prompt_char_stashstate '*'
 set __fish_git_prompt_char_upstream_ahead '+'
 set __fish_git_prompt_char_upstream_behind '-'
 
@@ -44,6 +44,9 @@ if type "exa" >/dev/null 2>&1
 end
 
 alias diff "git diff"
+
+# balias 
+balias f77 gfortran
 
 # tmuxの自動起動
 set count (ps aux | grep tmux | grep -v grep | wc -l)
