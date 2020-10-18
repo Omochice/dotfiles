@@ -17,3 +17,29 @@ repo = 'vim-jp/vimdoc-ja'
 
 [[plugins]]
 repo = 'cocopon/vaffle.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+merge = 0
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
+
+[[plugins]]
+repo = "markonm/traces.vim"
+
+[[plugins]]
+repo = "ruby-formatter/rufo-vim"
+hook_add = '''
+let g:rufo_auto_formatting = 1
+'''
+
+[[plugins]]
+repo = "mindriot101/vim-yapf"
+
