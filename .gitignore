@@ -12,10 +12,6 @@
 !/.config/autostart/gnome-terminal.desktop
 !/.config/yapf/style
 !/.config/pip/pip.conf
-!/.config/Code/_install.sh
-!/.config/Code/User/snippets/**
-!/.config/Code/User/settings.json
-!/.config/Code/User/keybindings.json
 !/src
 !/zshell
 !/zshell/.zsh.d
@@ -27,7 +23,8 @@
 !/.config/fish/function/peco-recentd.fish
 !/.config/fish/function/fish_prompt.fish
 !/.config/fish/config.fish
-
+!/.vim
+!/bash
 
 
 # ignore list
