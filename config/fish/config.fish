@@ -47,6 +47,8 @@ alias diff "git diff"
 
 # balias 
 balias f77 gfortran
+balias tree "ls -T"
+
 
 # tmuxの自動起動
 set count (ps aux | grep tmux | grep -v grep | wc -l)
