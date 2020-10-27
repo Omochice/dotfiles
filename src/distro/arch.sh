@@ -16,7 +16,6 @@ printf "zsh... "
 if ! type "zsh" >/dev/null 2>&1; then
     printf " installing... "
     sudo pacman -S zsh
-    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" >/dev/null
     printf "done.\n"
 else
     printf " already installed.\n"
@@ -26,10 +25,6 @@ for rcfile in $(ls -d $HOME/dotfiles/zshell/z*); do
     ln -fs "$rcfile" "${ZDOTDIR:-$HOME}/.$(basename $rcfile)"
 done
 
-printf "PowerLine Fonts ..."
-git clone https://github.com/powerline/fonts.git ~/fonts --depth=1 >/dev/null
-bash ~/fonts/install.sh && rm -rf ~/fonts /dev/null
-echo "done."
 
 printf "bat... "
 if ! [ -x "$(command -v bat)" ] && ! [ -x "$(command -v batcat)" ]; then
