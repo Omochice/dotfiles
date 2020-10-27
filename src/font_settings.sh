@@ -1,15 +1,12 @@
 function download_fonts() {
     local font_name=$1
     local font_download_url=$2
-    echo "font name is $font_name"
-    echo "url is $font_download_url"
-    echo 
-    wget $font_download_url -O - > ~/Downloads/downloaded.zip # /dev/null
+    wget $font_download_url -O - >~/Downloads/downloaded.zip # /dev/null
     [[ -e ~/Downloads/$font_neme ]] && rm -rf ~/Downloads/$font_name
     mkdir ~/Downloads/$font_name
     unzip -d ~/Downloads/$font_name ~/Downloads/downloaded.zip
-    rm ~/Downloads/downloaded.zip
     cp ~/Downloads/$font_name/ttf/*.ttf ~/.local/share/fonts/
+    rm -rf ~/Downloads/$font_name
 }
 
 function main() {
