@@ -61,6 +61,7 @@ set nowritebackup
 set nobackup 
 set noswapfile
 set number
+set nowrap
 
 
 inoremap <C-h> <C-o>h

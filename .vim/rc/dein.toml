@@ -23,7 +23,9 @@ repo = 'prabirshrestha/vim-lsp'
 
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
-merge = 0
+
+[[plugins]]
+repo = 'mattn/vim-lsp-icons'
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete.vim'
