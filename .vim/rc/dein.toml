@@ -56,4 +56,10 @@ repo = "vim-airline/vim-airline-themes"
 repo = "easymotion/vim-easymotion"
 hook_add = """
 nmap f <Plug>(easymotion-bd-f2)
+let g:EasyMotion_smartcase = 1
+nmap <leader>j <Plug>(easymotion-j)
+nmap <leader>k <Plug>(easymotion-k)
 """
+
+[[plugins]]
+repo = "tomtom/tcomment_vim"

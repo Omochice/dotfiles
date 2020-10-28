@@ -63,6 +63,10 @@ set nobackup
 set noswapfile
 set number
 set nowrap
+set hlsearch
+set infercase
+set showmatch
+set colorcolumn=88
 
 
 inoremap <C-h> <C-o>h
