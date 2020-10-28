@@ -7,7 +7,8 @@ hook_add = '''
         autocmd Colorscheme * highlight NonText ctermbg=none
         autocmd Colorscheme * highlight LineNr ctermbg=none
         autocmd Colorscheme * highlight Folded ctermbg=none
-        autocmd Colorscheme * highlight EndOfBuffer ctermbg=none 
+        colorscheme night-owl
+        let g:lightline = {"colorscheme": "nightowl"}
     augroup END
 '''
 repo = 'haishanh/night-owl.vim'
@@ -37,11 +38,22 @@ repo = 'prabirshrestha/asyncomplete-lsp.vim'
 repo = "markonm/traces.vim"
 
 [[plugins]]
-repo = "ruby-formatter/rufo-vim"
-hook_add = '''
-let g:rufo_auto_formatting = 1
-'''
+repo = "jiangmiao/auto-pairs"
 
 [[plugins]]
-repo = "mindriot101/vim-yapf"
+repo = "vim-airline/vim-airline"
 
+[[plugins]]
+hook_add = '''
+    augroup airlineSettings
+        autocmd!
+        let g:airline_theme = "minimalist"
+    augroup END
+'''
+repo = "vim-airline/vim-airline-themes"
+
+[[plugins]]
+repo = "easymotion/vim-easymotion"
+hook_add = """
+nmap f <Plug>(easymotion-bd-f2)
+"""

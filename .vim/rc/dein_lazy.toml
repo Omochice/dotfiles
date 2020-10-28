@@ -1,0 +1,26 @@
+[[plugins]]
+on_ft = 'toml'
+repo = 'cespare/vim-toml'
+
+[[plugins]]
+hook_add = '''
+let g:rufo_auto_formatting = 1
+'''
+on_ft = "ruby"
+repo = "ruby-formatter/rufo-vim"
+
+[[plugins]]
+repo = "tpope/vim-endwise"
+on_ft = "ruby"
+
+[[plugins]]
+on_ft = "python"
+repo = "mindriot101/vim-yapf"
+
+[[plugins]]
+hook_add = '''
+let g:shfmt_extra_args = '-i 4 -ci -bn -s'
+let g:shfmt_fmt_on_save = 1
+'''
+on_ft = ["sh", "bash"]
+repo = "z0mbix/vim-shfmt"

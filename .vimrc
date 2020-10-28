@@ -23,9 +23,11 @@ if dein#load_state(s:dein_dir)
     call mkdir(s:rc_dir, 'p')
   endif
   let s:toml = s:rc_dir . '/dein.toml'
+  let s:lazy_toml = s:rc_dir . '/dein_lazy.toml'
 
   " read toml and cache
   call dein#load_toml(s:toml, {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
   " end settings
   call dein#end()
@@ -49,7 +51,6 @@ endif
 
 
 " user settings 
-
 syntax on
 set clipboard=unnamed,autoselect
 set expandtab
@@ -68,7 +69,6 @@ inoremap <C-h> <C-o>h
 inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
 inoremap <C-l> <C-o>l
-
 
 augroup fileTypeIndent
     autocmd!
