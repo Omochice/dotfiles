@@ -57,3 +57,24 @@ set tabstop=4
 set nowritebackup
 set nobackup 
 set noswapfile
+set number
+set nowrap
+set hlsearch
+set infercase
+set showmatch
+set colorcolumn=88
+set completeopt=menuone,noinsert
+
+
+inoremap <C-h> <C-o>h
+inoremap <C-j> <C-o>j
+inoremap <C-k> <C-o>k
+inoremap <C-l> <C-o>l
+
+augroup fileTypeIndent
+    autocmd!
+    autocmd BufNewFile, BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4
+    autocmd BufNewFile, BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
+ 
+autocmd BufWritePre *.py 0,$!yapf

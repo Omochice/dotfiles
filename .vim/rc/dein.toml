@@ -17,3 +17,53 @@ repo = 'vim-jp/vimdoc-ja'
 
 [[plugins]]
 repo = 'cocopon/vaffle.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+
+[[plugins]]
+repo = 'mattn/vim-lsp-icons'
+
+[[plugins]]
+hook_add = '''
+inoremap <expr><Tab> pumvisible() ? "\<C-n>": "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+'''
+repo = 'prabirshrestha/asyncomplete.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
+
+[[plugins]]
+repo = "markonm/traces.vim"
+
+[[plugins]]
+repo = "jiangmiao/auto-pairs"
+
+[[plugins]]
+repo = "vim-airline/vim-airline"
+
+[[plugins]]
+hook_add = '''
+    augroup airlineSettings
+        autocmd!
+        let g:airline_theme = "minimalist"
+    augroup END
+'''
+repo = "vim-airline/vim-airline-themes"
+
+[[plugins]]
+hook_add = '''
+nmap f <Plug>(easymotion-bd-f2)
+let g:EasyMotion_smartcase = 1
+nmap <leader>j <Plug>(easymotion-j)
+nmap <leader>k <Plug>(easymotion-k)
+'''
+repo = "easymotion/vim-easymotion"
+
+[[plugins]]
+repo = "tomtom/tcomment_vim"
