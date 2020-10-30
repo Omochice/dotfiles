@@ -67,6 +67,7 @@ set hlsearch
 set infercase
 set showmatch
 set colorcolumn=88
+set completeopt=menuone,noinsert
 
 
 inoremap <C-h> <C-o>h

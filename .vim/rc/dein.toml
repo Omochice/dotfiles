@@ -29,6 +29,11 @@ repo = 'mattn/vim-lsp-settings'
 repo = 'mattn/vim-lsp-icons'
 
 [[plugins]]
+hook_add = '''
+inoremap <expr><Tab> pumvisible() ? "\<C-n>": "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+'''
 repo = 'prabirshrestha/asyncomplete.vim'
 
 [[plugins]]
@@ -53,13 +58,17 @@ hook_add = '''
 repo = "vim-airline/vim-airline-themes"
 
 [[plugins]]
-repo = "easymotion/vim-easymotion"
-hook_add = """
+>>>>>>>hook_add = '''
 nmap f <Plug>(easymotion-bd-f2)
 let g:EasyMotion_smartcase = 1
 nmap <leader>j <Plug>(easymotion-j)
 nmap <leader>k <Plug>(easymotion-k)
+<<<<<<< HEAD
 """
+=======
+'''
+repo = "easymotion/vim-easymotion"
+vim-setting 
 
 [[plugins]]
 repo = "tomtom/tcomment_vim"
