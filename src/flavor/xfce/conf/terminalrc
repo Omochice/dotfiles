@@ -28,5 +28,5 @@ MiscNewTabAdjacent=FALSE
 MiscSearchDialogOpacity=100
 MiscShowUnsafePasteDialog=TRUE
 BackgroundMode=TERMINAL_BACKGROUND_TRANSPARENT
-BackgroundDarkness=0.830000
+BackgroundDarkness=0.900000
 
