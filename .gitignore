@@ -24,6 +24,8 @@
 !/.config/fish/function/fish_prompt.fish
 !/.config/fish/config.fish
 !/.vim
+!/.vim/rc/dein.toml
+!/.vim/rc/dein_lazy.toml
 !/bash
 
 

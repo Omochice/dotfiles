@@ -84,3 +84,7 @@ augroup pythonSettings
     autocmd BufNewFile, BufRead *.py setlocal colorcolumn=88 tabstop=4 softtabstop=4 shiftwidth=4
     autocmd BufWritePre *.py 0,$!yapf
 augroup END
+
+augroup goSettings
+    autocmd!
+augroup END

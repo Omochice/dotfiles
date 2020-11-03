@@ -2,13 +2,15 @@
 hook_add = '''
     augroup colorcshemeSetting
         autocmd!
-        autocmd VimEnter * ++nested colorscheme night-owl
-        autocmd Colorscheme * highlight Normal ctermbg=none
-        autocmd Colorscheme * highlight NonText ctermbg=none
-        autocmd Colorscheme * highlight LineNr ctermbg=none
-        autocmd Colorscheme * highlight Folded ctermbg=none
         colorscheme night-owl
         let g:lightline = {"colorscheme": "nightowl"}
+        autocmd VimEnter * ++nested colorscheme night-owl
+        autocmd Colorscheme * highlight Normal ctermbg=NONE guibg=NONE
+        autocmd Colorscheme * highlight NonText ctermbg=NONE guibg=NONE
+        autocmd Colorscheme * highlight LineNr ctermbg=NONE guibg=NONE
+        autocmd Colorscheme * highlight Folded ctermbg=NONE guibg=NONE
+        autocmd Colorscheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
+
     augroup END
 '''
 repo = 'haishanh/night-owl.vim'
@@ -68,3 +70,8 @@ repo = "easymotion/vim-easymotion"
 
 [[plugins]]
 repo = "tomtom/tcomment_vim"
+
+[[plugins]]
+repo = "mattn/vim-goimports"
+hook_add = "let g:goimports_simplify = 1"
+
