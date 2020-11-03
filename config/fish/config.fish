@@ -45,9 +45,12 @@ end
 
 alias diff "git diff"
 
-# balias 
-balias f77 gfortran
-balias tree "ls -T"
+# abbr commands
+abbr f77 gfortran
+abbr tree "ls -T"
+abbr gst "git status"
+abbr gsw "git switch"
+abbr gcm "git commit -m"
 
 
 # tmuxの自動起動
