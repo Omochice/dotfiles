@@ -87,4 +87,5 @@ augroup END
 
 augroup goSettings
     autocmd!
+    autocmd BufWritePre *.go 0,$!gofmt&&goimports
 augroup END
