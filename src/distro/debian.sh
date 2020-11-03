@@ -4,20 +4,11 @@ printf "zsh... "
 if ! type "zsh" >/dev/null 2>&1; then
     printf " installing... "
     sudo apt install zsh -y >/dev/null
-    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" >/dev/null
-    for rcfile in $(ls -d $HOME/dotfiles/zshell/z*); do
-        rm -rf "${ZDOTDIR:-$HOME}/.$(basename $rcfile)"
-        ln -fs "$rcfile" "${ZDOTDIR:-$HOME}/.$(basename $rcfile)"
-    done
     printf "done.\n"
 else
     printf " already installed.\n"
 fi
 
-printf "PowerLine Fonts ..."
-git clone https://github.com/powerline/fonts.git ~/fonts --depth=1 >/dev/null
-bash ~/fonts/install.sh && rm -rf ~/fonts /dev/null
-echo "done."
 
 printf "bat... "
 if ! [ -x "$(command -v bat)" ] && ! [ -x "$(command -v batcat)" ]; then
@@ -135,9 +126,12 @@ else
     echo "already installed."
 fi
 
-echo "-------------------"
-echo "手動で設定するもの"
-echo "\t ターミナルのfontの設定"
-echo "\t\t 1. font -> cousine for Powerfile Regular"
-echo "\t\t 2. fontsize -> 14"
-echo "\t VS code setting sync"
+printf "fish shell ..."
+if ! [ -x "$(command -v fish)" ]; then
+    printf "installing... "
+    sudo apt install -y fish
+    echo "done"
+fi
+
+
+
