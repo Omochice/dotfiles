@@ -71,7 +71,4 @@ repo = "easymotion/vim-easymotion"
 [[plugins]]
 repo = "tomtom/tcomment_vim"
 
-[[plugins]]
-repo = "mattn/vim-goimports"
-hook_add = "let g:goimports_simplify = 1"
 
