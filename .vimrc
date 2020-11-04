@@ -66,6 +66,7 @@ set nowrap
 set hlsearch
 set infercase
 set showmatch
+set incsearch
 set completeopt=menuone,noinsert
 
 
@@ -73,6 +74,7 @@ inoremap <C-h> <C-o>h
 inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
 inoremap <C-l> <C-o>l
+imap <c-space> <Plug>(asyncomplete_force_refresh)
 
 augroup rubySettings
     autocmd!
@@ -83,9 +85,4 @@ augroup pythonSettings
     autocmd!
     autocmd BufNewFile, BufRead *.py setlocal colorcolumn=88 tabstop=4 softtabstop=4 shiftwidth=4
     autocmd BufWritePre *.py 0,$!yapf
-augroup END
-
-augroup goSettings
-    autocmd!
-    autocmd BufWritePre *.go 0,$!gofmt&&goimports
 augroup END

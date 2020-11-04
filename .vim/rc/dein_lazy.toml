@@ -25,3 +25,10 @@ let g:shfmt_fmt_on_save = 1
 on_ft = ["sh", "bash"]
 repo = "z0mbix/vim-shfmt"
 
+[[plugins]]
+repo = "mattn/vim-goimports"
+hook_add = """
+let g:goimports = 1
+let g:foimports_simplify = 1
+"""
+on_ft = "go"
