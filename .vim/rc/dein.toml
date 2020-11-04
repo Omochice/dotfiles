@@ -2,19 +2,22 @@
 hook_add = '''
     augroup colorcshemeSetting
         autocmd!
-        autocmd VimEnter * ++nested colorscheme night-owl
-        autocmd Colorscheme * highlight Normal ctermbg=none
-        autocmd Colorscheme * highlight NonText ctermbg=none
-        autocmd Colorscheme * highlight LineNr ctermbg=none
-        autocmd Colorscheme * highlight Folded ctermbg=none
         colorscheme night-owl
         let g:lightline = {"colorscheme": "nightowl"}
+        autocmd VimEnter * ++nested colorscheme night-owl
+        autocmd Colorscheme * highlight Normal ctermbg=NONE guibg=NONE
+        autocmd Colorscheme * highlight NonText ctermbg=NONE guibg=NONE
+        autocmd Colorscheme * highlight LineNr ctermbg=NONE guibg=NONE
+        autocmd Colorscheme * highlight Folded ctermbg=NONE guibg=NONE
+        autocmd Colorscheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
+
     augroup END
 '''
 repo = 'haishanh/night-owl.vim'
 
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
+hook_add = "set helplang=ja"
 
 [[plugins]]
 repo = 'cocopon/vaffle.vim'
@@ -29,6 +32,11 @@ repo = 'mattn/vim-lsp-settings'
 repo = 'mattn/vim-lsp-icons'
 
 [[plugins]]
+hook_add = '''
+inoremap <expr><Tab> pumvisible() ? "\<C-n>": "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+'''
 repo = 'prabirshrestha/asyncomplete.vim'
 
 [[plugins]]
@@ -53,13 +61,15 @@ hook_add = '''
 repo = "vim-airline/vim-airline-themes"
 
 [[plugins]]
-repo = "easymotion/vim-easymotion"
-hook_add = """
+hook_add = '''
 nmap f <Plug>(easymotion-bd-f2)
 let g:EasyMotion_smartcase = 1
 nmap <leader>j <Plug>(easymotion-j)
 nmap <leader>k <Plug>(easymotion-k)
-"""
+'''
+repo = "easymotion/vim-easymotion"
 
 [[plugins]]
 repo = "tomtom/tcomment_vim"
+
+

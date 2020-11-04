@@ -24,3 +24,4 @@ let g:shfmt_fmt_on_save = 1
 '''
 on_ft = ["sh", "bash"]
 repo = "z0mbix/vim-shfmt"
+
