@@ -68,7 +68,7 @@ set infercase
 set showmatch
 set incsearch
 set completeopt=menuone,noinsert
-
+set list listchars=tab:>-
 
 inoremap <C-h> <C-o>h
 inoremap <C-j> <C-o>j
@@ -85,4 +85,9 @@ augroup pythonSettings
     autocmd!
     autocmd BufNewFile, BufRead *.py setlocal colorcolumn=88 tabstop=4 softtabstop=4 shiftwidth=4
     autocmd BufWritePre *.py 0,$!yapf
+augroup END
+
+augroup fortranSettings
+    autocmd!
+    autocmd BufWritePre *.f90 0,$!fprettify -i 4 -S
 augroup END
