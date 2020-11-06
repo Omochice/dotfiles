@@ -66,13 +66,15 @@ set nowrap
 set hlsearch
 set infercase
 set showmatch
+set incsearch
 set completeopt=menuone,noinsert
-
+set list listchars=tab:>-
 
 inoremap <C-h> <C-o>h
 inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
 inoremap <C-l> <C-o>l
+imap <c-space> <Plug>(asyncomplete_force_refresh)
 
 augroup rubySettings
     autocmd!
@@ -85,7 +87,7 @@ augroup pythonSettings
     autocmd BufWritePre *.py 0,$!yapf
 augroup END
 
-augroup goSettings
+augroup fortranSettings
     autocmd!
-    autocmd BufWritePre *.go 0,$!gofmt&&goimports
+    autocmd BufWritePre *.f90 0,$!fprettify -i 4 -S
 augroup END
