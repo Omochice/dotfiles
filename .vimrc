@@ -56,6 +56,7 @@ set clipboard=unnamed,autoselect
 set expandtab
 set tabstop=4
 set shiftwidth=4
+set softtabstop=4
 set autoindent
 set smartindent 
 set nowritebackup
@@ -69,6 +70,7 @@ set showmatch
 set incsearch
 set completeopt=menuone,noinsert
 set list listchars=tab:>-
+set wildmenu
 
 inoremap <C-h> <C-o>h
 inoremap <C-j> <C-o>j
