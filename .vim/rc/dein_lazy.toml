@@ -32,3 +32,10 @@ let g:goimports = 1
 let g:foimports_simplify = 1
 """
 on_ft = "go"
+
+[[plugins]]
+repo = "alvan/vim-closetag"
+hook_add = """
+let g:closetag_filenames = '*.html, *,vue, *.xml'
+"""
+on_ft = ["html", "vue", "xml"]

@@ -72,4 +72,8 @@ repo = "easymotion/vim-easymotion"
 [[plugins]]
 repo = "tomtom/tcomment_vim"
 
+[[plugins]]
+repo = "hrsh7th/vim-vsnip"
 
+[[plugins]]
+repo = "hrsh7th/vim-vsnip-integ"

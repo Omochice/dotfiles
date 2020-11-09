@@ -71,6 +71,9 @@ set incsearch
 set completeopt=menuone,noinsert
 set list listchars=tab:>-
 set wildmenu
+set gdefault
+set iminsert=2
+
 
 inoremap <C-h> <C-o>h
 inoremap <C-j> <C-o>j
