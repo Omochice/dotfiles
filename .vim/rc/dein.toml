@@ -34,8 +34,9 @@ repo = 'mattn/vim-lsp-icons'
 [[plugins]]
 hook_add = '''
 inoremap <expr><Tab> pumvisible() ? "\<C-n>": "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr><cr> pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+let g:asyncomplete_auto_completeopt=0
 '''
 repo = 'prabirshrestha/asyncomplete.vim'
 
@@ -74,6 +75,12 @@ repo = "tomtom/tcomment_vim"
 
 [[plugins]]
 repo = "hrsh7th/vim-vsnip"
+hook_add = '''
+imap <expr><C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)'
+smap <expr><C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)'
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+'''
 
 [[plugins]]
 repo = "hrsh7th/vim-vsnip-integ"

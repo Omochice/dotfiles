@@ -67,12 +67,13 @@ set nowrap
 set hlsearch
 set infercase
 set showmatch
-set incsearch
-set completeopt=menuone,noinsert
 set list listchars=tab:>-
 set wildmenu
+set incsearch
 set gdefault
 set iminsert=2
+
+set completeopt=menuone,noinsert
 
 
 inoremap <C-h> <C-o>h
@@ -88,11 +89,12 @@ augroup END
 
 augroup pythonSettings
     autocmd!
-    autocmd BufNewFile, BufRead *.py setlocal colorcolumn=88 tabstop=4 softtabstop=4 shiftwidth=4
-    autocmd BufWritePre *.py 0,$!yapf
+    autocmd BufNewFile, BufRead *.py setlocal colorcolumn=88 tabstop=4 softtabstop=4 shiftwidth=4 equalprg=yapf\ 2>/dev/null
+    autocmd BufWritePre *.py LspDocumentFormat
 augroup END
 
 augroup fortranSettings
     autocmd!
-    autocmd BufWritePre *.f90 0,$!fprettify -i 4 -S
+    autocmd BufNewFile, BufRead *.f90 setlocal equalprg=fprettify\ -i\ 4\ -S\ 2>/dev/null
+    autocmd BufWritePre *.f90 LspDocumentFormat
 augroup END
