@@ -52,6 +52,7 @@ endif
 
 " user settings 
 syntax on
+set laststatus=2
 set clipboard=unnamed,autoselect
 set expandtab
 set tabstop=4

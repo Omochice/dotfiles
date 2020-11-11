@@ -10,7 +10,6 @@ hook_add = '''
         autocmd Colorscheme * highlight LineNr ctermbg=NONE guibg=NONE
         autocmd Colorscheme * highlight Folded ctermbg=NONE guibg=NONE
         autocmd Colorscheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
-
     augroup END
 '''
 repo = 'haishanh/night-owl.vim'
@@ -34,8 +33,7 @@ repo = 'mattn/vim-lsp-icons'
 [[plugins]]
 hook_add = '''
 inoremap <expr><Tab> pumvisible() ? "\<C-n>": "\<Tab>"
-inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr><cr> pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 let g:asyncomplete_auto_completeopt=0
 '''
 repo = 'prabirshrestha/asyncomplete.vim'
@@ -50,16 +48,11 @@ repo = "markonm/traces.vim"
 repo = "jiangmiao/auto-pairs"
 
 [[plugins]]
-repo = "vim-airline/vim-airline"
-
-[[plugins]]
-hook_add = '''
-    augroup airlineSettings
-        autocmd!
-        let g:airline_theme = "minimalist"
-    augroup END
-'''
-repo = "vim-airline/vim-airline-themes"
+repo = "itchyny/lightline.vim" 
+hook_add = """
+  set noshowmode
+  set laststatus=2
+"""
 
 [[plugins]]
 hook_add = '''
