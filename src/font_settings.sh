@@ -4,8 +4,12 @@ function download_fonts() {
     wget $font_download_url -O - >~/Downloads/downloaded.zip # /dev/null
     [[ -e ~/Downloads/$font_neme ]] && rm -rf ~/Downloads/$font_name
     mkdir ~/Downloads/$font_name
+    local font_dst="$HOME/.local/share/fonts"
+    if ! [ -d $font_dst  ]; then
+        mkdir -p $font_dst
+    fi
     unzip -d ~/Downloads/$font_name ~/Downloads/downloaded.zip
-    cp ~/Downloads/$font_name/ttf/*.ttf ~/.local/share/fonts/
+    cp ~/Downloads/$font_name/ttf/*.ttf $font_dst/
     rm -rf ~/Downloads/$font_name
 }
 
