@@ -8,7 +8,7 @@ function load_settings() {
     local func_dir="$(dirname $(readlink ~/.bashrc))/functions"
     if [ -d $func_dir -a -r $func_dir -a -x $func_dir ]; then
         for i in $func_dir/*; do
-            [[ ${i##*/} = *.sh ]] && [ \( -f $i -o -h $i \) -a -r $i ] && source $i
+            [[ ${i##*/} == *.sh ]] && [ \( -f $i -o -h $i \) -a -r $i ] && source $i
         done
     fi
 }
@@ -44,5 +44,7 @@ function colors() {
 load_settings
 
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+
+command xmodmap $HOME/.Xmodmap
 
 exec fish

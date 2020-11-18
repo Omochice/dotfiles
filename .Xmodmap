@@ -11,4 +11,9 @@ keycode 49 = Escape
 keycode 100 = Zenkaku_Hankaku
 
 ! 無変換 -> ESC
-keysym Muhenkan = Escape
+keycode 102 = Escape
+!keysym Muhenkan = Escape
+
+! カタカナひらがな -> super_L
+keycode 101= Super_L
+!keysym Hiragana_Katakana = Super_L
