@@ -2,15 +2,14 @@
 
 ## How to use 
 
-1. clone this repo.
+1. Install base cui apps.
+    * git
+    * curl
+    * jq
+2. clone this repo.
+    `$ git clone <this repo>`
+3. run command install scripts
+    なんかするといい感じにpbcopyとかにいくやつ
+4. font install
+    `$ bash src/font_install.sh`
 
-    `git clone <this repo>`
-2. link dotfiles.
-
-    `bash dotfiles/src/sync.sh`
-3. run settings for distro.
-
-    `bash dotfiles/src/distro_setting.sh`
-4. run settings for flavor.
-
-    `bash dotfiles/src/flavor_setting.sh`

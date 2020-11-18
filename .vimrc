@@ -99,3 +99,9 @@ augroup fortranSettings
     autocmd BufNewFile, BufRead *.f90 setlocal equalprg=fprettify\ -i\ 4\ -S\ 2>/dev/null
     autocmd BufWritePre *.f90 LspDocumentFormat
 augroup END
+
+augroup jsonSettings
+    autocmd!
+    autocmd BufNewFile, BufRead *.json setlocal equalprg=jq\ "."\ 2>/dev/null
+    autocmd BufWritePre *.json LspDocumentFormat
+augroup END
