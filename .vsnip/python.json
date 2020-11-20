@@ -1,0 +1,10 @@
+{
+  "shebang": {
+    "prefix": "shebang",
+    "body": ["#!/usr/bin/env python3", "$1"]
+  },
+  "main function": {
+    "prefix": "main",
+    "body": ["if __name__ == \"__main__\":", "    $1"]
+  }
+}

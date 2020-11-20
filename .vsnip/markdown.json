@@ -1,0 +1,29 @@
+{
+  "marp's yaml option": {
+    "prefix": "marp.bgse",
+    "body": [
+      "---",
+      "marp: true",
+      "paginate: true",
+      "theme: bgse",
+      "size: 4:3",
+      "---",
+      "$1"
+    ]
+  },
+  "reveal.js's yaml option": {
+    "prefix": "reveal",
+    "body": [
+      "---",
+      "theme: simple",
+      "transition: 'slide'",
+      "slideNumber: true",
+      "enableTitleFooter: false",
+      "---",
+      "$1"
+    ]
+  },
+  "marp's lead class setting":{
+      "prefix": "class.lead",
+      "body": ["<!-- _class: lead -->","$1"  ]
+}}
