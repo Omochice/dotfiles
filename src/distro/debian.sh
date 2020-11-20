@@ -13,9 +13,9 @@ fi
 printf "bat... "
 if ! [ -x "$(command -v bat)" ] && ! [ -x "$(command -v batcat)" ]; then
     printf "installing... "
-    wget -c -P ~/ "https://github.com/sharkdp/bat/releases/download/v0.12.1/bat_0.12.1_amd64.deb" >/dev/null
-    sudo apt -y install ~/bat_0.12.1_amd64.deb >/dev/null
-    rm ~/bat_0.12.1_amd64.deb
+    sudo apt install -y bat >/dev/null
+    mkdir -p ~/.local/bin 
+    ln -snf /usr/bin/batcat ~/.local/bin/bat
     echo "done."
 else
     echo "already installed."
