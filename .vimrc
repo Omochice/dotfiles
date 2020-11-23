@@ -81,7 +81,10 @@ inoremap <C-h> <C-o>h
 inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
 inoremap <C-l> <C-o>l
+nnoremap h gh
+nnoremap j gj
 imap <c-space> <Plug>(asyncomplete_force_refresh)
+
 
 augroup rubySettings
     autocmd!
@@ -91,17 +94,17 @@ augroup END
 augroup pythonSettings
     autocmd!
     autocmd BufNewFile, BufRead *.py setlocal colorcolumn=88 tabstop=4 softtabstop=4 shiftwidth=4 equalprg=yapf\ 2>/dev/null
-    autocmd BufWritePre *.py LspDocumentFormat
+    autocmd BufWritePre *.py LspDocumentFormatSync
 augroup END
 
 augroup fortranSettings
     autocmd!
     autocmd BufNewFile, BufRead *.f90 setlocal equalprg=fprettify\ -i\ 4\ -S\ 2>/dev/null
-    autocmd BufWritePre *.f90 LspDocumentFormat
+    autocmd BufWritePre *.f90 LspDocumentFormatSync
 augroup END
 
 augroup jsonSettings
     autocmd!
-    autocmd BufNewFile, BufRead *.json setlocal equalprg=jq\ "."\ 2>/dev/null
-    autocmd BufWritePre *.json LspDocumentFormat
+    autocmd BufNewFile, BufRead *.json setlocal equalprg=jq\ \.\ 2>/dev/null
+    autocmd BufWritePre *.json LspDocumentFormatSync
 augroup END

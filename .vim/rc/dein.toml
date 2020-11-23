@@ -23,9 +23,20 @@ repo = 'cocopon/vaffle.vim'
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
+hook_add = """
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_doagnostics_echo_cursor = 1
+"""
 
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
+hook_add = """
+let g:lsp_settings = {
+\    "efm-langserver": { "disabled": v:false }
+\}
+let g:lsp_text_edit_enabled = 1
+let g:lsp_settings_filetype_json = "efm-langserver"
+"""
 
 [[plugins]]
 repo = 'mattn/vim-lsp-icons'
@@ -34,7 +45,8 @@ repo = 'mattn/vim-lsp-icons'
 hook_add = '''
 inoremap <expr><Tab> pumvisible() ? "\<C-n>": "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-let g:asyncomplete_auto_completeopt=0
+let g:asyncomplete_auto_completeopt = 0
+let g:asyncomplete_auto_popup = 1
 '''
 repo = 'prabirshrestha/asyncomplete.vim'
 
@@ -58,8 +70,7 @@ hook_add = """
 hook_add = '''
 nmap f <Plug>(easymotion-bd-f2)
 let g:EasyMotion_smartcase = 1
-nmap <leader>j <Plug>(easymotion-j)
-nmap <leader>k <Plug>(easymotion-k)
+nmap <Space>j <Plug>(easymotion-overwin-line)
 '''
 repo = "easymotion/vim-easymotion"
 
@@ -77,3 +88,10 @@ smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab
 
 [[plugins]]
 repo = "hrsh7th/vim-vsnip-integ"
+
+
+
+
+# [[plugins]]
+# repo = "tsuyoshicho/vim-efm-langserver-settings"
+# depends = ["vim-lsp"]
