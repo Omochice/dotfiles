@@ -1,0 +1,10 @@
+version: 2
+tools:
+  jq-format: &jq-format
+    format-command: 'jq .'
+    format-stdin: true
+
+languages:
+  json:
+    # format-command: 'jq . ${INPUT}'
+    - <<: *jq-format
