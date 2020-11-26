@@ -3,7 +3,21 @@ tools:
   jq-format: &jq-format
     format-command: 'jq .'
     format-stdin: true
+  
+  python-yapf: &python-yapf
+    format-command: "yapf"
+    format-stdin: true
+
+  fprettify: &fprettify
+    format-command: "fprettify -i 4 -S"  
+    format-stdin: true
 
 languages:
   json:
     - <<: *jq-format
+
+  python:
+    - <<: *python-yapf
+
+  fortran:
+    - <<: *fprettify

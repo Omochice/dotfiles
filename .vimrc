@@ -93,18 +93,24 @@ augroup END
 
 augroup pythonSettings
     autocmd!
-    autocmd BufNewFile, BufRead *.py setlocal colorcolumn=88 tabstop=4 softtabstop=4 shiftwidth=4 equalprg=yapf\ 2>/dev/null
+    autocmd BufNewFile, BufRead *.py setlocal colorcolumn=88 tabstop=4 softtabstop=4 shiftwidth=4 
     autocmd BufWritePre *.py LspDocumentFormatSync
 augroup END
 
 augroup fortranSettings
     autocmd!
-    autocmd BufNewFile, BufRead *.f90 setlocal equalprg=fprettify\ -i\ 4\ -S\ 2>/dev/null
+    " autocmd BufNewFile, BufRead *.f90 setlocal equalprg=fprettify\ -i\ 4\ -S\ 2>/dev/null
     autocmd BufWritePre *.f90 LspDocumentFormatSync
 augroup END
 
 augroup jsonSettings
     autocmd!
-    autocmd BufNewFile, BufRead *.json setlocal equalprg=jq\ \.\ 2>/dev/null
+    autocmd BufNewFile, BufRead *.json setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufWritePre *.json LspDocumentFormatSync
+augroup END
+
+augroup yapfSettings
+    autocmd!
+    autocmd BufNewFile, BufRead *.yapf setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufWritePre *.yapf LspDocumentFormatSync
 augroup END
