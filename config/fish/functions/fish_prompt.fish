@@ -43,7 +43,7 @@ end
 
 function fish_right_prompt
     if test $VIRTUAL_ENV
-        printf "(%s) " (set_color blue)(basename $VIRTUAL_ENV)(set_color normal)
+        printf "(%s) " (set_color blue)(basename $VIRTUAL_ENV | string sub -l 10)(set_color normal)
     end
     date +"[ %H:%M ]"
 end
