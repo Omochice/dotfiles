@@ -6,5 +6,4 @@ tools:
 
 languages:
   json:
-    # format-command: 'jq . ${INPUT}'
     - <<: *jq-format

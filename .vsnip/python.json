@@ -1,10 +1,23 @@
 {
   "shebang": {
     "prefix": "shebang",
-    "body": ["#!/usr/bin/env python3", "$1"]
+    "body": [
+      "#!/usr/bin/env python3",
+      "$1"
+    ]
   },
   "main function": {
     "prefix": "main",
-    "body": ["if __name__ == \"__main__\":", "    $1"]
+    "body": [
+      "if __name__ == \"__main__\":",
+      "    $1"
+    ]
+  },
+  "pathlib": {
+    "prefix": "Path",
+    "body": [
+      "from pathlib import Path",
+      "$1"
+    ]
   }
 }
