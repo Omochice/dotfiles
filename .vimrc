@@ -81,8 +81,8 @@ inoremap <C-h> <C-o>h
 inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
 inoremap <C-l> <C-o>l
-nnoremap h gh
 nnoremap j gj
+nnoremap k gk
 imap <c-space> <Plug>(asyncomplete_force_refresh)
 
 
