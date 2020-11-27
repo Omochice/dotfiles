@@ -14,9 +14,23 @@
     ]
   },
   "pathlib": {
-    "prefix": "Path",
+    "prefix": "from pathlib",
     "body": [
       "from pathlib import Path",
+      "$1"
+    ]
+  },
+  "numpy": {
+    "prefix": "import numpy",
+    "body": [
+      "import numpy as np",
+      "$1"
+    ]
+  },
+  "matplotlib": {
+    "prefix": "import matplotlib",
+    "body": [
+      "import matplotlib.pyplot as plt",
       "$1"
     ]
   }
