@@ -67,9 +67,10 @@ hook_add = """
 
 [[plugins]]
 hook_add = '''
-nmap f <Plug>(easymotion-bd-f2)
+nmap f <Plug>(easymotion-sn)
 let g:EasyMotion_smartcase = 1
 nmap <Space>j <Plug>(easymotion-overwin-line)
+nmap <Space>l <Plug>(easymotion-lineforward)
 '''
 repo = "easymotion/vim-easymotion"
 
