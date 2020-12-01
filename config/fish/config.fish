@@ -44,6 +44,7 @@ if type "exa" >/dev/null 2>&1
 end
 
 alias diff "git diff"
+alias ptpython "ptpython --vi"
 
 # abbr commands
 abbr f77 gfortran
