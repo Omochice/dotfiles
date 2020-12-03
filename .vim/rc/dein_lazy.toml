@@ -13,9 +13,6 @@ repo = "ruby-formatter/rufo-vim"
 repo = "tpope/vim-endwise"
 on_ft = "ruby"
 
-[[plugins]]
-on_ft = "python"
-repo = "mindriot101/vim-yapf"
 
 [[plugins]]
 hook_add = '''
@@ -39,3 +36,12 @@ hook_add = """
 let g:closetag_filenames = '*.html, *,vue, *.xml'
 """
 on_ft = ["html", "vue", "xml"]
+
+
+[[plugins]]
+repo = "heavenshell/vim-pydocstring"
+build = "make install" 
+# # hook_add = """
+# # let g:pydocstring_doq_path = "~/.local/bin/doq"
+# # """
+on_ft = "python"

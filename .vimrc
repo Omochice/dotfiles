@@ -1,4 +1,4 @@
-" dein.vim settings {{{
+" dein.vim settings {{m
 " install dir {{{
 let s:dein_dir = expand('~/.vim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -52,6 +52,7 @@ endif
 
 " user settings 
 syntax on
+set ignorecase
 set laststatus=2
 set clipboard=unnamed,autoselect
 set expandtab
@@ -85,6 +86,7 @@ nnoremap j gj
 nnoremap k gk
 imap <c-space> <Plug>(asyncomplete_force_refresh)
 
+command! Vterm :vs | :term ++curwin
 
 augroup rubySettings
     autocmd!
