@@ -52,6 +52,7 @@ endif
 
 " user settings 
 syntax on
+filetype plugin indent on 
 set ignorecase
 set laststatus=2
 set clipboard=unnamed,autoselect
