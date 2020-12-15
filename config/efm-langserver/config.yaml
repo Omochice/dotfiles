@@ -4,9 +4,14 @@ tools:
     format-command: 'jq .'
     format-stdin: true
   
-  python-yapf: &python-yapf
+  yapf-format: &yapf-format
     format-command: "yapf"
     format-stdin: true
+
+  isort-format: &isort-format
+    format-command: "isort -d ${INPUT}"
+    format-stdin: true 
+#  Save時に動かすとsave前のものがINPUTになるからうまく動作しない 
 
   fprettify: &fprettify
     format-command: "fprettify -i 4 -S"  
@@ -17,7 +22,8 @@ languages:
     - <<: *jq-format
 
   python:
-    - <<: *python-yapf
+    - <<: *yapf-format
+    # - <<: *isort-format
 
   fortran:
     - <<: *fprettify

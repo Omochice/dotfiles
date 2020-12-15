@@ -1,5 +1,5 @@
 [Configuration]
-FontName=Cascadia Mono PL 14
+FontName=Cascadia Mono PL 15
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBellUrgent=FALSE
@@ -8,8 +8,8 @@ MiscCursorBlinks=FALSE
 MiscCursorShape=TERMINAL_CURSOR_SHAPE_BLOCK
 MiscDefaultGeometry=80x24
 MiscInheritGeometry=FALSE
-MiscMenubarDefault=TRUE
-MiscMouseAutohide=FALSE
+MiscMenubarDefault=FALSE
+MiscMouseAutohide=TRUE
 MiscMouseWheelZoom=TRUE
 MiscToolbarDefault=FALSE
 MiscConfirmClose=TRUE
@@ -28,5 +28,5 @@ MiscNewTabAdjacent=FALSE
 MiscSearchDialogOpacity=100
 MiscShowUnsafePasteDialog=TRUE
 BackgroundMode=TERMINAL_BACKGROUND_TRANSPARENT
-BackgroundDarkness=0.900000
+BackgroundDarkness=0.700000
 
