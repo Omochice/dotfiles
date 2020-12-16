@@ -57,3 +57,8 @@ tags
 .nfs*
 
 # End of https://www.toptal.com/developers/gitignore/api/linux
+
+# User settings
+
+!.vim
+.vim/rc/**
