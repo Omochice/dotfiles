@@ -1,0 +1,28 @@
+{
+  "Println": {
+    "prefix": "fmt.Println",
+    "body": [
+      "fmt.Println($1)"
+    ]
+  },
+  "main": {
+    "prefix": "main",
+    "body": [
+      "package main;",
+      "",
+      "import \"fmt\";",
+      "",
+      "func main() {",
+      "  $1",
+      "};"
+    ]
+  },
+  "error handling": {
+    "prefix": "iferr",
+    "body": [
+      "if err != nil {",
+      "  $1",
+      "}"
+    ]
+  }
+}

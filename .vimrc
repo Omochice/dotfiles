@@ -112,8 +112,14 @@ augroup jsonSettings
     autocmd BufWritePre *.json LspDocumentFormatSync
 augroup END
 
-augroup yapfSettings
+augroup yamlfSettings
     autocmd!
-    autocmd BufNewFile, BufRead *.yapf setlocal tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd BufWritePre *.yapf LspDocumentFormatSync
+    autocmd BufNewFile, BufRead *.yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufWritePre *.yaml LspDocumentFormatSync
+augroup END
+
+augroup vueSettings
+    autocmd!
+    autocmd BufNewFile, BufRead *.vue setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufWritePre *.vue :w | LspDocumentFormatSync
 augroup END

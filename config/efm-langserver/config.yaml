@@ -17,6 +17,9 @@ tools:
     format-command: "fprettify -i 4 -S"  
     format-stdin: true
 
+  prettier: &prettier
+    format-command: "prettier ${--tab-width:tabWidth}"
+
 languages:
   json:
     - <<: *jq-format
@@ -27,3 +30,6 @@ languages:
 
   fortran:
     - <<: *fprettify
+
+  vue:
+    - <<: *prettier

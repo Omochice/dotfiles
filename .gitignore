@@ -1,33 +1,64 @@
-# init ignore
-/*
-/.**
 
+# Created by https://www.toptal.com/developers/gitignore/api/vim
+# Edit at https://www.toptal.com/developers/gitignore?templates=vim
 
-# white list
-!/.gitignore
-!/.gitconfig
-!/.vimrc
-!/keymap.txt
-!/.config
-!/.config/autostart/gnome-terminal.desktop
-!/.config/yapf/style
-!/.config/pip/pip.conf
-!/src
-!/zshell
-!/zshell/.zsh.d
-!/.tmux.conf
-!/.gitignore_shared
-!/xfce_panel.tar.bz2
-!/.config/fish
-!/.config/fish/function
-!/.config/fish/function/peco-recentd.fish
-!/.config/fish/function/fish_prompt.fish
-!/.config/fish/config.fish
-!/.vim
-!/.vim/rc/dein.toml
-!/.vim/rc/dein_lazy.toml
-!/bash
+### Vim ###
+# Swap
+[._]*.s[a-v][a-z]
+!*.svg  # comment out if you don't need vector files
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
 
+# Session
+Session.vim
+Sessionx.vim
 
-# ignore list
-.config
+# Temporary
+.netrwhist
+*~
+# Auto-generated tag files
+tags
+# Persistent undo
+[._]*.un~
+
+# End of https://www.toptal.com/developers/gitignore/api/vim
+
+# Created by https://www.toptal.com/developers/gitignore/api/vscode
+# Edit at https://www.toptal.com/developers/gitignore?templates=vscode
+
+### vscode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# End of https://www.toptal.com/developers/gitignore/api/vscode
+
+# Created by https://www.toptal.com/developers/gitignore/api/linux
+# Edit at https://www.toptal.com/developers/gitignore?templates=linux
+
+### Linux ###
+*~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
+# End of https://www.toptal.com/developers/gitignore/api/linux
+
+# User settings
+
+!.vim
+.vim/rc/**

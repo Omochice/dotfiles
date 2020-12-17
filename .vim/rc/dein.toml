@@ -1,35 +1,34 @@
 [[plugins]]
-hook_add = '''
-    augroup colorcshemeSetting
-        autocmd!
-        colorscheme night-owl
-        let g:lightline = {"colorscheme": "nightowl"}
-        autocmd VimEnter * ++nested colorscheme night-owl
-        autocmd Colorscheme * highlight Normal ctermbg=NONE guibg=NONE
-        autocmd Colorscheme * highlight NonText ctermbg=NONE guibg=NONE
-        autocmd Colorscheme * highlight LineNr ctermbg=NONE guibg=NONE
-        autocmd Colorscheme * highlight Folded ctermbg=NONE guibg=NONE
-        autocmd Colorscheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
-    augroup END
-'''
-repo = 'haishanh/night-owl.vim'
+hook_add = """
+augroup colorcshemeSetting
+    autocmd!
+    colorscheme night-owl
+    let g:lightline = {"colorscheme": "nightowl"}
+    autocmd VimEnter * ++nested colorscheme night-owl
+    autocmd Colorscheme * highlight Normal ctermbg=NONE guibg=NONE
+    autocmd Colorscheme * highlight NonText ctermbg=NONE guibg=NONE
+    autocmd Colorscheme * highlight LineNr ctermbg=NONE guibg=NONE
+    autocmd Colorscheme * highlight Folded ctermbg=NONE guibg=NONE
+    autocmd Colorscheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
+augroup END
+"""
+repo = "haishanh/night-owl.vim"
 
 [[plugins]]
-repo = 'vim-jp/vimdoc-ja'
 hook_add = "set helplang=ja"
+repo = "vim-jp/vimdoc-ja"
 
 [[plugins]]
-repo = 'cocopon/vaffle.vim'
+repo = "cocopon/vaffle.vim"
 
 [[plugins]]
-repo = 'prabirshrestha/vim-lsp'
 hook_add = """
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_doagnostics_echo_cursor = 1
 """
+repo = "prabirshrestha/vim-lsp"
 
 [[plugins]]
-repo = 'mattn/vim-lsp-settings'
 hook_add = """
 let g:lsp_settings = {
 \    "efm-langserver": { "disabled": v:false },
@@ -45,21 +44,22 @@ let g:lsp_settings = {
 \}
 let g:lsp_text_edit_enabled = 1
 """
+repo = "mattn/vim-lsp-settings"
 
 [[plugins]]
-repo = 'mattn/vim-lsp-icons'
+repo = "mattn/vim-lsp-icons"
 
 [[plugins]]
-hook_add = '''
+hook_add = """
 inoremap <expr><Tab> pumvisible() ? "\<C-n>": "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 let g:asyncomplete_auto_completeopt = 0
 let g:asyncomplete_auto_popup = 1
-'''
-repo = 'prabirshrestha/asyncomplete.vim'
+"""
+repo = "prabirshrestha/asyncomplete.vim"
 
 [[plugins]]
-repo = 'prabirshrestha/asyncomplete-lsp.vim'
+repo = "prabirshrestha/asyncomplete-lsp.vim"
 
 [[plugins]]
 repo = "markonm/traces.vim"
@@ -68,36 +68,49 @@ repo = "markonm/traces.vim"
 repo = "jiangmiao/auto-pairs"
 
 [[plugins]]
-repo = "itchyny/lightline.vim" 
 hook_add = """
-  set noshowmode
-  set laststatus=2
+set noshowmode
+set laststatus=2
 """
+repo = "itchyny/lightline.vim"
 
 [[plugins]]
-hook_add = '''
+hook_add = """
 nmap f <Plug>(easymotion-sn)
-let g:EasyMotion_smartcase = 1
 nmap <Space>j <Plug>(easymotion-bd-jk)
 nmap <Space>l <Plug>(easymotion-lineforward)
-'''
+let g:EasyMotion_smartcase = 1
+"""
 repo = "easymotion/vim-easymotion"
 
 [[plugins]]
 repo = "tomtom/tcomment_vim"
 
 [[plugins]]
+hook_add = """
+imap <expr><C-j> vsnip#expandable() ? "<Plug>(vsnip-expand)"
+smap <expr><C-j> vsnip#expandable() ? "<Plug>(vsnip-expand)"
+imap <expr><Tab> vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<Tab>"
+smap <expr><Tab> vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<Tab>"
+"""
 repo = "hrsh7th/vim-vsnip"
-hook_add = '''
-imap <expr><C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)'
-smap <expr><C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)'
-imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-'''
 
 [[plugins]]
 repo = "hrsh7th/vim-vsnip-integ"
 
 [[plugins]]
-repo = "heavenshell/vim-pydocstring"
-build = "make install"
+hook_add = """
+let g:translate_source = "en"
+let g:translate_target = "ja"
+"""
+repo = "skanehira/translate.vim"
+
+[[plugins]]
+repo = "ctrlpvim/ctrlp.vim"
+hook_add = """
+let g:ctrlp_match_func = {"match": "ctrlp_matchfuzzy#matcher"}
+"""
+depends = ["ctrlp-matchfuzzy"]
+
+[[plugins]]
+repo = "mattn/ctrlp-matchfuzzy"

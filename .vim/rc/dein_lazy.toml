@@ -1,0 +1,45 @@
+[[plugins]]
+on_ft = "toml"
+repo = "cespare/vim-toml"
+
+[[plugins]]
+hook_add = """
+let g:rufo_auto_formatting = 1
+"""
+on_ft = "ruby"
+repo = "ruby-formatter/rufo-vim"
+
+[[plugins]]
+on_ft = "ruby"
+repo = "tpope/vim-endwise"
+
+[[plugins]]
+hook_add = """
+let g:shfmt_extra_args = "-i 4 -ci -bn -s"
+let g:shfmt_fmt_on_save = 1
+"""
+on_ft = ["sh", "bash"]
+repo = "z0mbix/vim-shfmt"
+
+[[plugins]]
+hook_add = """
+let g:goimports = 1
+let g:foimports_simplify = 1
+"""
+on_ft = "go"
+repo = "mattn/vim-goimports"
+
+[[plugins]]
+hook_add = """
+let g:closetag_filenames = "*.html, *,vue, *.xml"
+"""
+on_ft = ["html", "vue", "xml", "erb"]
+repo = "alvan/vim-closetag"
+
+[[plugins]]
+build = "make install"
+hook_add = """
+let g:pydocstring_formatter = "google"
+"""
+on_ft = "python"
+repo = "heavenshell/vim-pydocstring"
