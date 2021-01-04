@@ -1,0 +1,10 @@
+{
+  "main": {
+    "prefix": "main",
+    "body": [
+      "if __FILE__ == \\$0 then",
+      "  $1",
+      "end"
+    ]
+  }
+}
