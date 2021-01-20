@@ -45,6 +45,7 @@ end
 
 alias diff "git diff"
 alias ptpython "ptpython --vi"
+alias today "date '+%Y-%m-%d'"
 
 # abbr commands
 abbr f77 gfortran
