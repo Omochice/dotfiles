@@ -45,6 +45,7 @@ load_settings
 
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
-command xmodmap $HOME/.Xmodmap
+# command xmodmap $HOME/.Xmodmap
+eval "$(anyenv init -)"
 
 exec fish

@@ -55,6 +55,7 @@ inoremap <expr><Tab> pumvisible() ? "\<C-n>": "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 let g:asyncomplete_auto_completeopt = 0
 let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_matchfuzzy = 1
 """
 repo = "prabirshrestha/asyncomplete.vim"
 
