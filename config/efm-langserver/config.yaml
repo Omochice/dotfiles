@@ -14,7 +14,7 @@ tools:
 #  Save時に動かすとsave前のものがINPUTになるからうまく動作しない 
 
   fprettify: &fprettify
-    format-command: "fprettify -i 4 -S"  
+    format-command: "fprettify -i 2 -S"  
     format-stdin: true
 
   prettier: &prettier
