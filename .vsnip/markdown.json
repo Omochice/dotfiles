@@ -23,7 +23,24 @@
       "$1"
     ]
   },
-  "marp's lead class setting":{
-      "prefix": "class.lead",
-      "body": ["<!-- _class: lead -->","$1"  ]
-}}
+  "marp's lead class setting": {
+    "prefix": "class.lead",
+    "body": [
+      "<!-- _class: lead -->",
+      "$1"
+    ]
+  },
+  "gh-page header": {
+    "prefix": "gh-pages",
+    "body": [
+      "---",
+      "layout: post",
+      "title: \"\"",
+      "category: \"\"",
+      "excerpt: \"\"",
+      "---",
+      "",
+      "# {{ page.title }}"
+    ]
+  }
+}
