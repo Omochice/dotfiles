@@ -1,0 +1,59 @@
+{
+  "implicit_none": {
+    "prefix": "imp",
+    "body": [
+      "implicit none",
+      "$1"
+    ]
+  },
+  "function": {
+    "prefix": "func",
+    "body": [
+      "function ${1:name}() result(${2:rst})",
+      "implicit none",
+      "$3",
+      "end function ${1:name}"
+    ]
+  },
+  "program": {
+    "prefix": "prog",
+    "body": [
+      "program ${1:name}",
+      "implicit none",
+      "$2",
+      "end program ${1:name}"
+    ]
+  },
+  "module": {
+    "prefix": "module",
+    "body": [
+      "module ${1:name}",
+      "implicit none",
+      "$2",
+      "end module ${1:name}"
+    ]
+  },
+  "subroutine": {
+    "prefix": "subr",
+    "body": [
+      "subrouine ${1:name}",
+      "implicit none",
+      "$2",
+      "end subroutine ${1:name}"
+    ]
+  },
+  "do": {
+    "prefix": "do",
+    "body": [
+      "do $1",
+      "end do"
+    ]
+  },
+  "if": {
+    "prefix": "if",
+    "body": [
+      "if($1) then",
+      "end if"
+    ]
+  }
+}
