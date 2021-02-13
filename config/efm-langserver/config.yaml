@@ -19,6 +19,16 @@ tools:
 
   prettier: &prettier
     format-command: "prettier ${--tab-width:tabWidth}"
+  
+  textlint: &textlint
+    lint-command: "textlint --format unix ${INPUT}"
+    lint-formats:
+      - "%f:%l:%c: %m [%trror/%r]"
+    lint-ignore-edit-code: true
+    lint-stdin: true
+    root-markers:
+      - .textlintrc
+
 
 languages:
   json:
@@ -33,3 +43,6 @@ languages:
 
   vue:
     - <<: *prettier
+
+  markdown:
+    - <<: *textlint
