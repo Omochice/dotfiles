@@ -7,4 +7,14 @@
       while [ $# -gt 0 ]; do s=\"$s,$1\"; shift; done;\
       curl \"https://www.gitignore.io/api/$s\"; }; f"
 [core]
-    editor = vim
+    editor = "vim"
+    pager = "delta"
+
+[delta]
+    plus-color = "#012800"
+    minus-color = "#340001"
+    syntax-theme = Monokai Extended
+    line-numbers = true
+
+[interactive]
+    diffFilter = delta --color-only
