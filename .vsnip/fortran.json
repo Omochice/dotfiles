@@ -28,8 +28,8 @@
     "prefix": "module",
     "body": [
       "module ${1:name}",
-      "implicit none",
-      "$2",
+      "  implicit none",
+      "  $2",
       "end module ${1:name}"
     ]
   },
@@ -37,8 +37,8 @@
     "prefix": "subr",
     "body": [
       "subrouine ${1:name}",
-      "implicit none",
-      "$2",
+      "  implicit none",
+      "  $2",
       "end subroutine ${1:name}"
     ]
   },
@@ -52,8 +52,23 @@
   "if": {
     "prefix": "if",
     "body": [
-      "if($1) then",
+      "if ($1) then",
       "end if"
+    ]
+  },
+  "where": {
+    "prefix": "where",
+    "body": [
+      "where ($1)",
+      "end where"
+    ]
+  },
+  "block": {
+    "prefix": "block",
+    "body": [
+      "block",
+      "  $1",
+      "end block"
     ]
   }
 }
