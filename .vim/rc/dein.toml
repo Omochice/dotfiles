@@ -115,3 +115,9 @@ depends = ["ctrlp-matchfuzzy"]
 
 [[plugins]]
 repo = "mattn/ctrlp-matchfuzzy"
+
+[[plugins]]
+repo = "simeji/winresizer"
+hook_add = """
+let g:winresizer_vert_resize = 3
+"""
