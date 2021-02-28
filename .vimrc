@@ -87,7 +87,8 @@ nnoremap j gj
 nnoremap k gk
 imap <c-space> <Plug>(asyncomplete_force_refresh)
 
-command! Vterm :vs | :term ++curwin
+command! Vterm :vs | wincmd l | :term ++curwin
+command! Hterm :sp | wincmd j | :term ++curwin
 
 augroup rubySettings
     autocmd!
@@ -103,7 +104,7 @@ augroup END
 augroup fortranSettings
     autocmd!
     " autocmd BufNewFile, BufRead *.f90 setlocal equalprg=fprettify\ -i\ 4\ -S\ 2>/dev/null
-    autocmd BufWritePre *.f90 LspDocumentFormatSync
+    autocmd BufWritePre *.f90,*.f08,*.f03 LspDocumentFormatSync
 augroup END
 
 augroup jsonSettings
