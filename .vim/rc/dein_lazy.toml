@@ -43,3 +43,7 @@ let g:pydocstring_formatter = "google"
 """
 on_ft = "python"
 repo = "heavenshell/vim-pydocstring"
+
+[[plugins]]
+repo = "mattn/vim-maketable"
+on_ft = "markdown"
