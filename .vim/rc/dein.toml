@@ -121,3 +121,6 @@ repo = "simeji/winresizer"
 hook_add = """
 let g:winresizer_vert_resize = 3
 """
+
+[[plugins]]
+repo = "tpope/vim-surround"
