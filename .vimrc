@@ -66,6 +66,7 @@ set nowritebackup
 set nobackup 
 set noswapfile
 set number
+set relativenumber
 set nowrap
 set hlsearch
 set infercase
