@@ -125,3 +125,9 @@ augroup vueSettings
     autocmd BufNewFile, BufRead *.vue setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufWritePre *.vue :w | LspDocumentFormatSync
 augroup END
+
+augroup TSSettings
+    autocmd!
+    autocmd BufNewFile, BufRead *.ts setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufWritePre *.ts :w | LspDocumentFormatSync
+augroup END
