@@ -52,7 +52,7 @@ endif
 
 " user settings 
 syntax on
-filetype plugin indent on 
+filetype plugin indent on
 set ignorecase
 set laststatus=2
 set clipboard=unnamed,autoselect
@@ -99,6 +99,7 @@ augroup END
 augroup pythonSettings
     autocmd!
     autocmd BufNewFile, BufRead *.py setlocal colorcolumn=88 tabstop=4 softtabstop=4 shiftwidth=4 
+    autocmd FileType python iabbrev <buffer> improt import
     autocmd BufWritePre *.py LspDocumentFormatSync
 augroup END
 
