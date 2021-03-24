@@ -77,10 +77,13 @@ repo = "itchyny/lightline.vim"
 
 [[plugins]]
 hook_add = """
-nmap f <Plug>(easymotion-sn)
-nmap <Space>j <Plug>(easymotion-bd-jk)
+nmap f <Plug>(easymotion-tn)
+nmap <Space>j <Plug>(easymotion-j)
+nmap <Space>k <Plug>(easymotion-k)
 nmap <Space>l <Plug>(easymotion-lineforward)
+nmap <Space>h <Plug>(easymotion-linebackward)
 let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_smartsign_jp = 1
 """
 repo = "easymotion/vim-easymotion"
 
