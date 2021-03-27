@@ -110,14 +110,18 @@ let g:translate_target = "ja"
 repo = "skanehira/translate.vim"
 
 [[plugins]]
-repo = "ctrlpvim/ctrlp.vim"
-hook_add = """
-let g:ctrlp_match_func = {"match": "ctrlp_matchfuzzy#matcher"}
-"""
-depends = ["ctrlp-matchfuzzy"]
+repo = "junegunn/fzf"
+build = "./install --all"
+merged = 0
 
 [[plugins]]
-repo = "mattn/ctrlp-matchfuzzy"
+repo = "yuki-yano/fzf-preview.vim"
+rev = "release/rpc"
+hook_add = """
+nmap <C-p> [fzf-p]
+nnoremap [fzf-p]<C-p> :<C-u>FzfPreviewProjectFilesRpc<CR> 
+nnoremap [fzf-p]c :<C-u>FzfPreviewCommandPaletteRpc<CR>
+"""
 
 [[plugins]]
 repo = "simeji/winresizer"
@@ -127,3 +131,14 @@ let g:winresizer_vert_resize = 3
 
 [[plugins]]
 repo = "tpope/vim-surround"
+
+[[plugins]]
+repo = "vim-denops/denops.vim"
+hook_add = """
+let g:denops#script#typecheck = 0
+"""
+
+[[plugins]]
+repo = "Omochice/dps-codic-vim"
+
+
