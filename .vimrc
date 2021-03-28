@@ -53,6 +53,7 @@ endif
 " user settings 
 syntax on
 filetype plugin indent on
+set nocompatible
 set ignorecase
 set laststatus=2
 set clipboard=unnamed,autoselect
@@ -76,14 +77,15 @@ set wildmenu
 set incsearch
 set gdefault
 set iminsert=2
+set virtualedit=onemore
 
 set completeopt=menuone,noinsert
 
-
-inoremap <C-h> <C-o>h
-inoremap <C-j> <C-o>j
-inoremap <C-k> <C-o>k
-inoremap <C-l> <C-o>l
+"FIXME <C-h> is now working, it will be <BS>
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
 nnoremap j gj
 nnoremap k gk
 imap <c-space> <Plug>(asyncomplete_force_refresh)
