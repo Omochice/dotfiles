@@ -88,7 +88,9 @@ inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 nnoremap j gj
 nnoremap k gk
-imap <c-space> <Plug>(asyncomplete_force_refresh)
+noremap q: :q
+noremap :qq :q!
+noremap :ww :w!
 
 command! Vterm :vs | wincmd l | :term ++curwin
 command! Hterm :bo term
