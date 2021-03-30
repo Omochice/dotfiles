@@ -49,3 +49,5 @@ load_settings
 eval "$(anyenv init -)"
 
 exec fish
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
