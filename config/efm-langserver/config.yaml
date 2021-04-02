@@ -49,3 +49,6 @@ languages:
 
   markdown:
     - <<: *textlint
+
+  html:
+    - <<: *prettier
