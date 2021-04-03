@@ -143,3 +143,17 @@ let g:denops#script#typecheck = 0
 repo = "Omochice/dps-codic-vim"
 depends = ["denops.vim"]
 
+[[plugins]]
+repo = "kana/vim-textobj-user"
+
+[[plugins]]
+repo = "kana/vim-textobj-line"
+depends = ["vim-textobj-uesr"]
+
+[[plugins]]
+repo = "terryma/vim-expand-region"
+hook_add = """
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+"""
+depends = ["vim-textobj-user", "vim-textobj-line"]
