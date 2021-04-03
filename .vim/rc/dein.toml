@@ -141,4 +141,5 @@ let g:denops#script#typecheck = 0
 
 [[plugins]]
 repo = "Omochice/dps-codic-vim"
+depends = ["denops.vim"]
 
