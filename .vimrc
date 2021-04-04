@@ -56,7 +56,7 @@ filetype plugin indent on
 set nocompatible
 set ignorecase
 set laststatus=2
-set clipboard=unnamed,autoselect
+set clipboard=unnamed,unnamedplus,autoselect
 set expandtab
 set tabstop=4
 set shiftwidth=4
