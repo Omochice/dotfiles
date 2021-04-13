@@ -122,6 +122,8 @@ hook_add = """
 nmap <C-p> [fzf-p]
 nnoremap [fzf-p]<C-p> :<C-u>FzfPreviewDirectoryFiles<CR>
 nnoremap [fzf-p]c :<C-u>FzfPreviewCommandPaletteRpc<CR>
+
+let g:fzf_preview_dev_icons = 1
 """
 
 [[plugins]]

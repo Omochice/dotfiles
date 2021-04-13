@@ -1,5 +1,5 @@
 [Configuration]
-FontName=Cascadia Mono PL 15
+FontName=FiraCode Nerd Font Mono 15
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBellUrgent=FALSE
@@ -15,7 +15,7 @@ MiscToolbarDefault=FALSE
 MiscConfirmClose=TRUE
 MiscCycleTabs=TRUE
 MiscTabCloseButtons=TRUE
-MiscTabCloseMiddleClick=TRUE
+MiscTabCloseMiddleClick=FALSE
 MiscTabPosition=GTK_POS_TOP
 MiscHighlightUrls=TRUE
 MiscMiddleClickOpensUri=FALSE
@@ -27,7 +27,7 @@ MiscSlimTabs=FALSE
 MiscNewTabAdjacent=FALSE
 MiscSearchDialogOpacity=100
 MiscShowUnsafePasteDialog=TRUE
-BackgroundDarkness=0.800000
+BackgroundDarkness=0.850000
 TextBlinkMode=TERMINAL_TEXT_BLINK_MODE_NEVER
 BackgroundMode=TERMINAL_BACKGROUND_TRANSPARENT
 ColorPalette=rgb(1,22,39);rgb(239,83,80);rgb(34,218,110);rgb(173,219,103);rgb(130,170,255);rgb(199,146,234);rgb(33,199,168);rgb(170,170,170);rgb(150,150,150);rgb(239,83,80);rgb(34,218,110);rgb(255,235,149);rgb(130,170,255);rgb(199,146,234);rgb(127,219,202);rgb(255,255,255)
