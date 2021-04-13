@@ -94,6 +94,7 @@ noremap :ww :w!
 
 command! Vterm :vs | wincmd l | :term ++curwin
 command! Hterm :bo term
+command! TVaffle :tabnew | :Vaffle
 
 augroup rubySettings
     autocmd!
