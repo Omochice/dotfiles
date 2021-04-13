@@ -1,0 +1,12 @@
+/** Basic config file **/
+
+configuration {
+  show-icons:         true;
+  icon-theme:         "Papirus";
+  /* enable vim j/k  */
+  kb-row-up:     "Up,Control+p,Shift+Tab,Control+k";
+  kb-row-down:   "Down,Control+n,Control+j";
+  /* disable j/k */
+  kb-accept-entry: "Return,KP_Enter";
+  kb-remove-to-eol: "";
+}
