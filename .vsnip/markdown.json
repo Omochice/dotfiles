@@ -42,5 +42,11 @@
       "",
       "# {{ page.title }}"
     ]
+  },
+  "link template": {
+    "prefix": "link",
+    "body": [
+      "[$1]($2)"
+    ]
   }
 }
