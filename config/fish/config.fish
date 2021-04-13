@@ -43,6 +43,7 @@ if type "exa" >/dev/null 2>&1
     alias ls "exa -g --time-style=long-iso"
 end
 
+alias gs "git status"
 alias diff "git diff"
 alias ptpython "ptpython --vi"
 alias today "date '+%Y-%m-%d'"
