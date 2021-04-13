@@ -136,6 +136,9 @@ let g:winresizer_vert_resize = 3
 repo = "tpope/vim-surround"
 
 [[plugins]]
+repo = "tpope/vim-repeat"
+
+[[plugins]]
 repo = "vim-denops/denops.vim"
 hook_add = """
 let g:denops#script#typecheck = 0
