@@ -3,6 +3,7 @@
 # add all dir to allowlist
 !*/
 # user setting
+!/.gitignore
 !/bash/*
 !/bash/functions/*
 !/.vim/rc/*
@@ -19,6 +20,7 @@
 !/config/rofi/applets/menu/screenshot.sh
 !/config/rofi/config.rasi
 !/config/rofi/launchers/colorful/launcher.sh
+!/config/rofi/launchers/colorful/colors.rasi
 !/config/rofi/yapf/style
 !/zshell/*
 !/zshell/.zsh.d/*
