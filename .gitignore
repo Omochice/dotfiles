@@ -1,64 +1,32 @@
-
-# Created by https://www.toptal.com/developers/gitignore/api/vim
-# Edit at https://www.toptal.com/developers/gitignore?templates=vim
-
-### Vim ###
-# Swap
-[._]*.s[a-v][a-z]
-!*.svg  # comment out if you don't need vector files
-[._]*.sw[a-p]
-[._]s[a-rt-v][a-z]
-[._]ss[a-gi-z]
-[._]sw[a-p]
-
-# Session
-Session.vim
-Sessionx.vim
-
-# Temporary
-.netrwhist
-*~
-# Auto-generated tag files
-tags
-# Persistent undo
-[._]*.un~
-
-# End of https://www.toptal.com/developers/gitignore/api/vim
-
-# Created by https://www.toptal.com/developers/gitignore/api/vscode
-# Edit at https://www.toptal.com/developers/gitignore?templates=vscode
-
-### vscode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-*.code-workspace
-
-# End of https://www.toptal.com/developers/gitignore/api/vscode
-
-# Created by https://www.toptal.com/developers/gitignore/api/linux
-# Edit at https://www.toptal.com/developers/gitignore?templates=linux
-
-### Linux ###
-*~
-
-# temporary files which can be created if a process still has a handle open of a deleted file
-.fuse_hidden*
-
-# KDE directory preferences
-.directory
-
-# Linux trash folder which might appear on any partition or disk
-.Trash-*
-
-# .nfs files are created when an open file is removed but is still being accessed
-.nfs*
-
-# End of https://www.toptal.com/developers/gitignore/api/linux
-
-# User settings
-
-!.vim
-.vim/rc/**
+# ignore all 
+* 
+# add all dir to allowlist
+!*/
+# user setting
+!/bash/*
+!/bash/functions/*
+!/.vim/rc/*
+!/.vsnip/*.json
+!/config/*
+!/config/efm-langserver/config.yaml
+!/config/fish/*
+!/config/fish/functions/gi.fish
+!/config/fish/functions/fish_prompt.fish
+!/config/git/ignore
+!/config/pip/pip.conf
+!/config/rofi/config.rasi
+!/config/rofi/applets/styles/nightowl.rasi
+!/config/rofi/applets/menu/screenshot.sh
+!/config/rofi/config.rasi
+!/config/rofi/launchers/colorful/launcher.sh
+!/config/rofi/yapf/style
+!/zshell/*
+!/zshell/.zsh.d/*
+!/.gitconfig_shared
+!/.prettierrc.json
+!/.rufo
+!/.tmux.conf
+!/.vimrc
+!/.xprofile
+!/README.md
+!/keymap.txt
