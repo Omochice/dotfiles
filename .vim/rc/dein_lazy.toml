@@ -47,3 +47,7 @@ repo = "heavenshell/vim-pydocstring"
 [[plugins]]
 repo = "mattn/vim-maketable"
 on_ft = "markdown"
+
+[[plugins]]
+repo = "posva/vim-vue"
+on_ft = "vue"

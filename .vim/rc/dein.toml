@@ -149,6 +149,10 @@ repo = "Omochice/dps-codic-vim"
 depends = ["denops.vim"]
 
 [[plugins]]
+repo = "Omochice/dps-charcounter-vim"
+depends = ["denops.vim"]
+
+[[plugins]]
 repo = "kana/vim-textobj-user"
 
 [[plugins]]
@@ -162,3 +166,9 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 """
 depends = ["vim-textobj-user", "vim-textobj-line"]
+
+[[plugins]]
+repo = "fuenor/vim-wordcount"
+
+[[plugins]]
+repo = "thinca/vim-quickrun"
