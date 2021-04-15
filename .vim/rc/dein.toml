@@ -121,8 +121,8 @@ rev = "release/rpc"
 hook_add = """
 nmap <C-p> [fzf-p]
 nnoremap [fzf-p]<C-p> :<C-u>FzfPreviewDirectoryFiles<CR>
-nnoremap [fzf-p]c :<C-u>FzfPreviewCommandPaletteRpc<CR>
-
+nnoremap [fzf-p]c     :<C-u>FzfPreviewCommandPaletteRpc<CR>
+nnoremap [fzf-p]<C-g> :<C-u>FzfPreviewGitActionsRpc<CR>
 let g:fzf_preview_dev_icons = 1
 """
 
@@ -172,3 +172,6 @@ repo = "fuenor/vim-wordcount"
 
 [[plugins]]
 repo = "thinca/vim-quickrun"
+
+[[plugins]]
+repo = "tpope/vim-fugitive"

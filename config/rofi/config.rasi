@@ -3,10 +3,13 @@
 configuration {
   show-icons:         true;
   icon-theme:         "Papirus";
-  /* enable vim j/k  */
+  /* enable vim binding  */
   kb-row-up:     "Up,Control+p,Shift+Tab,Control+k";
   kb-row-down:   "Down,Control+n,Control+j";
-  /* disable j/k */
+  kb-row-left:   "Control+h";
+  kb-row-right:  "Control+l";
+  /* disable hjkl */
   kb-accept-entry: "Return,KP_Enter";
   kb-remove-to-eol: "";
+  kb-remove-char-back: "BackSpace,Shift+BackSpace";
 }
