@@ -19,6 +19,7 @@
 !/config/rofi/applets/styles/nightowl.rasi
 !/config/rofi/applets/styles/colors.rasi
 !/config/rofi/applets/menu/screenshot.sh
+!/config/rofi/applets/menu/configs/square/screenshot.rasi
 !/config/rofi/config.rasi
 !/config/rofi/launchers/colorful/launcher.sh
 !/config/rofi/launchers/colorful/colors.rasi
