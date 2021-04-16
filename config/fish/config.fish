@@ -55,6 +55,7 @@ abbr gst "git status"
 abbr gsw "git switch"
 abbr gcm "git commit -m"
 abbr vimrc "vim ~/.vimrc"
+abbr :q "exit"
 
 
 # tmuxの自動起動
