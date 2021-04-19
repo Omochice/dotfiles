@@ -1,4 +1,7 @@
 [[plugins]]
+repo = "Shougo/dein.vim"
+
+[[plugins]]
 hook_add = """
 augroup colorcshemeSetting
     autocmd!
