@@ -24,6 +24,7 @@
 !/config/rofi/launchers/colorful/launcher.sh
 !/config/rofi/launchers/colorful/colors.rasi
 !/config/rofi/yapf/style
+!/config/alacritty/alacritty.yml
 !/zshell/*
 !/zshell/.zsh.d/*
 !/.gitconfig_shared

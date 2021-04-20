@@ -1,0 +1,69 @@
+shell:
+  program: /usr/bin/bash
+  args:
+    - --login
+
+font:
+  size: 15
+  normal:
+    family: FiraCode Nerd Font Mono
+    style: Regular
+  bold:
+    family: FiraCode Nerd Font Mono
+    style: Bold
+  italic:
+    family: FiraCode Nerd Font Mono
+    style: Regular
+  bold_italic:
+    falimy: FiraCode Nerd Font Mono
+    style: Bold Italic
+
+# Colors (Night Owl)
+colors:
+   # Default colors
+  primary:
+    background: "#000000"
+    foreground: "#d6deeb"
+
+  cursor:
+    text: "#011627"
+    cursor: "#d6deeb"
+
+  selection:
+    background: "#1b90dd"
+
+   # Normal colors
+  normal:
+    black:   "#011627"
+    red:     "#ef5350"
+    green:   "#22da6e"
+    yellow:  "#c5e478"
+    blue:    "#82aaff"
+    magenta: "#c792ea"
+    cyan:    "#21c7a8"
+    white:   "#ffffff"
+
+   # Bright colors
+  bright:
+    black:   "#575656"
+    red:     "#ef5350"
+    green:   "#22da6e"
+    yellow:  "#ffeb95"
+    blue:    "#82aaff"
+    magenta: "#c792ea"
+    cyan:    "#7fdbca"
+    white:   "#ffffff"
+
+window:
+  decorations: full
+  startup_mode: Maximized # フルスクリーンで起動する
+background_opacity: 0.8    # 背景を透過させる
+
+env: 
+  TERM: alacritty
+
+key_bindings:
+  - { key: PageUp,   mods: Shift, action: ScrollPageUp,   mode: ~Alt       }
+  - { key: PageDown, mods: Shift, action: ScrollPageDown, mode: ~Alt       }
+  - { key: Home,     mods: Shift, action: ScrollToTop,    mode: ~Alt       }
+  - { key: End,      mods: Shift, action: ScrollToBottom, mode: ~Alt       }
