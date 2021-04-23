@@ -11,6 +11,7 @@
 !/config/*
 !/config/efm-langserver/config.yaml
 !/config/fish/*
+!/config/fish/fishfile
 !/config/fish/functions/gi.fish
 !/config/fish/functions/fish_prompt.fish
 !/config/git/ignore
