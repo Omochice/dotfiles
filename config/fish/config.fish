@@ -21,11 +21,6 @@ if [ -d /usr/share/tessdata ]
 end
 
 
-function fish_user_key_bindings
-    bind \cr "peco_select_history (commandline -b)"
-    # bind \ce "peco_recentd"
-end
-
 # aliases 
 alias shutdown "sudo shutdown -h now"
 
