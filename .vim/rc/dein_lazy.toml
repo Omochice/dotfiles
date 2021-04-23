@@ -8,6 +8,7 @@ let g:rufo_auto_formatting = 1
 """
 on_ft = "ruby"
 repo = "ruby-formatter/rufo-vim"
+on_event = "BufWritePre"
 
 [[plugins]]
 on_ft = "ruby"
@@ -42,12 +43,37 @@ hook_add = """
 let g:pydocstring_formatter = "google"
 """
 on_ft = "python"
+on_cmd = ["Pydocstring", "PydocstringFormat"]
 repo = "heavenshell/vim-pydocstring"
 
 [[plugins]]
 repo = "mattn/vim-maketable"
 on_ft = "markdown"
+on_cmd = "MakeTable"
+
+[[plugins]]
+repo = "previm/previm"
+on_cmd = "PrevimOpen"
+on_ft = "markdown"
+hook_add = """
+let g:previm_open_cmd = "vivaldi-stable"
+"""
 
 [[plugins]]
 repo = "posva/vim-vue"
 on_ft = "vue"
+
+[[plugins]]
+repo = "cocopon/vaffle.vim"
+hook_add = """
+command! TVaffle :tabnew | :Vaffle
+"""
+on_cmd = "Vaffle"
+
+[[plugins]]
+hook_add = """
+let g:translate_source = "en"
+let g:translate_target = "ja"
+"""
+repo = "skanehira/translate.vim"
+on_cmd = "Translate"

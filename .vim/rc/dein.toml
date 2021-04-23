@@ -21,12 +21,6 @@ hook_add = "set helplang=ja"
 repo = "vim-jp/vimdoc-ja"
 
 [[plugins]]
-repo = "cocopon/vaffle.vim"
-hook_add = """
-command! TVaffle :tabnew | :Vaffle
-"""
-
-[[plugins]]
 hook_add = """
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_doagnostics_echo_cursor = 1
@@ -124,13 +118,6 @@ repo = "hrsh7th/vim-vsnip"
 
 [[plugins]]
 repo = "hrsh7th/vim-vsnip-integ"
-
-[[plugins]]
-hook_add = """
-let g:translate_source = "en"
-let g:translate_target = "ja"
-"""
-repo = "skanehira/translate.vim"
 
 [[plugins]]
 repo = "junegunn/fzf"
