@@ -14,6 +14,7 @@
 !/config/fish/functions/gi.fish
 !/config/fish/functions/fish_prompt.fish
 !/config/git/ignore
+!/config/vim/vimrc.core
 !/config/pip/pip.conf
 !/config/rofi/config.rasi
 !/config/rofi/applets/styles/nightowl.rasi
