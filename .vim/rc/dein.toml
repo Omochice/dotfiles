@@ -22,6 +22,9 @@ repo = "vim-jp/vimdoc-ja"
 
 [[plugins]]
 repo = "cocopon/vaffle.vim"
+hook_add = """
+command! TVaffle :tabnew | :Vaffle
+"""
 
 [[plugins]]
 hook_add = """
