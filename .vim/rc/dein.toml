@@ -6,7 +6,6 @@ hook_add = """
 augroup colorcshemeSetting
     autocmd!
     colorscheme night-owl
-    let g:lightline = {"colorscheme": "nightowl"}
     autocmd VimEnter * ++nested colorscheme night-owl
     autocmd Colorscheme * highlight Normal ctermbg=NONE guibg=NONE
     autocmd Colorscheme * highlight NonText ctermbg=NONE guibg=NONE
@@ -73,10 +72,28 @@ repo = "jiangmiao/auto-pairs"
 
 [[plugins]]
 hook_add = """
-set noshowmode
-set laststatus=2
+let g:lightline = {
+     \ "colorscheme": "nightowl", 
+     \ "active": {
+     \   "left": [ [ "mode", "paste" ],
+     \             [ "gitbranch", "readonly", "filename", "modified" ] ]
+     \ },
+     \ "component_function": {
+     \   "gitbranch": "FugitiveHead",
+     \   "filetype": "MyFiletype",
+     \   "fileformat": "MyFileformat",
+     \ },
+     \ }
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . " " . WebDevIconsGetFileTypeSymbol() : "no ft") : ""
+endfunction
+
+function! MyFileformat()
+  return winwidth(0) > 70 ? (&fileformat . " " . WebDevIconsGetFileFormatSymbol()) : ""
+endfunction
 """
 repo = "itchyny/lightline.vim"
+depends = ["night-owl.vim", "vim-devicons"]
 
 [[plugins]]
 hook_add = """
@@ -125,7 +142,10 @@ nmap <C-p> [fzf-p]
 nnoremap [fzf-p]<C-p> :<C-u>FzfPreviewDirectoryFiles<CR>
 nnoremap [fzf-p]c     :<C-u>FzfPreviewCommandPaletteRpc<CR>
 nnoremap [fzf-p]<C-g> :<C-u>FzfPreviewGitActionsRpc<CR>
-let g:fzf_preview_dev_icons = 1
+let g:fzf_preview_fzf_preview_window_option = "right:50%"
+let g:fzf_preview_use_dev_icons = 1
+let g:fzf_preview_dev_icon_prefix_string_length = 3
+let g:fzf_preview_dev_icons_limit = 5000
 """
 
 [[plugins]]
