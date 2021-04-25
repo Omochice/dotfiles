@@ -16,6 +16,10 @@
     gist = !"f() { local s=$1; shift; \
       while [ $# -gt 0 ]; do s=\"$s $1\"; shift; done;\
       gh gist $s; }; f"
+    issue = !"f() { local s=$1; shift; \
+      while [ $# -gt 0 ]; do s=\"$s $1\"; shift; done;\
+      gh issue $s; }; f"
+
 [core]
     editor = "vim"
     pager = "delta"
