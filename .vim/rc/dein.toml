@@ -151,10 +151,20 @@ repo = "tpope/vim-surround"
 repo = "tpope/vim-repeat"
 
 [[plugins]]
-repo = "vim-denops/denops.vim"
+repo = "cocopon/vaffle.vim"
 hook_add = """
-let g:denops#script#typecheck = 0
+command! TVaffle :tabnew | :Vaffle
 """
+
+[[plugins]]
+repo = "vim-denops/denops.vim"
+# hook_add = """
+# let g:denops#server#service#deno_args = [
+# \ "-q",
+# \ "--unstable",
+# \ "-A",
+# \]
+# """
 
 [[plugins]]
 repo = "Omochice/dps-codic-vim"
