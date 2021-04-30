@@ -175,6 +175,10 @@ repo = "Omochice/dps-charcounter-vim"
 depends = ["denops.vim"]
 
 [[plugins]]
+repo = "yuki-yano/dps-slack-status.vim"
+depends = ["denops.vim"]
+
+[[plugins]]
 repo = "kana/vim-textobj-user"
 
 [[plugins]]
