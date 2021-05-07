@@ -175,6 +175,13 @@ repo = "Omochice/dps-charcounter-vim"
 depends = ["denops.vim"]
 
 [[plugins]]
+repo = "Omochice/dps-slack-status.vim"
+depends = ["denops.vim"]
+hook_add = """
+let g:slack_status_emoji = ":dadparrot:"
+"""
+
+[[plugins]]
 repo = "kana/vim-textobj-user"
 
 [[plugins]]
