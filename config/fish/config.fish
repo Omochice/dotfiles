@@ -35,7 +35,7 @@ else if type "batcat" >/dev/null 2>&1
 end
 
 if type "exa" >/dev/null 2>&1
-    alias ls "exa -g --time-style=long-iso"
+    alias ls "exa --icons -g --time-style=long-iso"
 end
 
 alias gs "git status"
