@@ -1,3 +1,5 @@
+source ~/.config/vim/vimrc.core
+
 " dein.vim settings {{m
 " install dir {{{
 let s:dein_dir = expand('~/.vim/dein')
@@ -49,7 +51,6 @@ if len(s:removed_plugins) > 0
 endif
 " }}}
 
-source ~/.config/vim/vimrc.core
 
 
 augroup rubySettings
