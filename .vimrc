@@ -92,3 +92,8 @@ augroup TSSettings
     autocmd BufNewFile, BufRead *.ts setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufWritePre *.ts :w | LspDocumentFormatSync
 augroup END
+
+augroup GoSettings
+    autocmd!
+    autocmd FileType go iabbrev <buffer> :- :=
+augroup END
