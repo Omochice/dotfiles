@@ -26,8 +26,7 @@ set incsearch
 set gdefault
 set iminsert=2
 set virtualedit=onemore
-
-set completeopt=menuone,noinsert
+set completeopt=menuone,noinsert,noselect,preview
 
 "FIXME <C-h> is now working, it will be <BS>
 inoremap <C-h> <Left>

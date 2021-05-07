@@ -49,13 +49,17 @@ repo = "mattn/vim-lsp-settings"
 
 [[plugins]]
 hook_add = """
-inoremap <expr><Tab> pumvisible() ? "\<C-n>": "\<Tab>"
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-imap <C-space> <Plug>(asyncomplete_force_refresh)
-let g:asyncomplete_auto_completeopt = 0
-let g:asyncomplete_auto_popup = 1
+inoremap <expr> <Enter> pumvisible() ? "\<C-y>" : "\<Enter>"
+imap <c-space> <Plug>(asyncomplete_force_refresh)
+let g:asyncomplete_auto_completeopt = 1
 let g:asyncomplete_matchfuzzy = 1
+let g:asyncomplete_auto_popup = 1
 """
+
 repo = "prabirshrestha/asyncomplete.vim"
 
 [[plugins]]
@@ -108,12 +112,6 @@ repo = "easymotion/vim-easymotion"
 repo = "tomtom/tcomment_vim"
 
 [[plugins]]
-hook_add = """
-imap <expr><C-j> vsnip#expandable() ? "<Plug>(vsnip-expand)"
-smap <expr><C-j> vsnip#expandable() ? "<Plug>(vsnip-expand)"
-imap <expr><Tab> vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<Tab>"
-smap <expr><Tab> vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "<Tab>"
-"""
 repo = "hrsh7th/vim-vsnip"
 
 [[plugins]]
@@ -204,4 +202,3 @@ repo = "tpope/vim-fugitive"
 
 [[plugins]]
 repo = "ryanoasis/vim-devicons"
-
