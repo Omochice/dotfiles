@@ -1,32 +1,31 @@
 " user settings 
 syntax on
 filetype plugin indent on
-set nocompatible
-set ignorecase
-set laststatus=2
-set clipboard=unnamed,unnamedplus,autoselect
-set expandtab
-set list listchars=tab:\:\ 
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
 set autoindent
-set smartindent 
-set nowritebackup
+set clipboard=unnamed,unnamedplus,autoselect
+set completeopt=menuone,noinsert,noselect,preview
+set expandtab
+set gdefault
+set hlsearch
+set ignorecase
+set iminsert=2
+set incsearch
+set infercase
+set laststatus=2
 set nobackup 
+set nocompatible
 set noswapfile
+set nowrap
+set nowritebackup
 set number
 set relativenumber
-set nowrap
-set hlsearch
-set infercase
+set shiftwidth=4
 set showmatch
-set wildmenu
-set incsearch
-set gdefault
-set iminsert=2
+set smartindent 
+set softtabstop=4
+set tabstop=4
 set virtualedit=onemore
-set completeopt=menuone,noinsert,noselect,preview
+set wildmenu
 
 "FIXME <C-h> is now working, it will be <BS>
 inoremap <C-h> <Left>

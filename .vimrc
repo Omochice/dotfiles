@@ -51,7 +51,6 @@ endif
 
 source ~/.config/vim/vimrc.core
 
-
 augroup rubySettings
     autocmd!
     autocmd BufNewFile, BufRead *.rb setlocal colorcolumn=100 tabstop=2 softtabstop=2 shiftwidth=2
@@ -98,3 +97,4 @@ augroup GoSettings
     autocmd FileType go iabbrev <buffer> :- :=
     autocmd BufWritePre *.go LspDocumentFormatSync
 augroup END
+
