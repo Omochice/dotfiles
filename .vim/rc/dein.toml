@@ -7,11 +7,11 @@ augroup colorcshemeSetting
     autocmd!
     colorscheme night-owl
     autocmd VimEnter * ++nested colorscheme night-owl
-    autocmd Colorscheme * highlight Normal ctermbg=NONE guibg=NONE
-    autocmd Colorscheme * highlight NonText ctermbg=NONE guibg=NONE
-    autocmd Colorscheme * highlight LineNr ctermbg=NONE guibg=NONE
-    autocmd Colorscheme * highlight Folded ctermbg=NONE guibg=NONE
-    autocmd Colorscheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
+    autocmd Colorscheme * highlight Normal ctermbg=NONE 
+    autocmd Colorscheme * highlight NonText ctermbg=NONE
+    autocmd Colorscheme * highlight LineNr ctermbg=NONE 
+    autocmd Colorscheme * highlight Folded ctermbg=NONE 
+    autocmd Colorscheme * highlight EndOfBuffer ctermbg=NONE 
 augroup END
 """
 repo = "haishanh/night-owl.vim"
