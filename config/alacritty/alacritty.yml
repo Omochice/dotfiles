@@ -56,8 +56,8 @@ colors:
 
 window:
   decorations: full
-  startup_mode: Maximized # フルスクリーンで起動する
-background_opacity: 0.8    # 背景を透過させる
+  startup_mode: Maximized
+background_opacity: 0.8
 
 env: 
   TERM: alacritty

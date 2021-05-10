@@ -6,6 +6,7 @@ set ignorecase
 set laststatus=2
 set clipboard=unnamed,unnamedplus,autoselect
 set expandtab
+set list listchars=tab:\:\ 
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -20,7 +21,6 @@ set nowrap
 set hlsearch
 set infercase
 set showmatch
-set list listchars=tab:>-
 set wildmenu
 set incsearch
 set gdefault
