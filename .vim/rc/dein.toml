@@ -59,7 +59,6 @@ let g:asyncomplete_auto_completeopt = 1
 let g:asyncomplete_matchfuzzy = 1
 let g:asyncomplete_auto_popup = 1
 """
-
 repo = "prabirshrestha/asyncomplete.vim"
 
 [[plugins]]
