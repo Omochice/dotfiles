@@ -181,3 +181,6 @@ bindsym $mod+e mode "resize"
 bar {
         status_command i3status
 }
+
+exec --no-startup-id "i3-workscreen"
+exec --no-startup-id fcitx
