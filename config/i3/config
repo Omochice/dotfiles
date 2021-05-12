@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:FiraMono Nerd Font 8
+font pango:FiraCode Nerd Font Mono 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -187,13 +187,14 @@ bindsym $mod+e mode "resize"
 # finds out, if available)
 
 bar {
-	font pango:FiraMono Nerd 10
+	font pango:FiraCode Nerd Font Mono 11
 	position top
 	tray_output none
-	status_command bumblebee-status -m nic disk:root cpu \
-		memory battery date time pasink pasource dnf \
-		-p root.path=/ time.format="%H:%M CW %V" date.format="%a, %b %d %Y" \
-		-t solarized-powerline
+	status_command bumblebee-status -m cpu memory ping \
+		pasink pasource datetime -p pulseaudio.autostart="true" pulseaudio.limit=100 \
+        datetime.format="%a %m-%d %H:%M" datetime.locale="en_US.UTF-8" \
+        memory.usedonly=true \
+        -t dracula-powerline
 }
 
 for_window [class=".*"] border pixel 3
