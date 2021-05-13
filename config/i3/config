@@ -214,7 +214,7 @@ smart_borders no_gaps
 
 # for_window [instance="nitrogen" class="Nitrogen"] floating enable
 
-exec --no-startup-id i3-workscreen
+exec --no-startup-id i3-workscreen && nitrogen --restore
 exec --no-startup-id fcitx
 exec --no-startup-id light-locker --lock-on-suspend
 # exec --no-startup-id nitrogen --restore 
