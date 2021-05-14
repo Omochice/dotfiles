@@ -197,8 +197,6 @@ bar {
 }
 
 for_window [class=".*"] border pixel 3
-# gaps inner 5
-# gaps outer 1
 
 gaps top 5
 gaps bottom 5
@@ -209,9 +207,12 @@ gaps inner 5
 smart_borders on
 smart_borders no_gaps 
 
+bindsym $mod+w exec $BROWSER
+
 # for_window [title="LINE - Vivaldi"]
 
-# for_window [instance="nitrogen" class="Nitrogen"] floating enable
+for_window [instance="nitrogen" class="Nitrogen"] floating enable
+for_window [class="Arandr"] floating enable
 
 assign [class="Alacritty"] 1
 
@@ -219,9 +220,6 @@ assign [class="Alacritty"] 1
 # class, border,background text indicator child_border
 # client.forcused #21C7AB 
 
-# exec --no-startup-id i3-workscreen
-# exec --no-startup-id ~/.screenlayout/test.sh && nitrogen --restore
-# exec --no-startup-id xrandr --output DP2-2 --auto --left-of eDP1 && --output DP2-2 --auto --output DP2-1 --auto --right-of DP2-2 && nitrogen --restore
 exec --no-startup-id fcitx
 exec --no-startup-id light-locker --lock-on-suspend
 exec --no-startup-id picom --config ~/.config/picom/picom.conf -b

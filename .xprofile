@@ -2,5 +2,6 @@ export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 set -b
-export EDITOR=vim
-export TERMINAL=alacritty
+export EDITOR=$(which vim)
+export TERMINAL=$(which alacritty)
+export BROWSER=$(which vivaldi-stable)
