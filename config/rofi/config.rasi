@@ -1,6 +1,7 @@
 /** Basic config file **/
 
 configuration {
+  font: "FiraCode Nerd Font Mono 16";
   show-icons:         true;
   icon-theme:         "Papirus";
   /* enable vim binding  */
