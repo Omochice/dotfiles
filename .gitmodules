@@ -1,0 +1,3 @@
+[submodule "config/bumblebee-status/themes"]
+	path = config/bumblebee-status/themes
+	url = https://github.com/Omochice/bumblebee-themes

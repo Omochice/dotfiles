@@ -181,10 +181,12 @@ bar {
 	position top
 	tray_output none
 	status_command bumblebee-status -m cpu memory ping \
-		pasink pasource datetime -p pulseaudio.autostart="true" pulseaudio.limit=100 \
+		pasink pasource datetime \
+        -p pulseaudio.autostart="true" pulseaudio.limit=100 \
         datetime.format="%a %m-%d %H:%M" datetime.locale="en_US.UTF-8" \
         memory.usedonly=true \
-        -t dracula-powerline
+        -t night-owl
+        # -t dracula-powerline
 }
 
 for_window [class=".*"] border pixel 3
@@ -197,6 +199,8 @@ gaps inner 5
 
 smart_borders on
 smart_borders no_gaps 
+
+focus_follows_mouse off
 
 bindsym $mod+w exec $BROWSER
 
