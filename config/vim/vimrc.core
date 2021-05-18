@@ -27,10 +27,10 @@ set tabstop=4
 set virtualedit=onemore
 set wildmenu
 
-inoremap <C-h> <C-o>h
-inoremap <C-j> <C-o>j
-inoremap <C-k> <C-o>k
-inoremap <C-l> <C-o>l
+inoremap <C-h> <C-g>U<Left>
+inoremap <C-j> <C-g>U<Down>
+inoremap <C-k> <C-g>U<Up>
+inoremap <C-l> <C-g>U<Right>
 nnoremap j gj
 nnoremap k gk
 noremap q: :q
