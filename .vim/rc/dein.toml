@@ -68,9 +68,10 @@ repo = "prabirshrestha/asyncomplete-lsp.vim"
 repo = "markonm/traces.vim"
 
 [[plugins]]
-repo = "jiangmiao/auto-pairs"
-hook_add = """
-let g:AutoPairsMapCh = 0
+repo = "cohama/lexima.vim"
+hook_add = """ 
+" too lang to write here
+source ~/.vim/mysettings/lexima.vim
 """
 
 [[plugins]]
