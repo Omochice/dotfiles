@@ -184,7 +184,7 @@ bar {
 		pasink pasource pomodoro datetime \
         -p pulseaudio.autostart="true" pulseaudio.limit=100 \
         datetime.format="%a %m-%d %H:%M" datetime.locale="en_US.UTF-8" \
-        memory.usedonly=true pomodoro.notify="bash ~/tools/rofi-notify \"Time-Up\"" \
+        memory.usedonly=true pomodoro.notify="rofi-notify 'Time-Up!!'" \
         -t night-owl
         # -t dracula-powerline
 }
