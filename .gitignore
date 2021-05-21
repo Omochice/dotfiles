@@ -32,6 +32,7 @@
 !/config/rofi/launchers/colorful/colors.rasi
 !/config/rofi/yapf/style
 !/config/alacritty/alacritty.yml
+!/config/starship/config.toml
 !/zshell/*
 !/zshell/.zsh.d/*
 !/.gitconfig_shared

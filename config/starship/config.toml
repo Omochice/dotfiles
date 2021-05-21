@@ -1,0 +1,15 @@
+add_newline = true
+
+[character]
+success_symbol = "[↪]( green )"
+
+format = """
+[┌───────────────────>](bold green)
+[│](bold green)$directory$rust$package
+[└─>](bold green) """
+
+
+[directory]
+truncation_length = 1
+fish_style_pwd_dir_length = 1
+
