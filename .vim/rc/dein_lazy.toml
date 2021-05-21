@@ -75,4 +75,4 @@ on_cmd = "fisn"
 
 [[plugins]]
 repo = "ap/vim-css-color"
-on_ft = "css"
+on_ft = ["css", "scss"]
