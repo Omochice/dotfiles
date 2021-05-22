@@ -1,15 +1,47 @@
 add_newline = true
+format = """
+┌───────────────────> $git_branch $git_status
+├ $username at $hostname in $directory
+└─> $character """
 
 [character]
-success_symbol = "[↪]( green )"
+success_symbol = "\\$"
+error_symbol = "[\\$](red)"
 
-format = """
-[┌───────────────────>](bold green)
-[│](bold green)$directory$rust$package
-[└─>](bold green) """
+[username]
+style_user = "yellow"
+style_root = "white bold"
+format = "[$user]($style)"
+disabled = false
+show_always = true
 
+[hostname]
+ssh_only = false
+format = "[$hostname](purple)"
+disabled = false
+
+[package]
+disabled = true
 
 [directory]
+style = "green"
 truncation_length = 1
 fish_style_pwd_dir_length = 1
 
+[git_branch]
+format = "$symbol[$branch]($style) "
+style = "green"
+symbol = "[🌱](green) "
+
+[git_status]
+format = '(\[ $all_status$ahead_behind \])'
+conflicted = "[🏳]($red)"
+ahead = "🏎💨"
+behind = "😰"
+diverged = "😵"
+untracked = "🤔"
+stashed = ""
+modified = "📝"
+staged = '[\(+$count\)](green)'
+renamed = "👅"
+deleted = "🗑"

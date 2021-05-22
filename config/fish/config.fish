@@ -63,3 +63,6 @@ end
 
 # Github CLI
 eval (gh completion -s fish | source) 
+
+# Starship
+starship init fish | source
