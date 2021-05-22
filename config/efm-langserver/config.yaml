@@ -13,6 +13,14 @@ tools:
     format-stdin: true 
 #  Save時に動かすとsave前のものがINPUTになるからうまく動作しない 
 
+  mypy-lint: &mypy-lint
+    lint-command: 'mypy --show-column-numbers --strict --strict-equality'
+    lint-formats:
+      - '%f:%l:%c: %t%*[^:]: %m'
+    root-markers:
+      - setup.cfg
+      - mypy.ini
+
   fprettify: &fprettify
     format-command: "fprettify -i 2 -S"  
     format-stdin: true
@@ -36,6 +44,7 @@ languages:
 
   python:
     - <<: *yapf-format
+    - <<: *mypy-lint
     # - <<: *isort-format
 
   fortran:
