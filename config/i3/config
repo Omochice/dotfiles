@@ -208,6 +208,7 @@ bindsym $mod+w exec $BROWSER
 
 for_window [instance="nitrogen" class="Nitrogen"] floating enable
 for_window [class="Arandr"] floating enable
+for_window [class="Thunar"] floating enable
 
 assign [class="Alacritty"] 1
 
@@ -223,6 +224,6 @@ exec --no-startup-id fcitx
 exec --no-startup-id light-locker --lock-on-suspend
 exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
 exec --no-startup-id i3-workscreen && nitrogen --restore
-exec --no-startup-id dunst
+exec --no-startup-id xfce4-power-manager
 
 exec --no-startup-id alacritty
