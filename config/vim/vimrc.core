@@ -33,9 +33,11 @@ inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 nnoremap j gj
 nnoremap k gk
-noremap q: :q
-noremap :qq :q!
-noremap :ww :w!
+nnoremap q: :q
+nnoremap :qq :q!
+nnoremap :ww :w!
+nnoremap <Tab> %
+vnoremap <Tab> %
 
 
 " from other resource, vim.jp etc..
