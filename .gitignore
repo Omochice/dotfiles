@@ -8,6 +8,7 @@
 !/bash/functions/*
 !/.vim/rc/*
 !/.vim/mysettings/*
+!/.vim/vimrc
 !/.vsnip/*.json
 !/config/*
 !/config/efm-langserver/config.yaml
@@ -39,7 +40,6 @@
 !/.prettierrc.json
 !/.rufo
 !/.tmux.conf
-!/.vimrc
 !/.xprofile
 !/README.md
 !/keymap.txt
