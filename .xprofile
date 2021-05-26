@@ -2,7 +2,3 @@ export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 set -b
-export STARSHIP_CONFIG=$HOME/.config/starship/config.toml
-export EDITOR=$(which vim)
-export TERMINAL=$(which alacritty)
-export BROWSER=$(which vivaldi-stable)
