@@ -9,6 +9,7 @@
 !/.vim/rc/*
 !/.vim/mysettings/*
 !/.vim/vimrc
+.vim/dein
 !/.vsnip/*.json
 !/config/*
 !/config/efm-langserver/config.yaml
