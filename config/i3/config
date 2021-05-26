@@ -91,7 +91,6 @@ bindsym $mod+space focus mode_toggle
 #bindsym $mod+d focus child
 # workspaces 
 # I want use variable like `" 1  "`, bat this cannot work well.
-# `-1 -` can work well as ` 1  `. why?
 set $ws1 "-1 -"
 set $ws2 "-2-"
 set $ws3 "-3-"
