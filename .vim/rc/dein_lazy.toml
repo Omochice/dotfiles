@@ -9,9 +9,9 @@ let g:rufo_auto_formatting = 1
 on_ft = "ruby"
 repo = "ruby-formatter/rufo-vim"
 
-[[plugins]]
-on_ft = "ruby"
-repo = "tpope/vim-endwise"
+# [[plugins]]
+# on_ft = "ruby"
+# repo = "tpope/vim-endwise"
 
 [[plugins]]
 hook_add = """
@@ -31,9 +31,9 @@ repo = "mattn/vim-goimports"
 
 [[plugins]]
 hook_add = """
-let g:closetag_filenames = "*.html, *,vue, *.xml"
+let g:closetag_filenames = "*.html, *,vue, *.xml. *.jsx, *.erb"
 """
-on_ft = ["html", "vue", "xml", "erb"]
+on_ft = ["html", "vue", "xml", "erb", "jsx"]
 repo = "alvan/vim-closetag"
 
 [[plugins]]
@@ -76,3 +76,4 @@ on_cmd = "fish"
 [[plugins]]
 repo = "ap/vim-css-color"
 on_ft = ["css", "scss"]
+
