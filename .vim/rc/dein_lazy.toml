@@ -71,7 +71,7 @@ on_cmd = "Translate"
 
 [[plugins]]
 repo = "dag/vim-fish"
-on_cmd = "fisn"
+on_cmd = "fish"
 
 [[plugins]]
 repo = "ap/vim-css-color"
