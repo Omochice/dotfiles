@@ -73,6 +73,7 @@ hook_add = """
 " too lang to write here
 source ~/.vim/mysettings/lexima.vim
 """
+marged = 0
 
 [[plugins]]
 hook_add = """
@@ -175,9 +176,9 @@ repo = "vim-denops/denops.vim"
 repo = "Omochice/dps-codic-vim"
 depends = ["denops.vim"]
 
-[[plugins]]
-repo = "Omochice/dps-charcounter-vim"
-depends = ["denops.vim"]
+# [[plugins]]
+# repo = "Omochice/dps-charcounter-vim"
+# depends = ["denops.vim"]
 
 [[plugins]]
 repo = "Omochice/dps-slack-status.vim"
@@ -203,6 +204,9 @@ depends = ["vim-textobj-user", "vim-textobj-line"]
 
 [[plugins]]
 repo = "thinca/vim-quickrun"
+hook_add = """
+
+"""
 
 [[plugins]]
 repo = "tpope/vim-fugitive"
