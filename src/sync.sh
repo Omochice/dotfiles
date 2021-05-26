@@ -9,46 +9,30 @@ function helpmsg() {
 }
 
 function link_to_homedir() {
-    if [ ! -d "$HOME/.dotbackup" ]; then
-        command echo "$HOME/.dotbackup not found. Auto Make it"
-        command mkdir "$HOME/.dotbackup"
-    fi
+    local srcdir=$(readlink -f ${BASH_SOURCE[0]})
+    local dotdir=$(dirname $(dirname ${srcdir}))
 
-    command echo "link dotfiles..."
-    local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-    local dotdir=$(readlink -f ${script_dir}/..)
     for f in ${dotdir}/.??*; do
-        if [ $(basename $f) == ".git" -o $(basename $f) == ".gitignore" ]; then
+        local base=$(basename $f)
+        if [ $base == ".git" -o $base == ".gitignore" -o $base == ".gitmodules" ]; then
             continue
         fi
-        if [[ -L "$HOME/$(basename $f)" ]]; then
-            command rm -f "$HOME/$(basename $f)"
-        fi
-        if [[ -e "$HOME/$(basename $f)" ]]; then
-            command mv "$HOME/$(basename $f)" "$HOME/.dotbackup"
-        fi
+        # Caution. if exists $f in $HOME, it replace with $f
         command ln -snf $f $HOME
     done
-
-    for conf in ${dotdir}/config/*; do
-        local dst="$HOME/.config/$(basename $conf)"
-        if [ -d $dst ]; then
-            command rsync -a "$dst/" $conf
-            command rm -rf $dst
-        fi
-        command ln -snf $conf $dst
-    done
-
-    command ln -snf $dotdir/bash/.bashrc ~/.bashrc
 }
 
-while getopts mh OPT; do
-    case $OPT in
-    h) helpmsg ;;
-    \?) helpmsg ;;
-    esac
-done
+function link_to_config() {
+    local srcdir=$(readlink -f ${BASH_SOURCE[0]})
+    local confdir=$(dirname $(dirname ${srcdir}))/config
+    echo $confdir
+    for f in $(ls $confdir); do
+        local base
+        command ln -snf $f $HOME/.config/
+    done
+}
 
 link_to_homedir
-git config --global include.path "~/.gitconfig_shared"
-command echo -e "\e[1;36m Install completed!!!! \e[m"
+link_to_config
+
+echo "done !!"
