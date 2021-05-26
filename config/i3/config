@@ -1,3 +1,4 @@
+# i3 config file (v4)
 # colorscheme (night-owl)
 set $fg      "#d6deeb"
 set $fg2     "#c5ef4d"
@@ -15,15 +16,19 @@ set $purple  "#c792ea"
 set $gray    "#575656"
 set $white   "#ffffff"
 
-# i3 config file (v4)
+# colour of border, background, text, indicator, and child_border
+client.focused          $red $bg $cyan $red $cyan
+client.focused_inactive $bg $bg $cyan $bg $bg
+client.unfocused        $bg $bg $cyan $bg $bg
+client.urgent           $bg $bg $cyan $bg $bg
+client.placeholder      $bg $bg $cyan $bg $bg
+client.background       $bg
 
+# set windows(meta, super) key as $mod
 set $mod Mod4
 
+# font
 font pango:FiraCode Nerd Font Mono 8
-
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -38,11 +43,13 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec $TERMINAL
 
+# start a browser
+bindsym $mod+w exec $BROWSER
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-# bindsym $mod+d exec --no-startup-id dmenu_run
+# rofi
 bindsym $mod+r exec ~/.config/rofi/bin/launcher_colorful
 bindsym $mod+p exec ~/.config/rofi/bin/menu_screenshot
 bindsym $mod+Tab exec ~/.config/rofi/bin/launcher_misc
@@ -59,11 +66,8 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-
-# split in horizontal orientation
+# split in horizontal/vertical orientation
 bindsym $mod+s split h
-
-# split in vertical orientation
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
@@ -85,19 +89,19 @@ bindsym $mod+space focus mode_toggle
 
 # focus the child container
 #bindsym $mod+d focus child
-
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-set $ws1 " 1  "
-set $ws2 " 2 "
-set $ws3 " 3 "
-set $ws4 " 4 "
-set $ws5 " 5 "
-set $ws6 " 6 "
-set $ws7 " 7 "
-set $ws8 " 8 "
-set $ws9 " 9 "
-set $ws10 " 10 "
+# workspaces 
+# I want use variable like `" 1  "`, bat this cannot work well.
+# `-1 -` can work well as ` 1  `. why?
+set $ws1 "-1 -"
+set $ws2 "-2-"
+set $ws3 "-3-"
+set $ws4 "-4-"
+set $ws5 "-5-"
+set $ws6 "-6-"
+set $ws7 "-7-"
+set $ws8 "-8-"
+set $ws9 "-9-"
+set $ws10 "-10-"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -122,6 +126,7 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+
 # # reload the configuration file
 bindsym $mod+Shift+c reload
 # # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -129,7 +134,8 @@ bindsym $mod+Shift+c reload
 # # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
+
+# resize
 mode "resize" {
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
@@ -146,12 +152,9 @@ mode "resize" {
         bindsym Escape mode "default"
         bindsym $mod+e mode "default"
 }
-
 bindsym $mod+e mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-
+# bar
 bar {
 	font pango:FiraCode Nerd Font Mono 11
 	position top
@@ -162,7 +165,6 @@ bar {
         datetime.format="%a %m-%d %H:%M" datetime.locale="en_US.UTF-8" \
         memory.usedonly=true pomodoro.notify="rofi-notify 'Time-Up!!'" \
         -t night-owl
-        # -t dracula-powerline
     
     colors { 
         # class            border    bg        fg
@@ -175,8 +177,7 @@ bar {
     }
 }
 
-for_window [class=".*"] border pixel 3
-
+# gaps
 gaps top 5
 gaps bottom 5
 gaps right 5
@@ -188,26 +189,23 @@ smart_borders no_gaps
 
 focus_follows_mouse off
 
-bindsym $mod+w exec $BROWSER
-
+# for window
+for_window [class=".*"] border pixel 3
 for_window [instance="nitrogen" class="Nitrogen"] floating enable
 for_window [class="Arandr"] floating enable
 for_window [class="Thunar"] floating enable
 
+# assignment
 assign [class="Alacritty"] $ws1
 
-# colour of border, background, text, indicator, and child_border
-client.focused          $red $bg $cyan $red $cyan
-client.focused_inactive $bg $bg $cyan $bg $bg
-client.unfocused        $bg $bg $cyan $bg $bg
-client.urgent           $bg $bg $cyan $bg $bg
-client.placeholder      $bg $bg $cyan $bg $bg
-client.background       $bg
-
+# autostart(no gui)
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id nm-applet
 exec --no-startup-id fcitx
 exec --no-startup-id light-locker --lock-on-suspend
 exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
 exec --no-startup-id i3-workscreen && nitrogen --restore
 exec --no-startup-id xfce4-power-manager
 
+# autostart(with gui)
 exec --no-startup-id alacritty
