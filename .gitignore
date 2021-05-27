@@ -21,7 +21,7 @@
 !/config/vim/vimrc.core
 !/config/i3/config
 !/config/bumblebee-status
-!/config/bumblebee-status/themes
+!/config/bumblebee-status/themes/*
 !/config/picom/picom.conf
 !/config/pip/pip.conf
 !/config/rofi/config.rasi
