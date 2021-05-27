@@ -48,6 +48,6 @@ load_settings
 # command xmodmap $HOME/.Xmodmap
 eval "$(anyenv init -)"
 
-exec fish
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+exec fish
