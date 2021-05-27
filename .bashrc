@@ -5,7 +5,7 @@
 [[ $- != *i* ]] && return
 
 function load_settings() {
-    local func_dir="$(dirname $(readlink ~/.bashrc))/functions"
+    local func_dir="$(dirname $(dirname $(readlink -f ~/.bashrc)))/bash/functions"
     if [ -d $func_dir -a -r $func_dir -a -x $func_dir ]; then
         for i in $func_dir/*; do
             [[ ${i##*/} == *.sh ]] && [ \( -f $i -o -h $i \) -a -r $i ] && source $i

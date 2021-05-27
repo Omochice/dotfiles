@@ -4,6 +4,7 @@
 !*/
 # user setting
 !/.gitignore
+!/.bashrc
 !/bash/*
 !/bash/functions/*
 !/.vim/rc/*
