@@ -11,14 +11,28 @@ function helpmsg() {
 function link_to_homedir() {
     local srcdir=$(readlink -f ${BASH_SOURCE[0]})
     local dotdir=$(dirname $(dirname ${srcdir}))
+    local backupdir=$HOME/.dotbackup
+    if [[ ! -e $backupdir ]]; then
+        command echo "$backupdir is not exists. auto make it."
+        command mkdir $backupdir
+    fi
 
     for f in ${dotdir}/.??*; do
         local base=$(basename $f)
+        local dst=$HOME/$base
         if [ $base == ".git" -o $base == ".gitignore" -o $base == ".gitmodules" ]; then
             continue
         fi
-        # Caution. if exists $f in $HOME, it replace with $f
-        command ln -snf $f $HOME
+
+        if [[ -e $dst ]]; then
+            if [[ $(readlink -f $dst) == $f ]]; then
+                continue
+            else
+                command echo "[move] $dst -> $backupdir/$base"
+                command mv $dst $backupdir/$base
+                command ln -snf $f $HOME
+            fi
+        fi
     done
 }
 
