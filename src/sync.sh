@@ -32,6 +32,7 @@ function link_to_homedir() {
                 command mv $dst $backupdir/$base
                 command ln -snf $f $HOME
             fi
+
         fi
     done
 }
@@ -39,10 +40,10 @@ function link_to_homedir() {
 function link_to_config() {
     local srcdir=$(readlink -f ${BASH_SOURCE[0]})
     local confdir=$(dirname $(dirname ${srcdir}))/config
-    echo $confdir
-    for f in $(ls $confdir); do
-        local base
-        command ln -snf $f $HOME/.config/
+    for f in $(ls $confdir/); do
+        local src=$confdir/$f
+        local dst=$HOME/.config/$f
+        command ln -snf $src $dst
     done
 }
 
