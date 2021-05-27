@@ -32,6 +32,8 @@ function link_to_homedir() {
                 command mv $dst $backupdir/$base
                 command ln -snf $f $HOME
             fi
+	else 
+                command ln -snf $f $HOME
 
         fi
     done
