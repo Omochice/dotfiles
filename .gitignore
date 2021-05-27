@@ -38,6 +38,7 @@
 !/zshell/*
 !/zshell/.zsh.d/*
 !/.gitconfig_shared
+!/.profile
 !/.prettierrc.json
 !/.rufo
 !/.tmux.conf
