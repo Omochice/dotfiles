@@ -35,13 +35,13 @@ symbol = "[🌱](green) "
 
 [git_status]
 format = '(\[ $all_status$ahead_behind\])'
-conflicted = "[🏳]($red)"
-ahead = "🏎💨"
-behind = "😰"
-diverged = "😵"
+conflicted = "[🏳]($red) "
+ahead = "🏎💨 "
+behind = "😰 "
+diverged = "😵 "
 untracked = '[U:+$count](green) '
 stashed = ""
 modified = '[M:+$count](green) '
 staged = '[S:+$count](green) '
-renamed = "👅"
-deleted = "🗑"
+renamed = "👅 "
+deleted = "🗑 "
