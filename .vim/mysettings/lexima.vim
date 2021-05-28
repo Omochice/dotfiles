@@ -45,12 +45,13 @@ let s:rules += [
 \ ]
 
 "" Insert semicolon at the end of the line
-let s:rules += [
-\ { 'char': ';', 'at': '(.*\%#)$',   'input': '<Right>;' },
-\ { 'char': ';', 'at': '^\s*\%#)$',  'input': '<Right>;' },
-\ { 'char': ';', 'at': '(.*\%#\}$',  'input': '<Right>;' },
-\ { 'char': ';', 'at': '^\s*\%#\}$', 'input': '<Right>;' },
-\ ]
+"" FIXME, disable in C, ex) if (i=0; i<10; i++ ) { ... }
+"let s:rules += [
+"\ { 'char': ';', 'at': '(.*\%#)$',   'input': '<Right>;' },
+"\ { 'char': ';', 'at': '^\s*\%#)$',  'input': '<Right>;' },
+"\ { 'char': ';', 'at': '(.*\%#\}$',  'input': '<Right>;' },
+"\ { 'char': ';', 'at': '^\s*\%#\}$', 'input': '<Right>;' },
+"\ ]
 
 "" TypeScript
 let s:rules += [
@@ -127,9 +128,9 @@ let s:rules += [
 
 "" shell
 let s:rules += [
-\ { 'filetype': ['sh', 'zsh'], 'char': '[',    'at': '\[\%#\]',  'input': '[<Space>', 'input_after': '<Space>]', 'priority': 10 },
-\ { 'filetype': ['sh', 'zsh'], 'char': '{',    'at': '{\%#}',    'input': '{<Space>', 'input_after': '<Space>}', 'priority': 10 },
-\ { 'filetype': ['sh', 'zsh'], 'char': '<CR>', 'at': '{\%#}',    'input': '<CR>',     'input_after': '<CR>',     'priority': 10 },
+\ { 'filetype': ['sh', 'zsh', 'bash', 'fish'], 'char': '[',    'at': '\[\%#\]',  'input': '[<Space>', 'input_after': '<Space>]', 'priority': 10 },
+\ { 'filetype': ['sh', 'zsh', 'bash', 'fish'], 'char': '{',    'at': '{\%#}',    'input': '{<Space>', 'input_after': '<Space>}', 'priority': 10 },
+\ { 'filetype': ['sh', 'zsh', 'bash', 'fish'], 'char': '<CR>', 'at': '{\%#}',    'input': '<CR>',     'input_after': '<CR>',     'priority': 10 },
 \ ]
 
 for s:rule in s:rules
