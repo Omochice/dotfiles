@@ -17,12 +17,12 @@ fi
 
 # deno
 if [[ -e $HOME/.deno ]]; then
-    export PATH=$PATH:$HOME/.deno
+    export PATH=$PATH:$HOME/.deno/bin
 fi
 
 # anyenv
 if [[ -e $HOME/.anyenv ]]; then
-    export PATH=$PATH:$HOME/bin
+    export PATH=$PATH:$HOME/.anyenv/bin
 fi
 
 # source local settings
