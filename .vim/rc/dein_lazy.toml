@@ -77,3 +77,10 @@ on_cmd = "fish"
 repo = "ap/vim-css-color"
 on_ft = ["css", "scss"]
 
+[[plugins]]
+repo = "pechorin/any-jump.vim"
+hook_add = """
+let g:any_jump_disable_default_keybindings = 1
+nnoremap <Space>aj :AnyJump<CR>
+"""
+on_cmd = ["AnyJump", "AnyJunpVisual", "AnyJumpBack", "AnyJumpLastResults"]
