@@ -213,3 +213,9 @@ repo = "tpope/vim-fugitive"
 
 [[plugins]]
 repo = "ryanoasis/vim-devicons"
+
+[[plugins]]
+repo = "voldikss/vim-floaterm"
+hook_add = """
+command! Lazygit :FloatermNew --autoclose=2 --height=0.9 --width=0.85 --title=lazygit lazygit
+"""

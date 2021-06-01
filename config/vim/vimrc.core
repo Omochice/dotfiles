@@ -55,4 +55,3 @@ nnoremap <expr> A len(getline(".")) ? "A" : "\"_cc"
 
 command! Vterm :vs | wincmd l | :term ++curwin
 command! Hterm :bo term
-command! Lazygit !lazygit
