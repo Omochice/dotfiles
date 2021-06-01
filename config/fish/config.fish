@@ -51,6 +51,7 @@ abbr gsw "git switch"
 abbr gcm "git commit -m"
 abbr vimrc "vim ~/.vimrc"
 abbr :q "exit"
+abbr lz "lazygit"
 
 
 # tmuxの自動起動
