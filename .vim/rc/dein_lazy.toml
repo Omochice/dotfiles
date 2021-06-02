@@ -1,4 +1,26 @@
 [[plugins]]
+hook_add = """
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : lexima#expand("<LT>Tab>","i")
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : lexima#expand("<LT>CR>", "i")
+imap <C-space> <Plug>(asyncomplete_force_refresh)
+let g:asyncomplete_auto_completeopt = 1
+let g:asyncomplete_matchfuzzy = 1
+let g:asyncomplete_auto_popup = 1
+"""
+repo = "prabirshrestha/asyncomplete.vim"
+depends = "lexima.vim"
+on_source = "lexima.vim" # if load this binding before loading lexima, override this bindings by lexima's and not work fine.
+
+[[plugins]]
+repo = "prabirshrestha/asyncomplete-lsp.vim"
+on_source = "aasyncomplete.vim"
+
+[[plugins]]
 on_ft = "toml"
 repo = "cespare/vim-toml"
 
@@ -8,10 +30,6 @@ let g:rufo_auto_formatting = 1
 """
 on_ft = "ruby"
 repo = "ruby-formatter/rufo-vim"
-
-# [[plugins]]
-# on_ft = "ruby"
-# repo = "tpope/vim-endwise"
 
 [[plugins]]
 hook_add = """
