@@ -11,7 +11,7 @@
 !/.vim/mysettings/*
 !/.vim/vimrc
 .vim/dein
-!/.vsnip/*.json
+!/.vim/snippets/*.json
 !/config/*
 !/config/efm-langserver/config.yaml
 !/config/fish/*

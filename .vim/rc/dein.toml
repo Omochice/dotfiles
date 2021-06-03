@@ -102,6 +102,9 @@ repo = "tyru/caw.vim"
 
 [[plugins]]
 repo = "hrsh7th/vim-vsnip"
+hook_add = """
+let g:vsnip_snippet_dir = $HOME .. "/.vim/snippets/"
+"""
 
 [[plugins]]
 repo = "hrsh7th/vim-vsnip-integ"
