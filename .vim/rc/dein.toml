@@ -2,6 +2,7 @@
 repo = "Shougo/dein.vim"
 
 [[plugins]]
+repo = "haishanh/night-owl.vim"
 hook_add = """
 augroup colorcshemeSetting
     autocmd!
@@ -14,38 +15,28 @@ augroup colorcshemeSetting
     autocmd Colorscheme * highlight EndOfBuffer ctermbg=NONE 
 augroup END
 """
-repo = "haishanh/night-owl.vim"
 
 [[plugins]]
-hook_add = "set helplang=ja"
 repo = "vim-jp/vimdoc-ja"
+hook_add = "set helplang=ja"
 
 [[plugins]]
+repo = "prabirshrestha/vim-lsp"
 hook_add = """
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_doagnostics_echo_cursor = 1
 """
-repo = "prabirshrestha/vim-lsp"
 
 [[plugins]]
+repo = "mattn/vim-lsp-settings"
 hook_add = """
 let g:lsp_settings = {
 \    "efm-langserver": { "disabled": v:false },
-\    "pyls-all": {
-\       "workspace_config": {
-\           "pyls": {
-\                "plugins": {
-\                   "autopep8": {"enabled": v:false}
-\                }
-\           }
-\       }
-\   }
 \}
 let g:lsp_text_edit_enabled = 1
 let g:lsp_diagnostics_signs_error = {'text': '😡'}
 let g:lsp_diagnostics_signs_warning = {'text': '🤔'}
 """
-repo = "mattn/vim-lsp-settings"
 
 
 [[plugins]]
@@ -60,6 +51,7 @@ source ~/.vim/mysettings/lexima.vim
 marged = 0
 
 [[plugins]]
+repo = "itchyny/lightline.vim"
 hook_add = """
 let g:lightline = {
      \ "colorscheme": "nightowl", 
@@ -81,10 +73,10 @@ function! MyFileformat()
   return winwidth(0) > 70 ? (&fileformat . " " . WebDevIconsGetFileFormatSymbol()) : ""
 endfunction
 """
-repo = "itchyny/lightline.vim"
-depends = ["night-owl.vim", "vim-devicons"]
+depends = ["night-owl.vim", "vim-devicons", "vim-fugitive"]
 
 [[plugins]]
+repo = "easymotion/vim-easymotion"
 hook_add = """
 nmap f <Plug>(easymotion-tn)
 nmap <Space>j <Plug>(easymotion-j)
@@ -94,11 +86,9 @@ nmap <Space>h <Plug>(easymotion-linebackward)
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_smartsign_jp = 1
 """
-repo = "easymotion/vim-easymotion"
 
 [[plugins]]
 repo = "tyru/caw.vim"
-
 
 [[plugins]]
 repo = "hrsh7th/vim-vsnip"
@@ -165,7 +155,7 @@ depends = ["denops.vim"]
 # depends = ["denops.vim"]
 
 [[plugins]]
-repo = "Omochice/dps-slack-status.vim"
+repo = "yuki-yano/dps-slack-status.vim"
 depends = ["denops.vim"]
 hook_add = """
 let g:slack_status_emoji = ":dadparrot:"
@@ -182,14 +172,14 @@ depends = ["vim-textobj-uesr"]
 repo = "terryma/vim-expand-region"
 hook_add = """
 vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
+vmap V <Plug>(expand_region_shrink)
 """
 depends = ["vim-textobj-user", "vim-textobj-line"]
 
 [[plugins]]
 repo = "thinca/vim-quickrun"
 hook_add = """
-
+" Umm... <C-q> is tmux prefix...
 """
 
 [[plugins]]
