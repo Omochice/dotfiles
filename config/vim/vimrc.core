@@ -46,6 +46,12 @@ nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
 nnoremap <expr> 0 getline(".")[0 : col(".") - 2] =~# "^\s\+$" ? "0" : "^"
 nnoremap Y y$
 
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+cnoremap <C-d> <Del>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
 inoremap <expr> <C-a> getline(".")[0 : col(".") - 2] =~# "^\s\+$" ? "<C-o>0" : "<C-o>^"
 inoremap        <C-e> <C-o>$
 
