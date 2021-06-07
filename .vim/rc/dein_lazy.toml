@@ -1,66 +1,45 @@
-[[plugins]]
-hook_add = """
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : lexima#expand("<LT>Tab>","i")
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : lexima#expand("<LT>CR>", "i")
-imap <C-space> <Plug>(asyncomplete_force_refresh)
-let g:asyncomplete_auto_completeopt = 1
-let g:asyncomplete_matchfuzzy = 1
-let g:asyncomplete_auto_popup = 1
-"""
-repo = "prabirshrestha/asyncomplete.vim"
-depends = "lexima.vim"
-on_source = "lexima.vim" # if load this binding before loading lexima, override this bindings by lexima's and not work fine.
 
 [[plugins]]
-repo = "prabirshrestha/asyncomplete-lsp.vim"
-on_source = "aasyncomplete.vim"
-
-[[plugins]]
-on_ft = "toml"
 repo = "cespare/vim-toml"
+on_ft = "toml"
 
 [[plugins]]
+repo = "ruby-formatter/rufo-vim"
 hook_add = """
 let g:rufo_auto_formatting = 1
 """
 on_ft = "ruby"
-repo = "ruby-formatter/rufo-vim"
 
 [[plugins]]
+repo = "z0mbix/vim-shfmt"
 hook_add = """
 let g:shfmt_extra_args = "-i 4 -ci -bn -s"
 let g:shfmt_fmt_on_save = 1
 """
 on_ft = ["sh", "bash"]
-repo = "z0mbix/vim-shfmt"
 
 [[plugins]]
+repo = "mattn/vim-goimports"
 hook_add = """
 let g:goimports = 1
 let g:foimports_simplify = 1
 """
 on_ft = "go"
-repo = "mattn/vim-goimports"
 
 [[plugins]]
+repo = "alvan/vim-closetag"
 hook_add = """
 let g:closetag_filenames = "*.html, *,vue, *.xml. *.jsx, *.erb"
 """
 on_ft = ["html", "vue", "xml", "erb", "jsx"]
-repo = "alvan/vim-closetag"
 
 [[plugins]]
+repo = "heavenshell/vim-pydocstring"
 build = "make install"
 hook_add = """
 let g:pydocstring_formatter = "google"
 """
 on_cmd = ["Pydocstring", "PydocstringFormat"]
-repo = "heavenshell/vim-pydocstring"
 
 [[plugins]]
 repo = "mattn/vim-maketable"
@@ -80,11 +59,11 @@ repo = "posva/vim-vue"
 on_ft = "vue"
 
 [[plugins]]
+repo = "skanehira/translate.vim"
 hook_add = """
 let g:translate_source = "en"
 let g:translate_target = "ja"
 """
-repo = "skanehira/translate.vim"
 on_cmd = "Translate"
 
 [[plugins]]
@@ -102,3 +81,4 @@ let g:any_jump_disable_default_keybindings = 1
 nnoremap <Space>aj :AnyJump<CR>
 """
 on_cmd = ["AnyJump", "AnyJunpVisual", "AnyJumpBack", "AnyJumpLastResults"]
+
