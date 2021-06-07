@@ -47,6 +47,17 @@ let g:lsp_diagnostics_signs_warning = {'text': '🤔'}
 """
 repo = "mattn/vim-lsp-settings"
 
+[[plugins]]
+hook_add = """
+"imap <C-space> <Plug>(asyncomplete_force_refresh)
+let g:asyncomplete_auto_completeopt = 1
+let g:asyncomplete_matchfuzzy = 1
+let g:asyncomplete_auto_popup = 1
+"""
+repo = "prabirshrestha/asyncomplete.vim"
+
+[[plugins]]
+repo = "prabirshrestha/asyncomplete-lsp.vim"
 
 [[plugins]]
 repo = "markonm/traces.vim"
@@ -56,8 +67,16 @@ repo = "cohama/lexima.vim"
 hook_add = """ 
 " too lang to write here
 source ~/.vim/mysettings/lexima.vim
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : lexima#expand("<LT>Tab>","i")
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : lexima#expand("<LT>CR>", "i")
 """
 marged = 0
+
 
 [[plugins]]
 hook_add = """
