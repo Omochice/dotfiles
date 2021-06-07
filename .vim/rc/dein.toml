@@ -32,15 +32,6 @@ repo = "mattn/vim-lsp-settings"
 hook_add = """
 let g:lsp_settings = {
 \    "efm-langserver": { "disabled": v:false },
-\    "pyls-all": {
-\       "workspace_config": {
-\           "pyls": {
-\                "plugins": {
-\                   "autopep8": {"enabled": v:false}
-\                }
-\           }
-\       }
-\   }
 \}
 let g:lsp_text_edit_enabled = 1
 let g:lsp_diagnostics_signs_error = {'text': '😡'}
@@ -178,10 +169,6 @@ repo = "vim-denops/denops.vim"
 [[plugins]]
 repo = "Omochice/dps-codic-vim"
 depends = ["denops.vim"]
-
-# [[plugins]]
-# repo = "Omochice/dps-charcounter-vim"
-# depends = ["denops.vim"]
 
 [[plugins]]
 repo = "Omochice/dps-slack-status.vim"
