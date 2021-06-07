@@ -188,7 +188,7 @@ depends = ["vim-textobj-uesr"]
 repo = "terryma/vim-expand-region"
 hook_add = """
 vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
+vmap V <Plug>(expand_region_shrink)
 """
 depends = ["vim-textobj-user", "vim-textobj-line"]
 
