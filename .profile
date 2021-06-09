@@ -25,7 +25,13 @@ if [[ -e $HOME/.anyenv ]]; then
     export PATH=$PATH:$HOME/.anyenv/bin
 fi
 
+# yarn
+if [[ -e $HOME/.yarn ]]; then
+    export PATH=$PATH:$HOME/.yarn/bin
+fi
+
 # source local settings
 if [[ -e $HOME/.profile_local ]]; then
     source $HOME/.profile_local
 fi
+
