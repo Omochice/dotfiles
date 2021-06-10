@@ -14,7 +14,6 @@ set incsearch
 set infercase
 set laststatus=2
 set nobackup 
-set nocompatible
 set noswapfile
 set nowrap
 set nowritebackup
