@@ -1,7 +1,7 @@
 " dein.vim settings {{m
 " install dir {{{
-let s:dein_dir = expand('~/.vim/dein')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+let g:dein_dir = expand('~/.vim/dein')
+let s:dein_repo_dir = g:dein_dir . '/repos/github.com/Shougo/dein.vim'
 " }}}
 
 " dein installation check {{{
@@ -14,8 +14,8 @@ endif
 " }}}
 
 " begin settings {{{
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
+if dein#load_state(g:dein_dir)
+  call dein#begin(g:dein_dir)
 
   " .toml file
   let s:rc_dir = expand('~/.vim/rc')

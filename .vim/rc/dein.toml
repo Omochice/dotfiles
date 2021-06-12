@@ -149,11 +149,20 @@ hook_add = """
 let g:winresizer_vert_resize = 3
 """
 
-[[plugins]]
-repo = "tpope/vim-surround"
+# [[plugins]]
+# repo = "tpope/vim-surround"
+
+# [[plugins]]
+# repo = "tpope/vim-repeat"
+# depends = "vim-surround"
 
 [[plugins]]
-repo = "tpope/vim-repeat"
+repo = "machakann/vim-sandwich"
+hook_add = """
+" use with surround's keybinding. 
+" may be useful vim and vscode(surround with vscodevim).
+execute("source " . g:dein_dir . "/repos/github.com/machakann/vim-sandwich/macros/sandwich/keymap/surround.vim")
+"""
 
 [[plugins]]
 repo = "cocopon/vaffle.vim"
