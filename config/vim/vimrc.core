@@ -14,7 +14,6 @@ set incsearch
 set infercase
 set laststatus=2
 set nobackup 
-set nocompatible
 set noswapfile
 set nowrap
 set nowritebackup
@@ -34,7 +33,7 @@ inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 nnoremap j gj
 nnoremap k gk
-nnoremap q: :q
+nnoremap q: :<C-u>q
 nnoremap :qq :q!
 nnoremap :ww :w!
 nnoremap <Tab> %

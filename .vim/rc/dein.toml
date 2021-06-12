@@ -4,15 +4,21 @@ repo = "Shougo/dein.vim"
 [[plugins]]
 repo = "haishanh/night-owl.vim"
 hook_add = """
+colorscheme night-owl
+
+function! DefineHighlights()
+    if g:colors_name is "night-owl"
+        highlight Normal ctermbg=NONE
+        highlight NonText ctermbg=NONE
+        highlight LineNr ctermbg=NONE
+        highlight Folded ctermbg=NONE
+        highlight EndOfBuffer ctermbg=NONE
+    endif
+endfunction
+
 augroup colorcshemeSetting
     autocmd!
-    colorscheme night-owl
-    autocmd VimEnter * ++nested colorscheme night-owl
-    autocmd Colorscheme * highlight Normal ctermbg=NONE 
-    autocmd Colorscheme * highlight NonText ctermbg=NONE
-    autocmd Colorscheme * highlight LineNr ctermbg=NONE 
-    autocmd Colorscheme * highlight Folded ctermbg=NONE 
-    autocmd Colorscheme * highlight EndOfBuffer ctermbg=NONE 
+    autocmd ColorScheme * :call DefineHighlights()
 augroup END
 """
 
