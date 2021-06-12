@@ -95,6 +95,7 @@ augroup END
 augroup GoSettings
     autocmd!
     autocmd FileType go iabbrev <buffer> :- :=
+    autocmd FileType go iabbrev <buffer> ;; :=
     autocmd BufWritePre *.go LspDocumentFormatSync
 augroup END
 

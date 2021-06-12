@@ -18,11 +18,32 @@
     ]
   },
   "error handling": {
-    "prefix": "iferr",
+    "prefix": [
+      "if",
+      "iferr"
+    ],
     "body": [
       "if err != nil {",
       "  $1",
       "}"
     ]
+  },
+  "for-range": {
+    "prefix": "for",
+    "body": [
+      "for i, ${1:v} := range $2 {",
+      "  $3",
+      "}"
+    ],
+    "description": "for-range"
+  },
+  "for-loop": {
+    "prefix": "for",
+    "body": [
+      "for ${1:i} := 0; $1; $1++ {",
+      "  $2",
+      "}"
+    ],
+    "description": "for-loop"
   }
 }

@@ -55,7 +55,7 @@ cnoremap <C-e> <End>
 inoremap <expr> <C-a> getline(".")[0 : col(".") - 2] =~# "^\s\+$" ? "<C-o>0" : "<C-o>^"
 inoremap        <C-e> <C-o>$
 
-"" Automatically indent with i and A
+" Automatically indent with i and A
 nnoremap <expr> i len(getline(".")) ? "i" : "\"_cc"
 nnoremap <expr> A len(getline(".")) ? "A" : "\"_cc"
 

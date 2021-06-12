@@ -48,5 +48,15 @@
     "body": [
       "[$1]($2)"
     ]
+  },
+  "img": {
+    "prefix": [
+      "!",
+      "img"
+    ],
+    "body": [
+      "![${1:alt}](${2:src})"
+    ],
+    "description": "markdown image snippet"
   }
 }
