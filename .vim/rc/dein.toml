@@ -94,17 +94,31 @@ let g:lightline = {
 \    },
 \ }
 function! LightlineFt()
-    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . " " . WebDevIconsGetFileTypeSymbol() : "no ft") : ""
+    if winwidth(0) > 70
+        if strlen(&filetype)
+            return &filetype . " " . WebDevIconsGetFileTypeSymbol()
+        else
+            return "no ft"
+        endif
+    else
+        return ""
+    endif
 endfunction
 
 function! LightlineFotmat()
-    return winwidth(0) > 70 ? (&fileformat . " " . WebDevIconsGetFileFormatSymbol()) : ""
+    if winwidth(0) > 70
+        return &fileformat .  " " . WebDevIconsGetFileFormatSymbol() 
+    else 
+        return ""
+    endif
 endfunction
 
 function LightlineFugitive()
     if exists("*FugitiveHead")
-        let branch = FugitiveHead()
-        return branch !=# "" ? "" . " " . branch : ""
+        let s:branch = FugitiveHead()
+        if s:branch !=# ""
+            return s:branch . " " . "" 
+        endif
     endif
     return ""
 endfunction
@@ -152,7 +166,7 @@ hook_add = """
 nmap <C-p> [fzf-p]
 nnoremap [fzf-p]<C-p> :<C-u>FzfPreviewDirectoryFiles<CR>
 nnoremap [fzf-p]c     :<C-u>FzfPreviewCommandPaletteRpc<CR>
-nnoremap [fzf-p]<C-g> :<C-u>FzfPreviewGitActionsRpc<CR>
+" nnoremap [fzf-p]<C-g> :<C-u>FzfPreviewGitActionsRpc<CR>
 let g:fzf_preview_fzf_preview_window_option = "right:50%"
 let g:fzf_preview_use_dev_icons = 1
 let g:fzf_preview_dev_icon_prefix_string_length = 3
