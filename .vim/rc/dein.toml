@@ -32,17 +32,19 @@ hook_add = """
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_doagnostics_echo_cursor = 1
 """
+depends = "asyncomplete-lsp.vim"
 
 [[plugins]]
 repo = "mattn/vim-lsp-settings"
 hook_add = """
 let g:lsp_settings = {
-\    "efm-langserver": { "disabled": v:false },
+\    "efm-langserver": {"disabled": v:false},
 \}
 let g:lsp_text_edit_enabled = 1
-let g:lsp_diagnostics_signs_error = {'text': '😡'}
-let g:lsp_diagnostics_signs_warning = {'text': '🤔'}
+let g:lsp_diagnostics_signs_error = {"text": "😡"}
+let g:lsp_diagnostics_signs_warning = {"text": "🤔"}
 """
+depends = "vim-lsp"
 
 [[plugins]]
 repo = "prabirshrestha/asyncomplete.vim"
@@ -55,6 +57,7 @@ let g:asyncomplete_auto_popup = 1
 
 [[plugins]]
 repo = "prabirshrestha/asyncomplete-lsp.vim"
+depends = "asyncomplete.vim"
 
 [[plugins]]
 repo = "markonm/traces.vim"
@@ -65,11 +68,9 @@ hook_add = """
 " too lang to write here
 source ~/.vim/mysettings/lexima.vim
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : lexima#expand("<LT>Tab>","i")
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : lexima#expand("<LT>CR>", "i")
 """
 marged = 0
@@ -79,23 +80,33 @@ marged = 0
 repo = "itchyny/lightline.vim"
 hook_add = """
 let g:lightline = {
-     \ "colorscheme": "nightowl", 
-     \ "active": {
-     \   "left": [ [ "mode", "paste" ],
-     \             [ "gitbranch", "readonly", "filename", "modified" ] ]
-     \ },
-     \ "component_function": {
-     \   "gitbranch": "FugitiveHead",
-     \   "filetype": "MyFiletype",
-     \   "fileformat": "MyFileformat",
-     \ },
-     \ }
-function! MyFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . " " . WebDevIconsGetFileTypeSymbol() : "no ft") : ""
+\    "colorscheme": "nightowl", 
+\    "active": {
+\        "left": [
+\            ["mode", "paste"],
+\            ["gitbranch", "readonly", "filename", "modified"] 
+\        ]
+\    },
+\    "component_function": {
+\        "gitbranch": "LightlineFugitive",
+\        "filetype": "LightlineFt",
+\        "fileformat": "LightlineFotmat",
+\    },
+\ }
+function! LightlineFt()
+    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . " " . WebDevIconsGetFileTypeSymbol() : "no ft") : ""
 endfunction
 
-function! MyFileformat()
-  return winwidth(0) > 70 ? (&fileformat . " " . WebDevIconsGetFileFormatSymbol()) : ""
+function! LightlineFotmat()
+    return winwidth(0) > 70 ? (&fileformat . " " . WebDevIconsGetFileFormatSymbol()) : ""
+endfunction
+
+function LightlineFugitive()
+    if exists("*FugitiveHead")
+        let branch = FugitiveHead()
+        return branch !=# "" ? "" . " " . branch : ""
+    endif
+    return ""
 endfunction
 """
 depends = ["night-owl.vim", "vim-devicons", "vim-fugitive"]
@@ -123,6 +134,7 @@ let g:vsnip_snippet_dir = $HOME .. "/.vim/snippets/"
 
 [[plugins]]
 repo = "hrsh7th/vim-vsnip-integ"
+depends = ["vim-vsnip", "asyncomplete.vim"]
 
 [[plugins]]
 repo = "junegunn/fzf"
