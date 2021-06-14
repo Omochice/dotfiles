@@ -225,7 +225,7 @@ depends = ["vim-textobj-user", "vim-textobj-line"]
 [[plugins]]
 repo = "thinca/vim-quickrun"
 hook_add = """
-" Umm... <C-q> is tmux prefix...
+nnoremap <Space>q :<C-u>QuickRun<CR>
 """
 
 [[plugins]]
