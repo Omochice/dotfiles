@@ -78,7 +78,9 @@ on_ft = ["css", "scss"]
 repo = "pechorin/any-jump.vim"
 hook_add = """
 let g:any_jump_disable_default_keybindings = 1
-nnoremap <Space>aj :AnyJump<CR>
+nnoremap <C-f> :<C-u>AnyJump<CR>
 """
 on_cmd = ["AnyJump", "AnyJunpVisual", "AnyJumpBack", "AnyJumpLastResults"]
+
+
 
