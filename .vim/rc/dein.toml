@@ -49,7 +49,8 @@ depends = "vim-lsp"
 [[plugins]]
 repo = "prabirshrestha/asyncomplete.vim"
 hook_add = """
-"imap <C-space> <Plug>(asyncomplete_force_refresh)
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+imap <expr> <C-Space> pumvisible() ? "\<Plug>(asyncomplete_force_refresh)" : "\<C-n>"
 let g:asyncomplete_auto_completeopt = 1
 let g:asyncomplete_matchfuzzy = 1
 let g:asyncomplete_auto_popup = 1
