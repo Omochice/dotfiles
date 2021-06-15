@@ -4,8 +4,6 @@ repo = "Shougo/dein.vim"
 [[plugins]]
 repo = "haishanh/night-owl.vim"
 hook_add = """
-colorscheme night-owl
-
 function! DefineHighlights()
     if g:colors_name is "night-owl"
         highlight Normal ctermbg=NONE
@@ -18,6 +16,7 @@ endfunction
 
 augroup colorcshemeSetting
     autocmd!
+    autocmd VimEnter * nested colorscheme night-owl
     autocmd ColorScheme * :call DefineHighlights()
 augroup END
 """
