@@ -49,11 +49,27 @@ depends = "vim-lsp"
 repo = "prabirshrestha/asyncomplete.vim"
 hook_add = """
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-imap <expr> <C-Space> pumvisible() ? "\<Plug>(asyncomplete_force_refresh)" : "\<C-n>"
+imap <C-Space> <Plug>(asyncomplete_force_refresh)
 let g:asyncomplete_auto_completeopt = 1
 let g:asyncomplete_matchfuzzy = 1
 let g:asyncomplete_auto_popup = 1
 """
+
+[[plugins]]
+repo = "prabirshrestha/asyncomplete-buffer.vim"
+hook_add = """
+call asyncomplete#register_source(
+\    asyncomplete#sources#buffer#get_source_options({
+\       "name": "Buffer",
+\       "allowlist": ["*"],
+\       "completor": function("asyncomplete#sources#buffer#completor"),
+\       "config": {
+\           "max_buffer_size": 5000000,
+\       },
+\       })
+\)
+"""
+depends = "asyncomplete.vim"
 
 [[plugins]]
 repo = "prabirshrestha/asyncomplete-lsp.vim"
