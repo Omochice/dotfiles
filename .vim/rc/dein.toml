@@ -155,10 +155,10 @@ let g:EasyMotion_use_smartsign_jp = 1
 
 [[plugins]]
 repo = "tyru/caw.vim"
+depends = ["context_filetype.vim"]
 
 [[plugins]]
 repo = "Shougo/context_filetype.vim"
-depends = ["caw.vim"]
 
 [[plugins]]
 repo = "hrsh7th/vim-vsnip"
