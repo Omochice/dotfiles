@@ -133,6 +133,11 @@ let s:rules += [
 \ { 'filetype': ['sh', 'zsh', 'bash', 'fish'], 'char': '<CR>', 'at': '{\%#}',    'input': '<CR>',     'input_after': '<CR>',     'priority': 10 },
 \ ]
 
+"" HTML
+let s:rules += [
+\ { 'filetype': ['html'], 'char': '%', 'at': '{\%#}', 'input': '%<Space>', 'input_after': '<Space>%', 'priority': 10, },
+\ ]
+
 for s:rule in s:rules
     call lexima#add_rule(s:rule)
 endfor
