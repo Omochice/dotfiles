@@ -30,6 +30,7 @@ repo = "prabirshrestha/vim-lsp"
 hook_add = """
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_doagnostics_echo_cursor = 1
+nnoremap <Space>f :<C-u>LspDocumentFormatSync<CR>
 """
 depends = "asyncomplete-lsp.vim"
 
