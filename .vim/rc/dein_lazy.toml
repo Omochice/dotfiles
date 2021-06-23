@@ -38,6 +38,10 @@ repo = "heavenshell/vim-pydocstring"
 build = "make install"
 hook_add = """
 let g:pydocstring_formatter = "google"
+augroup python_setting
+    autocmd! 
+    autocmd FileType python nmap <silent> <Space>pd <Plug>(pydocstring)
+augroup END
 """
 on_cmd = ["Pydocstring", "PydocstringFormat"]
 
