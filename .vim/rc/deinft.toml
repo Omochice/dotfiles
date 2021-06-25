@@ -1,0 +1,44 @@
+[feplugin]
+ruby = """
+setlocal colorcolumn=100 
+setlocal tabstop=2
+setlocal softtabstop=2
+setlocal shiftwidth=2
+"""
+
+python = """
+setlocal colorcolumn=88
+setlocal tabstop=4
+setlocal softtabstop=4
+setlocal shiftwidth=4 
+
+iabbrev <buffer> improt import
+"""
+
+javascript = """
+setlocal tabstop=2
+setlocal softtabstop=2
+setlocal shiftwidth=2
+"""
+
+yaml = """
+setlocal tabstop=2
+setlocal softtabstop=2
+setlocal shiftwidth=2
+"""
+
+vue = """
+setlocal tabstop=2
+setlocal softtabstop=2
+setlocal shiftwidth=2
+"""
+
+typescript = """
+setlocal tabstop=2
+setlocal softtabstop=2
+setlocal shiftwidth=2
+"""
+
+go = """
+iabbrev <buffer> ;; :=
+"""

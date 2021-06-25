@@ -24,10 +24,12 @@ if dein#load_state(g:dein_dir)
   endif
   let s:toml = s:rc_dir . '/dein.toml'
   let s:lazy_toml = s:rc_dir . '/dein_lazy.toml'
+  let s:dein_ft_toml = s:rc_dir . '/deinft.toml'
 
   " read toml and cache
   call dein#load_toml(s:toml, {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
+  call dein#load_toml(s:dein_ft_toml)
 
   " end settings
   call dein#end()
@@ -38,6 +40,9 @@ endif
 " plugin installation check {{{
 if dein#check_install()
   call dein#install()
+  " and check updates,
+  let g:dein#install_github_api_token = $DEIN_GITHUB_TOKEN
+  call dein#check_update(v:true)
 endif
 " }}}
 
@@ -50,52 +55,3 @@ endif
 " }}}
 
 source ~/.config/vim/vimrc.core
-
-augroup rubySettings
-    autocmd!
-    autocmd BufNewFile, BufRead *.rb setlocal colorcolumn=100 tabstop=2 softtabstop=2 shiftwidth=2
-augroup END
-
-augroup pythonSettings
-    autocmd!
-    autocmd BufNewFile, BufRead *.py setlocal colorcolumn=88 tabstop=4 softtabstop=4 shiftwidth=4 
-    autocmd FileType python iabbrev <buffer> improt import
-    autocmd BufWritePre *.py LspDocumentFormatSync
-augroup END
-
-augroup fortranSettings
-    autocmd!
-    autocmd BufWritePre *.f90,*.f08,*.f03 LspDocumentFormatSync
-augroup END
-
-augroup jsonSettings
-    autocmd!
-    autocmd BufNewFile, BufRead *.json setlocal tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd BufWritePre *.json LspDocumentFormatSync
-augroup END
-
-augroup yamlfSettings
-    autocmd!
-    autocmd BufNewFile, BufRead *.yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd BufWritePre *.yaml LspDocumentFormatSync
-augroup END
-
-augroup vueSettings
-    autocmd!
-    autocmd BufNewFile, BufRead *.vue setlocal tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd BufWritePre *.vue :w | LspDocumentFormatSync
-augroup END
-
-augroup TSSettings
-    autocmd!
-    autocmd BufNewFile, BufRead *.ts setlocal tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd BufWritePre *.ts :w | LspDocumentFormatSync
-augroup END
-
-augroup GoSettings
-    autocmd!
-    autocmd FileType go iabbrev <buffer> :- :=
-    autocmd FileType go iabbrev <buffer> ;; :=
-    autocmd BufWritePre *.go LspDocumentFormatSync
-augroup END
-
