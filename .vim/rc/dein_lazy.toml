@@ -87,5 +87,3 @@ nnoremap <C-F> :<C-u>AntJumpBack<CR>
 """
 on_cmd = ["AnyJump", "AnyJunpVisual", "AnyJumpBack", "AnyJumpLastResults"]
 
-
-

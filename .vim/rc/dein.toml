@@ -82,7 +82,7 @@ repo = "markonm/traces.vim"
 
 [[plugins]]
 repo = "cohama/lexima.vim"
-hook_add = """ 
+hook_add = """
 " too lang to write here
 source ~/.vim/mysettings/lexima.vim
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
@@ -98,11 +98,11 @@ marged = 0
 repo = "itchyny/lightline.vim"
 hook_add = """
 let g:lightline = {
-\    "colorscheme": "nightowl", 
+\    "colorscheme": "nightowl",
 \    "active": {
 \        "left": [
 \            ["mode", "paste"],
-\            ["gitbranch", "readonly", "filename", "modified"] 
+\            ["gitbranch", "readonly", "filename", "modified"]
 \        ]
 \    },
 \    "component_function": {
@@ -125,8 +125,8 @@ endfunction
 
 function! LightlineFotmat()
     if winwidth(0) > 70
-        return &fileformat .  " " . WebDevIconsGetFileFormatSymbol() 
-    else 
+        return &fileformat .  " " . WebDevIconsGetFileFormatSymbol()
+    else
         return ""
     endif
 endfunction
@@ -135,7 +135,7 @@ function LightlineFugitive()
     if exists("*FugitiveHead")
         let s:branch = FugitiveHead()
         if s:branch !=# ""
-            return s:branch . " " . "" 
+            return s:branch . " " . ""
         endif
     endif
     return ""
@@ -206,7 +206,7 @@ let g:winresizer_vert_resize = 3
 [[plugins]]
 repo = "machakann/vim-sandwich"
 hook_add = """
-" use with surround's keybinding. 
+" use with surround's keybinding.
 " may be useful vim and vscode(surround with vscodevim).
 execute("source " . g:dein_dir . "/repos/github.com/machakann/vim-sandwich/macros/sandwich/keymap/surround.vim")
 """
@@ -283,3 +283,5 @@ command! Lazygit :FloatermNew --autoclose=2 --height=0.9 --width=0.85 --title=la
 nnoremap <C-g> :<C-u>Lazygit<CR>
 """
 
+[[plugins]]
+repo = "bronson/vim-trailing-whitespace"
