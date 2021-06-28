@@ -38,7 +38,7 @@ build = "make install"
 hook_add = """
 let g:pydocstring_formatter = "google"
 augroup python_setting
-    autocmd! 
+    autocmd!
     autocmd FileType python nnoremap <Space>pd :<C-u>PydocstringFormat<CR>
 augroup END
 """
