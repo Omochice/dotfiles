@@ -1,5 +1,8 @@
 [[plugins]]
 repo = "Shougo/dein.vim"
+hook_add = """
+let g:dein#auto_recache = v:true
+"""
 
 [[plugins]]
 repo = "haishanh/night-owl.vim"
