@@ -89,7 +89,7 @@ hook_add = """
 " too lang to write here
 source ~/.vim/mysettings/lexima.vim
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : lexima#expand("<LT>Tab>","i")
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : lexima#expand("<LT>Tab>", "i")
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : lexima#expand("<LT>CR>", "i")
