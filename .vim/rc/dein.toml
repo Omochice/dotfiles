@@ -34,6 +34,7 @@ hook_add = """
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_doagnostics_echo_cursor = 1
 nnoremap <Space>f :<C-u>LspDocumentFormatSync<CR>
+nnoremap <Space>d :<C-u>LspDocumentDianostics<CR>
 autocmd BufWritePre <buffer> LspDocumentFormatSync
 """
 depends = "asyncomplete-lsp.vim"
