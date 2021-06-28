@@ -1,4 +1,4 @@
-[feplugin]
+[ftplugin]
 ruby = """
 setlocal colorcolumn=100
 setlocal tabstop=2
