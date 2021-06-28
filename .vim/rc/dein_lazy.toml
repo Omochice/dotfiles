@@ -1,4 +1,3 @@
-
 [[plugins]]
 repo = "cespare/vim-toml"
 on_ft = "toml"
@@ -83,7 +82,6 @@ repo = "pechorin/any-jump.vim"
 hook_add = """
 let g:any_jump_disable_default_keybindings = 1
 nnoremap <C-f> :<C-u>AnyJump<CR>
-nnoremap <C-F> :<C-u>AntJumpBack<CR>
 """
 on_cmd = ["AnyJump", "AnyJunpVisual", "AnyJumpBack", "AnyJumpLastResults"]
 
