@@ -74,7 +74,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-# bindsym $mod+s layout stacking 
+# bindsym $mod+s layout stacking
 # bindsym $mod+w layout tabbed
 bindsym $mod+minus layout toggle split
 
@@ -89,7 +89,7 @@ bindsym $mod+space focus mode_toggle
 
 # focus the child container
 #bindsym $mod+d focus child
-# workspaces 
+# workspaces
 # I want use variable like `" 1  "`, bat this cannot work well.
 set $ws1 "-1 -"
 set $ws2 "-2-"
@@ -164,10 +164,10 @@ bar {
         datetime.format="%a %m-%d %H:%M" datetime.locale="en_US.UTF-8" \
         memory.usedonly=true pomodoro.notify="rofi-notify 'Time-Up!!'" \
         -t night-owl
-    
-    colors { 
+
+    colors {
         # class            border    bg        fg
-        background                   $bg          
+        background                   $bg
         focused_workspace  $bg       $blue     $bg
         active_workspace   $bg       $bg2      $fg
         inactive_workspace $bg       $bg2      $fg
@@ -184,7 +184,7 @@ gaps left 5
 gaps inner 5
 
 smart_borders on
-smart_borders no_gaps 
+smart_borders no_gaps
 
 focus_follows_mouse off
 
