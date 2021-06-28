@@ -45,6 +45,13 @@ augroup END
 on_cmd = ["Pydocstring", "PydocstringFormat"]
 
 [[plugins]]
+repo = "fs111/pydoc.vim"
+hook_add = """
+let g:pydoc_perform_mappings = 1
+"""
+on_ft = "python"
+
+[[plugins]]
 repo = "mattn/vim-maketable"
 on_ft = "markdown"
 on_cmd = "MakeTable"
