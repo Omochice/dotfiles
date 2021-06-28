@@ -76,13 +76,13 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+s layout stacking
 # bindsym $mod+w layout tabbed
-bindsym $mod+minus layout toggle split
+bindsym $mod+space layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 # bindsym $mod+a focus parent
@@ -159,7 +159,7 @@ bar {
 	position top
 	tray_output none
 	status_command bumblebee-status -m cpu memory ping \
-		pasink pasource pomodoro datetime \
+		pasink pasource datetime \
         -p pulseaudio.autostart="true" pulseaudio.limit=100 \
         datetime.format="%a %m-%d %H:%M" datetime.locale="en_US.UTF-8" \
         memory.usedonly=true pomodoro.notify="rofi-notify 'Time-Up!!'" \
