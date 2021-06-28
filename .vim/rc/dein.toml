@@ -193,6 +193,7 @@ let g:fzf_preview_use_dev_icons = 1
 let g:fzf_preview_dev_icon_prefix_string_length = 3
 let g:fzf_preview_dev_icons_limit = 5000
 """
+depends = ["vim-devicons", "fzf"]
 
 [[plugins]]
 repo = "simeji/winresizer"
