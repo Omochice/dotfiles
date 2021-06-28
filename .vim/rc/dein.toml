@@ -287,7 +287,7 @@ nnoremap <C-g> :<C-u>Lazygit<CR>
 repo = "bronson/vim-trailing-whitespace"
 
 [[plugins]]
-repo = "lambdaalisue/suda.vim"
+repo = "lambdalisue/suda.vim"
 hook_add = """
 let g:suda_smartedit = 1
 """
