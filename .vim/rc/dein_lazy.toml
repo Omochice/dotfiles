@@ -31,7 +31,7 @@ repo = "alvan/vim-closetag"
 hook_add = """
 let g:closetag_filenames = "*.html, *,vue, *.xml, *.jsx, *.erb"
 """
-on_ft = ["html", "vue", "xml", "erb", "jsx"]
+on_ft = ["html", "vue", "xml", "erb", "jsx", "djangohtml"]
 
 [[plugins]]
 repo = "heavenshell/vim-pydocstring"
