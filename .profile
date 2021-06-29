@@ -6,8 +6,8 @@ export BROWSER=$(which vivaldi-stable)
 # golang
 if [[ -e $HOME/.go ]]; then
     export GOROOT=$HOME/.go
-    export GOPATH=$GOROOT/bin
-    export PATH=$PATH:$GOPATH
+    export GOPATH=$HOME/.go
+    export PATH=$PATH:$GOPATH/bin
 fi
 
 # rust
@@ -34,4 +34,3 @@ fi
 if [[ -e $HOME/.profile_local ]]; then
     source $HOME/.profile_local
 fi
-
