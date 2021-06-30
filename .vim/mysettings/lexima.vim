@@ -135,7 +135,7 @@ let s:rules += [
 
 "" HTML
 let s:rules += [
-\ { 'filetype': ['html'], 'char': '%', 'at': '{\%#}', 'input': '%<Space>', 'input_after': '<Space>%', 'priority': 10, },
+\ { 'filetype': ['html', 'htmldjango'], 'char': '%', 'at': '{\%#}', 'input': '%<Space>', 'input_after': '<Space>%', 'priority': 10, },
 \ ]
 
 for s:rule in s:rules

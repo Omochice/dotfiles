@@ -42,3 +42,7 @@ setlocal shiftwidth=2
 go = """
 iabbrev <buffer> ;; :=
 """
+
+htmldjango = """
+setlocal filetype=html
+"""
