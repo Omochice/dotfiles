@@ -69,6 +69,13 @@ repo = "posva/vim-vue"
 on_ft = "vue"
 
 [[plugins]]
+repo = "cocopon/vaffle.vim"
+hook_add = """
+command! TVaffle :tabnew | :Vaffle
+"""
+on_cmd = ["Vaffle", "TVaffle"]
+
+[[plugins]]
 repo = "skanehira/translate.vim"
 hook_add = """
 let g:translate_source = "en"

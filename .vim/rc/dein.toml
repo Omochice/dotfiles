@@ -216,11 +216,6 @@ hook_add = """
 execute("source " . g:dein_dir . "/repos/github.com/machakann/vim-sandwich/macros/sandwich/keymap/surround.vim")
 """
 
-[[plugins]]
-repo = "cocopon/vaffle.vim"
-hook_add = """
-command! TVaffle :tabnew | :Vaffle
-"""
 
 [[plugins]]
 repo = "vim-denops/denops.vim"
