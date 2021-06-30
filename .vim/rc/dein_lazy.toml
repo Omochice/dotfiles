@@ -72,6 +72,8 @@ on_ft = "vue"
 repo = "cocopon/vaffle.vim"
 hook_add = """
 command! TVaffle :tabnew | :Vaffle
+autocmd StdinReadPre * let s:std_in = v:true
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Vaffle | endif
 """
 on_cmd = ["Vaffle", "TVaffle"]
 
