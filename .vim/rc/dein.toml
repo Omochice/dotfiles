@@ -294,5 +294,5 @@ repo = "bronson/vim-trailing-whitespace"
 [[plugins]]
 repo = "lambdalisue/suda.vim"
 hook_add = """
-let g:suda_smartedit = 1
+let g:suda_smart_edit = 1
 """
