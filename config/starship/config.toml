@@ -46,7 +46,6 @@ staged = "[S:+$count](green) "
 renamed = "👅 "
 deleted = "🗑 "
 
-
 [env_var]
 format = "[VENV]($style) "
 variable = "VIRTUAL_ENV"
