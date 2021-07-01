@@ -34,7 +34,7 @@ hook_add = """
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_doagnostics_echo_cursor = 1
 nnoremap <Space>f :<C-u>LspDocumentFormatSync<CR>
-nnoremap <Space>d :<C-u>LspDocumentDianostics<CR>
+nnoremap <Space>d :<C-u>LspDocumentDiagnostics<CR>
 autocmd BufWritePre <buffer> LspDocumentFormatSync
 """
 depends = "asyncomplete-lsp.vim"
@@ -44,6 +44,7 @@ repo = "mattn/vim-lsp-settings"
 hook_add = """
 let g:lsp_settings = {
 \    "efm-langserver": {"disabled": v:false},
+\    "html-langserver": {"allowlist": ["html", "htmldjango"]},
 \}
 let g:lsp_text_edit_enabled = 1
 let g:lsp_diagnostics_signs_error = {"text": "😡"}
@@ -217,19 +218,21 @@ execute("source " . g:dein_dir . "/repos/github.com/machakann/vim-sandwich/macro
 """
 
 
-[[plugins]]
-repo = "vim-denops/denops.vim"
-# hook_add = """
-# let g:denops#server#service#deno_args = [
-# \ "-q",
-# \ "--unstable",
-# \ "-A",
-# \]
-# """
 
 [[plugins]]
-repo = "Omochice/dps-codic-vim"
-depends = ["denops.vim"]
+repo = "vim-denops/denops.vim"
+hook_add = """
+" let g:denops#server#service#deno_args = [
+"     \ '-q',
+"     \ '--unstable',
+"     \ '-A',
+"     \]
+set runtimepath^=~/workspace/dps-codic-vim
+"""
+
+# [[plugins]]
+# repo = "Omochice/dps-codic-vim"
+# depends = ["denops.vim"]
 
 [[plugins]]
 repo = "yuki-yano/dps-slack-status.vim"
@@ -270,6 +273,12 @@ let g:quickrun_config = {
 """
 depends = ["vimproc.vim"]
 
+# [[plugins]]
+# repo = "heavenshell/vim-quickrun-hook-unittest"
+# hook_add = """
+# nnoremap <silent> <Space>qt :<C-u>QuickRun -mode n -runner job -hook/unittest/enable 1<CR>
+# """
+
 [[plugins]]
 repo = "tpope/vim-fugitive"
 
@@ -291,3 +300,4 @@ repo = "lambdalisue/suda.vim"
 hook_add = """
 let g:suda_smart_edit = 1
 """
+

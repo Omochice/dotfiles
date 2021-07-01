@@ -52,7 +52,7 @@ abbr gcm "git commit -m"
 abbr vimrc "vim ~/.vimrc"
 abbr :q "exit"
 abbr lz "lazygit"
-abbr giph "giph -f 5 -s -l -c 0.3,0,0.4,0.5 -b -p -5"
+abbr giph "giph -f 5 -s -l -c 0.3,0,0.4,0.5 -b 5 -p -5"
 
 
 # tmuxの自動起動
