@@ -51,6 +51,14 @@ let g:pydoc_perform_mappings = 1
 """
 on_ft = "python"
 
+# [[plugins]]
+# repo = "jmcantrell/vim-virtualenv"
+# on_ft = "python"
+
+# [[plugins]]
+# repo = "PieterjanMontens/vim-pipenv"
+# on_ft = "python"
+
 [[plugins]]
 repo = "mattn/vim-maketable"
 on_ft = "markdown"
@@ -67,15 +75,6 @@ let g:previm_open_cmd = "vivaldi-stable"
 [[plugins]]
 repo = "posva/vim-vue"
 on_ft = "vue"
-
-[[plugins]]
-repo = "cocopon/vaffle.vim"
-hook_add = """
-command! TVaffle :tabnew | :Vaffle
-autocmd StdinReadPre * let s:std_in = v:true
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Vaffle | endif
-"""
-on_cmd = ["Vaffle", "TVaffle"]
 
 [[plugins]]
 repo = "skanehira/translate.vim"
