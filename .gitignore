@@ -5,6 +5,7 @@
 # user setting
 !/.gitignore
 !/.bashrc
+!/.gyazo.config.yml
 !/bash/*
 !/bash/functions/*
 !/.vim/rc/*
