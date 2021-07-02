@@ -1,0 +1,4 @@
+keybinding:
+  files:
+    commitChanges: 'C'
+    commitChangesWithEditor: 'c'

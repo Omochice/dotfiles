@@ -39,6 +39,7 @@
 !/config/rofi/yapf/style
 !/config/alacritty/alacritty.yml
 !/config/starship/config.toml
+!/config/lazygit/config.yml
 !/zshell/*
 !/zshell/.zsh.d/*
 !/.gitconfig_shared
