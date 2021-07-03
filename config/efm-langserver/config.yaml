@@ -3,14 +3,18 @@ tools:
   jq-format: &jq-format
     format-command: 'jq .'
     format-stdin: true
-  
+
   yapf-format: &yapf-format
     format-command: "yapf"
     format-stdin: true
 
+  black-format: &black-format
+    format-command: "black --quiet -"
+    format-stdin: true
+
   isort-format: &isort-format
     format-command: "isort --quiet -"
-    format-stdin: true 
+    format-stdin: true
 
   flake8-lint: &flake8-lint
     lint-command: 'flake8 --stdin-display-name ${INPUT} -'
@@ -27,12 +31,12 @@ tools:
       - mypy.ini
 
   fprettify: &fprettify
-    format-command: "fprettify -i 2 -S"  
+    format-command: "fprettify -i 2 -S"
     format-stdin: true
 
   prettier: &prettier
     format-command: "prettier ${--tab-width:tabWidth}"
-  
+
   textlint: &textlint
     lint-command: "textlint --format unix ${INPUT}"
     lint-formats:
@@ -48,7 +52,8 @@ languages:
     - <<: *jq-format
 
   python:
-    - <<: *yapf-format
+    # - <<: *yapf-format
+    - <<: *black-format
     - <<: *isort-format
     - <<: *mypy-lint
     - <<: *flake8-lint
