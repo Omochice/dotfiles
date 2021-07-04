@@ -231,16 +231,17 @@ execute("source " . g:dein_dir . "/repos/github.com/machakann/vim-sandwich/macro
 repo = "vim-denops/denops.vim"
 hook_add = """
 " let g:denops#server#service#deno_args = [
-"     \ '-q',
-"     \ '--unstable',
-"     \ '-A',
-"     \]
+"    \ '-q',
+"    \ '--unstable',
+"    \ '-A',
+"    \]
 set runtimepath^=~/workspace/dps-paiza-io-vim
+" set runtimepath^=~/workspace/Hackathon-vol5-vim
 """
 
-# [[plugins]]
-# repo = "Omochice/dps-codic-vim"
-# depends = ["denops.vim"]
+[[plugins]]
+repo = "Omochice/dps-codic-vim"
+depends = ["denops.vim"]
 
 [[plugins]]
 repo = "yuki-yano/dps-slack-status.vim"

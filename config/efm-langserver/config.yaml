@@ -52,8 +52,8 @@ languages:
     - <<: *jq-format
 
   python:
-    # - <<: *yapf-format
-    - <<: *black-format
+    - <<: *yapf-format
+    # - <<: *black-format
     - <<: *isort-format
     - <<: *mypy-lint
     - <<: *flake8-lint
