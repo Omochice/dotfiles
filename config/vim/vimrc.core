@@ -1,4 +1,4 @@
-" user settings 
+" user settings
 syntax on
 filetype plugin indent on
 set autoindent
@@ -13,7 +13,7 @@ set iminsert=2
 set incsearch
 set infercase
 set laststatus=2
-set nobackup 
+set nobackup
 set noswapfile
 set nowrap
 set nowritebackup
@@ -21,7 +21,7 @@ set number
 set relativenumber
 set shiftwidth=4
 set showmatch
-set smartindent 
+set smartindent
 set softtabstop=4
 set tabstop=4
 set virtualedit=onemore
