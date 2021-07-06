@@ -9,11 +9,11 @@ repo = "haishanh/night-owl.vim"
 hook_add = """
 function! DefineHighlights()
     if g:colors_name is "night-owl"
-        highlight Normal ctermbg=NONE
-        highlight NonText ctermbg=NONE
-        highlight LineNr ctermbg=NONE
-        highlight Folded ctermbg=NONE
-        highlight EndOfBuffer ctermbg=NONE
+        highlight Normal ctermbg=NONE guibg=NONE
+        highlight NonText ctermbg=NONE guibg=NONE
+        highlight LineNr ctermbg=NONE guibg=NONE
+        highlight Folded ctermbg=NONE guibg=NONE
+        highlight EndOfBuffer ctermbg=NONE guibg=NONE
     endif
 endfunction
 
@@ -124,6 +124,7 @@ let g:lightline = {
 \        "fileformat": "LightlineFotmat",
 \    },
 \ }
+
 function! LightlineFt()
     if winwidth(0) > 70
         if strlen(&filetype)
