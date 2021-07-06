@@ -49,5 +49,4 @@ deleted = "🗑 "
 [env_var]
 format = "[VENV]($style) "
 variable = "VIRTUAL_ENV"
-env_value = "VENV"
 style = "yellow"
