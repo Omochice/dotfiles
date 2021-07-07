@@ -41,7 +41,10 @@ end
 alias gs "git status"
 alias diff "git diff"
 alias ptpython "ptpython --vi"
+alias ptipython "ptipython --vi"
 alias today "date '+%Y-%m-%d'"
+alias v "vim"
+alias vi "vim"
 
 # abbr commands
 abbr f77 gfortran
