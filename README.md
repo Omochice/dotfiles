@@ -1,6 +1,6 @@
 # ☕ Dotfiles ☕
 
-![desktop](https://i.gyazo.com/5a3a99d0a03ec8c00f122947b9d1229a.png)
+![desktop](https://i.gyazo.com/11f55533371c4955909686f6f1572843.png)
 
 
 ## Enviroment
