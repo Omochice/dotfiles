@@ -3,13 +3,12 @@ syntax on
 filetype plugin indent on
 set autoindent
 set autoread
-set clipboard=unnamed,unnamedplus,autoselect
+set clipboard=unnamedplus
 set completeopt=menuone,noinsert,noselect,preview
 set expandtab
 set gdefault
 set hlsearch
 set ignorecase
-set iminsert=2
 set incsearch
 set infercase
 set laststatus=2
@@ -27,10 +26,14 @@ set tabstop=4
 set virtualedit=onemore
 set wildmenu
 
-if has("termguicolors")
+if has("termguicolors") && has("nvim")
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
+endif
+
+if !has("nvim")
+    set iminsert=2
 endif
 
 inoremap <C-h> <Left>
