@@ -17,6 +17,7 @@
 - Screen Recorder
     - [giph](https://github.com/phisch/giph)
 - Launcher: rofi
+    - [rofimoji](https://github.com/fdw/rofimoji)
 
 ##  CLI
 - Shell: [fish shell](https://fishshell.com/)(via bash)

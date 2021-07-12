@@ -53,6 +53,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+r exec ~/.config/rofi/bin/launcher_colorful
 bindsym $mod+p exec ~/.config/rofi/bin/menu_screenshot
 bindsym $mod+Tab exec ~/.config/rofi/bin/launcher_misc
+bindsym $mod+m exec rofimoji --action copy --clipboarder xsel
 
 # change focus
 bindsym $mod+h focus left
