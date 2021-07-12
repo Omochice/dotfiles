@@ -50,7 +50,8 @@ bindsym $mod+w exec $BROWSER
 bindsym $mod+Shift+q kill
 
 # rofi
-bindsym $mod+r exec ~/.config/rofi/bin/launcher_colorful
+# bindsym $mod+r exec ~/.config/rofi/bin/launcher_colorful
+bindsym $mod+r exec rofi -no-lazy-grab -show drun -modi drun -theme ~/.config/rofi/launcher.rasi
 bindsym $mod+p exec ~/.config/rofi/bin/menu_screenshot
 bindsym $mod+Tab exec ~/.config/rofi/bin/launcher_misc
 bindsym $mod+m exec rofimoji --action copy --clipboarder xsel
