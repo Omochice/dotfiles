@@ -28,7 +28,7 @@
 !/config/bumblebee-status/themes/*
 !/config/picom/picom.conf
 !/config/pip/pip.conf
-!/config/rofi/config.rasi
+!/config/rofi/*
 !/config/rofi/applets/styles/nightowl.rasi
 !/config/rofi/applets/styles/colors.rasi
 !/config/rofi/applets/menu/screenshot.sh

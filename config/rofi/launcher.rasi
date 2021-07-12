@@ -1,0 +1,116 @@
+/*
+ *
+ * Author  : Aditya Shakya
+ * Mail    : adi1090x@gmail.com
+ * Github  : @adi1090x
+ * Twitter : @adi1090x
+ *
+ */
+
+configuration {
+	font:							"Noto CJK 10";
+    show-icons:                     true;
+	icon-theme: 					"Papirus";
+    display-drun: 					"🔍";
+    drun-display-format:            "{name}";
+    disable-history:                false;
+    fullscreen:                     false;
+	hide-scrollbar: 				true;
+	sidebar-mode: 					false;
+}
+
+
+@import "~/.config/rofi/night-owl.rasi"
+
+window {
+    transparency:                   "real";
+    background-color:               @palette-bg0;
+    text-color:                     @palette-fg0;
+	border:							0px;
+	border-color:					@palette-bg1;
+    border-radius:                  12px;
+	width:							35%;
+    location:                       center;
+    x-offset:                       0;
+    y-offset:                       0;
+}
+
+prompt {
+    enabled: 						true;
+	padding: 						0.30% 1% 0% -0.5%;
+	background-color: 				@alpha;
+	text-color: 					@palette-bg0;
+	font:							"FiraCode Nerd Font 12";
+}
+
+entry {
+    background-color:               @alpha;
+    text-color:                     @palette-bg0;
+    placeholder-color:              @palette-bg0;
+    expand:                         true;
+    horizontal-align:               0;
+    placeholder:                    "Search";
+    padding:                        0.10% 0% 0% 0%;
+    blink:                          true;
+}
+
+inputbar {
+	children: 						[ prompt, entry ];
+    background-color:               @palette-bg1;
+    text-color:                     @palette-bg0;
+    expand:                         false;
+	border:							0% 0% 0% 0%;
+    border-radius:                  0px;
+	border-color:					@palette-bg1;
+    margin:                         0% 0% 0% 0%;
+    padding:                        1.5%;
+}
+
+listview {
+    background-color:               @alpha;
+    padding:                        10px;
+    columns:                        5;
+    lines:                          3;
+    spacing:                        0%;
+    cycle:                          false;
+    dynamic:                        true;
+    layout:                         vertical;
+}
+
+mainbox {
+    background-color:               @alpha;
+	border:							0% 0% 0% 0%;
+    border-radius:                  0% 0% 0% 0%;
+	border-color:					@palette-bg1;
+    children:                       [ inputbar, listview ];
+    spacing:                       	0%;
+    padding:                        0%;
+}
+
+element {
+    background-color:               @alpha;
+    text-color:                     @palette-fg0;
+    orientation:                    vertical;
+    border-radius:                  0%;
+    padding:                        2% 0% 2% 0%;
+}
+
+element-icon {
+    size:                           64px;
+    border:                         0px;
+}
+
+element-text {
+    expand:                         true;
+    horizontal-align:               0.5;
+    vertical-align:                 0.5;
+    margin:                         0.5% 0.5% -0.5% 0.5%;
+}
+
+element selected {
+    background-color:               @palette-bg1;
+    text-color:                     @palette-fg0;
+	border:							0% 0% 0% 0%;
+    border-radius:                  12px;
+    border-color:                  	@palette-bg0;
+}

@@ -28,15 +28,30 @@ case $chosen in
     $cancel) ;;
 
     $movie)
-        if [ -x "$(command -v simplescreenrecorder)" ]; then
-            command simplescreenrecorder
+        c="$(echo -e "3\n5\n10" | $rofi_command -dmenu -selected-row 0)"
+        case $c in
+            "3")
+                timer=3
+                ;;
+            "5")
+                timer=5
+                ;;
+            "10")
+                timer=10
+                ;;
+        esac
+        if [ -x "$(command -v giph)" ]; then
+            command giph -f 5 -s -l -c 1,1,1,0.5 -p -5 -t $timer ~/Videos/out.gif
+            # command gyazo-cli ~/Videos/out.gif | pbcopy
+            msg "saved"
         else
-            msg "simplescreenrecorder is not installed."
+            msg "giph is not installed."
         fi
         ;;
     $capture)
         if [ -x "$(command -v gyazo)" ]; then
-            gyazo
+            command gyazo
+            msg "share url is copyed in clipboard"
         else
             msg "gyazo is not installed."
         fi
