@@ -1,0 +1,22 @@
+/* Confirm Dialog */
+
+@import "night-owl.rasi"
+
+* {
+    background-color:       @palette-bg0;
+    text-color:             @palette-fg0;
+	font:				 	"Noto CJK 12";
+}
+
+window {
+    width:      			360px;
+    padding:    			25px;
+    border-radius:          12px;
+    location:               center;
+    y-offset:               -20px;
+}
+
+entry {
+    expand: 				true;
+    text-color:				@palette-fg0;
+}
