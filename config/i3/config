@@ -50,11 +50,10 @@ bindsym $mod+w exec $BROWSER
 bindsym $mod+Shift+q kill
 
 # rofi
-# bindsym $mod+r exec ~/.config/rofi/bin/launcher_colorful
 bindsym $mod+r exec rofi -no-lazy-grab -show drun -modi drun -theme ~/.config/rofi/launcher.rasi
 bindsym $mod+p exec bash ~/.config/rofi/screenshot.bash
 bindsym $mod+Tab exec rofi -no-lazy-grab -show window -theme ~/.config/rofi/window-switcher.rasi
-bindsym $mod+m exec rofimoji --action copy --clipboarder xsel
+bindsym $mod+m exec rofimoji --action copy --clipboarder xsel --selector-arg="-theme ~/.config/rofi/rofimoji.rasi"
 
 # change focus
 bindsym $mod+h focus left
