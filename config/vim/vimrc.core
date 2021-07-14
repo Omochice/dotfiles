@@ -48,6 +48,7 @@ nnoremap :ww :w!
 nnoremap <Tab> %
 vnoremap <Tab> %
 nnoremap / /\v
+tnoremap <ESC> <C-W>N
 
 " from other resource, vim.jp etc..
 nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
@@ -73,8 +74,14 @@ nnoremap <expr> i len(getline(".")) ? "i" : "\"_cc"
 nnoremap <expr> A len(getline(".")) ? "A" : "\"_cc"
 
 " Commands
-command! Vterm :vs | wincmd l | :term ++curwin
-command! Hterm :bo term
+if has ("nvim")
+    autocmd TermOpen * startinsert
+    command! -nargs=* Vterm vsplit | terminal <args>
+    command! Hterm :sp | wincmd j | :terminal
+else
+    command! Vterm :vs | wincmd l | :terminal ++curwin
+    command! Hterm :sp | wincmd j | :terminal ++curwin
+endif
 command! CopyBuffer :%y
 
 if !has("gui_running")
