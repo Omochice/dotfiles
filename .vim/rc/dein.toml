@@ -40,6 +40,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Vaffle | endif
 repo = "prabirshrestha/vim-lsp"
 hook_add = """
 let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_virtual_text_enabled = v:false
 let g:lsp_doagnostics_echo_cursor = 1
 nnoremap <Space>f :<C-u>LspDocumentFormatSync<CR>
 nnoremap <Space>d :<C-u>LspDocumentDiagnostics<CR>
