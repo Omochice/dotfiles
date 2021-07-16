@@ -51,6 +51,10 @@ vnoremap <Tab> %
 nnoremap / /\v
 tnoremap <ESC> <C-W>N
 
+nnoremap x "_x
+nnoremap s "_s
+vnoremap <silent> <C-K> "zx<Up>"zP`[V`]
+vnoremap <silent> <C-J> "zx"zp`[V`]
 " from other resource, vim.jp etc..
 nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
 nnoremap <expr> 0 getline(".")[0 : col(".") - 2] =~# "^\s\+$" ? "0" : "^"
