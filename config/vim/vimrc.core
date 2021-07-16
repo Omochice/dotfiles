@@ -81,11 +81,11 @@ nnoremap <expr> A len(getline(".")) ? "A" : "\"_cc"
 " Commands
 if has ("nvim")
     autocmd TermOpen * startinsert
-    command! -nargs=* Vterm vsplit | terminal <args>
-    command! Hterm :sp | wincmd j | :terminal
+    command! -nargs=0 Vterm vsplit | wincmd l | terminal
+    command! -nargs=0 Hterm split  | wincmd j | terminal
 else
-    command! Vterm :vs | wincmd l | :terminal ++curwin
-    command! Hterm :sp | wincmd j | :terminal ++curwin
+    command! Vterm vsplit | wincmd l | :terminal ++curwin
+    command! Hterm split  | wincmd j | :terminal ++curwin
 endif
 command! CopyBuffer :%y
 
