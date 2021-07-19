@@ -42,6 +42,7 @@ hook_add = """
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_virtual_text_enabled = v:false
 let g:lsp_doagnostics_echo_cursor = 1
+nnoremap <C-h> :<C-u>LspHover<CR>
 nnoremap <Space>f :<C-u>LspDocumentFormatSync<CR>
 nnoremap <Space>d :<C-u>LspDocumentDiagnostics<CR>
 autocmd BufWritePre <buffer> LspDocumentFormatSync
