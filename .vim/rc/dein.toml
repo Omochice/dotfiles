@@ -5,7 +5,7 @@ let g:dein#auto_recache = v:true
 """
 
 [[plugins]]
-repo = "haishanh/night-owl.vim"
+repo = "Omochice/night-owl.vim"
 hook_add = """
 function! DefineHighlights() abort
     if g:colors_name is "night-owl"
