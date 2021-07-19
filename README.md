@@ -9,7 +9,7 @@
 
 ## Apps
 - Bar: [bumblebee-status](https://github.com/tobi-wan-kenobi/bumblebee-status)
-- Editor: Vim
+- Editor: Vim, Neovim
 - Terminal: [Alacritty](https://github.com/alacritty/alacritty)
 - Screenshot:
     - [Gyazo-for-Linux](https://github.com/gyazo/Gyazo-for-Linux)
