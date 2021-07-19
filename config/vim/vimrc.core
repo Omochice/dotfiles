@@ -96,7 +96,7 @@ nnoremap <expr> A len(getline(".")) ? "A" : "\"_cc"
 if has("nvim")
     "neovim terminal settings
     " make easy changing to terminal normal mode
-    tnoremap <expr> <ESC> &filetype ==# "floaterm" ? "\<ESC>" : "\<C-\\>\<C-n>"
+    tnoremap <expr> <ESC> &filetype ==# "floaterm" ? "<ESC>" : "\<C-\><C-n>"
     tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
 
     " feed insert mode when move terminal window
@@ -112,7 +112,7 @@ if has("nvim")
 else
     " Vim terminal settings
     " make easy changing to terminal normal mode
-    tnoremap <expr> <ESC> &filetype ==# "floaterm" ? "\<ESC>" : "\<C-W>N"
+    tnoremap <expr> <ESC> &filetype ==# "floaterm" ? "<ESC>" : "<C-W>N"
 
     "helper commands
     command! Vterm vsplit | wincmd l | :terminal ++curwin
