@@ -61,8 +61,6 @@ vnoremap <Tab> %
 " easy regex search
 nnoremap / /\v
 
-" make easy changing to terminal normal mode
-tnoremap <ESC> <C-W>N
 
 " dont use clipboard in `x` and `s`
 nnoremap x "_x
@@ -95,15 +93,31 @@ nnoremap <expr> i len(getline(".")) ? "i" : "\"_cc"
 nnoremap <expr> A len(getline(".")) ? "A" : "\"_cc"
 
 " Commands
-if has ("nvim")
+if has("nvim")
+    "neovim terminal settings
+    " make easy changing to terminal normal mode
+    tnoremap <ESC><ESC> <C-\><C-n>
+    tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
+
+    " feed insert mode when move terminal window
     autocmd TermOpen * startinsert
+    autocmd WinEnter * if &buftype ==# "terminal" | startinsert | endif
+    " auto close
+    autocmd TermClose * call feedkeys("\<CR>")
+
+    " helper commands
     command! -nargs=0 Vterm vsplit | wincmd l | terminal
     command! -nargs=0 Hterm split  | wincmd j | terminal
+
 else
+    " Vim terminal settings
+    " make easy changing to terminal normal mode
+    tnoremap <ESC> <C-W>N
+
+    "helper commands
     command! Vterm vsplit | wincmd l | :terminal ++curwin
     command! Hterm split  | wincmd j | :terminal ++curwin
 endif
-command! CopyBuffer :%y
 
 if !has("gui_running")
     augroup term_vim_c_space
@@ -112,3 +126,6 @@ if !has("gui_running")
         autocmd VimEnter * map! <Nul> <C-Space>
     augroup END
 endif
+
+" copy buffer command
+command! CopyBuffer :%y
