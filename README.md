@@ -3,7 +3,7 @@
 ![desktop](https://i.gyazo.com/0394833c346a4f3430bc5d868d262974.png)
 
 
-## Enviroment
+## Environment
 - OS: [Manjaro](https://manjaro.org/)
 - WM: i3-gaps
 
