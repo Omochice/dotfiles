@@ -23,7 +23,7 @@ endfunction
 augroup colorcshemeSetting
     autocmd!
     autocmd VimEnter * nested colorscheme night-owl
-    autocmd ColorScheme * :call DefineHighlights()
+    autocmd ColorScheme * call timer_start(0, { -> DefineHighlights() })
 augroup END
 """
 
@@ -243,6 +243,7 @@ hook_add = """
 "    \ '-A',
 "    \]
 set runtimepath^=~/workspace/dps-paiza-io-vim
+set runtimepath^=~/workspace/dps-sleep-test
 " set runtimepath^=~/workspace/Hackathon-vol5-vim
 command! DenopsRestart :call denops#server#restart()
 """
@@ -319,3 +320,33 @@ hook_add = """
 let g:suda_smart_edit = 1
 """
 
+# [[plugins]]
+# repo = "lambdalisue/seethrough.vim"
+# hook_add = """
+# let g:seethrough_disabled = v:false
+# """
+# depends = ["night-owl.vim"]
+
+# [[plugins]]
+# repo = "nvim-treesitter/nvim-treesitter"
+# if = "has('nvim')"
+# hook_post_update = "TSUpdate"
+# hook_add = """
+# lua << EOF
+# require'nvim-treesitter.configs'.setup {
+#   highlight = {
+#     enable = true,
+#     disable = {},
+#   },
+#   -- Install parsers automatically
+#   ensure_installed = 'all'
+# }
+# EOF
+# """
+# metged = 0
+
+[[plugins]]
+repo = "tsuyoshicho/codic-web.vim"
+hook_add = """
+let g:codic_web_token = $CODIC_TOKEN
+"""
