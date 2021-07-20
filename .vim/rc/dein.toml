@@ -244,6 +244,7 @@ hook_add = """
 "    \]
 set runtimepath^=~/workspace/dps-paiza-io-vim
 " set runtimepath^=~/workspace/Hackathon-vol5-vim
+command! DenopsRestart :call denops#server#restart()
 """
 
 [[plugins]]
@@ -305,6 +306,7 @@ repo = "ryanoasis/vim-devicons"
 repo = "voldikss/vim-floaterm"
 hook_add = """
 command! Lazygit :FloatermNew --autoclose=2 --height=0.9 --width=0.85 --title=lazygit lazygit
+command! Fkill :FloatermKill
 nnoremap <C-g> :<C-u>Lazygit<CR>
 """
 
