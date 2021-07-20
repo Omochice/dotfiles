@@ -24,6 +24,12 @@ hook_add = """
 command! TVaffle :tabnew | :Vaffle
 autocmd StdinReadPre * let s:std_in = v:true
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Vaffle | endif
+
+" if load dein, use vaffle instead of netrw
+let g:loaded_netrw             = 1
+let g:loaded_netrwPlugin       = 1
+let g:loaded_netrwSettings     = 1
+let g:loaded_netrwFileHandlers = 1
 """
 
 [[plugins]]
