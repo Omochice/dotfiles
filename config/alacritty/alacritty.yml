@@ -61,7 +61,7 @@ window:
   startup_mode: Maximized
 background_opacity: 0.8
 
-env: 
+env:
   TERM: alacritty
 
 key_bindings:
