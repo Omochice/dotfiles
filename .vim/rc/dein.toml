@@ -7,23 +7,9 @@ let g:dein#auto_recache = v:true
 [[plugins]]
 repo = "Omochice/night-owl.vim"
 hook_add = """
-function! DefineHighlights() abort
-    if g:colors_name is "night-owl"
-        highlight Normal       ctermbg=NONE guibg=NONE
-        highlight NonText      ctermbg=NONE guibg=NONE
-        highlight EndOfBuffer  ctermbg=NONE guibg=NONE
-        highlight Folded       ctermbg=NONE guibg=NONE
-        highlight LineNr       ctermbg=NONE guibg=NONE
-        highlight CursorLineNr ctermbg=NONE guibg=NONE
-        highlight SpecialKey   ctermbg=NONE guibg=NONE
-        highlight Terminal     ctermbg=NONE guibg=NONE
-    endif
-endfunction
-
 augroup colorcshemeSetting
     autocmd!
     autocmd VimEnter * nested colorscheme night-owl
-    autocmd ColorScheme * call timer_start(0, { -> DefineHighlights() })
 augroup END
 """
 
@@ -320,12 +306,12 @@ hook_add = """
 let g:suda_smart_edit = 1
 """
 
-# [[plugins]]
-# repo = "lambdalisue/seethrough.vim"
-# hook_add = """
-# let g:seethrough_disabled = v:false
-# """
-# depends = ["night-owl.vim"]
+[[plugins]]
+repo = "lambdalisue/seethrough.vim"
+hook_add = """
+let g:seethrough_disabled = v:false
+"""
+depends = ["night-owl.vim"]
 
 # [[plugins]]
 # repo = "nvim-treesitter/nvim-treesitter"
