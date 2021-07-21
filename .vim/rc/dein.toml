@@ -243,13 +243,13 @@ hook_add = """
 "    \ '-A',
 "    \]
 set runtimepath^=~/workspace/dps-paiza-io-vim
-set runtimepath^=~/workspace/dps-sleep-test
 " set runtimepath^=~/workspace/Hackathon-vol5-vim
 command! DenopsRestart :call denops#server#restart()
 """
 
 [[plugins]]
 repo = "Omochice/dps-codic-vim"
+# repo = "~/workspace/dps-codic-vim"
 depends = ["denops.vim"]
 
 [[plugins]]
