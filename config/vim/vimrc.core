@@ -14,6 +14,7 @@ set infercase
 set laststatus=2
 set nobackup
 set noswapfile
+set noshowcmd " Use screenkey to show them
 set nowrap
 set nowritebackup
 set number
@@ -120,6 +121,7 @@ else
 endif
 
 if !has("gui_running")
+    set t_Co=256
     augroup term_vim_c_space
         autocmd!
         autocmd VimEnter * map <Nul> <C-Space>
