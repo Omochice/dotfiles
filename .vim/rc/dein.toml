@@ -103,10 +103,10 @@ inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" TODO https://github.com/cohama/lexima.vim/issues/67
-" BAD SOLUTION
-inoremap <silent><expr> <CR>  pumvisible() ? "\<C-y>" : lexima#expand("<LT>CR>", "i")
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : lexima#expand("<LT>Tab>", "i")
+" if use double quote like "<LT>CR>",
+" it show like piece like =lexima#insmode#_map_impl("<CR>")`
+inoremap <expr> <CR>  pumvisible() ? "\<C-y>" : lexima#expand('<CR>', "i")
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : lexima#expand('<Tab>', "i")
 """
 marged = 0
 
