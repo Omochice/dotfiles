@@ -1,0 +1,30 @@
+{
+  "for range": {
+    "prefix": "for range",
+    "body": [
+      "for (let ${1:i}=0; ${1:i} < $2; ${1:i}++) {",
+      "\t$3",
+      "}"
+    ],
+    "description": "for range"
+  },
+  "for of": {
+    "prefix": "for of",
+    "body": [
+      "for (const $1 of $2) {",
+      "\t$3",
+      "}"
+    ],
+    "description": "for of"
+  },
+  "console.log": {
+    "prefix": [
+      "log",
+      "console.log"
+    ],
+    "body": [
+      "console.log(${1:object})"
+    ],
+    "description": "console.log"
+  }
+}
