@@ -176,6 +176,14 @@ let g:EasyMotion_use_smartsign_jp = 1
 
 [[plugins]]
 repo = "tyru/caw.vim"
+hook_add = """
+" Brute force solution
+" https://github.com/tyru/caw.vim/issues/166
+augroup cawSetting
+    autocmd!
+    autocmd FileType typescipt,javascript <silent>gcc <Plug>(caw:hatpos:toggle)
+augroup END
+"""
 depends = ["context_filetype.vim"]
 
 [[plugins]]
@@ -248,8 +256,8 @@ command! DenopsRestart :call denops#server#restart()
 """
 
 [[plugins]]
-repo = "Omochice/dps-codic-vim"
-# repo = "~/workspace/dps-codic-vim"
+# repo = "Omochice/dps-codic-vim"
+repo = "~/workspace/dps-codic-vim"
 depends = ["denops.vim"]
 
 [[plugins]]
