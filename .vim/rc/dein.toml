@@ -41,9 +41,9 @@ hook_add = """
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_virtual_text_enabled = v:false
 let g:lsp_doagnostics_echo_cursor = 1
-nnoremap <C-h> :<C-u>LspHover<CR>
-nnoremap <Space>f :<C-u>LspDocumentFormatSync<CR>
-nnoremap <Space>d :<C-u>LspDocumentDiagnostics<CR>
+nnoremap <silent><C-h>    :<C-u>LspHover<CR>
+nnoremap <silent><Space>f :<C-u>LspDocumentFormatSync<CR>
+nnoremap <silent><Space>d :<C-u>LspDocumentDiagnostics<CR>
 autocmd BufWritePre <buffer> LspDocumentFormatSync
 """
 depends = "asyncomplete-lsp.vim"
@@ -278,7 +278,7 @@ build = "make"
 [[plugins]]
 repo = "thinca/vim-quickrun"
 hook_add = """
-nnoremap <Space>q :<C-u>QuickRun<CR>
+nnoremap <silent><Space>q :<C-u>QuickRun<CR>
 let g:quickrun_config = {
 \  "_" : {
 \  "runner" : "vimproc",
@@ -305,7 +305,7 @@ repo = "voldikss/vim-floaterm"
 hook_add = """
 command! Lazygit :FloatermNew --autoclose=2 --height=0.9 --width=0.85 --title=lazygit lazygit
 command! Fkill :FloatermKill
-nnoremap <C-g> :<C-u>Lazygit<CR>
+nnoremap <silent><C-g> :<C-u>Lazygit<CR>
 """
 
 [[plugins]]
