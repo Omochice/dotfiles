@@ -193,6 +193,7 @@ repo = "Shougo/context_filetype.vim"
 repo = "hrsh7th/vim-vsnip"
 hook_add = """
 let g:vsnip_snippet_dir = $HOME .. "/.vim/snippets/"
+imap <expr><C-n> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-n>'
 """
 
 [[plugins]]
