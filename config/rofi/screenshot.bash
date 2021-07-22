@@ -20,9 +20,10 @@ msg() {
 cancel="↩"
 movie="🎞"
 capture=""
+dcapture="D"
 
 # Variable passed to rofi
-options="$cancel\n$movie\n$capture"
+options="$cancel\n$movie\n$capture\n$dcapture"
 
 chosen="$(echo -e "$options" | $rofi_command -p "" -dmenu -selected-row 0)"
 case $chosen in
@@ -52,6 +53,17 @@ case $chosen in
     $capture)
         if [ -x "$(command -v gyazo)" ]; then
             command gyazo
+            msg "share url is copyed in clipboard"
+        else
+            msg "gyazo is not installed."
+        fi
+        ;;
+    $dcapture)
+        if [ -x "$(command -v gyazo)" ]; then
+            # よくわからんけど`gyazo | sed ~ | xsel`すると無限ループっぽい動作をするのでファイルに書き出す
+            command gyazo >/tmp/gyazo.log
+            # 単に`cat | sed | xsel`だと改行がついてくるので色々挟んでる
+            command echo $(cat /tmp/gyazo.log) | sed -r -e "s@(gyazo\.com)@i\.\1@" -e "s@\$@\.png@" -z -e "s@\n@@" | xsel --clipboard --input
             msg "share url is copyed in clipboard"
         else
             msg "gyazo is not installed."
