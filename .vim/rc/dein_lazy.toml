@@ -5,7 +5,7 @@ on_ft = "toml"
 [[plugins]]
 repo = "ruby-formatter/rufo-vim"
 hook_add = """
-let g:rufo_auto_formatting = 1
+let g:rufo_auto_formatting = v:true
 """
 on_ft = "ruby"
 
@@ -13,15 +13,15 @@ on_ft = "ruby"
 repo = "z0mbix/vim-shfmt"
 hook_add = """
 let g:shfmt_extra_args = "-i 4 -ci -bn -s"
-let g:shfmt_fmt_on_save = 1
+let g:shfmt_fmt_on_save = v:true
 """
 on_ft = ["sh", "bash"]
 
 [[plugins]]
 repo = "mattn/vim-goimports"
 hook_add = """
-let g:goimports = 1
-let g:foimports_simplify = 1
+let g:goimports = v:true
+let g:foimports_simplify = v:true
 """
 on_ft = "go"
 
@@ -45,7 +45,7 @@ on_ft = "python"
 [[plugins]]
 repo = "fs111/pydoc.vim"
 hook_add = """
-let g:pydoc_perform_mappings = 1
+let g:pydoc_perform_mappings = v:true
 """
 on_ft = "python"
 
@@ -93,7 +93,7 @@ on_ft = ["css", "scss"]
 [[plugins]]
 repo = "pechorin/any-jump.vim"
 hook_add = """
-let g:any_jump_disable_default_keybindings = 1
+let g:any_jump_disable_default_keybindings = v:true
 nnoremap <silent><C-f> :<C-u>AnyJump<CR>
 """
 on_cmd = ["AnyJump", "AnyJunpVisual", "AnyJumpBack", "AnyJumpLastResults"]

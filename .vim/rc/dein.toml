@@ -29,18 +29,18 @@ autocmd StdinReadPre * let s:std_in = v:true
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Vaffle | endif
 
 " if load dein, use vaffle instead of netrw
-let g:loaded_netrw             = 1
-let g:loaded_netrwPlugin       = 1
-let g:loaded_netrwSettings     = 1
-let g:loaded_netrwFileHandlers = 1
+let g:loaded_netrw             = v:true
+let g:loaded_netrwPlugin       = v:true
+let g:loaded_netrwSettings     = v:true
+let g:loaded_netrwFileHandlers = v:true
 """
 
 [[plugins]]
 repo = "prabirshrestha/vim-lsp"
 hook_add = """
-let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_enabled = v:true
 let g:lsp_diagnostics_virtual_text_enabled = v:false
-let g:lsp_doagnostics_echo_cursor = 1
+let g:lsp_diagnostics_echo_cursor = v:true
 let g:lsp_diagnostics_echo_delay = 100
 nnoremap <silent><C-h>    :<C-u>LspHover<CR>
 nnoremap <silent><Space>f :<C-u>LspDocumentFormatSync<CR>
@@ -56,7 +56,7 @@ let g:lsp_settings = {
 \    "efm-langserver": {"disabled": v:false},
 \    "html-langserver": {"allowlist": ["html", "htmldjango"]},
 \}
-let g:lsp_text_edit_enabled = 1
+let g:lsp_text_edit_enabled = v:true
 let g:lsp_diagnostics_signs_error = {"text": "😡"}
 let g:lsp_diagnostics_signs_warning = {"text": "🤔"}
 """
@@ -67,9 +67,9 @@ repo = "prabirshrestha/asyncomplete.vim"
 hook_add = """
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 imap <C-Space> <Plug>(asyncomplete_force_refresh)
-let g:asyncomplete_auto_completeopt = 1
-let g:asyncomplete_matchfuzzy = 1
-let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_auto_completeopt = v:true
+let g:asyncomplete_matchfuzzy = v:true
+let g:asyncomplete_auto_popup = v:true
 """
 
 [[plugins]]
@@ -171,8 +171,8 @@ nmap <Space>j <Plug>(easymotion-j)
 nmap <Space>k <Plug>(easymotion-k)
 nmap <Space>l <Plug>(easymotion-lineforward)
 nmap <Space>h <Plug>(easymotion-linebackward)
-let g:EasyMotion_smartcase = 1
-let g:EasyMotion_use_smartsign_jp = 1
+let g:EasyMotion_smartcase = v:true
+let g:EasyMotion_use_smartsign_jp = v:true
 """
 
 [[plugins]]
@@ -194,7 +194,7 @@ repo = "Shougo/context_filetype.vim"
 repo = "hrsh7th/vim-vsnip"
 hook_add = """
 let g:vsnip_snippet_dir = $HOME .. "/.vim/snippets/"
-imap <expr><C-n> vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-n>'
+imap <expr><C-n> vsnip#jumpable(v:true) ? '<Plug>(vsnip-jump-next)' : '<C-n>'
 """
 
 [[plugins]]
@@ -215,7 +215,7 @@ nnoremap [fzf-p]<C-p> :<C-u>FzfPreviewDirectoryFiles<CR>
 nnoremap [fzf-p]c     :<C-u>FzfPreviewCommandPaletteRpc<CR>
 nnoremap [fzf-p]g     :<C-u>FzfPreviewProjectGrepRpc
 let g:fzf_preview_fzf_preview_window_option = "right:50%"
-let g:fzf_preview_use_dev_icons = 1
+let g:fzf_preview_use_dev_icons = v:true
 let g:fzf_preview_dev_icon_prefix_string_length = 3
 let g:fzf_preview_dev_icons_limit = 5000
 """
