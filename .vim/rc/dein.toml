@@ -104,10 +104,11 @@ inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" FIXME
 " if use double quote like "<LT>CR>",
 " it show like piece like =lexima#insmode#_map_impl("<CR>")`
-inoremap <expr> <CR>  pumvisible() ? "\<C-y>" : lexima#expand('<CR>', "i")
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : lexima#expand('<Tab>', "i")
+inoremap <silent><expr> <CR>  pumvisible() ? "\<C-y>" : lexima#expand("<LT>CR>", "i")
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : lexima#expand('<LT>Tab>', "i")
 """
 marged = 0
 
@@ -239,10 +240,9 @@ repo = "machakann/vim-sandwich"
 hook_add = """
 " use with surround's keybinding.
 " may be useful vim and vscode(surround with vscodevim).
+" ^ really?
 execute("source " . g:dein_dir . "/repos/github.com/machakann/vim-sandwich/macros/sandwich/keymap/surround.vim")
 """
-
-
 
 [[plugins]]
 repo = "vim-denops/denops.vim"
@@ -252,10 +252,18 @@ hook_add = """
 "    \ '--unstable',
 "    \ '-A',
 "    \]
-set runtimepath^=~/workspace/dps-paiza-io-vim
+" set runtimepath^=~/workspace/dps-paiza-io-vim
 " set runtimepath^=~/workspace/Hackathon-vol5-vim
 command! DenopsRestart :call denops#server#restart()
 """
+
+[[plugins]]
+# repo = "Omochice/dps-paiza-io-vim"
+repo = "~/workspace/dps-paiza-io-vim"
+
+[[plugins]]
+# repo = "Omochice/dps-wordcount-vim"
+repo = "~/workspace/dps-wordcount-vim"
 
 [[plugins]]
 # repo = "Omochice/dps-codic-vim"
@@ -327,7 +335,7 @@ repo = "bronson/vim-trailing-whitespace"
 [[plugins]]
 repo = "lambdalisue/suda.vim"
 hook_add = """
-let g:suda_smart_edit = 1
+let g:suda_smart_edit = v:true
 """
 
 [[plugins]]
@@ -340,7 +348,6 @@ depends = ["night-owl.vim"]
 # [[plugins]]
 # repo = "nvim-treesitter/nvim-treesitter"
 # if = "has('nvim')"
-# hook_post_update = "TSUpdate"
 # hook_add = """
 # lua << EOF
 # require'nvim-treesitter.configs'.setup {
@@ -353,10 +360,14 @@ depends = ["night-owl.vim"]
 # }
 # EOF
 # """
-# metged = 0
+# merged = 0
+# hook_source = """
+# lua require("plugins.nvim-treesitter")
+# """
+# hook_post_update = "TSUpdate"
 
-[[plugins]]
-repo = "tsuyoshicho/codic-web.vim"
-hook_add = """
-let g:codic_web_token = $CODIC_TOKEN
-"""
+# [[plugins]]
+# repo = "tsuyoshicho/codic-web.vim"
+# hook_add = """
+# let g:codic_web_token = $CODIC_TOKEN
+# """
