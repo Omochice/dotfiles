@@ -182,7 +182,7 @@ hook_add = """
 " https://github.com/tyru/caw.vim/issues/166
 augroup cawSetting
     autocmd!
-    autocmd FileType typescipt,javascript <silent>gcc <Plug>(caw:hatpos:toggle)
+    autocmd FileType typescipt,javascript <silent><buffer>gcc <Plug>(caw:hatpos:toggle)
 augroup END
 """
 depends = ["context_filetype.vim"]
