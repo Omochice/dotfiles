@@ -1,7 +1,16 @@
 export STARSHIP_CONFIG=$HOME/.config/starship/config.toml
-export EDITOR=$(which vim)
 export TERMINAL=$(which alacritty)
 export BROWSER=$(which vivaldi-stable)
+
+# EDITOR
+# priority: nvim > vim > vi
+if [ -x "$(command -v nvim)" ]; then
+    export EDITOR=$(which nvim)
+elif [ -x "$(command -v vim)" ]; then
+    export EDITOR=$(which vim)
+else
+    export EDITOR=$(which vi)
+fi
 
 # golang
 if [[ -e $HOME/.go ]]; then
