@@ -1,20 +1,14 @@
 let g:lexima_map_escape = ''
 let g:lexima_enable_endwise_rules = 0
+let g:lexima_enable_newline_rules = v:true
+
 
 let s:rules = []
 
-"" Parenthesis
+"" Brackets
 let s:rules += [
-\ { 'char': '<BS>',  'at': '(\%#)', 'input': '<BS><Del>', },
-\ ]
-
-"" Brace
-let s:rules += [
-\ { 'char': '<BS>',  'at': '{\%#}', 'input': '<BS><Del>', },
-\ ]
-
-"" Bracket
-let s:rules += [
+\ { 'char': '<BS>',  'at': '(\%#)',   'input': '<BS><Del>', },
+\ { 'char': '<BS>',  'at': '{\%#}',   'input': '<BS><Del>', },
 \ { 'char': '<BS>',  'at': '\[\%#\]', 'input': '<BS><Del>', },
 \ ]
 
