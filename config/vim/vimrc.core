@@ -33,9 +33,15 @@ if has("termguicolors")
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
-if !has("nvim")
-    set iminsert=2
+if has("nvim")
     let $NVIM_TUI_ENABLE_TRUE_COLOR = v:true
+else
+    set iminsert=2
+    let &t_ti ..= "\e[1 q"
+    let &t_SI ..= "\e[5 q"
+    let &t_SR ..= "\e[3 q"
+    let &t_EI ..= "\e[1 q"
+    let &t_te ..= "\e[0 q"
 endif
 
 " move cursor wigh hjkl in insert mode
@@ -62,7 +68,6 @@ vnoremap <Tab> %
 " easy regex search
 nnoremap / /\v
 
-
 " dont use clipboard in `x` and `s`
 nnoremap x "_x
 nnoremap s "_s
@@ -70,6 +75,7 @@ nnoremap s "_s
 " move visual block in visual mode
 vnoremap <silent> <C-K> "zx<Up>"zP`[V`]
 vnoremap <silent> <C-J> "zx"zp`[V`]
+
 " from other resource, vim.jp etc..
 nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
 nnoremap <expr> 0 getline(".")[0 : col(".") - 2] =~# "^\s\+$" ? "0" : "^"
@@ -86,8 +92,8 @@ cnoremap <C-e> <End>
 inoremap <expr> <C-a> getline(".")[0 : col(".") - 2] =~# "^\s\+$" ? "<C-o>0" : "<C-o>^"
 inoremap        <C-e> <End>
 
-nnoremap + <C-a>
-nnoremap - <C-x>
+" nnoremap + <C-a>
+" nnoremap - <C-x>
 
 " Automatically indent with i and A
 nnoremap <expr> i len(getline(".")) ? "i" : "\"_cc"
