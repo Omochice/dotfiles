@@ -43,8 +43,15 @@ alias diff "git diff"
 alias ptpython "ptpython --vi"
 alias ptipython "ptipython --vi"
 alias today "date '+%Y-%m-%d'"
-alias v "vim"
-alias vi "vim"
+
+if type "nvim" >/dev/null 2>&1
+    alias v "nvim"
+    alias vi "nvim"
+    alias vim "nvim"
+else
+    alias v "vim"
+    alias vi "vim"
+end
 
 # abbr commands
 abbr f77 gfortran
