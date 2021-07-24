@@ -184,6 +184,7 @@ hook_add = """
 augroup cawSetting
     autocmd!
     autocmd FileType typescript,javascript nmap <buffer><Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<CR>
+    autocmd FileType typescript,javascript vmap <buffer><Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<CR>
 augroup END
 """
 depends = ["context_filetype.vim"]
