@@ -331,7 +331,12 @@ nnoremap <silent><C-g> :<C-u>Lazygit<CR>
 """
 
 [[plugins]]
-repo = "bronson/vim-trailing-whitespace"
+# repo = "bronson/vim-trailing-whitespace"
+repo = "ntpeters/vim-better-whitespace"
+hook_add = """
+let g:better_whitespace_enabled = v:true
+let g:strip_whitespace_on_save = v:true
+"""
 
 [[plugins]]
 repo = "lambdalisue/suda.vim"
