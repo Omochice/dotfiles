@@ -1,6 +1,6 @@
 {
-  "template": {
-    "prefix": "template",
+  "bangbang": {
+    "prefix": "bangbang",
     "body": [
       "<!DOCTYPE html>",
       "<html lang=\"jp\">",
@@ -11,9 +11,27 @@
       "<title>Document</title>",
       "</head>",
       "<body>",
-      "$1",
+      "\t$1",
       "</body>",
       "</html>"
     ]
+  },
+  "unnumbered list": {
+    "prefix": "ul",
+    "body": [
+      "<ul>",
+      "\t<li>$1</li>",
+      "</ul>"
+    ],
+    "description": "unnumbered list"
+  },
+  "ordered list": {
+    "prefix": "ol",
+    "body": [
+      "<ol>",
+      "\t<li>$1</li>",
+      "</ol>"
+    ],
+    "description": "ordered list"
   }
 }
