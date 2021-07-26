@@ -6,7 +6,6 @@ set autoread
 set clipboard=unnamedplus
 set completeopt=menuone,noinsert,noselect,preview
 set expandtab
-set gdefault
 set hlsearch
 set ignorecase
 set incsearch
@@ -74,8 +73,8 @@ vnoremap <silent> <C-J> "zx"zp`[V`]
 nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
 nnoremap <expr> 0 getline(".")[0 : col(".") - 2] =~# "^\s\+$" ? "0" : "^"
 nnoremap Y y$
-nnoremap <C-s> :<C-u>%s@\v@@<Left><Left>
-vnoremap <C-s> :<C-u>'<,'>s@\v@@<Left><Left>
+nnoremap <C-s> :<C-u>%s@\v@@g<Left><Left><Left>
+vnoremap <C-s> :<C-u>'<,'>s@\v@@g<Left><Left><Left>
 
 cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
