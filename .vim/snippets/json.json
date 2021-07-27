@@ -3,9 +3,9 @@
     "prefix": "vsnip",
     "body": [
       "\"${1:name}\": {",
-      "    \"${prefix}\": \"$2\",",
-      "    \"${body}\": [\"$3\"],",
-      "    \"${description}\": \"$4\"",
+      "    \"${prefix}\": \"${2:prefix}\",",
+      "    \"${body}\": [\"${3:body}\"],",
+      "    \"${description}\": \"${4:description}\"",
       "}",
       "$5"
     ]

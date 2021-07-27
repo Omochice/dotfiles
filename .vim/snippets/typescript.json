@@ -26,5 +26,14 @@
       "console.log(${1:object})"
     ],
     "description": "console.log"
+  },
+  "if": {
+    "prefix": "if",
+    "body": [
+      "if (${1:condition}) {",
+      "\t$2",
+      "}"
+    ],
+    "description": "if statement"
   }
 }
