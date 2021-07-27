@@ -18,6 +18,8 @@ repo = "vim-jp/vimdoc-ja"
 hook_add = """
 if !has("nvim")
     set helplang=ja
+else
+    set helplang=en
 endif
 """
 
