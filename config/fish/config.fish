@@ -48,6 +48,7 @@ if type "nvim" >/dev/null 2>&1
     alias v "nvim"
     alias vi "nvim"
     alias vim "nvim"
+    alias vvim (which vim)
 else
     alias v "vim"
     alias vi "vim"
