@@ -27,6 +27,11 @@ let s:rules += [
 \ { 'char': '<BS>',  'at': '`\%#`', 'input': '<BS><Del>', },
 \ ]
 
+"" Triple Quote
+let s:rules += [
+\ { 'char': '<CR>', 'at': '"""\%#""', 'input': '<CR>', 'input_after': '<CR>' },
+\ ]
+
 "" Move closing parenthesis
 let s:rules += [
 \ { 'char': '<Tab>', 'at': '\%#\s*)',  'input': '<Left><C-o>f)<Right>'  },
