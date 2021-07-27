@@ -337,7 +337,7 @@ nnoremap <silent><C-g> :<C-u>Lazygit<CR>
 repo = "ntpeters/vim-better-whitespace"
 hook_add = """
 let g:better_whitespace_enabled = v:true
-let g:strip_whitespace_on_save = v:true
+let g:strip_whitespace_on_save = v:false
 """
 
 [[plugins]]
