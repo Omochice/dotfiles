@@ -43,15 +43,6 @@ let s:rules += [
 \ { 'char': '<Tab>', 'at': '\%#\s*''', 'input': '<Left><C-o>f''<Right>' },
 \ ]
 
-"" Insert semicolon at the end of the line
-"" FIXME, disable in C, ex) if (i=0; i<10; i++ ) { ... }
-"let s:rules += [
-"\ { 'char': ';', 'at': '(.*\%#)$',   'input': '<Right>;' },
-"\ { 'char': ';', 'at': '^\s*\%#)$',  'input': '<Right>;' },
-"\ { 'char': ';', 'at': '(.*\%#\}$',  'input': '<Right>;' },
-"\ { 'char': ';', 'at': '^\s*\%#\}$', 'input': '<Right>;' },
-"\ ]
-
 "" TypeScript
 let s:rules += [
 \ { 'filetype': ['typescript', 'typescriptreact', 'javascript'], 'char': '>', 'at': '\s([a-zA-Z, ]*\%#)',            'input': '<Left><C-o>f)<Right>a=> {}<Esc>',                 },
