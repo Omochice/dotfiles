@@ -41,8 +41,10 @@ endif
 if dein#check_install()
   call dein#install()
   " and check updates,
-  let g:dein#install_github_api_token = $DEIN_GITHUB_TOKEN
-  call dein#check_update(v:true)
+  if $DEIN_GITHUB_TOKEN !=# ""
+    let g:dein#install_github_api_token = $DEIN_GITHUB_TOKEN
+    call dein#check_update(v:true)
+  endif
 endif
 " }}}
 
