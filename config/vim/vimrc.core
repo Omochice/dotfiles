@@ -54,11 +54,11 @@ nnoremap j gj
 nnoremap k gk
 
 " disable q:
-nnoremap q: :<C-u>q
+nnoremap q: :<C-u>quit
 
 " easy force write/quit
-nnoremap :qq :q!
-nnoremap :ww :w!
+nnoremap :qq :quit!
+nnoremap :ww :write!
 
 " expand with <Tab>
 nnoremap <Tab> %
