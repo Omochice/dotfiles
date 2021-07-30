@@ -71,6 +71,12 @@ nnoremap / /\v
 nnoremap x "_x
 nnoremap s "_s
 
+" indent in insert mode
+inoremap <Left> <C-o><<
+inoremap <Right> <C-o>>>
+inoremap <Up> <nop>
+inoremap <Down> <nop>
+
 " move visual block in visual mode
 vnoremap <silent> <C-K> "zx<Up>"zP`[V`]
 vnoremap <silent> <C-J> "zx"zp`[V`]
