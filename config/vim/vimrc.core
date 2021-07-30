@@ -82,7 +82,7 @@ vnoremap <silent> <C-K> "zx<Up>"zP`[V`]
 vnoremap <silent> <C-J> "zx"zp`[V`]
 
 " from other resource, vim.jp etc..
-nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
+nnoremap <silent> <ESC><ESC> <Cmd>nohlsearch<CR>
 nnoremap <expr> 0 getline(".")[0 : col(".") - 2] =~# "^\s\+$" ? "0" : "^"
 nnoremap Y y$
 nnoremap <C-s> :<C-u>%s@\v@@g<Left><Left><Left>

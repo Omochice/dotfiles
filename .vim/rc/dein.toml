@@ -44,9 +44,9 @@ let g:lsp_diagnostics_enabled = v:true
 let g:lsp_diagnostics_virtual_text_enabled = v:false
 let g:lsp_diagnostics_echo_cursor = v:true
 let g:lsp_diagnostics_echo_delay = 100
-nnoremap <silent><C-h>    :<C-u>LspHover<CR>
-nnoremap <silent><Space>f :<C-u>LspDocumentFormatSync<CR>
-nnoremap <silent><Space>d :<C-u>LspDocumentDiagnostics<CR>
+nnoremap <silent><C-h>    <Cmd>LspHover<CR>
+nnoremap <silent><Space>f <Cmd>LspDocumentFormatSync<CR>
+nnoremap <silent><Space>d <Cmd>LspDocumentDiagnostics<CR>
 autocmd BufWritePre <buffer> LspDocumentFormatSync
 """
 depends = "asyncomplete-lsp.vim"
@@ -215,8 +215,8 @@ repo = "yuki-yano/fzf-preview.vim"
 rev = "release/rpc"
 hook_add = """
 nmap <C-p> [fzf-p]
-nnoremap [fzf-p]<C-p> :<C-u>FzfPreviewDirectoryFiles<CR>
-nnoremap [fzf-p]c     :<C-u>FzfPreviewCommandPaletteRpc<CR>
+nnoremap [fzf-p]<C-p> <Cmd>FzfPreviewDirectoryFiles<CR>
+nnoremap [fzf-p]c     <Cmd>FzfPreviewCommandPaletteRpc<CR>
 nnoremap [fzf-p]g     :<C-u>FzfPreviewProjectGrepRpc
 let g:fzf_preview_fzf_preview_window_option = "right:50%"
 let g:fzf_preview_use_dev_icons = v:true
@@ -257,7 +257,7 @@ hook_add = """
 "    \]
 " set runtimepath^=~/workspace/dps-paiza-io-vim
 " set runtimepath^=~/workspace/Hackathon-vol5-vim
-command! DenopsRestart :call denops#server#restart()
+command! DenopsRestart call denops#server#restart()
 """
 
 [[plugins]]
@@ -329,7 +329,7 @@ repo = "voldikss/vim-floaterm"
 hook_add = """
 command! Lazygit :FloatermNew --autoclose=2 --height=0.9 --width=0.85 --title=lazygit lazygit
 command! Fkill :FloatermKill
-nnoremap <silent><C-g> :<C-u>Lazygit<CR>
+nnoremap <silent><C-g> <Cmd>Lazygit<CR>
 """
 
 [[plugins]]
