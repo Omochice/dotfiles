@@ -11,6 +11,7 @@
 !/.vim/rc/*
 !/.vim/mysettings/*
 !/.vim/vimrc
+!/.vim/fcitx.vim
 .vim/dein
 !/.vim/snippets/*.json
 !/config/*

@@ -57,3 +57,4 @@ endif
 " }}}
 
 source ~/.config/vim/vimrc.core
+source ~/.vim/fcitx.vim
