@@ -274,6 +274,14 @@ repo = "~/workspace/dps-codic-vim"
 depends = ["denops.vim"]
 
 [[plugins]]
+repo = "Omochice/dps-translate-vim"
+depends = ["denops.vim"]
+hook_add = """
+let g:dps_translate_source = "en"
+let g:dps_translate_target = "ja"
+"""
+
+[[plugins]]
 repo = "yuki-yano/dps-slack-status.vim"
 depends = ["denops.vim"]
 hook_add = """
