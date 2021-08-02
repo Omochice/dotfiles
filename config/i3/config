@@ -198,9 +198,6 @@ for_window [class="Thunar"] floating enable
 for_window [class="SimpleScreenRecorder"] floating enable
 for_window [class="Pavucontrol"] floating enable
 
-# assignment
-assign [class="Alacritty"] $ws1
-
 # autostart(no gui)
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
@@ -211,4 +208,4 @@ exec --no-startup-id i3-workscreen && nitrogen --restore
 exec --no-startup-id xfce4-power-manager
 
 # autostart(with gui)
-exec --no-startup-id alacritty
+exec --no-startup-id i3-msg 'workspace -1 -;exec alacritty'
