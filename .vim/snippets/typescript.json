@@ -1,6 +1,6 @@
 {
   "for range": {
-    "prefix": "for range",
+    "prefix": "for",
     "body": [
       "for (let ${1:i}=0; ${1:i} < $2; ${1:i}++) {",
       "\t$3",
@@ -9,7 +9,7 @@
     "description": "for range"
   },
   "for of": {
-    "prefix": "for of",
+    "prefix": "for",
     "body": [
       "for (const $1 of $2) {",
       "\t$3",
@@ -35,5 +35,15 @@
       "}"
     ],
     "description": "if statement"
+  },
+  "arrow function": {
+    "prefix": [
+      "arrow",
+      "lambda"
+    ],
+    "body": [
+      "(${1:arg}) => $1$2"
+    ],
+    "description": "arrow function"
   }
 }
