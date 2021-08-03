@@ -47,6 +47,7 @@ let g:lsp_diagnostics_echo_delay = 100
 nnoremap <silent><C-h>    <Cmd>LspHover<CR>
 nnoremap <silent><Space>f <Cmd>LspDocumentFormatSync<CR>
 nnoremap <silent><Space>d <Cmd>LspDocumentDiagnostics<CR>
+nnoremap <silent><Space>r <Cmd>LspRename<CR>
 autocmd BufWritePre <buffer> LspDocumentFormatSync
 """
 depends = "asyncomplete-lsp.vim"
