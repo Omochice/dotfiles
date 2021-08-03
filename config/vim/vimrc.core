@@ -127,8 +127,8 @@ else
     tnoremap <expr> <ESC> &filetype ==# "floaterm" ? "<ESC>" : "<C-W>N"
 
     "helper commands
-    command! Vterm vsplit | wincmd l | :terminal ++curwin
-    command! Hterm split  | wincmd j | :terminal ++curwin
+    command! Vterm vsplit | wincmd l | terminal ++curwin
+    command! Hterm split  | wincmd j | terminal ++curwin
 endif
 
 if !has("gui_running")
@@ -141,4 +141,4 @@ if !has("gui_running")
 endif
 
 " copy buffer command
-command! CopyBuffer :%y
+command! CopyBuffer %y

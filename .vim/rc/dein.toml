@@ -339,8 +339,8 @@ repo = "ryanoasis/vim-devicons"
 [[plugins]]
 repo = "voldikss/vim-floaterm"
 hook_add = """
-command! Lazygit :FloatermNew --autoclose=2 --height=0.9 --width=0.85 --title=lazygit lazygit
-command! Fkill :FloatermKill
+command! Lazygit FloatermNew --autoclose=2 --height=1.0 --width=1.0 --title=lazygit lazygit
+command! Fkill FloatermKill
 nnoremap <silent><C-g> <Cmd>Lazygit<CR>
 """
 
