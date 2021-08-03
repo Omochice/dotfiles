@@ -261,16 +261,16 @@ command! DenopsRestart call denops#server#restart()
 """
 
 [[plugins]]
-# repo = "Omochice/dps-paiza-io-vim"
-repo = "~/workspace/dps-paiza-io-vim"
+repo = "Omochice/dps-paiza-io-vim"
+# repo = "~/workspace/dps-paiza-io-vim"
 
 [[plugins]]
-# repo = "Omochice/dps-wordcount-vim"
-repo = "~/workspace/dps-wordcount-vim"
+repo = "Omochice/dps-wordcount-vim"
+# repo = "~/workspace/dps-wordcount-vim"
 
 [[plugins]]
-# repo = "Omochice/dps-codic-vim"
-repo = "~/workspace/dps-codic-vim"
+repo = "Omochice/dps-codic-vim"
+# repo = "~/workspace/dps-codic-vim"
 depends = ["denops.vim"]
 
 [[plugins]]
