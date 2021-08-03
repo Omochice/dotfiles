@@ -304,6 +304,12 @@ vmap V <Plug>(expand_region_shrink)
 depends = ["vim-textobj-user", "vim-textobj-line"]
 
 [[plugins]]
+repo = "kana/vim-textobj-indent"
+
+[[plugins]]
+repo = "osyo-manga/vim-textobj-multiblock"
+
+[[plugins]]
 repo = "Shougo/vimproc.vim"
 build = "make"
 
