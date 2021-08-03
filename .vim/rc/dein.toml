@@ -327,9 +327,6 @@ depends = ["vimproc.vim"]
 # """
 
 [[plugins]]
-repo = "tpope/vim-fugitive"
-
-[[plugins]]
 repo = "ryanoasis/vim-devicons"
 
 [[plugins]]
