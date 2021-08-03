@@ -90,3 +90,6 @@ nnoremap <silent><C-f> <Cmd>AnyJump<CR>
 """
 on_cmd = ["AnyJump", "AnyJunpVisual", "AnyJumpBack", "AnyJumpLastResults"]
 
+[[plugins]]
+repo = "y0za/vim-reading-vimrc"
+on_cmd = ["ReadingVimrcNext", "ReadingVimrcList", "ReadingVimrcLoad"]
