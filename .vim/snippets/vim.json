@@ -20,8 +20,8 @@
   "function": {
     "prefix": "function",
     "body": [
-      "function! s:{1:name}",
-      "\t${2:body}",
+      "function! s:${1:name}(${2:arg}) abort",
+      "\t${3:body}",
       "endfunction"
     ],
     "description": "description"
