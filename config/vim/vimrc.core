@@ -126,7 +126,6 @@ if has("nvim")
     " helper commands
     command! Vterm vsplit | wincmd l | terminal
     command! Hterm split  | wincmd j | terminal
-
 else
     " Vim terminal settings
     " make easy changing to terminal normal mode
@@ -135,6 +134,7 @@ else
     "helper commands
     command! Vterm vsplit | wincmd l | terminal ++curwin
     command! Hterm split  | wincmd j | terminal ++curwin
+endif
 
 if !has("gui_running")
     set t_Co=256
