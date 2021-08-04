@@ -190,7 +190,10 @@ augroup cawSetting
     autocmd FileType typescript,javascript vmap <buffer><Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
 augroup END
 """
-depends = ["context_filetype.vim"]
+depends = ["context_filetype.vim", "vim-repaet"]
+
+[[plugins]]
+repo = "kana/vim-repeat"
 
 [[plugins]]
 repo = "Shougo/context_filetype.vim"
@@ -268,6 +271,21 @@ repo = "Omochice/dps-paiza-io-vim"
 [[plugins]]
 repo = "Omochice/dps-wordcount-vim"
 # repo = "~/workspace/dps-wordcount-vim"
+
+[[plugins]]
+repo = "~/workspace/dps-test"
+# repo = "Omochice/dps-popup-test"
+depends = ["denops.vim"]
+
+[[plugins]]
+repo = "Omochice/dps-paiza-io-vim"
+# repo = "~/workspace/dps-paiza-io-vim"
+depends = ["denops.vim"]
+
+[[plugins]]
+repo = "Omochice/dps-charcounter-vim"
+# repo = "~/workspace/dps-charcounter-vim"
+depends = ["denops.vim"]
 
 [[plugins]]
 repo = "Omochice/dps-codic-vim"

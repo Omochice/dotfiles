@@ -81,6 +81,12 @@ inoremap <Down> <nop>
 vnoremap <silent> <C-K> "zx<Up>"zP`[V`]
 vnoremap <silent> <C-J> "zx"zp`[V`]
 
+" tmux win move
+nnoremap <C-q> h :<C-u>wincmd h<CR>
+nnoremap <C-q> j :<C-u>wincmd j<CR>
+nnoremap <C-q> k :<C-u>wincmd k<CR>
+nnoremap <C-q> l :<C-u>wincmd l<CR>
+
 " from other resource, vim.jp etc..
 nnoremap <silent> <ESC><ESC> <Cmd>nohlsearch<CR>
 nnoremap <expr> 0 getline(".")[0 : col(".") - 2] =~# "^\s\+$" ? "0" : "^"
@@ -106,7 +112,7 @@ nnoremap <expr> A len(getline(".")) ? "A" : "\"_cc"
 
 " Commands
 if has("nvim")
-    "neovim terminal settings
+    " neovim terminal settings
     " make easy changing to terminal normal mode
     tnoremap <expr> <ESC> &filetype ==# "floaterm" ? "<ESC>" : "\<C-\><C-n>"
     tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
@@ -118,8 +124,8 @@ if has("nvim")
     autocmd TermClose * call feedkeys("\<CR>")
 
     " helper commands
-    command! -nargs=0 Vterm vsplit | wincmd l | terminal
-    command! -nargs=0 Hterm split  | wincmd j | terminal
+    command! Vterm vsplit | wincmd l | terminal
+    command! Hterm split  | wincmd j | terminal
 
 else
     " Vim terminal settings
@@ -129,7 +135,6 @@ else
     "helper commands
     command! Vterm vsplit | wincmd l | terminal ++curwin
     command! Hterm split  | wincmd j | terminal ++curwin
-endif
 
 if !has("gui_running")
     set t_Co=256
