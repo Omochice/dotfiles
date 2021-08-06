@@ -265,10 +265,6 @@ command! DenopsRestart call denops#server#restart()
 """
 
 [[plugins]]
-repo = "Omochice/dps-paiza-io-vim"
-# repo = "~/workspace/dps-paiza-io-vim"
-
-[[plugins]]
 repo = "~/workspace/dps-test"
 # repo = "Omochice/dps-popup-test"
 depends = ["denops.vim"]
