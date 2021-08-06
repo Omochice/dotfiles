@@ -24,6 +24,7 @@
 /config/fish/fish_variables
 !/config/git/ignore
 !/config/vim/vimrc.core
+!/config/nvim/init.vim
 !/config/i3/config
 !/config/bumblebee-status
 !/config/bumblebee-status/themes/*
