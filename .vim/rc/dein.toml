@@ -190,7 +190,7 @@ augroup cawSetting
     autocmd FileType typescript,javascript vmap <buffer><Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
 augroup END
 """
-depends = ["context_filetype.vim", "vim-repaet"]
+depends = ["context_filetype.vim", "vim-repeat"]
 
 [[plugins]]
 repo = "kana/vim-repeat"
