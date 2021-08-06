@@ -269,10 +269,6 @@ repo = "Omochice/dps-paiza-io-vim"
 # repo = "~/workspace/dps-paiza-io-vim"
 
 [[plugins]]
-repo = "Omochice/dps-wordcount-vim"
-# repo = "~/workspace/dps-wordcount-vim"
-
-[[plugins]]
 repo = "~/workspace/dps-test"
 # repo = "Omochice/dps-popup-test"
 depends = ["denops.vim"]
