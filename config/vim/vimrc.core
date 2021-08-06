@@ -81,11 +81,11 @@ inoremap <Down> <nop>
 vnoremap <silent> <C-K> "zx<Up>"zP`[V`]
 vnoremap <silent> <C-J> "zx"zp`[V`]
 
-" tmux win move
-nnoremap <C-q> h :<C-u>wincmd h<CR>
-nnoremap <C-q> j :<C-u>wincmd j<CR>
-nnoremap <C-q> k :<C-u>wincmd k<CR>
-nnoremap <C-q> l :<C-u>wincmd l<CR>
+" " tmux win move
+" nnoremap <C-q> h :<C-u>wincmd h<CR>
+" nnoremap <C-q> j :<C-u>wincmd j<CR>
+" nnoremap <C-q> k :<C-u>wincmd k<CR>
+" nnoremap <C-q> l :<C-u>wincmd l<CR>
 
 " from other resource, vim.jp etc..
 nnoremap <silent> <ESC><ESC> <Cmd>nohlsearch<CR>
