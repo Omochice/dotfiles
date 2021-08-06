@@ -286,6 +286,7 @@ depends = ["denops.vim"]
 
 [[plugins]]
 repo = "Omochice/dps-translate-vim"
+# repo = "~/workspace/dps-translate-vim"
 depends = ["denops.vim"]
 hook_add = """
 let g:dps_translate_source = "en"
