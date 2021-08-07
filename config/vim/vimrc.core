@@ -60,8 +60,8 @@ nnoremap q: :<C-u>quit
 nnoremap Q <Cmd>copen
 
 " easy force write/quit
-nnoremap :qq :quit!
-nnoremap :ww :write!
+cnoreabbrev qq quit!
+cnoreabbrev ww update!
 
 " expand with <Tab>
 nnoremap <Tab> %
