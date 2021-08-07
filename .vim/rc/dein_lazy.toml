@@ -37,7 +37,7 @@ repo = "heavenshell/vim-pydocstring"
 build = "make install"
 hook_add = """
 let g:pydocstring_formatter = "google"
-nnoremap <silent> <Space>pd :<C-u>PydocstringFormat<CR>
+nnoremap <silent> <Space>pd <Cmd>PydocstringFormat<CR>
 """
 on_cmd = ["Pydocstring", "PydocstringFormat"]
 on_ft = "python"
@@ -99,7 +99,7 @@ function! s:reading_copy(line1, line2) abort range
   if a:line1== a:line2
     let line = printf('L%d', a:line1)
   else
-    let line = printf('L%d+%d', a:line1, a:line2 - a:firstline)
+    let line = printf('L%d+%d', a:line1, a:line2 - a:line1)
   endif
   let @+ = input('', printf('%s#%s ', file, line))
 endfunction
