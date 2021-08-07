@@ -57,6 +57,7 @@ vnoremap k gk
 
 " disable q:
 nnoremap q: :<C-u>quit
+nnoremap Q <Cmd>copen
 
 " easy force write/quit
 nnoremap :qq :quit!
