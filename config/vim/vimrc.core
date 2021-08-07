@@ -52,6 +52,8 @@ inoremap <C-l> <Right>
 " move UP/DOWN at fold context as same as displayed
 nnoremap j gj
 nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 
 " disable q:
 nnoremap q: :<C-u>quit
