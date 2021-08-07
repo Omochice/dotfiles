@@ -102,10 +102,8 @@ cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
 cnoremap <C-d> <Del>
 cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-
 inoremap <expr> <C-a> getline(".")[0 : col(".") - 2] =~# "^\s\+$" ? "<C-o>0" : "<C-o>^"
-inoremap        <C-e> <End>
+noremap!        <C-e> <End>
 
 " nnoremap + <C-a>
 " nnoremap - <C-x>
