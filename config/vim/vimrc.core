@@ -70,9 +70,10 @@ vnoremap <Tab> %
 " easy regex search
 nnoremap / /\v
 
-" dont use clipboard in `x` and `s`
+" dont use clipboard
 nnoremap x "_x
 nnoremap s "_s
+nnoremap c "_c
 
 " indent in insert mode
 inoremap <Left> <C-o><<
