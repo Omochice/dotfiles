@@ -48,13 +48,7 @@ nnoremap <silent><C-h>    <Cmd>LspHover<CR>
 nnoremap <silent><Space>f <Cmd>LspDocumentFormatSync<CR>
 nnoremap <silent><Space>d <Cmd>LspDocumentDiagnostics<CR>
 nnoremap <silent><Space>r <Cmd>LspRename<CR>
-autocmd BufWritePre <buffer> LspDocumentFormatSync
-"""
-depends = "asyncomplete-lsp.vim"
 
-[[plugins]]
-repo = "mattn/vim-lsp-settings"
-hook_add = """
 let g:lsp_settings = {
 \    "efm-langserver": {"disabled": v:false},
 \    "html-langserver": {"allowlist": ["html", "htmldjango"]},
@@ -63,6 +57,10 @@ let g:lsp_text_edit_enabled = v:true
 let g:lsp_diagnostics_signs_error = {"text": "😡"}
 let g:lsp_diagnostics_signs_warning = {"text": "🤔"}
 """
+depends = "asyncomplete-lsp.vim"
+
+[[plugins]]
+repo = "mattn/vim-lsp-settings"
 depends = "vim-lsp"
 
 [[plugins]]
