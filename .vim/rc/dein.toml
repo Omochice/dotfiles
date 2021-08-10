@@ -189,6 +189,8 @@ augroup cawSetting
 augroup END
 """
 depends = ["context_filetype.vim", "vim-repeat"]
+# FIXME
+# not work dot-repeat in caw
 
 [[plugins]]
 repo = "kana/vim-repeat"
@@ -232,13 +234,6 @@ repo = "simeji/winresizer"
 hook_add = """
 let g:winresizer_vert_resize = 3
 """
-
-# [[plugins]]
-# repo = "tpope/vim-surround"
-
-# [[plugins]]
-# repo = "tpope/vim-repeat"
-# depends = "vim-surround"
 
 [[plugins]]
 repo = "machakann/vim-sandwich"
