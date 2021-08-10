@@ -1,19 +1,22 @@
 version: 2
+root-markers:
+  - .git/
+
 tools:
   jq-format: &jq-format
     format-command: 'jq .'
     format-stdin: true
 
   yapf-format: &yapf-format
-    format-command: "yapf"
+    format-command: 'yapf'
     format-stdin: true
 
   black-format: &black-format
-    format-command: "black --quiet -"
+    format-command: 'black --quiet -'
     format-stdin: true
 
   isort-format: &isort-format
-    format-command: "isort --quiet -"
+    format-command: 'isort --quiet -'
     format-stdin: true
 
   flake8-lint: &flake8-lint
@@ -29,22 +32,46 @@ tools:
     root-markers:
       - setup.cfg
       - mypy.ini
+      - .gitignore
+      - .venv
 
   fprettify: &fprettify
-    format-command: "fprettify -i 2 -S"
+    format-command: 'fprettify -i 2 -S'
     format-stdin: true
 
   prettier: &prettier
-    format-command: "prettier ${--tab-width:tabWidth}"
+    format-command: 'prettier ${--tab-width:tabWidth}'
 
   textlint: &textlint
-    lint-command: "textlint --format unix ${INPUT}"
+    lint-command: 'textlint --format unix ${INPUT}'
     lint-formats:
-      - "%f:%l:%c: %m [%trror/%r]"
+      - '%f:%l:%c: %m [%trror/%r]'
     lint-ignore-edit-code: true
     lint-stdin: true
     root-markers:
       - .textlintrc
+
+  shellcheck-lint: &shellcheck-lint
+    lint-command: 'shellcheck -f gcc -x -'
+    lint-stdin: true
+    lint-formats:
+      - '%f:%l:%c: %t%*[^:]: %m [SC%n]'
+
+  shfmt-format: &shfmt-format
+    format-command: 'shfmt -ln bash -i 2 -bn -ci -sr -kp'
+    format-stdin: true
+
+  rufo: &rufo-format
+    format-command: 'rufo'
+    format-stdin: true
+    root-markers:
+      - Gemfile
+      - Rakefile
+      - .rufo
+
+  goimports-format: &goimports-format
+    format-command: 'goimports'
+    format-stdin: true
 
 
 languages:
@@ -72,3 +99,17 @@ languages:
 
   html:
     - <<: *prettier
+
+  sh:
+    - <<: *shellcheck-lint
+    # - <<: *shfmt-format
+
+  bash:
+    - <<: *shellcheck-lint
+    - <<: *shfmt-format
+
+  golang:
+    - <<: *goimports-format
+
+  # ruby:
+  #   - <<: *rufo-format
