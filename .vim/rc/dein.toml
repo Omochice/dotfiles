@@ -48,13 +48,7 @@ nnoremap <silent><C-h>    <Cmd>LspHover<CR>
 nnoremap <silent><Space>f <Cmd>LspDocumentFormatSync<CR>
 nnoremap <silent><Space>d <Cmd>LspDocumentDiagnostics<CR>
 nnoremap <silent><Space>r <Cmd>LspRename<CR>
-autocmd BufWritePre <buffer> LspDocumentFormatSync
-"""
-depends = "asyncomplete-lsp.vim"
 
-[[plugins]]
-repo = "mattn/vim-lsp-settings"
-hook_add = """
 let g:lsp_settings = {
 \    "efm-langserver": {"disabled": v:false},
 \    "html-langserver": {"allowlist": ["html", "htmldjango"]},
@@ -62,7 +56,12 @@ let g:lsp_settings = {
 let g:lsp_text_edit_enabled = v:true
 let g:lsp_diagnostics_signs_error = {"text": "😡"}
 let g:lsp_diagnostics_signs_warning = {"text": "🤔"}
+
 """
+depends = "asyncomplete-lsp.vim"
+
+[[plugins]]
+repo = "mattn/vim-lsp-settings"
 depends = "vim-lsp"
 
 [[plugins]]
@@ -191,6 +190,8 @@ augroup cawSetting
 augroup END
 """
 depends = ["context_filetype.vim", "vim-repeat"]
+# FIXME
+# not work dot-repeat in caw
 
 [[plugins]]
 repo = "kana/vim-repeat"
@@ -234,13 +235,6 @@ repo = "simeji/winresizer"
 hook_add = """
 let g:winresizer_vert_resize = 3
 """
-
-# [[plugins]]
-# repo = "tpope/vim-surround"
-
-# [[plugins]]
-# repo = "tpope/vim-repeat"
-# depends = "vim-surround"
 
 [[plugins]]
 repo = "machakann/vim-sandwich"
@@ -286,10 +280,16 @@ depends = ["denops.vim"]
 
 [[plugins]]
 repo = "Omochice/dps-translate-vim"
+# repo = "~/workspace/dps-translate-vim"
 depends = ["denops.vim"]
 hook_add = """
 let g:dps_translate_source = "en"
 let g:dps_translate_target = "ja"
+
+nnoremap tr <Cmd>Translate<CR>
+nnoremap tR <Cmd>Translate!<CR>
+vnoremap <silent>tr :Translate<CR>
+vnoremap <silent>tR :Translate!<CR>
 """
 
 [[plugins]]

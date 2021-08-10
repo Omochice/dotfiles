@@ -52,13 +52,16 @@ inoremap <C-l> <Right>
 " move UP/DOWN at fold context as same as displayed
 nnoremap j gj
 nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 
 " disable q:
 nnoremap q: :<C-u>quit
+nnoremap Q <Cmd>copen
 
 " easy force write/quit
-nnoremap :qq :quit!
-nnoremap :ww :write!
+cnoreabbrev qq quit!
+cnoreabbrev ww update!
 
 " expand with <Tab>
 nnoremap <Tab> %
@@ -67,9 +70,10 @@ vnoremap <Tab> %
 " easy regex search
 nnoremap / /\v
 
-" dont use clipboard in `x` and `s`
+" dont use clipboard
 nnoremap x "_x
 nnoremap s "_s
+nnoremap c "_c
 
 " indent in insert mode
 inoremap <Left> <C-o><<
@@ -98,10 +102,8 @@ cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
 cnoremap <C-d> <Del>
 cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-
 inoremap <expr> <C-a> getline(".")[0 : col(".") - 2] =~# "^\s\+$" ? "<C-o>0" : "<C-o>^"
-inoremap        <C-e> <End>
+noremap!        <C-e> <End>
 
 " nnoremap + <C-a>
 " nnoremap - <C-x>
