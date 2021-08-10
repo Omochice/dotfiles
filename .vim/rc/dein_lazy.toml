@@ -21,7 +21,7 @@ on_ft = ["sh", "bash"]
 repo = "mattn/vim-goimports"
 hook_add = """
 let g:goimports = v:true
-let g:foimports_simplify = v:true
+let g:goimports_simplify = v:true
 """
 on_ft = "go"
 
