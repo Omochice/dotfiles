@@ -56,6 +56,7 @@ let g:lsp_settings = {
 let g:lsp_text_edit_enabled = v:true
 let g:lsp_diagnostics_signs_error = {"text": "😡"}
 let g:lsp_diagnostics_signs_warning = {"text": "🤔"}
+
 """
 depends = "asyncomplete-lsp.vim"
 
@@ -284,6 +285,11 @@ depends = ["denops.vim"]
 hook_add = """
 let g:dps_translate_source = "en"
 let g:dps_translate_target = "ja"
+
+nnoremap tr <Cmd>Translate<CR>
+nnoremap tR <Cmd>Translate!<CR>
+vnoremap <silent>tr :Translate<CR>
+vnoremap <silent>tR :Translate!<CR>
 """
 
 [[plugins]]
