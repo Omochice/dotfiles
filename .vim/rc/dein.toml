@@ -37,36 +37,36 @@ let g:loaded_netrwSettings     = v:true
 let g:loaded_netrwFileHandlers = v:true
 """
 
-[[plugins]]
-repo = "prabirshrestha/asyncomplete.vim"
-hook_add = """
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-imap <C-Space> <Plug>(asyncomplete_force_refresh)
-let g:asyncomplete_auto_completeopt = v:true
-let g:asyncomplete_matchfuzzy = v:true
-let g:asyncomplete_auto_popup = v:true
-let g:asyncomplete_auto_completeopt = v:false
-"""
-
-[[plugins]]
-repo = "prabirshrestha/asyncomplete-buffer.vim"
-hook_add = """
-call asyncomplete#register_source(
-\    asyncomplete#sources#buffer#get_source_options({
-\       "name": "Buffer",
-\       "allowlist": ["*"],
-\       "completor": function("asyncomplete#sources#buffer#completor"),
-\       "config": {
-\           "max_buffer_size": 5000000,
-\       },
-\   })
-\)
-"""
-depends = "asyncomplete.vim"
-
-[[plugins]]
-repo = "prabirshrestha/asyncomplete-lsp.vim"
-depends = ["asyncomplete.vim", "vim-lsp"]
+# [[plugins]]
+# repo = "prabirshrestha/asyncomplete.vim"
+# hook_add = """
+# inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+# imap <C-Space> <Plug>(asyncomplete_force_refresh)
+# let g:asyncomplete_auto_completeopt = v:true
+# let g:asyncomplete_matchfuzzy = v:true
+# let g:asyncomplete_auto_popup = v:true
+# let g:asyncomplete_auto_completeopt = v:false
+# """
+# 
+# [[plugins]]
+# repo = "prabirshrestha/asyncomplete-buffer.vim"
+# hook_add = """
+# call asyncomplete#register_source(
+# \    asyncomplete#sources#buffer#get_source_options({
+# \       "name": "Buffer",
+# \       "allowlist": ["*"],
+# \       "completor": function("asyncomplete#sources#buffer#completor"),
+# \       "config": {
+# \           "max_buffer_size": 5000000,
+# \       },
+# \   })
+# \)
+# """
+# depends = "asyncomplete.vim"
+# 
+# [[plugins]]
+# repo = "prabirshrestha/asyncomplete-lsp.vim"
+# depends = ["asyncomplete.vim", "vim-lsp"]
 
 [[plugins]]
 repo = "prabirshrestha/vim-lsp"
