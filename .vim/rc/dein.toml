@@ -142,8 +142,6 @@ repo = "cohama/lexima.vim"
 hook_add = """
 " too lang to write here
 source ~/.vim/mysettings/lexima.vim
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " FIXME
