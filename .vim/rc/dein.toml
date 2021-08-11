@@ -283,8 +283,8 @@ let g:dps_translate_target = "ja"
 
 nnoremap tr <Cmd>Translate<CR>
 nnoremap tR <Cmd>Translate!<CR>
-vnoremap <silent>tr :Translate<CR>
-vnoremap <silent>tR :Translate!<CR>
+vnoremap <silent>tr :TranslateJoin<CR>
+vnoremap <silent>tR :TranslateJoin!<CR>
 """
 
 [[plugins]]
