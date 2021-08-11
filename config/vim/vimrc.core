@@ -4,7 +4,7 @@ filetype plugin indent on
 set autoindent
 set autoread
 set clipboard=unnamedplus
-set completeopt=menuone,noinsert,noselect,preview
+set completeopt=menuone,noselect,preview
 set expandtab
 set hlsearch
 set ignorecase

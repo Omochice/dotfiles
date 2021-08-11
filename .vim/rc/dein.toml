@@ -45,6 +45,7 @@ imap <C-Space> <Plug>(asyncomplete_force_refresh)
 let g:asyncomplete_auto_completeopt = v:true
 let g:asyncomplete_matchfuzzy = v:true
 let g:asyncomplete_auto_popup = v:true
+let g:asyncomplete_auto_completeopt = v:false
 """
 
 [[plugins]]
@@ -105,7 +106,6 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " FIXME
 " if use double quote like "<LT>CR>",
 " it show like piece like =lexima#insmode#_map_impl("<CR>")`
-inoremap <silent><expr> <CR>  pumvisible() ? "\<C-y>" : lexima#expand("<LT>CR>", "i")
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : lexima#expand('<LT>Tab>', "i")
 """
 marged = 0
