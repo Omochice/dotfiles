@@ -1,95 +1,53 @@
 # [[plugins]]
-# repo = "prabirshrestha/asyncomplete.vim"
-# hook_add = """
-# inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-# imap <C-Space> <Plug>(asyncomplete_force_refresh)
-# let g:asyncomplete_auto_completeopt = v:true
-# let g:asyncomplete_matchfuzzy = v:true
-# let g:asyncomplete_auto_popup = v:true
+# repo = "Shougo/ddc.vim"
+# hook_source = """
+# call ddc#custom#patch_global(
+#   \ 'sources', ['ddc-vim-lsp', 'buffer', 'around']
+#   \ )
+# call ddc#custom#patch_global('sourceOptions', {
+#   \ '_': {
+#   \   'matchers': ['matcher_head'],
+#   \   'sorters': ['sorter_rank'],
+#   \ },
+#   \ 'ddc-vim-lsp': {'mark': 'LSP'},
+#   \ 'buffer': {'mark': 'Buffer'},
+#   \ 'around': {"mark": "Around"},
+#   \ 'necovim': {"mark": "Neco"},
+#   \ })
+# call ddc#enable()
 # """
+# depends = ["denops.vim", "context_filetype.vim"]
 # on_i = true
-
+# 
 # [[plugins]]
-# repo = "prabirshrestha/asyncomplete-buffer.vim"
-# hook_add = """
-# call asyncomplete#register_source(
-# \    asyncomplete#sources#buffer#get_source_options({
-# \       "name": "Buffer",
-# \       "allowlist": ["*"],
-# \       "completor": function("asyncomplete#sources#buffer#completor"),
-# \       "config": {
-# \           "max_buffer_size": 5000000,
-# \       },
-# \       })
-# \)
-# """
-# depends = "asyncomplete.vim"
-# on_source = "asyncomplete.vim"
-
+# repo = "shun/ddc-vim-lsp"
+# depends = ["ddc.vim", "vim-lsp"]
+# on_source = "ddc.vim"
+# 
 # [[plugins]]
-# repo = "prabirshrestha/asyncomplete-lsp.vim"
-# depends = ["asyncomplete.vim", "vim-lsp"]
-# on_source = "asyncomplete.vim"
-
-[[plugins]]
-repo = "Shougo/ddc.vim"
-hook_source = """
-call ddc#custom#patch_global(
-  \ 'sources', ['ddc-vim-lsp', 'buffer', 'around', 'necovim']
-  \ )
-call ddc#custom#patch_global('sourceOptions', {
-  \ '_': {
-  \   'matchers': ['matcher_head'],
-  \   'sorters': ['sorter_rank'],
-  \ },
-  \ 'ddc-vim-lsp': {'mark': 'LSP'},
-  \ 'buffer': {'mark': 'Buffer'},
-  \ 'around': {"mark": "Around"},
-  \ 'necovim': {"mark": "Neco"},
-  \ })
-call ddc#enable()
-"""
-depends = ["denops.vim", "context_filetype.vim"]
-on_i = true
-
-[[plugins]]
-repo = "shun/ddc-vim-lsp"
-depends = ["ddc.vim", "vim-lsp"]
-on_source = "ddc.vim"
-
-[[plugins]]
-repo = "Shougo/ddc-around"
-depends = ["ddc.vim"]
-on_source = "ddc.vim"
-
-[[plugins]]
-repo = "Shougo/ddc-matcher_head"
-depends = ["ddc.vim"]
-on_source = "ddc.vim"
-
-[[plugins]]
-repo = 'Shougo/ddc-sorter_rank'
-depends = ["ddc.vim"]
-on_source = "ddc.vim"
-
-[[plugins]]
-repo = "Shougo/neco-vim"
-depends = ["ddc.vim"]
-on_source = "ddc.vim"
-
-[[plugins]]
-repo = 'matsui54/ddc-buffer'
-depends = ["ddc.vim"]
-on_source = "ddc.vim"
-
-
-
-
-
-
-
-
-
+# repo = "Shougo/ddc-around"
+# depends = ["ddc.vim"]
+# on_source = "ddc.vim"
+# 
+# [[plugins]]
+# repo = "Shougo/ddc-matcher_head"
+# depends = ["ddc.vim"]
+# on_source = "ddc.vim"
+# 
+# [[plugins]]
+# repo = 'Shougo/ddc-sorter_rank'
+# depends = ["ddc.vim"]
+# on_source = "ddc.vim"
+# 
+# [[plugins]]
+# repo = "Shougo/neco-vim"
+# depends = ["ddc.vim"]
+# on_source = "ddc.vim"
+# 
+# [[plugins]]
+# repo = 'matsui54/ddc-buffer'
+# depends = ["ddc.vim"]
+# on_source = "ddc.vim"
 
 [[plugins]]
 repo = "cespare/vim-toml"
