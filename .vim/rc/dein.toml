@@ -56,9 +56,7 @@ let g:lsp_settings = {
 let g:lsp_text_edit_enabled = v:true
 let g:lsp_diagnostics_signs_error = {"text": "😡"}
 let g:lsp_diagnostics_signs_warning = {"text": "🤔"}
-
 """
-depends = "asyncomplete-lsp.vim"
 
 [[plugins]]
 repo = "mattn/vim-lsp-settings"
@@ -246,7 +244,7 @@ imap <expr><C-n> vsnip#jumpable(v:true) ? '<Plug>(vsnip-jump-next)' : '<C-n>'
 
 [[plugins]]
 repo = "hrsh7th/vim-vsnip-integ"
-depends = ["vim-vsnip", "asyncomplete.vim"]
+depends = ["vim-vsnip"]
 
 [[plugins]]
 repo = "junegunn/fzf"
