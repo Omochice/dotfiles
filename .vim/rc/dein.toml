@@ -62,76 +62,6 @@ let g:lsp_diagnostics_signs_warning = {"text": "🤔"}
 repo = "mattn/vim-lsp-settings"
 depends = "vim-lsp"
 
-# [[plugins]]
-# repo = "prabirshrestha/asyncomplete.vim"
-# hook_add = """
-# inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-# imap <C-Space> <Plug>(asyncomplete_force_refresh)
-# let g:asyncomplete_auto_completeopt = v:true
-# let g:asyncomplete_matchfuzzy = v:true
-# let g:asyncomplete_auto_popup = v:true
-# """
-
-# [[plugins]]
-# repo = "prabirshrestha/asyncomplete-buffer.vim"
-# hook_add = """
-# call asyncomplete#register_source(
-# \    asyncomplete#sources#buffer#get_source_options({
-# \       "name": "Buffer",
-# \       "allowlist": ["*"],
-# \       "completor": function("asyncomplete#sources#buffer#completor"),
-# \       "config": {
-# \           "max_buffer_size": 5000000,
-# \       },
-# \       })
-# \)
-# """
-# depends = "asyncomplete.vim"
-
-# [[plugins]]
-# repo = "prabirshrestha/asyncomplete-lsp.vim"
-# depends = "asyncomplete.vim"
-
-[[plugins]]
-repo = "Shougo/ddc.vim"
-hook_source = """
-call ddc#custom#patch_global({
-\ 'autoCompleteDelay': 200,
-\ 'smartCase': v:true,
-\ })
-
-"""
-depends = ["denops.vim"]
-
-[[plugins]]
-repo = "shun/ddc-vim-lsp"
-hook_source = """
-call ddc#custom#patch_global("sources", ["vimlsp"])
-call ddc#custom#patch_global("sourceOptions", {
-    \ "_": {"matchers": ["mathcer_head"]},
-    \ "vimlsp": {"mark": "lsp", "forceCompletionoPattern": '\.|:|->'},
-    \ })
-"""
-depends = ["ddc.vim", "vim-lsp", "denops.vim"]
-
-
-[[plugins]]
-repo = "Shougo/ddc-around"
-hook_source = """
-" Use around source.
-call ddc#custom#patch_global('sources', ['around'])
-
-" Change source options
-call ddc#custom#patch_global('sourceOptions', {
-      \ 'around': {'matchers': ['matcher_head'], 'mark': 'A'},
-      \ })
-call ddc#custom#patch_global('sourceParams', {
-      \ 'around': {'maxSize': 500},
-      \ })
-"""
-
-
-
 [[plugins]]
 repo = "markonm/traces.vim"
 
@@ -149,7 +79,6 @@ inoremap <silent><expr> <CR>  pumvisible() ? "\<C-y>" : lexima#expand("<LT>CR>",
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : lexima#expand('<LT>Tab>', "i")
 """
 marged = 0
-
 
 [[plugins]]
 repo = "itchyny/lightline.vim"
@@ -285,10 +214,10 @@ execute("source " . g:dein_dir . "/repos/github.com/machakann/vim-sandwich/macro
 repo = "vim-denops/denops.vim"
 hook_add = """
 " let g:denops#server#service#deno_args = [
-"    \ '-q',
-"    \ '--unstable',
-"    \ '-A',
-"    \]
+" \    '-q',
+" \    '--unstable',
+" \    '-A',
+" \]
 " set runtimepath^=~/workspace/dps-paiza-io-vim
 " set runtimepath^=~/workspace/Hackathon-vol5-vim
 command! DenopsRestart call denops#server#restart()
@@ -363,12 +292,12 @@ build = "make"
 [[plugins]]
 repo = "thinca/vim-quickrun"
 hook_add = """
-nnoremap <silent><Space>q :<C-u>QuickRun<CR>
+nnoremap <silent><Space>q <Cmd>QuickRun<CR>
 let g:quickrun_config = {
-\  "_" : {
-\  "runner" : "vimproc",
-\  "runner/vimproc/updatetime" : 40,
-\  }
+\    "_" : {
+\        "runner" : "vimproc",
+\        "runner/vimproc/updatetime" : 40,
+\    }
 \ }
 """
 depends = ["vimproc.vim"]
