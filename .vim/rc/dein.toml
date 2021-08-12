@@ -3,6 +3,104 @@ repo = "Shougo/dein.vim"
 hook_add = """
 let g:dein#auto_recache = v:true
 """
+# [[plugins]]
+# repo = "Shougo/ddc.vim"
+# hook_source = """
+# call ddc#custom#patch_global(
+#   \ 'sources', ['ddc-vim-lsp', 'buffer', 'around']
+#   \ )
+# call ddc#custom#patch_global('sourceOptions', {
+#   \ '_': {
+#   \   'matchers': ['matcher_editdistance'],
+#   \   'sorters': ['sorter_rank'],
+#   \ },
+#   \ 'ddc-vim-lsp': {'mark': 'LSP'},
+#   \ 'buffer': {'mark': 'Buffer'},
+#   \ 'around': {"mark": "Around"},
+#   \ 'necovim': {"mark": "Neco"},
+#   \ })
+# call ddc#enable()
+# inoremap <silent><expr> <C-Space> pumvisible() ? "\<C-Space>" : ddc#manual_complete()
+# """
+# depends = ["denops.vim", "context_filetype.vim"]
+# on_event = "InsertEnter"
+# 
+# [[plugins]]
+# repo = "shun/ddc-vim-lsp"
+# depends = ["ddc.vim", "vim-lsp"]
+# on_source = "ddc.vim"
+# 
+# [[plugins]]
+# repo = "Shougo/ddc-around"
+# depends = ["ddc.vim"]
+# on_source = "ddc.vim"
+# 
+# [[plugins]]
+# repo = "Shougo/ddc-matcher_head"
+# depends = ["ddc.vim"]
+# on_source = "ddc.vim"
+# 
+# [[plugins]]
+# repo = 'Shougo/ddc-sorter_rank'
+# depends = ["ddc.vim"]
+# on_source = "ddc.vim"
+# 
+# [[plugins]]
+# repo = "Shougo/neco-vim"
+# depends = ["ddc.vim"]
+# on_source = "ddc.vim"
+# 
+# [[plugins]]
+# repo = 'matsui54/ddc-buffer'
+# depends = ["ddc.vim"]
+# on_source = "ddc.vim"
+# 
+# [[plugins]]
+# repo = 'matsui54/ddc-filter_editdistance'
+# on_souce = "ddc.vim"
+
+[[plugins]]
+repo = "prabirshrestha/asyncomplete.vim"
+hook_add = """
+imap <C-Space> <Plug>(asyncomplete_force_refresh)
+let g:asyncomplete_auto_completeopt = v:true
+let g:asyncomplete_matchfuzzy = v:true
+let g:asyncomplete_auto_popup = v:true
+let g:asyncomplete_auto_completeopt = v:false
+"""
+
+[[plugins]]
+repo = "prabirshrestha/asyncomplete-buffer.vim"
+hook_add = """
+call asyncomplete#register_source(
+\    asyncomplete#sources#buffer#get_source_options({
+\       "name": "Buffer",
+\       "allowlist": ["*"],
+\       "completor": function("asyncomplete#sources#buffer#completor"),
+\       "config": {
+\           "max_buffer_size": 5000000,
+\       },
+\   })
+\)
+"""
+depends = ["asyncomplete.vim"]
+
+[[plugins]]
+repo = "prabirshrestha/asyncomplete-lsp.vim"
+depends = ["asyncomplete.vim", "vim-lsp"]
+
+[[plugins]]
+repo = "prabirshrestha/asyncomplete-file.vim"
+hook_add = """
+call asyncomplete#register_source(
+\   asyncomplete#sources#file#get_source_options({
+   \ 'name': 'File',
+   \ 'allowlist': ['*'],
+   \ 'priority': 10,
+   \ 'completor': function('asyncomplete#sources#file#completor')
+   \ }))
+"""
+on_source = "asyncomplete.vim"
 
 [[plugins]]
 repo = "Omochice/night-owl.vim"
@@ -133,11 +231,13 @@ repo = "tyru/caw.vim"
 hook_add = """
 " Brute force solution
 " https://github.com/tyru/caw.vim/issues/166
-augroup cawSetting
-    autocmd!
-    autocmd FileType typescript,javascript nmap <buffer><Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
-    autocmd FileType typescript,javascript vmap <buffer><Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
-augroup END
+" augroup cawSetting
+"     autocmd!
+"     autocmd FileType * nmap <buffer><Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
+"     autocmd FileType * vmap <buffer><Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
+" augroup END
+nmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
+vmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
 """
 depends = ["context_filetype.vim", "vim-repeat"]
 # FIXME
