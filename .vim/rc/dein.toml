@@ -188,7 +188,7 @@ hook_add = """
 nmap <C-p> [fzf-p]
 nnoremap [fzf-p]<C-p> <Cmd>FzfPreviewDirectoryFiles<CR>
 nnoremap [fzf-p]c     <Cmd>FzfPreviewCommandPaletteRpc<CR>
-nnoremap [fzf-p]g     :<C-u>FzfPreviewProjectGrepRpc
+nnoremap [fzf-p]g     :<C-u>FzfPreviewProjectGrepRpc<Space>
 let g:fzf_preview_fzf_preview_window_option = "right:50%"
 let g:fzf_preview_use_dev_icons = v:true
 let g:fzf_preview_dev_icon_prefix_string_length = 3
