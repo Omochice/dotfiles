@@ -38,18 +38,6 @@ let g:loaded_netrwFileHandlers = v:true
 """
 
 [[plugins]]
-repo = "prabirshrestha/asyncomplete.vim"
-hook_add = """
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-imap <C-Space> <Plug>(asyncomplete_force_refresh)
-let g:asyncomplete_auto_completeopt = v:true
-let g:asyncomplete_matchfuzzy = v:true
-let g:asyncomplete_auto_popup = v:true
-let g:asyncomplete_auto_completeopt = v:false
-"""
-
-
-[[plugins]]
 repo = "prabirshrestha/asyncomplete-lsp.vim"
 depends = ["asyncomplete.vim", "vim-lsp"]
 

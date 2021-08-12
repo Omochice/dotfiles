@@ -50,6 +50,18 @@
 # on_source = "ddc.vim"
 
 [[plugins]]
+repo = "prabirshrestha/asyncomplete.vim"
+hook_add = """
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+imap <C-Space> <Plug>(asyncomplete_force_refresh)
+let g:asyncomplete_auto_completeopt = v:true
+let g:asyncomplete_matchfuzzy = v:true
+let g:asyncomplete_auto_popup = v:true
+let g:asyncomplete_auto_completeopt = v:false
+"""
+on_event = "InsertEnter"
+
+[[plugins]]
 repo = "prabirshrestha/asyncomplete-buffer.vim"
 hook_source = """
 call asyncomplete#register_source(
