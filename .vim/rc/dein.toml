@@ -37,37 +37,6 @@ let g:loaded_netrwSettings     = v:true
 let g:loaded_netrwFileHandlers = v:true
 """
 
-# [[plugins]]
-# repo = "prabirshrestha/asyncomplete.vim"
-# hook_add = """
-# inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-# imap <C-Space> <Plug>(asyncomplete_force_refresh)
-# let g:asyncomplete_auto_completeopt = v:true
-# let g:asyncomplete_matchfuzzy = v:true
-# let g:asyncomplete_auto_popup = v:true
-# let g:asyncomplete_auto_completeopt = v:false
-# """
-# 
-# [[plugins]]
-# repo = "prabirshrestha/asyncomplete-buffer.vim"
-# hook_add = """
-# call asyncomplete#register_source(
-# \    asyncomplete#sources#buffer#get_source_options({
-# \       "name": "Buffer",
-# \       "allowlist": ["*"],
-# \       "completor": function("asyncomplete#sources#buffer#completor"),
-# \       "config": {
-# \           "max_buffer_size": 5000000,
-# \       },
-# \   })
-# \)
-# """
-# depends = "asyncomplete.vim"
-# 
-# [[plugins]]
-# repo = "prabirshrestha/asyncomplete-lsp.vim"
-# depends = ["asyncomplete.vim", "vim-lsp"]
-
 [[plugins]]
 repo = "prabirshrestha/vim-lsp"
 hook_add = """
@@ -95,20 +64,6 @@ depends = "vim-lsp"
 
 [[plugins]]
 repo = "markonm/traces.vim"
-
-[[plugins]]
-repo = "cohama/lexima.vim"
-hook_add = """
-" too lang to write here
-source ~/.vim/mysettings/lexima.vim
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" FIXME
-" if use double quote like "<LT>CR>",
-" it show like piece like =lexima#insmode#_map_impl("<CR>")`
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : lexima#expand('<LT>Tab>', "i")
-"""
-marged = 0
 
 [[plugins]]
 repo = "itchyny/lightline.vim"
@@ -217,7 +172,7 @@ hook_add = """
 nmap <C-p> [fzf-p]
 nnoremap [fzf-p]<C-p> <Cmd>FzfPreviewDirectoryFiles<CR>
 nnoremap [fzf-p]c     <Cmd>FzfPreviewCommandPaletteRpc<CR>
-nnoremap [fzf-p]g     :<C-u>FzfPreviewProjectGrepRpc
+nnoremap [fzf-p]g     :<C-u>FzfPreviewProjectGrepRpc<Space>
 let g:fzf_preview_fzf_preview_window_option = "right:50%"
 let g:fzf_preview_use_dev_icons = v:true
 let g:fzf_preview_dev_icon_prefix_string_length = 3
@@ -231,14 +186,6 @@ hook_add = """
 let g:winresizer_vert_resize = 3
 """
 
-[[plugins]]
-repo = "machakann/vim-sandwich"
-hook_add = """
-" use with surround's keybinding.
-" may be useful vim and vscode(surround with vscodevim).
-" ^ really?
-execute("source " . g:dein_dir . "/repos/github.com/machakann/vim-sandwich/macros/sandwich/keymap/surround.vim")
-"""
 
 [[plugins]]
 repo = "vim-denops/denops.vim"

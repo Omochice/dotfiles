@@ -6,7 +6,7 @@ call ddc#custom#patch_global(
   \ )
 call ddc#custom#patch_global('sourceOptions', {
   \ '_': {
-  \   'matchers': ['matcher_head'],
+  \   'matchers': ['matcher_editdistance'],
   \   'sorters': ['sorter_rank'],
   \ },
   \ 'ddc-vim-lsp': {'mark': 'LSP'},
@@ -15,9 +15,10 @@ call ddc#custom#patch_global('sourceOptions', {
   \ 'necovim': {"mark": "Neco"},
   \ })
 call ddc#enable()
+inoremap <silent><expr> <C-Space> pumvisible() ? "\<C-Space>" : ddc#manual_complete()
 """
 depends = ["denops.vim", "context_filetype.vim"]
-on_i = true
+on_event = "InsertEnter"
 
 [[plugins]]
 repo = "shun/ddc-vim-lsp"
@@ -48,6 +49,68 @@ on_source = "ddc.vim"
 repo = 'matsui54/ddc-buffer'
 depends = ["ddc.vim"]
 on_source = "ddc.vim"
+
+[[plugins]]
+repo = 'matsui54/ddc-filter_editdistance'
+on_souce = "ddc.vim"
+
+# [[plugins]]
+# repo = "prabirshrestha/asyncomplete.vim"
+# hook_add = """
+# inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+# imap <C-Space> <Plug>(asyncomplete_force_refresh)
+# let g:asyncomplete_auto_completeopt = v:true
+# let g:asyncomplete_matchfuzzy = v:true
+# let g:asyncomplete_auto_popup = v:true
+# let g:asyncomplete_auto_completeopt = v:false
+# """
+# on_event = "InsertEnter"
+# 
+# [[plugins]]
+# repo = "prabirshrestha/asyncomplete-buffer.vim"
+# hook_source = """
+# call asyncomplete#register_source(
+# \    asyncomplete#sources#buffer#get_source_options({
+# \       "name": "Buffer",
+# \       "allowlist": ["*"],
+# \       "completor": function("asyncomplete#sources#buffer#completor"),
+# \       "config": {
+# \           "max_buffer_size": 5000000,
+# \       },
+# \   })
+# \)
+# """
+# on_source = "asyncomplete.vim"
+# 
+# [[plugins]]
+# repo = "prabirshrestha/asyncomplete-lsp.vim"
+# depends = ["asyncomplete.vim", "vim-lsp"]
+# on_source = "asyncomplete.vim"
+
+[[plugins]]
+repo = "cohama/lexima.vim"
+hook_source = """
+" too lang to write here
+source ~/.vim/mysettings/lexima.vim
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" FIXME
+" if use double quote like "<LT>CR>",
+" it show like piece like =lexima#insmode#_map_impl("<CR>")`
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : lexima#expand('<LT>Tab>', "i")
+"""
+marged = 0
+on_event = "InsertEnter"
+
+[[plugins]]
+repo = "machakann/vim-sandwich"
+hook_source = """
+" use with surround's keybinding.
+" may be useful vim and vscode(surround with vscodevim).
+" ^ really?
+execute("source " . g:dein_dir . "/repos/github.com/machakann/vim-sandwich/macros/sandwich/keymap/surround.vim")
+"""
+on_event = "VimEnter"
 
 [[plugins]]
 repo = "cespare/vim-toml"
