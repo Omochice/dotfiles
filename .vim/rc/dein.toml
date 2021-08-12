@@ -48,21 +48,6 @@ let g:asyncomplete_auto_popup = v:true
 let g:asyncomplete_auto_completeopt = v:false
 """
 
-[[plugins]]
-repo = "prabirshrestha/asyncomplete-buffer.vim"
-hook_add = """
-call asyncomplete#register_source(
-\    asyncomplete#sources#buffer#get_source_options({
-\       "name": "Buffer",
-\       "allowlist": ["*"],
-\       "completor": function("asyncomplete#sources#buffer#completor"),
-\       "config": {
-\           "max_buffer_size": 5000000,
-\       },
-\   })
-\)
-"""
-depends = "asyncomplete.vim"
 
 [[plugins]]
 repo = "prabirshrestha/asyncomplete-lsp.vim"
@@ -95,20 +80,6 @@ depends = "vim-lsp"
 
 [[plugins]]
 repo = "markonm/traces.vim"
-
-[[plugins]]
-repo = "cohama/lexima.vim"
-hook_add = """
-" too lang to write here
-source ~/.vim/mysettings/lexima.vim
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" FIXME
-" if use double quote like "<LT>CR>",
-" it show like piece like =lexima#insmode#_map_impl("<CR>")`
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : lexima#expand('<LT>Tab>', "i")
-"""
-marged = 0
 
 [[plugins]]
 repo = "itchyny/lightline.vim"
@@ -231,14 +202,6 @@ hook_add = """
 let g:winresizer_vert_resize = 3
 """
 
-[[plugins]]
-repo = "machakann/vim-sandwich"
-hook_add = """
-" use with surround's keybinding.
-" may be useful vim and vscode(surround with vscodevim).
-" ^ really?
-execute("source " . g:dein_dir . "/repos/github.com/machakann/vim-sandwich/macros/sandwich/keymap/surround.vim")
-"""
 
 [[plugins]]
 repo = "vim-denops/denops.vim"

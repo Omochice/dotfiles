@@ -50,6 +50,47 @@
 # on_source = "ddc.vim"
 
 [[plugins]]
+repo = "prabirshrestha/asyncomplete-buffer.vim"
+hook_source = """
+call asyncomplete#register_source(
+\    asyncomplete#sources#buffer#get_source_options({
+\       "name": "Buffer",
+\       "allowlist": ["*"],
+\       "completor": function("asyncomplete#sources#buffer#completor"),
+\       "config": {
+\           "max_buffer_size": 5000000,
+\       },
+\   })
+\)
+"""
+on_source = "asyncomplete.vim"
+
+[[plugins]]
+repo = "cohama/lexima.vim"
+hook_source = """
+" too lang to write here
+source ~/.vim/mysettings/lexima.vim
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" FIXME
+" if use double quote like "<LT>CR>",
+" it show like piece like =lexima#insmode#_map_impl("<CR>")`
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : lexima#expand('<LT>Tab>', "i")
+"""
+marged = 0
+on_event = "InsertEnter"
+
+[[plugins]]
+repo = "machakann/vim-sandwich"
+hook_source = """
+" use with surround's keybinding.
+" may be useful vim and vscode(surround with vscodevim).
+" ^ really?
+execute("source " . g:dein_dir . "/repos/github.com/machakann/vim-sandwich/macros/sandwich/keymap/surround.vim")
+"""
+on_event = "VimEnter"
+
+[[plugins]]
 repo = "cespare/vim-toml"
 on_ft = "toml"
 
