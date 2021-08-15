@@ -8,49 +8,49 @@ let g:dein#auto_recache = v:true
 # Move its into lazy.toml
 # not work well?
 # i have no idea to solve it.
-[[plugins]]
-repo = "Shougo/ddc.vim"
-hook_add = """
-call ddc#custom#patch_global(
-  \ 'sources', ['ddc-vim-lsp', 'buffer', 'around']
-  \ )
-call ddc#custom#patch_global('sourceOptions', {
-  \ '_': {
-  \   'matchers': ['matcher_editdistance'],
-  \   'sorters': ['sorter_rank'],
-  \ },
-  \ 'ddc-vim-lsp': {'mark': 'LSP'},
-  \ 'buffer': {'mark': 'Buffer'},
-  \ 'around': {"mark": "Around"},
-  \ 'necovim': {"mark": "Neco"},
-  \ })
-call ddc#enable()
-inoremap <silent><expr> <C-Space> pumvisible() ? "\<C-Space>" : ddc#manual_complete()
-"""
-depends = ["denops.vim", "context_filetype.vim", "ddc-vim-lsp",
-           "ddc-buffer", "ddc-around", "ddc-sorter_rank", "ddc-filter_editdistance",]
-
-[[plugins]]
-repo = "shun/ddc-vim-lsp"
-depends = ["vim-lsp"]
-
-[[plugins]]
-repo = "Shougo/ddc-around"
-
-[[plugins]]
-repo = "Shougo/ddc-matcher_head"
-
-[[plugins]]
-repo = 'Shougo/ddc-sorter_rank'
-
-[[plugins]]
-repo = "Shougo/neco-vim"
-
-[[plugins]]
-repo = 'matsui54/ddc-buffer'
-
-[[plugins]]
-repo = 'matsui54/ddc-filter_editdistance'
+# [[plugins]]
+# repo = "Shougo/ddc.vim"
+# hook_add = """
+# call ddc#custom#patch_global(
+#   \ 'sources', ['ddc-vim-lsp', 'buffer', 'around']
+#   \ )
+# call ddc#custom#patch_global('sourceOptions', {
+#   \ '_': {
+#   \   'matchers': ['matcher_editdistance'],
+#   \   'sorters': ['sorter_rank'],
+#   \ },
+#   \ 'ddc-vim-lsp': {'mark': 'LSP'},
+#   \ 'buffer': {'mark': 'Buffer'},
+#   \ 'around': {"mark": "Around"},
+#   \ 'necovim': {"mark": "Neco"},
+#   \ })
+# call ddc#enable()
+# inoremap <silent><expr> <C-Space> pumvisible() ? "\<C-Space>" : ddc#manual_complete()
+# """
+# depends = ["denops.vim", "context_filetype.vim", "ddc-vim-lsp",
+#            "ddc-buffer", "ddc-around", "ddc-sorter_rank", "ddc-filter_editdistance",]
+# 
+# [[plugins]]
+# repo = "shun/ddc-vim-lsp"
+# depends = ["vim-lsp"]
+# 
+# [[plugins]]
+# repo = "Shougo/ddc-around"
+# 
+# [[plugins]]
+# repo = "Shougo/ddc-matcher_head"
+# 
+# [[plugins]]
+# repo = 'Shougo/ddc-sorter_rank'
+# 
+# [[plugins]]
+# repo = "Shougo/neco-vim"
+# 
+# [[plugins]]
+# repo = 'matsui54/ddc-buffer'
+# 
+# [[plugins]]
+# repo = 'matsui54/ddc-filter_editdistance'
 
 # [[plugins]]
 # repo = "prabirshrestha/asyncomplete.vim"
