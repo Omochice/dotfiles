@@ -34,6 +34,7 @@ if dein#load_state(g:dein_dir)
   " end settings
   call dein#end()
   call dein#save_state()
+  call dein#call_hook('source')
 endif
 " }}}
 
