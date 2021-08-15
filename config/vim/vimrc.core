@@ -77,8 +77,8 @@ nnoremap s "_s
 nnoremap c "_c
 
 " indent in insert mode
-inoremap <Left> <C-o><<
-inoremap <Right> <C-o>>>
+inoremap <Left> <C-t>
+inoremap <Right> <C-d>
 inoremap <Up> <nop>
 inoremap <Down> <nop>
 
