@@ -58,15 +58,11 @@ vnoremap k gk
 
 " disable q:
 nnoremap q: :<C-u>quit
-nnoremap Q <Cmd>copen
+nnoremap Q <Cmd>copen<CR>
 
 " easy force write/quit
 cnoreabbrev qq quit!
 cnoreabbrev ww update!
-
-" expand with <Tab>
-nnoremap <Tab> %
-vnoremap <Tab> %
 
 " easy regex search
 nnoremap / /\v
@@ -77,8 +73,8 @@ nnoremap s "_s
 nnoremap c "_c
 
 " indent in insert mode
-inoremap <Left> <C-t>
-inoremap <Right> <C-d>
+inoremap <Left> <C-d>
+inoremap <Right> <C-t>
 inoremap <Up> <nop>
 inoremap <Down> <nop>
 

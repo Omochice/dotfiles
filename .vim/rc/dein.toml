@@ -4,57 +4,7 @@ hook_add = """
 let g:dein#auto_recache = v:true
 """
 
-## ddc{{{
-[[plugins]]
-repo = "Shougo/ddc.vim"
-hook_source = """
-call ddc#custom#patch_global(
-  \ 'sources', ['ddc-vim-lsp', 'buffer', 'around']
-  \ )
-call ddc#custom#patch_global('sourceOptions', {
-  \ '_': {
-  \   'matchers': ['matcher_editdistance'],
-  \   'sorters': ['sorter_rank'],
-  \ },
-  \ 'ddc-vim-lsp': {'mark': 'LSP'},
-  \ 'buffer': {'mark': 'Buffer'},
-  \ 'around': {"mark": "Around"},
-  \ 'necovim': {"mark": "Neco"},
-  \ })
-call ddc#enable()
-inoremap <silent><expr> <C-Space> pumvisible() ? "\<C-Space>" : ddc#manual_complete()
-"""
-depends = ["denops.vim", "context_filetype.vim"]
-
-[[plugins]]
-repo = "shun/ddc-vim-lsp"
-depends = ["ddc.vim", "vim-lsp"]
-
-[[plugins]]
-repo = "Shougo/ddc-around"
-depends = ["ddc.vim"]
-
-[[plugins]]
-repo = "Shougo/ddc-matcher_head"
-depends = ["ddc.vim"]
-
-[[plugins]]
-repo = 'Shougo/ddc-sorter_rank'
-depends = ["ddc.vim"]
-
-[[plugins]]
-repo = "Shougo/neco-vim"
-depends = ["ddc.vim"]
-
-[[plugins]]
-repo = 'matsui54/ddc-buffer'
-depends = ["ddc.vim"]
-
-[[plugins]]
-repo = 'matsui54/ddc-filter_editdistance'
-#}}}
-
-# # asyncomplete{{{
+# # {{{ asyncomplete
 # [[plugins]]
 # repo = "prabirshrestha/asyncomplete.vim"
 # hook_add = """
@@ -97,7 +47,11 @@ repo = 'matsui54/ddc-filter_editdistance'
 #    \ }))
 # """
 # on_source = "asyncomplete.vim"
-# #}}}
+# 
+# [[plugins]]
+# repo = "~/workspace/vim-vsnip-integ"
+# depends = ["vim-vsnip"]
+# # }}}
 
 [[plugins]]
 repo = "Omochice/night-owl.vim"
@@ -250,12 +204,9 @@ repo = "Shougo/context_filetype.vim"
 repo = "hrsh7th/vim-vsnip"
 hook_add = """
 let g:vsnip_snippet_dir = $HOME .. "/.vim/snippets/"
-imap <expr><C-n> vsnip#jumpable(v:true) ? '<Plug>(vsnip-jump-next)' : '<C-n>'
+imap <expr><C-n> vsnip#jumpable(v:true) ? "\<Plug>(vsnip-jump-next)" : "\<C-n>"
+" imap <expr><Tab> vsnip#jumpable(v:true) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<LT>Tab>', "i")
 """
-
-[[plugins]]
-repo = "hrsh7th/vim-vsnip-integ"
-depends = ["vim-vsnip"]
 
 [[plugins]]
 repo = "junegunn/fzf"
@@ -281,61 +232,6 @@ depends = ["vim-devicons", "fzf"]
 repo = "simeji/winresizer"
 hook_add = """
 let g:winresizer_vert_resize = 3
-"""
-
-
-[[plugins]]
-repo = "vim-denops/denops.vim"
-hook_add = """
-" let g:denops#server#service#deno_args = [
-" \    '-q',
-" \    '--unstable',
-" \    '-A',
-" \]
-" set runtimepath^=~/workspace/dps-paiza-io-vim
-" set runtimepath^=~/workspace/Hackathon-vol5-vim
-command! DenopsRestart call denops#server#restart()
-"""
-
-[[plugins]]
-# repo = "~/workspace/dps-test"
-repo = "Omochice/dps-popup-test"
-depends = ["denops.vim"]
-
-[[plugins]]
-repo = "Omochice/dps-paiza-io-vim"
-# repo = "~/workspace/dps-paiza-io-vim"
-depends = ["denops.vim"]
-
-[[plugins]]
-repo = "Omochice/dps-charcounter-vim"
-# repo = "~/workspace/dps-charcounter-vim"
-depends = ["denops.vim"]
-
-[[plugins]]
-repo = "Omochice/dps-codic-vim"
-# repo = "~/workspace/dps-codic-vim"
-depends = ["denops.vim"]
-
-[[plugins]]
-repo = "Omochice/dps-translate-vim"
-# repo = "~/workspace/dps-translate-vim"
-depends = ["denops.vim"]
-hook_add = """
-let g:dps_translate_source = "en"
-let g:dps_translate_target = "ja"
-
-nnoremap tr <Cmd>Translate<CR>
-nnoremap tR <Cmd>Translate!<CR>
-vnoremap <silent>tr :TranslateJoin<CR>
-vnoremap <silent>tR :TranslateJoin!<CR>
-"""
-
-[[plugins]]
-repo = "yuki-yano/dps-slack-status.vim"
-depends = ["denops.vim"]
-hook_add = """
-let g:slack_status_emoji = ":dadparrot:"
 """
 
 [[plugins]]
