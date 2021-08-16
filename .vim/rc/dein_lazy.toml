@@ -1,65 +1,8 @@
-# ddc {{{
-[[plugins]]
-repo = "Shougo/ddc.vim"
-# hook_add = """
-hook_source = """
-call ddc#custom#patch_global(
-  \ "sources", ["ddc-vim-lsp", "around"]
-  \ )
-call ddc#custom#patch_global("sourceOptions", {
-  \ "_": {
-  \   "matchers": ["matcher_editdistance"],
-  \   "sorters": ["sorter_rank"],
-  \ },
-  \ "ddc-vim-lsp": {"mark": "LSP"},
-  \ "buffer": {"mark": "Buffer"},
-  \ "around": {"mark": "Around"},
-  \ "necovim": {"mark": "Neco"},
-  \ })
-call ddc#enable()
-inoremap <silent><expr> <C-Space> pumvisible() ? "\<C-Space>" : ddc#manual_complete()
-"""
-# depends = ["denops.vim", "context_filetype.vim", "ddc-vim-lsp",
-#            "ddc-buffer", "ddc-around", "ddc-sorter_rank", "ddc-filter_editdistance",]
-depends = ["denops.vim", "context_filetype.vim"]
-on_event = "InsertEnter"
-
-[[plugins]]
-repo = "shun/ddc-vim-lsp"
-depends = ["vim-lsp"]
-on_source = "ddc.vim"
-
-[[plugins]]
-repo = "Shougo/ddc-around"
-on_source = "ddc.vim"
-
-[[plugins]]
-repo = "Shougo/ddc-matcher_head"
-on_source = "ddc.vim"
-
-[[plugins]]
-repo = 'Shougo/ddc-sorter_rank'
-on_source = "ddc.vim"
-
-[[plugins]]
-repo = "Shougo/neco-vim"
-on_source = "ddc.vim"
-
-[[plugins]]
-repo = 'matsui54/ddc-buffer'
-on_source = "ddc.vim"
-
-[[plugins]]
-repo = 'matsui54/ddc-filter_editdistance'
-on_source = "ddc.vim"
-# }}}
-
 [[plugins]]
 repo = "cohama/lexima.vim"
 hook_source = """
 " too lang to write here
 source ~/.vim/mysettings/lexima.vim
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " FIXME
 " if use double quote like "<LT>CR>",
