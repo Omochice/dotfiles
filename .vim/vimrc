@@ -25,10 +25,12 @@ if dein#load_state(g:dein_dir)
   let s:toml = s:rc_dir . '/dein.toml'
   let s:lazy_toml = s:rc_dir . '/dein_lazy.toml'
   let s:dein_ft_toml = s:rc_dir . '/deinft.toml'
+  let s:dein_denops = s:rc_dir . '/dein_denops.toml'
 
   " read toml and cache
   call dein#load_toml(s:toml, {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
+  call dein#load_toml(s:dein_denops, {'lazy': 1})
   call dein#load_toml(s:dein_ft_toml)
 
   " end settings
