@@ -1,0 +1,127 @@
+[[plugins]]
+repo = "vim-denops/denops.vim"
+hook_add = """
+command! DenopsRestart call denops#server#restart()
+"""
+augroup = "denops_plugin_internal"
+
+# # {{{ ddc
+[[plugins]]
+repo = "Shougo/ddc.vim"
+hook_source = """
+call ddc#custom#patch_global(
+  \ 'sources', ['ddc-vim-lsp', 'vsnip', 'around']
+  \ )
+call ddc#custom#patch_global('sourceOptions', {
+  \ '_': {
+  \   'matchers': ['matcher_editdistance'],
+  \   'sorters': [],
+  \   'converters': ['converter_remove_overlap'],
+  \   'minAutoCompleteLength': 1,
+  \   'smartCase': v:true,
+  \ },
+  \ 'ddc-vim-lsp': {'mark': 'LSP'},
+  \ 'buffer': {'mark': 'Buffer'},
+  \ 'around': {'mark': 'Around'},
+  \ 'necovim': {'mark': 'Neco'},
+  \ 'vsnip': {'mark': 'Snippet'},
+  \ })
+call ddc#custom#patch_filetype(
+  \ ['toml'], 'sources', ['necovim', 'around']
+  \ )
+call ddc#custom#patch_filetype(
+  \ ['vim'], 'sources', ['ddc-vim-lsp', 'necovim', 'around']
+  \ )
+call ddc#enable()
+inoremap <silent><expr> <C-Space> pumvisible() ? "\<C-Space>" : ddc#manual_complete()
+"""
+depends = ["denops.vim", "context_filetype.vim"]
+on_event = "InsertEnter"
+
+[[plugins]]
+repo = "shun/ddc-vim-lsp"
+depends = ["vim-lsp"]
+on_source = "ddc.vim"
+
+[[plugins]]
+repo = "Shougo/ddc-around"
+on_source = "ddc.vim"
+
+[[plugins]]
+repo = "Shougo/ddc-matcher_head"
+on_source = "ddc.vim"
+
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
+on_source = "ddc.vim"
+
+[[plugins]]
+repo = "Shougo/neco-vim"
+on_source = "ddc.vim"
+
+[[plugins]]
+repo = 'matsui54/ddc-buffer'
+on_source = "ddc.vim"
+
+[[plugins]]
+repo = 'matsui54/ddc-filter_editdistance'
+on_source = "ddc.vim"
+
+[[plugins]]
+repo = 'Shougo/ddc-converter_remove_overlap'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = "~/workspace/vim-vsnip-integ"
+repends = "vim-vsnip"
+on_source = 'ddc.vim'
+# }}}
+
+[[plugins]]
+# repo = "~/workspace/dps-test"
+repo = "Omochice/dps-popup-test"
+on_source = "denops.vim"
+
+[[plugins]]
+repo = "Omochice/dps-paiza-io-vim"
+# repo = "~/workspace/dps-paiza-io-vim"
+on_source = "denops.vim"
+on_cmd = "PaizaIO"
+
+[[plugins]]
+repo = "Omochice/dps-charcounter-vim"
+# repo = "~/workspace/dps-charcounter-vim"
+on_source = "denops.vim"
+on_cmd = "CharCount"
+
+[[plugins]]
+repo = "Omochice/dps-codic-vim"
+# repo = "~/workspace/dps-codic-vim"
+on_source = "denops.vim"
+on_cmd = "Codic"
+
+[[plugins]]
+repo = "Omochice/dps-translate-vim"
+# repo = "~/workspace/dps-translate-vim"
+hook_add = """
+let g:dps_translate_source = "en"
+let g:dps_translate_target = "ja"
+
+nnoremap tr <Cmd>Translate<CR>
+nnoremap tR <Cmd>Translate!<CR>
+vnoremap <silent>tr :TranslateJoin<CR>
+vnoremap <silent>tR :TranslateJoin!<CR>
+"""
+on_source = "denops.vim"
+on_cmd = ["Translate", "TranslateJoin"]
+
+[[plugins]]
+repo = "yuki-yano/dps-slack-status.vim"
+hook_add = """
+let g:slack_status_emoji = ":dadparrot:"
+"""
+on_source = "denops.vim"
+
+[[plugins]]
+repo = "vim-denops/denops-helloworld.vim"
+on_source = "denops.vim"
