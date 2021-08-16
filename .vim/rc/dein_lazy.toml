@@ -1,10 +1,8 @@
-
 [[plugins]]
 repo = "cohama/lexima.vim"
 hook_source = """
 " too lang to write here
 source ~/.vim/mysettings/lexima.vim
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " FIXME
 " if use double quote like "<LT>CR>",
