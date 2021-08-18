@@ -5,7 +5,7 @@ command! DenopsRestart call denops#server#restart()
 """
 augroup = "denops_plugin_internal"
 
-# # {{{ ddc
+# {{{ ddc
 [[plugins]]
 repo = "Shougo/ddc.vim"
 hook_source = """
@@ -75,7 +75,7 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = "~/workspace/vim-vsnip-integ"
-repends = "vim-vsnip"
+depends = "vim-vsnip"
 on_source = 'ddc.vim'
 # }}}
 
