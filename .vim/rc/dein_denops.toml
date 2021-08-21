@@ -3,7 +3,7 @@ repo = "vim-denops/denops.vim"
 hook_add = """
 command! DenopsRestart call denops#server#restart()
 """
-augroup = "denops_plugin_internal"
+
 
 # {{{ ddc
 [[plugins]]
