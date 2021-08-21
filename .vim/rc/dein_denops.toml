@@ -10,19 +10,18 @@ command! DenopsRestart call denops#server#restart()
 repo = "Shougo/ddc.vim"
 hook_source = """
 call ddc#custom#patch_global(
-  \ 'sources', ['ddc-vim-lsp', 'vsnip', 'around']
-  \ )
+ \ 'sources', ['ddc-vim-lsp', 'vsnip', 'around']
+ \ )
 call ddc#custom#patch_global('sourceOptions', {
   \ '_': {
-  \   'matchers': ['matcher_editdistance'],
-  \   'sorters': [],
+  \   'matchers': ['matcher_head'],
+  \   'sorters': ['sorter_rank'],
   \   'converters': ['converter_remove_overlap'],
   \   'minAutoCompleteLength': 1,
   \   'smartCase': v:true,
   \ },
   \ 'ddc-vim-lsp': {'mark': 'LSP',
-  \                 'forceCompletionPattern': '\.',
-  \                 'minAutoCompleteLength': 0},
+  \                 'forceCompletionPattern': '\.|:|->|"\w+/'},
   \ 'buffer': {'mark': 'Buffer'},
   \ 'around': {'mark': 'Around'},
   \ 'necovim': {'mark': 'Neco'},
@@ -35,7 +34,7 @@ call ddc#custom#patch_filetype(
   \ ['vim'], 'sources', ['ddc-vim-lsp', 'necovim', 'around']
   \ )
 call ddc#enable()
-inoremap <silent><expr> <C-Space> pumvisible() ? "\<C-Space>" : ddc#manual_complete()
+inoremap <silent><expr><C-Space> ddc#manual_complete()
 """
 depends = ["denops.vim", "context_filetype.vim"]
 on_event = "InsertEnter"
@@ -74,7 +73,7 @@ repo = 'Shougo/ddc-converter_remove_overlap'
 on_source = 'ddc.vim'
 
 [[plugins]]
-repo = "~/workspace/vim-vsnip-integ"
+repo = "hrsh7th/vim-vsnip-integ"
 depends = "vim-vsnip"
 on_source = 'ddc.vim'
 # }}}
@@ -127,3 +126,4 @@ on_source = "denops.vim"
 [[plugins]]
 repo = "vim-denops/denops-helloworld.vim"
 on_source = "denops.vim"
+
