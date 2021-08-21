@@ -43,6 +43,7 @@ alias diff "git diff"
 alias ptpython "ptpython --vi"
 alias ptipython "ptipython --vi"
 alias today "date '+%Y-%m-%d'"
+alias view "vim -R"
 
 if type "nvim" >/dev/null 2>&1
     alias v "nvim"
