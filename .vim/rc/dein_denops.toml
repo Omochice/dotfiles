@@ -87,19 +87,16 @@ on_source = "denops.vim"
 repo = "Omochice/dps-paiza-io-vim"
 # repo = "~/workspace/dps-paiza-io-vim"
 on_source = "denops.vim"
-on_cmd = "PaizaIO"
 
 [[plugins]]
 repo = "Omochice/dps-charcounter-vim"
 # repo = "~/workspace/dps-charcounter-vim"
 on_source = "denops.vim"
-on_cmd = "CharCount"
 
 [[plugins]]
 repo = "Omochice/dps-codic-vim"
 # repo = "~/workspace/dps-codic-vim"
 on_source = "denops.vim"
-on_cmd = "Codic"
 
 [[plugins]]
 repo = "Omochice/dps-translate-vim"
@@ -114,7 +111,6 @@ vnoremap <silent>tr :TranslateJoin<CR>
 vnoremap <silent>tR :TranslateJoin!<CR>
 """
 on_source = "denops.vim"
-on_cmd = ["Translate", "TranslateJoin"]
 
 [[plugins]]
 repo = "yuki-yano/dps-slack-status.vim"
