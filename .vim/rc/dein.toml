@@ -14,7 +14,7 @@ let g:dein#auto_recache = v:true
 # let g:asyncomplete_auto_popup = v:true
 # let g:asyncomplete_auto_completeopt = v:false
 # """
-# 
+#
 # [[plugins]]
 # repo = "prabirshrestha/asyncomplete-buffer.vim"
 # hook_add = """
@@ -30,13 +30,14 @@ let g:dein#auto_recache = v:true
 # \)
 # """
 # depends = ["asyncomplete.vim"]
-# 
+#
 # [[plugins]]
 # repo = "prabirshrestha/asyncomplete-lsp.vim"
 # depends = ["asyncomplete.vim", "vim-lsp"]
-# 
+#
 # [[plugins]]
 # repo = "prabirshrestha/asyncomplete-file.vim"
+# depends = "asyncomplete"
 # hook_add = """
 # call asyncomplete#register_source(
 # \   asyncomplete#sources#file#get_source_options({
@@ -46,11 +47,9 @@ let g:dein#auto_recache = v:true
 #    \ 'completor': function('asyncomplete#sources#file#completor')
 #    \ }))
 # """
-# on_source = "asyncomplete.vim"
-# 
+#
 # [[plugins]]
-# repo = "~/workspace/vim-vsnip-integ"
-# depends = ["vim-vsnip"]
+# repo = "hrsh7th/vim-vsnip-integ"
 # # }}}
 
 [[plugins]]
@@ -61,6 +60,18 @@ augroup colorcshemeSetting
     autocmd VimEnter * nested colorscheme night-owl
 augroup END
 """
+
+# [[plugins]]
+# repo = 'ghifarit53/tokyonight-vim'
+# hook_add = """
+# let g:tokyonight_style = 'night' " available: night, storm
+# let g:tokyonight_enable_italic = 1
+#
+# augroup colorschemeSetting
+#     autocmd!
+#     autocmd VimEnter * nested colorscheme tokyonight
+# augroup END
+# """
 
 [[plugins]]
 repo = "vim-jp/vimdoc-ja"
@@ -79,7 +90,7 @@ command! TVaffle :tabnew | :Vaffle
 autocmd StdinReadPre * let s:std_in = v:true
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Vaffle | endif
 
-" if load dein, use vaffle instead of netrw
+" if load this plugin, use vaffle instead of netrw
 let g:loaded_netrw             = v:true
 let g:loaded_netrwPlugin       = v:true
 let g:loaded_netrwSettings     = v:true
@@ -113,6 +124,9 @@ depends = "vim-lsp"
 
 [[plugins]]
 repo = "markonm/traces.vim"
+
+[[plugins]]
+repo = "tpope/vim-fugitive"
 
 [[plugins]]
 repo = "itchyny/lightline.vim"
@@ -156,6 +170,8 @@ endfunction
 function LightlineFugitive()
     if exists("*FugitiveHead")
         let s:branch = FugitiveHead()
+        " let s:branch = system('git branch --show-current')
+        " FIXME: if use system command, make cursor flicker.
         if s:branch !=# ""
             return s:branch . " " . ""
         endif
@@ -163,7 +179,7 @@ function LightlineFugitive()
     return ""
 endfunction
 """
-depends = ["night-owl.vim", "vim-devicons", "vim-fugitive"]
+depends = ["vim-devicons", "vim-fugitive"]
 
 [[plugins]]
 repo = "easymotion/vim-easymotion"
@@ -196,17 +212,6 @@ depends = ["context_filetype.vim", "vim-repeat"]
 
 [[plugins]]
 repo = "kana/vim-repeat"
-
-[[plugins]]
-repo = "Shougo/context_filetype.vim"
-
-[[plugins]]
-repo = "hrsh7th/vim-vsnip"
-hook_add = """
-let g:vsnip_snippet_dir = $HOME .. "/.vim/snippets/"
-imap <expr><C-n> vsnip#jumpable(v:true) ? "\<Plug>(vsnip-jump-next)" : "\<C-n>"
-" imap <expr><Tab> vsnip#jumpable(v:true) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<LT>Tab>', "i")
-"""
 
 [[plugins]]
 repo = "junegunn/fzf"
@@ -263,12 +268,6 @@ build = "make"
 repo = "thinca/vim-quickrun"
 hook_add = """
 nnoremap <silent><Space>q <Cmd>QuickRun<CR>
-let g:quickrun_config = {
-\    "_" : {
-\        "runner" : "vimproc",
-\        "runner/vimproc/updatetime" : 40,
-\    }
-\ }
 """
 depends = ["vimproc.vim"]
 
@@ -294,13 +293,7 @@ nnoremap <silent><C-g> <Cmd>Lazygit<CR>
 repo = "ntpeters/vim-better-whitespace"
 hook_add = """
 let g:better_whitespace_enabled = v:true
-let g:strip_whitespace_on_save = v:false
-"""
-
-[[plugins]]
-repo = "lambdalisue/suda.vim"
-hook_add = """
-let g:suda_smart_edit = v:true
+let g:strip_whitespace_on_save = v:true
 """
 
 [[plugins]]
@@ -342,3 +335,4 @@ let g:findroot_not_for_subdir = v:false
 # hook_add = """
 # let g:codic_web_token = $CODIC_TOKEN
 # """
+#

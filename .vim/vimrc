@@ -36,12 +36,11 @@ if dein#load_state(g:dein_dir)
   " end settings
   call dein#end()
   call dein#save_state()
-  call dein#call_hook('source')
 endif
 " }}}
 
 " plugin installation check {{{
-if dein#check_install()
+if !has('vim_starting') && dein#check_install()
   call dein#install()
   " and check updates,
   if $DEIN_GITHUB_TOKEN !=# ""

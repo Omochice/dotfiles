@@ -1,4 +1,14 @@
 [[plugins]]
+repo = "hrsh7th/vim-vsnip"
+merged = 0
+hook_add = """
+let g:vsnip_snippet_dir = $HOME .. "/.vim/snippets/"
+imap <expr><C-n> vsnip#jumpable(v:true) ? "\<Plug>(vsnip-jump-next)" : "\<C-n>"
+" imap <expr><Tab> vsnip#jumpable(v:true) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<LT>Tab>', "i")
+"""
+on_event = "InsertEnter"
+
+[[plugins]]
 repo = "cohama/lexima.vim"
 hook_source = """
 " too lang to write here
@@ -23,6 +33,15 @@ execute("source " . g:dein_dir . "/repos/github.com/machakann/vim-sandwich/macro
 on_event = "VimEnter"
 
 [[plugins]]
+repo = "Shougo/echodoc.vim"
+on_event = "CompleteDone"
+hook_source = """
+let g:echodoc#type = has('nvim') ? 'floating' : 'popup'
+highlight link EchoDocFloat Pmenu
+call echodoc#enable()
+"""
+
+[[plugins]]
 repo = "cespare/vim-toml"
 on_ft = "toml"
 
@@ -32,6 +51,7 @@ hook_add = """
 let g:rufo_auto_formatting = v:true
 """
 on_ft = "ruby"
+on_event = "BufWritePre"
 
 [[plugins]]
 repo = "z0mbix/vim-shfmt"
@@ -40,6 +60,7 @@ let g:shfmt_extra_args = "-i 4 -ci -bn -s"
 let g:shfmt_fmt_on_save = v:true
 """
 on_ft = ["sh", "bash"]
+on_event = "BufWritePre"
 
 [[plugins]]
 repo = "mattn/vim-goimports"
@@ -129,4 +150,19 @@ function! s:reading_copy(line1, line2) abort range
 endfunction
 
 command! -range ReadingVimrcCopy call <SID>reading_copy(<line1>, <line2>)
+"""
+
+[[plugins]]
+repo = "lambdalisue/suda.vim"
+hook_add = """
+let g:suda_smart_edit = v:true
+"""
+on_event = "BufRead"
+
+[[plugins]]
+repo = "Shougo/context_filetype.vim"
+hook_source = """
+let g:context_filetype#ignore_patterns = {
+\ 'toml': ['^\s*#\s*'],
+\ }
 """
