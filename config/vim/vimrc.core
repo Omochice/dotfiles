@@ -106,8 +106,8 @@ noremap!        <C-e> <End>
 " nnoremap - <C-x>
 
 " Automatically indent with i and A
-nnoremap <expr> i len(getline(".")) ? "i" : "\\"_cc"
-nnoremap <expr> A len(getline(".")) ? "A" : "\\"_cc"
+nnoremap <expr> i len(getline(".")) ? "i" : "\"_cc"
+nnoremap <expr> A len(getline(".")) ? "A" : "\"_cc"
 
 " Commands
 if has("nvim")
