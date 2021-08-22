@@ -90,7 +90,7 @@ vnoremap <silent> <C-J> "zx"zp`[V`]
 
 " from other resource, vim.jp etc..
 nnoremap <silent> <ESC><ESC> <Cmd>nohlsearch<CR>
-nnoremap <expr> 0 getline(".")[0 : col(".") - 2] =~# "^\s\+$" ? "0" : "^"
+nnoremap <expr> 0 getline(".")[0 : col(".") - 2] =~# "^\\s\\+$" ? "0" : "^"
 nnoremap Y y$
 nnoremap <C-s> :<C-u>%s@\v@@g<Left><Left><Left>
 vnoremap <C-s> :<C-u>'<,'>s@\v@@g<Left><Left><Left>
@@ -99,15 +99,15 @@ cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
 cnoremap <C-d> <Del>
 cnoremap <C-a> <Home>
-inoremap <expr> <C-a> getline(".")[0 : col(".") - 2] =~# "^\s\+$" ? "<C-o>0" : "<C-o>^"
+inoremap <expr> <C-a> getline(".")[0 : col(".") - 2] =~# "^\\s\\+$" ? "<C-o>0" : "<C-o>^"
 noremap!        <C-e> <End>
 
 " nnoremap + <C-a>
 " nnoremap - <C-x>
 
 " Automatically indent with i and A
-nnoremap <expr> i len(getline(".")) ? "i" : "\"_cc"
-nnoremap <expr> A len(getline(".")) ? "A" : "\"_cc"
+nnoremap <expr> i len(getline(".")) ? "i" : "\\"_cc"
+nnoremap <expr> A len(getline(".")) ? "A" : "\\"_cc"
 
 " Commands
 if has("nvim")
