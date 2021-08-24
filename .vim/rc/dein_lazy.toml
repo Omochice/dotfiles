@@ -166,3 +166,43 @@ let g:context_filetype#ignore_patterns = {
 \ 'toml': ['^\s*#\s*'],
 \ }
 """
+
+[[plugins]]
+repo = "nvim-treesitter/nvim-treesitter"
+if = "has('nvim')"
+on_event = "BufRead"
+hook_post_update = "TSUpdate"
+hook_source = """
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+    ensure_installed = 'all',
+    highlight = {
+        enable = false,
+    },
+}
+EOF
+"""
+
+[[plugins]]
+repo = "nvim-treesitter/nvim-treesitter-textobjects"
+on_source = "nvim-treesitter"
+depends = ["nvim-treesitter"]
+hook_source = """
+lua <<EOF
+require'nvim-treesitter.configs'.setup{
+    textobjects = {
+        select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+                ["aF"] = "@function.outer",
+                ["iF"] = "@function.inner",
+                ["aC"] = "@class.outer",
+                ["iC"] = "@class.inner",
+                ["iL"] = "@loop.inner",
+                ["aL"] = "@loop.outer",
+            },
+        },
+    },
+}
+"""
