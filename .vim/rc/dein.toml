@@ -104,10 +104,10 @@ let g:lsp_diagnostics_enabled = v:true
 let g:lsp_diagnostics_virtual_text_enabled = v:false
 let g:lsp_diagnostics_echo_cursor = v:true
 let g:lsp_diagnostics_echo_delay = 100
-nnoremap <silent><C-h>    <Cmd>LspHover<CR>
-nnoremap <silent><Space>f <Cmd>LspDocumentFormatSync<CR>
-nnoremap <silent><Space>d <Cmd>LspDocumentDiagnostics<CR>
-nnoremap <silent><Space>r <Cmd>LspRename<CR>
+nmap <silent> <C-h> <Plug>(lsp-hover)
+nmap <silent> <Space>f <Plug>(lsp-document-format)
+nmap <silent> <Space>d <Plug>(lsp-document-diagnostics)
+nmap <silent> <Space>r <Plug>(lsp-rename)
 
 let g:lsp_settings = {
 \    "efm-langserver": {"disabled": v:false},
@@ -267,7 +267,7 @@ build = "make"
 [[plugins]]
 repo = "thinca/vim-quickrun"
 hook_add = """
-nnoremap <silent><Space>q <Cmd>QuickRun<CR>
+nmap <silent> <Space>q <Plug>(quickrun)
 """
 depends = ["vimproc.vim"]
 
