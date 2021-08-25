@@ -52,26 +52,26 @@ let g:dein#auto_recache = v:true
 # repo = "hrsh7th/vim-vsnip-integ"
 # # }}}
 
-[[plugins]]
-repo = "Omochice/night-owl.vim"
-hook_add = """
-augroup colorcshemeSetting
-    autocmd!
-    autocmd VimEnter * nested colorscheme night-owl
-augroup END
-"""
-
 # [[plugins]]
-# repo = 'ghifarit53/tokyonight-vim'
+# repo = "Omochice/night-owl.vim"
 # hook_add = """
-# let g:tokyonight_style = 'night' " available: night, storm
-# let g:tokyonight_enable_italic = 1
-#
-# augroup colorschemeSetting
+# augroup colorcshemeSetting
 #     autocmd!
-#     autocmd VimEnter * nested colorscheme tokyonight
+#     autocmd VimEnter * nested colorscheme night-owl
 # augroup END
 # """
+
+[[plugins]]
+repo = 'ghifarit53/tokyonight-vim'
+hook_add = """
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = v:false
+
+augroup colorschemeSetting
+    autocmd!
+    autocmd VimEnter * nested colorscheme tokyonight
+augroup END
+"""
 
 [[plugins]]
 repo = "vim-jp/vimdoc-ja"
@@ -133,7 +133,7 @@ repo = "itchyny/lightline.vim"
 hook_add = """
 set noshowmode
 let g:lightline = {
-\    "colorscheme": "nightowl",
+\    "colorscheme": "tokyonight",
 \    "active": {
 \        "left": [
 \            ["mode", "paste"],
