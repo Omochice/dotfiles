@@ -312,31 +312,3 @@ repo = "mattn/vim-findroot"
 hook_add = """
 let g:findroot_not_for_subdir = v:false
 """
-
-# [[plugins]]
-# repo = "nvim-treesitter/nvim-treesitter"
-# if = "has('nvim')"
-# hook_add = """
-# lua << EOF
-# require'nvim-treesitter.configs'.setup {
-#   highlight = {
-#     enable = true,
-#     disable = {},
-#   },
-#   -- Install parsers automatically
-#   ensure_installed = 'all'
-# }
-# EOF
-# """
-# merged = 0
-# hook_source = """
-# lua require("plugins.nvim-treesitter")
-# """
-# hook_post_update = "TSUpdate"
-
-# [[plugins]]
-# repo = "tsuyoshicho/codic-web.vim"
-# hook_add = """
-# let g:codic_web_token = $CODIC_TOKEN
-# """
-#
