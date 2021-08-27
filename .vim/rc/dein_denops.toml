@@ -10,7 +10,7 @@ on_event = "VimEnter"
 repo = "Shougo/ddc.vim"
 hook_source = """
 call ddc#custom#patch_global(
- \ 'sources', ['ddc-vim-lsp', 'vsnip', 'around']
+ \ 'sources', ['vsnip', 'ddc-vim-lsp', 'around']
  \ )
 call ddc#custom#patch_global('sourceOptions', {
   \ '_': {
