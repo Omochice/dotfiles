@@ -123,3 +123,6 @@ on_source = "denops.vim"
 repo = "vim-denops/denops-helloworld.vim"
 on_source = "denops.vim"
 
+[[plugins]]
+repo = "lambdalisue/guise.vim"
+on_source = "denops.vim"
