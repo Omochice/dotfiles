@@ -1,6 +1,8 @@
+let s:config_dir = fnamemodify(expand('<sfile>'), ':h')
+
 " dein.vim settings {{
 " install dir {{{
-let g:dein_dir = expand('~/.vim/dein')
+let g:dein_dir = s:config_dir . '/dein'
 let s:dein_repo_dir = g:dein_dir . '/repos/github.com/Shougo/dein.vim'
 " }}}
 
@@ -18,14 +20,14 @@ if dein#load_state(g:dein_dir)
   call dein#begin(g:dein_dir)
 
   " .toml file
-  let s:rc_dir = expand('~/.vim/rc')
+  let s:rc_dir = s:config_dir . '/rc'
   if !isdirectory(s:rc_dir)
     call mkdir(s:rc_dir, 'p')
   endif
   let s:toml = s:rc_dir . '/dein.toml'
   let s:lazy_toml = s:rc_dir . '/dein_lazy.toml'
-  let s:dein_ft_toml = s:rc_dir . '/deinft.toml'
   let s:dein_denops = s:rc_dir . '/dein_denops.toml'
+  let s:dein_ft_toml = s:rc_dir . '/deinft.toml'
 
   " read toml and cache
   call dein#load_toml(s:toml, {'lazy': 0})
@@ -40,10 +42,10 @@ endif
 " }}}
 
 " plugin installation check {{{
-if !has('vim_starting') && dein#check_install()
+if dein#check_install()
   call dein#install()
   " and check updates,
-  if $DEIN_GITHUB_TOKEN !=# ""
+  if exists($DEIN_GITHUB_TOKEN)
     let g:dein#install_github_api_token = $DEIN_GITHUB_TOKEN
     call dein#check_update(v:true)
   endif
@@ -59,4 +61,7 @@ endif
 " }}}
 
 source ~/.config/vim/vimrc.core
-source ~/.vim/fcitx.vim
+
+if executable('fcitx')
+  execute 'source ' . s:config_dir . '/fcitx.vim'
+endif
