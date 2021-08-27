@@ -58,5 +58,32 @@
       "![${1:alt}](${2:src})"
     ],
     "description": "markdown image snippet"
+  },
+  "grid": {
+    "prefix": [
+      "grid"
+    ],
+    "body": [
+      "<div class=\"grid\">",
+      "<div class=\"column\">",
+      "",
+      "${1:left}",
+      "",
+      "</div>",
+      "<div class=\"column2\">",
+      "",
+      "${2:right}",
+      "",
+      "</div>",
+      "</div>"
+    ],
+    "description": "grid design"
+  },
+  "today": {
+    "prefix": "today",
+    "body": [
+      "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE"
+    ],
+    "description": "today"
   }
 }

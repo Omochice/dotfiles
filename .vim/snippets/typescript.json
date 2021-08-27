@@ -9,7 +9,7 @@
     "description": "for range"
   },
   "for of": {
-    "prefix": "for",
+    "prefix": "forof",
     "body": [
       "for (const $1 of $2) {",
       "\t$3",
@@ -42,8 +42,17 @@
       "lambda"
     ],
     "body": [
-      "(${1:arg}) => $1$2"
+      "(${1:arg}) => {$1$2}"
     ],
     "description": "arrow function"
+  },
+  "async function": {
+    "prefix": "async",
+    "body": [
+      "async function ${1:name}(${2:args}): Promise<${3:return}> {",
+      "\t${4:body}",
+      "}"
+    ],
+    "description": "async function"
   }
 }
