@@ -18,43 +18,32 @@ font:
     falimy: FiraCode Nerd Font Mono
     style: Bold Italic
 
-# Colors (Night Owl)
+# Colors (sonokai)
 colors:
-   # Default colors
   primary:
-    background: "#000000"
-    foreground: "#d6deeb"
+    # background: "0x312c2b"  # original
+    background: "0x000000"
+    foreground: "0xe4e3e1"
 
-  cursor:
-    text: "#011627"
-    cursor: "#d6deeb"
-
-  selection:
-    background: "#1b90dd"
-
-   # Normal colors
   normal:
-    black:   "#011627"
-    red:     "#ef5350"
-    green:   "#22da6e"
-    yellow:  "#c5e478"
-    orange:  "#f78c6c"
-    blue:    "#82aaff"
-    magenta: "#c792ea"
-    cyan:    "#21c7a8"
-    white:   "#ffffff"
+    black: "0x1f1e1c"
+    red: "0xf86882"
+    green: "0xa6cd77"
+    yellow: "0xf0c66f"
+    blue: "0x81d0c9"
+    magenta: "0x9fa0e1"
+    cyan: "0xf08d71"
+    white: "0xe4e3e1"
 
-   # Bright colors
   bright:
-    black:   "#575656"
-    red:     "#ef5350"
-    green:   "#22da6e"
-    yellow:  "#ffeb95"
-    orange:  "#f78c6c"
-    blue:    "#82aaff"
-    magenta: "#c792ea"
-    cyan:    "#7fdbca"
-    white:   "#ffffff"
+    black: "0x1f1e1c"
+    red: "0xf86882"
+    green: "0xa6cd77"
+    yellow: "0xf0c66f"
+    blue: "0x81d0c9"
+    magenta: "0x9fa0e1"
+    cyan: "0xf08d71"
+    white: "0xe4e3e1"
 
 window:
   decorations: full

@@ -5,25 +5,15 @@ let g:dein#auto_recache = v:true
 """
 
 [[plugins]]
-repo = 'Omochice/night-owl.vim'
+repo = "sainnhe/sonokai"
 hook_add = """
-if !has('nvim')
-    augroup colorschemeSetting
-        autocmd!
-        autocmd VimEnter * nested colorscheme night-owl
-    augroup END
-endif
-"""
-
-[[plugins]]
-repo = "EdenEast/nightfox.nvim"
-hook_add = """
-if has('nvim')
-    augroup colorschemeSetting
-        autocmd!
-        autocmd VimEnter * nested colorscheme nightfox
-    augroup END
-endif
+augroup colorschemeSetting
+    autocmd!
+    autocmd VimEnter * nested colorscheme sonokai
+augroup END
+let g:sonokai_style = "espresso"
+let g:sonokai_enable_italic = v:false
+let g:sonokai_disable_italic_comment = v:true
 """
 
 [[plugins]]
@@ -31,7 +21,7 @@ repo = "itchyny/lightline.vim"
 hook_add = """
 set noshowmode
 let g:lightline = {
-\    "colorscheme": 'nightowl',
+\    "colorscheme": "sonokai",
 \    "active": {
 \        "left": [
 \            ["mode", "paste"],
