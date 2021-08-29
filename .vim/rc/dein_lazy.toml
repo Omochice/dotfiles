@@ -194,6 +194,7 @@ require'nvim-treesitter.configs'.setup {
     },
 }
 EOF
+set syntax=
 """
 
 [[plugins]]
