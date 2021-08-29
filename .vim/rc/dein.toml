@@ -67,7 +67,7 @@ hook_add = """
 if !has('nvim')
     augroup colorschemeSetting
         autocmd!
-        autocmd VimEnter * nested colorscheme nightowl
+        autocmd VimEnter * nested colorscheme night-owl
     augroup END
 endif
 """
