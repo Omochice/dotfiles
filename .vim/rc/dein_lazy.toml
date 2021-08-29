@@ -1,4 +1,17 @@
 [[plugins]]
+repo = "easymotion/vim-easymotion"
+hook_add = """
+nmap f <Plug>(easymotion-tn)
+nmap <Space>j <Plug>(easymotion-j)
+nmap <Space>k <Plug>(easymotion-k)
+nmap <Space>l <Plug>(easymotion-lineforward)
+nmap <Space>h <Plug>(easymotion-linebackward)
+let g:EasyMotion_smartcase = v:true
+let g:EasyMotion_use_smartsign_jp = v:true
+"""
+on_map = {n = "<Plug>"}
+
+[[plugins]]
 repo = "hrsh7th/vim-vsnip"
 merged = 0
 hook_add = """
