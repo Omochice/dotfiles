@@ -62,24 +62,85 @@ let g:dein#auto_recache = v:true
 # """
 
 [[plugins]]
-repo = 'ghifarit53/tokyonight-vim'
+repo = 'Omochice/night-owl.vim'
 hook_add = """
-let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_enable_italic = v:false
-
-augroup colorschemeSetting
-    autocmd!
-    autocmd VimEnter * nested colorscheme tokyonight
-augroup END
+if !has('nvim')
+    augroup colorschemeSetting
+        autocmd!
+        autocmd VimEnter * nested colorscheme nightowl
+    augroup END
+endif
 """
+
+[[plugins]]
+repo = "EdenEast/nightfox.nvim"
+hook_add = """
+if has('nvim')
+    augroup colorschemeSetting
+        autocmd!
+        autocmd VimEnter * nested colorscheme nightfox
+    augroup END
+endif
+"""
+
+[[plugins]]
+repo = "itchyny/lightline.vim"
+hook_add = """
+set noshowmode
+let g:lightline = {
+\    "colorscheme": 'nightowl',
+\    "active": {
+\        "left": [
+\            ["mode", "paste"],
+\            ["gitbranch", "readonly", "filename", "modified"],
+\        ],
+\    },
+\    "component_function": {
+\        "gitbranch": "LightlineFugitive",
+\        "filetype": "LightlineFileType",
+\        "fileformat": "LightlineFotmat",
+\    },
+\ }
+
+function! LightlineFileType()
+    if winwidth(0) > 70
+        if strlen(&filetype)
+            return &filetype . " " . WebDevIconsGetFileTypeSymbol()
+        else
+            return "no ft"
+        endif
+    else
+        return ""
+    endif
+endfunction
+
+function! LightlineFotmat()
+    if winwidth(0) > 70
+        return &fileformat .  " " . WebDevIconsGetFileFormatSymbol()
+    else
+        return ""
+    endif
+endfunction
+
+function LightlineFugitive()
+    if exists("*FugitiveHead")
+        let s:branch = FugitiveHead()
+        if s:branch !=# ""
+            return s:branch . " " . ""
+        endif
+    endif
+    return ""
+endfunction
+"""
+depends = ["vim-devicons", "vim-fugitive"]
 
 [[plugins]]
 repo = "vim-jp/vimdoc-ja"
 hook_add = """
-if !has("nvim")
-    set helplang=ja
+if has("nvim")
+    set helplang=en " default
 else
-    set helplang=en
+    set helplang=ja
 endif
 """
 
@@ -127,71 +188,6 @@ repo = "markonm/traces.vim"
 
 [[plugins]]
 repo = "tpope/vim-fugitive"
-
-[[plugins]]
-repo = "itchyny/lightline.vim"
-hook_add = """
-set noshowmode
-let g:lightline = {
-\    "colorscheme": "tokyonight",
-\    "active": {
-\        "left": [
-\            ["mode", "paste"],
-\            ["gitbranch", "readonly", "filename", "modified"]
-\        ]
-\    },
-\    "component_function": {
-\        "gitbranch": "LightlineFugitive",
-\        "filetype": "LightlineFt",
-\        "fileformat": "LightlineFotmat",
-\    },
-\ }
-
-function! LightlineFt()
-    if winwidth(0) > 70
-        if strlen(&filetype)
-            return &filetype . " " . WebDevIconsGetFileTypeSymbol()
-        else
-            return "no ft"
-        endif
-    else
-        return ""
-    endif
-endfunction
-
-function! LightlineFotmat()
-    if winwidth(0) > 70
-        return &fileformat .  " " . WebDevIconsGetFileFormatSymbol()
-    else
-        return ""
-    endif
-endfunction
-
-function LightlineFugitive()
-    if exists("*FugitiveHead")
-        let s:branch = FugitiveHead()
-        " let s:branch = system('git branch --show-current')
-        " FIXME: if use system command, make cursor flicker.
-        if s:branch !=# ""
-            return s:branch . " " . ""
-        endif
-    endif
-    return ""
-endfunction
-"""
-depends = ["vim-devicons", "vim-fugitive"]
-
-[[plugins]]
-repo = "easymotion/vim-easymotion"
-hook_add = """
-nmap f <Plug>(easymotion-tn)
-nmap <Space>j <Plug>(easymotion-j)
-nmap <Space>k <Plug>(easymotion-k)
-nmap <Space>l <Plug>(easymotion-lineforward)
-nmap <Space>h <Plug>(easymotion-linebackward)
-let g:EasyMotion_smartcase = v:true
-let g:EasyMotion_use_smartsign_jp = v:true
-"""
 
 [[plugins]]
 repo = "tyru/caw.vim"
