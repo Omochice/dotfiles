@@ -151,7 +151,7 @@ on_cmd = ["AnyJump", "AnyJunpVisual", "AnyJumpBack", "AnyJumpLastResults"]
 [[plugins]]
 repo = "y0za/vim-reading-vimrc"
 on_cmd = ["ReadingVimrcNext", "ReadingVimrcList", "ReadingVimrcLoad", "ReadingVimrcCopy"]
-hook_add = """
+hook_source = """
 function! s:reading_copy(line1, line2) abort range
   let file = expand("%:t")
   if a:line1== a:line2
