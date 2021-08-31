@@ -60,8 +60,8 @@ inoremap <expr> <C-k> pumvisible() ? '\<C-p>' : '\<Up>'
 " move UP/DOWN at fold context as same as displayed
 nnoremap j gj
 nnoremap k gk
-vnoremap j gj
-vnoremap k gk
+xnoremap j gj
+xnoremap k gk
 
 " disable q:
 nnoremap q: :<C-u>quit
@@ -141,7 +141,7 @@ else
     " make easy changing to terminal normal mode
     tnoremap <expr> <ESC> &filetype ==# 'floaterm' ? '<ESC>' : '<C-W>N'
 
-    "helper commands
+    " helper commands
     command! Vterm vsplit | wincmd l | terminal ++curwin
     command! Hterm split  | wincmd j | terminal ++curwin
 endif
