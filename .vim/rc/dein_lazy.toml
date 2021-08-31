@@ -41,7 +41,7 @@ hook_source = """
 " use with surround's keybinding.
 " may be useful vim and vscode(surround with vscodevim).
 " ^ really?
-execute("source " . g:dein_dir . "/repos/github.com/machakann/vim-sandwich/macros/sandwich/keymap/surround.vim")
+execute "source " . g:dein_dir . "/repos/github.com/machakann/vim-sandwich/macros/sandwich/keymap/surround.vim"
 """
 on_event = "VimEnter"
 
@@ -220,3 +220,15 @@ require'nvim-treesitter.configs'.setup{
     },
 }
 """
+[[plugin]]
+repo = "kana/vim-operator-user"
+
+[[plugins]]
+repo = "yuki-yano/vim-operator-replace"
+# TODO make to work
+# maybe conflict noremap x "_x
+hook_add = """
+map R <Plug>(operator-replace)
+"""
+depends = ["vim-operator-user"]
+on_map = "<Plug>"
