@@ -3,7 +3,6 @@ syntax on
 filetype plugin indent on
 set autoindent
 set autoread
-set clipboard=unnamedplus
 set completeopt=menuone,noselect,preview
 set expandtab
 set hlsearch
@@ -26,29 +25,37 @@ set tabstop=4
 set virtualedit=onemore
 set wildmenu
 
-if has("termguicolors")
+if has('termguicolors')
     set termguicolors
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    let &t_8f = '\<Esc>[38;2;%lu;%lu;%lum'
+    let &t_8b = '\<Esc>[48;2;%lu;%lu;%lum'
 endif
 
-if has("nvim")
+if has('nvim')
     let $NVIM_TUI_ENABLE_TRUE_COLOR = v:true
 else
     set iminsert=2
-    let &t_ti ..= "\e[1 q"
-    let &t_SI ..= "\e[5 q"
-    let &t_SR ..= "\e[3 q"
-    let &t_EI ..= "\e[1 q"
-    let &t_te ..= "\e[0 q"
+    let &t_ti ..= '\e[1 q'
+    let &t_SI ..= '\e[5 q'
+    let &t_SR ..= '\e[3 q'
+    let &t_EI ..= '\e[1 q'
+    let &t_te ..= '\e[0 q'
+endif
+
+if (!has('nvim') || $DISPLAY !=# '') && has('clipboard')
+  if has('unnamedplus')
+     set clipboard& clipboard+=unnamedplus
+  else
+     set clipboard& clipboard+=unnamed
+  endif
 endif
 
 " move cursor wigh hjkl in insert mode
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <C-j> pumvisible() ? '\<C-n>' : '\<Down>'
+inoremap <expr> <C-k> pumvisible() ? '\<C-p>' : '\<Up>'
 
 " move UP/DOWN at fold context as same as displayed
 nnoremap j gj
@@ -63,6 +70,9 @@ nnoremap Q <Cmd>copen<CR>
 " easy force write/quit
 cnoreabbrev qq quit!
 cnoreabbrev ww update!
+
+" FIXME
+" cnoreabbrev w:q wq
 
 " easy regex search
 nnoremap / /\v
@@ -90,7 +100,7 @@ vnoremap <silent> <C-J> "zx"zp`[V`]
 
 " from other resource, vim.jp etc..
 nnoremap <silent> <ESC><ESC> <Cmd>nohlsearch<CR>
-nnoremap <expr> 0 getline(".")[0 : col(".") - 2] =~# "^\\s\\+$" ? "0" : "^"
+nnoremap <expr> 0 getline('.')[0 : col('.') - 2] =~# '^\\s\\+$' ? '0' : '^'
 nnoremap Y y$
 nnoremap <C-s> :<C-u>%s@\v@@g<Left><Left><Left>
 vnoremap <C-s> :<C-u>'<,'>s@\v@@g<Left><Left><Left>
@@ -99,28 +109,29 @@ cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
 cnoremap <C-d> <Del>
 cnoremap <C-a> <Home>
-inoremap <expr> <C-a> getline(".")[0 : col(".") - 2] =~# "^\\s\\+$" ? "<C-o>0" : "<C-o>^"
+inoremap <expr> <C-a> getline('.')[0 : col('.') - 2] =~# '^\\s\\+$' ? '<C-o>0' : '<C-o>^'
 noremap!        <C-e> <End>
 
 " nnoremap + <C-a>
 " nnoremap - <C-x>
 
 " Automatically indent with i and A
-nnoremap <expr> i len(getline(".")) ? "i" : "\"_cc"
-nnoremap <expr> A len(getline(".")) ? "A" : "\"_cc"
+nnoremap <expr> i len(getline('.')) ? 'i' : '"_cc'
+nnoremap <expr> A len(getline('.')) ? 'A' : '"_cc'
 
 " Commands
-if has("nvim")
+if has('nvim')
     " neovim terminal settings
     " make easy changing to terminal normal mode
-    tnoremap <expr> <ESC> &filetype ==# "floaterm" ? "<ESC>" : "\<C-\><C-n>"
+
+    tnoremap <expr> <ESC> &filetype ==# 'floaterm' ? '<ESC>' : '\<C-\><C-n>'
     tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
 
     " feed insert mode when move terminal window
     autocmd TermOpen * startinsert
-    autocmd WinEnter * if &buftype ==# "terminal" | startinsert | endif
+    autocmd WinEnter * if &buftype ==# 'terminal' | startinsert | endif
     " auto close
-    autocmd TermClose * call feedkeys("\<CR>")
+    autocmd TermClose * call feedkeys('\<CR>')
 
     " helper commands
     command! Vterm vsplit | wincmd l | terminal
@@ -128,14 +139,14 @@ if has("nvim")
 else
     " Vim terminal settings
     " make easy changing to terminal normal mode
-    tnoremap <expr> <ESC> &filetype ==# "floaterm" ? "<ESC>" : "<C-W>N"
+    tnoremap <expr> <ESC> &filetype ==# 'floaterm' ? '<ESC>' : '<C-W>N'
 
     "helper commands
     command! Vterm vsplit | wincmd l | terminal ++curwin
     command! Hterm split  | wincmd j | terminal ++curwin
 endif
 
-if !has("gui_running")
+if !has('gui_running')
     set t_Co=256
     augroup term_vim_c_space
         autocmd!

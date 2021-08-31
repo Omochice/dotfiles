@@ -181,6 +181,7 @@ depends = ["vim-textobj-user"]
 
 [[plugins]]
 repo = "thinca/vim-textobj-between"
+depends = ["vim-textobj-user"]
 
 [[plugins]]
 repo = "terryma/vim-expand-region"
@@ -192,6 +193,10 @@ depends = ["vim-textobj-user", "vim-textobj-line"]
 
 [[plugins]]
 repo = "kana/vim-textobj-indent"
+depends = ["vim-textobj-user"]
+
+[[plugin]]
+repo = "kana/vim-operator-user"
 
 [[plugins]]
 repo = "Shougo/vimproc.vim"

@@ -43,7 +43,7 @@ hook_source = """
 " ^ really?
 execute "source " . g:dein_dir . "/repos/github.com/machakann/vim-sandwich/macros/sandwich/keymap/surround.vim"
 """
-on_event = "VimEnter"
+on_event = "BufRead"
 
 [[plugins]]
 repo = "Shougo/echodoc.vim"
@@ -194,7 +194,6 @@ require'nvim-treesitter.configs'.setup {
     },
 }
 EOF
-set syntax=
 """
 
 [[plugins]]
@@ -220,15 +219,13 @@ require'nvim-treesitter.configs'.setup{
     },
 }
 """
-[[plugin]]
-repo = "kana/vim-operator-user"
 
 [[plugins]]
+# FIXME
+# make to work. maybe conflict with clipboard?
 repo = "yuki-yano/vim-operator-replace"
-# TODO make to work
-# maybe conflict noremap x "_x
+depends = "vim-operator-user"
+on_map = {n = "<Plug>", x = "<Plug>"}
 hook_add = """
 map R <Plug>(operator-replace)
 """
-depends = ["vim-operator-user"]
-on_map = "<Plug>"
