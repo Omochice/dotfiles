@@ -10,7 +10,7 @@ on_event = "VimEnter"
 repo = "Shougo/ddc.vim"
 hook_source = """
 call ddc#custom#patch_global(
- \ 'sources', ['vsnip', 'ddc-vim-lsp', 'around']
+ \ 'sources', ['vsnip', 'ddc-vim-lsp', 'buffer']
  \ )
 call ddc#custom#patch_global('sourceOptions', {
   \ '_': {
@@ -28,10 +28,10 @@ call ddc#custom#patch_global('sourceOptions', {
   \ 'vsnip': {'mark': 'Snippet'},
   \ })
 call ddc#custom#patch_filetype(
-  \ ['toml'], 'sources', ['necovim', 'around']
+  \ ['toml'], 'sources', ['necovim', 'buffer']
   \ )
 call ddc#custom#patch_filetype(
-  \ ['vim'], 'sources', ['ddc-vim-lsp', 'necovim', 'around']
+  \ ['vim'], 'sources', ['ddc-vim-lsp', 'necovim', 'buffer']
   \ )
 call ddc#enable()
 inoremap <silent><expr><C-Space> ddc#manual_complete()
@@ -117,10 +117,6 @@ repo = "yuki-yano/dps-slack-status.vim"
 hook_add = """
 let g:slack_status_emoji = ":dadparrot:"
 """
-on_source = "denops.vim"
-
-[[plugins]]
-repo = "vim-denops/denops-helloworld.vim"
 on_source = "denops.vim"
 
 [[plugins]]
