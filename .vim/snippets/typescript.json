@@ -54,5 +54,17 @@
       "}"
     ],
     "description": "async function"
+  },
+  "test": {
+    "prefix": "test",
+    "body": [
+      "Deno.test({",
+      "\tname: ${1:name},",
+      "\tfn: () => {",
+      "\t\t$2",
+      "\t}",
+      "})"
+    ],
+    "description": "Deno.test"
   }
 }
