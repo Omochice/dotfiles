@@ -15,8 +15,8 @@ on_map = {n = "<Plug>"}
 repo = "hrsh7th/vim-vsnip"
 merged = 0
 hook_add = """
-let g:vsnip_snippet_dir = $HOME .. "/.vim/snippets/"
-imap <expr><C-n> vsnip#jumpable(v:true) ? "\<Plug>(vsnip-jump-next)" : "\<C-n>"
+let g:vsnip_snippet_dir = $HOME .. '/.vim/snippets/'
+imap <expr><C-n> vsnip#jumpable(v:true) ? '<Plug>(vsnip-jump-next)' : '<C-n>'
 " imap <expr><Tab> vsnip#jumpable(v:true) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<LT>Tab>', "i")
 """
 on_event = "InsertEnter"
@@ -27,10 +27,7 @@ hook_source = """
 " too lang to write here
 source ~/.vim/mysettings/lexima.vim
 
-" FIXME
-" if use double quote like "<LT>CR>",
-" it show like piece like =lexima#insmode#_map_impl("<CR>")`
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : lexima#expand('<LT>Tab>', "i")
+inoremap <silent><expr> <Tab> pumvisible() ? '<C-n>' : lexima#expand('<LT>Tab>', 'i')
 """
 marged = 0
 on_event = "InsertEnter"
