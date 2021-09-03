@@ -53,7 +53,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+r exec rofi -no-lazy-grab -show drun -modi drun -theme ~/.config/rofi/launcher.rasi
 bindsym $mod+p exec bash ~/.config/rofi/screenshot.bash
 bindsym $mod+Tab exec rofi -no-lazy-grab -show window -theme ~/.config/rofi/window-switcher.rasi
-bindsym $mod+m exec rofimoji --action copy --clipboarder xsel --selector-arg="-theme ~/.config/rofi/rofimoji.rasi"
+bindsym $mod+m exec rofimoji --action copy --clipboarder xsel --selector-arg="-theme ~/.config/rofi/rofimoji.rasi" --no-frecency
 
 # change focus
 bindsym $mod+h focus left
@@ -208,4 +208,4 @@ exec --no-startup-id i3-workscreen && nitrogen --restore
 exec --no-startup-id xfce4-power-manager
 
 # autostart(with gui)
-exec --no-startup-id i3-msg 'workspace -1 -;exec alacritty'
+exec --no-startup-id i3-msg 'workspace -1 -;exec $TERMINAL;workspace -2-;exec $BROWSER;workspace -1 -'
