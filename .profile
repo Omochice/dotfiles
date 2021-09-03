@@ -13,10 +13,13 @@ else
 fi
 
 # golang
-if [[ -e $HOME/.go ]]; then
-    export GOROOT=$HOME/.go
+# if [[ -e $HOME/.go ]]; then
+if [ -x "$(command -v go)" ]; then
     export GOPATH=$HOME/.go
     export PATH=$PATH:$GOPATH/bin
+    if [ ! -e $GOPATH ]; then
+        mkdir $GOPATH/bin -p
+    fi
 fi
 
 # rust
