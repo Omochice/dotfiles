@@ -14,6 +14,7 @@ if &runtimepath !~# '/dein.vim'
   execute 'set runtimepath^=' . s:dein_repo_dir
 endif
 " }}}
+"
 
 " begin settings {{{
 if dein#load_state(g:dein_dir)
@@ -51,7 +52,7 @@ endif
 if dein#check_install()
   call dein#install()
   " and check updates,
-  if exists($DEIN_GITHUB_TOKEN)
+  if $DEIN_GITHUB_TOKEN !=# ''
     let g:dein#install_github_api_token = $DEIN_GITHUB_TOKEN
     call dein#check_update(v:true)
   endif
