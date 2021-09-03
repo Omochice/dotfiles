@@ -37,7 +37,7 @@ repo = "machakann/vim-sandwich"
 hook_source = """
 " use with surround's keybinding.
 " may be useful vim and vscode(surround with vscodevim).
-" ^ really?
+"        ^ really?
 execute "source " . g:dein_dir . "/repos/github.com/machakann/vim-sandwich/macros/sandwich/keymap/surround.vim"
 """
 on_event = "BufRead"
@@ -66,7 +66,7 @@ on_event = "BufWritePre"
 [[plugins]]
 repo = "z0mbix/vim-shfmt"
 hook_add = """
-let g:shfmt_extra_args = "-i 4 -ci -bn -s"
+let g:shfmt_extra_args = '-i 4 -ci -bn -s'
 let g:shfmt_fmt_on_save = v:true
 """
 on_ft = ["sh", "bash"]
@@ -83,7 +83,7 @@ on_ft = "go"
 [[plugins]]
 repo = "alvan/vim-closetag"
 hook_add = """
-let g:closetag_filenames = "*.html, *,vue, *.xml, *.jsx, *.erb"
+let g:closetag_filenames = '*.html, *,vue, *.xml, *.jsx, *.erb'
 """
 on_ft = ["html", "vue", "xml", "erb", "jsx", "htmldjango"]
 
@@ -91,7 +91,7 @@ on_ft = ["html", "vue", "xml", "erb", "jsx", "htmldjango"]
 repo = "heavenshell/vim-pydocstring"
 build = "make install"
 hook_add = """
-let g:pydocstring_formatter = "google"
+let g:pydocstring_formatter = 'google'
 nnoremap <silent> <Space>pd <Cmd>PydocstringFormat<CR>
 """
 on_cmd = ["Pydocstring", "PydocstringFormat"]
@@ -122,7 +122,7 @@ repo = "previm/previm"
 on_cmd = "PrevimOpen"
 on_ft = "markdown"
 hook_add = """
-let g:previm_open_cmd = "vivaldi-stable"
+let g:previm_open_cmd = 'vivaldi-stable'
 """
 
 [[plugins]]
@@ -150,7 +150,7 @@ repo = "y0za/vim-reading-vimrc"
 on_cmd = ["ReadingVimrcNext", "ReadingVimrcList", "ReadingVimrcLoad", "ReadingVimrcCopy"]
 hook_source = """
 function! s:reading_copy(line1, line2) abort range
-  let file = expand("%:t")
+  let file = expand('%:t')
   if a:line1== a:line2
     let line = printf('L%d', a:line1)
   else
@@ -173,8 +173,8 @@ on_event = "BufRead"
 repo = "Shougo/context_filetype.vim"
 hook_source = """
 let g:context_filetype#ignore_patterns = {
-\ 'toml': ['^\s*#\s*'],
-\ }
+\   'toml': ['^\s*#\s*'],
+\}
 """
 
 [[plugins]]
@@ -219,7 +219,7 @@ require'nvim-treesitter.configs'.setup{
 
 [[plugins]]
 # FIXME
-# make to work. maybe conflict with clipboard?
+# this is not work. conflict with clipboard?
 repo = "yuki-yano/vim-operator-replace"
 depends = "vim-operator-user"
 on_map = {n = "<Plug>", x = "<Plug>"}

@@ -11,7 +11,7 @@ augroup colorschemeSetting
     autocmd!
     autocmd VimEnter * nested colorscheme sonokai
 augroup END
-let g:sonokai_style = "espresso"
+let g:sonokai_style = 'espresso'
 let g:sonokai_enable_italic = v:false
 let g:sonokai_disable_italic_comment = v:true
 """
@@ -21,48 +21,48 @@ repo = "itchyny/lightline.vim"
 hook_add = """
 set noshowmode
 let g:lightline = {
-\    "colorscheme": "sonokai",
-\    "active": {
-\        "left": [
-\            ["mode", "paste"],
-\            ["gitbranch", "readonly", "filename", "modified"],
-\        ],
-\    },
-\    "component_function": {
-\        "gitbranch": "LightlineFugitive",
-\        "filetype": "LightlineFileType",
-\        "fileformat": "LightlineFotmat",
-\    },
-\ }
+\   'colorscheme': 'sonokai',
+\   'active': {
+\       'left': [
+\           ['mode', 'paste'],
+\           ['gitbranch', 'readonly', 'filename', 'modified'],
+\       ],
+\   },
+\   'component_function': {
+\       'gitbranch': 'LightlineFugitive',
+\       'filetype': 'LightlineFileType',
+\       'fileformat': 'LightlineFotmat',
+\   },
+\}
 
 function! LightlineFileType()
     if winwidth(0) > 70
         if strlen(&filetype)
-            return &filetype . " " . WebDevIconsGetFileTypeSymbol()
+            return &filetype . ' ' . WebDevIconsGetFileTypeSymbol()
         else
-            return "no ft"
+            return 'no ft'
         endif
     else
-        return ""
+        return ''
     endif
 endfunction
 
 function! LightlineFotmat()
     if winwidth(0) > 70
-        return &fileformat .  " " . WebDevIconsGetFileFormatSymbol()
+        return &fileformat .  ' ' . WebDevIconsGetFileFormatSymbol()
     else
-        return ""
+        return ''
     endif
 endfunction
 
 function LightlineFugitive()
-    if exists("*FugitiveHead")
+    if exists('*FugitiveHead')
         let s:branch = FugitiveHead()
-        if s:branch !=# ""
-            return s:branch . " " . ""
+        if s:branch !=# ''
+            return s:branch . ' ' . ''
         endif
     endif
-    return ""
+    return ''
 endfunction
 """
 depends = ["vim-devicons", "vim-fugitive"]
@@ -70,7 +70,7 @@ depends = ["vim-devicons", "vim-fugitive"]
 [[plugins]]
 repo = "vim-jp/vimdoc-ja"
 hook_add = """
-if has("nvim")
+if has('nvim')
     set helplang=en " default
 else
     set helplang=ja
@@ -82,7 +82,7 @@ repo = "cocopon/vaffle.vim"
 hook_add = """
 command! TVaffle :tabnew | :Vaffle
 autocmd StdinReadPre * let s:std_in = v:true
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Vaffle | endif
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | Vaffle | endif
 
 " if load this plugin, use vaffle instead of netrw
 let g:loaded_netrw             = v:true
@@ -104,12 +104,12 @@ nmap <silent> <Space>d <Plug>(lsp-document-diagnostics)
 nmap <silent> <Space>r <Plug>(lsp-rename)
 
 let g:lsp_settings = {
-\    "efm-langserver": {"disabled": v:false},
-\    "html-langserver": {"allowlist": ["html", "htmldjango"]},
+\   'efm-langserver': {'disabled': v:false},
+\   'html-langserver': {'allowlist': ['html', 'htmldjango']},
 \}
 let g:lsp_text_edit_enabled = v:true
-let g:lsp_diagnostics_signs_error = {"text": "😡"}
-let g:lsp_diagnostics_signs_warning = {"text": "🤔"}
+let g:lsp_diagnostics_signs_error = {'text': '😡'}
+let g:lsp_diagnostics_signs_warning = {'text': '🤔'}
 """
 
 [[plugins]]
@@ -155,7 +155,7 @@ nmap <C-p> [fzf-p]
 nnoremap [fzf-p]<C-p> <Cmd>FzfPreviewDirectoryFiles<CR>
 nnoremap [fzf-p]c     <Cmd>FzfPreviewCommandPaletteRpc<CR>
 nnoremap [fzf-p]g     :<C-u>FzfPreviewProjectGrepRpc<Space>
-let g:fzf_preview_fzf_preview_window_option = "right:50%"
+let g:fzf_preview_fzf_preview_window_option = 'right:50%'
 let g:fzf_preview_use_dev_icons = v:true
 let g:fzf_preview_dev_icon_prefix_string_length = 3
 let g:fzf_preview_dev_icons_limit = 5000
