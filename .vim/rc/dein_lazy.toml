@@ -229,3 +229,8 @@ on_map = {n = "<Plug>", x = "<Plug>"}
 hook_add = """
 map R <Plug>(operator-replace)
 """
+
+[[plugins]]
+repo = "mattn/vim-treesitter"
+build = "cd server && go build"
+if = "!has('nvim')"
