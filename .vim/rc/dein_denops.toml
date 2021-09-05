@@ -31,7 +31,7 @@ call ddc#custom#patch_filetype(
   \ ['toml'], 'sources', ['necovim', 'buffer']
   \ )
 call ddc#custom#patch_filetype(
-  \ ['vim'], 'sources', ['ddc-vim-lsp', 'necovim', 'buffer']
+  \ ['vim'], 'sources', ['vsnip', 'ddc-vim-lsp', 'necovim', 'buffer']
   \ )
 call ddc#enable()
 inoremap <silent><expr><C-Space> ddc#manual_complete()
@@ -94,8 +94,8 @@ repo = "Omochice/dps-charcounter-vim"
 on_source = "denops.vim"
 
 [[plugins]]
-repo = "Omochice/dps-codic-vim"
-# repo = "~/workspace/dps-codic-vim"
+# repo = "Omochice/dps-codic-vim"
+repo = "~/workspace/dps-codic-vim"
 on_source = "denops.vim"
 
 [[plugins]]
