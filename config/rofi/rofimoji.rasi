@@ -87,10 +87,16 @@ element {
     orientation:                    vertical;
 }
 
+element-icon {
+    size: 0;
+}
+
 element-text {
+    background-color:               inherit;
+    text-color:                     inherit;
     expand:                         true;
     font:                           "Noto CJK 20";
-    padding:                        0% 0% 2% 0%;
+    padding:                        1% 0% 1% 0%;
 }
 
 element selected {
