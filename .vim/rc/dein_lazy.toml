@@ -122,7 +122,7 @@ repo = "previm/previm"
 on_cmd = "PrevimOpen"
 on_ft = "markdown"
 hook_add = """
-let g:previm_open_cmd = 'vivaldi-stable'
+let g:previm_open_cmd = '$BROWSER'
 """
 
 [[plugins]]
