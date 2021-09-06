@@ -131,7 +131,8 @@ if has('nvim')
     autocmd TermOpen * startinsert
     autocmd WinEnter * if &buftype ==# 'terminal' | startinsert | endif
     " auto close
-    autocmd TermClose * call feedkeys('<CR>')
+    " autocmd TermClose * call feedkeys('<CR>') " cannot work
+    autocmd TermClose * call feedkeys("\<CR>")
 
     " helper commands
     command! Vterm vsplit | wincmd l | terminal
