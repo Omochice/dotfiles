@@ -208,4 +208,4 @@ exec --no-startup-id i3-workscreen && nitrogen --restore
 exec --no-startup-id xfce4-power-manager
 
 # autostart(with gui)
-exec --no-startup-id i3-msg 'workspace -1 -;exec $TERMINAL;workspace -2-;exec $BROWSER;workspace -1 -'
+exec --no-startup-id i3-msg 'workspace -1 -;exec $TERMINAL'
