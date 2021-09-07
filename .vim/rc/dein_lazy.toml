@@ -52,8 +52,107 @@ call echodoc#enable()
 """
 
 [[plugins]]
+repo = "cocopon/vaffle.vim"
+hook_add = """
+command! TVaffle :tabnew | :Vaffle
+autocmd StdinReadPre * let s:std_in = v:true
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | Vaffle | endif
+
+" if load this plugin, use vaffle instead of netrw
+let g:loaded_netrw             = v:true
+let g:loaded_netrwPlugin       = v:true
+let g:loaded_netrwSettings     = v:true
+let g:loaded_netrwFileHandlers = v:true
+"""
+on_cmd = "Vaffle"
+
+[[plugins]]
+repo = "tyru/caw.vim"
+hook_add = """
+" Brute force solution
+" https://github.com/tyru/caw.vim/issues/166
+" augroup cawSetting
+"     autocmd!
+"     autocmd FileType * nmap <buffer><Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
+"     autocmd FileType * vmap <buffer><Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
+" augroup END
+nmap gc <Plug>(caw:prefix)
+vmap gc <Plug>(caw:prefix)
+nmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
+vmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
+"""
+depends = ["context_filetype.vim", "vim-repeat"]
+on_map = {n = "<Plug>", v = "<Plug>"}
+# FIXME
+# not work dot-repeat in caw
+
+[[plugins]]
+repo = "markonm/traces.vim"
+on_event = "CmdlineEnter"
+
+[[plugins]]
+repo = "liuchengxu/vista.vim"
+depends = ["vim-lsp"]
+on_cmd = "Vista"
+hook_add = """
+let g:vista_default_executive = 'vim_lsp'
+"""
+
+[[plugins]]
+repo = "simeji/winresizer"
+hook_add = """
+nnoremap <C-e> <Cmd>WinResizerStartResize<CR>
+let g:winresizer_vert_resize = 3
+"""
+on_cmd = "WinResizerStartResize"
+
+[[plugins]]
+repo = "thinca/vim-quickrun"
+hook_add = """
+nmap <silent> <Space>q <Plug>(quickrun)
+let g:quickrun_config = extend(get(g:, 'quickrun_config', {}), {
+\   '_': {
+\       'outputter/buffer/close_on_empty': v:true,
+\       'hook/time/enable': 1,
+\       'runner': has('nvim') ? 'neovim_job' : exists('*ch_close_in') ? 'job' : 'vimproc'
+\   },
+\   'typescript': {
+\       'command': 'deno',
+\       'cmdopt': '--allow-all --unstable',
+\       'exec': 'NO_COLOR=1 %c run %o %s',
+\   },
+\})
+"""
+depends = ["vimproc.vim", "vim-quickrun-neovim-job"]
+on_map = { n = "<Plug>" }
+
+[[plugins]]
+repo = "lambdalisue/vim-quickrun-neovim-job"
+
+[[plugins]]
+repo = "voldikss/vim-floaterm"
+hook_add = """
+command! Lazygit FloatermNew --autoclose=2 --height=1.0 --width=1.0 --title=lazygit lazygit
+command! Fkill FloatermKill
+nnoremap <silent><C-g> <Cmd>Lazygit<CR>
+"""
+on_cmd = ["Fkill", "Lazygit"]
+
+[[plugins]]
+repo = "ntpeters/vim-better-whitespace"
+hook_add = """
+let g:better_whitespace_enabled = v:true
+let g:strip_whitespace_on_save = v:false
+"""
+on_cmd = ["StripWhitespace", "StripWhitespaceOnChangedLines"]
+
+[[plugins]]
 repo = "cespare/vim-toml"
 on_ft = "toml"
+
+[[plugins]]
+repo = "Shougo/vimproc.vim"
+build = "make"
 
 [[plugins]]
 repo = "ruby-formatter/rufo-vim"
@@ -231,3 +330,4 @@ map R <Plug>(operator-replace)
 repo = "mattn/vim-treesitter"
 build = "cd server && go build"
 if = "!has('nvim')"
+
