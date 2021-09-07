@@ -24,11 +24,25 @@
     ]
   },
   "marp's lead class setting": {
-    "prefix": "class.lead",
+    "prefix": [
+      "class.lead",
+      "lead"
+    ],
     "body": [
       "<!-- _class: lead -->",
       "$1"
     ]
+  },
+  "marp's title": {
+    "prefix": [
+      "class.title",
+      "title"
+    ],
+    "body": [
+      "<!-- _class: title -->",
+      "$1"
+    ],
+    "description": "title"
   },
   "gh-page header": {
     "prefix": "gh-pages",

@@ -40,5 +40,16 @@
       "import pandas as pd",
       "$1"
     ]
+  },
+  "parent working directory": {
+    "prefix": [
+      "here",
+      "pwd"
+    ],
+    "body": [
+      "pwd = Path(__file__).resolve().parent",
+      "$1"
+    ],
+    "description": "show PWD"
   }
 }
