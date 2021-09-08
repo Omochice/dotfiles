@@ -3,7 +3,7 @@ repo = "vim-denops/denops.vim"
 hook_add = """
 command! DenopsRestart call denops#server#restart()
 """
-on_event = "VimEnter"
+on_event = "BufRead"
 
 # {{{ ddc
 [[plugins]]
