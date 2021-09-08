@@ -138,6 +138,48 @@ let g:strip_whitespace_on_save = v:false
 on_cmd = ["StripWhitespace", "StripWhitespaceOnChangedLines"]
 
 [[plugins]]
+repo = "terryma/vim-expand-region"
+hook_add = """
+vmap v <Plug>(expand_region_expand)
+vmap V <Plug>(expand_region_shrink)
+if has('nvim')
+    let g:expand_region_text_objects = {
+          \ 'iw'  :0,
+          \ 'iW'  :0,
+          \ 'i"'  :0,
+          \ 'i''' :0,
+          \ 'i]'  :1,
+          \ 'ib'  :1,
+          \ 'iB'  :1,
+          \ 'il'  :1,
+          \ 'ip'  :1,
+          \ 'iL'  :1,
+          \ 'aL'  :1,
+          \ 'iF'  :1,
+          \ 'aF'  :1,
+          \ 'iC'  :1,
+          \ 'aC'  :1,
+          \ 'ie'  :0,
+          \ }
+else
+    let g:expand_region_text_objects = {
+          \ 'iw'  :0,
+          \ 'iW'  :0,
+          \ 'i"'  :0,
+          \ 'i''' :0,
+          \ 'i]'  :1,
+          \ 'ib'  :1,
+          \ 'iB'  :1,
+          \ 'il'  :1,
+          \ 'ip'  :1,
+          \ 'ie'  :0,
+          \ }
+endif
+"""
+on_map = { v = "<Plug>" }
+
+depends = ["vim-textobj-user", "vim-textobj-line"]
+[[plugins]]
 repo = "cespare/vim-toml"
 on_ft = "toml"
 
