@@ -130,15 +130,6 @@ on_map = { n = "<Plug>" }
 repo = "lambdalisue/vim-quickrun-neovim-job"
 
 [[plugins]]
-repo = "voldikss/vim-floaterm"
-hook_add = """
-command! Lazygit FloatermNew --autoclose=2 --height=1.0 --width=1.0 --title=lazygit lazygit
-command! Fkill FloatermKill
-nnoremap <silent><C-g> <Cmd>Lazygit<CR>
-"""
-on_cmd = ["Fkill", "Lazygit"]
-
-[[plugins]]
 repo = "ntpeters/vim-better-whitespace"
 hook_add = """
 let g:better_whitespace_enabled = v:true
