@@ -29,13 +29,24 @@ let g:lightline = {
 \       ],
 \   },
 \   'component_function': {
-\       'gitbranch': 'LightlineFugitive',
+\       'gitbranch': 'LightlineBranch',
 \       'filetype': 'LightlineFileType',
 \       'fileformat': 'LightlineFotmat',
 \   },
 \}
 
-function! LightlineFileType()
+let s:lightline_branchname = ''
+
+augroup lightline_branch
+    autocmd!
+    autocmd BufWinEnter,WinEnter * call <SID>getBranch()
+augroup END
+
+function! s:getBranch() abort
+    let s:lightline_branchname = system('git rev-parse --abbrev-ref HEAD 2>/dev/null | head -c -1')
+endfunction
+
+function! LightlineFileType() abort
     if winwidth(0) > 70
         if strlen(&filetype)
             return &filetype . ' ' . WebDevIconsGetFileTypeSymbol()
@@ -47,7 +58,7 @@ function! LightlineFileType()
     endif
 endfunction
 
-function! LightlineFotmat()
+function! LightlineFotmat() abort
     if winwidth(0) > 70
         return &fileformat .  ' ' . WebDevIconsGetFileFormatSymbol()
     else
@@ -55,17 +66,15 @@ function! LightlineFotmat()
     endif
 endfunction
 
-function LightlineFugitive()
-    if exists('*FugitiveHead')
-        let s:branch = FugitiveHead()
-        if s:branch !=# ''
-            return s:branch . ' ' . ''
-        endif
+function LightlineBranch() abort
+    if s:lightline_branchname ==# ''
+    	return ''
+    else
+        return s:lightline_branchname . ' '
     endif
-    return ''
 endfunction
 """
-depends = ["vim-devicons", "vim-fugitive"]
+# depends = ["vim-devicons"]
 
 [[plugins]]
 repo = "vim-jp/vimdoc-ja"
@@ -101,9 +110,6 @@ let g:lsp_diagnostics_signs_warning = {'text': '🤔'}
 [[plugins]]
 repo = "mattn/vim-lsp-settings"
 depends = "vim-lsp"
-
-[[plugins]]
-repo = "tpope/vim-fugitive"
 
 [[plugins]]
 repo = "kana/vim-repeat"
