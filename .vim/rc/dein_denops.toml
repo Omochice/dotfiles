@@ -10,7 +10,7 @@ on_event = "BufRead"
 repo = "Shougo/ddc.vim"
 hook_source = """
 call ddc#custom#patch_global(
- \ 'sources', ['vsnip', 'ddc-vim-lsp', 'buffer']
+ \ 'sources', ['vsnip', 'ddc-vim-lsp', 'around', 'buffer']
  \ )
 call ddc#custom#patch_global('sourceOptions', {
   \ '_': {
@@ -28,10 +28,10 @@ call ddc#custom#patch_global('sourceOptions', {
   \ 'vsnip': {'mark': 'Snippet'},
   \ })
 call ddc#custom#patch_filetype(
-  \ ['toml'], 'sources', ['necovim', 'buffer']
+  \ ['toml'], 'sources', ['necovim', 'around', 'buffer']
   \ )
 call ddc#custom#patch_filetype(
-  \ ['vim'], 'sources', ['vsnip', 'ddc-vim-lsp', 'necovim', 'buffer']
+  \ ['vim'], 'sources', ['vsnip', 'ddc-vim-lsp', 'necovim', 'around', 'buffer']
   \ )
 call ddc#enable()
 inoremap <silent><expr><C-Space> ddc#manual_complete()
