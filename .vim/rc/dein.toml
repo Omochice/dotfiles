@@ -66,7 +66,7 @@ function! LightlineFotmat() abort
     endif
 endfunction
 
-function LightlineBranch() abort
+function! LightlineBranch() abort
     if s:lightline_branchname ==# ''
     	return ''
     else
