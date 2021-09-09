@@ -1,8 +1,8 @@
-let s:config_dir = fnamemodify(expand('<sfile>'), ':h')
+let g:config_dir = fnamemodify(expand('<sfile>'), ':h')
 
 " dein.vim settings {{
 " install dir {{{
-let g:dein_dir = s:config_dir . '/dein'
+let g:dein_dir = g:config_dir . '/dein'
 let s:dein_repo_dir = g:dein_dir . '/repos/github.com/Shougo/dein.vim'
 " }}}
 
@@ -20,7 +20,7 @@ endif
 if dein#load_state(g:dein_dir)
   call dein#begin(g:dein_dir)
   " .toml file
-  let s:rc_dir = s:config_dir . '/rc'
+  let s:rc_dir = g:config_dir . '/rc'
   if !isdirectory(s:rc_dir)
     call mkdir(s:rc_dir, 'p')
   endif
@@ -70,5 +70,5 @@ endif
 source ~/.config/vim/vimrc.core
 
 if executable('fcitx')
-  execute 'source ' . s:config_dir . '/fcitx.vim'
+  execute 'source ' . g:config_dir . '/fcitx.vim'
 endif
