@@ -3,7 +3,7 @@
 
 function fzf_history
     history merge
-    history -z | fzf --read0 --print0 --height=40% | read -lz result
+    history -z | fzf --read0 --print0 --height=40% --tiebreak=index -q (commandline) | read -lz result
     and commandline $result
     commandline -f repaint
 end
