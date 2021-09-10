@@ -32,13 +32,18 @@ on_event = "InsertEnter"
 
 [[plugins]]
 repo = "machakann/vim-sandwich"
-hook_source = """
-" use with surround's keybinding.
-" may be useful vim and vscode(surround with vscodevim).
-"        ^ really?
-execute 'source ' . g:dein_dir . '/repos/github.com/machakann/vim-sandwich/macros/sandwich/keymap/surround.vim'
+# `h dein` says that You cannot use lazy <Plug> mappings twice.
+# but it looks work for me. 
+hook_add = """
+let g:operator_sandwich_no_default_key_mappings = v:true
+nmap ys <Plug>(operator-sandwich-add)
+nmap ds <Plug>(operator-sandwich-delete)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-query-a)
+nmap dsb <Plug>(operator-sandwich-delete)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-auto-a)
+nmap cs <Plug>(operator-sandwich-replace)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-query-a)
+nmap csb <Plug>(operator-sandwich-replace)<Plug>(operator-sandwich-release-count)<Plug>(textobj-sandwich-auto-a)
+xmap S <Plug>(operator-sandwich-add)
 """
-on_event = "BufRead"
+on_map = { n = "<Plug>(operator-sandwich-", x = "<Plug>(operator-sandwich-" }
 
 [[plugins]]
 repo = "Shougo/echodoc.vim"
@@ -82,8 +87,6 @@ vmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
 """
 depends = ["context_filetype.vim", "vim-repeat"]
 on_map = {n = "<Plug>", v = "<Plug>"}
-# FIXME
-# not work dot-repeat in caw
 
 [[plugins]]
 repo = "markonm/traces.vim"
