@@ -52,6 +52,7 @@ call echodoc#enable()
 [[plugins]]
 repo = "cocopon/vaffle.vim"
 hook_add = """
+cnoreabbrev va Vaffle
 command! TVaffle tabnew | Vaffle
 autocmd StdinReadPre * let s:std_in = v:true
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | Vaffle | endif
