@@ -183,7 +183,8 @@ else
 endif
 """
 on_map = { v = "<Plug>" }
-depends = ["vim-textobj-user", "vim-textobj-line"]
+# if nvim, depends treesitter-textobjects.
+depends = ["vim-textobj-user", "vim-textobj-line", "vim-textobj-anyblock"]
 
 [[plugins]]
 repo = "cespare/vim-toml"
