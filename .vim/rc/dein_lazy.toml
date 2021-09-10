@@ -75,11 +75,6 @@ repo = "tyru/caw.vim"
 hook_add = """
 " Brute force solution
 " https://github.com/tyru/caw.vim/issues/166
-" augroup cawSetting
-"     autocmd!
-"     autocmd FileType * nmap <buffer><Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
-"     autocmd FileType * vmap <buffer><Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
-" augroup END
 nmap gc <Plug>(caw:prefix)
 vmap gc <Plug>(caw:prefix)
 nmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
