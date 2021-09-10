@@ -141,7 +141,7 @@ hook_add = """
 let g:better_whitespace_enabled = v:true
 let g:strip_whitespace_on_save = v:false
 """
-on_cmd = ["StripWhitespace", "StripWhitespaceOnChangedLines"]
+on_event = "BufRead"
 
 [[plugins]]
 repo = "terryma/vim-expand-region"
