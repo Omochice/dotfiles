@@ -150,7 +150,6 @@ depends = ["vim-textobj-user"]
 repo = "thinca/vim-textobj-between"
 depends = ["vim-textobj-user"]
 
-
 [[plugins]]
 repo = "kana/vim-textobj-indent"
 depends = ["vim-textobj-user"]

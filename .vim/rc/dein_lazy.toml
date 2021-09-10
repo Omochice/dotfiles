@@ -13,7 +13,6 @@ on_map = {n = "<Plug>"}
 
 [[plugins]]
 repo = "hrsh7th/vim-vsnip"
-merged = 0
 hook_add = """
 let g:vsnip_snippet_dir = g:config_dir . '/snippets'
 imap <expr><C-n> vsnip#jumpable(v:true) ? '<Plug>(vsnip-jump-next)' : '<C-n>'
@@ -25,7 +24,7 @@ on_event = "InsertEnter"
 repo = "cohama/lexima.vim"
 hook_source = """
 " too lang to write here
-execute 'source ' . g:config_dir . '/mysettings/lexima.vim' 
+execute 'source ' . g:config_dir . '/mysettings/lexima.vim'
 inoremap <silent><expr> <Tab> pumvisible() ? '<C-n>' : lexima#expand('<LT>Tab>', 'i')
 """
 on_event = "InsertEnter"
@@ -33,7 +32,7 @@ on_event = "InsertEnter"
 [[plugins]]
 repo = "machakann/vim-sandwich"
 # `h dein` says that You cannot use lazy <Plug> mappings twice.
-# but it looks work for me. 
+# but it looks work for me.
 hook_add = """
 let g:operator_sandwich_no_default_key_mappings = v:true
 nmap ys <Plug>(operator-sandwich-add)
