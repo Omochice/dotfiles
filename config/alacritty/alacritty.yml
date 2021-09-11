@@ -48,7 +48,7 @@ colors:
 window:
   decorations: full
   startup_mode: Maximized
-background_opacity: 0.8
+  opacity: 0.8
 
 env:
   TERM: alacritty
