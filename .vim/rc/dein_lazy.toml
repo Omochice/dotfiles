@@ -9,7 +9,7 @@ nmap <Space>h <Plug>(easymotion-linebackward)
 let g:EasyMotion_smartcase = v:true
 let g:EasyMotion_use_smartsign_jp = v:true
 """
-on_map = {n = "<Plug>"}
+on_map = { n = "<Plug>" }
 
 [[plugins]]
 repo = "hrsh7th/vim-vsnip"
@@ -83,7 +83,7 @@ nmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
 vmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
 """
 depends = ["context_filetype.vim", "vim-repeat"]
-on_map = {n = "<Plug>", v = "<Plug>"}
+on_map = { n = "<Plug>", v = "<Plug>" }
 
 [[plugins]]
 repo = "markonm/traces.vim"
@@ -120,7 +120,7 @@ let g:quickrun_config = extend(get(g:, 'quickrun_config', {}), {
 \       'cmdopt': '--allow-all --unstable',
 \       'exec': 'NO_COLOR=1 %c run %o %s',
 \   },
-\})
+\ })
 """
 depends = ["vimproc.vim", "vim-quickrun-neovim-job"]
 on_map = { n = "<Plug>" }
@@ -279,7 +279,12 @@ on_cmd = ["AnyJump", "AnyJunpVisual", "AnyJumpBack", "AnyJumpLastResults"]
 
 [[plugins]]
 repo = "y0za/vim-reading-vimrc"
-on_cmd = ["ReadingVimrcNext", "ReadingVimrcList", "ReadingVimrcLoad", "ReadingVimrcCopy"]
+on_cmd = [
+    "ReadingVimrcNext",
+    "ReadingVimrcList",
+    "ReadingVimrcLoad",
+    "ReadingVimrcCopy",
+]
 hook_add = """
 function! s:reading_copy(line1, line2) abort range
   let file = expand('%:t')
@@ -355,7 +360,7 @@ EOF
 # this is not work. conflict with clipboard?
 repo = "yuki-yano/vim-operator-replace"
 depends = "vim-operator-user"
-on_map = {n = "<Plug>", x = "<Plug>"}
+on_map = { n = "<Plug>", x = "<Plug>" }
 hook_add = """
 map R <Plug>(operator-replace)
 """
@@ -364,4 +369,3 @@ map R <Plug>(operator-replace)
 repo = "mattn/vim-treesitter"
 build = "cd server && go build"
 if = "!has('nvim')"
-
