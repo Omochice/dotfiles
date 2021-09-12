@@ -29,22 +29,11 @@ let g:lightline = {
 \       ],
 \   },
 \   'component_function': {
-\       'gitbranch': 'LightlineBranch',
+\       'gitbranch': 'gitbranch#name',
 \       'filetype': 'LightlineFileType',
 \       'fileformat': 'LightlineFotmat',
 \   },
 \ }
-
-let s:lightline_branchname = ''
-
-augroup lightline_branch
-    autocmd!
-    autocmd BufWinEnter,WinEnter * call <SID>getBranch()
-augroup END
-
-function! s:getBranch() abort
-    let s:lightline_branchname = system('git rev-parse --abbrev-ref HEAD 2>/dev/null | head -c -1')
-endfunction
 
 function! LightlineFileType() abort
     if winwidth(0) > 70
@@ -65,24 +54,18 @@ function! LightlineFotmat() abort
         return ''
     endif
 endfunction
-
-function! LightlineBranch() abort
-    if s:lightline_branchname ==# ''
-    	return ''
-    else
-        return s:lightline_branchname . ' '
-    endif
-endfunction
 """
-depends = ["vim-devicons"]
+depends = ["vim-devicons", 'vim-gitbranch']
+
+[[plugins]]
+repo = "itchyny/vim-gitbranch"
 
 [[plugins]]
 repo = "vim-jp/vimdoc-ja"
 hook_add = """
-" if has('nvim')
-"     set helplang=en " default
-" else
-if !has('nvim')
+if has('nvim')
+    set helplang=en " default
+else
     set helplang=ja
 endif
 """
