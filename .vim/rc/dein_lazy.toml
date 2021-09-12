@@ -64,6 +64,12 @@ augroup vaffle_startup_internal
     autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | Vaffle | endif
 augroup END
 
+function! VaffleRenderDevicon(item) abort
+    return WebDevIconsGetFileTypeSymbol(a:item.basename, a:item.is_dir)
+endfunction
+
+let g:vaffle_render_custom_icon = 'VaffleRenderDevicon'
+
 " if load this plugin, use vaffle instead of netrw
 let g:loaded_netrw             = v:true
 let g:loaded_netrwPlugin       = v:true
@@ -252,7 +258,7 @@ on_cmd = "MakeTable"
 [[plugins]]
 repo = "previm/previm"
 on_cmd = "PrevimOpen"
-on_ft = "markdown"
+# on_ft = "markdown"
 hook_add = """
 let g:previm_open_cmd = '$BROWSER'
 """
