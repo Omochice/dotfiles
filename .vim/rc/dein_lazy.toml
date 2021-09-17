@@ -17,6 +17,8 @@ hook_add = """
 let g:vsnip_snippet_dir = g:config_dir . '/snippets'
 imap <expr><C-n> vsnip#jumpable(v:true) ? '<Plug>(vsnip-jump-next)' : '<C-n>'
 " imap <expr><Tab> vsnip#jumpable(v:true) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<LT>Tab>', "i")
+let g:vsnip_filetypes = {}
+let g:vsnip_filetypes.plaintex = ["tex"]
 """
 on_event = "InsertEnter"
 

@@ -1,0 +1,11 @@
+{
+  "begin": {
+    "prefix": "begin",
+    "body": [
+      "\\begin{$1}",
+      "\t$2",
+      "\\end{$1}"
+    ],
+    "description": "begin"
+  }
+}
