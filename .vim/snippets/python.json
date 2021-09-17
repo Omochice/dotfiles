@@ -13,28 +13,28 @@
       "    $1"
     ]
   },
-  "pathlib": {
+  "pathlib import": {
     "prefix": "pathlib",
     "body": [
       "from pathlib import Path",
       "$1"
     ]
   },
-  "numpy": {
+  "numpy import": {
     "prefix": "numpy",
     "body": [
       "import numpy as np",
       "$1"
     ]
   },
-  "matplotlib": {
+  "matplotlib import": {
     "prefix": "matplotlib",
     "body": [
       "import matplotlib.pyplot as plt",
       "$1"
     ]
   },
-  "pandas": {
+  "pandas import": {
     "prefix": "pandas",
     "body": [
       "import pandas as pd",
