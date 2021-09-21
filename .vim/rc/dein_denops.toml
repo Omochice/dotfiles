@@ -3,7 +3,6 @@ repo = "vim-denops/denops.vim"
 hook_add = """
 command! DenopsRestart call denops#server#restart()
 """
-on_event = "BufRead"
 
 # {{{ ddc
 [[plugins]]
@@ -53,7 +52,7 @@ repo = "Shougo/ddc-matcher_head"
 on_source = "ddc.vim"
 
 [[plugins]]
-repo = 'Shougo/ddc-sorter_rank'
+repo = "Shougo/ddc-sorter_rank"
 on_source = "ddc.vim"
 
 [[plugins]]
@@ -61,21 +60,21 @@ repo = "Shougo/neco-vim"
 on_source = "ddc.vim"
 
 [[plugins]]
-repo = 'matsui54/ddc-buffer'
+repo = "matsui54/ddc-buffer"
 on_source = "ddc.vim"
 
 [[plugins]]
-repo = 'matsui54/ddc-filter_editdistance'
+repo = "matsui54/ddc-filter_editdistance"
 on_source = "ddc.vim"
 
 [[plugins]]
-repo = 'Shougo/ddc-converter_remove_overlap'
-on_source = 'ddc.vim'
+repo = "Shougo/ddc-converter_remove_overlap"
+on_source = "ddc.vim"
 
 [[plugins]]
 repo = "hrsh7th/vim-vsnip-integ"
 depends = "vim-vsnip"
-on_source = 'ddc.vim'
+on_source = "ddc.vim"
 # }}}
 
 [[plugins]]
@@ -122,3 +121,4 @@ on_source = "denops.vim"
 [[plugins]]
 repo = "lambdalisue/guise.vim"
 on_source = "denops.vim"
+on_event = "BufRead"

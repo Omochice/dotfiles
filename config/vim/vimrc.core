@@ -71,7 +71,7 @@ nnoremap Q <Cmd>copen<CR>
 cnoreabbrev qq quit!
 cnoreabbrev ww update!
 
-" FIXME
+" TODO
 " cnoreabbrev w:q wq
 
 " easy regex search
