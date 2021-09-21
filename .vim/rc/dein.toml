@@ -162,3 +162,18 @@ command! Lazygit FloatermNew --autoclose=2 --height=1.0 --width=1.0 --title=lazy
 command! Fkill FloatermKill
 nnoremap <silent><C-g> <Cmd>Lazygit<CR>
 """
+
+[[plugins]]
+repo = "christoomey/vim-tmux-navigator"
+hook_add = """
+let g:tmux_navigator_no_mappings = v:true
+nnoremap <silent> <C-q>h <Cmd>TmuxNavigateLeft<CR>
+nnoremap <silent> <C-q>j <Cmd>TmuxNavigateDown<CR>
+nnoremap <silent> <C-q>k <Cmd>TmuxNavigateUp<CR>
+nnoremap <silent> <C-q>l <Cmd>TmuxNavigateRight<CR>
+
+tnoremap <silent> <C-q>h <Cmd>TmuxNavigateLeft<CR>
+tnoremap <silent> <C-q>j <Cmd>TmuxNavigateDown<CR>
+tnoremap <silent> <C-q>k <Cmd>TmuxNavigateUp<CR>
+tnoremap <silent> <C-q>l <Cmd>TmuxNavigateRight<CR>
+"""
