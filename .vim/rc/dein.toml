@@ -167,13 +167,19 @@ nnoremap <silent><C-g> <Cmd>Lazygit<CR>
 repo = "christoomey/vim-tmux-navigator"
 hook_add = """
 let g:tmux_navigator_no_mappings = v:true
-nnoremap <silent> <C-q>h <Cmd>TmuxNavigateLeft<CR>
-nnoremap <silent> <C-q>j <Cmd>TmuxNavigateDown<CR>
-nnoremap <silent> <C-q>k <Cmd>TmuxNavigateUp<CR>
-nnoremap <silent> <C-q>l <Cmd>TmuxNavigateRight<CR>
-
-tnoremap <silent> <C-q>h <Cmd>TmuxNavigateLeft<CR>
-tnoremap <silent> <C-q>j <Cmd>TmuxNavigateDown<CR>
-tnoremap <silent> <C-q>k <Cmd>TmuxNavigateUp<CR>
-tnoremap <silent> <C-q>l <Cmd>TmuxNavigateRight<CR>
+" noremap
+noremap <silent> <M-h> <Cmd>TmuxNavigateLeft<CR>
+noremap <silent> <M-j> <Cmd>TmuxNavigateDown<CR>
+noremap <silent> <M-k> <Cmd>TmuxNavigateUp<CR>
+noremap <silent> <M-l> <Cmd>TmuxNavigateRight<CR>
+" lnoremap
+lnoremap <silent> <M-h> <Cmd>TmuxNavigateLeft<CR>
+lnoremap <silent> <M-j> <Cmd>TmuxNavigateDown<CR>
+lnoremap <silent> <M-k> <Cmd>TmuxNavigateUp<CR>
+lnoremap <silent> <M-l> <Cmd>TmuxNavigateRight<CR>
+" tnoremap
+tnoremap <silent> <M-h> <Cmd>TmuxNavigateLeft<CR>
+tnoremap <silent> <M-j> <Cmd>TmuxNavigateDown<CR>
+tnoremap <silent> <M-k> <Cmd>TmuxNavigateUp<CR>
+tnoremap <silent> <M-l> <Cmd>TmuxNavigateRight<CR>
 """
