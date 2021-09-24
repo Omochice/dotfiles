@@ -9,7 +9,7 @@ command! DenopsRestart call denops#server#restart()
 repo = "Shougo/ddc.vim"
 hook_source = """
 call ddc#custom#patch_global(
- \ 'sources', ['vsnip', 'ddc-vim-lsp', 'around', 'buffer']
+ \ 'sources', ['vsnip', 'vim-lsp', 'around', 'buffer']
  \ )
 call ddc#custom#patch_global('sourceOptions', {
   \ '_': {
@@ -19,7 +19,7 @@ call ddc#custom#patch_global('sourceOptions', {
   \   'minAutoCompleteLength': 1,
   \   'smartCase': v:true,
   \ },
-  \ 'ddc-vim-lsp': {'mark': 'LSP',
+  \ 'vim-lsp': {'mark': 'LSP',
   \                 'forceCompletionPattern': '\.|:|->|"\w+/'},
   \ 'buffer': {'mark': 'Buffer'},
   \ 'around': {'mark': 'Around'},
@@ -30,7 +30,7 @@ call ddc#custom#patch_filetype(
   \ ['toml'], 'sources', ['necovim', 'around', 'buffer']
   \ )
 call ddc#custom#patch_filetype(
-  \ ['vim'], 'sources', ['vsnip', 'ddc-vim-lsp', 'necovim', 'around', 'buffer']
+  \ ['vim'], 'sources', ['vsnip', 'vim-lsp', 'necovim', 'around', 'buffer']
   \ )
 call ddc#enable()
 inoremap <silent><expr><C-Space> ddc#manual_complete()
