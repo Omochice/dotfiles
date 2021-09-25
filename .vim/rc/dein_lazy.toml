@@ -15,7 +15,10 @@ on_map = { n = "<Plug>" }
 repo = "hrsh7th/vim-vsnip"
 hook_add = """
 let g:vsnip_snippet_dir = g:config_dir . '/snippets'
-imap <expr><C-n> vsnip#jumpable(v:true) ? '<Plug>(vsnip-jump-next)' : '<C-n>'
+imap <expr><C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Down>'
+imap <expr><C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<Up>'
+xmap <expr><C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Down>'
+xmap <expr><C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<Up>'
 " imap <expr><Tab> vsnip#jumpable(v:true) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<LT>Tab>', "i")
 let g:vsnip_filetypes = {}
 let g:vsnip_filetypes.plaintex = ["tex"]
