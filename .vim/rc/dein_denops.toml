@@ -3,7 +3,7 @@ repo = "vim-denops/denops.vim"
 hook_add = """
 command! DenopsRestart call denops#server#restart()
 """
-on_event = "BufEnter"
+on_event = "VimEnter"
 
 # {{{ ddc
 [[plugins]]
@@ -123,5 +123,12 @@ on_source = "denops.vim"
 
 [[plugins]]
 repo = "lambdalisue/guise.vim"
-depends = ["denops.vim"]
-on_event = "TermEnter"
+on_source = "denops.vim"
+
+# [[plugins]]
+# repo = "supporterz-vol5-1/breakTimer-vim"
+# hook_add = """
+# let g:break_timer_username = "Omochice"
+# """
+# depends = ["denops.vim"]
+# on_event = "BufRead"
