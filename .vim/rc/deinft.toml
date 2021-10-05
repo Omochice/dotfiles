@@ -75,3 +75,15 @@ setlocal tabstop=2
 setlocal softtabstop=2
 setlocal shiftwidth=2
 """
+
+qf = """
+setlocal wrap
+"""
+
+quickrun = """
+setlocal wrap
+"""
+
+gitcommit = """
+set spell
+"""
