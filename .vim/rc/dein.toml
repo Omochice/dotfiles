@@ -120,28 +120,6 @@ let g:fzf_preview_dev_icons_limit = 5000
 depends = ["vim-devicons", "fzf"]
 
 [[plugins]]
-repo = "kana/vim-textobj-user"
-
-[[plugins]]
-repo = "kana/vim-textobj-line"
-depends = ["vim-textobj-uesr"]
-
-[[plugins]]
-repo = "rhysd/vim-textobj-anyblock"
-depends = ["vim-textobj-user"]
-
-[[plugins]]
-repo = "thinca/vim-textobj-between"
-depends = ["vim-textobj-user"]
-
-[[plugins]]
-repo = "kana/vim-textobj-indent"
-depends = ["vim-textobj-user"]
-
-[[plugin]]
-repo = "kana/vim-operator-user"
-
-[[plugins]]
 repo = "ryanoasis/vim-devicons"
 
 [[plugins]]

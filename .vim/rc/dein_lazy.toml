@@ -1,4 +1,54 @@
 [[plugins]]
+repo = "kana/vim-textobj-user"
+
+[[plugins]]
+repo = "kana/vim-textobj-line"
+depends = "vim-textobj-user"
+hook_add = """
+xmap al <Plug>(textobj-line-a)
+xmap il <Plug>(textobj-line-i)
+omap al <Plug>(textobj-line-a)
+omap il <Plug>(textobj-line-i)
+"""
+on_map = { x = "<Plug>", o = "<Plug>" }
+
+[[plugins]]
+repo = "rhysd/vim-textobj-anyblock"
+depends = ["vim-textobj-user"]
+hook_add = """
+xmap ab <Plug>(textobj-anyblock-a)
+xmap ib <Plug>(textobj-anyblock-i)
+omap ab <Plug>(textobj-anyblock-a)
+omap ib <Plug>(textobj-anyblock-i)
+"""
+on_map = { x = "<Plug>", o = "<Plug>" }
+
+[[plugins]]
+repo = "thinca/vim-textobj-between"
+depends = ["vim-textobj-user"]
+hook_add = """
+xmap af <Plug>(textobj-between-a)
+xmap if <Plug>(textobj-between-i)
+omap af <Plug>(textobj-between-a)
+omap if <Plug>(textobj-between-i)
+"""
+on_map = { x = "<Plug>", o = "<Plug>" }
+
+[[plugins]]
+repo = "kana/vim-textobj-indent"
+depends = ["vim-textobj-user"]
+hook_add = """
+xmap ai <Plug>(textobj-indent-a)
+xmap ii <Plug>(textobj-indent-i)
+omap ai <Plug>(textobj-indent-a)
+omap ii <Plug>(textobj-indent-i)
+"""
+on_map = { x = "<Plug>", o = "<Plug>" }
+
+[[plugin]]
+repo = "kana/vim-operator-user"
+
+[[plugins]]
 repo = "easymotion/vim-easymotion"
 hook_add = """
 nmap f <Plug>(easymotion-tn)
