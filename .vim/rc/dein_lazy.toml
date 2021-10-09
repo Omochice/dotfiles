@@ -63,6 +63,7 @@ on_map = { n = "<Plug>" }
 
 [[plugins]]
 repo = "hrsh7th/vim-vsnip"
+on_map = { x = "<Plug>", i = "<Plug>" }
 hook_add = """
 let g:vsnip_snippet_dir = g:config_dir . '/snippets'
 imap <expr><C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Down>'
@@ -227,10 +228,13 @@ on_ft = "toml"
 [[plugins]]
 repo = "ruby-formatter/rufo-vim"
 hook_add = """
-let g:rufo_auto_formatting = v:true
+let g:rufo_auto_formatting = v:false
 """
-on_ft = "ruby"
-on_event = "BufWritePre"
+on_cmd = "Rufo"
+[plugins.ftplugin]
+ruby = """
+nnoremap <silent><buffer><Space>f <Cmd>Rufo<CR>
+"""
 
 [[plugins]]
 repo = "z0mbix/vim-shfmt"
@@ -261,15 +265,18 @@ repo = "heavenshell/vim-pydocstring"
 build = "make install"
 hook_add = """
 let g:pydocstring_formatter = 'google'
-nnoremap <silent> <Space>pd <Cmd>PydocstringFormat<CR>
 """
 on_cmd = ["Pydocstring", "PydocstringFormat"]
 on_ft = "python"
+[plugins.ftplugin]
+ruby = """
+nnoremap <silent><Space>pd <Cmd>PydocstringFormat<CR>
+"""
 
 [[plugins]]
 repo = "fs111/pydoc.vim"
 hook_add = """
-let g:pydoc_perform_mappings = v:true
+let g:pydoc_perform_mappings = v:false
 """
 on_ft = "python"
 
@@ -433,3 +440,11 @@ on_cmd = [
     "TmuxNavigateUp",
     "TmuxNavigateRight",
 ]
+
+[[plugins]]
+repo = "machakann/vim-vimhelplint"
+on_ft = "help"
+[plugins.ftplugin]
+help = """
+nnoremap <silent><buffer><Space>d <Cmd>VimhelpLint!<CR>
+"""
