@@ -135,30 +135,27 @@ let g:findroot_not_for_subdir = v:false
 """
 
 [[plugins]]
+repo = "cocopon/vaffle.vim"
+hook_add = """
+cnoreabbrev va Vaffle
+command! TVaffle tabnew | Vaffle
+augroup vaffle_startup_internal
+    autocmd!
+    autocmd StdinReadPre * let s:std_in = v:true
+    autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | Vaffle | endif
+augroup END
+
+" if load this plugin, use vaffle instead of netrw
+let g:loaded_netrw             = v:true
+let g:loaded_netrwPlugin       = v:true
+let g:loaded_netrwSettings     = v:true
+let g:loaded_netrwFileHandlers = v:true
+"""
+
+[[plugins]]
 repo = "voldikss/vim-floaterm"
 hook_add = """
 command! Lazygit FloatermNew --autoclose=2 --height=1.0 --width=1.0 --title=lazygit lazygit
 command! Fkill FloatermKill
 nnoremap <silent><C-g> <Cmd>Lazygit<CR>
-"""
-
-[[plugins]]
-repo = "christoomey/vim-tmux-navigator"
-hook_add = """
-let g:tmux_navigator_no_mappings = v:true
-" noremap
-noremap <silent> <M-h> <Cmd>TmuxNavigateLeft<CR>
-noremap <silent> <M-j> <Cmd>TmuxNavigateDown<CR>
-noremap <silent> <M-k> <Cmd>TmuxNavigateUp<CR>
-noremap <silent> <M-l> <Cmd>TmuxNavigateRight<CR>
-" lnoremap
-lnoremap <silent> <M-h> <Cmd>TmuxNavigateLeft<CR>
-lnoremap <silent> <M-j> <Cmd>TmuxNavigateDown<CR>
-lnoremap <silent> <M-k> <Cmd>TmuxNavigateUp<CR>
-lnoremap <silent> <M-l> <Cmd>TmuxNavigateRight<CR>
-" tnoremap
-tnoremap <silent> <M-h> <Cmd>TmuxNavigateLeft<CR>
-tnoremap <silent> <M-j> <Cmd>TmuxNavigateDown<CR>
-tnoremap <silent> <M-k> <Cmd>TmuxNavigateUp<CR>
-tnoremap <silent> <M-l> <Cmd>TmuxNavigateRight<CR>
 """
