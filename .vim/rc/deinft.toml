@@ -87,3 +87,16 @@ setlocal wrap
 gitcommit = """
 set spell
 """
+
+# from https://thinca.hatenablog.com/entry/20110903/1314982646
+help = """
+if &l:buftype !=# 'help'
+  setlocal list spell tabstop=8 shiftwidth=8 softtabstop=8 textwidth=78
+  if exists('+colorcolumn')
+    setlocal colorcolumn=+1
+  endif
+  if has('conceal')
+    setlocal conceallevel=0
+  endif
+endif
+"""
