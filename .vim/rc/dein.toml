@@ -85,6 +85,7 @@ nmap <silent> <Space>r <Plug>(lsp-rename)
 let g:lsp_settings = {
 \   'efm-langserver': {'disabled': v:false},
 \   'html-langserver': {'allowlist': ['html', 'htmldjango']},
+\   'taplo-lsp': {'workspace_config': {'formatter' : {'reorderKeys': v:false}}}
 \ }
 let g:lsp_text_edit_enabled = v:true
 let g:lsp_diagnostics_signs_error = {'text': '😡'}
