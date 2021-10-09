@@ -49,11 +49,11 @@ endif
 " }}}
 
 " plugin installation check {{{
+let g:dein#install_github_api_token = $DEIN_GITHUB_TOKEN
 if dein#check_install()
   call dein#install()
   " and check updates,
-  if $DEIN_GITHUB_TOKEN !=# ''
-    let g:dein#install_github_api_token = $DEIN_GITHUB_TOKEN
+  if g:dein#install_github_api_token !=# ''
     call dein#check_update(v:true)
   endif
 endif
