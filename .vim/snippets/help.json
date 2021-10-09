@@ -1,0 +1,50 @@
+{
+  "template": {
+    "prefix": [
+      "template",
+      "help"
+    ],
+    "body": [
+      "*${1:plugin name}*\t\t${2:abstract}",
+      "",
+      "License: MIT license",
+      "",
+      "CONTENTS *$1-contents*",
+      "Introduction\t|$1-introduction|",
+      "Install\t|$1-install|",
+      "Usage\t|$1-usage|",
+      "Commands\t|$1-commands|",
+      "Variables\t|$1-variables|",
+      "",
+      "==============================================================================",
+      "INTRODUCTION\t\t*$1-introduction*",
+      "",
+      "==============================================================================",
+      "INSTALL\t\t*$1-install",
+      "",
+      "This plugin depends on below.",
+      "",
+      "==============================================================================",
+      "USAGE\t\t*$1-usage",
+      "",
+      "",
+      "==============================================================================",
+      "COMMANDS\t\t*$1-commands",
+      "",
+      "",
+      "==============================================================================",
+      "VARIABLES\t\t*$1-variables",
+      "",
+      "",
+      "vim:tw=78:fo=tcq2mM:ts=4:ft=help:norl:noet:fdm=marker:fen:"
+    ],
+    "description": "Help template"
+  },
+  "command": {
+    "prefix": "command",
+    "body": [
+      "`:${1:command}`\t\t*:$1*"
+    ],
+    "description": "command template"
+  }
+}
