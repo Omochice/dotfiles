@@ -77,6 +77,7 @@ let g:lsp_diagnostics_enabled = v:true
 let g:lsp_diagnostics_virtual_text_enabled = v:false
 let g:lsp_diagnostics_echo_cursor = v:true
 let g:lsp_diagnostics_echo_delay = 100
+let g:lsp_review_float = v:false
 nmap <silent> <C-h> <Plug>(lsp-hover)
 nmap <silent> <Space>f <Plug>(lsp-document-format)
 nmap <silent> <Space>d <Plug>(lsp-document-diagnostics)
