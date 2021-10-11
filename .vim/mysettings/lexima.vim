@@ -1,8 +1,3 @@
-let g:lexima_map_escape = ''
-let g:lexima_enable_endwise_rules = 0
-let g:lexima_enable_newline_rules = v:true
-
-
 let s:rules = []
 
 "" Brackets

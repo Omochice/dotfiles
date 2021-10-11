@@ -8,6 +8,42 @@ on_event = "VimEnter"
 # {{{ ddc
 [[plugins]]
 repo = "Shougo/ddc.vim"
+hook_add = """
+inoremap <silent><expr><C-Space> ddc#manual_complete()
+let g:ddc_use_pum = v:true
+let g:ddc_use_cmdline = v:false
+
+if g:ddc_use_cmdline
+  nnoremap : <Cmd>call CommandlinePre()<CR>:
+  function! CommandlinePre() abort
+    call dein#source('ddc.vim')
+    cnoremap <expr> <Tab>
+    \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
+    \ ddc#manual_complete()
+    cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
+    cnoremap <C-y> <Cmd>call pum#map#confirm()<CR>
+    cnoremap <C-e> <Cmd>call pum#map#cancel()<CR>
+    cnoremap <expr> <C-n> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<C-n>'
+    cnoremap <expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<C-p>'
+    " Overwrite sources
+    let s:prev_buffer_config = ddc#custom#get_buffer()
+    call ddc#custom#patch_buffer('sources',
+            \ ['necovim', 'cmdline-history', 'around'])
+    augroup ddc_cmdline_internal
+      autocmd!
+      autocmd CmdlineLeave * ++once call CommandlinePost()
+    augroup END
+    " Enable command line completion
+    call ddc#enable_cmdline_completion()
+    call ddc#enable()
+  endfunction
+  function! CommandlinePost() abort
+    " Restore sources
+    call ddc#custom#set_buffer(s:prev_buffer_config)
+    cunmap <Tab>
+  endfunction
+endif
+"""
 hook_source = """
 call ddc#custom#patch_global(
  \ 'sources', ['vsnip', 'vim-lsp', 'around', 'buffer', 'tmux']
@@ -16,17 +52,22 @@ call ddc#custom#patch_global('sourceOptions', {
   \ '_': {
   \   'matchers': ['matcher_fuzzy'],
   \   'sorters': ['sorter_fuzzy'],
-  \   'converters': ['converter_remove_overlap'],
+  \   'converters': ['converter_remove_overlap', 'converter_fuzzy'],
   \   'minAutoCompleteLength': 1,
-  \   'smartCase': v:true,
+  \   'ignoreCase': v:true,
   \ },
-  \ 'vim-lsp': {'mark': 'LSP',
-  \                 'forceCompletionPattern': '\.|:|->|"\w+/'},
-  \ 'buffer': {'mark': 'Buffer'},
-  \ 'around': {'mark': 'Around'},
-  \ 'necovim': {'mark': 'Neco'},
-  \ 'vsnip': {'mark': 'Snippet'},
-  \ 'tmux': {'mark': 'Tmux'},
+  \ 'vim-lsp': {'mark': 'L',
+  \             'forceCompletionPattern': '\.|:|->|"\w+/',
+  \             },
+  \ 'buffer': {'mark': 'B'},
+  \ 'around': {'mark': 'A'},
+  \ 'necovim': {'mark': 'N'},
+  \ 'vsnip': {'mark': 'S',},
+  \ 'tmux': {'mark': 'T'},
+  \ 'cmdline-history': {'mark': 'H',
+  \                     'maxCandidates': 100,
+  \                     'minAutoCompleteLength': 5,
+  \                     },
   \ })
 call ddc#custom#patch_filetype(
   \ ['toml'], 'sources', ['necovim', 'around', 'buffer', 'tmux']
@@ -34,15 +75,34 @@ call ddc#custom#patch_filetype(
 call ddc#custom#patch_filetype(
   \ ['vim'], 'sources', ['vsnip', 'vim-lsp', 'necovim', 'around', 'buffer', 'tmux']
   \ )
+
+if g:ddc_use_pum
+  call ddc#custom#patch_global('completionMenu', 'pum.vim')
+endif
 call ddc#enable()
-inoremap <silent><expr><C-Space> ddc#manual_complete()
 """
-depends = ["denops.vim", "context_filetype.vim"]
+depends = ["denops.vim", "context_filetype.vim", "pum.vim"]
 on_event = "InsertEnter"
-# on_source = "denops.vim"
 
 [[plugins]]
-repo = "shun/ddc-vim-lsp"
+repo = "Shougo/pum.vim"
+hook_add = """
+inoremap <expr> <C-n> pum#visible() ? "<Cmd>call pum#map#insert_relative(+1)<CR>" : "<C-n>"
+inoremap <expr> <C-p> pum#visible() ? "<Cmd>call pum#map#insert_relative(-1)<CR>" : "<C-p>"
+"""
+
+[[multiple_plugins]]
+plugins = ["pum.vim", "vim-vsnip", "lexima.vim"]
+hook_add = """
+" Sourcing of lexima override this mapping.
+" imap <silent><expr> <CR> pum#visible() ? vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<nop>' : '<CR>'
+imap <silent><expr> <C-y> pum#visible() ? vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<nop>' : '<C-y>'
+"""
+
+[[plugins]]
+# repo = "shun/ddc-vim-lsp"
+repo = "LumaKernel/ddc-vim-lsp"
+rev = "onCallback"
 depends = ["vim-lsp"]
 on_source = "ddc.vim"
 
@@ -57,6 +117,10 @@ on_source = "ddc.vim"
 [[plugins]]
 repo = "Shougo/ddc-sorter_rank"
 on_source = "ddc.vim"
+
+[[plugins]]
+repo = 'Shougo/ddc-cmdline-history'
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = "Shougo/neco-vim"
@@ -82,6 +146,7 @@ on_source = "ddc.vim"
 [[plugins]]
 repo = "tani/ddc-fuzzy"
 on_source = "ddc.vim"
+
 [[plugins]]
 repo = "matsui54/denops-popup-preview.vim"
 hook_source = """

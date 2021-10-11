@@ -66,10 +66,10 @@ repo = "hrsh7th/vim-vsnip"
 on_map = { x = "<Plug>", i = "<Plug>" }
 hook_add = """
 let g:vsnip_snippet_dir = g:config_dir . '/snippets'
-imap <expr><C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Down>'
-imap <expr><C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<Up>'
-xmap <expr><C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Down>'
-xmap <expr><C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<Up>'
+" imap <expr><C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Down>'
+" imap <expr><C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<Up>'
+" xmap <expr><C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Down>'
+" xmap <expr><C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<Up>'
 " imap <expr><Tab> vsnip#jumpable(v:true) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<LT>Tab>', "i")
 let g:vsnip_filetypes = {}
 let g:vsnip_filetypes.plaintex = ["tex"]
@@ -78,12 +78,25 @@ on_event = "InsertEnter"
 
 [[plugins]]
 repo = "cohama/lexima.vim"
+hook_add = """
+let g:lexima_map_escape = ''
+let g:lexima_enable_endwise_rules = v:false
+let g:lexima_enable_newline_rules = v:true
+"""
 hook_source = """
 " too lang to write here
 execute 'source ' . g:config_dir . '/mysettings/lexima.vim'
-inoremap <silent><expr> <Tab> pumvisible() ? '<C-n>' : lexima#expand('<LT>Tab>', 'i')
+if dein#tap('pum.vim')
+  imap <silent><expr> <CR> pum#visible() ? vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<CR>'  : lexima#expand('<CR>', 'i')
+endif
 """
 on_event = "InsertEnter"
+
+[[multiple_plugins]]
+plugins = ["vim-vsnip", "lexima"]
+hook_add = """
+imap <silent><expr> <Tab> vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<LT>Tab>', 'i')
+"""
 
 [[plugins]]
 repo = "machakann/vim-sandwich"
