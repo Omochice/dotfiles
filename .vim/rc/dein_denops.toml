@@ -3,7 +3,6 @@ repo = "vim-denops/denops.vim"
 hook_add = """
 command! DenopsRestart call denops#server#restart()
 """
-on_event = "VimEnter"
 
 # {{{ ddc
 [[plugins]]
@@ -173,8 +172,7 @@ on_source = "denops.vim"
 [[plugins]]
 repo = "Omochice/dps-codic-vim"
 # repo = "~/workspace/dps-codic-vim"
-on_source = "denops.vim"
-
+on_cmd = "Codic"
 
 [[plugins]]
 repo = "Omochice/dps-translate-vim"
@@ -188,8 +186,7 @@ nnoremap tR <Cmd>Translate!<CR>
 vnoremap <silent>tr :TranslateJoin<CR>
 vnoremap <silent>tR :TranslateJoin!<CR>
 """
-on_source = "denops.vim"
-
+on_cmd = ["Translate", "TranslateJoin"]
 
 [[plugins]]
 repo = "yuki-yano/dps-slack-status.vim"
