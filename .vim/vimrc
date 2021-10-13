@@ -1,3 +1,5 @@
+source ~/.config/vim/vimrc.core
+
 let g:config_dir = fnamemodify(expand('<sfile>'), ':h')
 
 " dein.vim settings {{
@@ -67,7 +69,9 @@ if len(s:removed_plugins) > 0
 endif
 " }}}
 
-source ~/.config/vim/vimrc.core
+" re-enable
+syntax on
+filetype plugin indent on
 
 if executable('fcitx')
   execute 'source ' . g:config_dir . '/fcitx.vim'

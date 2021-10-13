@@ -29,7 +29,9 @@
     ]
   },
   "for-range": {
-    "prefix": "forrange",
+    "prefix": [
+      "for"
+    ],
     "body": [
       "for i, ${1:v} := range $2 {",
       "  $3",

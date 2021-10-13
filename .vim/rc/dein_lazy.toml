@@ -45,7 +45,7 @@ omap ii <Plug>(textobj-indent-i)
 """
 on_map = { x = "<Plug>", o = "<Plug>" }
 
-[[plugin]]
+[[plugins]]
 repo = "kana/vim-operator-user"
 
 [[plugins]]
@@ -66,11 +66,10 @@ repo = "hrsh7th/vim-vsnip"
 on_map = { x = "<Plug>", i = "<Plug>" }
 hook_add = """
 let g:vsnip_snippet_dir = g:config_dir . '/snippets'
-" imap <expr><C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Down>'
-" imap <expr><C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<Up>'
-" xmap <expr><C-j> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Down>'
-" xmap <expr><C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<Up>'
-" imap <expr><Tab> vsnip#jumpable(v:true) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<LT>Tab>', "i")
+imap <expr><C-j> vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : '<Down>'
+imap <expr><C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<Up>'
+xmap <expr><C-j> vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : '<Down>'
+xmap <expr><C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<Up>'
 let g:vsnip_filetypes = {}
 let g:vsnip_filetypes.plaintex = ["tex"]
 """
@@ -86,9 +85,6 @@ let g:lexima_enable_newline_rules = v:true
 hook_source = """
 " too lang to write here
 execute 'source ' . g:config_dir . '/mysettings/lexima.vim'
-if dein#tap('pum.vim')
-  imap <silent><expr> <CR> pum#visible() ? vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<CR>'  : lexima#expand('<CR>', 'i')
-endif
 """
 on_event = "InsertEnter"
 
@@ -121,7 +117,6 @@ let g:echodoc#type = has('nvim') ? 'floating' : 'popup'
 highlight link EchoDocFloat Pmenu
 call echodoc#enable()
 """
-
 
 [[plugins]]
 repo = "tyru/caw.vim"
@@ -345,7 +340,7 @@ on_cmd = [
 hook_add = """
 function! s:reading_copy(line1, line2) abort range
   let file = expand('%:t')
-  if a:line1== a:line2
+  if a:line1 == a:line2
     let line = printf('L%d', a:line1)
   else
     let line = printf('L%d+%d', a:line1, a:line2 - a:line1)
@@ -468,3 +463,30 @@ on_cmd = "Template"
 hook_add = """
 let g:sonictemplate_vim_template_dir = g:config_dir . '/templates'
 """
+
+[[plugins]]
+repo = "junegunn/fzf"
+build = "./install --all"
+# merged = 0
+
+[[plugins]]
+repo = "yuki-yano/fzf-preview.vim"
+rev = "release/rpc"
+hook_add = """
+nmap <C-p> [fzf-p]
+nnoremap [fzf-p]<C-p> <Cmd>FzfPreviewDirectoryFilesRpc<CR>
+nnoremap [fzf-p]c     <Cmd>FzfPreviewCommandPaletteRpc<CR>
+nnoremap [fzf-p]g     :<C-u>FzfPreviewProjectGrepRpc<Space>
+let g:fzf_preview_fzf_preview_window_option = 'right:50%'
+let g:fzf_preview_use_dev_icons = v:true
+let g:fzf_preview_dev_icon_prefix_string_length = 3
+let g:fzf_preview_dev_icons_limit = 5000
+"""
+# on first execution, it say "The server is not ready yet."
+# for running it fine. I set denops as dependency.
+depends = ["vim-devicons", "fzf", "denops.vim"]
+on_cmd = [
+    "FzfPreviewCommandPaletteRpc",
+    "FzfPreviewDirectoryFilesRpc",
+    "FzfPreviewProjectGrepRpc",
+]

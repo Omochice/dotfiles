@@ -28,6 +28,9 @@ set wildmenu
 if has('termguicolors')
     set termguicolors
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    " TODO
+    " If disable below. any background will be transparency. :(
+    " include lightline, popup menu.
     " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
@@ -65,8 +68,6 @@ nnoremap k gk
 xnoremap j gj
 xnoremap k gk
 
-" disable q:
-nnoremap q: :<C-u>quit
 nnoremap Q <Cmd>copen<CR>
 
 " easy force write/quit
@@ -87,8 +88,8 @@ nnoremap c "_c
 " indent in insert mode
 inoremap <Left> <C-d>
 inoremap <Right> <C-t>
-inoremap <Up> <nop>
-inoremap <Down> <nop>
+" inoremap <Up> <nop>
+" inoremap <Down> <nop>
 
 vnoremap J gj
 vnoremap K gk
@@ -127,16 +128,13 @@ nnoremap <expr> A len(getline('.')) ? 'A' : '"_cc'
 " Commands
 if has('nvim')
     " neovim terminal settings
-    " make easy changing to terminal normal mode
-
-    tnoremap <expr> <ESC> &filetype ==# 'floaterm' ? '<ESC>' : '<C-\><C-n>'
     tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
-
+    tnoremap <ESC> <C-\><C-n>'
     " feed insert mode when move terminal window
     autocmd TermOpen * startinsert
     autocmd WinEnter * if &buftype ==# 'terminal' | startinsert | endif
     " auto close
-    " autocmd TermClose * call feedkeys('<CR>') " cannot work
+    " autocmd TermClose * call feedkeys('<LT>CR>') " cannot work
     autocmd TermClose * call feedkeys("\<CR>")
 
     " helper commands
@@ -145,9 +143,7 @@ if has('nvim')
     command! Tterm tabnew | terminal
 else
     " Vim terminal settings
-    " make easy changing to terminal normal mode
-    tnoremap <expr> <ESC> &filetype ==# 'floaterm' ? '<ESC>' : '<C-W>N'
-
+    tnoremap <ESC> <C-W>N
     " helper commands
     command! Vterm vsplit | wincmd l | terminal ++curwin
     command! Hterm split  | wincmd j | terminal ++curwin

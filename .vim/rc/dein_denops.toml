@@ -8,8 +8,8 @@ command! DenopsRestart call denops#server#restart()
 [[plugins]]
 repo = "Shougo/ddc.vim"
 hook_add = """
-inoremap <silent><expr><C-Space> ddc#manual_complete()
-let g:ddc_use_pum = v:true
+inoremap <silent><expr> <C-Space> ddc#manual_complete()
+let g:ddc_use_pum = v:false
 let g:ddc_use_cmdline = v:false
 
 if g:ddc_use_cmdline
@@ -27,7 +27,15 @@ if g:ddc_use_cmdline
     " Overwrite sources
     let s:prev_buffer_config = ddc#custom#get_buffer()
     call ddc#custom#patch_buffer('sources',
-            \ ['necovim', 'cmdline-history', 'around'])
+            \ ['necovim', 'cmdline-history', 'around', 'file'])
+    call ddc#custom#patch_buffer('sourceOptions', {
+            \ 'necovim': {
+                \ 'maxCandidates': 15},
+            \ 'around': {
+                \ 'maxCandidates': 5},
+            \ 'file': {
+                \ 'maxCandidates': 5},
+            \ })
     augroup ddc_cmdline_internal
       autocmd!
       autocmd CmdlineLeave * ++once call CommandlinePost()
@@ -53,20 +61,28 @@ call ddc#custom#patch_global('sourceOptions', {
   \   'sorters': ['sorter_fuzzy'],
   \   'converters': ['converter_remove_overlap', 'converter_fuzzy'],
   \   'minAutoCompleteLength': 1,
+  \   'isVolatile': v:true,
   \   'ignoreCase': v:true,
   \ },
-  \ 'vim-lsp': {'mark': 'L',
-  \             'forceCompletionPattern': '\.|:|->|"\w+/',
-  \             },
-  \ 'buffer': {'mark': 'B'},
-  \ 'around': {'mark': 'A'},
-  \ 'necovim': {'mark': 'N'},
-  \ 'vsnip': {'mark': 'S',},
-  \ 'tmux': {'mark': 'T'},
-  \ 'cmdline-history': {'mark': 'H',
-  \                     'maxCandidates': 100,
-  \                     'minAutoCompleteLength': 5,
-  \                     },
+  \ 'vim-lsp': {
+  \   'mark': 'LSP',
+  \   'forceCompletionPattern': '\.|:|->|"\w+/',
+  \ },
+  \ 'buffer': {'mark': 'Buf'},
+  \ 'around': {'mark': 'Ard'},
+  \ 'necovim': {'mark': 'Nec'},
+  \ 'vsnip': {'mark': 'Snp'},
+  \ 'tmux': {'mark': 'Tmx'},
+  \ 'cmdline-history': {
+  \   'mark': 'Hst',
+  \   'maxCandidates': 100,
+  \   'minAutoCompleteLength': 5,
+  \ },
+  \ 'file': {
+  \   'mark': 'Fil',
+  \   'isVolatile': v:true,
+  \   'forceCompletionPattern': '\S/\S*',
+  \ },
   \ })
 call ddc#custom#patch_filetype(
   \ ['toml'], 'sources', ['necovim', 'around', 'buffer', 'tmux']
@@ -89,6 +105,14 @@ hook_add = """
 inoremap <expr> <C-n> pum#visible() ? "<Cmd>call pum#map#insert_relative(+1)<CR>" : "<C-n>"
 inoremap <expr> <C-p> pum#visible() ? "<Cmd>call pum#map#insert_relative(-1)<CR>" : "<C-p>"
 """
+# TODO
+# I want to move the settings to multiple_plugins/hook_source, but the feature is not provided.
+depends = ["lexima.vim"]
+hook_source = """
+imap <silent><expr> <CR> pum#visible() ?
+  \ vsnip#expandable() ? '<Cmd>call pum#map#confirm()<CR>' : lexima#expand('<CR>', 'i')
+  \ : lexima#expand('<CR>', 'i')
+"""
 
 [[multiple_plugins]]
 plugins = ["pum.vim", "vim-vsnip", "lexima.vim"]
@@ -99,9 +123,7 @@ imap <silent><expr> <C-y> pum#visible() ? vsnip#expandable() ? '<Plug>(vsnip-exp
 """
 
 [[plugins]]
-# repo = "shun/ddc-vim-lsp"
-repo = "LumaKernel/ddc-vim-lsp"
-rev = "onCallback"
+repo = "shun/ddc-vim-lsp"
 depends = ["vim-lsp"]
 on_source = "ddc.vim"
 
@@ -136,6 +158,12 @@ on_source = "ddc.vim"
 [[plugins]]
 repo = "hrsh7th/vim-vsnip-integ"
 depends = "vim-vsnip"
+hook_source = """
+augroup ddc-pum-vsnip-internal
+  autocmd!
+  autocmd User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
+augroup END
+"""
 on_source = "ddc.vim"
 
 [[plugins]]
@@ -144,6 +172,10 @@ on_source = "ddc.vim"
 
 [[plugins]]
 repo = "tani/ddc-fuzzy"
+on_source = "ddc.vim"
+
+[[plugins]]
+repo = "LumaKernel/ddc-file"
 on_source = "ddc.vim"
 
 [[plugins]]
@@ -162,12 +194,12 @@ on_source = "denops.vim"
 [[plugins]]
 repo = "Omochice/dps-paiza-io-vim"
 # repo = "~/workspace/dps-paiza-io-vim"
-on_source = "denops.vim"
+on_cmd = "PaizaIO"
 
 [[plugins]]
 repo = "Omochice/dps-charcounter-vim"
 # repo = "~/workspace/dps-charcounter-vim"
-on_source = "denops.vim"
+on_cmd = "CharCount"
 
 [[plugins]]
 repo = "Omochice/dps-codic-vim"
