@@ -14,6 +14,7 @@
 !/.vim/fcitx.vim
 .vim/dein
 !/.vim/snippets/*.json
+!/.vim/templates/**/*
 !/config/*
 !/config/efm-langserver/config.yaml
 !/config/fish/*

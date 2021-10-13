@@ -461,3 +461,10 @@ on_ft = "help"
 help = """
 nnoremap <silent><buffer><Space>d <Cmd>VimhelpLint!<CR>
 """
+
+[[plugins]]
+repo = "mattn/vim-sonictemplate"
+on_cmd = "Template"
+hook_add = """
+let g:sonictemplate_vim_template_dir = g:config_dir . '/templates'
+"""
