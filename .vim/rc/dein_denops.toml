@@ -9,7 +9,7 @@ command! DenopsRestart call denops#server#restart()
 repo = "Shougo/ddc.vim"
 hook_add = """
 inoremap <silent><expr> <C-Space> ddc#manual_complete()
-let g:ddc_use_pum = v:false
+let g:ddc_use_pum = v:true
 let g:ddc_use_cmdline = v:false
 
 if g:ddc_use_cmdline
@@ -116,10 +116,9 @@ imap <silent><expr> <CR> pum#visible() ?
 
 [[multiple_plugins]]
 plugins = ["pum.vim", "vim-vsnip", "lexima.vim"]
-hook_add = """
-" Sourcing of lexima override this mapping.
-" imap <silent><expr> <CR> pum#visible() ? vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<nop>' : '<CR>'
-imap <silent><expr> <C-y> pum#visible() ? vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<nop>' : '<C-y>'
+# The below cant be loaded.
+hook_source = """
+" echomsg "exists?"
 """
 
 [[plugins]]
