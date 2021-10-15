@@ -22,10 +22,6 @@ let s:rules += [
 \ { 'char': '<BS>',  'at': '`\%#`', 'input': '<BS><Del>', },
 \ ]
 
-"" Triple Quote
-let s:rules += [
-\ { 'char': '<CR>', 'at': '"""\%#""', 'input': '<CR>', 'input_after': '<CR>' },
-\ ]
 
 "" Move closing parenthesis
 let s:rules += [
@@ -116,6 +112,11 @@ let s:rules += [
 \ { 'filetype': ['sh', 'zsh', 'bash', 'fish'], 'char': '[',    'at': '\[\%#\]',  'input': '[<Space>', 'input_after': '<Space>]', 'priority': 10 },
 \ { 'filetype': ['sh', 'zsh', 'bash', 'fish'], 'char': '{',    'at': '{\%#}',    'input': '{<Space>', 'input_after': '<Space>}', 'priority': 10 },
 \ { 'filetype': ['sh', 'zsh', 'bash', 'fish'], 'char': '<CR>', 'at': '{\%#}',    'input': '<CR>',     'input_after': '<CR>',     'priority': 10 },
+\ ]
+
+"" Python
+let s:rules += [
+\ { 'filetype': 'python', 'char': '"',       'at': '""\%#',                                                                        'input_after': '<CR><CR>"""', 'priority': 10, },
 \ ]
 
 "" HTML
