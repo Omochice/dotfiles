@@ -21,7 +21,7 @@
       gh issue $s; }; f"
 
 [core]
-    editor = "vim"
+    editor = "nvim"
     pager = "delta"
 
 [delta]
