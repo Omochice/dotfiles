@@ -91,7 +91,8 @@ on_event = "InsertEnter"
 [[multiple_plugins]]
 plugins = ["vim-vsnip", "lexima"]
 hook_add = """
-imap <silent><expr> <Tab> vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<LT>Tab>', 'i')
+" imap <silent><expr> <Tab> vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<LT>Tab>', 'i')
+" xmap <silent><expr> <Tab> vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<LT>Tab>', 'i')
 """
 
 [[plugins]]
