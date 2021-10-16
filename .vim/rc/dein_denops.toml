@@ -90,6 +90,9 @@ call ddc#custom#patch_filetype(
 call ddc#custom#patch_filetype(
   \ ['vim'], 'sources', ['vsnip', 'vim-lsp', 'necovim', 'around', 'buffer', 'tmux']
   \ )
+call ddc#custom#patch_filetype(
+  \ ['markdown'], 'sources', ['vsnip', 'file', 'around', 'buffer', 'tmux']
+  \ )
 
 if g:ddc_use_pum
   call ddc#custom#patch_global('completionMenu', 'pum.vim')
