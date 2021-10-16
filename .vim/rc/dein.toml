@@ -7,21 +7,36 @@ let g:dein#auto_recache = v:true
 [[plugins]]
 repo = "sainnhe/sonokai"
 hook_add = """
-augroup colorschemeSetting
-    autocmd!
-    autocmd VimEnter * nested colorscheme sonokai
-augroup END
+if !has('gui_running')
+    augroup colorschemeSetting
+        autocmd!
+        autocmd VimEnter * nested colorscheme sonokai
+    augroup END
+endif
 let g:sonokai_style = 'espresso'
 let g:sonokai_enable_italic = v:false
 let g:sonokai_disable_italic_comment = v:true
 """
+if = "!has('gui_runnning')"
+
+[[plugins]]
+repo = "yasukotelin/shirotelin"
+hook_add = """
+if has('gui_running')
+    augroup colorschemeSetting
+        autocmd!
+        autocmd VimEnter * nested colorscheme shirotelin
+    augroup END
+endif
+"""
+if = "has('gui_running')"
 
 [[plugins]]
 repo = "itchyny/lightline.vim"
 hook_add = """
 set noshowmode
 let g:lightline = {
-\   'colorscheme': 'sonokai',
+\   'colorscheme': has('gui_running') ? 'shirotelin' : 'sonokai',
 \   'active': {
 \       'left': [
 \           ['mode', 'paste'],
@@ -106,7 +121,7 @@ repo = "ryanoasis/vim-devicons"
 [[plugins]]
 repo = "lambdalisue/seethrough.vim"
 hook_add = """
-let g:seethrough_disabled = v:false
+let g:seethrough_disabled = has('gui_running')
 """
 
 [[plugins]]
@@ -143,9 +158,7 @@ hook_add = """
 command! Lazygit FloatermNew --autoclose=2 --height=1.0 --width=1.0 --title=lazygit lazygit
 command! Fkill FloatermKill
 nnoremap <C-g> <Cmd>Lazygit<CR>
-if has('nvim')
-  tnoremap <expr> <ESC> &filetype ==# 'floaterm' ? '<ESC>' : '<C-\><C-n>'
-else
-  tnoremap <expr> <ESC> &filetype ==# 'floaterm' ? '<ESC>' : '<C-W>N'
-endif
+tnoremap <expr> <ESC> &filetype ==# 'floaterm' ?
+\ '<ESC>' :
+\ has('nvim') ? '<C-\><C-n>' : '<C-W>N'
 """
