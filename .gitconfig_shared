@@ -3,6 +3,8 @@
     co = switch -c
     cm = commit -m
     sw = switch
+    cw = switch
+    br = branch
     unstage = reset HEAD
     ignore = !"f() { local s=$1; shift; \
       while [ $# -gt 0 ]; do s=\"$s,$1\"; shift; done;\
