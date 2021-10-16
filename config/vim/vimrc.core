@@ -31,7 +31,7 @@ if has('termguicolors')
     " TODO
     " If disable below. any background will be transparency. :(
     " include lightline, popup menu.
-    " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
 if has('nvim')
@@ -150,7 +150,16 @@ else
     command! Tterm tabnew | terminal ++curwin
 endif
 
-if !has('gui_running')
+if has('gui_running')
+    set guifont=FiraCode\ Nerd\ Font\ Mono\ 18
+    set guioptions-=r
+    set guioptions-=R
+    set guioptions-=l
+    set guioptions-=L
+    set guioptions-=b
+    set guioptions-=m
+    set guioptions-=T
+else
     set t_Co=256
     augroup term_vim_c_space
         autocmd!
@@ -158,6 +167,7 @@ if !has('gui_running')
         autocmd VimEnter * map! <Nul> <C-Space>
     augroup END
 endif
+
 
 " copy buffer command
 command! CopyBuffer %y
