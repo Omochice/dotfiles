@@ -151,7 +151,7 @@ else
 endif
 
 if has('gui_running')
-    set guifont=FiraCode\ Nerd\ Font\ Mono\ 18
+    set guifont=Firge35\ Console\ 18
     set guioptions-=r
     set guioptions-=R
     set guioptions-=l

@@ -6,16 +6,16 @@ shell:
 font:
   size: 15
   normal:
-    family: FiraCode Nerd Font Mono
+    family: Firge35Nerd Console
     style: Regular
   bold:
-    family: FiraCode Nerd Font Mono
+    family: Firge35Nerd Console
     style: Bold
   italic:
-    family: FiraCode Nerd Font Mono
+    family: Firge35Nerd Console
     style: Regular
   bold_italic:
-    falimy: FiraCode Nerd Font Mono
+    family: Firge35Nerd Console
     style: Bold Italic
 
 # Colors (sonokai)
