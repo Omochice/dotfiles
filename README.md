@@ -26,7 +26,8 @@
 
 ##  Misc
 - Font:
-    - [nerd-fonts-fira-code](https://aur.archlinux.org/packages/nerd-fonts-fira-code/)
+    - [yuru7/Firge](https://github.com/yuru7/Firge)
+    <!-- - [nerd-fonts-fira-code](https://aur.archlinux.org/packages/nerd-fonts-fira-code/) -->
     - Noto font
 
 
