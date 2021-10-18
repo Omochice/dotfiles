@@ -113,8 +113,8 @@ inoremap <expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>
 depends = ["lexima.vim"]
 hook_source = """
 imap <silent><expr> <CR> pum#visible() ?
-  \ vsnip#expandable() ? '<Cmd>call pum#map#confirm()<CR>' : lexima#expand('<CR>', 'i') :
-  \ lexima#expand('<CR>', 'i')
+  \ vsnip#expandable() ? '<Cmd>call pum#map#confirm()<CR>' : lexima#expand('<LT>CR>', 'i') :
+  \ lexima#expand('<LT>CR>', 'i')
 imap <silent><expr> <Tab>   vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<Tab>', 'i')
 smap <silent><expr> <Tab>   vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : '<Tab>'
 imap <silent><expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
