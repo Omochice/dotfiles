@@ -2,9 +2,35 @@
   "main": {
     "prefix": "main",
     "body": [
-      "if __FILE__ == \\$0 then",
+      "if $0 == __FILE__",
       "  $1",
       "end"
     ]
+  },
+  "require": {
+    "prefix": "require",
+    "body": [
+      "require \"$1\""
+    ],
+    "description": "require"
+  },
+  "require_relative": {
+    "prefix": "require_relative",
+    "body": [
+      "require_relative \"$1\""
+    ],
+    "description": "require_relative"
+  },
+  "yard document": {
+    "prefix": [
+      "yard",
+      "description"
+    ],
+    "body": [
+      "# ${1:abstract}",
+      "# @param  [${2:type}] ${3:description}",
+      "# @return [${4:type}] ${5:description}"
+    ],
+    "description": "description for yard"
   }
 }
