@@ -52,8 +52,9 @@ if g:ddc_use_cmdline
 endif
 """
 hook_source = """
+let g:ddc_base_sources = ['vsnip', 'vim-lsp', 'around', 'rg', 'buffer', 'tmux']
 call ddc#custom#patch_global(
- \ 'sources', ['vsnip', 'vim-lsp', 'around', 'buffer', 'tmux']
+ \ 'sources', g:ddc_base_sources,
  \ )
 call ddc#custom#patch_global('sourceOptions', {
   \ '_': {
@@ -83,15 +84,19 @@ call ddc#custom#patch_global('sourceOptions', {
   \   'isVolatile': v:true,
   \   'forceCompletionPattern': '\S/\S*',
   \ },
+  \ 'rg': {
+  \   'mark': 'Rg',
+  \   'minAutoCompleteLength': 4,
+  \ },
   \ })
 call ddc#custom#patch_filetype(
-  \ ['toml'], 'sources', ['necovim', 'around', 'buffer', 'tmux']
+  \ ['toml'], 'sources', g:ddc_base_sources[0:1] + ['necovim'] + g:ddc_base_sources[2:-1],
   \ )
 call ddc#custom#patch_filetype(
-  \ ['vim'], 'sources', ['vsnip', 'vim-lsp', 'necovim', 'around', 'buffer', 'tmux']
+  \ ['vim'], 'sources', g:ddc_base_sources[0:1] + ['necovim'] + g:ddc_base_sources[2:-1],
   \ )
 call ddc#custom#patch_filetype(
-  \ ['markdown'], 'sources', ['vsnip', 'file', 'around', 'buffer', 'tmux']
+  \ ['markdown'], 'sources', g:ddc_base_sources[0:1] + ['file'] + g:ddc_base_sources[2:-1],
   \ )
 
 if g:ddc_use_pum
@@ -173,6 +178,10 @@ on_source = "ddc.vim"
 [[plugins]]
 repo = "LumaKernel/ddc-file"
 on_source = "ddc.vim"
+
+[[plugins]]
+repo = "Shougo/ddc-rg"
+on_souce = "ddc.vim"
 
 [[plugins]]
 repo = "matsui54/denops-popup-preview.vim"
