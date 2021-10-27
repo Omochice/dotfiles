@@ -76,6 +76,16 @@ let g:vsnip_filetypes.plaintex = ["tex"]
 on_event = "InsertEnter"
 
 [[plugins]]
+repo = "hrsh7th/vim-vsnip-integ"
+hook_add = """
+augroup vsnip_for_pum
+  autocmd!
+  autocmd User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
+augroup END
+"""
+on_source = "vim-vsnip"
+
+[[plugins]]
 repo = "cohama/lexima.vim"
 hook_add = """
 let g:lexima_map_escape = ''
