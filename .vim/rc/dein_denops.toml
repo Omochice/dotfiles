@@ -243,3 +243,13 @@ on_source = "denops.vim"
 # """
 # depends = ["denops.vim"]
 # on_event = "BufRead"
+
+[[plugins]]
+repo = "gamoutatsumi/dps-ghosttext.vim"
+hook_add = """
+let g:dps_ghosttext#ftmap = {
+\   'biz.quest.signate.jp': 'python',
+\ }
+"""
+depends = "denops.vim"
+on_cmd = "GhostStart"
