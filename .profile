@@ -46,3 +46,8 @@ fi
 if [[ -e $HOME/.profile_local ]]; then
     source $HOME/.profile_local
 fi
+
+# GR (cross-platform visualization appilcation framework)
+if [[ -e $HOME/Tools/gr ]]; then
+    export GRDIR=$HOME/Tools/gr
+fi
