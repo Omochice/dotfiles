@@ -8,10 +8,10 @@ let g:dein#auto_recache = v:true
 repo = "sainnhe/sonokai"
 hook_add = """
 if !has('gui_running')
-    augroup colorschemeSetting
-        autocmd!
-        autocmd VimEnter * nested colorscheme sonokai
-    augroup END
+  augroup colorschemeSetting
+    autocmd!
+    autocmd VimEnter * nested colorscheme sonokai
+  augroup END
 endif
 let g:sonokai_style = 'espresso'
 let g:sonokai_enable_italic = v:false
@@ -23,10 +23,10 @@ if = "!has('gui_runnning')"
 repo = "yasukotelin/shirotelin"
 hook_add = """
 if has('gui_running')
-    augroup colorschemeSetting
-        autocmd!
-        autocmd VimEnter * nested colorscheme shirotelin
-    augroup END
+  augroup colorschemeSetting
+    autocmd!
+    autocmd VimEnter * nested colorscheme shirotelin
+  augroup END
 endif
 """
 if = "has('gui_running')"
@@ -51,23 +51,23 @@ let g:lightline = {
 \ }
 
 function! LightlineFileType() abort
-    if winwidth(0) > 70
-        if strlen(&filetype)
-            return &filetype . ' ' . WebDevIconsGetFileTypeSymbol()
-        else
-            return 'no ft'
-        endif
+  if winwidth(0) > 70
+    if strlen(&filetype) > 0
+      return &filetype . ' ' . WebDevIconsGetFileTypeSymbol()
     else
-        return ''
+      return 'no ft'
     endif
+  else
+    return ''
+  endif
 endfunction
 
 function! LightlineFotmat() abort
-    if winwidth(0) > 70
-        return &fileformat .  ' ' . WebDevIconsGetFileFormatSymbol()
-    else
-        return ''
-    endif
+  if winwidth(0) > 70
+    return &fileformat .  ' ' . WebDevIconsGetFileFormatSymbol()
+  else
+    return ''
+  endif
 endfunction
 """
 depends = ["vim-devicons", 'vim-gitbranch']
@@ -79,9 +79,9 @@ repo = "itchyny/vim-gitbranch"
 repo = "vim-jp/vimdoc-ja"
 hook_add = """
 if has('nvim')
-    set helplang=en " default
+  set helplang=en " default
 else
-    set helplang=ja
+  set helplang=ja
 endif
 """
 
