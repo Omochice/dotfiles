@@ -99,7 +99,7 @@ nmap <silent> <Space>d <Plug>(lsp-document-diagnostics)
 nmap <silent> <Space>r <Plug>(lsp-rename)
 
 let g:lsp_settings = {
-\   'efm-langserver': {'disabled': v:false},
+\   'efm-langserver': {'disabled': v:false, 'blocklist': ['ruby']},
 \   'html-langserver': {'allowlist': ['html', 'htmldjango']},
 \   'taplo-lsp': {'workspace_config': {'formatter' : {'reorderKeys': v:false}}}
 \ }
