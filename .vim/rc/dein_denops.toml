@@ -1,3 +1,17 @@
+# pre-settings
+hook_add = """
+let g:ddc_source_options['_'] = {
+\   'matchers': ['matcher_fuzzy'],
+\   'sorters': ['sorter_fuzzy'],
+\   'converters': ['converter_remove_overlap', 'converter_fuzzy'],
+\   'minAutoCompleteLength': 1,
+\   'ignoreCase': v:true,
+\ }
+if dein#tap('vim-vsnip-integ')
+  let g:ddc_source_options['vsnip'] = {'mark': 'Snp'}
+endif
+"""
+
 [[plugins]]
 repo = "vim-denops/denops.vim"
 hook_add = """
@@ -56,39 +70,7 @@ let g:ddc_base_sources = ['vsnip', 'vim-lsp', 'around', 'rg', 'buffer', 'tmux']
 call ddc#custom#patch_global(
  \ 'sources', g:ddc_base_sources,
  \ )
-call ddc#custom#patch_global('sourceOptions', {
-  \ '_': {
-  \   'matchers': ['matcher_fuzzy'],
-  \   'sorters': ['sorter_fuzzy'],
-  \   'converters': ['converter_remove_overlap', 'converter_fuzzy'],
-  \   'minAutoCompleteLength': 1,
-  \   'ignoreCase': v:true,
-  \ },
-  \ 'vim-lsp': {
-  \   'mark': 'LSP',
-  \   'isVolatile': v:true,
-  \   'forceCompletionPattern': '\.|:|->|"\w+/',
-  \ },
-  \ 'buffer': {'mark': 'Buf'},
-  \ 'around': {'mark': 'Ard'},
-  \ 'necovim': {'mark': 'Nec'},
-  \ 'vsnip': {'mark': 'Snp'},
-  \ 'tmux': {'mark': 'Tmx'},
-  \ 'cmdline-history': {
-  \   'mark': 'Hst',
-  \   'maxCandidates': 100,
-  \   'minAutoCompleteLength': 5,
-  \ },
-  \ 'file': {
-  \   'mark': 'Fil',
-  \   'isVolatile': v:true,
-  \   'forceCompletionPattern': '\S/\S*',
-  \ },
-  \ 'rg': {
-  \   'mark': 'Rg',
-  \   'minAutoCompleteLength': 4,
-  \ },
-  \ })
+call ddc#custom#patch_global('sourceOptions', g:ddc_source_options,)
 call ddc#custom#patch_filetype(
   \ ['toml'], 'sources', g:ddc_base_sources[0:1] + ['necovim'] + g:ddc_base_sources[2:-1],
   \ )
@@ -101,6 +83,7 @@ call ddc#custom#patch_filetype(
 
 if g:ddc_use_pum
   call ddc#custom#patch_global('completionMenu', 'pum.vim')
+  call ddc#custom#patch_global('backspaceCompletion', v:true)
 endif
 call ddc#enable()
 """
@@ -135,11 +118,21 @@ hook_source = """
 
 [[plugins]]
 repo = "shun/ddc-vim-lsp"
+hook_add = """
+let g:ddc_source_options['vim-lsp'] = {
+\   'mark': 'LSP',
+\   'isVolatile': v:true,
+\   'forceCompletionPattern': '\.|:|->|"\w+/',
+\ }
+"""
 depends = ["vim-lsp"]
 on_source = "ddc.vim"
 
 [[plugins]]
 repo = "Shougo/ddc-around"
+hook_add = """
+let g:ddc_source_options['around'] = {'mark': 'Ard'}
+"""
 on_source = "ddc.vim"
 
 [[plugins]]
@@ -152,14 +145,27 @@ on_source = "ddc.vim"
 
 [[plugins]]
 repo = 'Shougo/ddc-cmdline-history'
+hook_add = """
+let g:ddc_source_options['cmdline-history'] = {
+\   'mark': 'Hst',
+\   'maxCandidates': 100,
+\   'minAutoCompleteLength': 5,
+\ }
+"""
 on_source = 'ddc.vim'
 
 [[plugins]]
 repo = "Shougo/neco-vim"
+hook_add = """
+let g:ddc_source_options['necovim'] = {'mark': 'Nec'}
+"""
 on_source = "ddc.vim"
 
 [[plugins]]
 repo = "matsui54/ddc-buffer"
+hook_add = """
+let g:ddc_source_options['buffer'] = {'mark': 'Buf'}
+"""
 on_source = "ddc.vim"
 
 [[plugins]]
@@ -169,6 +175,9 @@ on_source = "ddc.vim"
 
 [[plugins]]
 repo = "delphinus/ddc-tmux"
+hook_add = """
+let g:ddc_source_options['tmux'] = {'mark': 'Tmx'}
+"""
 on_source = "ddc.vim"
 
 [[plugins]]
@@ -177,10 +186,23 @@ on_source = "ddc.vim"
 
 [[plugins]]
 repo = "LumaKernel/ddc-file"
+hook_add = """
+let g:ddc_source_options['file'] = {
+\   'mark': 'Fil',
+\   'isVolatile': v:true,
+\   'forceCompletionPattern': '\S/\S*',
+\ }
+"""
 on_source = "ddc.vim"
 
 [[plugins]]
 repo = "Shougo/ddc-rg"
+hook_add = """
+let g:ddc_source_options['rg'] = {
+\   'mark': 'Rg',
+\   'minAutoCompleteLength': 4,
+\ }
+"""
 on_souce = "ddc.vim"
 
 [[plugins]]
@@ -234,7 +256,8 @@ on_source = "denops.vim"
 
 [[plugins]]
 repo = "lambdalisue/guise.vim"
-on_source = "denops.vim"
+on_event = "TermEnter"
+depends = "denops.vim"
 
 # [[plugins]]
 # repo = "supporterz-vol5-1/breakTimer-vim"

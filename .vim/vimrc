@@ -1,5 +1,7 @@
 source ~/.config/vim/vimrc.core
 
+let g:ddc_source_options = {}
+
 let g:config_dir = fnamemodify(expand('<sfile>'), ':h')
 
 " dein.vim settings {{
