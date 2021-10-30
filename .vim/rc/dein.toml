@@ -92,33 +92,6 @@ endif
 """
 
 [[plugins]]
-repo = "prabirshrestha/vim-lsp"
-hook_add = """
-let g:lsp_diagnostics_enabled = v:true
-let g:lsp_diagnostics_virtual_text_enabled = v:false
-let g:lsp_diagnostics_echo_cursor = v:true
-let g:lsp_diagnostics_echo_delay = 100
-let g:lsp_review_float = v:false
-nmap <silent> <C-h> <Plug>(lsp-hover)
-nmap <silent> <Space>f <Plug>(lsp-document-format)
-nmap <silent> <Space>d <Plug>(lsp-document-diagnostics)
-nmap <silent> <Space>r <Plug>(lsp-rename)
-
-let g:lsp_settings = {
-\   'efm-langserver': {'disabled': v:false, 'blocklist': ['ruby']},
-\   'html-langserver': {'allowlist': ['html', 'htmldjango']},
-\   'taplo-lsp': {'workspace_config': {'formatter' : {'reorderKeys': v:false}}}
-\ }
-let g:lsp_text_edit_enabled = v:true
-let g:lsp_diagnostics_signs_error = {'text': '😡'}
-let g:lsp_diagnostics_signs_warning = {'text': '🤔'}
-"""
-
-[[plugins]]
-repo = "mattn/vim-lsp-settings"
-depends = "vim-lsp"
-
-[[plugins]]
 repo = "kana/vim-repeat"
 
 [[plugins]]
@@ -134,24 +107,6 @@ let g:seethrough_disabled = has('gui_running')
 repo = "mattn/vim-findroot"
 hook_add = """
 let g:findroot_not_for_subdir = v:false
-"""
-
-[[plugins]]
-repo = "cocopon/vaffle.vim"
-hook_add = """
-cnoreabbrev va Vaffle
-command! TVaffle tabnew | Vaffle
-augroup vaffle_startup_internal
-    autocmd!
-    autocmd StdinReadPre * let s:std_in = v:true
-    autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | Vaffle | endif
-augroup END
-
-" if load this plugin, use vaffle instead of netrw
-let g:loaded_netrw             = v:true
-let g:loaded_netrwPlugin       = v:true
-let g:loaded_netrwSettings     = v:true
-let g:loaded_netrwFileHandlers = v:true
 """
 
 [[plugins]]
