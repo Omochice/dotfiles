@@ -188,4 +188,4 @@ endif
 command! CopyBuffer %y
 
 " Disable message that show when start without args (I)
-set shortmess=asTIc
+set shortmess=asTIcF
