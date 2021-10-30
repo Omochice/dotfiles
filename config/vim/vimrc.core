@@ -26,30 +26,30 @@ set virtualedit=onemore
 set wildmenu
 
 if has('termguicolors')
-    set termguicolors
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    " TODO
-    " If disable below. any background will be transparency. :(
-    " include lightline, popup menu.
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  " TODO
+  " If disable below. any background will be transparency. :(
+  " include lightline, popup menu.
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
 if has('nvim')
-    let $NVIM_TUI_ENABLE_TRUE_COLOR = v:true
+  let $NVIM_TUI_ENABLE_TRUE_COLOR = v:true
 else
-    set iminsert=2
-    let &t_ti ..= "\e[1 q"
-    let &t_SI ..= "\e[5 q"
-    let &t_SR ..= "\e[3 q"
-    let &t_EI ..= "\e[1 q"
-    let &t_te ..= "\e[0 q"
+  set iminsert=2
+  let &t_ti ..= "\e[1 q"
+  let &t_SI ..= "\e[5 q"
+  let &t_SR ..= "\e[3 q"
+  let &t_EI ..= "\e[1 q"
+  let &t_te ..= "\e[0 q"
 endif
 
 if (!has('nvim') || $DISPLAY !=# '') && has('clipboard')
   if has('unnamedplus')
-     set clipboard& clipboard+=unnamedplus
+    set clipboard& clipboard+=unnamedplus
   else
-     set clipboard& clipboard+=unnamed
+    set clipboard& clipboard+=unnamed
   endif
 endif
 
@@ -127,27 +127,27 @@ nnoremap <expr> A len(getline('.')) ? 'A' : '"_cc'
 
 " Commands
 if has('nvim')
-    " neovim terminal settings
-    tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
-    tnoremap <ESC> <C-\><C-n>'
-    " feed insert mode when move terminal window
-    autocmd TermOpen * startinsert
-    autocmd WinEnter * if &buftype ==# 'terminal' | startinsert | endif
-    " auto close
-    " autocmd TermClose * call feedkeys('<LT>CR>') " cannot work
-    autocmd TermClose * call feedkeys("\<CR>")
+  " neovim terminal settings
+  tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
+  tnoremap <ESC> <C-\><C-n>'
+  " feed insert mode when move terminal window
+  autocmd TermOpen * startinsert
+  autocmd WinEnter * if &buftype ==# 'terminal' | startinsert | endif
+  " auto close
+  " autocmd TermClose * call feedkeys('<LT>CR>') " cannot work
+  autocmd TermClose * call feedkeys("\<CR>")
 
-    " helper commands
-    command! Vterm vsplit | wincmd l | terminal
-    command! Hterm split  | wincmd j | terminal
-    command! Tterm tabnew | terminal
+  " helper commands
+  command! Vterm vsplit | wincmd l | terminal
+  command! Hterm split  | wincmd j | terminal
+  command! Tterm tabnew | terminal
 else
-    " Vim terminal settings
-    tnoremap <ESC> <C-W>N
-    " helper commands
-    command! Vterm vsplit | wincmd l | terminal ++curwin
-    command! Hterm split  | wincmd j | terminal ++curwin
-    command! Tterm tabnew | terminal ++curwin
+  " Vim terminal settings
+  tnoremap <ESC> <C-W>N
+  " helper commands
+  command! Vterm vsplit | wincmd l | terminal ++curwin
+  command! Hterm split  | wincmd j | terminal ++curwin
+  command! Tterm tabnew | terminal ++curwin
 endif
 
 noremap  <M--> <Cmd>Hterm<CR>
@@ -159,23 +159,26 @@ noremap! <M-\> <Cmd>Vterm<CR>
 tnoremap <M-\> <Cmd>Vterm<CR>
 
 if has('gui_running')
-    set guifont=Firge35\ Console\ 18
-    set guioptions-=r
-    set guioptions-=R
-    set guioptions-=l
-    set guioptions-=L
-    set guioptions-=b
-    set guioptions-=m
-    set guioptions-=T
+  set guifont=Firge35\ Console\ 18
+  set guioptions-=r
+  set guioptions-=R
+  set guioptions-=l
+  set guioptions-=L
+  set guioptions-=b
+  set guioptions-=m
+  set guioptions-=T
 else
-    set t_Co=256
-    augroup term_vim_c_space
-        autocmd!
-        autocmd VimEnter * map <Nul> <C-Space>
-        autocmd VimEnter * map! <Nul> <C-Space>
-    augroup END
+  set t_Co=256
+  augroup term_vim_c_space
+    autocmd!
+    autocmd VimEnter * map <Nul> <C-Space>
+    autocmd VimEnter * map! <Nul> <C-Space>
+  augroup END
 endif
 
 
 " copy buffer command
 command! CopyBuffer %y
+
+" Disable message that show when start without args (I)
+set shortmess=asTIc
