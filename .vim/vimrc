@@ -1,8 +1,11 @@
-source ~/.config/vim/vimrc.core
+let g:config_dir = fnamemodify(expand('<sfile>'), ':h')
+
+let g:dein#inline_vimrcs = [
+\ expand('~/.config/vim/vimrc.core'),
+\ g:config_dir . '/fcitx.vim',
+\ ]
 
 let g:ddc_source_options = {}
-
-let g:config_dir = fnamemodify(expand('<sfile>'), ':h')
 
 " dein.vim settings {{
 " install dir {{{
@@ -74,7 +77,3 @@ endif
 " re-enable
 syntax on
 filetype plugin indent on
-
-if executable('fcitx')
-  execute 'source ' . g:config_dir . '/fcitx.vim'
-endif
