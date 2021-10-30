@@ -123,3 +123,11 @@ tnoremap <expr> <ESC> &filetype ==# 'floaterm' ?
 \ '<ESC>' :
 \ has('nvim') ? '<C-\><C-n>' : '<C-W>N'
 """
+
+[[plugins]]
+repo = "cocopon/vaffle.vim"
+hook_add = """
+cnoreabbrev va Vaffle
+command! TVaffle tabnew | Vaffle
+"""
+
