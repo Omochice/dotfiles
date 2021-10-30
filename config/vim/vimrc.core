@@ -25,6 +25,13 @@ set tabstop=4
 set virtualedit=onemore
 set wildmenu
 
+if has('nvim')
+  set wildmode=full
+  set wildoptions+=pum
+else
+  set wildmode=longest,full
+endif
+
 if has('termguicolors')
   set termguicolors
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
