@@ -121,7 +121,10 @@ nmap <silent> <Space>d <Plug>(lsp-document-diagnostics)
 nmap <silent> <Space>r <Plug>(lsp-rename)
 
 let g:lsp_settings = {
-\   'efm-langserver': {'disabled': v:false, 'blocklist': ['ruby']},
+\   'efm-langserver': {
+\       'disabled': v:false,
+\       'blocklist': ['ruby'],
+\   },
 \   'html-langserver': {'allowlist': ['html', 'htmldjango']},
 \   'taplo-lsp': {'workspace_config': {'formatter' : {'reorderKeys': v:false}}}
 \ }
@@ -274,34 +277,6 @@ depends = ["vim-textobj-user", "vim-textobj-line", "vim-textobj-anyblock"]
 repo = "cespare/vim-toml"
 on_ft = "toml"
 if = "!has('nvim') && !has('patch-8.2.3532')"
-
-[[plugins]]
-repo = "ruby-formatter/rufo-vim"
-hook_add = """
-let g:rufo_auto_formatting = v:false
-"""
-on_cmd = "Rufo"
-[plugins.ftplugin]
-ruby = """
-nnoremap <silent><buffer><Space>f <Cmd>Rufo<CR>
-"""
-
-[[plugins]]
-repo = "z0mbix/vim-shfmt"
-hook_add = """
-let g:shfmt_extra_args = '-i 4 -ci -bn -s'
-let g:shfmt_fmt_on_save = v:true
-"""
-on_ft = ["sh", "bash"]
-on_event = "BufWritePre"
-
-[[plugins]]
-repo = "mattn/vim-goimports"
-hook_add = """
-let g:goimports = v:true
-let g:goimports_simplify = v:true
-"""
-on_ft = "go"
 
 [[plugins]]
 repo = "alvan/vim-closetag"
@@ -532,3 +507,29 @@ on_cmd = [
     "FzfPreviewDirectoryFilesRpc",
     "FzfPreviewProjectGrepRpc",
 ]
+
+[[plugins]]
+repo =  "pappasam/vim-filetype-formatter"
+hook_add = """
+let g:vim_filetype_formatter_commands = {
+\   'ruby': 'rufo -x',
+\   'json': 'jq .',
+\   'python': 'black --quiet - | isort --quet -',
+\   'go': 'goimports | gofmt',
+\   'typescript': 'deno -',
+\   'sh': 'shfmt -ln bash -i 2 -bn -ci -sr -kp',
+\   'fortran': 'fprettify -i 2 -S',
+\ }
+let g:vim_filetype_formatter_ft_maps = {
+\   'bash': 'sh',
+\ }
+"""
+on_cmd = "FiletypeFormat"
+[plugins.ftplugin]
+ruby = "nnoremap <Space>f <Cmd>FiletypeFormat<CR>"
+json = "nnoremap <Space>f <Cmd>FiletypeFormat<CR>"
+python = "nnoremap <Space>f <Cmd>FiletypeFormat<CR>"
+go = "nnoremap <Space>f <Cmd>FiletypeFormat<CR>"
+sh = "nnoremap <Space>f <Cmd>FiletypeFormat<CR>"
+bash = "nnoremap <Space>f <Cmd>FiletypeFormat<CR>"
+fortran = "nnoremap <Space>f <Cmd>FiletypeFormat<CR>"
