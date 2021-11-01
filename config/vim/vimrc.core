@@ -135,8 +135,8 @@ nnoremap <expr> A len(getline('.')) ? 'A' : '"_cc'
 " Commands
 if has('nvim')
   " neovim terminal settings
-  tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
-  tnoremap <ESC> <C-\><C-n>'
+  " tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
+  tnoremap <ESC> <C-\><C-n>
   " feed insert mode when move terminal window
   autocmd TermOpen * startinsert
   autocmd WinEnter * if &buftype ==# 'terminal' | startinsert | endif
