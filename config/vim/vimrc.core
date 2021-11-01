@@ -136,13 +136,15 @@ nnoremap <expr> A len(getline('.')) ? 'A' : '"_cc'
 if has('nvim')
   " neovim terminal settings
   " tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
-  tnoremap <ESC> <C-\><C-n>
+  tnoremap <expr> <ESC> &filetype ==# 'floaterm' ? '<ESC>' : '<C-\><C-n>'
   " feed insert mode when move terminal window
-  autocmd TermOpen * startinsert
-  autocmd WinEnter * if &buftype ==# 'terminal' | startinsert | endif
-  " auto close
-  " autocmd TermClose * call feedkeys('<LT>CR>') " cannot work
-  autocmd TermClose * call feedkeys("\<CR>")
+  augroup nvim_terminal_internal
+    autocmd TermOpen * startinsert
+    autocmd WinEnter * if &buftype ==# 'terminal' | startinsert | endif
+    " auto close
+    " autocmd TermClose * call feedkeys('<LT>CR>') " cannot work
+    autocmd TermClose * call feedkeys("\<CR>")
+  augroup END
 
   " helper commands
   command! Vterm vsplit | wincmd l | terminal
@@ -150,7 +152,7 @@ if has('nvim')
   command! Tterm tabnew | terminal
 else
   " Vim terminal settings
-  tnoremap <ESC> <C-W>N
+  tnoremap <expr> <ESC> &filetype ==# 'floaterm' ? '<ESC>' : '<C-W>N'
   " helper commands
   command! Vterm vsplit | wincmd l | terminal ++curwin
   command! Hterm split  | wincmd j | terminal ++curwin
