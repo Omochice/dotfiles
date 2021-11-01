@@ -64,10 +64,6 @@ tools:
   rufo: &rufo-format
     format-command: 'rufo'
     format-stdin: true
-    root-markers:
-      - Gemfile
-      - Rakefile
-      - .rufo
 
   goimports-format: &goimports-format
     format-command: 'goimports'
@@ -76,23 +72,23 @@ tools:
 
 languages:
   json:
-    - <<: *jq-format
+    # - <<: *jq-format
 
   python:
-    - <<: *yapf-format
+    # - <<: *yapf-format
     # - <<: *black-format
-    - <<: *isort-format
+    # - <<: *isort-format
     - <<: *mypy-lint
     - <<: *flake8-lint
 
   fortran:
-    - <<: *fprettify
+    # - <<: *fprettify
 
   vue:
-    - <<: *prettier
+    # - <<: *prettier
 
   typescript:
-    - <<: *prettier
+    # - <<: *prettier
 
   markdown:
     - <<: *textlint
@@ -106,10 +102,10 @@ languages:
 
   bash:
     - <<: *shellcheck-lint
-    - <<: *shfmt-format
+    # - <<: *shfmt-format
 
   golang:
-    - <<: *goimports-format
+    # - <<: *goimports-format
 
-  # ruby:
-  #   - <<: *rufo-format
+  ruby:
+    # - <<: *rufo-format
