@@ -514,7 +514,7 @@ hook_add = """
 let g:vim_filetype_formatter_commands = {
 \   'ruby': 'rufo -x',
 \   'json': 'jq .',
-\   'python': 'black --quiet - | isort --quet -',
+\   'python': 'black --quiet - | isort --quiet -',
 \   'go': 'goimports | gofmt',
 \   'typescript': 'deno -',
 \   'sh': 'shfmt -ln bash -i 2 -bn -ci -sr -kp',
