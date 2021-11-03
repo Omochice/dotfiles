@@ -13,7 +13,9 @@ else
 fi
 
 # golang
-# if [[ -e $HOME/.go ]]; then
+if [[ -d /usr/local/go ]]; then
+    export PATH=$PATH:/usr/local/go/bin
+fi
 if [ -x "$(command -v go)" ]; then
     export GOPATH=$HOME/.go
     export PATH=$PATH:$GOPATH/bin
