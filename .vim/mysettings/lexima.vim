@@ -117,6 +117,7 @@ let s:rules += [
 "" Python
 let s:rules += [
 \ { 'filetype': 'python', 'char': '"',       'at': '""\%#',                                                                        'input_after': '<CR><CR>"""', 'priority': 10, },
+\ { 'filetype': 'python', 'char': '%',       'at': '^#\s%\%#',                                                                        'input_after': '<CR><CR># %%', 'priority': 10, },
 \ ]
 
 "" HTML
