@@ -1,6 +1,6 @@
 {
   "Println": {
-    "prefix": "fmt.Println",
+    "prefix": "fmt",
     "body": [
       "fmt.Println($1)"
     ]
@@ -30,7 +30,7 @@
   },
   "for-range": {
     "prefix": [
-      "for"
+      "forr"
     ],
     "body": [
       "for i, ${1:v} := range $2 {",
@@ -42,10 +42,22 @@
   "for-loop": {
     "prefix": "for",
     "body": [
-      "for ${1:i} := 0; $1; $1++ {",
-      "  $2",
+      "for ${1:i} := 0; $1${2:expr}; $1++ {",
+      "  $3",
       "}"
     ],
     "description": "for-loop"
+  },
+  "define func": {
+    "prefix": [
+      "def",
+      "func"
+    ],
+    "body": [
+      "func ${1:name}(${2:args}) ${3:returns} {",
+      "\t$4",
+      "}"
+    ],
+    "description": "define function"
   }
 }

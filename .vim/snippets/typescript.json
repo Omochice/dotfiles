@@ -23,7 +23,7 @@
       "console.log"
     ],
     "body": [
-      "console.log(${1:object})"
+      "console.log({${1:object}})"
     ],
     "description": "console.log"
   },
