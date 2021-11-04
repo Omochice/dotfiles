@@ -203,7 +203,7 @@ let g:ddc_source_options['rg'] = {
 \   'minAutoCompleteLength': 4,
 \ }
 """
-on_souce = "ddc.vim"
+on_source = "ddc.vim"
 
 [[plugins]]
 repo = "matsui54/denops-popup-preview.vim"
