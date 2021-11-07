@@ -43,6 +43,7 @@ alias diff "git diff"
 alias ptpython "ptpython --vi"
 alias ptipython "ptipython --vi"
 alias today "date '+%Y-%m-%d'"
+alias tomorrow "date '+%Y-%m-%d' --date '+1 day'"
 alias view "vim -R"
 
 if type "nvim" >/dev/null 2>&1
@@ -71,6 +72,7 @@ abbr :q "exit"
 abbr lz "lazygit"
 abbr giph "giph -f 5 -s -l -c 0.3,0,0.4,0.5 -b 5 -p -5"
 abbr rm "rip"
+abbr germanium "germanium -f Firge35NerdConsole-Regular"
 
 # tmuxの自動起動
 set count (ps aux | grep tmux | grep -v grep | wc -l)
