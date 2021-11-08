@@ -210,6 +210,10 @@ let g:quickrun_config = extend(get(g:, 'quickrun_config', {}), {
 \       'cmdopt': '--allow-all --unstable',
 \       'exec': 'NO_COLOR=1 %c run %o %s',
 \   },
+\   'elm': {
+\       'command': 'elm',
+\       'exec': '%c make %S',
+\   },
 \ })
 """
 depends = ["vimproc.vim", "vim-quickrun-neovim-job"]
