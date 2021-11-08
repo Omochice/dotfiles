@@ -23,6 +23,7 @@
 !/config/fish/functions/fzf_history.fish
 !/config/fish/functions/fish_prompt.fish
 !/config/fish/functions/fish_user_key_bindings.fish
+!/config/fish/functions/__lazygit.fish
 !/config/paru/*
 /config/fish/fish_variables
 !/config/git/ignore
