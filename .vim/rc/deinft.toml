@@ -85,7 +85,7 @@ setlocal wrap
 """
 
 gitcommit = """
-set spell
+setlocal spell
 """
 
 # from https://thinca.hatenablog.com/entry/20110903/1314982646
@@ -99,4 +99,8 @@ if &l:buftype !=# 'help'
     setlocal conceallevel=0
   endif
 endif
+"""
+
+elm = """
+iabbrev <buffer> ;; ->
 """
