@@ -524,6 +524,7 @@ let g:vim_filetype_formatter_commands = {
 \   'typescript': 'deno -',
 \   'sh': 'shfmt -ln bash -i 2 -bn -ci -sr -kp',
 \   'fortran': 'fprettify -i 2 -S',
+\   'elm': 'elm-format --stdin',
 \ }
 let g:vim_filetype_formatter_ft_maps = {
 \   'bash': 'sh',
@@ -531,10 +532,11 @@ let g:vim_filetype_formatter_ft_maps = {
 """
 on_cmd = "FiletypeFormat"
 [plugins.ftplugin]
-ruby = "nnoremap <Space>f <Cmd>FiletypeFormat<CR>"
-json = "nnoremap <Space>f <Cmd>FiletypeFormat<CR>"
-python = "nnoremap <Space>f <Cmd>FiletypeFormat<CR>"
-go = "nnoremap <Space>f <Cmd>FiletypeFormat<CR>"
-sh = "nnoremap <Space>f <Cmd>FiletypeFormat<CR>"
-bash = "nnoremap <Space>f <Cmd>FiletypeFormat<CR>"
-fortran = "nnoremap <Space>f <Cmd>FiletypeFormat<CR>"
+ruby = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
+json = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
+python = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
+go = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
+sh = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
+bash = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
+fortran = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
+elm = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
