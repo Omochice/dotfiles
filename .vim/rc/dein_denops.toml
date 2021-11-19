@@ -272,6 +272,7 @@ repo = "gamoutatsumi/dps-ghosttext.vim"
 hook_add = """
 let g:dps_ghosttext#ftmap = {
 \   'biz.quest.signate.jp': 'python',
+\   'cloudlatex.io': 'tex',
 \ }
 """
 depends = "denops.vim"
