@@ -34,10 +34,10 @@ if [[ -e $HOME/.deno ]]; then
     export PATH=$PATH:$HOME/.deno/bin
 fi
 
-# anyenv
-if [[ -e $HOME/.anyenv ]]; then
-    export PATH=$PATH:$HOME/.anyenv/bin
-fi
+# # anyenv
+# if [[ -e $HOME/.anyenv ]]; then
+#     export PATH=$PATH:$HOME/.anyenv/bin
+# fi
 
 # yarn
 if [[ -e $HOME/.yarn ]]; then
