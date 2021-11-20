@@ -32,5 +32,16 @@
       "# @return [${4:type}] ${5:description}"
     ],
     "description": "description for yard"
+  },
+  "Bio::FlatFile.open": {
+    "prefix": [
+      "Bio",
+      "gbkopen",
+      "fastaopen"
+    ],
+    "body": [
+      "Bio::FlatFile.auto(${1:filename}).each_entry do $2"
+    ],
+    "description": "open genbank / fasta etc.."
   }
 }
