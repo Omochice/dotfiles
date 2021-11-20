@@ -273,6 +273,7 @@ hook_add = """
 let g:dps_ghosttext#ftmap = {
 \   'biz.quest.signate.jp': 'python',
 \   'play.golang.org': 'go',
+\   'cloudlatex.io': 'tex',
 \ }
 """
 depends = "denops.vim"
