@@ -9,8 +9,8 @@ function load_settings() {
     if [ -d $func_dir -a -r $func_dir -a -x $func_dir ]; then
         for i in $func_dir/*; do
             [[ ${i##*/} == *.sh ]] && [ \( -f $i -o -h $i \) -a -r $i ] && source $i
-        done
-    fi
+    done
+  fi
 }
 
 function colors() {
@@ -35,10 +35,10 @@ function colors() {
             printf "  %-9s" "${seq0:-(default)}"
             printf " ${seq0}TEXT\e[m"
             printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
-        done
-        echo
-        echo
     done
+        echo
+        echo
+  done
 }
 
 load_settings
@@ -46,7 +46,9 @@ load_settings
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
 # command xmodmap $HOME/.Xmodmap
-eval "$(anyenv init -)"
+if [ -x "${command-v anyenv}" ]; then
+    eval "$(anyenv init -)"
+fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
