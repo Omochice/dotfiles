@@ -132,7 +132,7 @@ let g:lsp_text_edit_enabled = v:true
 let g:lsp_diagnostics_signs_error = {'text': '🥺'}
 let g:lsp_diagnostics_signs_warning = {'text': '🤔'}
 """
-on_event = "FileType"
+on_event = "BufRead"
 
 [[plugins]]
 repo = "mattn/vim-lsp-settings"
