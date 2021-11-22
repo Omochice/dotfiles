@@ -19,7 +19,7 @@ hook_add = """
 if !has('gui_running')
   augroup colorschemeSetting
     autocmd!
-    autocmd VimEnter * nested colorscheme sonokai
+    autocmd VimEnter * nested colorscheme sonokai | highlight link FloatBorder NormalFloat
   augroup END
 endif
 let g:sonokai_style = 'espresso'
