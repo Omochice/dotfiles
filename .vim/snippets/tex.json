@@ -2,10 +2,10 @@
   "begin": {
     "prefix": "begin",
     "body": [
-      "\\begin{$1}",
+      "begin{${2:env}}",
       "\t$2",
       "\\end{$1}"
     ],
-    "description": "begin"
+    "description": "begin environment"
   }
 }
