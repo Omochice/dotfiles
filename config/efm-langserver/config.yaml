@@ -109,3 +109,5 @@ languages:
 
   ruby:
     # - <<: *rufo-format
+  tex:
+    - <<: *textlint
