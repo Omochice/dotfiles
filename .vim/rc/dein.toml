@@ -134,3 +134,5 @@ cnoreabbrev va Vaffle
 command! TVaffle tabnew | Vaffle
 """
 
+[[plugins]]
+repo = "vim-jp/vim-streem"
