@@ -7,5 +7,23 @@
       "\\end{$1}"
     ],
     "description": "begin environment"
+  },
+  "itemize": {
+    "prefix": "itemize",
+    "body": [
+      "\\begin{itemize}",
+      "\t\\item $1",
+      "\\end{itemize}"
+    ],
+    "description": "list items"
+  },
+  "enumerate": {
+    "prefix": "enumerate",
+    "body": [
+      "\\begin{enumerate}",
+      "\t\\item $1",
+      "\\end{enumerate}"
+    ],
+    "description": "enumerate items"
   }
 }
