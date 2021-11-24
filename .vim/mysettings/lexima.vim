@@ -125,6 +125,12 @@ let s:rules += [
 \ { 'filetype': ['html', 'htmldjango'], 'char': '%', 'at': '{\%#}', 'input': '%<Space>', 'input_after': '<Space>%', 'priority': 10, },
 \ ]
 
+""latex
+let s:rules += [
+\ { 'filetype': 'tex', 'char': '$', 'at': '[^\$]*\%#', 'input': '$', 'input_after': '$' },
+\ { 'filetype': 'tex', 'char': '$', 'at': '\$\%#\$', 'input': '$<Enter>', 'input_after': '<Enter>$', 'priority': 10 },
+\ ]
+
 for s:rule in s:rules
     call lexima#add_rule(s:rule)
 endfor
