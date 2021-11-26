@@ -25,5 +25,17 @@
       "\\end{enumerate}"
     ],
     "description": "enumerate items"
+  },
+  "figure": {
+    "prefix": "figure",
+    "body": [
+      "\\begin{figure}[Hbtp]",
+      "\t\\centering",
+      "\t\\includegraphics[width=\\hsize]{${1:path}}",
+      "\t\\caption{${2:caption}}",
+      "\t\\label{fig:${3:label-name}}",
+      "\\end{figure}"
+    ],
+    "description": "simple figure snippet"
   }
 }

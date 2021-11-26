@@ -127,8 +127,9 @@ let s:rules += [
 
 ""latex
 let s:rules += [
-\ { 'filetype': 'tex', 'char': '$', 'at': '[^\$]*\%#', 'input': '$', 'input_after': '$' },
-\ { 'filetype': 'tex', 'char': '$', 'at': '\$\%#\$', 'input': '$<Enter>', 'input_after': '<Enter>$', 'priority': 10 },
+\ { 'filetype': 'tex', 'char': '$', 'at': '[^\$]*\%#', 'input': '$', 'input_after': '$', },
+\ { 'filetype': 'tex', 'char': '$', 'at': '\$\%#\$', 'input': '$<CR>', 'input_after': '<CR>$', 'priority': 10 },
+\ { 'filetype': 'tex', 'char': '<CR>', 'at': '^\s*\\item.*\%#$', 'input': '<CR>\item ', },
 \ ]
 
 for s:rule in s:rules
