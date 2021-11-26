@@ -80,6 +80,7 @@ nnoremap Q <Cmd>copen<CR>
 " easy force write/quit
 cnoreabbrev qq quit!
 cnoreabbrev ww update!
+cnoreabbrev w update
 
 " TODO
 " cnoreabbrev w:q wq
