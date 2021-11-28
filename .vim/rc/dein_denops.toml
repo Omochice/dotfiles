@@ -1,30 +1,30 @@
-# pre-settings
-hook_add = """
-let g:ddc_source_options['_'] = {
-\   'matchers': ['matcher_fuzzy'],
-\   'sorters': ['sorter_fuzzy'],
-\   'converters': ['converter_remove_overlap', 'converter_fuzzy'],
-\   'minAutoCompleteLength': 1,
-\   'ignoreCase': v:true,
-\ }
-if dein#tap('vim-vsnip-integ')
-  let g:ddc_source_options['vsnip'] = {'mark': 'Snp'}
-endif
-"""
-
 [[plugins]]
 repo = "vim-denops/denops.vim"
 hook_add = """
-command! DenopsRestart call denops#server#restart()
+command! DenopsRestart call denops#server#restart() " NOTE: not work?
 """
 
 # {{{ ddc
 [[plugins]]
 repo = "Shougo/ddc.vim"
 hook_add = """
-inoremap <silent><expr> <C-Space> ddc#manual_complete()
 let g:ddc_use_pum = v:true
 let g:ddc_use_cmdline = v:false
+let g:ddc_source_options = {
+\ '_': {
+\   'matchers': ['matcher_fuzzy'],
+\   'sorters': ['sorter_fuzzy'],
+\   'converters': ['converter_remove_overlap', 'converter_fuzzy'],
+\   'minAutoCompleteLength': 2,
+\   'ignoreCase': v:true,
+\   }
+\ }
+
+inoremap <silent><expr> <C-Space> ddc#manual_complete()
+
+if dein#tap('vim-vsnip-integ')
+  let g:ddc_source_options['vsnip'] = {'mark': 'Snp'}
+endif
 
 if g:ddc_use_cmdline
   nnoremap : <Cmd>call CommandlinePre()<CR>:
@@ -72,10 +72,7 @@ call ddc#custom#patch_global(
  \ )
 call ddc#custom#patch_global('sourceOptions', g:ddc_source_options,)
 call ddc#custom#patch_filetype(
-  \ ['toml'], 'sources', g:ddc_base_sources[0:1] + ['necovim'] + g:ddc_base_sources[2:-1],
-  \ )
-call ddc#custom#patch_filetype(
-  \ ['vim'], 'sources', g:ddc_base_sources[0:1] + ['necovim'] + g:ddc_base_sources[2:-1],
+  \ ['toml', 'vim'], 'sources', g:ddc_base_sources[0:1] + ['necovim'] + g:ddc_base_sources[2:-1],
   \ )
 call ddc#custom#patch_filetype(
   \ ['markdown'], 'sources', g:ddc_base_sources[0:1] + ['file'] + g:ddc_base_sources[2:-1],
@@ -96,23 +93,16 @@ hook_add = """
 inoremap <expr> <C-n> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<C-n>'
 inoremap <expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<C-p>'
 """
-# TODO
-# I want to move the settings to multiple_plugins/hook_source, but the feature is not provided.
-depends = ["lexima.vim"]
-hook_source = """
-imap <silent><expr> <CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : lexima#expand('<LT>CR>', 'i')
-imap <silent><expr> <Tab>   vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<Tab>', 'i')
-smap <silent><expr> <Tab>   vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : '<Tab>'
-imap <silent><expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
-smap <silent><expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
-"""
+# hook_source = """
+# " Sourcing lexima provide some `lexima#expand() to mapping`
+# " So, below is wrote into hook_source
+# " imap <silent><expr> <CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : lexima#expand('<LT>CR>', 'i')
+# """
 
-[[multiple_plugins]]
-plugins = ["pum.vim", "vim-vsnip", "lexima.vim"]
-# The below cant be loaded.
-hook_source = """
-" echomsg "exists?"
-"""
+# [[multiple_plugins]]
+# plugins = ["pum.vim", "lexima.vim"]
+# hook_source in multiple_plugins is not provided
+# hook_source =
 
 [[plugins]]
 repo = "shun/ddc-vim-lsp"
@@ -198,6 +188,7 @@ hook_add = """
 let g:ddc_source_options['rg'] = {
 \   'mark': 'Rg',
 \   'minAutoCompleteLength': 4,
+\   'maxCandidates': 20,
 \ }
 """
 on_source = "ddc.vim"
@@ -239,8 +230,8 @@ let g:dps_translate_target = "ja"
 
 nnoremap tr <Cmd>Translate<CR>
 nnoremap tR <Cmd>Translate!<CR>
-vnoremap <silent>tr :TranslateJoin<CR>
-vnoremap <silent>tR :TranslateJoin!<CR>
+vnoremap <silent>tr <Cmd>TranslateJoin<CR>
+vnoremap <silent>tR <Cmd>TranslateJoin!<CR>
 """
 on_cmd = ["Translate", "TranslateJoin"]
 
@@ -251,11 +242,12 @@ let g:slack_status_emoji = ":dadparrot:"
 """
 on_source = "denops.vim"
 
-[[plugins]]
-repo = "lambdalisue/guise.vim"
+# guise.vim not work well on lazy...?
+# [[plugins]]
+# repo = "lambdalisue/guise.vim"
 # on_event = "TermOpen"
 # depends = "denops.vim"
-on_source = "denops.vim"
+# # on_source = "denops.vim"
 
 # [[plugins]]
 # repo = "supporterz-vol5-1/breakTimer-vim"

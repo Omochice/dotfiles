@@ -66,13 +66,16 @@ repo = "hrsh7th/vim-vsnip"
 on_map = { x = "<Plug>", i = "<Plug>" }
 hook_add = """
 let g:vsnip_snippet_dir = g:config_dir . '/snippets'
-imap <expr><C-j> vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : '<Down>'
-imap <expr><C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<Up>'
-xmap <expr><C-j> vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : '<Down>'
-xmap <expr><C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<Up>'
 let g:vsnip_filetypes = {}
 let g:vsnip_filetypes.plaintex = ["tex"]
 """
+hook_source = """
+imap <silent><expr> <Tab>   vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<Tab>', 'i')
+smap <silent><expr> <Tab>   vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : '<Tab>'
+imap <silent><expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
+smap <silent><expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
+"""
+depends = ["lexima.vim"]  # Need this for control order to sourcing
 on_event = "InsertEnter"
 
 [[plugins]]
@@ -95,15 +98,19 @@ let g:lexima_enable_newline_rules = v:true
 hook_source = """
 " too lang to write here
 execute 'source ' . g:config_dir . '/mysettings/lexima.vim'
+if g:is_deno_executable
+  imap <silent><expr> <CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : lexima#expand('<LT>CR>', 'i')
+endif
 """
 on_event = "InsertEnter"
 
-[[multiple_plugins]]
-plugins = ["vim-vsnip", "lexima"]
-hook_add = """
-" imap <silent><expr> <Tab> vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<LT>Tab>', 'i')
-" xmap <silent><expr> <Tab> vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<LT>Tab>', 'i')
-"""
+# Below not work
+# [[multiple_plugins]]
+# plugins = ["vim-vsnip", "lexima"]
+# hook_source = """
+# " imap <silent><expr> <Tab> vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<LT>Tab>', 'i')
+# " xmap <silent><expr> <Tab> vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<LT>Tab>', 'i')
+# """
 
 [[plugins]]
 repo = "prabirshrestha/vim-lsp"
