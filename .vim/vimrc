@@ -1,11 +1,10 @@
 let g:config_dir = fnamemodify(expand('<sfile>'), ':h')
+let g:is_deno_executable = executable('deno')
 
 let g:dein#inline_vimrcs = [
 \ expand('~/.config/vim/vimrc.core'),
 \ g:config_dir . '/fcitx.vim',
 \ ]
-
-let g:ddc_source_options = {}
 
 " dein.vim settings {{
 " install dir {{{
@@ -40,7 +39,7 @@ if dein#load_state(g:dein_dir)
   " read toml and cache
   call dein#load_toml(s:toml, {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
-  if executable('deno')
+  if g:is_deno_executable
     call dein#load_toml(s:dein_denops, {'lazy': 1})
   else
     echomsg 'deno is not executable, so stoped loading denops plugins.'
