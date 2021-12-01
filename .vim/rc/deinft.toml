@@ -90,49 +90,11 @@ setlocal filetype=tex
 """
 
 tex = """
+" if surround `"` then need to use \\ for meaning \ .
 setlocal wrap
 setlocal tabstop=2
 setlocal softtabstop=2
 setlocal shiftwidth=2
-
-function! Subtest(...) range
-    s/\s*$/ \\\\ \\hline/g
-endfunction
-command! -range SubTest <line1>,<line2>call Subtest(<q-args>)
-
-function! LaTeXTable(...) range
-  " Convert csv-like text to LaTeX's table.
-  " replace comma to <space>&<space>
-  '<,'>s/,/ \& /g
-  " Replace end with \\ \hline
-  '<,'>s/\s*$/ \\\\ \\hline/g
-  let l:do_define = a:000 == ['']
-  let l:n_columns = len(split(getline(a:firstline), '&'))
-  let l:define_heads = [
-     \ '\begin{table}[htbp]',
-     \ "\t" . '\centering',
-     \ "\t" . '\caption{}',
-     \ ]
-  let l:define_tails = [
-     \ '\end{table}',
-     \ ]
-  let l:tabular_heads = [
-     \ '\begin{tabular}{' . join(repeat(['l'], l:n_columns), '|') . '}',
-     \ '\hline',
-     \ ]
-  let l:tabular_tails = [
-     \'\end{tabular}',
-     \ ]
-  " If not specify argument, add \begin{table}
-  if l:do_define
-    call append(a:firstline - 1, l:define_heads + map(l:tabular_heads, '"\t" . v:val'))
-    call append(a:lastline  + 5, map(l:tabular_tails, '"\t" . v:val') + l:define_tails)
-  else
-    call append(a:firstline - 1, l:tabular_heads)
-    call append(a:lastline + 2,  l:tabular_tails)
-  endif
-endfunction
-command! -nargs=? -range TexTable <line1>,<line2>call LaTeXTable(<q-args>)
 """
 
 qf = """
