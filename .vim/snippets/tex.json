@@ -2,7 +2,7 @@
   "begin": {
     "prefix": "begin",
     "body": [
-      "begin{${2:env}}",
+      "begin{${1:env}}",
       "\t$2",
       "\\end{$1}"
     ],
