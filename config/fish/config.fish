@@ -56,6 +56,10 @@ else
     alias vi "vim"
 end
 
+if type "license-generator" >/dev/null 2>&1
+    alias license "license-generator --author Omochice"
+end
+
 # paru override yay
 if type "paru" >/dev/null 2>&1
     alias yay "paru"
