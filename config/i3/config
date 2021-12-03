@@ -160,9 +160,9 @@ bar {
 	position top
 	tray_output none
 	status_command bumblebee-status -m cpu memory ping \
-		pasink pasource playerctl datetime \
+		pasink pasource playerctl bluetooth2 datetime \
         -p pulseaudio.autostart="true" pulseaudio.limit=100 \
-        playerctl.format="{{artist}} - {{title}}" \
+        playerctl.format="{{title}}" \
         datetime.format="%a %m-%d %H:%M" datetime.locale="en_US.UTF-8" \
         memory.usedonly=true \
         -t night-owl
@@ -198,6 +198,7 @@ for_window [class="Thunar"] floating enable
 for_window [class="SimpleScreenRecorder"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Sxiv"] floating enable
+for_window [class="Blueman"] floating enable
 
 # autostart(no gui)
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
