@@ -12,15 +12,16 @@ function asdf_fzf
         # if not specity, select using fzf
         set lang (asdf plugin-list | fzf)
     end
-
-    if test -n $lang
+    if ! test -z $lang
         set -l versions (asdf list-all $lang | fzf --tac --no-sort --multi)
         if test -n "$versions"
             for v in $versions
-                echo asdf $lang $v
+                asdf $lang $v
             end
         else
             false
         end
+    else
+        false
     end
 end
