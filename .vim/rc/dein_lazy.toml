@@ -237,7 +237,6 @@ build = "make"
 
 [[plugins]]
 repo = "Omochice/TeXTable.vim"
-# repo = "~/workspace/TeXTable.vim"
 on_cmd = "TeXTable"
 
 [[plugins]]
@@ -316,12 +315,12 @@ ruby = """
 nnoremap <silent><Space>pd <Cmd>PydocstringFormat<CR>
 """
 
-[[plugins]]
-repo = "fs111/pydoc.vim"
-hook_add = """
-let g:pydoc_perform_mappings = v:false
-"""
-on_ft = "python"
+# [[plugins]]
+# repo = "fs111/pydoc.vim"
+# hook_add = """
+# let g:pydoc_perform_mappings = v:false
+# """
+# on_ft = "python"
 
 # [[plugins]]
 # repo = "jmcantrell/vim-virtualenv"
@@ -377,6 +376,16 @@ on_ft = "python"
 # # [[plugins]]
 # # repo = "szymonmaszke/vimpyter"
 # # on_path = ".ipynb"
+
+[[plugins]]
+repo = "thinca/vim-ref"
+on_cmd = "Ref"
+# or
+on_map = { n = "<Plug>", x = "<Plug>" }
+hook_add = """
+nmap K <Plug>(ref-keyword)
+xmap K <plug>(ref-keyword)
+"""
 
 [[plugins]]
 repo = "mattn/vim-maketable"
@@ -545,6 +554,14 @@ let g:sonictemplate_vim_template_dir = g:config_dir . '/templates'
 """
 
 [[plugins]]
+repo = "mattn/vim-gist"
+on_cmd = "Gist"
+hook_add = """
+let g:gist_clip_command = 'xclip -selection clipboard'
+let g:gist_detect_filetype = v:true
+"""
+
+[[plugins]]
 repo = "junegunn/fzf"
 build = "./install --all"
 # merged = 0
@@ -598,3 +615,4 @@ sh = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
 bash = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
 fortran = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
 elm = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
+
