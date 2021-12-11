@@ -428,13 +428,13 @@ on_cmd = [
 ]
 hook_source = """
 function! s:reading_copy(line1, line2) abort range
-  let file = expand('%:t')
+  let l:file = expand('%:t')
   if a:line1 == a:line2
-    let line = printf('L%d', a:line1)
+    let l:line = printf('L%d', a:line1)
   else
-    let line = printf('L%d+%d', a:line1, a:line2 - a:line1)
+    let l:line = printf('L%d+%d', a:line1, a:line2 - a:line1)
   endif
-  let @+ = input('', printf('%s#%s ', file, line))
+  let @+ = input('', printf('%s#%s ', l:file, l:line))
 endfunction
 
 command! -range ReadingVimrcCopy call <SID>reading_copy(<line1>, <line2>)
