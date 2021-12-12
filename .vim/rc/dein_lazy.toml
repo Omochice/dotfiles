@@ -565,7 +565,7 @@ on_cmd = "Template"
 on_func ="fzf#sonictemplate#run"
 hook_add = """
 let g:sonictemplate_vim_template_dir = g:config_dir . '/templates'
-nnoremap [fzf-p]<C-t> <Cmd>call fzf#sonictemplate#run()<CR>
+nnoremap [fzf-p]t <Cmd>call fzf#sonictemplate#run()<CR>
 """
 
 [[plugins]]
@@ -585,14 +585,17 @@ build = "./install --all"
 repo = "yuki-yano/fzf-preview.vim"
 rev = "release/rpc"
 hook_add = """
+nnoremap [fzf-p] <Nop>
 nmap <C-p> [fzf-p]
 nnoremap [fzf-p]<C-p> <Cmd>FzfPreviewDirectoryFilesRpc<CR>
 nnoremap [fzf-p]c     <Cmd>FzfPreviewCommandPaletteRpc<CR>
 nnoremap [fzf-p]g     :<C-u>FzfPreviewProjectGrepRpc<Space>
+nnoremap [fzf-p]w     <Cmd>FzfPreviewProjectMrwFilesRpc --add-fzf-arg=--no-sort<CR>
 let g:fzf_preview_fzf_preview_window_option = 'right:50%'
 let g:fzf_preview_use_dev_icons = v:true
 let g:fzf_preview_dev_icon_prefix_string_length = 3
 let g:fzf_preview_dev_icons_limit = 5000
+let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never --sort=path --with-filename'
 """
 # on first execution, it say "The server is not ready yet."
 # for running it fine. I set denops as dependency.
