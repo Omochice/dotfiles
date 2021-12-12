@@ -122,7 +122,10 @@ let g:lsp_diagnostics_echo_delay = 100
 let g:lsp_review_float = v:false
 " let g:lsp_log_verbose = v:true
 " let g:lsp_log_file = expand('~/.vim/vim-lsp.log')
-nmap <silent> <C-h> <Plug>(lsp-hover)
+let g:lsp_preview_float = v:false
+nmap <expr> K <SID>enable_help_by_lsp() ? "\<Plug>(lsp-hover)" : 'K'
+xmap <expr> K <SID>enable_help_by_lsp() ? "\<Plug>(lsp-hover)" : 'K'
+nmap <expr> gd <SID>enable_definition_by_lsp() ? "\<Plug>(lsp-definition)" : 'gd'
 nmap <silent> <Space>f <Plug>(lsp-document-format)
 nmap <silent> <Space>d <Plug>(lsp-document-diagnostics)
 nmap <silent> <Space>r <Plug>(lsp-rename)
@@ -138,6 +141,16 @@ let g:lsp_settings = {
 let g:lsp_text_edit_enabled = v:true
 let g:lsp_diagnostics_signs_error = {'text': '🥺'}
 let g:lsp_diagnostics_signs_warning = {'text': '🤔'}
+
+function! s:enable_help_by_lsp() abort
+  let l:servers = lsp#get_server_names()
+  return !(len(l:servers) == 0 || uniq(map(l:servers, {_, v -> lsp#capabilities#has_hover_provider(v)})) == [0])
+endfunction
+
+function s:enable_definition_by_lsp() abort
+  let l:servers = lsp#get_server_names()
+  return !(len(l:servers) == 0 || uniq(map(l:servers, {_, v -> lsp#capabilities#has_definition_provider(v)})) == [0])
+endfunction
 """
 on_event = "BufRead"
 
@@ -377,15 +390,15 @@ nnoremap <silent><Space>pd <Cmd>PydocstringFormat<CR>
 # # repo = "szymonmaszke/vimpyter"
 # # on_path = ".ipynb"
 
-[[plugins]]
-repo = "thinca/vim-ref"
-on_cmd = "Ref"
-# or
-on_map = { n = "<Plug>", x = "<Plug>" }
-hook_add = """
-nmap K <Plug>(ref-keyword)
-xmap K <plug>(ref-keyword)
-"""
+# [[plugins]]
+# repo = "thinca/vim-ref"
+# on_cmd = "Ref"
+# # or
+# on_map = { n = "<Plug>", x = "<Plug>" }
+# hook_add = """
+# nmap K <Plug>(ref-keyword)
+# xmap K <plug>(ref-keyword)
+# """
 
 [[plugins]]
 repo = "mattn/vim-maketable"
