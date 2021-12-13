@@ -230,8 +230,8 @@ let g:dps_translate_target = "ja"
 
 nnoremap tr <Cmd>Translate<CR>
 nnoremap tR <Cmd>Translate!<CR>
-vnoremap <silent>tr <Cmd>TranslateJoin<CR>
-vnoremap <silent>tR <Cmd>TranslateJoin!<CR>
+xnoremap <silent>tr :TranslateJoin<CR>
+xnoremap <silent>tR :TranslateJoin!<CR>
 """
 on_cmd = ["Translate", "TranslateJoin"]
 
