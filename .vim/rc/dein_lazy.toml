@@ -122,7 +122,10 @@ let g:lsp_diagnostics_echo_delay = 100
 let g:lsp_review_float = v:false
 " let g:lsp_log_verbose = v:true
 " let g:lsp_log_file = expand('~/.vim/vim-lsp.log')
-nmap <silent> <C-h> <Plug>(lsp-hover)
+let g:lsp_preview_float = v:false
+nmap <expr> K <SID>enable_help_by_lsp() ? "\<Plug>(lsp-hover)" : 'K'
+xmap <expr> K <SID>enable_help_by_lsp() ? "\<Plug>(lsp-hover)" : 'K'
+nmap <expr> gd <SID>enable_definition_by_lsp() ? "\<Plug>(lsp-definition)" : 'gd'
 nmap <silent> <Space>f <Plug>(lsp-document-format)
 nmap <silent> <Space>d <Plug>(lsp-document-diagnostics)
 nmap <silent> <Space>r <Plug>(lsp-rename)
@@ -138,6 +141,16 @@ let g:lsp_settings = {
 let g:lsp_text_edit_enabled = v:true
 let g:lsp_diagnostics_signs_error = {'text': '🥺'}
 let g:lsp_diagnostics_signs_warning = {'text': '🤔'}
+
+function! s:enable_help_by_lsp() abort
+  let l:servers = lsp#get_server_names()
+  return !(len(l:servers) == 0 || uniq(map(l:servers, {_, v -> lsp#capabilities#has_hover_provider(v)})) == [0])
+endfunction
+
+function s:enable_definition_by_lsp() abort
+  let l:servers = lsp#get_server_names()
+  return !(len(l:servers) == 0 || uniq(map(l:servers, {_, v -> lsp#capabilities#has_definition_provider(v)})) == [0])
+endfunction
 """
 on_event = "BufRead"
 
@@ -175,9 +188,9 @@ hook_add = """
 " Brute force solution
 " https://github.com/tyru/caw.vim/issues/166
 nmap gc <Plug>(caw:prefix)
-vmap gc <Plug>(caw:prefix)
+xmap gc <Plug>(caw:prefix)
 nmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
-vmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
+xmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
 """
 depends = ["context_filetype.vim", "vim-repeat"]
 on_map = { n = "<Plug>", v = "<Plug>" }
@@ -377,15 +390,15 @@ nnoremap <silent><Space>pd <Cmd>PydocstringFormat<CR>
 # # repo = "szymonmaszke/vimpyter"
 # # on_path = ".ipynb"
 
-[[plugins]]
-repo = "thinca/vim-ref"
-on_cmd = "Ref"
-# or
-on_map = { n = "<Plug>", x = "<Plug>" }
-hook_add = """
-nmap K <Plug>(ref-keyword)
-xmap K <plug>(ref-keyword)
-"""
+# [[plugins]]
+# repo = "thinca/vim-ref"
+# on_cmd = "Ref"
+# # or
+# on_map = { n = "<Plug>", x = "<Plug>" }
+# hook_add = """
+# nmap K <Plug>(ref-keyword)
+# xmap K <plug>(ref-keyword)
+# """
 
 [[plugins]]
 repo = "mattn/vim-maketable"
@@ -396,7 +409,7 @@ on_cmd = "MakeTable"
 repo = "previm/previm"
 on_cmd = "PrevimOpen"
 hook_add = """
-let g:previm_open_cmd = '$BROWSER'
+let g:previm_open_cmd = $BROWSER
 """
 
 [[plugins]]
@@ -428,13 +441,13 @@ on_cmd = [
 ]
 hook_source = """
 function! s:reading_copy(line1, line2) abort range
-  let file = expand('%:t')
+  let l:file = expand('%:t')
   if a:line1 == a:line2
-    let line = printf('L%d', a:line1)
+    let l:line = printf('L%d', a:line1)
   else
-    let line = printf('L%d+%d', a:line1, a:line2 - a:line1)
+    let l:line = printf('L%d+%d', a:line1, a:line2 - a:line1)
   endif
-  let @+ = input('', printf('%s#%s ', file, line))
+  let @+ = input('', printf('%s#%s ', l:file, l:line))
 endfunction
 
 command! -range ReadingVimrcCopy call <SID>reading_copy(<line1>, <line2>)
@@ -552,7 +565,7 @@ on_cmd = "Template"
 on_func ="fzf#sonictemplate#run"
 hook_add = """
 let g:sonictemplate_vim_template_dir = g:config_dir . '/templates'
-nnoremap [fzf-p]<C-t> <Cmd>call fzf#sonictemplate#run()<CR>
+nnoremap [fzf-p]t <Cmd>call fzf#sonictemplate#run()<CR>
 """
 
 [[plugins]]
@@ -572,14 +585,17 @@ build = "./install --all"
 repo = "yuki-yano/fzf-preview.vim"
 rev = "release/rpc"
 hook_add = """
+nnoremap [fzf-p] <Nop>
 nmap <C-p> [fzf-p]
 nnoremap [fzf-p]<C-p> <Cmd>FzfPreviewDirectoryFilesRpc<CR>
 nnoremap [fzf-p]c     <Cmd>FzfPreviewCommandPaletteRpc<CR>
 nnoremap [fzf-p]g     :<C-u>FzfPreviewProjectGrepRpc<Space>
+nnoremap [fzf-p]<C-w> <Cmd>FzfPreviewProjectMrwFilesRpc --add-fzf-arg=--no-sort<CR>
 let g:fzf_preview_fzf_preview_window_option = 'right:50%'
 let g:fzf_preview_use_dev_icons = v:true
 let g:fzf_preview_dev_icon_prefix_string_length = 3
 let g:fzf_preview_dev_icons_limit = 5000
+let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never --sort=path --with-filename'
 """
 # on first execution, it say "The server is not ready yet."
 # for running it fine. I set denops as dependency.
