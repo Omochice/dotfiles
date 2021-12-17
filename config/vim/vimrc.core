@@ -99,6 +99,7 @@ inoremap <Right> <C-t>
 " inoremap <Up> <nop>
 " inoremap <Down> <nop>
 
+nnoremap J gj
 xnoremap J gj
 " vnoremap K gk
 
