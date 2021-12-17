@@ -119,10 +119,10 @@ let g:lsp_diagnostics_enabled = v:true
 let g:lsp_diagnostics_virtual_text_enabled = v:false
 let g:lsp_diagnostics_echo_cursor = v:true
 let g:lsp_diagnostics_echo_delay = 100
-let g:lsp_review_float = v:false
 " let g:lsp_log_verbose = v:true
 " let g:lsp_log_file = expand('~/.vim/vim-lsp.log')
 let g:lsp_preview_float = v:false
+let g:lsp_signature_help_enabled = v:false
 nmap <expr> K <SID>enable_help_by_lsp() ? "\<Plug>(lsp-hover)" : 'K'
 xmap <expr> K <SID>enable_help_by_lsp() ? "\<Plug>(lsp-hover)" : 'K'
 nmap <expr> gd <SID>enable_definition_by_lsp() ? "\<Plug>(lsp-definition)" : 'gd'
