@@ -75,16 +75,17 @@
   },
   "grid": {
     "prefix": [
-      "grid"
+      "grid",
+      "row"
     ],
     "body": [
-      "<div class=\"grid\">",
-      "<div class=\"column\">",
+      "<div class=\"row\">",
+      "<div class=\"six columns\">",
       "",
       "${1:left}",
       "",
       "</div>",
-      "<div class=\"column2\">",
+      "<div class=\"six columns\">",
       "",
       "${2:right}",
       "",
