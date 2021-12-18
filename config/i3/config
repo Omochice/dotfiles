@@ -162,7 +162,7 @@ bar {
 	status_command bumblebee-status -m cpu memory ping \
 		pasink pasource playerctl bluetooth2 datetime \
         -p pulseaudio.autostart="true" pulseaudio.limit=100 \
-        playerctl.format="{{title}}" \
+        playerctl.format=" {{title}} " \
         datetime.format="%a %m-%d %H:%M" datetime.locale="en_US.UTF-8" \
         memory.usedonly=true \
         -t night-owl
