@@ -35,7 +35,8 @@ setlocal tabstop=4
 setlocal softtabstop=4
 setlocal shiftwidth=4
 
-iabbrev <buffer> improt import
+inoreabbrev <buffer> improt import
+inoreabbrev <buffer> ;; ->
 """
 
 javascript = """
@@ -64,7 +65,7 @@ setlocal shiftwidth=2
 """
 
 go = """
-iabbrev <buffer> ;; :=
+inoreabbrev <buffer> ;; :=
 """
 
 htmldjango = """
@@ -90,7 +91,6 @@ setlocal filetype=tex
 """
 
 tex = """
-" if surround `"` then need to use \\ for meaning \ .
 setlocal wrap
 setlocal tabstop=2
 setlocal softtabstop=2
@@ -123,5 +123,5 @@ endif
 """
 
 elm = """
-iabbrev <buffer> ;; ->
+inoreabbrev <buffer> ;; ->
 """
