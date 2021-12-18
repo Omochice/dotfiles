@@ -100,5 +100,16 @@
       "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE"
     ],
     "description": "today"
+  },
+  "div": {
+    "prefix": "div",
+    "body": [
+      "<div>",
+      "",
+      "${1:body}",
+      "",
+      "</div>"
+    ],
+    "description": "div tag"
   }
 }
