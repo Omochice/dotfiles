@@ -119,7 +119,7 @@ let g:findroot_not_for_subdir = v:false
 # on_cmd = ["Lazygit"]
 repo = "voldikss/vim-floaterm"
 hook_add = """
-command! Lazygit FloatermNew --autoclose=2 --opener=tabe --height=1.0 --width=1.0 --title=lazygit lazygit
+command! Lazygit FloatermNew --autoclose=2 --autohide=0 --opener=tabe --height=1.0 --width=1.0 --title=lazygit lazygit
 command! Fkill FloatermKill
 nnoremap <C-g> <Cmd>Lazygit<CR>
 tnoremap <expr> <ESC> &filetype ==# 'floaterm' ?
