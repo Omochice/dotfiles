@@ -101,7 +101,7 @@ inoremap <Right> <C-t>
 
 nnoremap J gj
 xnoremap J gj
-" vnoremap K gk
+xnoremap K gk
 
 "" move visual block in visual mode
 " vnoremap <silent> <C-K> "zx<Up>"zP`[V`]
