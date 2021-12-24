@@ -104,9 +104,9 @@
   "div": {
     "prefix": "div",
     "body": [
-      "<div>",
+      "<div $1>",
       "",
-      "${1:body}",
+      "${2:body}",
       "",
       "</div>"
     ],
