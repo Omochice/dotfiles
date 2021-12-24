@@ -1,7 +1,7 @@
 [[plugins]]
 repo = "Shougo/dein.vim"
 hook_add = """
-let g:dein#auto_recache = v:true
+let g:dein#auto_recache = !has('win32')
 function! s:dein_toml_syntax() abort
   if expand('%:p') =~# '\vrc/[^/]+.toml$'
     call dein#toml#syntax()

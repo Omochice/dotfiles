@@ -565,7 +565,8 @@ on_cmd = "Template"
 on_func ="fzf#sonictemplate#run"
 hook_add = """
 let g:sonictemplate_vim_template_dir = g:config_dir . '/templates'
-nnoremap [fzf-p]t <Cmd>call fzf#sonictemplate#run()<CR>
+nnoremap [fzf-p]<C-t> <Cmd>call fzf#sonictemplate#run()<CR>
+" nnoremap [fzf-p]t <Cmd>call fzf#sonictemplate#run()<CR>
 """
 
 [[plugins]]
@@ -579,7 +580,7 @@ let g:gist_detect_filetype = v:true
 [[plugins]]
 repo = "junegunn/fzf"
 build = "./install --all"
-# merged = 0
+merged = 0
 
 [[plugins]]
 repo = "yuki-yano/fzf-preview.vim"
