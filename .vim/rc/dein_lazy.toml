@@ -631,6 +631,7 @@ sh = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
 bash = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
 fortran = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
 elm = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
+
 [[plugins]]
 repo = "voldikss/vim-floaterm"
 hook_add = """

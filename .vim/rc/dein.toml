@@ -26,7 +26,7 @@ let g:sonokai_style = 'espresso'
 let g:sonokai_enable_italic = v:false
 let g:sonokai_disable_italic_comment = v:true
 """
-if = "!has('gui_runnning')"
+if = "!has('gui_running')"
 
 [[plugins]]
 repo = "yasukotelin/shirotelin"
