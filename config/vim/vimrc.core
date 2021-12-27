@@ -190,6 +190,30 @@ else
   augroup END
 endif
 
+" use ripgrep
+if executable('rg')
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
+function! s:grep_in_file() abort
+  let l:query = input('grep: ')
+  if empty(l:query)
+    echohl WarningText
+    echomsg 'vimgrep is canceled'
+    echohl None
+    return
+  endif
+  try
+    silent execute 'vimgrep ' . l:query . ' % | cw'
+  catch /.*/
+    " if quickfix open already, close it.
+    silent execute 'cclose'
+    echoerr v:exception
+  endtry
+endfunction
+
+nnoremap F <Cmd>call <SID>grep_in_file()<CR>
 
 " copy buffer command
 command! CopyBuffer %y
