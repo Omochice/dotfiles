@@ -51,7 +51,7 @@ repo = "kana/vim-operator-user"
 [[plugins]]
 repo = "easymotion/vim-easymotion"
 hook_add = """
-nmap f <Plug>(easymotion-tn)
+nmap f <Plug>(easymotion-sn)
 nmap <Space>j <Plug>(easymotion-j)
 nmap <Space>k <Plug>(easymotion-k)
 nmap <Space>l <Plug>(easymotion-lineforward)
@@ -60,6 +60,16 @@ let g:EasyMotion_smartcase = v:true
 let g:EasyMotion_use_smartsign_jp = v:true
 """
 on_map = { n = "<Plug>" }
+
+[[plugins]]
+repo = "hrsh7th/vim-seak"
+hook_add = """
+let g:seak_enabled = v:true
+let g:seak_marks = split('ABCDEFGHIJKLMNOPQRSTUVWXYZ', '.\zs')
+let g:seak_auto_accept = v:true
+" cnoremap <C-j> <Cmd>call seak#select({ 'nohlsearch': v:true })<CR>
+"""
+on_event = "CmdlineEnter"
 
 [[plugins]]
 repo = "hrsh7th/vim-vsnip"
