@@ -111,7 +111,7 @@ hook_add = """
 let g:ddc_source_options['vim-lsp'] = {
 \   'mark': 'LSP',
 \   'isVolatile': v:true,
-\   'forceCompletionPattern': '\..?|:|->|"\w+/',
+\   'forceCompletionPattern': '\..?|:|->|\w+/',
 \ }
 """
 depends = ["vim-lsp"]
