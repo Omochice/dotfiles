@@ -71,8 +71,9 @@ call ddc#custom#patch_global(
  \ 'sources', g:ddc_base_sources,
  \ )
 call ddc#custom#patch_global('sourceOptions', g:ddc_source_options,)
+" on vim/toml drop lsp. bacause it compete duplicates like a:a:contents often
 call ddc#custom#patch_filetype(
-  \ ['toml', 'vim'], 'sources', g:ddc_base_sources[0:1] + ['necovim'] + g:ddc_base_sources[2:-1],
+  \ ['toml', 'vim'], 'sources', g:ddc_base_sources[0:0] + ['necovim'] + g:ddc_base_sources[2:-1],
   \ )
 call ddc#custom#patch_filetype(
   \ ['markdown'], 'sources', g:ddc_base_sources[0:1] + ['file'] + g:ddc_base_sources[2:-1],
