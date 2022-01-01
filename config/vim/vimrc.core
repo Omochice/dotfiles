@@ -205,10 +205,13 @@ function! s:grep_in_file() abort
     return
   endif
   try
-    silent execute 'vimgrep ' . l:query . ' % | cw'
+    silent execute 'lvimgrep ' . l:query . ' % | lw'
+    " conceal has bug about wrapping
+    setlocal conceallevel=3 concealcursor=nvc nowrap
+    syntax match grep_internal '^.\{-}|\@=' conceal
   catch /.*/
     " if quickfix open already, close it.
-    silent execute 'cclose'
+    silent execute 'lclose'
     echoerr v:exception
   endtry
 endfunction
