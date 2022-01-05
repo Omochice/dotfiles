@@ -62,14 +62,46 @@ let g:EasyMotion_use_smartsign_jp = v:true
 on_map = { n = "<Plug>" }
 
 [[plugins]]
-repo = "hrsh7th/vim-seak"
+repo = "hrsh7th/vim-searchx"
 hook_add = """
-let g:seak_enabled = v:true
-let g:seak_marks = split('ABCDEFGHIJKLMNOPQRSTUVWXYZ', '.\zs')
-let g:seak_auto_accept = v:true
-" cnoremap <C-j> <Cmd>call seak#select({ 'nohlsearch': v:true })<CR>
+" Overwrite / and ?.
+nnoremap ? <Cmd>call searchx#start({ 'dir': 0 })<CR>
+nnoremap / <Cmd>call searchx#start({ 'dir': 1 })<CR>
+xnoremap ? <Cmd>call searchx#start({ 'dir': 0 })<CR>
+xnoremap / <Cmd>call searchx#start({ 'dir': 1 })<CR>
+" cnoremap ; <Cmd>call searchx#select()<CR>
+
+" Move to next/prev match.
+nnoremap N <Cmd>call searchx#prev_dir()<CR>
+nnoremap n <Cmd>call searchx#next_dir()<CR>
+xnoremap N <Cmd>call searchx#prev_dir()<CR>
+xnoremap n <Cmd>call searchx#next_dir()<CR>
+" nnoremap <C-k> <Cmd>call searchx#prev()<CR>
+" nnoremap <C-j> <Cmd>call searchx#next()<CR>
+" xnoremap <C-k> <Cmd>call searchx#prev()<CR>
+" xnoremap <C-j> <Cmd>call searchx#next()<CR>
+" cnoremap <C-k> <Cmd>call searchx#prev()<CR>
+" cnoremap <C-j> <Cmd>call searchx#next()<CR>
+
+" Clear highlights
+" nnoremap <C-l> <Cmd>call searchx#clear()<CR>
+
+let g:searchx = {
+\ 'auto_accept': v:true,
+\ 'scrolloff': &scrolloff,
+\ 'scrolltime': 0,
+\ 'markers': split('ABCDEFGHIJKLMNOPQRSTUVWXYZ', '.\zs'),
+\ }
+
+" Convert search pattern.
+function g:searchx.convert(input) abort
+  if a:input !~# '\k'
+    return '\V' .. a:input
+  endif
+  return join(split(a:input, ' '), '.\{-}')
+endfunction
 """
-on_event = "CmdlineEnter"
+on_func = "searchx"
 
 [[plugins]]
 repo = "hrsh7th/vim-vsnip"
