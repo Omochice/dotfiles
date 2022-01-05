@@ -679,6 +679,7 @@ elm = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
 repo = "voldikss/vim-floaterm"
 hook_add = """
 command! Lazygit FloatermNew --autoclose=2 --autohide=0 --opener=tabe --height=1.0 --width=1.0 --title=lazygit lazygit
+command! Ranger FloatermNew --autoclose=2 --autohide=0 --opener=tabe --height=1.0 --width=1.0 --title=ranger ranger
 command! CreatePR FloatermNew --autoclose=2 --autohide=0 --opener=tabe --height=0.7 --width=0.7 --title=PR gh pr create
 command! CreateIssue FloatermNew --autoclose=2 --autohide=0 --opener=tabe --height=0.7 --width=0.7 --title=Issue gh issue create
 command! Fkill FloatermKill
