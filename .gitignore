@@ -41,6 +41,7 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/alacritty/alacritty.yml
 !/config/starship/config.toml
 !/config/lazygit/config.yml
+!/config/ranger/rc.conf
 !/zshell/*
 !/zshell/.zsh.d/*
 !/.gitconfig_shared
