@@ -30,11 +30,19 @@
     <!-- - [nerd-fonts-fira-code](https://aur.archlinux.org/packages/nerd-fonts-fira-code/) -->
     - Noto font
 
+## dependency
+
+- `Deno`
+- `Git`
 
 ## usage
 
 1. sync dotfiles
-```bash
-$ bash src/sync.sh
-```
+    ```bash
+    $ bash src/sync.sh
+    ```
+2. sync tools
+    ```bash
+    $ deno run --allow-env --allow-net --allow-read --allow-run scripts/syncer.ts ./tool-list.toml
+    ```
 if exist original dotfiles, move their into `~/.dotbackup`

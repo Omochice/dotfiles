@@ -1,0 +1,23 @@
+[[tools]]
+repo = "thinca/vim-themis"
+[tools.symlink]
+source = "bin/themis"
+
+[[tools]]
+repo = "sheepla/fzpac"
+[tools.symlink]
+source = "fzpac"
+
+[[tools]]
+repo = "dracula/ranger"
+destination = "dracula-ranger"
+[tools.symlink]
+source = "dracula.py"
+destination = "~/.config/ranger/colorschemes"
+
+[[tools]]
+repo = "Omochice/gyazo-cli"
+build = "go build"
+[tools.symlink]
+source = "gyazo-cli"
+

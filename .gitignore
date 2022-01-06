@@ -53,3 +53,5 @@ config/fish/functions/fzf_key_bindings.fish
 !/README.md
 !/keymap.txt
 !/src/*.md
+!tool-list.toml
+!/scripts/syncer.ts
