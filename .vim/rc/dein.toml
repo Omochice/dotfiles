@@ -26,26 +26,13 @@ let g:sonokai_style = 'espresso'
 let g:sonokai_enable_italic = v:false
 let g:sonokai_disable_italic_comment = v:true
 """
-if = "!has('gui_running')"
-
-[[plugins]]
-repo = "yasukotelin/shirotelin"
-hook_add = """
-if has('gui_running')
-  augroup colorschemeSetting
-    autocmd!
-    autocmd VimEnter * nested colorscheme shirotelin
-  augroup END
-endif
-"""
-if = "has('gui_running')"
 
 [[plugins]]
 repo = "itchyny/lightline.vim"
 hook_add = """
 set noshowmode
 let g:lightline = {
-\   'colorscheme': has('gui_running') ? 'shirotelin' : 'sonokai',
+\   'colorscheme': 'sonokai',
 \   'active': {
 \       'left': [
 \           ['mode', 'paste'],
@@ -77,6 +64,13 @@ function! LightlineFotmat() abort
   else
     return ''
   endif
+endfunction
+
+let g:colors_map = {}
+function! ChangeColor(colorname) abort
+  execute 'colorscheme' . ' ' . a:colorname
+  let g:lightline.colorscheme = get(g:colors_map, a:colorname, a:colorname)
+  call lightline#enable()
 endfunction
 """
 depends = ["vim-devicons", 'vim-gitbranch']

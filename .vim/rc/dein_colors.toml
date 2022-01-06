@@ -1,0 +1,25 @@
+[[plugins]]
+repo = "EdenEast/nightfox.nvim"
+on_func = "ChangeColor"
+
+[[plugins]]
+repo = "ayu-theme/ayu-vim"
+hook_add = """
+let g:ayucolor = 'dark'
+"""
+on_func = "ChangeColor"
+
+[[plugins]]
+repo = 'Mangeshrex/uwu.vim'
+on_func = "ChangeColor"
+
+[[plugins]]
+repo = "yasukotelin/shirotelin"
+on_func = "ChangeColor"
+
+[[plugins]]
+repo = "haishanh/night-owl.vim"
+hook_add = """
+let g:colors_map['nightowl'] = 'night-owl'
+"""
+on_func = "ChangeColor"
