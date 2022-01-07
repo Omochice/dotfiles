@@ -21,7 +21,7 @@ if [ -x "$(command -v go)" ]; then
     export PATH=$PATH:$GOPATH/bin
     if [ ! -e $GOPATH ]; then
         mkdir $GOPATH/bin -p
-    fi
+  fi
 fi
 
 # rust
@@ -32,6 +32,11 @@ fi
 # deno
 if [[ -e $HOME/.deno ]]; then
     export PATH=$PATH:$HOME/.deno/bin
+fi
+
+# asdf
+if [[ -e /opt/asdf-vm ]]; then
+    source /opt/asdf-vm/asdf.sh
 fi
 
 # # anyenv

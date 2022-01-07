@@ -87,9 +87,6 @@ else if test $count -eq 1
 end
 
 # asdf for fish
-if test -d /opt/asdf-vm
-    source /opt/asdf-vm/asdf.fish
-end
 
 # Github CLI
 eval (gh completion -s fish | source)
