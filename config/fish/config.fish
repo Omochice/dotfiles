@@ -20,6 +20,8 @@ if [ -d /usr/share/tessdata ]
     set TESSDATA_PREFIX /usr/share/tessdata
 end
 
+set SHELL (which fish)
+
 
 # aliases
 alias shutdown "sudo shutdown -h now"
