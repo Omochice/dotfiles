@@ -8,10 +8,7 @@ import {
   Version,
 } from "https://raw.githubusercontent.com/stsysd/classopt/v0.1.0/mod.ts";
 import { parse } from "https://deno.land/std@0.119.0/encoding/toml.ts";
-import {
-  ensureDirSync,
-  existsSync,
-} from "https://deno.land/std@0.119.0/fs/mod.ts";
+import { existsSync } from "https://deno.land/std@0.119.0/fs/mod.ts";
 
 interface Setting {
   tools: Tool[];

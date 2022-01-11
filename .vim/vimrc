@@ -39,7 +39,6 @@ if dein#load_state(g:dein_dir)
   " read toml and cache
   call dein#load_toml(s:toml, {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
-  " call dein#load_toml(s:rc_dir . '/dein_colors.toml', {'lazy': 1})
   if g:is_deno_executable
     call dein#load_toml(s:dein_denops, {'lazy': 1})
   else

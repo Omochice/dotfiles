@@ -94,6 +94,16 @@ hook_add = """
 inoremap <expr> <C-n> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<C-n>'
 inoremap <expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<C-p>'
 """
+# hook_source = """
+# " Sourcing lexima provide some `lexima#expand() to mapping`
+# " So, below is wrote into hook_source
+# " imap <silent><expr> <CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : lexima#expand('<LT>CR>', 'i')
+# """
+
+# [[multiple_plugins]]
+# plugins = ["pum.vim", "lexima.vim"]
+# hook_source in multiple_plugins is not provided
+# hook_source =
 
 [[plugins]]
 repo = "shun/ddc-vim-lsp"
@@ -114,24 +124,24 @@ let g:ddc_source_options['around'] = {'mark': 'Ard'}
 """
 on_source = "ddc.vim"
 
-# [[plugins]]
-# repo = "Shougo/ddc-matcher_head"
-# on_source = "ddc.vim"
-# 
-# [[plugins]]
-# repo = "Shougo/ddc-sorter_rank"
-# on_source = "ddc.vim"
+[[plugins]]
+repo = "Shougo/ddc-matcher_head"
+on_source = "ddc.vim"
 
-# [[plugins]]
-# repo = 'Shougo/ddc-cmdline-history'
-# hook_add = """
-# let g:ddc_source_options['cmdline-history'] = {
-# \   'mark': 'Hst',
-# \   'maxCandidates': 100,
-# \   'minAutoCompleteLength': 5,
-# \ }
-# """
-# on_source = 'ddc.vim'
+[[plugins]]
+repo = "Shougo/ddc-sorter_rank"
+on_source = "ddc.vim"
+
+[[plugins]]
+repo = 'Shougo/ddc-cmdline-history'
+hook_add = """
+let g:ddc_source_options['cmdline-history'] = {
+\   'mark': 'Hst',
+\   'maxCandidates': 100,
+\   'minAutoCompleteLength': 5,
+\ }
+"""
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = "Shougo/neco-vim"
@@ -279,11 +289,3 @@ let g:dps_dein_star_debug = v:true
 # depends = "denops.vim"
 on_source = "denops.vim"
 # on_cmd = ""
-
-[[plugins]]
-repo = "yuki-yano/fuzzy-motion.vim"
-hook_add = """
-" nnoremap f <Cmd>FuzzyMotion<CR>
-"""
-depends = "denops.vim"
-# on_cmd = "FuzzyMotion"

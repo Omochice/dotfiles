@@ -3,5 +3,3 @@ function fish_user_key_bindings
   bind \r emptyls
   bind \cg __lazygit
 end
-
-fzf_key_bindings
