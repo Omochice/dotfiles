@@ -105,9 +105,14 @@ async function sync(
 
   // Build
   if (tool.build) {
-    for (const command of tool.build.split("\n")) {
+    for (
+      const command of tool.build.split("\n").filter((line) => line.length != 0)
+    ) {
+      console.log({ command });
+      console.log({ dst });
       const p = Deno.run({
         cmd: command.split(/\s+/),
+        stdout: "piped",
         stderr: "piped",
         cwd: dst,
       });
