@@ -26,7 +26,11 @@ interface SymlinkOption {
   destination?: string;
 }
 
-const decorder = new TextDecoder();
+const Decorder = new TextDecoder();
+
+function decodeMessage(arr: Uint8Array): string {
+  return (Decorder.decode(arr));
+}
 
 async function loadToml(path: string): Promise<Setting> {
   const contents = Deno.readTextFile(path);
@@ -52,22 +56,47 @@ async function sync(
 
   if (existsSync(dst)) {
     // update
+    const rev_process = Deno.run({
+      cmd: ["git", "rev-parse", "HEAD"],
+      stdout: "piped",
+      stderr: "piped",
+      cwd: dst,
+    });
+    if (!(await rev_process.status()).success) {
+      console.error(decodeMessage(await rev_process.stderrOutput()));
+    }
     const p = Deno.run({
       cmd: ["git", "pull"],
-      cwd: dst,
+      stdout: "piped",
       stderr: "piped",
+      cwd: dst,
     });
     if (!(await p.status()).success) {
-      console.error(decorder.decode(await p.stderrOutput()));
+      console.error(decodeMessage(await p.stderrOutput()));
     }
+    // if no-update then return early
+    Promise.all([
+      rev_process.output(),
+      Deno.run({
+        cmd: ["git", "rev-parse", "HEAD"],
+        stdout: "piped",
+        cwd: dst,
+      }).output(),
+    ]).then((values) => {
+      if (values[0] == values[1]) {
+        return Promise.resolve();
+      }
+    });
   } else {
     // install
+    // TODO: specify rev
     const p = Deno.run({
       cmd: ["git", "clone", `https://github.com/${owser}/${repo}`, dst],
+      stdout: "piped",
       stderr: "piped",
     });
     if (!(await p.status()).success) {
-      console.error(decorder.decode(await p.stderrOutput()));
+      console.error(decodeMessage(await p.stderrOutput()));
     }
   }
 
@@ -80,7 +109,7 @@ async function sync(
         cwd: dst,
       });
       if (!(await p.status()).success) {
-        console.error(decorder.decode(await p.stderrOutput()));
+        console.error(decodeMessage(await p.stderrOutput()));
       }
     }
   }
@@ -101,7 +130,7 @@ async function sync(
       stderr: "piped",
     });
     if (!(await p.status()).success) {
-      console.error(decorder.decode(await p.stderrOutput()));
+      console.error(decodeMessage(await p.stderrOutput()));
     }
   }
 }
