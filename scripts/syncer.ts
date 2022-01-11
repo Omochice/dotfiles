@@ -8,7 +8,10 @@ import {
   Version,
 } from "https://raw.githubusercontent.com/stsysd/classopt/v0.1.0/mod.ts";
 import { parse } from "https://deno.land/std@0.119.0/encoding/toml.ts";
-import { existsSync } from "https://deno.land/std@0.119.0/fs/mod.ts";
+import {
+  ensureDirSync,
+  existsSync,
+} from "https://deno.land/std@0.119.0/fs/mod.ts";
 
 interface Setting {
   tools: Tool[];
@@ -152,9 +155,12 @@ class Program extends Command {
 
   async execute() {
     const toml_data = await loadToml(this.config);
+    ensureDirSync(expand(this.link_to));
+    const queue = [];
     for (const tool of toml_data.tools) {
-      await sync(tool, this.basedir, this.link_to, this.debug);
+      queue.push(sync(tool, this.basedir, this.link_to, this.debug));
     }
+    Promise.all(queue);
     Promise.resolve();
   }
 }
