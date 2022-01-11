@@ -299,6 +299,10 @@ repo = "Omochice/TeXTable.vim"
 on_cmd = "TeXTable"
 
 [[plugins]]
+repo = "Omochice/TeXOutline.vim"
+on_cmd = "TeXOutline"
+
+[[plugins]]
 repo = "ntpeters/vim-better-whitespace"
 hook_add = """
 let g:better_whitespace_enabled = v:true
