@@ -34,3 +34,12 @@
 
 [interactive]
     diffFilter = delta --color-only
+
+[ghq]
+    root = "~/Tools"
+
+[ghq "https://github.com/Omochice"]
+    root = "~/Workspace"
+
+[ghq "https://github.com/MizLab"]
+    root = "~/Workspace"

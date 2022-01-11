@@ -185,14 +185,19 @@ let g:lsp_text_edit_enabled = v:true
 let g:lsp_diagnostics_signs_error = {'text': '🥺'}
 let g:lsp_diagnostics_signs_warning = {'text': '🤔'}
 
+" let g:lsp_diagnostics_highlights_enabled = v:false
+" let g:lsp_diagnostics_signs_enabled = v:false
+
 function! s:enable_help_by_lsp() abort
   let l:servers = lsp#get_server_names()
-  return !(len(l:servers) == 0 || uniq(map(l:servers, {_, v -> lsp#capabilities#has_hover_provider(v)})) == [0])
+  return !(len(l:servers) == 0
+            \ || uniq(map(l:servers, {_, v -> lsp#capabilities#has_hover_provider(v)})) == [0])
 endfunction
 
 function s:enable_definition_by_lsp() abort
   let l:servers = lsp#get_server_names()
-  return !(len(l:servers) == 0 || uniq(map(l:servers, {_, v -> lsp#capabilities#has_definition_provider(v)})) == [0])
+  return !(len(l:servers) == 0
+            \ || uniq(map(l:servers, {_, v -> lsp#capabilities#has_definition_provider(v)})) == [0])
 endfunction
 """
 on_event = "BufRead"
@@ -295,6 +300,10 @@ build = "make"
 repo = "Omochice/TeXTable.vim"
 # on_ft = ["tex", "plaintex"]
 on_cmd = "TeXTable"
+
+[[plugins]]
+repo = "Omochice/TeXOutline.vim"
+on_cmd = "TeXOutline"
 
 [[plugins]]
 repo = "ntpeters/vim-better-whitespace"
@@ -542,6 +551,8 @@ require'nvim-treesitter.configs'.setup{
                 ["iC"] = "@class.inner",
                 ["iL"] = "@loop.inner",
                 ["aL"] = "@loop.outer",
+                ["iP"] = "@parameter.inner",
+                ["aP"] = "@parameter.auter",
             },
         },
     },
@@ -609,13 +620,13 @@ nnoremap [fzf-p]<C-t> <Cmd>call fzf#sonictemplate#run()<CR>
 " nnoremap [fzf-p]t <Cmd>call fzf#sonictemplate#run()<CR>
 """
 
-[[plugins]]
-repo = "mattn/vim-gist"
-on_cmd = "Gist"
-hook_add = """
-let g:gist_clip_command = 'xclip -selection clipboard'
-let g:gist_detect_filetype = v:true
-"""
+# [[plugins]]
+# repo = "mattn/vim-gist"
+# on_cmd = "Gist"
+# hook_add = """
+# let g:gist_clip_command = 'xclip -selection clipboard'
+# let g:gist_detect_filetype = v:true
+# """
 
 [[plugins]]
 repo = "junegunn/fzf"
@@ -632,6 +643,7 @@ nnoremap [fzf-p]<C-p> <Cmd>FzfPreviewDirectoryFilesRpc<CR>
 nnoremap [fzf-p]c     <Cmd>FzfPreviewCommandPaletteRpc<CR>
 nnoremap [fzf-p]g     :<C-u>FzfPreviewProjectGrepRpc<Space>
 nnoremap [fzf-p]<C-w> <Cmd>FzfPreviewProjectMrwFilesRpc --add-fzf-arg=--no-sort<CR>
+nnoremap [fzf-p]<C-b> <Cmd>FzfPreviewAllBuffersRpc<CR>
 let g:fzf_preview_fzf_preview_window_option = 'right:50%'
 let g:fzf_preview_use_dev_icons = v:true
 let g:fzf_preview_dev_icon_prefix_string_length = 3
@@ -645,6 +657,7 @@ on_cmd = [
     "FzfPreviewCommandPaletteRpc",
     "FzfPreviewDirectoryFilesRpc",
     "FzfPreviewProjectGrepRpc",
+    "FzfPreviewAllBuffersRpc",
 ]
 
 [[plugins]]
@@ -655,7 +668,6 @@ let g:vim_filetype_formatter_commands = {
 \   'json': 'jq .',
 \   'python': 'black --quiet - | isort --quiet -',
 \   'go': 'goimports | gofmt',
-\   'typescript': 'deno -',
 \   'sh': 'shfmt -ln bash -i 2 -bn -ci -sr -kp',
 \   'fortran': 'fprettify -i 2 -S',
 \   'elm': 'elm-format --stdin',
