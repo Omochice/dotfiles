@@ -21,3 +21,11 @@ build = "go build"
 [tools.symlink]
 source = "gyazo-cli"
 
+[[tools]]
+repo = "alacritty/alacritty"
+build = """
+rustup update stable
+cargo build --release
+"""
+[tools.symlink]
+source = "target/release/alacritty"
