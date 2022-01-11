@@ -1,4 +1,5 @@
 import * as Path from "https://deno.land/std@0.119.0/path/mod.ts";
+import { equals } from "https://deno.land/std@0.120.0/bytes/mod.ts";
 import {
   Arg,
   Command,
@@ -86,7 +87,7 @@ async function sync(
         cwd: dst,
       }).output(),
     ]).then((values) => {
-      if (values[0] == values[1]) {
+      if (equals(values[0], values[1])) {
         return Promise.resolve();
       }
     });
@@ -108,8 +109,6 @@ async function sync(
     for (
       const command of tool.build.split("\n").filter((line) => line.length != 0)
     ) {
-      console.log({ command });
-      console.log({ dst });
       const p = Deno.run({
         cmd: command.split(/\s+/),
         stdout: "piped",
