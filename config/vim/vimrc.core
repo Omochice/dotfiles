@@ -85,9 +85,6 @@ cnoreabbrev w update
 " TODO
 " cnoreabbrev w:q wq
 
-" easy regex search
-nnoremap / /\v
-
 " dont use clipboard
 nnoremap x "_x
 nnoremap s "_s
