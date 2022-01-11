@@ -548,6 +548,8 @@ require'nvim-treesitter.configs'.setup{
                 ["iC"] = "@class.inner",
                 ["iL"] = "@loop.inner",
                 ["aL"] = "@loop.outer",
+                ["iP"] = "@parameter.inner",
+                ["aP"] = "@parameter.outer",
             },
         },
     },
