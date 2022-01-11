@@ -87,6 +87,9 @@ else if test $count -eq 1
 end
 
 # asdf for fish
+if type "asdf" >/dev/null 2>&1
+    abbr pip "__pip"
+end
 
 # Github CLI
 eval (gh completion -s fish | source)
