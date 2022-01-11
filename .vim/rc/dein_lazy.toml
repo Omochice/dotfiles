@@ -187,12 +187,14 @@ let g:lsp_diagnostics_signs_warning = {'text': '🤔'}
 
 function! s:enable_help_by_lsp() abort
   let l:servers = lsp#get_server_names()
-  return !(len(l:servers) == 0 || uniq(map(l:servers, {_, v -> lsp#capabilities#has_hover_provider(v)})) == [0])
+  return !(len(l:servers) == 0
+          \ || uniq(map(l:servers, {_, v -> lsp#capabilities#has_hover_provider(v)})) == [0])
 endfunction
 
 function s:enable_definition_by_lsp() abort
   let l:servers = lsp#get_server_names()
-  return !(len(l:servers) == 0 || uniq(map(l:servers, {_, v -> lsp#capabilities#has_definition_provider(v)})) == [0])
+  return !(len(l:servers) == 0
+          \ || uniq(map(l:servers, {_, v -> lsp#capabilities#has_definition_provider(v)})) == [0])
 endfunction
 """
 on_event = "BufRead"
