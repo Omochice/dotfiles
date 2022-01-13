@@ -1,13 +1,4 @@
 {
-  "begin": {
-    "prefix": "begin",
-    "body": [
-      "begin{${1:env}}",
-      "\t$2",
-      "\\end{$1}"
-    ],
-    "description": "begin environment"
-  },
   "itemize": {
     "prefix": "itemize",
     "body": [
@@ -29,7 +20,7 @@
   "figure": {
     "prefix": "figure",
     "body": [
-      "\\begin{figure}[Hbtp]",
+      "\\begin{figure}[hbtp]",
       "\t\\centering",
       "\t\\includegraphics[width=\\hsize]{${1:path}}",
       "\t\\caption{${2:caption}}",

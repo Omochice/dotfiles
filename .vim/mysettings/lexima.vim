@@ -130,6 +130,7 @@ let s:rules += [
 \ { 'filetype': 'tex', 'char': '$', 'at': '[^\$]*\%#', 'input': '$', 'input_after': '$', },
 \ { 'filetype': 'tex', 'char': '$', 'at': '\$\%#\$', 'input': '$<CR>', 'input_after': '<CR>$', 'priority': 10 },
 \ { 'filetype': 'tex', 'char': '<CR>', 'at': '^\s*\\item.*\%#$', 'input': '<CR>\item ', },
+\ { 'filetype': 'tex', 'char': '<CR>', 'at': '\\begin{\(\w\+\*\?\)}\%#$', 'input': '<CR>', 'input_after': '<CR>\\end{\1}', 'with_submatch': v:true },
 \ ]
 
 for s:rule in s:rules
