@@ -2,7 +2,9 @@
   "shebang": {
     "prefix": "shebang",
     "body": [
-      "#!/usr/bin/env bash -ue",
+      "#!/usr/bin/env bash",
+      "",
+      "set -ue",
       "$1"
     ],
     "description": "shebang"
