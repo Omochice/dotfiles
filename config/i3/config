@@ -154,29 +154,30 @@ mode "resize" {
 }
 bindsym $mod+e mode "resize"
 
-# bar
-bar {
-	font pango:FiraCode Nerd Font Mono 11
-	position top
-	tray_output none
-	status_command bumblebee-status -m cpu memory ping \
-		pasink pasource playerctl bluetooth2 datetime \
-        -p pulseaudio.autostart="true" pulseaudio.limit=100 \
-        playerctl.format=" {{title}} " \
-        datetime.format="%a %m-%d %H:%M" datetime.locale="en_US.UTF-8" \
-        memory.usedonly=true \
-        -t night-owl
-
-    colors {
-        # class            border    bg        fg
-        background                   $bg
-        focused_workspace  $bg       $blue     $bg
-        active_workspace   $bg       $bg2      $fg
-        inactive_workspace $bg       $bg2      $fg
-        urgent_workspace   $bg       $red      $bg
-        binding_mode       $bg       $cyan     $bg
-    }
-}
+# # bar
+# bar {
+# 	font pango:FiraCode Nerd Font Mono 11
+# 	position top
+# 	tray_output none
+# 	# status_command bumblebee-status -m cpu memory ping \
+# 	# 	pasink pasource playerctl bluetooth2 datetime \
+#  #        -p pulseaudio.autostart="true" pulseaudio.limit=100 \
+#  #        playerctl.format=" {{title}} " \
+#  #        datetime.format="%a %m-%d %H:%M" datetime.locale="en_US.UTF-8" \
+#  #        memory.usedonly=true \
+#  #        -t night-owl
+#     # status_command 2>/tmp/i3blocks.err i3blocks -vvv -c ~/.config/i3blocks/config | tee /tmp/i3blocks.out
+# 
+#     colors {
+#         # class            border    bg        fg
+#         background                   $bg
+#         focused_workspace  $bg       $blue     $bg
+#         active_workspace   $bg       $bg2      $fg
+#         inactive_workspace $bg       $bg2      $fg
+#         urgent_workspace   $bg       $red      $bg
+#         binding_mode       $bg       $cyan     $bg
+#     }
+# }
 
 # gaps
 gaps top 5
@@ -208,6 +209,7 @@ exec --no-startup-id light-locker --lock-on-suspend
 exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
 exec --no-startup-id i3-workscreen && nitrogen --restore
 exec --no-startup-id xfce4-power-manager
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # autostart(with gui)
 exec --no-startup-id i3-msg 'workspace -1 -;exec $TERMINAL'
