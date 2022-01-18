@@ -1,0 +1,614 @@
+; this is from space-jesus/more-dracula
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[global/wm]
+margin-bottom = 0
+margin-top = 0
+
+[color]
+alpha = #00000000
+background = #282a36
+foreground = #f9f7fc
+black = #1f1e1c
+red = #d17165
+green = #93e3c6
+orange = #f9bd59
+blue = #8bc1e6
+magenta = #9fa0e1
+cyan = #f08d71
+white = #e4e3e1
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/backlight]
+type = internal/xbacklight
+
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/backlight/
+card = intel_backlight
+
+format = <ramp> <label>
+format-background = ${color.orange}
+
+label = %percentage%%
+label-foreground = ${color.background}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-5 = 
+ramp-6 = 
+ramp-7 = 
+ramp-8 = 
+ramp-9 = 
+ramp-font = 2
+ramp-foreground = ${color.background}
+
+[module/brightness]
+type = internal/backlight
+
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/brightness/
+card = ${system.graphics_card}
+
+enable-scroll = true
+
+format = <ramp> <label>
+format-background = ${color.orange}
+format-padding = 1
+
+label = %percentage%%
+label-foreground = ${color.background}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-5 = 
+ramp-6 = 
+ramp-7 = 
+ramp-8 = 
+ramp-9 = 
+ramp-font = 2
+ramp-foreground = ${color.background}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/volume]
+type = internal/pulseaudio
+
+sink = alsa_output.pci-0000_12_00.3.analog-stereo
+
+use-ui-max = false
+
+interval = 5
+
+format-volume = <ramp-volume><label-volume>
+
+format-muted = <label-muted>
+format-muted-prefix = " "
+format-muted-prefix-font = 2
+format-muted-prefix-foreground = ${color.background}
+format-muted-prefix-background = ${color.green}
+
+label-volume = "%percentage%% "
+label-muted = "Mute"
+
+label-volume-background = ${color.green}
+label-muted-background = ${color.green}
+
+label-volume-foreground = ${color.background}
+label-muted-foreground = ${color.background}
+
+ramp-volume-0 = " "
+ramp-volume-1 = " "
+ramp-volume-2 = " "
+ramp-volume-3 = " "
+ramp-volume-4 = " "
+ramp-volume-5 = " "
+ramp-volume-6 = " "
+ramp-volume-7 = " "
+ramp-volume-8 = " "
+ramp-volume-9 = " "
+ramp-volume-font = 2
+ramp-volume-foreground = ${color.background}
+ramp-volume-background = ${color.green}
+
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+click-right = pavucontrol
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/battery]
+type = internal/battery
+
+full-at = 99
+
+battery = ${system.battery}
+adapter = ${system.adapter}
+
+poll-interval = 2
+time-format = %H:%M
+format-padding = 1
+
+format-charging = <animation-charging><label-charging>
+format-charging-prefix = 
+
+format-discharging = <ramp-capacity><label-discharging>
+
+format-full = <label-full>
+format-full-prefix = " "
+format-full-prefix-font = 2
+format-full-prefix-foreground = ${color.background}
+format-full-prefix-background = ${color.red}
+
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = %percentage%%
+
+label-charging-background = ${color.red}
+label-discharging-background = ${color.red}
+label-full-background = ${color.red}
+
+label-charging-foreground = ${color.background}
+label-discharging-foreground = ${color.background}
+label-full-foreground = ${color.background}
+
+ramp-capacity-0 = " "
+ramp-capacity-1 = " "
+ramp-capacity-2 = " "
+ramp-capacity-3 = " "
+ramp-capacity-4 = " "
+ramp-capacity-font = 2
+ramp-capacity-foreground = ${color.background}
+ramp-capacity-background = ${color.red}
+
+animation-charging-0 = " "
+animation-charging-1 = " "
+animation-charging-2 = " "
+animation-charging-3 = " "
+animation-charging-4 = " "
+animation-charging-font = 2
+animation-charging-foreground = ${color.background}
+animation-charging-background = ${color.red}
+animation-charging-framerate = 750
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/i3]
+type = internal/i3
+
+pin-workspaces = true
+strip-wsnumbers = true
+index-sort = true
+
+enable-click = false
+enable-scroll = false
+wrapping-scroll = true
+reverse-scroll = false
+
+fuzzy-match = true
+
+ws-icon-0 = 1;1
+ws-icon-1 = 2;2
+ws-icon-2 = 3;3
+ws-icon-3 = 4;4
+ws-icon-4 = 5;5
+ws-icon-5 = 6;6
+ws-icon-6 = 7;7
+ws-icon-7 = 8;8
+ws-icon-8 = 9;9
+format = <label-state><label-mode>
+format-background = ${color.red}
+
+label-mode = %mode%
+label-mode-padding = 1
+label-mode-foreground = ${color.orange}
+label-mode-background = ${color.red}
+
+label-focused = %icon%
+label-focused-foreground = ${color.black}
+label-focused-background = ${color.red}
+
+label-unfocused = %icon%
+label-unfocused-foreground = ${color.orange}
+label-unfocused-background = ${color.red}
+
+label-visible = %icon%
+label-visible-foreground = ${color.orange}
+label-visible-background = ${color.red}
+
+label-urgent = %icon%
+label-urgent-foreground = ${color.orange}
+label-urgent-background = ${color.red}
+
+label-focused-padding = 1
+label-unfocused-padding = 1
+label-visible-padding = 1
+label-urgent-padding = 1
+
+label-separator = |
+label-separator-padding = 0
+label-separator-foreground = ${color.foreground}
+label-separator-background = ${color.red}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-padding = 0
+format-prefix-foreground = ${color.background}
+format-foreground = ${color.background}
+format-background = ${color.green}
+label = "%{A1:terminal -e gtop &:}%percentage%% %{A}"
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/time]
+type = internal/date
+interval = 1
+format-margin = 0
+time = "%H:%M"
+time-alt = "%m-%d"
+format = <label>
+format-prefix = " "
+format-foreground = ${color.background}
+format-background = ${color.blue}
+
+label = %time%
+label-foreground = ${color.background}
+label-background = ${color.blue}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/memory]
+type = internal/memory
+
+interval = 1
+
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${color.background}
+format-foreground = ${color.background}
+format-background = ${color.orange}
+
+label = "%{A1:terminal -e htop &:} %gb_used% %{A}"
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+
+[module/wired-network]
+type = internal/network
+interface = enp1s0f1
+
+[module/wireless-network]
+type = internal/network
+interface = wlp2s0
+
+[module/network]
+type = internal/network
+interface = enp1s0f1
+
+interval = 1.0
+accumulate-stats = true
+unknown-as-up = true
+
+format-connected = <ramp-signal><label-connected>
+
+format-disconnected = <label-disconnected>
+format-disconnected-prefix = "睊 "
+format-disconnected-prefix-font = 2
+format-disconnected-foreground = ${color.background}
+format-disconnected-background = ${color.magenta}
+
+; label-connected = "%{A1:def-nmdmenu &:}%essid%%{A}"
+label-connected = %essid% %downspeed:9%
+label-disconnected = "%{A1:def-nmdmenu &:}Offline%{A}"
+
+label-connected-foreground = ${color.background}
+label-disconnected-foreground = ${color.background}
+
+label-connected-background = ${color.magenta}
+label-disconnected-background = ${color.magenta}
+
+ramp-signal-0 = " "
+ramp-signal-1 = " "
+ramp-signal-2 = " "
+ramp-signal-3 = " "
+ramp-signal-4 = " "
+ramp-signal-foreground = ${color.background}
+ramp-signal-background = ${color.magenta}
+ramp-signal-font = 2
+
+[module/spacing]
+type = custom/text
+content = " "
+content-background = ${color.alpha}
+
+[module/sep]
+type = custom/text
+content = -
+
+content-background = ${color.background}
+content-foreground = ${color.background}
+
+[module/dot]
+type = custom/text
+;content = 
+content = ""
+
+content-font = 3
+content-background = ${color.alpha}
+content-foreground = ${color.red}
+content-padding = 1
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/LD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-background = ${color.alpha}
+content-foreground = ${color.red}
+
+[module/RD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-background = ${color.alpha}
+content-foreground = ${color.red}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/RLD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.alpha}
+content-foreground = ${color.red}
+
+[module/RRD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.alpha}
+content-foreground = ${color.red}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/WLD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.alpha}
+content-foreground = ${color.white}
+
+[module/WRD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.alpha}
+content-foreground = ${color.white}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+
+[module/CLD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.alpha}
+content-foreground = ${color.cyan}
+
+[module/CRD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.alpha}
+content-foreground = ${color.cyan}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+
+[module/MLD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.alpha}
+content-foreground = ${color.magenta}
+
+[module/MRD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.alpha}
+content-foreground = ${color.magenta}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+
+[module/YLD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.alpha}
+content-foreground = ${color.orange}
+
+[module/YRD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.alpha}
+content-foreground = ${color.orange}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+
+[module/GLD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.alpha}
+content-foreground = ${color.green}
+
+[module/GRD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.alpha}
+content-foreground = ${color.green}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/BLD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.alpha}
+content-foreground = ${color.blue}
+
+[module/BRD]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.alpha}
+content-foreground = ${color.blue}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/YPL]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.green}
+content-foreground = ${color.orange}
+
+[module/CPL]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.orange}
+content-foreground = ${color.cyan}
+
+[module/RPL]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 3
+content-background = ${color.magenta}
+content-foreground = ${color.red}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+;
+; When some modules in the polybar doesn't show up.
+; Look for battery/adapter: "ls -l /sys/class/power_supply"
+; Look for backlight: "ls -l /sys/class/backlight"
+; Look for network: "ls -l /sys/class/net"
+
+[system]
+adapter = ACAD
+battery = BAT0
+graphics_card = intel_backlight
+
+;;
+
+[module/ping]
+type = custom/script
+exec = "~/.config/polybar/scripts/ping.sh"
+interval = 5
+format = <label>
+format-prefix = " "
+format-background = ${color.magenta}
+format-foreground = ${color.background}
+
+
+;;
+;; Usage
+;;   MLD playerctl-previous playerctl playerctl-next MRD
+
+[module/playerctl-previous]
+type = custom/text
+content = "玲 "
+content-background = ${color.magenta}
+content-foreground = ${color.background}
+click-left = playerctl previous &
+
+
+[module/playerctl-next]
+type = custom/text
+content = " 怜"
+content-background = ${color.magenta}
+content-foreground = ${color.background}
+click-left = playerctl next &
+
+[module/playerctl]
+type = custom/script
+exec = "~/.config/polybar/scripts/playerctl.sh"
+interval = 3
+format = <label>
+format-prefix = " "
+format-suffix = ""
+format-background = ${color.magenta}
+format-foreground = ${color.background}
+click-left = playerctl play-pause &
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[bar/main]
+monitor = ${env:MONITOR}
+monitor-fallback = eDP-1
+monitor-strict = false
+
+override-redirect = false
+
+bottom = false
+fixed-center = true
+
+width = 100%
+height = 25
+
+border-top-size = 5
+border-color = ${color.alpha}
+
+background = ${color.alpha}
+foreground = ${color.foreground}
+
+font-0 = "Firge35Nerd Console:pixelsize=16;3"
+; font-1 = "Firge35Nerd Console:pixelsize=14;3"
+; font-2 = "Firge35Nerd Console:pixelsize=16;4"
+; font-3 = "Firge35Nerd Console:pixelsize=18;4"
+
+# Default
+modules-left = spacing GLD cpu YPL memory YRD spacing MLD ping MRD
+modules-center = LD i3 RD
+modules-right = RLD battery RRD spacing GLD volume YPL brightness YRD spacing BLD time BRD spacing
+
+spacing = 0
+dim-value = 1.0
+
+enable-ipc = true
+
+cursor-click = 
+cursor-scroll = 
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[settings]
+throttle-output = 5
+throttle-output-for = 10
+
+screenchange-reload = false
+
+compositing-background = source
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+
+pseudo-transparency = false
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
