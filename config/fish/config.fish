@@ -20,7 +20,7 @@ if [ -d /usr/share/tessdata ]
     set TESSDATA_PREFIX /usr/share/tessdata
 end
 
-set SHELL (which fish)
+# set SHELL (which fish)
 
 
 # aliases

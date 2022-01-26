@@ -144,20 +144,18 @@ if has('nvim')
   autocmd vimrc#terminal TermOpen * setlocal nonumber "FIXME not work
   autocmd vimrc#terminal WinEnter * if &buftype ==# 'terminal' | startinsert | endif
   " auto close
-  " autocmd TermClose * call feedkeys('<LT>CR>') " cannot work
-  autocmd vimrc#terminal TermClose * call feedkeys("\<CR>")
-
+  autocmd vimrc#terminal TermClose * call feedkeys('\<CR>')
   " helper commands
-  command! Vterm vsplit | wincmd l | terminal
-  command! Hterm split  | wincmd j | terminal
-  command! Tterm tabnew | terminal
+  command! Vterm vertical botright vnew term://${SHELL}
+  command! Hterm botright new term://${SHELL}
+  command! Tterm tabnew term://${SHELL}
 else
   " Vim terminal settings
   tnoremap <expr> <ESC> &filetype ==# 'floaterm' ? '<ESC>' : '<C-W>N'
   autocmd vimrc#terminal TerminalOpen * setlocal nonumber
   " helper commands
-  command! Vterm vsplit | wincmd l | terminal ++curwin
-  command! Hterm split  | wincmd j | terminal ++curwin
+  command! Vterm vertical botright vnew | terminal ++curwin
+  command! Hterm botright new | terminal ++curwin
   command! Tterm tabnew | terminal ++curwin
 endif
 
