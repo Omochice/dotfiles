@@ -30,6 +30,9 @@ if has('nvim')
   set wildoptions+=pum
 else
   set wildmode=longest,full
+  if has('patch-8.2.4325')
+    set wildoptions+=pum
+  endif
 endif
 
 if has('termguicolors')
