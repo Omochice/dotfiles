@@ -1,138 +1,54 @@
 let s:rules = []
 
-"" Brackets
 let s:rules += [
-\ { 'char': '<BS>',  'at': '(\%#)',   'input': '<BS><Del>', },
-\ { 'char': '<BS>',  'at': '{\%#}',   'input': '<BS><Del>', },
-\ { 'char': '<BS>',  'at': '\[\%#\]', 'input': '<BS><Del>', },
-\ ]
-
-"" Sinble Quote
-let s:rules += [
-\ { 'char': '<BS>',  'at': "'\\%#'", 'input': '<BS><Del>', },
-\ ]
-
-"" Double Quote
-let s:rules += [
-\ { 'char': '<BS>',  'at': '"\%#"', 'input': '<BS><Del>', },
-\ ]
-
-"" Back Quote
-let s:rules += [
-\ { 'char': '<BS>',  'at': '`\%#`', 'input': '<BS><Del>', },
-\ ]
-
-
-"" Move closing parenthesis
-let s:rules += [
-\ { 'char': '<Tab>', 'at': '\%#\s*)',  'input': '<Left><C-o>f)<Right>'  },
-\ { 'char': '<Tab>', 'at': '\%#\s*\}', 'input': '<Left><C-o>f}<Right>'  },
-\ { 'char': '<Tab>', 'at': '\%#\s*\]', 'input': '<Left><C-o>f]<Right>'  },
-\ { 'char': '<Tab>', 'at': '\%#\s*>',  'input': '<Left><C-o>f><Right>'  },
-\ { 'char': '<Tab>', 'at': '\%#\s*`',  'input': '<Left><C-o>f`<Right>'  },
-\ { 'char': '<Tab>', 'at': '\%#\s*"',  'input': '<Left><C-o>f"<Right>'  },
-\ { 'char': '<Tab>', 'at': '\%#\s*''', 'input': '<Left><C-o>f''<Right>' },
-\ ]
-
-" "" TypeScript
-" let s:rules += [
-"\ { 'filetype': ['typescript', 'typescriptreact', 'javascript'], 'char': '>', 'at': '\s([a-zA-Z, ]*\%#)',            'input': '<Left><C-o>f)<Right>a=> {}<Esc>',                 },
-"\ { 'filetype': ['typescript', 'typescriptreact', 'javascript'], 'char': '>', 'at': '\s([a-zA-Z]\+\%#)',             'input': '<Right> => {}<Left>',              'priority': 10 },
-"\ { 'filetype': ['typescript', 'typescriptreact', 'javascript'], 'char': '>', 'at': '[a-z]((.*\%#.*))',              'input': '<Left><C-o>f)a => {}<Esc>',                       },
-"\ { 'filetype': ['typescript', 'typescriptreact', 'javascript'], 'char': '>', 'at': '[a-z]([a-zA-Z]\+\%#)',          'input': ' => {}<Left>',                                    },
-"\ { 'filetype': ['typescript', 'typescriptreact', 'javascript'], 'char': '>', 'at': '(.*[a-zA-Z]\+<[a-zA-Z]\+>\%#)', 'input': '<Left><C-o>f)<Right>a=> {}<Left>',                },
-"\ ]
+      \ {'char': '<CR>', 'at': '"""\%#"""', 'input': '<CR>', 'input_after': '<CR>', },
+      \ ]
 
 "" ruby
 let s:rules += [
-\ { 'filetype': 'ruby', 'char': '<CR>',  'at': '^\s*\%(module\|def\|class\|if\|unless\)\s\w\+\((.*)\)\?\%#$', 'input': '<CR>',         'input_after': '<CR>end',      },
-\ { 'filetype': 'ruby', 'char': '<CR>',  'at': '^\s*\%(begin\)\s*\%#',                                        'input': '<CR>',         'input_after': '<CR>end',      },
-\ { 'filetype': 'ruby', 'char': '<CR>',  'at': '\%(^\s*#.*\)\@<!do\%(\s*|.*|\)\?\s*\%#',                      'input': '<CR>',         'input_after': '<CR>end',      },
-\ { 'filetype': 'ruby', 'char': '<Bar>', 'at': 'do\%#',                                                       'input': '<Space><Bar>', 'input_after': '<Bar><CR>end', },
-\ { 'filetype': 'ruby', 'char': '<Bar>', 'at': 'do\s\%#',                                                     'input': '<Bar>',        'input_after': '<Bar><CR>end', },
-\ { 'filetype': 'ruby', 'char': '<Bar>', 'at': '{\%#}',                                                       'input': '<Space><Bar>', 'input_after': '<Bar><Space>', },
-\ { 'filetype': 'ruby', 'char': '<Bar>', 'at': '{\s\%#\s}',                                                   'input': '<Bar>',        'input_after': '<Bar><Space>', },
-\ ]
-
-"" eruby
-let s:rules += [
-\ { 'filetype': 'eruby', 'char': '%',     'at': '<\%#',         'input': '%<Space>',                        'input_after': '<Space>%>',                 },
-\ { 'filetype': 'eruby', 'char': '=',     'at': '<%\%#',        'input': '=<Space><Right>',                 'input_after': '<Space>%>',                 },
-\ { 'filetype': 'eruby', 'char': '=',     'at': '<%\s\%#\s%>',  'input': '<Left>=<Right>',                                                              },
-\ { 'filetype': 'eruby', 'char': '=',     'at': '<%\%#.\+%>',                                                                           'priority': 10, },
-\ { 'filetype': 'eruby', 'char': '<BS>',  'at': '<%\s\%#\s%>',  'input': '<BS><BS><BS><Del><Del><Del>',                                                 },
-\ { 'filetype': 'eruby', 'char': '<BS>',  'at': '<%=\s\%#\s%>', 'input': '<BS><BS><BS><BS><Del><Del><Del>',                                             },
-\ ]
+      \ {'filetype': 'ruby', 'char': '<Bar>', 'at': '\(do\|{\)\s*\%#', 'input': '<Bar>', 'input_after': '<Bar>', },
+      \ ]
 
 "" markdown
 let s:rules += [
-\ { 'filetype': 'markdown', 'char': '`',       'at': '``\%#',                                                                        'input_after': '<CR><CR>```', 'priority': 10, },
-\ { 'filetype': 'markdown', 'char': '#',       'at': '^\%#\%(#\)\@!',                  'input': '#<Space>'                                                                         },
-\ { 'filetype': 'markdown', 'char': '#',       'at': '#\s\%#',                         'input': '<BS>#<Space>',                                                                    },
-\ { 'filetype': 'markdown', 'char': '<BS>',    'at': '^#\s\%#',                        'input': '<BS><BS>'                                                                         },
-\ { 'filetype': 'markdown', 'char': '<BS>',    'at': '##\s\%#',                        'input': '<BS><BS><Space>',                                                                 },
-\ { 'filetype': 'markdown', 'char': '<Tab>',   'at': '^\s*-\s\%#',                     'input': '<Home><Tab><End>',                                                                },
-\ { 'filetype': 'markdown', 'char': '<Tab>',   'at': '^\s*-\s\w.*\%#',                 'input': '<Home><Tab><End>',                                                                },
-\ { 'filetype': 'markdown', 'char': '<S-Tab>', 'at': '^\s\+-\s\%#',                    'input': '<Home><Del><Del><End>',                                                           },
-\ { 'filetype': 'markdown', 'char': '<S-Tab>', 'at': '^\s\+-\s\w.*\%#',                'input': '<Home><Del><Del><End>',                                                           },
-\ { 'filetype': 'markdown', 'char': '<S-Tab>', 'at': '^-\s\w.*\%#',                    'input': '',                                                                                },
-\ { 'filetype': 'markdown', 'char': '<BS>',    'at': '^-\s\%#',                        'input': '<C-w><BS>',                                                                       },
-\ { 'filetype': 'markdown', 'char': '<BS>',    'at': '^\s\+-\s\%#',                    'input': '<C-w><C-w><BS>',                                                                  },
-\ { 'filetype': 'markdown', 'char': '<CR>',    'at': '^-\s\%#',                        'input': '<C-w><CR>',                                                                       },
-\ { 'filetype': 'markdown', 'char': '<CR>',    'at': '^\s\+-\s\%#',                    'input': '<C-w><C-w><CR>',                                                                  },
-\ { 'filetype': 'markdown', 'char': '<CR>',    'at': '^\s*-\s\w.*\%#',                 'input': '<CR>-<Space>',                                                                    },
-\ { 'filetype': 'markdown', 'char': '[',       'at': '^\s*-\s\%#',                     'input': '<Left><Space>[]<Left>',                                                           },
-\ { 'filetype': 'markdown', 'char': '<Tab>',   'at': '^\s*-\s\[\%#\]\s',               'input': '<Home><Tab><End><Left><Left>',                                                    },
-\ { 'filetype': 'markdown', 'char': '<S-Tab>', 'at': '^-\s\[\%#\]\s',                  'input': '',                                                                                },
-\ { 'filetype': 'markdown', 'char': '<S-Tab>', 'at': '^\s\+-\s\[\%#\]\s',              'input': '<Home><Del><Del><End><Left><Left>',                                               },
-\ { 'filetype': 'markdown', 'char': '<BS>',    'at': '^\s*-\s\[\%#\]',                 'input': '<BS><Del><Del>',                                                                  },
-\ { 'filetype': 'markdown', 'char': '<Space>', 'at': '^\s*-\s\[\%#\]',                 'input': '<Space><End>',                                                                    },
-\ { 'filetype': 'markdown', 'char': 'x',       'at': '^\s*-\s\[\%#\]',                 'input': 'x<End>',                                                                          },
-\ { 'filetype': 'markdown', 'char': '<CR>',    'at': '^-\s\[\%#\]',                    'input': '<End><C-w><C-w><C-w><CR>',                                                        },
-\ { 'filetype': 'markdown', 'char': '<CR>',    'at': '^\s\+-\s\[\%#\]',                'input': '<End><C-w><C-w><C-w><C-w><CR>',                                                   },
-\ { 'filetype': 'markdown', 'char': '<Tab>',   'at': '^\s*-\s\[\(\s\|x\)\]\s\%#',      'input': '<Home><Tab><End>',                                                                },
-\ { 'filetype': 'markdown', 'char': '<Tab>',   'at': '^\s*-\s\[\(\s\|x\)\]\s\w.*\%#',  'input': '<Home><Tab><End>',                                                                },
-\ { 'filetype': 'markdown', 'char': '<S-Tab>', 'at': '^\s\+-\s\[\(\s\|x\)\]\s\%#',     'input': '<Home><Del><Del><End>',                                                           },
-\ { 'filetype': 'markdown', 'char': '<S-Tab>', 'at': '^\s\+-\s\[\(\s\|x\)\]\s\w.*\%#', 'input': '<Home><Del><Del><End>',                                                           },
-\ { 'filetype': 'markdown', 'char': '<S-Tab>', 'at': '^-\s\[\(\s\|x\)\]\s\w.*\%#',     'input': '',                                                                                },
-\ { 'filetype': 'markdown', 'char': '<BS>',    'at': '^-\s\[\(\s\|x\)\]\s\%#',         'input': '<C-w><C-w><C-w><BS>',                                                             },
-\ { 'filetype': 'markdown', 'char': '<BS>',    'at': '^\s\+-\s\[\(\s\|x\)\]\s\%#',     'input': '<C-w><C-w><C-w><C-w><BS>',                                                        },
-\ { 'filetype': 'markdown', 'char': '<CR>',    'at': '^-\s\[\(\s\|x\)\]\s\%#',         'input': '<C-w><C-w><C-w><CR>',                                                             },
-\ { 'filetype': 'markdown', 'char': '<CR>',    'at': '^\s\+-\s\[\(\s\|x\)\]\s\%#',     'input': '<C-w><C-w><C-w><C-w><CR>',                                                        },
-\ { 'filetype': 'markdown', 'char': '<CR>',    'at': '^\s*-\s\[\(\s\|x\)\]\s\w.*\%#',  'input': '<CR>-<Space>[',                     'input_after': ']<Space>',                    },
-\ ]
+      \ {'filetype': 'markdown', 'char': '<CR>', 'at': '```\w*\%#```', 'input': '<CR>', 'input_after': '<CR>'},
+      \ {'filetype': 'markdown', 'char': '#', 'at': '^\%#', 'input': '#<Space>',},
+      \ {'filetype': 'markdown', 'char': '#', 'at': '^#\+\s\%#', 'input': '<BS>#<Space>',},
+      \ {'filetype': 'markdown', 'char': '<BS>', 'at': '^#\s\%#', 'input': '<BS><BS>',},
+      \ {'filetype': 'markdown', 'char': '<BS>', 'at': '^#\{2,}\s\%#', 'input': '<BS><BS><Space>',},
+      \ {'filetype': 'markdown', 'char': '<CR>', 'at': '^\s*-\s\w.*\%#', 'input': '<CR>-<Space>',},
+      \ ]
 
 "" vim
 let s:rules += [
-\ { 'filetype': 'vim', 'char': '{', 'at': '^".*{\%#$', 'input': '{{', 'input_after': '<CR>" }}}', 'priority': 10, },
-\ ]
+      \ {'filetype': 'vim', 'char': '<CR>', 'at': '[\[{]\s\?\%#[\]}]$', 'input': '<CR>\<Space>', 'input_after': '<CR>\<Space>',},
+      \ {'filetype': 'vim', 'char': '<CR>', 'at': '^\s*\\.\+\%#', 'input': '<CR>\<Space>',},
+      \ ]
 
 "" shell
 let s:rules += [
-\ { 'filetype': ['sh', 'zsh', 'bash', 'fish'], 'char': '[',    'at': '\[\%#\]',  'input': '[<Space>', 'input_after': '<Space>]', 'priority': 10 },
-\ { 'filetype': ['sh', 'zsh', 'bash', 'fish'], 'char': '{',    'at': '{\%#}',    'input': '{<Space>', 'input_after': '<Space>}', 'priority': 10 },
-\ { 'filetype': ['sh', 'zsh', 'bash', 'fish'], 'char': '<CR>', 'at': '{\%#}',    'input': '<CR>',     'input_after': '<CR>',     'priority': 10 },
-\ ]
+      \ {'filetype': ['sh', 'zsh', 'bash', 'fish'], 'char': '[', 'at': 'if\s\%#', 'input': '[<Space>', 'input_after': '<Space>]',},
+      \ {'filetype': ['sh', 'zsh', 'bash', 'fish'], 'char': '<Space>', 'at': '^\s*if\%#', 'input': '<Space>', 'input_after': ';<Space>then',},
+      \ ]
 
 "" Python
 let s:rules += [
-\ { 'filetype': 'python', 'char': '"',       'at': '""\%#',                                                                        'input_after': '<CR><CR>"""', 'priority': 10, },
-\ { 'filetype': 'python', 'char': '%',       'at': '^#\s%\%#',                                                                        'input_after': '<CR><CR># %%', 'priority': 10, },
-\ ]
+      \ {'filetype': 'python', 'char': '%', 'at': '^#\s%\%#', 'input_after': '<CR><CR># %%',},
+      \ ]
 
 "" HTML
 let s:rules += [
-\ { 'filetype': ['html', 'htmldjango'], 'char': '%', 'at': '{\%#}', 'input': '%<Space>', 'input_after': '<Space>%', 'priority': 10, },
-\ ]
+      \ { 'filetype': ['html', 'htmldjango'], 'char': '%', 'at': '{\%#}', 'input': '%<Space>', 'input_after': '<Space>%',},
+      \ ]
 
 ""latex
 let s:rules += [
-\ { 'filetype': 'tex', 'char': '$', 'at': '[^\$]*\%#', 'input': '$', 'input_after': '$', },
-\ { 'filetype': 'tex', 'char': '$', 'at': '\$\%#\$', 'input': '$<CR>', 'input_after': '<CR>$', 'priority': 10 },
-\ { 'filetype': 'tex', 'char': '<CR>', 'at': '^\s*\\item.*\%#$', 'input': '<CR>\item ', },
-\ { 'filetype': 'tex', 'char': '<CR>', 'at': '\\begin{\(\w\+\*\?\)}\%#$', 'input': '<CR>', 'input_after': '<CR>\\end{\1}', 'with_submatch': v:true },
-\ ]
+      \ { 'filetype': ['tex', 'plaintex'], 'char': '$', 'at': '[^\$]*\%#', 'input': '$', 'input_after': '$', },
+      \ { 'filetype': ['tex', 'plaintex'], 'char': '$', 'at': '\$\%#\$', 'input': '$<CR>', 'input_after': '<CR>$', 'priority': 10 },
+      \ { 'filetype': ['tex', 'plaintex'], 'char': '<CR>', 'at': '^\s*\\item\s.\+\%#$', 'input': '<CR>\item ', },
+      \ { 'filetype': ['tex', 'plaintex'], 'char': '<CR>', 'at': '\\begin{\(\w\+\*\?\)}\%#$', 'input': '<CR>', 'input_after': '<CR>\\end{\1}', 'with_submatch': v:true },
+      \ ]
 
 for s:rule in s:rules
-    call lexima#add_rule(s:rule)
+  call lexima#add_rule(s:rule)
 endfor
