@@ -22,7 +22,7 @@
     "body": [
       "\\begin{figure}[hbtp]",
       "\t\\centering",
-      "\t\\includegraphics[width=\\hsize]{${1:path}}",
+      "\t\\includegraphics[width=\\linewidth]{${1:path}}",
       "\t\\caption{${2:caption}}",
       "\t\\label{fig:${3:label-name}}",
       "\\end{figure}"
