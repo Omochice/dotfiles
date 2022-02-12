@@ -16,7 +16,6 @@ set noshowcmd " Use screenkey to show them
 set nowrap
 set nowritebackup
 set nonumber
-set norelativenumber
 set shiftwidth=4
 set showmatch
 set smartindent
