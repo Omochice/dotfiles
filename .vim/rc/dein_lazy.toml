@@ -464,6 +464,7 @@ repo = "previm/previm"
 on_cmd = "PrevimOpen"
 hook_add = """
 let g:previm_open_cmd = $BROWSER
+let g:previm_show_header = v:false
 """
 
 [[plugins]]
