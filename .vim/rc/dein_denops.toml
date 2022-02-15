@@ -239,8 +239,11 @@ on_cmd = "Codic"
 # repo = "Omochice/dps-translate-vim"
 repo = "~/workspace/dps-translate-vim"
 hook_add = """
-let g:dps_translate_source = "en"
-let g:dps_translate_target = "ja"
+let g:dps_translate_source = 'en'
+let g:dps_translate_target = 'ja'
+let g:dps_translate_deepl_token = $DEEPL_TOKEN
+let g:dps_translate_engine = empty(g:dps_translate_deepl_token) ? 'google' : 'deepl'
+let g:dps_translate_deepl_is_pro = v:false
 
 nnoremap tr <Cmd>Translate<CR>
 nnoremap tR <Cmd>Translate!<CR>
