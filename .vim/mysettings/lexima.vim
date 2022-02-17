@@ -28,7 +28,7 @@ let s:rules += [
 "" shell
 let s:rules += [
       \ {'filetype': ['sh', 'zsh', 'bash', 'fish'], 'char': '[', 'at': 'if\s\%#', 'input': '[<Space>', 'input_after': '<Space>]',},
-      \ {'filetype': ['sh', 'zsh', 'bash', 'fish'], 'char': '<Space>', 'at': '^\s*if\%#', 'input': '<Space>', 'input_after': ';<Space>then',},
+      \ {'filetype': ['sh', 'zsh', 'bash'], 'char': '<Space>', 'at': '^\s*if\%#', 'input': '<Space>', 'input_after': ';<Space>then',},
       \ ]
 
 "" Python
