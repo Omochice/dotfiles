@@ -214,24 +214,30 @@ call signature_help#enable()
 on_source = "ddc.vim"
 
 # }}}
+# 
+# [[plugins]]
+# repo = "Omochice/dps-popup-test"
+# # repo = "~/workspace/dps-popup-test"
+# on_source = "denops.vim"
+# 
 [[plugins]]
 repo = "Omochice/dps-paiza-io-vim"
 # repo = "~/workspace/dps-paiza-io-vim"
 on_cmd = "PaizaIO"
-
-[[plugins]]
-repo = "Omochice/dps-charcounter-vim"
-# repo = "~/workspace/dps-charcounter-vim"
-on_cmd = "CharCount"
-
+ 
+# [[plugins]]
+# repo = "Omochice/dps-charcounter-vim"
+# # repo = "~/workspace/dps-charcounter-vim"
+# on_cmd = "CharCount"
+ 
 [[plugins]]
 repo = "Omochice/dps-codic-vim"
 # repo = "~/workspace/dps-codic-vim"
 on_cmd = "Codic"
-
+# 
 [[plugins]]
-repo = "Omochice/dps-translate-vim"
-# repo = "~/workspace/dps-translate-vim"
+# repo = "Omochice/dps-translate-vim"
+repo = "~/workspace/dps-translate-vim"
 hook_add = """
 let g:dps_translate_source = "en"
 let g:dps_translate_target = "ja"
@@ -242,29 +248,29 @@ xnoremap <silent>tr :TranslateJoin<CR>
 xnoremap <silent>tR :TranslateJoin!<CR>
 """
 on_cmd = ["Translate", "TranslateJoin"]
-
-[[plugins]]
-repo = "yuki-yano/dps-slack-status.vim"
-hook_add = """
-let g:slack_status_emoji = ":dadparrot:"
-"""
-on_source = "denops.vim"
-
-# guise.vim not work well on lazy...?
+ 
 # [[plugins]]
-# repo = "lambdalisue/guise.vim"
-# on_event = "TermOpen"
-# depends = "denops.vim"
-# # on_source = "denops.vim"
-
-# [[plugins]]
-# repo = "supporterz-vol5-1/breakTimer-vim"
+# repo = "yuki-yano/dps-slack-status.vim"
 # hook_add = """
-# let g:break_timer_username = "Omochice"
+# let g:slack_status_emoji = ":dadparrot:"
 # """
-# depends = ["denops.vim"]
-# on_event = "BufRead"
-
+# on_source = "denops.vim"
+# 
+# # guise.vim not work well on lazy...?
+[[plugins]]
+repo = "lambdalisue/guise.vim"
+on_event = "TermOpen"
+depends = "denops.vim"
+# # # on_source = "denops.vim"
+# 
+# # [[plugins]]
+# # repo = "supporterz-vol5-1/breakTimer-vim"
+# # hook_add = """
+# # let g:break_timer_username = "Omochice"
+# # """
+# # depends = ["denops.vim"]
+# # on_event = "BufRead"
+# 
 [[plugins]]
 repo = "gamoutatsumi/dps-ghosttext.vim"
 hook_add = """
@@ -276,23 +282,58 @@ let g:dps_ghosttext#ftmap = {
 """
 depends = "denops.vim"
 on_cmd = "GhostStart"
-
-[[plugins]]
-repo = "skanehira/denops-germanium.vim"
-hook_add = """
-command! -range MyGermanium Germanium -f=Firge35NerdConsole-Regular
-"""
-depends = "denops.vim"
-on_cmd = ["MyGermanium", "Germanium"]
-
-[[plugins]]
-# repo = "~/workspace/dps-dein-star.vim"
-repo = "Omochice/dps-dein-star.vim"
-hook_add = """
-let g:dps_dein_star_token = $GITHUB_TOKEN
-let g:dps_dein_star_ignore_users = ['Omochice']
-let g:dps_dein_star_debug = v:true
-"""
+# 
+# [[plugins]]
+# repo = "skanehira/denops-germanium.vim"
+# hook_add = """
+# command! -range MyGermanium Germanium -f=Firge35NerdConsole-Regular
+# """
 # depends = "denops.vim"
-on_source = "denops.vim"
-# on_cmd = ""
+# on_cmd = ["MyGermanium", "Germanium"]
+# 
+# [[plugins]]
+# # repo = "~/workspace/dps-dein-star.vim"
+# repo = "Omochice/dps-dein-star.vim"
+# hook_add = """
+# let g:dps_dein_star_token = $GITHUB_TOKEN
+# let g:dps_dein_star_ignore_users = ['Omochice']
+# let g:dps_dein_star_debug = v:true
+# """
+# # depends = "denops.vim"
+# on_source = "denops.vim"
+# # on_cmd = ""
+# 
+# # ddu {{{
+# [[plugins]]
+# repo = 'Shougo/ddu.vim'
+# depends = 'denops.vim'
+# hook_source = '''
+# call ddu#custom#patch_global({
+#     \   'ui': 'std',
+#     \   'sourceOptions' : {
+#     \     '_' : {
+#     \       'matchers': ['matcher_substring'],
+#     \     }
+#     \   },
+#     \   'uiParams': {
+#     \     'std': {
+#     \     }
+#     \   },
+#     \ })
+# '''
+# 
+# [plugins.ftplugin]
+# ddu-std = '''
+# nnoremap <buffer><silent> <CR>
+# \ <Cmd>call ddu#ui#std#do_map('doAction')<CR>
+# nnoremap <buffer><silent> <Space>
+# \ <Cmd>call ddu#ui#std#do_map('toggleSelectItem')<CR>
+# nnoremap <buffer><silent> i
+# \ <Cmd>call ddu#ui#std#do_map('openFilterWindow')<CR>
+# '''
+# 
+# [[plugins]]
+# repo = 'Shougo/ddu-commands.vim'
+# depends = 'ddu.vim'
+# on_cmd = 'Ddu'
+# # }}}
