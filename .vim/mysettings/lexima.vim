@@ -45,6 +45,7 @@ let s:rules += [
 let s:rules += [
       \ { 'filetype': ['tex', 'plaintex'], 'char': '$', 'at': '[^\$]*\%#', 'input': '$', 'input_after': '$', },
       \ { 'filetype': ['tex', 'plaintex'], 'char': '$', 'at': '\$\%#\$', 'input': '$<CR>', 'input_after': '<CR>$', 'priority': 10 },
+      \ { 'filetype': ['tex', 'plaintex'], 'char': '<BS>', 'at': '\$\%#\$', 'input': '<BS>', 'delete': 1, },
       \ { 'filetype': ['tex', 'plaintex'], 'char': '<CR>', 'at': '^\s*\\item\s.\+\%#$', 'input': '<CR>\item ', },
       \ { 'filetype': ['tex', 'plaintex'], 'char': '<CR>', 'at': '\\begin{\(\w\+\*\?\)}\%#$', 'input': '<CR>', 'input_after': '<CR>\\end{\1}', 'with_submatch': v:true },
       \ ]
