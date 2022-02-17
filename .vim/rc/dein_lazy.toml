@@ -670,7 +670,7 @@ let g:vim_filetype_formatter_commands = {
 \   'json': 'jq .',
 \   'python': 'black --quiet - | isort --quiet -',
 \   'go': 'goimports | gofmt',
-\   'typescript': 'deno -',
+\   'typescript': 'deno fmt -',
 \   'sh': 'shfmt -ln bash -i 2 -bn -ci -sr -kp',
 \   'fortran': 'fprettify -i 2 -S',
 \   'elm': 'elm-format --stdin',
@@ -689,6 +689,7 @@ sh = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
 bash = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
 fortran = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
 elm = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
+typescript = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
 
 [[plugins]]
 repo = "voldikss/vim-floaterm"
