@@ -28,7 +28,7 @@ let s:rules += [
 "" shell
 let s:rules += [
       \ {'filetype': ['sh', 'zsh', 'bash', 'fish'], 'char': '[', 'at': 'if\s\%#', 'input': '[<Space>', 'input_after': '<Space>]',},
-      \ {'filetype': ['sh', 'zsh', 'bash', 'fish'], 'char': '<Space>', 'at': '^\s*if\%#', 'input': '<Space>', 'input_after': ';<Space>then',},
+      \ {'filetype': ['sh', 'zsh', 'bash'], 'char': '<Space>', 'at': '^\s*if\%#', 'input': '<Space>', 'input_after': ';<Space>then',},
       \ ]
 
 "" Python
@@ -45,6 +45,7 @@ let s:rules += [
 let s:rules += [
       \ { 'filetype': ['tex', 'plaintex'], 'char': '$', 'at': '[^\$]*\%#', 'input': '$', 'input_after': '$', },
       \ { 'filetype': ['tex', 'plaintex'], 'char': '$', 'at': '\$\%#\$', 'input': '$<CR>', 'input_after': '<CR>$', 'priority': 10 },
+      \ { 'filetype': ['tex', 'plaintex'], 'char': '<BS>', 'at': '\$\%#\$', 'input': '<BS>', 'delete': 1, },
       \ { 'filetype': ['tex', 'plaintex'], 'char': '<CR>', 'at': '^\s*\\item\s.\+\%#$', 'input': '<CR>\item ', },
       \ { 'filetype': ['tex', 'plaintex'], 'char': '<CR>', 'at': '\\begin{\(\w\+\*\?\)}\%#$', 'input': '<CR>', 'input_after': '<CR>\\end{\1}', 'with_submatch': v:true },
       \ ]
