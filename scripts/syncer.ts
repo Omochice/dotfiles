@@ -137,7 +137,7 @@ async function build(
   for (const command of commands) {
     debugLog(`run ${command} on ${working_directory}`, debug);
     const build_process = Deno.run({
-      cmd: command.split(/s+/), // :FIXME:
+      cmd: command.split(/\s+/),
       stdout: "null",
       stderr: "piped",
       cwd: working_directory,
