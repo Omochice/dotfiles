@@ -53,12 +53,12 @@ alias tomorrow "date '+%Y-%m-%d' --date '+1 day'"
 alias view "vim -R"
 
 if type "nvim" >/dev/null 2>&1
-    alias v "nvim"
+    alias v "nvim -R"
     alias vi "nvim"
     alias vim "nvim"
     alias vvim (which vim)
 else
-    alias v "vim"
+    alias v "vim -R"
     alias vi "vim"
 end
 
@@ -72,14 +72,8 @@ if type "paru" >/dev/null 2>&1
 end
 
 # abbr commands
-abbr f77 gfortran
 abbr tree "ls -T"
-abbr gst "git status"
-abbr gsw "git switch"
-abbr gcm "git commit -m"
-abbr vimrc "vim ~/.vimrc"
 abbr :q "exit"
-abbr lz "lazygit"
 abbr giph "giph -f 5 -s -l -c 0.3,0,0.4,0.5 -b 5 -p -5"
 abbr rm "rip"
 abbr germanium "germanium -f Firge35NerdConsole-Regular"
