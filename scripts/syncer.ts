@@ -122,7 +122,6 @@ async function install(
       stderr: "piped",
     });
     await handleError(clone_process, repo);
-    console.log(existsSync(install_to));
     // debugLog(`Done clone ${repo}`,debug)
     return true;
   }
@@ -138,7 +137,7 @@ async function build(
     debugLog(`run ${command} on ${working_directory}`, debug);
     const build_process = Deno.run({
       cmd: command.split(/\s+/),
-      stdout: "null",
+      stdout: debug ? "inherit" : "null",
       stderr: "piped",
       cwd: working_directory,
     });
@@ -176,9 +175,11 @@ async function sync(
   debugLog(`Start sync on ${tool.repo} to ${destination}`, debug);
   const updated = await install(tool.repo, destination, debug);
   if (tool.build && updated) {
+    console.log(Colors.yellow(`Building ${repo}...`))
     await build(
       tool.build.split("\n").filter((line) => line.length != 0),
       destination,
+      debug,
     );
   }
   if (tool.symlink) {
