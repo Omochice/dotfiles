@@ -30,16 +30,16 @@
     <!-- - [nerd-fonts-fira-code](https://aur.archlinux.org/packages/nerd-fonts-fira-code/) -->
     - Noto font
 
-## dependency
+## Dependency
 
 - `Deno`
 - `Git`
 
-## usage
+## Usage
 
 1. sync dotfiles
     ```bash
-    $ bash src/sync.sh
+    $ bash scripts/sync.sh
     ```
 2. sync tools
     ```bash

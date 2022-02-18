@@ -1,5 +1,0 @@
-[Desktop Entry]
-Exec=xfce4-terminal --maximize
-Type=Application
-Name[ja_JP]=ターミナル
-Name=Terminal maximize on start up.
