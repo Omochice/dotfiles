@@ -242,6 +242,7 @@ on_map = { n = "<Plug>", v = "<Plug>" }
 [[plugins]]
 repo = "markonm/traces.vim"
 on_event = "CmdlineEnter"
+merged = true  # FIXME: If set this false, help command confuse lile: trace.vim/doc/hoge-plugin.txt not found.
 
 [[plugins]]
 repo = "liuchengxu/vista.vim"
