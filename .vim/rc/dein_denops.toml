@@ -305,38 +305,66 @@ on_cmd = "GhostStart"
 # # depends = "denops.vim"
 # on_source = "denops.vim"
 # # on_cmd = ""
-#
-# # ddu {{{
+
+# ddc.vim {{{
+[[plugins]]
+repo = "Shougo/ddu-commands.vim"
+depends = "ddu.vim"
+on_cmd = ["Ddu"]
+
+[[plugins]]
+repo = "Shougo/ddu.vim"
+depends = "denops.vim"
+hook_source = """
+call ddu#custom#patch_global({
+\ 'ui': 'ff',
+\ 'sources': [{'name': 'file_rec', 'params': {},}],
+\ 'sourceOptions': {
+\   '_': {
+\     'ignoreCase': v:true,
+\     'matchers': ['matcher_fzf'],
+\   },
+\ },
+\ 'kindOptions': {
+\   'file': {
+\     'defaultAction': 'open',
+\   },
+\ },
+\ })
+"""
+[plugins.ftplugin]
+ddu-ff = """
+nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
+nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
+nnoremap <buffer><silent> i <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
+nnoremap <buffer><silent> f <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+"""
+ddu-ff-filter = """
+inoremap <buffer><silent> <CR> <Esc><Cmd>close<CR>
+nnoremap <buffer><silent> <CR> <Cmd>close<CR>
+nnoremap <buffer><silent> q <Cmd>close<CR>
+" nnoremap <buffer><silent> <C-n> <Cmd>move_cursor(+1)<CR>
+" nnoremap <buffer><silent> <C-p> <Cmd>move_cursor(-1)<CR>
+"""
+
+[[plugins]]
+repo = "Shougo/ddu-ui-ff"
+on_source = "ddu.vim"
+
+[[plugins]]
+repo = "Shougo/ddu-source-file_rec"
+on_source = "ddu.vim"
+
 # [[plugins]]
-# repo = 'Shougo/ddu.vim'
-# depends = 'denops.vim'
-# hook_source = '''
-# call ddu#custom#patch_global({
-#     \   'ui': 'std',
-#     \   'sourceOptions' : {
-#     \     '_' : {
-#     \       'matchers': ['matcher_substring'],
-#     \     }
-#     \   },
-#     \   'uiParams': {
-#     \     'std': {
-#     \     }
-#     \   },
-#     \ })
-# '''
-#
-# [plugins.ftplugin]
-# ddu-std = '''
-# nnoremap <buffer><silent> <CR>
-# \ <Cmd>call ddu#ui#std#do_map('doAction')<CR>
-# nnoremap <buffer><silent> <Space>
-# \ <Cmd>call ddu#ui#std#do_map('toggleSelectItem')<CR>
-# nnoremap <buffer><silent> i
-# \ <Cmd>call ddu#ui#std#do_map('openFilterWindow')<CR>
-# '''
-#
-# [[plugins]]
-# repo = 'Shougo/ddu-commands.vim'
-# depends = 'ddu.vim'
-# on_cmd = 'Ddu'
-# # }}}
+# repo = "Shougo/ddu-filter-matcher_substring"
+# on_source = "ddu.vim"
+
+[[plugins]]
+repo = "yuki-yano/ddu-filter-fzf"
+on_source = "ddu.vim"
+
+[[plugins]]
+repo = "Shougo/ddu-kind-file"
+on_source = "ddu.vim"
+
+# }}}
