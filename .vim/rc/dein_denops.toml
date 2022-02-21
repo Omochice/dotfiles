@@ -330,6 +330,16 @@ call ddu#custom#patch_global({
 \     'defaultAction': 'open',
 \   },
 \ },
+\ 'uiParams': {
+\   'ff': {
+\     'split': 'floating',
+\     'filterSplitDirection': 'floating',
+\     'previewFloating': v:true,
+\     'previewVertical': v:true,
+\     'previewWidth': winwidth(0) / 2,
+\     'startFilter': v:true,
+\   },
+\ },
 \ })
 """
 [plugins.ftplugin]
@@ -338,13 +348,26 @@ nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
 nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
 nnoremap <buffer><silent> i <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
 nnoremap <buffer><silent> f <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+nnoremap <buffer><silent> p <Cmd>call ddu#ui#ff#do_action('preview')<CR>
 """
 ddu-ff-filter = """
+function! s:ddu_move_cursor(dis)
+  let l:ddu_winid = win_findbuf(bufnr('ddu-ff-default'))
+  if empty(l:ddu_winid)
+    return
+  endif
+  let l:ddu_winid = l:ddu_winid[0]
+  let l:curpos = has('nvim') ? nvim_win_get_cursor(ddu_winid) : get_curpos(ddu_winid)
+  " if nvim, `get_curpos` not accept argument
+  let l:moveto = l:curpos[0] + a:dis
+  call win_execute(l:ddu_winid, 'call cursor(' . l:moveto . ', 0)')
+  execute 'redraw!'
+endfunction
 inoremap <buffer><silent> <CR> <Esc><Cmd>close<CR>
 nnoremap <buffer><silent> <CR> <Cmd>close<CR>
 nnoremap <buffer><silent> q <Cmd>close<CR>
-" nnoremap <buffer><silent> <C-n> <Cmd>move_cursor(+1)<CR>
-" nnoremap <buffer><silent> <C-p> <Cmd>move_cursor(-1)<CR>
+inoremap <buffer><silent> <C-n> <Cmd>call <SID>ddu_move_cursor(+1)<CR>
+inoremap <buffer><silent> <C-p> <Cmd>call <SID>ddu_move_cursor(-1)<CR>
 """
 
 [[plugins]]
