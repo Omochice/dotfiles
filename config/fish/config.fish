@@ -25,9 +25,9 @@ end
 
 # aliases
 if test -z $SSH_TTY
-    alias shutdown "sudo shutdown -h now"
-else
     alias shutdown "shutdown -h now"
+else
+    alias shutdown "sudo shutdown -h now"
 end
 
 alias pbcopy "xsel --clipboard --input"
