@@ -1,0 +1,12 @@
+# sonokai
+[colors]
+background = "#000000"
+foreground = "#e4e3e1"
+cursor_bg = "#e4e3e1"
+cursor_border = "#e4e3e1"
+cursor_fg = "#e4e3e1"
+selection_bg = "#f0c66f"
+selection_fg = "#1f1e1c"
+
+ansi = ["#1f1e1c",  "#f86882", "#a6cd77", "#f0c66f", "#81d0c9", "#9fa0e1", "#f08d71", "#e4e3e1"]
+brights = ["#1f1e1c",  "#f86882", "#a6cd77", "#f0c66f", "#81d0c9", "#9fa0e1", "#f08d71", "#e4e3e1"]
