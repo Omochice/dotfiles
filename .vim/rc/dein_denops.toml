@@ -44,11 +44,11 @@ if g:ddc_use_cmdline
             \ ['necovim', 'cmdline-history', 'around', 'file'])
     call ddc#custom#patch_buffer('sourceOptions', {
             \ 'necovim': {
-                \ 'maxCandidates': 15},
+                \ 'maxItems': 15},
             \ 'around': {
-                \ 'maxCandidates': 5},
+                \ 'maxItems': 5},
             \ 'file': {
-                \ 'maxCandidates': 5},
+                \ 'maxItems': 5},
             \ })
     augroup ddc_cmdline_internal
       autocmd!
@@ -137,7 +137,7 @@ repo = 'Shougo/ddc-cmdline-history'
 hook_source = """
 let g:ddc_source_options['cmdline-history'] = {
 \   'mark': 'Hst',
-\   'maxCandidates': 100,
+\   'maxItems': 100,
 \   'minAutoCompleteLength': 5,
 \ }
 """
@@ -189,7 +189,7 @@ hook_source = """
 let g:ddc_source_options['rg'] = {
 \   'mark': 'Rg',
 \   'minAutoCompleteLength': 4,
-\   'maxCandidates': 20,
+\   'maxItems': 20,
 \ }
 """
 on_source = "ddc.vim"
@@ -315,6 +315,10 @@ on_cmd = ["Ddu"]
 [[plugins]]
 repo = "Shougo/ddu.vim"
 depends = "denops.vim"
+hook_add = """
+let g:ddu_window_width_percent = 0.45
+let g:ddu_window_height_percent = 0.9
+"""
 hook_source = """
 call ddu#custom#patch_global({
 \ 'ui': 'ff',
@@ -334,9 +338,16 @@ call ddu#custom#patch_global({
 \   'ff': {
 \     'split': 'floating',
 \     'filterSplitDirection': 'floating',
+\     'filterFloatingPosition': 'top',
+\     'prompt': '> ',
+\     'winWidth': float2nr(&columns * g:ddu_window_width_percent),
+\     'winHeight': float2nr(&lines * g:ddu_window_height_percent),
+\     'winCol': float2nr((&columns - (&columns * g:ddu_window_width_percent) * 2) / 2),
+\     'winRow': float2nr((&lines - (&lines * g:ddu_window_height_percent)) / 2),
 \     'previewFloating': v:true,
 \     'previewVertical': v:true,
-\     'previewWidth': winwidth(0) / 2,
+\     'previewWidth': float2nr(&columns * g:ddu_window_width_percent),
+\     'previewHeight': float2nr(&columns * g:ddu_window_height_percent),
 \     'startFilter': v:true,
 \   },
 \ },
@@ -344,10 +355,14 @@ call ddu#custom#patch_global({
 """
 [plugins.ftplugin]
 ddu-ff = """
+augroup ddu_my_settings
+  autocmd!
+  autocmd CursorMoved <buffer> call ddu#ui#ff#do_action('preview')
+augroup END
 nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
 nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
 nnoremap <buffer><silent> i <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
-nnoremap <buffer><silent> f <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+nnoremap <buffer><silent> q <Cmd>call ddu#ui#ff#do_action('quit')<CR>
 nnoremap <buffer><silent> p <Cmd>call ddu#ui#ff#do_action('preview')<CR>
 """
 ddu-ff-filter = """
@@ -371,7 +386,8 @@ inoremap <buffer><silent> <C-p> <Cmd>call <SID>ddu_move_cursor(-1)<CR>
 """
 
 [[plugins]]
-repo = "Shougo/ddu-ui-ff"
+# repo = "Shougo/ddu-ui-ff"
+repo = "~/workspace/toybox/ddu-ui-ff"
 on_source = "ddu.vim"
 
 [[plugins]]
@@ -391,3 +407,7 @@ repo = "Shougo/ddu-kind-file"
 on_source = "ddu.vim"
 
 # }}}
+
+[[plugins]]
+repo = "~/workspace/dps-popup-test"
+on_cmd = "DpsPopupToy"
