@@ -29,7 +29,10 @@ end
 -- setting variables
 
 local fonts = {
-    font = wezterm.font("Firge35Nerd Console"),
+    font = wezterm.font_with_fallback({
+        {family="Firge35Nerd Console", weight="Medium"},
+        {family="Consolas", weight="Medium"},
+    }),
     font_size = 15,
 }
 
@@ -77,7 +80,26 @@ local colors = {
     color_scheme_dirs = { "$HOME/.config/wezterm/colors/" }
 }
 
-wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+local windows = {
+    window_padding = {
+        left = 5,
+        right = 5,
+        top = 2,
+        bottom = 0,
+    }
+}
+
+local _sessions = {}
+for i = 1, 3 do
+    table.insert(_sessions, {name = "session" .. tostring(i)})
+end
+
+local domains = {
+    unix_domains = _sessions,
+    default_gui_startup_args = {"connect", "session1"},
+}
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width) -- TODO: use maltiploxing, not show title
 	local title = wezterm.truncate_right(basename(tab.active_pane.foreground_process_name), max_width)
 	return {
 		{ Text = " " .. tab.tab_index + 1 .. ": " .. title .. " "},
@@ -88,5 +110,7 @@ return merge(
     keys,
     fonts,
     bars,
-    colors
+    colors,
+    windows,
+    domains
 )
