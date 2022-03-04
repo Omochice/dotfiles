@@ -44,6 +44,8 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/starship/config.toml
 !/config/lazygit/config.yml
 !/config/ranger/rc.conf
+!/config/wezterm/wezterm.lua
+!/config/wezterm/colors/sonokai.toml
 !/zshell/*
 !/zshell/.zsh.d/*
 !/.gitconfig_shared
@@ -57,3 +59,4 @@ config/fish/functions/fzf_key_bindings.fish
 !/src/*.md
 !tool-list.toml
 !/scripts/*
+
