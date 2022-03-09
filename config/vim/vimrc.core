@@ -138,10 +138,11 @@ augroup vimrc#terminal
   autocmd!
 augroup END
 
+
 if has('nvim')
   " neovim terminal settings
   " tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
-  tnoremap <expr> <ESC> &filetype ==# 'floaterm' ? '<ESC>' : '<C-\><C-n>'
+  tnoremap <ESC> <C-\><C-n>
   " feed insert mode when move terminal window
   autocmd vimrc#terminal TermOpen * startinsert
   autocmd vimrc#terminal TermOpen * setlocal nonumber "FIXME not work
@@ -154,7 +155,7 @@ if has('nvim')
   command! Tterm tabnew term://${SHELL}
 else
   " Vim terminal settings
-  tnoremap <expr> <ESC> &filetype ==# 'floaterm' ? '<ESC>' : '<C-W>N'
+  tnoremap <ESC> <C-w>N
   autocmd vimrc#terminal TerminalOpen * setlocal nonumber
   " helper commands
   command! Vterm vertical botright vnew | terminal ++curwin

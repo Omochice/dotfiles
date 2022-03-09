@@ -702,8 +702,7 @@ command! Fkill FloatermKill
 cnoreabbrev pr CreatePR
 cnoreabbrev issue CreateIssue
 nnoremap <C-g> <Cmd>Lazygit<CR>
-tnoremap <expr> <ESC> &filetype ==# 'floaterm' ?
-\ '<ESC>' :
-\ has('nvim') ? '<C-\><C-n>' : '<C-W>N'
 """
 on_cmd = ["FloatermNew"]
+[plugins.ftplugin]
+floaterm = "tnoremap <buffer> <ESC> <ESC>"
