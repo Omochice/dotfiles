@@ -17,6 +17,7 @@ set nowrap
 set nowritebackup
 set nonumber
 set shiftwidth=4
+set signcolumn=yes
 set showmatch
 set smartindent
 set softtabstop=4
@@ -61,6 +62,7 @@ if (!has('nvim') || $DISPLAY !=# '') && has('clipboard')
     set clipboard& clipboard+=unnamed
   endif
 endif
+
 
 " move cursor wigh hjkl in insert mode
 inoremap <C-h> <Left>
