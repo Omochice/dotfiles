@@ -510,7 +510,7 @@ content-foreground = ${color.red}
 
 [system]
 adapter = ACAD
-battery = BAT1
+battery = BAT0
 graphics_card = intel_backlight
 
 ;;
