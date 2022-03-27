@@ -1,5 +1,5 @@
 export STARSHIP_CONFIG=$HOME/.config/starship/config.toml
-export TERMINAL=$(which alacritty)
+export TERMINAL=$(which wezterm)
 export BROWSER=$(which vivaldi-stable)
 
 # EDITOR

@@ -54,7 +54,7 @@ local fonts = {
         {family="Firge35Nerd Console", weight="Medium"},
         {family="Consolas", weight="Medium"},
     }),
-    font_size = 15,
+    font_size = 20,
 }
 
 local keys = {
@@ -131,11 +131,16 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	}
 end)
 
+others = {
+    exit_behavior = "Close",
+}
+
 return merged(
     keys,
     fonts,
     bars,
     colors,
     windows,
-    domains
+    domains,
+    others
 )
