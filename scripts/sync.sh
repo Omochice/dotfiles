@@ -8,6 +8,17 @@ function helpmsg() {
     exit 1
 }
 
+# from https://qiita.com/ko1nksm/items/873cfb9c6ceb6ef32ec9
+function readlinkf_posix() {
+  [ ${1:+x} ] || return 1; p=$1; until [ "${p%/}" = "$p" ]; do p=${p%/}; done
+  [ -e "$p" ] && p=$1; [ -d "$1" ] && p=$p/; set 10 "$PWD" "${OLDPWD:-}"
+  CDPATH="" cd -P "$2" && while [ "$1" -gt 0 ]; do set "$1" "$2" "$3" "${p%/*}"
+    [ "$p" = "$4" ] || { CDPATH="" cd -P "${4:-/}" || break; p=${p##*/}; }
+    [ ! -L "$p" ] && p=${PWD%/}${p:+/}$p && set "$@" "${p:-/}" && break
+    set $(($1-1)) "$2" "$3" "$p"; p=$(ls -dl "$p") || break; p=${p#*" $4 -> "}
+  done 2>/dev/null; cd -L "$2" && OLDPWD=$3 && [ ${5+x} ] && printf '%s\n' "$5"
+}
+
 function link_to_homedir() {
     local srcdir=$(readlink -f ${BASH_SOURCE[0]})
     local dotdir=$(dirname $(dirname ${srcdir}))
@@ -49,7 +60,18 @@ function link_to_config() {
     done
 }
 
+function link_profile() {
+    local srcfile=${dotdir}/profile
+    if [[ $(basename $SHELL) = bash ]]; then
+        command ln -snf $srcfile $HOME/.profile
+    elif [[ $(basename $SHELL) = zsh ]]; then
+        command ln -snf $srcfile $HOME/.zprofile
+    fi
+}
+
+dotdir=$(readlinkf_posix $(dirname $(dirname $0)))
 link_to_homedir
 link_to_config
+link_profile
 
 echo "done !!"
