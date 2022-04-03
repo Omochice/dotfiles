@@ -26,7 +26,7 @@ if [ -x "$(command -v go)" ]; then
     if [[ -e $HOME/.go ]]; then
         export GOPATH=$HOME/.go
     elif [[ -e $HOME/go ]]; then
-        export GOPATH=$HOME/.go
+        export GOPATH=$HOME/go
     else
         break
     fi
