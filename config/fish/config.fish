@@ -46,7 +46,6 @@ if type "exa" >/dev/null 2>&1
     alias ls "exa --icons -g --time-style=long-iso"
 end
 
-alias gs "git status"
 alias diff "git diff"
 alias ptpython "ptpython --vi"
 alias ptipython "ptipython --vi"
