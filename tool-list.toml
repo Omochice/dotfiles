@@ -29,3 +29,26 @@ cargo build --release
 """
 [tools.symlink]
 source = "target/release/alacritty"
+
+[[tools]]
+repo = "wez/wezterm"
+build = """
+rustup update stable
+git submodule update --init --recursive
+./get-deps
+cargo build --release
+"""
+[tools.symlink]
+source = ["target/release/wezterm", "target/release/wezterm-gui", "target/release/wezterm-mux-server"]
+
+[[tools]]
+repo = "neovim/neovim"
+build = """
+make CMAKE_INSTALL_PREFIX=~/.local/nvim install
+"""
+[tools.symlink]
+source = "~/.local/nvim/bin/nvim"
+
+[[tools]]
+repo = "jesseduffield/lazygit"
+build = "go install"

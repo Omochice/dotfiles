@@ -28,7 +28,7 @@ interface Tool {
 }
 
 interface SymlinkOption {
-  source: string;
+  source: string | string[];
   destination?: string;
 }
 
@@ -175,7 +175,7 @@ async function sync(
   debugLog(`Start sync on ${tool.repo} to ${destination}`, debug);
   const updated = await install(tool.repo, destination, debug);
   if (tool.build && updated) {
-    console.log(Colors.yellow(`Building ${repo}...`))
+    console.log(Colors.yellow(`Building ${repo}...`));
     await build(
       tool.build.split("\n").filter((line) => line.length != 0),
       destination,
@@ -183,15 +183,18 @@ async function sync(
     );
   }
   if (tool.symlink) {
-    await link(
-      Path.join(destination, tool.symlink.source),
-      Path.join(
-        expand(tool.symlink.destination || link_to),
-        Path.basename(tool.symlink.source),
-      ),
-      destination,
-      debug,
-    );
+    const sources = [tool.symlink.source].flat(Infinity) as string[];
+    for (const source of sources) {
+      await link(
+        Path.join(destination, source),
+        Path.join(
+          expand(tool.symlink.destination || link_to),
+          Path.basename(source),
+        ),
+        destination,
+        debug,
+      );
+    }
   }
   if (!quiet) {
     console.log(Colors.green(`${tool.repo} is synchronized!!`));
