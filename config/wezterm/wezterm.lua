@@ -58,7 +58,7 @@ local fonts = {
 }
 
 local keys = {
-    disable_default_keybindings = true,
+    disable_default_key_bindings = true,
     keys = {
         { key = "c", mods = "ALT", action = wezterm.action({ SpawnTab = "DefaultDomain" }) },
         { key = "n", mods = "ALT", action = wezterm.action({ ActivateTabRelative = 1 }) },
