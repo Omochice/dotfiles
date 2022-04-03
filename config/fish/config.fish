@@ -30,8 +30,10 @@ else
     alias shutdown "sudo shutdown -h now"
 end
 
-alias pbcopy "xsel --clipboard --input"
-alias pbpaste "xsel --clipboard --output"
+if type "xsel" >/dev/null 2>&1
+    alias pbcopy "xsel --clipboard --input"
+    alias pbpaste "xsel --clipboard --output"
+end
 
 alias tmux "tmux -u2"
 if type "bat" >/dev/null 2>&1
@@ -44,7 +46,6 @@ if type "exa" >/dev/null 2>&1
     alias ls "exa --icons -g --time-style=long-iso"
 end
 
-alias gs "git status"
 alias diff "git diff"
 alias ptpython "ptpython --vi"
 alias ptipython "ptipython --vi"
@@ -92,7 +93,9 @@ if type "asdf" >/dev/null 2>&1
 end
 
 # Github CLI
-eval (gh completion -s fish | source)
+if type "gh" >/dev/null 2>&1
+    eval (gh completion -s fish | source)
+end
 
 # Starship
 starship init fish | source

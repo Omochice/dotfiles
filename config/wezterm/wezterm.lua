@@ -58,12 +58,11 @@ local fonts = {
 }
 
 local keys = {
-    disable_default_keybindings = true,
+    disable_default_key_bindings = true,
     keys = {
         { key = "c", mods = "ALT", action = wezterm.action({ SpawnTab = "DefaultDomain" }) },
         { key = "n", mods = "ALT", action = wezterm.action({ ActivateTabRelative = 1 }) },
         { key = "n", mods = "ALT|SHIFT", action = wezterm.action({ ActivateTabRelative = -1 }) },
-        { key = "raw:132", mods = "ALT", action = wezterm.action({ SplitHorizontal = {domain = "CurrentPaneDomain"} }) }, -- 132 = backslash
         { key = "-", mods = "ALT", action = wezterm.action({ SplitVertical = {domain = "CurrentPaneDomain"} }) },
         { key = "h", mods = "ALT", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
         { key = "j", mods = "ALT", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
@@ -78,6 +77,19 @@ local keys = {
         { key = "r", mods = "ALT|SHIFT", action = "ReloadConfiguration" },
     }
 }
+if os.capture("uname")[1] == "Darwin" then
+    local mac_bindings = {
+        { key = "mapped:¥", mods = "ALT", action = wezterm.action({ SplitHorizontal = {domain = "CurrentPaneDomain"} }) },
+        { key = "¥", action = wezterm.action({ SendString="\\" }) },
+    }
+    for _,v in pairs(mac_bindings) do
+        table.insert(keys.keys, v)
+    end
+else -- Linux
+    local linux_bindings = {
+        { key = "raw:132", mods = "ALT", action = wezterm.action({ SplitHorizontal = {domain = "CurrentPaneDomain"} }) }, -- 132 = backslash
+    }
+end
 
 local bars = {
     use_fancy_tab_bar = false,

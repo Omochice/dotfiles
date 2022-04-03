@@ -1,6 +1,12 @@
 export STARSHIP_CONFIG=$HOME/.config/starship/config.toml
 export TERMINAL=$(which wezterm)
 export BROWSER=$(which vivaldi-stable)
+export DOTDIR=$HOME/dotfiles
+export XDG_CONFIG_HOME=$HOME/.config
+
+if [ -d $HOME/.local/bin ]; then
+    export PATH=$HOME/.local/bin:$PATH
+fi
 
 # EDITOR
 # priority: nvim > vim > vi
@@ -17,10 +23,16 @@ if [[ -d /usr/local/go ]]; then
     export PATH=$PATH:/usr/local/go/bin
 fi
 if [ -x "$(command -v go)" ]; then
-    export GOPATH=$HOME/.go
+    if [[ -e $HOME/.go ]]; then
+        export GOPATH=$HOME/.go
+    elif [[ -e $HOME/go ]]; then
+        export GOPATH=$HOME/.go
+    else
+        break
+    fi
     export PATH=$PATH:$GOPATH/bin
     if [ ! -e $GOPATH ]; then
-        mkdir $GOPATH/bin -p
+        mkdir -p $GOPATH/bin
   fi
 fi
 
@@ -58,3 +70,16 @@ fi
 if [[ -e $HOME/Tools/gr ]]; then
     export GRDIR=$HOME/Tools/gr
 fi
+
+# on macOS
+if [[ $(uname) = Darwin ]]; then
+    export HOMEBREW_NO_ENV_HINTS=TRUE
+    export PATH=$PATH:/opt/homebrew/bin
+    source $DOTDIR/scripts/mac-gnu-aliases.sh
+fi
+
+if [[ -e $HOME/.asdf ]]; then
+    export PATH=$PATH:$HOME/.asdf/bin
+fi
+
+
