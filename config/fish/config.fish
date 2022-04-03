@@ -51,17 +51,11 @@ alias ptpython "ptpython --vi"
 alias ptipython "ptipython --vi"
 alias today "date '+%Y-%m-%d'"
 alias tomorrow "date '+%Y-%m-%d' --date '+1 day'"
-alias view "vim -R"
 
-if type "nvim" >/dev/null 2>&1
-    alias v "nvim -R"
-    alias vi "nvim"
-    alias vim "nvim"
-    alias vvim (which vim)
-else
-    alias v "vim -R"
-    alias vi "vim"
-end
+alias v "$EDITOR -R"
+alias vi "$EDITOR"
+alias vim "$EDITOR"
+alias view "$EDITOR -R"
 
 if type "license-generator" >/dev/null 2>&1
     alias license "license-generator --author Omochice"
