@@ -60,4 +60,5 @@ config/fish/functions/fzf_key_bindings.fish
 !/.zshrc
 !tool-list.toml
 !/scripts/*
-
+!/config/skhd/skhdrc
+!/config/karabiner/**
