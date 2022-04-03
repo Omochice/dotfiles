@@ -93,7 +93,9 @@ if type "asdf" >/dev/null 2>&1
 end
 
 # Github CLI
-eval (gh completion -s fish | source)
+if type "gh" >/dev/null 2>&1
+    eval (gh completion -s fish | source)
+end
 
 # Starship
 starship init fish | source
