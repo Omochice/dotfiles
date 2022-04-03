@@ -81,6 +81,7 @@ if os.capture("uname")[1] == "Darwin" then
     local mac_bindings = {
         { key = "mapped:¥", mods = "ALT", action = wezterm.action({ SplitHorizontal = {domain = "CurrentPaneDomain"} }) },
         { key = "¥", action = wezterm.action({ SendString="\\" }) },
+        -- なぜかweztermだけyenとbackslashが反転するっぽい
     }
     for _,v in pairs(mac_bindings) do
         table.insert(keys.keys, v)
