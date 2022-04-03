@@ -30,8 +30,10 @@ else
     alias shutdown "sudo shutdown -h now"
 end
 
-alias pbcopy "xsel --clipboard --input"
-alias pbpaste "xsel --clipboard --output"
+if type "xsel" >/dev/null 2>&1
+    alias pbcopy "xsel --clipboard --input"
+    alias pbpaste "xsel --clipboard --output"
+end
 
 alias tmux "tmux -u2"
 if type "bat" >/dev/null 2>&1
