@@ -1,8 +1,8 @@
 # focus window
-cmd - h : yabai --message window --focus west || yabai --message display --focus west
+cmd - h : yabai --message window --focus west  || yabai --message display --focus west
 cmd - j : yabai --message window --focus south || yabai --message display --focus south
 cmd - k : yabai --message window --focus north || yabai --message display --focus north
-cmd - l : yabai --message window --focus east || yabai --message display --focus east
+cmd - l : yabai --message window --focus east  || yabai --message display --focus east
 
 # move window
 shift + cmd - h : yabai --message window --warp west
@@ -12,24 +12,37 @@ shift + cmd - l : yabai --message window --warp east
 
 cmd + shift - q : yabai --message window --close
 
-# virtual desktops
-cmd - 1 : yabai --message display --focus 1
-cmd - 2 : yabai --message display --focus 2
-# cmd - 3 : yabai --message space --display 3
-# cmd - 4 : yabai --message space --display 4
-# cmd - 5 : yabai --message space --display 5
-# cmd - 6 : yabai --message space --display 6
-# cmd - 7 : yabai --message space --display 7
-# cmd - 8 : yabai --message space --display 8
-# cmd - 9 : yabai --message space --display 9
 
-cmd + shift - 1 : yabai --message window --display 1; yabai --message display --focus 1
-cmd + shift - 2 : yabai --message window --display 2; yabai --message display --focus 2
+shift + cmd - c : yabai --message space --create
+# virtual desktops
+# TODO: if not exists desctop, create it.
+# focus desktop
+cmd - 1 : yabai --message space --focus 1
+cmd - 2 : yabai --message space --focus 2
+cmd - 3 : yabai --message space --focus 3
+cmd - 4 : yabai --message space --focus 4
+cmd - 5 : yabai --message space --focus 5
+cmd - 6 : yabai --message space --focus 6
+cmd - 7 : yabai --message space --focus 7
+cmd - 8 : yabai --message space --focus 8
+cmd - 9 : yabai --message space --focus 9
+
+# move window to specified window
+shift + cmd - 1 : yabai --message window --space 1
+shift + cmd - 2 : yabai --message window --space 2
+shift + cmd - 3 : yabai --message window --space 3
+shift + cmd - 4 : yabai --message window --space 4
+shift + cmd - 5 : yabai --message window --space 5
+shift + cmd - 6 : yabai --message window --space 6
+shift + cmd - 7 : yabai --message window --space 7
+shift + cmd - 8 : yabai --message window --space 8
+shift + cmd - 9 : yabai --message window --space 9
+
 
 cmd - f : yabai --message window --toggle zoom-fullscreen
 cmd + shift - space : yabai --message window --toggle float; yabai --message window --grid 12:12:1:1:10:10
 cmd - space : yabai --message window --toggle split
 
 # launch apps
-cmd - return : open -a $HOME/.local/bin/wezterm
+cmd - return : open --new -a $HOME/.local/bin/wezterm
 cmd - w : open --new -a "vivaldi"
