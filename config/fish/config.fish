@@ -83,6 +83,7 @@ abbr germanium "germanium -f Firge35NerdConsole-Regular"
 
 # asdf for fish
 if type "asdf" >/dev/null 2>&1
+    source $HOME/.asdf/asdf.fish
     abbr pip "__pip"
 end
 
