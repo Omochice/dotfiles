@@ -24,10 +24,15 @@ end
 
 
 # aliases
-if test -z $SSH_TTY
-    alias shutdown "shutdown -h now"
-else
+if test -n $SSH_TTY
     alias shutdown "sudo shutdown -h now"
+    alias reboot "sudo reboot"
+else if test (uname) = "Darwin" # ssh or macOS
+    alias shutdown "osascript -e 'tell app \"loginwindow\" to «event aevtrsdn»'"
+    alias reboot "osascript -e 'tell app \"loginwindow\" to «event aevtrrst»'"
+    alias lock "pmset displaysleepnow"
+else
+    alias shutdown "shutdown -h now"
 end
 
 if type "xsel" >/dev/null 2>&1
