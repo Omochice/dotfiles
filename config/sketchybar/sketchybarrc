@@ -1,0 +1,295 @@
+# This is a demo config to bring across some of the most important commands more easily.
+# For a more advanced configuration example see https://github.com/FelixKratz/SketchyBar/discussions/47#discussioncomment-2027233
+
+############## COLORS ##############
+BLACK=0xFF000000
+RED=0xFFD17165
+BLUE=0xFF00A3AF
+GREEN=0xFF93E3C6
+YELLOW=0xFFF0C66F
+WHITE=0xFFFFFFFF
+SEESROUGH=0x00000000
+
+
+############## BAR ##############
+barHeight=27
+sketchybar -m --bar height=$barHeight        \
+                    blur_radius=50   \
+                    position=top     \
+                    y_offset=5 \
+                    padding_left=8  \
+                    padding_right=8 \
+                    icon.height=$barHeight \
+                    label.height=$barHeight \
+                    color=$SEESROUGH
+
+############## GLOBAL DEFAULTS ##############
+sketchybar -m --default updates=when_shown                    \
+                        drawing=on                            \
+                        cache_scripts=on                      \
+                        icon.font="Firge35Nerd Console:Regular:18.0"  \
+                        icon.color=$WHITE                 \
+                        label.font="Firge35Nerd Console:Regular:18.0" \
+                        label.color=$WHITE \
+                        # icon.background.corner_radius=$barHeight \
+
+############## SPACE DEFAULTS ##############
+sketchybar -m --default icon.padding_left=8  \
+                        icon.padding_right=8 \
+                        icon.background.color=$RED \
+                        icon.highlight_color=$BLACK \
+                        icon.background.highlight_color=$WHITE \
+                        icon.background.height=$barHeight \
+                        label.drawing=off
+
+
+############## PRIMARY DISPLAY SPACES ##############
+sketchybar -m --add space main q                              \
+              --set main associated_display=1                    \
+                         associated_space=1                      \
+                         icon=1                                  \
+                         click_script="yabai -m space --focus 1" \
+                                                                 \
+              --add space second e                               \
+              --set second associated_display=1                    \
+                         associated_space=2                      \
+                         icon=2                                  \
+                         click_script="yabai -m space --focus 2" \
+
+############## SECONDARY DISPLAY SPACES ##############
+sketchybar -m --add space third center                               \
+              --set third associated_display=2                    \
+                         associated_space=3                      \
+                         icon=3 \
+                         click_script="yabai -m space --focus 3" \
+                         \
+            --add space forth center                               \
+            --set forth associated_display=2                    \
+                       associated_space=4                      \
+                       icon=4                                  \
+                       click_script="yabai -m space --focus 4" \
+
+############## ITEM DEFAULTS ###############
+sketchybar -m --default \
+                label.color=$BLACK \
+                label.padding_left=2 \
+                label.padding_right=6
+                icon.color=$BLACK \
+                icon.padding_right=2 \
+                icon.padding_left=6 \
+                icon.background.color=0xFF000000 \
+                icon.font="Firge35Nerd Console:pixelsize=16;3" \
+
+
+############## LEFT ITEMS ##############
+# - apple menu
+# - cpu
+# - ram
+# - speedtest
+#
+sketchybar -m --add item apple.logo left \
+              --set apple.logo \
+                        label.drawing=off \
+                        icon="" \
+                        icon.color=$WHITE \
+                        icon.background.color=$BLACK \
+                        icon.background.corner_radius=5 \
+                        click_script="sketchybar -m --set \$NAME popup.drawing=toggle" \
+                        popup.background.border_width=2 \
+                        popup.background.corner_radius=3 \
+                        popup.background.border_color=$GREEN \
+              \
+              --default background.padding_left=5 \
+                        background.padding_right=5 \
+                        icon.padding_right=5 \
+                        label.drawing=on \
+              \
+              --add item apple.preferences popup.apple.logo \
+              --set apple.preferences icon= \
+                        icon.background.color=$SEESROUGH \
+                        label="Shutdown" \
+                        label.color=$WHITE \
+                        click_script="osascript -e 'tell app \"loginwindow\" to «event aevtrsdn»';
+                                      sketchybar -m --set apple.logo popup.drawing=off" \
+              --add item apple.activity popup.apple.logo \
+              --set apple.activity icon= \
+                        icon.background.color=$SEESROUGH \
+                        label="Reboot" \
+                        label.color=$WHITE \
+                        click_script="osascript -e 'tell app \"loginwindow\" to «event aevtrrst»';
+                                      sketchybar -m --set apple.logo popup.drawing=off" \
+              --add item apple.lock popup.apple.logo \
+              --set apple.lock icon= \
+                        icon.background.color=$SEESROUGH \
+                        label="Lock Screen" \
+                        label.color=$WHITE \
+                        click_script="pmset displaysleepnow;
+                                      sketchybar -m --set apple.logo popup.drawing=off" \
+
+############## RIGHT ITEMS ##############
+# DEFAULTS
+sketchybar -m --default icon.color=$BLACK \
+                        icon.background.color=$SEESROUGH \
+                        icon.drawing=on \
+                        icon.padding_left=0 \
+                        icon.padding_right=0 \
+                        background.padding_left=0 \
+                        background.padding_right=0 \
+                        label.color=$BLACK \
+                        label.background.color=$SEESROUGH \
+                        label.background.height=$barHeight \
+                        label.padding_left=0 \
+                        label.padding_right=0 \
+#
+sketchybar -m --add item BRD right \
+              --set BRD \
+                        label= \
+                        label.color=$BLUE \
+                        label.y_offset=1 \
+                        icon.drawing=off \
+              \
+              --add item clock right \
+              --set clock \
+                        update_freq=10 \
+                        script="~/.config/sketchybar/scripts/clock.sh" \
+                        icon= \
+                        icon.background.color=$BLUE \
+                        label.background.color=$BLUE \
+                        label.background.height=$barHeight \
+                        background.padding_left=0 \
+                        background.padding_right=0 \
+              --subscribe clock mouse.entered mouse.exited \
+              \
+              --add item BLD right \
+              --set BLD \
+                        label= \
+                        label.color=$BLUE \
+                        label.y_offset=1 \
+                        background.padding_left=10 \
+                        icon.drawing=off \
+              \
+              --add item YRD right \
+              --set YRD \
+                        label= \
+                        label.color=$YELLOW \
+                        label.y_offset=1 \
+                        background.padding_right=10 \
+                        icon.drawing=off \
+              \
+              --add item brightness right \
+              --set brightness \
+                        label=" ﯧ " \
+                        click_script="~/.config/sketchybar/scripts/brightness_click.sh" \
+                        icon= \
+                        icon.background.color=$YELLOW \
+                        label.background.color=$YELLOW \
+                        label.background.height=$barHeight \
+                        background.padding_left=0 \
+                        background.padding_right=0 \
+              \
+              --add item separator right \
+              --set separator \
+                        icon.drawing=off \
+                        label= \
+                        label.color=$YELLOW \
+                        label.y_offset=1 \
+                        label.background.color=$GREEN \
+                        label.background.height=$barHeight \
+                        label.padding_left=0 \
+                        label.padding_right=0 \
+                        background.padding_left=0 \
+                        background.padding_right=0 \
+              \
+              --add item sound right \
+              --set sound \
+                        update_freq=5 \
+                        icon= \
+                        icon.background.color=$GREEN \
+                        label.background.color=$GREEN \
+                        label.background.height=$barHeight \
+                        script="~/.config/sketchybar/scripts/sound.sh" \
+                        background.padding_left=0 \
+                        background.padding_right=0 \
+              \
+              --add item GLD right \
+              --set GLD \
+                        label= \
+                        label.color=$GREEN \
+                        label.background.color=$SEESROUGH \
+                        label.y_offset=1 \
+                        background.padding_left=10 \
+                        icon.drawing=off \
+              \
+              --add item RRD right \
+              --set RRD \
+                        label= \
+                        label.color=$RED \
+                        Label.background.color=$SEESROUGH \
+                        label.y_offset=1 \
+                        background.padding_right=10 \
+                        icon.drawing=off \
+              \
+              --add item battery right \
+              --set battery \
+                        update_freq=5 \
+                        icon= \
+                        icon.background.color=$RED \
+                        label=? \
+                        label.background.color=$RED \
+                        script="~/.config/sketchybar/scripts/battery.sh" \
+              --add item RLD right \
+              --set RLD \
+                        label= \
+                        label.color=$RED \
+                        Label.background.color=$SEESROUGH \
+                        label.y_offset=1 \
+                        background.padding_left=10 \
+                        icon.drawing=off \
+              \
+
+
+#                                                                                                       \
+#               --add item mailIndicator right                                                          \
+#               --set mailIndicator associated_space=1,2,3                                              \
+#                                   update_freq=30                                                      \
+#                                   script="~/.config/sketchybar/plugins/mailIndicator.sh"              \
+#                                   icon.font="Firge35Nerd Console:Medium:14.0"                                \
+#                                   icon=                                                              \
+#                                   click_script="osascript -e 'tell application \"Mail\" to activate'"
+#
+# # Creating Graphs
+# sketchybar -m --add graph cpu_user right 200                                        \
+#               --set cpu_user     graph.color=0xffffffff                             \
+#                                  update_freq=2                                      \
+#                                  width=0                                            \
+#                                  associated_space=1                                 \
+#                                  label.padding_left=0                               \
+#                                  icon=                                             \
+#                                  script="~/.config/sketchybar/plugins/cpu_graph.sh" \
+#                                  lazy=on                                            \
+#                                                                                     \
+#               --add graph cpu_sys right 200                                         \
+#               --set cpu_sys      label.padding_left=0                               \
+#                                  associated_space=1                                 \
+#                                  icon=                                             \
+#                                  graph.color=0xff48aa2a                             \
+#                                                                                     \
+#               --add item topproc right                                              \
+#               --set topproc      associated_space=1                                 \
+#                                  label.padding_right=10                             \
+#                                  update_freq=15                                     \
+#                                  script="~/.config/sketchybar/plugins/topproc.sh"
+#
+# ###################### CENTER ITEMS ###################
+#
+# # Adding custom events which can listen on distributed notifications from other running processes
+# sketchybar -m --add event spotify_change "com.spotify.client.PlaybackStateChanged"                       \
+#               --add item spotifyIndicator center                                                         \
+#               --set spotifyIndicator script="~/.config/sketchybar/plugins/spotifyIndicator.sh"           \
+#               --set spotifyIndicator click_script="osascript -e 'tell application \"Spotify\" to pause'" \
+#               --subscribe spotifyIndicator spotify_change
+#
+# ############## FINALIZING THE SETUP ##############
+# sketchybar -m --update
+#
+# echo "sketchybar configuration loaded.."
