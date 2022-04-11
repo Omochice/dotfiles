@@ -10,7 +10,8 @@ shift + cmd - j : yabai --message window --warp south
 shift + cmd - k : yabai --message window --warp north
 shift + cmd - l : yabai --message window --warp east
 
-cmd + shift - q : yabai --message window --close
+# close window
+shift + cmd - q : yabai --message window --close
 
 # virtual desktops
 # TODO: if not exists desctop, create it.
