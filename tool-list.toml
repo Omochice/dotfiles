@@ -38,13 +38,15 @@ git submodule update --init --recursive
 ./get-deps
 cargo build --release
 """
+skip_mac = true
 [tools.symlink]
 source = ["target/release/wezterm", "target/release/wezterm-gui", "target/release/wezterm-mux-server"]
 
 [[tools]]
 repo = "neovim/neovim"
 build = """
-make CMAKE_INSTALL_PREFIX=~/.local/nvim install
+rm -r build/
+make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX=~/.local/nvim install
 """
 [tools.symlink]
 source = "~/.local/nvim/bin/nvim"
