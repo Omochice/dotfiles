@@ -11,7 +11,7 @@ shift + cmd - k : yabai --message window --warp north
 shift + cmd - l : yabai --message window --warp east
 
 # close window
-shift + cmd - q : yabai --message window --close
+shift + cmd - q : yabai --message window --close | yabai --message query --spaces --space | jq ".windows[0]" | xargs yabai --message window --focus
 
 # virtual desktops
 # TODO: if not exists desctop, create it.
