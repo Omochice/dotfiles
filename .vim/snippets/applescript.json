@@ -1,0 +1,9 @@
+{
+  "name": {
+    "prefix": "shebang",
+    "body": [
+      "#!/usr/bin/env osascript"
+    ],
+    "description": "shebang for applescript"
+  }
+}
