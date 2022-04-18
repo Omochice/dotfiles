@@ -4,5 +4,5 @@ function fish_user_key_bindings
   end
   bind \cr fzf_history
   bind \cg __lazygit
-  bind \cE fzf-emoji
+  bind \cT fzf-emoji
 end
