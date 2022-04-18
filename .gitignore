@@ -62,3 +62,4 @@ config/fish/functions/fzf_key_bindings.fish
 !/scripts/*
 !/config/skhd/skhdrc
 !/config/karabiner/**
+!/config/sketchybar/**

@@ -29,8 +29,10 @@ sketchybar -m --default updates=when_shown                    \
                         cache_scripts=on                      \
                         icon.font="Firge35Nerd Console:Regular:18.0"  \
                         icon.color=$WHITE                 \
+                        icon.align=center \
                         label.font="Firge35Nerd Console:Regular:18.0" \
                         label.color=$WHITE \
+                        label.align=center \
                         # icon.background.corner_radius=$barHeight \
 
 ############## SPACE DEFAULTS ##############
@@ -57,28 +59,41 @@ sketchybar -m --add space main q                              \
                          click_script="yabai -m space --focus 2" \
 
 ############## SECONDARY DISPLAY SPACES ##############
-sketchybar -m --add space third center                               \
+sketchybar -m --add item foo center \
+              --set foo \
+                        associated_display=2 \
+                        label= \
+                        label.color=$YELLOW \
+                        label.y_offset=1 \
+                        background.padding_right=10 \
+                        icon.drawing=off \
+              \
+              --add space third center                               \
               --set third associated_display=2                    \
-                         associated_space=3                      \
-                         icon=3 \
-                         click_script="yabai -m space --focus 3" \
-                         \
+                             associated_space=3                      \
+                             icon=3 \
+                             click_script="yabai -m space --focus 3" \
+                             \
             --add space forth center                               \
             --set forth associated_display=2                    \
-                       associated_space=4                      \
-                       icon=4                                  \
-                       click_script="yabai -m space --focus 4" \
+                        associated_space=4                      \
+                        icon=4                                  \
+                        click_script="yabai -m space --focus 4" \
 
 ############## ITEM DEFAULTS ###############
 sketchybar -m --default \
                 label.color=$BLACK \
-                label.padding_left=2 \
-                label.padding_right=6
+                label.padding_left=0 \
+                label.padding_right=0
+                label.background.height=$barHeight \
                 icon.color=$BLACK \
-                icon.padding_right=2 \
-                icon.padding_left=6 \
+                icon.padding_right=0 \
+                icon.padding_left=0 \
+                icon.background.height=$barHeight \
                 icon.background.color=0xFF000000 \
                 icon.font="Firge35Nerd Console:pixelsize=16;3" \
+                background.padding_left=0 \
+                background.padding_right=0 \
 
 
 ############## LEFT ITEMS ##############
@@ -87,13 +102,23 @@ sketchybar -m --default \
 # - ram
 # - speedtest
 #
-sketchybar -m --add item apple.logo left \
+sketchybar -m --add item LBD left \
+              --set LBD \
+                        label= \
+                        label.drawing=on \
+                        label.color=$BLACK \
+                        label.y_offset=1 \
+                        label.padding_right=0 \
+                        background.padding_left=10 \
+                        background.padding_right=0 \
+                        icon.drawing=off \
+              \
+              --add item apple.logo left \
               --set apple.logo \
                         label.drawing=off \
                         icon="" \
                         icon.color=$WHITE \
                         icon.background.color=$BLACK \
-                        icon.background.corner_radius=5 \
                         click_script="sketchybar -m --set \$NAME popup.drawing=toggle" \
                         popup.background.border_width=2 \
                         popup.background.corner_radius=3 \
@@ -125,6 +150,110 @@ sketchybar -m --add item apple.logo left \
                         label.color=$WHITE \
                         click_script="pmset displaysleepnow;
                                       sketchybar -m --set apple.logo popup.drawing=off" \
+              \
+              --add item RBD left \
+              --set RBD \
+                        label= \
+                        label.color=$BLACK \
+                        label.y_offset=1 \
+                        background.padding_left=0 \
+                        background.padding_right=10 \
+                        icon.drawing=off \
+              \
+              --add item LRGD left \
+              --set LRGD \
+                        label= \
+                        label.color=$GREEN \
+                        label.y_offset=1 \
+                        label.padding_right=0 \
+                        background.padding_left=10 \
+                        background.padding_right=0 \
+                        icon.drawing=off \
+              \
+              --add item cpu left \
+              --set cpu \
+                        script="~/.config/sketchybar/scripts/cpu.old.sh" \
+                        update_freq=3 \
+                        icon= \
+                        icon.color=$BLACK \
+                        icon.background.color=$GREEN \
+                        label.color=$BLACK \
+                        label.background.color=$GREEN \
+                        label.background.height=$barHeight \
+                        background.padding_left=0 \
+                        background.padding_right=0 \
+              \
+              --add item separator1 left \
+              --set separator1 \
+                        icon.drawing=off \
+                        label= \
+                        label.color=$YELLOW \
+                        label.y_offset=1 \
+                        label.background.color=$GREEN \
+                        label.background.height=$barHeight \
+                        label.padding_left=0 \
+                        label.padding_right=0 \
+                        background.padding_left=0 \
+                        background.padding_right=0 \
+              --add item ram left \
+              --set ram \
+                        icon= \
+                        icon.color=$BLACK \
+                        icon.drawing=on \
+                        icon.background.color=$YELLOW \
+                        label=? \
+                        label.background.height=$barHeight \
+                        label.color=$BLACK \
+                        label.background.color=$YELLOW \
+                        background.padding_left=0 \
+                        background.padding_right=0 \
+                        update_freq=3 \
+                        script="~/.config/sketchybar/scripts/ram.sh" \
+              \
+              --add item YRD2 left \
+              --set YRD2 \
+                        label= \
+                        label.color=$YELLOW \
+                        label.y_offset=1 \
+                        background.padding_left=0 \
+                        background.padding_right=10 \
+                        icon.drawing=off \
+              \
+              --add item BLD2 left \
+              --set BLD2 \
+                        label= \
+                        label.color=$BLUE \
+                        label.y_offset=1 \
+                        label.padding_right=0 \
+                        background.padding_left=10 \
+                        background.padding_right=0 \
+                        icon.drawing=off \
+              \
+              --add item speedtest left \
+              --set speedtest \
+                        icon= \
+                        icon.color=$BLACK \
+                        icon.drawing=on \
+                        icon.background.color=$BLUE \
+                        label=? \
+                        label.background.height=$barHeight \
+                        label.color=$BLACK \
+                        label.background.color=$BLUE \
+                        background.padding_left=0 \
+                        background.padding_right=0 \
+                        update_freq=60 \
+                        script="~/.config/sketchybar/scripts/speedtest.sh" \
+                        click_script="~/.config/sketchybar/scripts/speedtest_click.sh" \
+              \
+              --add item BRD2 left \
+              --set BRD2 \
+                        label= \
+                        label.color=$BLUE \
+                        label.y_offset=1 \
+                        background.padding_left=0 \
+                        background.padding_right=10 \
+                        icon.drawing=off \
+              \
 
 ############## RIGHT ITEMS ##############
 # DEFAULTS
@@ -154,6 +283,8 @@ sketchybar -m --add item BRD right \
                         script="~/.config/sketchybar/scripts/clock.sh" \
                         icon= \
                         icon.background.color=$BLUE \
+                        icon.padding_right=5 \
+                        label.padding_left=5 \
                         label.background.color=$BLUE \
                         label.background.height=$barHeight \
                         background.padding_left=0 \
@@ -184,6 +315,8 @@ sketchybar -m --add item BRD right \
                         icon.background.color=$YELLOW \
                         label.background.color=$YELLOW \
                         label.background.height=$barHeight \
+                        icon.padding_right=5 \
+                        label.padding_left=5 \
                         background.padding_left=0 \
                         background.padding_right=0 \
               \
@@ -207,6 +340,8 @@ sketchybar -m --add item BRD right \
                         icon.background.color=$GREEN \
                         label.background.color=$GREEN \
                         label.background.height=$barHeight \
+                        icon.padding_right=5 \
+                        label.padding_left=5 \
                         script="~/.config/sketchybar/scripts/sound.sh" \
                         background.padding_left=0 \
                         background.padding_right=0 \
@@ -235,18 +370,47 @@ sketchybar -m --add item BRD right \
                         icon= \
                         icon.background.color=$RED \
                         label=? \
+                        icon.padding_right=5 \
+                        label.padding_left=5 \
                         label.background.color=$RED \
                         script="~/.config/sketchybar/scripts/battery.sh" \
               --add item RLD right \
               --set RLD \
                         label= \
                         label.color=$RED \
-                        Label.background.color=$SEESROUGH \
+                        label.background.color=$SEESROUGH \
                         label.y_offset=1 \
                         background.padding_left=10 \
                         icon.drawing=off \
               \
-
+              --add item HRD right \
+              --set HRD \
+                        label= \
+                        label.color=$WHITE \
+                        Label.background.color=$SEESROUGH \
+                        label.y_offset=1 \
+                        background.padding_right=10 \
+                        icon.drawing=off \
+              \
+              --add item bluetooth right \
+              --set bluetooth \
+                        update_freq=10 \
+                        icon.background.color=$WHITE \
+                        label.background.color=$WHITE \
+                        icon.padding_right=5 \
+                        label.padding_left=5 \
+                        script="~/.config/sketchybar/scripts/bluetooth.sh" \
+                        click_script="~/.config/sketchybar/scripts/bluetooth_click.sh" \
+              \
+              --add item HLD right \
+              --set HLD \
+                        label= \
+                        label.color=$WHITE \
+                        label.background.color=$SEESROUGH \
+                        label.y_offset=1 \
+                        background.padding_left=10 \
+                        icon.drawing=off \
+              \
 
 #                                                                                                       \
 #               --add item mailIndicator right                                                          \
