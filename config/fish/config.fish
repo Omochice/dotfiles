@@ -24,14 +24,21 @@ end
 
 
 # aliases
-if test -z $SSH_TTY
-    alias shutdown "shutdown -h now"
-else
+if test -n $SSH_TTY
     alias shutdown "sudo shutdown -h now"
+    alias reboot "sudo reboot"
+else if test (uname) = "Darwin" # ssh or macOS
+    alias shutdown "osascript -e 'tell app \"loginwindow\" to «event aevtrsdn»'"
+    alias reboot "osascript -e 'tell app \"loginwindow\" to «event aevtrrst»'"
+    alias lock "pmset displaysleepnow"
+else
+    alias shutdown "shutdown -h now"
 end
 
-alias pbcopy "xsel --clipboard --input"
-alias pbpaste "xsel --clipboard --output"
+if type "xsel" >/dev/null 2>&1
+    alias pbcopy "xsel --clipboard --input"
+    alias pbpaste "xsel --clipboard --output"
+end
 
 alias tmux "tmux -u2"
 if type "bat" >/dev/null 2>&1
@@ -44,23 +51,16 @@ if type "exa" >/dev/null 2>&1
     alias ls "exa --icons -g --time-style=long-iso"
 end
 
-alias gs "git status"
 alias diff "git diff"
 alias ptpython "ptpython --vi"
 alias ptipython "ptipython --vi"
 alias today "date '+%Y-%m-%d'"
 alias tomorrow "date '+%Y-%m-%d' --date '+1 day'"
-alias view "vim -R"
 
-if type "nvim" >/dev/null 2>&1
-    alias v "nvim -R"
-    alias vi "nvim"
-    alias vim "nvim"
-    alias vvim (which vim)
-else
-    alias v "vim -R"
-    alias vi "vim"
-end
+alias v "$EDITOR -R"
+alias vi "$EDITOR"
+alias vim "$EDITOR"
+alias view "$EDITOR -R"
 
 if type "license-generator" >/dev/null 2>&1
     alias license "license-generator --author Omochice"
@@ -88,11 +88,14 @@ abbr germanium "germanium -f Firge35NerdConsole-Regular"
 
 # asdf for fish
 if type "asdf" >/dev/null 2>&1
+    source $HOME/.asdf/asdf.fish
     abbr pip "__pip"
 end
 
 # Github CLI
-eval (gh completion -s fish | source)
+if type "gh" >/dev/null 2>&1
+    eval (gh completion -s fish | source)
+end
 
 # Starship
 starship init fish | source
