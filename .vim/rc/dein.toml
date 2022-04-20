@@ -118,3 +118,6 @@ repo = "vim-jp/vim-streem"
 
 [[plugins]]
 repo = "mityu/vim-applescript"
+
+[[plugins]]
+repo = "gko/vim-coloresque"
