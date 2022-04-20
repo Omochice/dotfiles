@@ -42,11 +42,11 @@
 
 1. sync dotfiles
    ```bash
-   $ bash scripts/sync.sh
+   $ deno run --allow-env --allow-read --allow-write scripts/sync.ts
    ```
 2. sync tools
    ```bash
    $ deno run --allow-env --allow-net --allow-read --allow-run scripts/syncer.ts ./tool-list.toml
    ```
 
-if exist original dotfiles, move their into `~/.dotbackup`
+if exist original dotfiles, move their into `/tmp/??/` (auto-make by `Deno.makeTempDirSync`)
