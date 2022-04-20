@@ -1,5 +1,5 @@
-import * as Path from "https://deno.land/std@0.125.0/path/mod.ts";
-import { equals } from "https://deno.land/std@0.125.0/bytes/mod.ts";
+import * as Path from "https://deno.land/std@0.135.0/path/mod.ts";
+import { equals } from "https://deno.land/std@0.135.0/bytes/mod.ts";
 import {
   Arg,
   Command,
@@ -7,14 +7,15 @@ import {
   Help,
   Opt,
   Version,
-} from "https://raw.githubusercontent.com/stsysd/classopt/v0.1.0/mod.ts";
-import * as Colors from "https://deno.land/std@0.125.0/fmt/colors.ts";
-import { parse } from "https://deno.land/std@0.125.0/encoding/toml.ts";
+} from "https://raw.githubusercontent.com/stsysd/classopt/v0.1.2/mod.ts";
+import * as Colors from "https://deno.land/std@0.135.0/fmt/colors.ts";
+import { parse } from "https://deno.land/std@0.135.0/encoding/toml.ts";
 import {
   ensureDirSync,
   exists,
   existsSync,
-} from "https://deno.land/std@0.125.0/fs/mod.ts";
+} from "https://deno.land/std@0.135.0/fs/mod.ts";
+import os from "https://deno.land/x/dos@v0.11.0/mod.ts";
 
 interface Setting {
   tools: Tool[];
@@ -25,10 +26,11 @@ interface Tool {
   build?: string;
   destination?: string;
   symlink?: SymlinkOption;
+  skip_mac?: boolean;
 }
 
 interface SymlinkOption {
-  source: string;
+  source: string | string[];
   destination?: string;
 }
 
@@ -175,7 +177,7 @@ async function sync(
   debugLog(`Start sync on ${tool.repo} to ${destination}`, debug);
   const updated = await install(tool.repo, destination, debug);
   if (tool.build && updated) {
-    console.log(Colors.yellow(`Building ${repo}...`))
+    console.log(Colors.yellow(`Building ${repo}...`));
     await build(
       tool.build.split("\n").filter((line) => line.length != 0),
       destination,
@@ -183,15 +185,18 @@ async function sync(
     );
   }
   if (tool.symlink) {
-    await link(
-      Path.join(destination, tool.symlink.source),
-      Path.join(
-        expand(tool.symlink.destination || link_to),
-        Path.basename(tool.symlink.source),
-      ),
-      destination,
-      debug,
-    );
+    const sources = [tool.symlink.source].flat(Infinity) as string[];
+    for (const source of sources) {
+      await link(
+        Path.join(destination, source),
+        Path.join(
+          expand(tool.symlink.destination || link_to),
+          Path.basename(source),
+        ),
+        destination,
+        debug,
+      );
+    }
   }
   if (!quiet) {
     console.log(Colors.green(`${tool.repo} is synchronized!!`));
@@ -217,14 +222,17 @@ class Program extends Command {
   quiet = false;
 
   async execute() {
-    const toml_data = await loadToml(this.config);
+    const tomlData = await loadToml(this.config);
+    const isMac = os.platform() == "darwin";
     ensureDirSync(expand(this.link_to));
     const queue = [];
-    for (const tool of toml_data.tools) {
+    for (const tool of tomlData.tools) {
+      if (isMac && tool.skip_mac) {
+        continue;
+      }
       queue.push(sync(tool, this.basedir, this.link_to, this.debug));
     }
     Promise.all(queue);
-    Promise.resolve();
   }
 }
 

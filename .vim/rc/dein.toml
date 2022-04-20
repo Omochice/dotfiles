@@ -115,3 +115,6 @@ command! TVaffle tabnew | Vaffle
 
 [[plugins]]
 repo = "vim-jp/vim-streem"
+
+[[plugins]]
+repo = "mityu/vim-applescript"
