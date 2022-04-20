@@ -32,6 +32,11 @@ let s:rules += [
       \ {'filetype': ['sh', 'zsh', 'bash'], 'char': '<Space>', 'at': '^\s*if\%#', 'input': '<Space>', 'input_after': ';<Space>then',},
       \ ]
 
+"" fish
+let s:rules += [
+      \ {'filetype': 'fish', 'char': '<CR>', 'at': '\s*if.*\%#', 'input': '<CR>', 'input_after': '<CR>end'},
+      \ ]
+
 "" Python
 let s:rules += [
       \ {'filetype': 'python', 'char': '%', 'at': '^#\s%\%#', 'input_after': '<CR><CR># %%',},
