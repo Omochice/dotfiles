@@ -1,0 +1,24 @@
+{
+  "title": "key modification for Vim",
+  "rules": [
+    {
+      "description": "Send eisuu and <ESC> on escape",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "escape"
+          },
+          "to": [
+            {
+              "key_code": "lang2"
+            },
+            {
+              "key_code": "escape"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    }
+  ]
+}
