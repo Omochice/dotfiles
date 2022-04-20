@@ -97,5 +97,10 @@ if type "gh" >/dev/null 2>&1
     eval (gh completion -s fish | source)
 end
 
+# GitLab CLI
+if type "glab" >/dev/null 2>&1
+    abbr gl "glab"
+end
+
 # Starship
 starship init fish | source
