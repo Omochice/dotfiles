@@ -282,6 +282,9 @@ let g:quickrun_config = extend(get(g:, 'quickrun_config', {}), {
 \       'command': 'make',
 \       'exec': '%c',
 \   },
+\   'objc': {
+\       'type': 'c/clang',
+\   },
 \ })
 """
 depends = ["vimproc.vim", "vim-quickrun-neovim-job"]
