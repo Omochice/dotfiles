@@ -66,7 +66,7 @@ if g:ddc_use_cmdline
 endif
 """
 hook_source = """
-let g:ddc_base_sources = ['vsnip', 'vim-lsp', 'around', 'rg', 'buffer', 'tmux']
+let g:ddc_base_sources = ['vsnip', 'vim-lsp', 'around', 'rg', 'buffer']
 call ddc#custom#patch_global(
  \ 'sources', g:ddc_base_sources,
  \ )
@@ -236,8 +236,8 @@ repo = "Omochice/dps-codic-vim"
 on_cmd = "Codic"
 #
 [[plugins]]
-repo = "Omochice/dps-translate-vim"
-# repo = "~/workspace/dps-translate-vim"
+# repo = "Omochice/dps-translate-vim"
+repo = "~/workspace/dps-translate-vim"
 hook_add = """
 let g:dps_translate_source = 'en'
 let g:dps_translate_target = 'ja'
@@ -397,5 +397,5 @@ on_source = "ddu.vim"
 # }}}
 
 [[plugins]]
-repo = "~/workspace/dps-popup-test"
+repo = "~/workspace/dps-popup-toy"
 on_cmd = "DpsPopupToy"
