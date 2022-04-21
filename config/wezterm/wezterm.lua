@@ -74,6 +74,7 @@ local keys = {
         { key = "RightArrow", mods = "ALT", action = wezterm.action({ AdjustPaneSize = {"Right", 3} })},
         { key = "q", mods = "ALT|SHIFT", action = wezterm.action({ CloseCurrentPane = {confirm = false} })},
         { key = "q", mods = "ALT", action = "ActivateCopyMode" },
+        { key = "[", mods = "ALT", action = "ActivateCopyMode" },
         { key = "r", mods = "ALT|SHIFT", action = "ReloadConfiguration" },
     }
 }
