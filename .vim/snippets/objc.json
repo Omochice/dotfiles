@@ -50,5 +50,29 @@
       "printf(\"%${1:type}\\n\", ${2:variable});"
     ],
     "description": "for print debugging"
+  },
+  "struct": {
+    "prefix": [
+      "typedef",
+      "struct"
+    ],
+    "body": [
+      "typedef struct ${1:structName} {",
+      "\t$0;",
+      "}"
+    ],
+    "description": "define struct"
+  },
+  "class interface": {
+    "prefix": [
+      "interface",
+      "class"
+    ],
+    "body": [
+      "@interface ${1:className} : ${2:superClass}",
+      "$0",
+      "@end"
+    ],
+    "description": "description"
   }
 }
