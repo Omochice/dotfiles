@@ -1,0 +1,78 @@
+{
+  "main": {
+    "prefix": "main",
+    "body": [
+      "int main(int argc, char *argv[]) {",
+      "\t$1",
+      "}"
+    ],
+    "description": "main function"
+  },
+  "for": {
+    "prefix": "for",
+    "body": [
+      "for (int ${1:i}; $1${2:expr}); ${2:expr2}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "for loop"
+  },
+  "func": {
+    "prefix": "func",
+    "body": [
+      "${1:return-type} ${2:function}(int argc, char *argv[]) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "function"
+  },
+  "while": {
+    "prefix": "while",
+    "body": [
+      "while ($1) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "while"
+  },
+  "if": {
+    "prefix": "if",
+    "body": [
+      "if ($1) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "if"
+  },
+  "print": {
+    "prefix": "print",
+    "body": [
+      "printf(\"%${1:type}\\n\", ${2:variable});"
+    ],
+    "description": "for print debugging"
+  },
+  "struct": {
+    "prefix": [
+      "typedef",
+      "struct"
+    ],
+    "body": [
+      "typedef struct ${1:structName} {",
+      "\t$0;",
+      "}"
+    ],
+    "description": "define struct"
+  },
+  "class interface": {
+    "prefix": [
+      "interface",
+      "class"
+    ],
+    "body": [
+      "@interface ${1:className} : ${2:superClass}",
+      "$0",
+      "@end"
+    ],
+    "description": "description"
+  }
+}

@@ -54,8 +54,8 @@
       "func"
     ],
     "body": [
-      "func ${1:name}(${2:args}) ${3:returns} {",
-      "\t$4",
+      "func ${1:name}(${2:arg} ${3:argType}) ${4:returnType} {",
+      "\t$0",
       "}"
     ],
     "description": "define function"
