@@ -178,11 +178,14 @@ let g:lsp_settings = {
 \       'allowlist': ['markdown'],
 \   },
 \   'html-langserver': {'allowlist': ['html', 'htmldjango']},
-\   'taplo-lsp': {'workspace_config': {'formatter' : {'reorderKeys': v:false}}}
+\   'taplo-lsp': {'workspace_config': {'formatter' : {'reorderKeys': v:false}}},
+\   'sourcekit-lsp': {'allowlist': ['swift', 'objc']},
 \ }
+"\   'clangd': {'allowlist': ['c', 'cpp']},
 let g:lsp_text_edit_enabled = v:true
 let g:lsp_diagnostics_signs_error = {'text': '🥺'}
 let g:lsp_diagnostics_signs_warning = {'text': '🤔'}
+let g:lsp_settings_filetype_objc = ['clangd']
 
 function! s:enable_help_by_lsp() abort
   let l:servers = lsp#get_server_names()
