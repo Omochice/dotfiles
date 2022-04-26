@@ -110,6 +110,7 @@ let g:findroot_not_for_subdir = v:false
 repo = "cocopon/vaffle.vim"
 hook_add = """
 cnoreabbrev va Vaffle
+cnoreabbrev vap Vaffle %p
 command! TVaffle tabnew | Vaffle
 """
 
