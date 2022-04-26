@@ -45,7 +45,9 @@
     "description": "if"
   },
   "print": {
-    "prefix": "print",
+    "prefix": [
+      "printf"
+    ],
     "body": [
       "printf(\"%${1:type}\\n\", ${2:variable});"
     ],

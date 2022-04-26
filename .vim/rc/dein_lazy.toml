@@ -286,7 +286,8 @@ let g:quickrun_config = extend(get(g:, 'quickrun_config', {}), {
 \       'exec': '%c',
 \   },
 \   'objc': {
-\       'type': 'c/clang',
+\       'type': 'c',
+\       'cmdopt': '-fmodules',
 \   },
 \ })
 """
