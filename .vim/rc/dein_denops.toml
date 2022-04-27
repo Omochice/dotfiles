@@ -66,7 +66,7 @@ if g:ddc_use_cmdline
 endif
 """
 hook_source = """
-let g:ddc_base_sources = ['vsnip', 'vim-lsp', 'around', 'rg', 'buffer', 'tmux']
+let g:ddc_base_sources = ['vsnip', 'vim-lsp', 'around', 'rg', 'buffer']
 call ddc#custom#patch_global(
  \ 'sources', g:ddc_base_sources,
  \ )
@@ -236,14 +236,24 @@ repo = "Omochice/dps-codic-vim"
 on_cmd = "Codic"
 #
 [[plugins]]
-repo = "Omochice/dps-translate-vim"
-# repo = "~/workspace/dps-translate-vim"
+# repo = "Omochice/dps-translate-vim"
+repo = "~/workspace/dps-translate-vim"
 hook_add = """
 let g:dps_translate_source = 'en'
 let g:dps_translate_target = 'ja'
 let g:dps_translate_deepl_token = $DEEPL_TOKEN
 let g:dps_translate_engine = empty(g:dps_translate_deepl_token) ? 'google' : 'deepl'
 let g:dps_translate_deepl_is_pro = v:false
+let g:dps_translate_border = {
+    \ 'topLeft': '┌',
+    \ 'top':  '─',
+    \ 'topRight': '┐',
+    \ 'left': '│',
+    \ 'right': '│',
+    \ 'bottomLeft': '└',
+    \ 'bottom':  '─',
+    \ 'bottomRight': '┘',
+    \ }
 
 nnoremap tr <Cmd>Translate<CR>
 nnoremap tR <Cmd>Translate!<CR>
@@ -397,5 +407,5 @@ on_source = "ddu.vim"
 # }}}
 
 [[plugins]]
-repo = "~/workspace/dps-popup-test"
+repo = "~/workspace/dps-popup-toy"
 on_cmd = "DpsPopupToy"
