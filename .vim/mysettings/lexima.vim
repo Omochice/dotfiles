@@ -2,6 +2,7 @@ let s:rules = []
 
 let s:rules += [
       \ {'char': '<CR>', 'at': '"""\%#"""', 'input': '<CR>', 'input_after': '<CR>', },
+      \ {'char': '<BS>', 'at': '<\%#>', 'input': '<BS>', 'delete': 1, },
       \ ]
 
 "" ruby
