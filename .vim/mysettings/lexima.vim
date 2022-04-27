@@ -7,6 +7,7 @@ let s:rules += [
 "" ruby
 let s:rules += [
       \ {'filetype': 'ruby', 'char': '<Bar>', 'at': '\(do\|{\)\s*\%#', 'input': '<Bar>', 'input_after': '<Bar>', },
+      \ {'filetype': 'ruby', 'char': '<BS>', 'at': '|\%#|', 'input': '<BS>', 'delete': 1, },
       \ ]
 
 "" markdown

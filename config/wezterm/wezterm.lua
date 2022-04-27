@@ -74,6 +74,7 @@ local keys = {
         { key = "RightArrow", mods = "ALT", action = wezterm.action({ AdjustPaneSize = {"Right", 3} })},
         { key = "q", mods = "ALT|SHIFT", action = wezterm.action({ CloseCurrentPane = {confirm = false} })},
         { key = "q", mods = "ALT", action = "ActivateCopyMode" },
+        { key = "[", mods = "ALT", action = "ActivateCopyMode" },
         { key = "r", mods = "ALT|SHIFT", action = "ReloadConfiguration" },
     }
 }
@@ -145,6 +146,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end)
 
 others = {
+    default_prog = os.capture("echo $SHELL"),
     exit_behavior = "Close",
 }
 
