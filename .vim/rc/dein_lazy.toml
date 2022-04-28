@@ -537,6 +537,7 @@ require'nvim-treesitter.configs'.setup {
     highlight = {
         enable = true,
     },
+    ignore_instal = {'phpdoc', 'toml'},
 }
 EOF
 """
