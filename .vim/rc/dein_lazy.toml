@@ -110,6 +110,7 @@ hook_add = """
 let g:vsnip_snippet_dir = g:config_dir . '/snippets'
 let g:vsnip_filetypes = {
 \ 'plaintex': ['tex'],
+\ 'objc': ['c', 'objc'],
 \ }
 """
 hook_source = """
