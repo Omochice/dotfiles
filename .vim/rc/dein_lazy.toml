@@ -110,6 +110,7 @@ hook_add = """
 let g:vsnip_snippet_dir = g:config_dir . '/snippets'
 let g:vsnip_filetypes = {
 \ 'plaintex': ['tex'],
+\ 'objc': ['c', 'objc'],
 \ }
 """
 hook_source = """
@@ -179,9 +180,9 @@ let g:lsp_settings = {
 \   },
 \   'html-langserver': {'allowlist': ['html', 'htmldjango']},
 \   'taplo-lsp': {'workspace_config': {'formatter' : {'reorderKeys': v:false}}},
-\   'sourcekit-lsp': {'allowlist': ['swift', 'objc']},
+\   'clangd': {'allowlist': ['c', 'cpp', 'objc']},
+\   'sourcekit-lsp': {'allowlist': ['swift',], 'cmd': ['xcrun', 'sourcekit-lsp', '-Xclangd', '/usr/bin/clangd'],},
 \ }
-"\   'clangd': {'allowlist': ['c', 'cpp']},
 let g:lsp_text_edit_enabled = v:true
 let g:lsp_diagnostics_signs_error = {'text': '🥺'}
 let g:lsp_diagnostics_signs_warning = {'text': '🤔'}
@@ -286,7 +287,8 @@ let g:quickrun_config = extend(get(g:, 'quickrun_config', {}), {
 \       'exec': '%c',
 \   },
 \   'objc': {
-\       'type': 'c/clang',
+\       'type': 'c',
+\       'cmdopt': '-fmodules',
 \   },
 \ })
 """
@@ -535,6 +537,7 @@ require'nvim-treesitter.configs'.setup {
     highlight = {
         enable = true,
     },
+    ignore_instal = {'phpdoc', 'toml'},
 }
 EOF
 """

@@ -112,6 +112,7 @@ sketchybar -m --add item LBD left \
                         background.padding_left=10 \
                         background.padding_right=0 \
                         icon.drawing=off \
+                        click_script="sketchybar -m --set apple.logo popup.drawing=toggle" \
               \
               --add item apple.logo left \
               --set apple.logo \
@@ -128,6 +129,7 @@ sketchybar -m --add item LBD left \
                         background.padding_right=5 \
                         icon.padding_right=5 \
                         label.drawing=on \
+                        click_script="sketchybar -m --set apple.logo popup.drawing=toggle" \
               \
               --add item apple.preferences popup.apple.logo \
               --set apple.preferences icon= \
