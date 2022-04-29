@@ -1,67 +1,21 @@
 {
-  "main": {
-    "prefix": "main",
-    "body": [
-      "int main(int argc, char *argv[]) {",
-      "\t$1",
-      "}"
-    ],
-    "description": "main function"
-  },
-  "for": {
-    "prefix": "for",
-    "body": [
-      "for (int ${1:i}; $1${2:expr}); ${2:expr2}) {",
-      "\t$0",
-      "}"
-    ],
-    "description": "for loop"
-  },
-  "func": {
-    "prefix": "func",
-    "body": [
-      "${1:return-type} ${2:function}(int argc, char *argv[]) {",
-      "\t$0",
-      "}"
-    ],
-    "description": "function"
-  },
-  "while": {
-    "prefix": "while",
-    "body": [
-      "while ($1) {",
-      "\t$0",
-      "}"
-    ],
-    "description": "while"
-  },
-  "if": {
-    "prefix": "if",
-    "body": [
-      "if ($1) {",
-      "\t$0",
-      "}"
-    ],
-    "description": "if"
-  },
-  "print": {
-    "prefix": "print",
-    "body": [
-      "printf(\"%${1:type}\\n\", ${2:variable});"
-    ],
-    "description": "for print debugging"
-  },
-  "struct": {
+  "for of": {
     "prefix": [
-      "typedef",
-      "struct"
+      "forof"
     ],
     "body": [
-      "typedef struct ${1:structName} {",
-      "\t$0;",
+      "for (${1:<type>} *${2:<var>} in ${3:<from>}) {",
+      "\t$0",
       "}"
     ],
-    "description": "define struct"
+    "description": "for of"
+  },
+  "log": {
+    "prefix": "nslog",
+    "body": [
+      "NSLog(@\"%@$2\", ${1:<var>});"
+    ],
+    "description": "nslog"
   },
   "class interface": {
     "prefix": [
@@ -69,10 +23,61 @@
       "class"
     ],
     "body": [
-      "@interface ${1:className} : ${2:superClass}",
-      "$0",
+      "@interface ${1:<class-name>} : ${2:<super-class>}",
+      "- (id)init;",
+      "- (<return-type>)<instance-method-name>",
+      "+ (<return-type>)<class-method-name>",
+      "",
+      "@property <type> <property-name>",
       "@end"
     ],
     "description": "description"
+  },
+  "inplementation": {
+    "prefix": [
+      "implementation"
+    ],
+    "body": [
+      "@implementation ${1:<class-name>}",
+      "{",
+      "\t<type> <instance-variable>;",
+      "}",
+      "",
+      "- (${2:<return-type>})${3:<instance-method-name>} {;}",
+      "+ (<return-type>)<class-method-name> {;}",
+      "@end"
+    ],
+    "description": "classs implementation"
+  },
+  "define method": {
+    "prefix": "method",
+    "body": [
+      "- (${1:<return-type>})${2:<method-name>} {",
+      "\t$0;",
+      "}"
+    ],
+    "description": "implementation method"
+  },
+  "define method with args": {
+    "prefix": "argMethod",
+    "body": [
+      "- (${1:<return-type>})${2:<method-name>}:(${3:<arg-type>})${4:<arg-name>} ${5:<key-name>}:(${6:<type>})${7:<arg-name>} {",
+      "\t$0;",
+      "}"
+    ],
+    "description": "implementation method with args"
+  },
+  "category": {
+    "prefix": "interface-category",
+    "body": [
+      "@interface ${1:<class-name>} (${2:<category-name>})",
+      "- (id)init;",
+      "- (<return-type>)<instance-method-name>",
+      "+ (<return-type>)<class-method-name>",
+      "",
+      "@property <type> <property-name>",
+      "@end"
+    ],
+    "description": "interface with category"
   }
 }
