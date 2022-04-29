@@ -148,6 +148,7 @@ end)
 others = {
     -- default_prog = os.capture("echo $SHELL"),
     exit_behavior = "Close",
+    use_ime = true,
 }
 
 return merged(
