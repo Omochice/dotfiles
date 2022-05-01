@@ -466,10 +466,12 @@ on_ft = "markdown"
 on_cmd = "MakeTable"
 
 [[plugins]]
-repo = "previm/previm"
+# repo = "previm/previm"
+repo = "Omochice/previm"
+rev = "support-true/false"
 on_cmd = "PrevimOpen"
 hook_add = """
-let g:previm_open_cmd = $BROWSER
+let g:previm_open_cmd = has('macunix') ? 'open' : $BROWSER
 let g:previm_show_header = v:false
 """
 
