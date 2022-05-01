@@ -146,9 +146,14 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end)
 
 others = {
-    -- default_prog = os.capture("echo $SHELL"),
     exit_behavior = "Close",
+    use_ime = true,
 }
+
+if not (os.capture("uname -s")[1] == "darwin") then
+    others["default_prog"] = os.capture("echo $SHELL")
+end
+
 
 return merged(
     keys,
