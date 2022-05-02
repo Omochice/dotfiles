@@ -150,7 +150,7 @@ others = {
     use_ime = true,
 }
 
-if not (os.capture("uname -s")[1] == "darwin") then
+if not (os.capture("uname -s")[1] == "Darwin") then
     others["default_prog"] = os.capture("echo $SHELL")
 end
 
