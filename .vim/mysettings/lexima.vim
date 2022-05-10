@@ -47,9 +47,10 @@ let s:rules += [
 "" HTML
 let s:rules += [
       \ { 'filetype': ['html', 'htmldjango'], 'char': '%', 'at': '{\%#}', 'input': '%<Space>', 'input_after': '<Space>%',},
+      \ { 'filetype': ['html', 'htmldjango'], 'char': '<CR>', 'at': '>\%#<', 'input': '<CR>', 'input_after': '<CR>',},
       \ ]
 
-""latex
+"" latex
 let s:rules += [
       \ { 'filetype': ['tex', 'plaintex'], 'char': '$', 'at': '[^\$]*\%#', 'input': '$', 'input_after': '$', },
       \ { 'filetype': ['tex', 'plaintex'], 'char': '$', 'at': '\$\%#\$', 'input': '$<CR>', 'input_after': '<CR>$', 'priority': 10 },
