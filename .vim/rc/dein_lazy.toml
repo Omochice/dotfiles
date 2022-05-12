@@ -472,7 +472,14 @@ repo = "Omochice/previm"
 rev = "support-true/false"
 on_cmd = "PrevimOpen"
 hook_add = """
-let g:previm_open_cmd = has('macunix') ? 'open' : $BROWSER
+let g:previm_wsl_mode = has('wsl')
+let s:nodename = split(system('uname --nodename'))[0]
+let s:wsl_vivaldi_path = '/mnt/c/Users/' .. s:nodename .. '/AppData/Local/Vivaldi/Application/vivaldi.exe'
+let g:previm_open_cmd = has('macunix') \
+                            ? 'open' \
+                            : has('wsl') \
+                                ? s:wsl_vivaldi_path \
+                                : $BROWSER
 let g:previm_show_header = v:false
 """
 
