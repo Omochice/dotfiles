@@ -15,6 +15,7 @@ const globalOption = {
   executePath: path.fromFileUrl(import.meta.url),
   dotDir: path.resolve(path.join(path.fromFileUrl(import.meta.url), "../../")),
   homeDir: ensureString(Deno.env.get("HOME")),
+  shell: path.basename(ensureString(Deno.env.get("SHELL"))),
   backupDir: Deno.makeTempDirSync(),
   quiet: false,
   debug: false,
@@ -111,6 +112,24 @@ function writeGitConfig(sharedFile: string): void {
   }
 }
 
+function linkProfile(): void {
+  const profileMap: Record<string, string> = {
+    bash: ".bash_profile",
+    zsh: ".zprofile",
+  };
+  const source = path.join(globalOption.dotDir, "profile");
+  const target = path.join(
+    globalOption.homeDir,
+    ensureString(profileMap[globalOption.shell]),
+  );
+  try {
+    Deno.removeSync(target);
+  } catch (_) {
+    // not exist, do nothing
+  }
+  Deno.symlinkSync(source, target);
+}
+
 @Help("Installer for Dotfiles")
 @Version("0.0.0")
 class Program extends Command {
@@ -138,6 +157,11 @@ class Program extends Command {
       path.join(globalOption.dotDir, ".gitconfig_shared"),
     );
     this.quiet || console.log(blue("Including shared config ... DONE!"));
+    linkProfile();
+    this.quiet ||
+      console.log(
+        blue(`Shell if ${globalOption.shell}, profile linking ... DONE!`),
+      );
   }
 }
 
