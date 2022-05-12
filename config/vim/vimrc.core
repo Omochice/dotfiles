@@ -61,14 +61,9 @@ else
   set clipboard=unnamed,unnamedplus
 endif
 
-" move cursor wigh hjkl in insert mode
-inoremap <C-h> <Left>
-" inoremap <C-j> <Down>
-" inoremap <C-k> <Up>
-inoremap <C-l> <Right>
-
-" inoremap <expr> <C-j> pumvisible() ? '<C-n>' : '<Down>'
-" inoremap <expr> <C-k> pumvisible() ? '<C-p>' : '<Up>'
+" move f/b in insert mode like commandline
+inoremap <C-f> <right>
+inoremap <C-b> <Left>
 
 " move UP/DOWN at fold context as same as displayed
 nnoremap j gj
@@ -92,11 +87,18 @@ nnoremap x "_x
 nnoremap s "_s
 nnoremap c "_c
 
-" indent in insert mode
+"" DONT USE ARROW TO MOVE
+noremap <Left> <nop>
+noremap <Down> <nop>
+noremap <Up> <nop>
+noremap <Right> <nop>
+noremap! <Left> <nop>
+noremap! <Down> <nop>
+noremap! <Up> <nop>
+noremap! <Right> <nop>
+" to use indent/dedent
 inoremap <Left> <C-d>
 inoremap <Right> <C-t>
-" inoremap <Up> <nop>
-" inoremap <Down> <nop>
 
 nnoremap J gj
 xnoremap J gj
