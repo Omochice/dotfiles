@@ -78,13 +78,16 @@ abbr giph "giph -f 5 -s -l -c 0.3,0,0.4,0.5 -b 5 -p -5"
 abbr rm "rip"
 abbr germanium "germanium -f Firge35NerdConsole-Regular"
 
-# # tmuxの自動起動
-# set count (ps aux | grep tmux | grep -v grep | wc -l)
-# if test $count -eq 0
-#     command tmux
-# else if test $count -eq 1
-#     command tmux a
-# end
+# On WSL, use tmux instead wezterm.
+# tmux session must be singleton
+if test -n (string match "*microsoft*" (uname --kernel-release))
+    set count (ps aux | grep tmux | grep -v grep | wc -l)
+    if test $count -eq 0
+        command tmux
+    else if test $count -eq 1
+        command tmux a
+    end
+end
 
 # asdf for fish
 if type "asdf" >/dev/null 2>&1
