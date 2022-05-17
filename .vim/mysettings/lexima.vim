@@ -47,7 +47,7 @@ let s:rules += [
 "" HTML
 let s:rules += [
       \ { 'filetype': ['html', 'htmldjango'], 'char': '%', 'at': '{\%#}', 'input': '%<Space>', 'input_after': '<Space>%',},
-      \ { 'filetype': ['html', 'htmldjango'], 'char': '<CR>', 'at': '>\%#<', 'input': '<CR>', 'input_after': '<CR>',},
+      \ { 'filetype': ['html', 'htmldjango', 'vue'], 'char': '<CR>', 'at': '>\%#<', 'input': '<CR>', 'input_after': '<CR>',},
       \ ]
 
 "" latex
