@@ -115,6 +115,29 @@ command! TVaffle tabnew | Vaffle
 """
 
 [[plugins]]
+repo = "lambdalisue/fern.vim"
+hook_add = """
+cnoreabbrev fe Fern .
+cnoreabbrev fep Fren -reveal=%
+"""
+[plugins.ftplugin]
+fern = """
+" TODO: set maps
+" i: create new file
+" o: create new dir
+" r: Rename
+" y: yank
+" q: quit
+" Basic operation
+nmap <buffer> q <C-o>
+nmap <buffer> i <Plug>(fern-action-new-file)
+nmap <buffer> o <Plug>(fern-action-new-dir)
+nmap <buffer> r <Plug>(fern-action-rename)
+nmap <buffer> y <Plug>(fern-action-copy)
+"""
+
+
+[[plugins]]
 repo = "vim-jp/vim-streem"
 
 [[plugins]]
