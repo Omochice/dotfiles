@@ -367,11 +367,6 @@ hook_add = """
 let g:pydocstring_formatter = 'google'
 """
 on_cmd = ["Pydocstring", "PydocstringFormat"]
-# on_ft = "python"
-[plugins.ftplugin]
-ruby = """
-nnoremap <silent><Space>pd <Cmd>PydocstringFormat<CR>
-"""
 
 # [[plugins]]
 # repo = "fs111/pydoc.vim"
