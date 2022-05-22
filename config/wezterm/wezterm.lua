@@ -24,7 +24,12 @@ function _merged(t1, t2) -- from [https://github.com/yutkat/dotfiles/blob/357691
 end
 
 function basename(path)
-	return string.gsub(path, "(.*[/\\])(.*)", "%2")
+    if path == nil then
+        return ""
+    else
+        return string.gsub(path, "(.*[/\\])(.*)", "%2")
+    end
+    -- return path
 end
 
 function get_process_name(p)
@@ -78,19 +83,21 @@ local keys = {
         { key = "r", mods = "ALT|SHIFT", action = "ReloadConfiguration" },
     }
 }
-if os.capture("uname")[1] == "Darwin" then
-    local mac_bindings = {
+
+local additional_bindings = {}
+if os.capture("uname --kernel-name")[1] == "Darwin" then
+    additional_bindings = {
         { key = "mapped:¥", mods = "ALT", action = wezterm.action({ SplitHorizontal = {domain = "CurrentPaneDomain"} }) },
         { key = "¥", action = wezterm.action({ SendString="\\" }) },
         -- なぜかweztermだけyenとbackslashが反転するっぽい
     }
-    for _,v in pairs(mac_bindings) do
-        table.insert(keys.keys, v)
-    end
 else -- Linux
-    local linux_bindings = {
-        { key = "raw:132", mods = "ALT", action = wezterm.action({ SplitHorizontal = {domain = "CurrentPaneDomain"} }) }, -- 132 = backslash
+    additional_bindings = {
+        { key = "\\", mods = "ALT", action = wezterm.action({ SplitHorizontal = {domain = "CurrentPaneDomain"} }) },
     }
+end
+for _, v in pairs(additional_bindings) do
+    table.insert(keys.keys, v)
 end
 
 local bars = {
@@ -149,10 +156,6 @@ others = {
     exit_behavior = "Close",
     use_ime = true,
 }
-
-if not (os.capture("uname -s")[1] == "Darwin") then
-    others["default_prog"] = os.capture("echo $SHELL")
-end
 
 
 return merged(
