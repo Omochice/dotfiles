@@ -624,6 +624,8 @@ build = "./install --all"
 merged = 0
 
 [[plugins]]
+# FIXME: 初回起動だけ枠線とかがうまく表示されない
+# ref: https://github.com/Omochice/dotfiles/issues/12
 repo = "yuki-yano/fzf-preview.vim"
 rev = "release/rpc"
 hook_add = """
@@ -640,14 +642,13 @@ let g:fzf_preview_dev_icon_prefix_string_length = 3
 let g:fzf_preview_dev_icons_limit = 5000
 let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never --sort=path --with-filename'
 """
-# on first execution, it say "The server is not ready yet."
-# for running it fine. I set denops as dependency.
-depends = ["vim-devicons", "fzf", "denops.vim"]
+depends = ["vim-devicons", "fzf"]
 on_cmd = [
+    "FzfPreviewAllBuffersRpc",
     "FzfPreviewCommandPaletteRpc",
     "FzfPreviewDirectoryFilesRpc",
     "FzfPreviewProjectGrepRpc",
-    "FzfPreviewAllBuffersRpc",
+    "FzfPreviewProjectMrwFilesRpc",
 ]
 
 [[plugins]]
