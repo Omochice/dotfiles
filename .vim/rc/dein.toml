@@ -141,7 +141,14 @@ nmap <buffer> y <Plug>(fern-action-copy)
 repo = "vim-jp/vim-streem"
 
 [[plugins]]
+repo = "vim-scripts/vim-fish"
+
+[[plugins]]
 repo = "mityu/vim-applescript"
 
 [[plugins]]
 repo = "gko/vim-coloresque"
+
+[[plugins]]
+repo = "posva/vim-vue"
+
