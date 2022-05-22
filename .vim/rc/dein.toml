@@ -114,23 +114,24 @@ command! TVaffle tabnew | Vaffle
 [[plugins]]
 repo = "lambdalisue/fern.vim"
 hook_add = """
+let g:fern#disable_default_mappings = v:true
 cnoreabbrev fe Fern .
 cnoreabbrev fep Fern . -reveal=%
 """
 [plugins.ftplugin]
 fern = """
-" TODO: set maps
-" i: create new file
-" o: create new dir
-" r: Rename
-" y: yank
-" q: quit
-" Basic operation
 nmap <buffer> q <C-o>
 nmap <buffer> i <Plug>(fern-action-new-file)
 nmap <buffer> o <Plug>(fern-action-new-dir)
 nmap <buffer> r <Plug>(fern-action-rename)
-nmap <buffer> y <Plug>(fern-action-copy)
+nmap <buffer> dd <Plug>(fern-action-clipboard-move)
+nmap <buffer> yy <Plug>(fern-action-clipboard-copy)
+nmap <buffer> p <Plug>(fern-action-clipboard-paste)
+nmap <buffer> h <Plug>(fern-action-collapse)
+nmap <buffer> l <Plug>(fern-action-open-or-expand)
+nmap <buffer> ! <Plug>(fern-action-hidden:toggle)
+nmap <buffer> ? <Plug>(fern-action-help)
+nmap <buffer> t <Plug>(fern-action-open:tabedit)
 """
 
 
