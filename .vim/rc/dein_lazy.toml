@@ -535,9 +535,10 @@ repo = "nvim-treesitter/nvim-treesitter"
 if = "has('nvim')"
 on_event = "BufRead"
 hook_post_update = "TSUpdate"
+# TODO: change to 'maintained'
 hook_source = """
 lua <<EOF
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
     ensure_installed = 'all',
     highlight = {
         enable = true,
@@ -550,10 +551,10 @@ EOF
 [[plugins]]
 repo = "nvim-treesitter/nvim-treesitter-textobjects"
 on_source = "nvim-treesitter"
-# Use upper case for treesitter, it prevend to confuse at Vim
+# Use upper case for treesitter, it prevent to confuse at Vim's one.
 hook_source = """
 lua <<EOF
-require'nvim-treesitter.configs'.setup{
+require('nvim-treesitter.configs').setup{
     textobjects = {
         select = {
             enable = true,
