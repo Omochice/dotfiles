@@ -555,13 +555,12 @@ EOF
 """
 
 [[plugins]]
-# FIXME
-# this is not work. conflict with clipboard?
 repo = "yuki-yano/vim-operator-replace"
 depends = "vim-operator-user"
 on_map = { n = "<Plug>", x = "<Plug>" }
 hook_add = """
-map R <Plug>(operator-replace)
+nmap R <Plug>(operator-replace)
+xmap R <Plug>(operator-replace)
 """
 
 [[plugins]]
