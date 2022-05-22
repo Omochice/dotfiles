@@ -49,6 +49,8 @@ on_map = { x = "<Plug>", o = "<Plug>" }
 repo = "kana/vim-operator-user"
 
 [[plugins]]
+repo = "kana/vim-repeat"
+[[plugins]]
 repo = "easymotion/vim-easymotion"
 hook_add = """
 nmap f <Plug>(easymotion-sn)
