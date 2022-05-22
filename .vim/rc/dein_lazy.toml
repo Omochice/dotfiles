@@ -483,13 +483,6 @@ let g:previm_open_cmd = has('macunix') \
 let g:previm_show_header = v:false
 """
 
-[[plugins]]
-repo = "posva/vim-vue"
-on_ft = "vue"
-
-[[plugins]]
-repo = "dag/vim-fish"
-on_ft = "fish"
 
 [[plugins]]
 repo = "ap/vim-css-color"
