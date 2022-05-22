@@ -50,6 +50,7 @@ repo = "kana/vim-operator-user"
 
 [[plugins]]
 repo = "kana/vim-repeat"
+
 [[plugins]]
 repo = "easymotion/vim-easymotion"
 hook_add = """
@@ -237,7 +238,10 @@ on_map = { n = "<Plug>", v = "<Plug>" }
 [[plugins]]
 repo = "markonm/traces.vim"
 on_event = "CmdlineEnter"
-merged = true  # FIXME: If set this false, help command confuse lile: trace.vim/doc/hoge-plugin.txt not found.
+# FIXME: If set this false/none, help command confuse like:
+# :help dps-translate-vim
+# > trace.vim/doc/dps-translate-vim.txt is not found
+merged = true
 
 [[plugins]]
 repo = "liuchengxu/vista.vim"
