@@ -354,11 +354,6 @@ on_map = { x = "<Plug>" }
 depends = ["vim-textobj-user", "vim-textobj-line", "vim-textobj-anyblock"]
 
 [[plugins]]
-repo = "cespare/vim-toml"
-on_ft = "toml"
-if = "!has('nvim') && !has('patch-8.2.3532')"
-
-[[plugins]]
 repo = "alvan/vim-closetag"
 hook_add = """
 let g:closetag_filenames = '*.html, *,vue, *.xml, *.jsx, *.erb'
