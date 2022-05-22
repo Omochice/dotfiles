@@ -134,12 +134,11 @@ nmap <buffer> ? <Plug>(fern-action-help)
 nmap <buffer> t <Plug>(fern-action-open:tabedit)
 """
 
-
 [[plugins]]
 repo = "vim-jp/vim-streem"
 
 [[plugins]]
-repo = "vim-scripts/vim-fish"
+repo = "vim-scripts/fish.vim"
 
 [[plugins]]
 repo = "mityu/vim-applescript"
