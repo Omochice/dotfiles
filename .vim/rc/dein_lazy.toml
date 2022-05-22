@@ -620,6 +620,7 @@ on_cmd = [
     "TmuxNavigateUp",
     "TmuxNavigateRight",
 ]
+if = "has('wsl')"
 
 [[plugins]]
 repo = "machakann/vim-vimhelplint"
