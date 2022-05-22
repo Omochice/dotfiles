@@ -274,7 +274,7 @@ let g:quickrun_config = extend(get(g:, 'quickrun_config', {}), {
 \       'outputter/buffer/close_on_empty': v:true,
 \       'outputter/buffer/opener': 'vertical botright new',
 \       'hook/time/enable': v:true,
-\       'runner': has('nvim') ? 'neovim_job' : exists('*ch_close_in') ? 'job' : 'vimproc'
+\       'runner': has('nvim') ? 'neovim_job' : 'job',
 \   },
 \   'typescript': {
 \       'command': 'deno',
@@ -295,16 +295,12 @@ let g:quickrun_config = extend(get(g:, 'quickrun_config', {}), {
 \   },
 \ })
 """
-depends = ["vimproc.vim", "vim-quickrun-neovim-job"]
+depends = ["vim-quickrun-neovim-job"]
 on_map = { n = "<Plug>" }
 on_cmd = ["QuickRun"]
 
 [[plugins]]
 repo = "lambdalisue/vim-quickrun-neovim-job"
-
-[[plugins]]
-repo = "Shougo/vimproc.vim"
-build = "make"
 
 [[plugins]]
 repo = "Omochice/TeXTable.vim"
