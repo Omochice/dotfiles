@@ -291,6 +291,7 @@ let g:dps_ghosttext#ftmap = {
 \   'biz.quest.signate.jp': 'python',
 \   'play.golang.org': 'go',
 \   'cloudlatex.io': 'tex',
+\   'redmine': 'markdown',
 \ }
 """
 depends = "denops.vim"
