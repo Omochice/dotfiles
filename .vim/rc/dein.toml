@@ -149,3 +149,6 @@ repo = "gko/vim-coloresque"
 [[plugins]]
 repo = "posva/vim-vue"
 
+[[plugins]]
+repo = "cespare/vim-toml"
+if = "!has('nvim') && !has('patch-8.2.3532')"
