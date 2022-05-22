@@ -611,7 +611,6 @@ nnoremap <silent><buffer><Space>d <Cmd>VimhelpLint!<CR>
 
 [[plugins]]
 repo = "mattn/vim-sonictemplate"
-on_cmd = "Template"
 on_func = "fzf#sonictemplate#run"
 hook_add = """
 let g:sonictemplate_vim_template_dir = g:config_dir . '/templates'
