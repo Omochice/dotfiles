@@ -621,14 +621,6 @@ nnoremap [fzf-p]<C-t> <Cmd>call fzf#sonictemplate#run()<CR>
 """
 
 [[plugins]]
-repo = "mattn/vim-gist"
-on_cmd = "Gist"
-hook_add = """
-let g:gist_clip_command = 'xclip -selection clipboard'
-let g:gist_detect_filetype = v:true
-"""
-
-[[plugins]]
 repo = "junegunn/fzf"
 build = "./install --all"
 merged = 0
