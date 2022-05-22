@@ -89,9 +89,6 @@ endif
 """
 
 [[plugins]]
-repo = "kana/vim-repeat"
-
-[[plugins]]
 repo = "ryanoasis/vim-devicons"
 
 [[plugins]]
