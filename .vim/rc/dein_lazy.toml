@@ -573,11 +573,16 @@ if = "!has('nvim')"
 repo = "christoomey/vim-tmux-navigator"
 hook_add = """
 let g:tmux_navigator_no_mappings = v:true
-" noremap
-noremap <silent> <M-h> <Cmd>TmuxNavigateLeft<CR>
-noremap <silent> <M-j> <Cmd>TmuxNavigateDown<CR>
-noremap <silent> <M-k> <Cmd>TmuxNavigateUp<CR>
-noremap <silent> <M-l> <Cmd>TmuxNavigateRight<CR>
+" nnoremap
+nnoremap <silent> <M-h> <Cmd>TmuxNavigateLeft<CR>
+nnoremap <silent> <M-j> <Cmd>TmuxNavigateDown<CR>
+nnoremap <silent> <M-k> <Cmd>TmuxNavigateUp<CR>
+nnoremap <silent> <M-l> <Cmd>TmuxNavigateRight<CR>
+" xnoremap
+xnoremap <silent> <M-h> <Cmd>TmuxNavigateLeft<CR>
+xnoremap <silent> <M-j> <Cmd>TmuxNavigateDown<CR>
+xnoremap <silent> <M-k> <Cmd>TmuxNavigateUp<CR>
+xnoremap <silent> <M-l> <Cmd>TmuxNavigateRight<CR>
 " lnoremap
 lnoremap <silent> <M-h> <Cmd>TmuxNavigateLeft<CR>
 lnoremap <silent> <M-j> <Cmd>TmuxNavigateDown<CR>
