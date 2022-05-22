@@ -115,7 +115,7 @@ command! TVaffle tabnew | Vaffle
 repo = "lambdalisue/fern.vim"
 hook_add = """
 cnoreabbrev fe Fern .
-cnoreabbrev fep Fren -reveal=%
+cnoreabbrev fep Fern . -reveal=%
 """
 [plugins.ftplugin]
 fern = """
