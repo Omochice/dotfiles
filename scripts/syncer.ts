@@ -16,6 +16,9 @@ import {
   existsSync,
 } from "https://deno.land/std@0.135.0/fs/mod.ts";
 import os from "https://deno.land/x/dos@v0.11.0/mod.ts";
+import { expandGlobSync } from "https://deno.land/std@0.140.0/fs/mod.ts";
+
+type OSType = "mac" | "wsl" | "linux";
 
 interface Setting {
   tools: Tool[];
@@ -26,13 +29,25 @@ interface Tool {
   build?: string;
   destination?: string;
   symlink?: SymlinkOption;
-  skip_mac?: boolean;
+  skip?: OSType[];
 }
 
 interface SymlinkOption {
   source: string | string[];
   destination?: string;
 }
+
+function getOSName(): OSType {
+  if (os.platform() == "darwin") {
+    return "mac";
+  } else if (Deno.osRelease().toLowerCase().match("microsoft") !== null) {
+    return "wsl";
+  } else {
+    return "linux";
+  }
+}
+
+const osName = getOSName();
 
 const Decorder = new TextDecoder();
 
@@ -77,7 +92,6 @@ async function install(
   debug = false,
 ): Promise<boolean> {
   debugLog(`Start install ${repo}`, debug);
-
   if (existsSync(install_to)) {
     debugLog(`call first rev-parse on ${repo}`, debug);
     const old_rev_process = Deno.run({
@@ -114,7 +128,16 @@ async function install(
       new_rev_process.output(),
     ]);
     const updated = !equals(old_hash, new_hash);
-    debugLog(`is ${repo} updated? -> ${updated}`, debug);
+    if (updated) {
+      debugLog(
+        `${repo} is updated ${decodeMessage(old_hash).trim()} to ${
+          decodeMessage(new_hash).trim()
+        }`,
+        debug,
+      );
+    } else {
+      debugLog(`${repo} is newest already`, debug);
+    }
     return updated;
   } else {
     debugLog(`Start clone ${repo}`, debug);
@@ -139,7 +162,6 @@ async function build(
     debugLog(`run ${command} on ${working_directory}`, debug);
     const build_process = Deno.run({
       cmd: command.split(/\s+/),
-      stdout: debug ? "inherit" : "null",
       stderr: "piped",
       cwd: working_directory,
     });
@@ -172,30 +194,31 @@ async function sync(
   quiet = false,
 ): Promise<void> {
   const [_owner, repo] = tool.repo.split("/");
-  const destination = Path.join(expand(base_dir), tool.destination || repo);
+  const path_to_clone = Path.join(expand(base_dir), tool.destination || repo);
 
-  debugLog(`Start sync on ${tool.repo} to ${destination}`, debug);
-  const updated = await install(tool.repo, destination, debug);
+  debugLog(`Start sync on ${tool.repo} to ${path_to_clone}`, debug);
+  const updated = await install(tool.repo, path_to_clone, debug);
   if (tool.build && updated) {
     console.log(Colors.yellow(`Building ${repo}...`));
     await build(
       tool.build.split("\n").filter((line) => line.length != 0),
-      destination,
+      path_to_clone,
       debug,
     );
   }
   if (tool.symlink) {
     const sources = [tool.symlink.source].flat(Infinity) as string[];
-    for (const source of sources) {
-      await link(
-        Path.join(destination, source),
-        Path.join(
+    for (const source_maybe_glob of sources) {
+      for (
+        const s of expandGlobSync(Path.join(path_to_clone, source_maybe_glob))
+      ) {
+        const source = s.path;
+        const path_to_link = Path.join(
           expand(tool.symlink.destination || link_to),
           Path.basename(source),
-        ),
-        destination,
-        debug,
-      );
+        );
+        await link(source, path_to_link, path_to_clone, debug);
+      }
     }
   }
   if (!quiet) {
@@ -223,11 +246,10 @@ class Program extends Command {
 
   async execute() {
     const tomlData = await loadToml(this.config);
-    const isMac = os.platform() == "darwin";
     ensureDirSync(expand(this.link_to));
     const queue = [];
     for (const tool of tomlData.tools) {
-      if (isMac && tool.skip_mac) {
+      if (tool.skip !== undefined && tool.skip.some((e) => e == osName)) {
         continue;
       }
       queue.push(sync(tool, this.basedir, this.link_to, this.debug));
