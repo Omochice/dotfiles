@@ -5,6 +5,7 @@ source = "bin/themis"
 
 [[tools]]
 repo = "sheepla/fzpac"
+skip = ["mac", "wsl"]
 [tools.symlink]
 source = "fzpac"
 
@@ -27,6 +28,7 @@ build = """
 rustup update stable
 cargo build --release
 """
+skip = ["wsl"]
 [tools.symlink]
 source = "target/release/alacritty"
 
@@ -38,7 +40,7 @@ git submodule update --init --recursive
 ./get-deps
 cargo build --release
 """
-skip_mac = true
+skip = ["mac", "wsl"]
 [tools.symlink]
 source = ["target/release/wezterm", "target/release/wezterm-gui", "target/release/wezterm-mux-server"]
 
@@ -54,3 +56,6 @@ source = "~/.local/nvim/bin/nvim"
 [[tools]]
 repo = "jesseduffield/lazygit"
 build = "go install"
+
+[[tools]]
+repo = "asdf-vm/asdf"
