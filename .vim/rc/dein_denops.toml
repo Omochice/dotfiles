@@ -285,6 +285,7 @@ depends = "denops.vim"
 # # on_event = "BufRead"
 #
 [[plugins]]
+# FIXME: ghosttext起動時にleximaが無効化されてる？
 repo = "gamoutatsumi/dps-ghosttext.vim"
 hook_add = """
 let g:dps_ghosttext#ftmap = {
