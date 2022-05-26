@@ -205,6 +205,7 @@ let s:js_ts_ls = s:is_node_project(expand('%:p:h')) ? 'typescript-language-serve
 let g:lsp_settings_filetype_typescript = [s:js_ts_ls]
 let g:lsp_settings_filetype_javascript = [s:js_ts_ls]
 
+" TODO: 複数のfiletypeを開いてるときにうまく動かない
 function! s:enable_help_by_lsp() abort
   let l:servers = lsp#get_server_names()
   return !(len(l:servers) == 0
