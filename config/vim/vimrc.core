@@ -232,8 +232,8 @@ endif
 
 let g:filetype_m = 'mma'
 
-" 読み込み順の問題か/ftdetect/objcだとうまくいかない
-augroup myFiletypeDetect
+augroup myFiletypeAugroup
   autocmd!
+  " FIXME: 読み込み順の問題か/ftdetect/objcだとうまくいかない
   autocmd BufRead,BufNewFile *.m set filetype=objc
 augroup END
