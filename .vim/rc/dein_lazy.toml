@@ -473,7 +473,7 @@ hook_add = """
 let g:previm_wsl_mode = has('wsl')
 if has('macunix')
     let g:previm_open_cmd = 'open'
-elseif has('wsl')
+elseif g:previm_wsl_mode
     let s:nodename = split(system('uname --nodename'))[0]
     let s:wsl_vivaldi_path = '/mnt/c/Users/' .. s:nodename .. '/AppData/Local/Vivaldi/Application/vivaldi.exe'
     let g:previm_open_cmd = s:wsl_vivaldi_path
