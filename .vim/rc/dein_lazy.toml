@@ -162,6 +162,16 @@ on_event = "InsertEnter"
 [[plugins]]
 repo = "prabirshrestha/vim-lsp"
 hook_add = """
+function! s:is_node_project(path) abort
+  if isdirectory(a:path . '/node_modules')
+    return v:true
+  elseif (a:path ==# '/')
+    return v:false
+  else
+    return s:is_node_project(fnamemodify(a:path, ':h'))
+  endif
+endfunction
+
 let g:lsp_diagnostics_enabled = v:true
 let g:lsp_diagnostics_virtual_text_enabled = v:false
 let g:lsp_diagnostics_echo_cursor = v:true
@@ -190,6 +200,10 @@ let g:lsp_text_edit_enabled = v:true
 let g:lsp_diagnostics_signs_error = {'text': '🥺'}
 let g:lsp_diagnostics_signs_warning = {'text': '🤔'}
 let g:lsp_settings_filetype_objc = ['clangd']
+
+let s:js_ts_ls = s:is_node_project(expand('%:p:h')) ? 'typescript-language-server' : 'deno'
+let g:lsp_settings_filetype_typescript = [s:js_ts_ls]
+let g:lsp_settings_filetype_javascript = [s:js_ts_ls]
 
 function! s:enable_help_by_lsp() abort
   let l:servers = lsp#get_server_names()
