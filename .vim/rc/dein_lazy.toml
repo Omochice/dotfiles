@@ -192,18 +192,17 @@ let g:lsp_settings = {
 \       'allowlist': ['markdown'],
 \   },
 \   'html-langserver': {'allowlist': ['html', 'htmldjango']},
-\   'taplo-lsp': {'workspace_config': {'formatter' : {'reorderKeys': v:false}}},
+\   'taplo-lsp': {'workspace_config': {'formatter': {'reorderKeys': v:false}}},
 \   'clangd': {'allowlist': ['c', 'cpp', 'objc']},
-\   'sourcekit-lsp': {'allowlist': ['swift',], 'cmd': ['xcrun', 'sourcekit-lsp', '-Xclangd', '/usr/bin/clangd'],},
 \ }
 let g:lsp_text_edit_enabled = v:true
 let g:lsp_diagnostics_signs_error = {'text': '🥺'}
 let g:lsp_diagnostics_signs_warning = {'text': '🤔'}
 let g:lsp_settings_filetype_objc = ['clangd']
 
-let s:js_ts_ls = s:is_node_project(expand('%:p:h')) ? 'typescript-language-server' : 'deno'
-let g:lsp_settings_filetype_typescript = [s:js_ts_ls]
-let g:lsp_settings_filetype_javascript = [s:js_ts_ls]
+let s:ls_of_jsts = s:is_node_project(expand('%:p:h')) ? 'typescript-language-server' : 'deno'
+let g:lsp_settings_filetype_typescript = [s:ls_of_jsts]
+let g:lsp_settings_filetype_javascript = [s:ls_of_jsts]
 
 " TODO: 複数のfiletypeを開いてるときにうまく動かない
 function! s:enable_help_by_lsp() abort
@@ -673,6 +672,7 @@ on_cmd = [
 [[plugins]]
 repo = "pappasam/vim-filetype-formatter"
 hook_add = """
+" TODO: If exists makefile, package.json, etc, use it.
 let g:vim_filetype_formatter_commands = {
 \   'ruby': 'rufo -x',
 \   'json': 'jq .',
@@ -682,6 +682,7 @@ let g:vim_filetype_formatter_commands = {
 \   'sh': 'shfmt -ln bash -i 2 -bn -ci -sr -kp',
 \   'fortran': 'fprettify -i 2 -S',
 \   'elm': 'elm-format --stdin',
+\   'dockerfile': 'dockfmt fmt',
 \ }
 let g:vim_filetype_formatter_ft_maps = {
 \   'bash': 'sh',
@@ -698,6 +699,7 @@ bash = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
 fortran = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
 elm = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
 typescript = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
+dockerfile = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
 
 [[plugins]]
 repo = "voldikss/vim-floaterm"
