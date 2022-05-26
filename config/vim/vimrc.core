@@ -236,4 +236,17 @@ augroup myFiletypeAugroup
   autocmd!
   " FIXME: 読み込み順の問題か/ftdetect/objcだとうまくいかない
   autocmd BufRead,BufNewFile *.m set filetype=objc
+  " FIXME: BufReadだと2回発火する?
+  autocmd FileType javascript call s:open_it_really()
 augroup END
+
+function! s:open_it_really() abort
+  let l:current_bufnr = bufnr()
+  let l:tsfile = expand('%:p:r') . '.ts'
+  if filewritable(l:tsfile)
+    if confirm("Exists .ts file as same name. Open it?", "&Yes\n&No\n", 1) ==# 1
+      execute 'edit' l:tsfile
+      execute 'bwipeout' l:current_bufnr
+    endif
+  endif
+endfunction
