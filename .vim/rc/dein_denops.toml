@@ -9,75 +9,38 @@ command! DenopsRestart call denops#server#restart() " NOTE: not work?
 repo = "Shougo/ddc.vim"
 hook_add = """
 let g:ddc_use_pum = v:true
-let g:ddc_use_cmdline = v:false
 let g:ddc_source_options = {
-\ '_': {
-\   'matchers': ['matcher_fuzzy'],
-\   'sorters': ['sorter_fuzzy'],
-\   'converters': ['converter_remove_overlap', 'converter_fuzzy'],
-\   'minAutoCompleteLength': 2,
-\   'ignoreCase': v:true,
-\   }
-\ }
+      \ '_': {
+      \   'matchers': ['matcher_fuzzy'],
+      \   'sorters': ['sorter_fuzzy'],
+      \   'converters': ['converter_remove_overlap', 'converter_fuzzy'],
+      \   'minAutoCompleteLength': 2,
+      \   'ignoreCase': v:true,
+      \   },
+      \ }
+let g:ddc_base_sources = ['vsnip', 'vim-lsp', 'around', 'rg', 'buffer']
+if has('wsl')
+    let g:ddc_base_sources += ['tmux']
+endif
 
 inoremap <silent><expr> <C-Space> ddc#manual_complete()
 
 if dein#tap('vim-vsnip-integ')
   let g:ddc_source_options['vsnip'] = {'mark': 'Snp'}
 endif
-
-if g:ddc_use_cmdline
-  nnoremap : <Cmd>call CommandlinePre()<CR>:
-  function! CommandlinePre() abort
-    call dein#source('ddc.vim')
-    cnoremap <expr> <Tab>
-    \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
-    \ ddc#manual_complete()
-    cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
-    cnoremap <C-y> <Cmd>call pum#map#confirm()<CR>
-    cnoremap <C-e> <Cmd>call pum#map#cancel()<CR>
-    cnoremap <expr> <C-n> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<C-n>'
-    cnoremap <expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<C-p>'
-    " Overwrite sources
-    let s:prev_buffer_config = ddc#custom#get_buffer()
-    call ddc#custom#patch_buffer('sources',
-            \ ['necovim', 'cmdline-history', 'around', 'file'])
-    call ddc#custom#patch_buffer('sourceOptions', {
-            \ 'necovim': {
-                \ 'maxItems': 15},
-            \ 'around': {
-                \ 'maxItems': 5},
-            \ 'file': {
-                \ 'maxItems': 5},
-            \ })
-    augroup ddc_cmdline_internal
-      autocmd!
-      autocmd CmdlineLeave * ++once call CommandlinePost()
-    augroup END
-    " Enable command line completion
-    call ddc#enable_cmdline_completion()
-    call ddc#enable()
-  endfunction
-  function! CommandlinePost() abort
-    " Restore sources
-    call ddc#custom#set_buffer(s:prev_buffer_config)
-    cunmap <Tab>
-  endfunction
-endif
 """
 hook_source = """
-let g:ddc_base_sources = ['vsnip', 'vim-lsp', 'around', 'rg', 'buffer']
 call ddc#custom#patch_global(
- \ 'sources', g:ddc_base_sources,
- \ )
+      \ 'sources', g:ddc_base_sources,
+      \ )
 call ddc#custom#patch_global('sourceOptions', g:ddc_source_options,)
-" on vim/toml drop lsp. bacause it compete duplicates like a:a:contents often
+" Drop lsp source on vim/toml, because it provide a:a:content.
 call ddc#custom#patch_filetype(
-  \ ['toml', 'vim'], 'sources', g:ddc_base_sources[0:0] + ['necovim'] + g:ddc_base_sources[2:-1],
-  \ )
+      \ ['toml', 'vim'], 'sources', g:ddc_base_sources[0:0] + ['necovim'] + g:ddc_base_sources[2:-1],
+      \ )
 call ddc#custom#patch_filetype(
-  \ ['markdown'], 'sources', g:ddc_base_sources[0:1] + ['file'] + g:ddc_base_sources[2:-1],
-  \ )
+      \ ['markdown'], 'sources', g:ddc_base_sources[0:1] + ['file'] + g:ddc_base_sources[2:-1],
+      \ )
 
 if g:ddc_use_pum
   call ddc#custom#patch_global('completionMenu', 'pum.vim')
@@ -109,10 +72,10 @@ inoremap <expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>
 repo = "shun/ddc-vim-lsp"
 hook_source = """
 let g:ddc_source_options['vim-lsp'] = {
-\   'mark': 'LSP',
-\   'isVolatile': v:true,
-\   'forceCompletionPattern': '\..?|:|->|\w+/',
-\ }
+      \   'mark': 'LSP',
+      \   'isVolatile': v:true,
+      \   'forceCompletionPattern': '\..?|:|->|\w+/',
+      \ }
 """
 depends = ["vim-lsp"]
 on_source = "ddc.vim"
@@ -124,24 +87,24 @@ let g:ddc_source_options['around'] = {'mark': 'Ard'}
 """
 on_source = "ddc.vim"
 
-[[plugins]]
-repo = "Shougo/ddc-matcher_head"
-on_source = "ddc.vim"
+# [[plugins]]
+# repo = "Shougo/ddc-matcher_head"
+# on_source = "ddc.vim"
 
-[[plugins]]
-repo = "Shougo/ddc-sorter_rank"
-on_source = "ddc.vim"
+# [[plugins]]
+# repo = "Shougo/ddc-sorter_rank"
+# on_source = "ddc.vim"
 
-[[plugins]]
-repo = 'Shougo/ddc-cmdline-history'
-hook_source = """
-let g:ddc_source_options['cmdline-history'] = {
-\   'mark': 'Hst',
-\   'maxItems': 100,
-\   'minAutoCompleteLength': 5,
-\ }
-"""
-on_source = 'ddc.vim'
+# [[plugins]]
+# repo = 'Shougo/ddc-cmdline-history'
+# hook_source = """
+# let g:ddc_source_options['cmdline-history'] = {
+# \   'mark': 'Hst',
+# \   'maxItems': 100,
+# \   'minAutoCompleteLength': 5,
+# \ }
+# """
+# on_source = 'ddc.vim'
 
 [[plugins]]
 repo = "Shougo/neco-vim"
@@ -176,10 +139,10 @@ on_source = "ddc.vim"
 repo = "LumaKernel/ddc-file"
 hook_source = """
 let g:ddc_source_options['file'] = {
-\   'mark': 'Fil',
-\   'isVolatile': v:true,
-\   'forceCompletionPattern': '\S/\S*',
-\ }
+      \   'mark': 'Fil',
+      \   'isVolatile': v:true,
+      \   'forceCompletionPattern': '\S/\S*',
+      \ }
 """
 on_source = "ddc.vim"
 
@@ -187,10 +150,10 @@ on_source = "ddc.vim"
 repo = "Shougo/ddc-rg"
 hook_source = """
 let g:ddc_source_options['rg'] = {
-\   'mark': 'Rg',
-\   'minAutoCompleteLength': 4,
-\   'maxItems': 20,
-\ }
+      \   'mark': 'Rg',
+      \   'minAutoCompleteLength': 4,
+      \   'maxItems': 20,
+      \ }
 """
 on_source = "ddc.vim"
 
@@ -205,8 +168,8 @@ on_source = "ddc.vim"
 repo = "matsui54/denops-signature_help"
 hook_add = """
 let g:signature_help_config = {
-\   'style': 'labelOnly',
-\ }
+      \   'style': 'labelOnly',
+      \ }
 """
 hook_source = """
 call signature_help#enable()
@@ -268,14 +231,14 @@ on_cmd = ["Translate", "TranslateJoin"]
 # let g:slack_status_emoji = ":dadparrot:"
 # """
 # on_source = "denops.vim"
-#
+
 # # guise.vim not work well on lazy...?
 [[plugins]]
 repo = "lambdalisue/guise.vim"
 on_event = "TermOpen"
 depends = "denops.vim"
 # # # on_source = "denops.vim"
-#
+
 # # [[plugins]]
 # # repo = "supporterz-vol5-1/breakTimer-vim"
 # # hook_add = """

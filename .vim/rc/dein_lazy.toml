@@ -188,13 +188,13 @@ nmap <silent> <Space>d <Plug>(lsp-document-diagnostics)
 nmap <silent> <Space>r <Plug>(lsp-rename)
 
 let g:lsp_settings = {
-\   'efm-langserver': {
-\       'allowlist': ['markdown'],
-\   },
-\   'html-langserver': {'allowlist': ['html', 'htmldjango']},
-\   'taplo-lsp': {'workspace_config': {'formatter': {'reorderKeys': v:false}}},
-\   'clangd': {'allowlist': ['c', 'cpp', 'objc']},
-\ }
+      \ 'efm-langserver': {
+      \   'allowlist': ['markdown'],
+      \ },
+      \ 'html-langserver': {'allowlist': ['html', 'htmldjango']},
+      \ 'taplo-lsp': {'workspace_config': {'formatter': {'reorderKeys': v:false}}},
+      \ 'clangd': {'allowlist': ['c', 'cpp', 'objc']},
+      \  }
 let g:lsp_text_edit_enabled = v:true
 let g:lsp_diagnostics_signs_error = {'text': '🥺'}
 let g:lsp_diagnostics_signs_warning = {'text': '🤔'}
@@ -208,13 +208,13 @@ let g:lsp_settings_filetype_javascript = [s:ls_of_jsts]
 function! s:enable_help_by_lsp() abort
   let l:servers = lsp#get_server_names()
   return !(len(l:servers) == 0
-          \ || uniq(map(l:servers, {_, v -> lsp#capabilities#has_hover_provider(v)})) == [0])
+        \ || uniq(map(l:servers, {_, v -> lsp#capabilities#has_hover_provider(v)})) == [0])
 endfunction
 
 function s:enable_definition_by_lsp() abort
   let l:servers = lsp#get_server_names()
   return !(len(l:servers) == 0
-          \ || uniq(map(l:servers, {_, v -> lsp#capabilities#has_definition_provider(v)})) == [0])
+        \ || uniq(map(l:servers, {_, v -> lsp#capabilities#has_definition_provider(v)})) == [0])
 endfunction
 """
 on_event = "BufRead"
@@ -278,31 +278,32 @@ repo = "thinca/vim-quickrun"
 hook_add = """
 cnoreabbrev qr QuickRun
 nmap <silent> <Space>q <Plug>(quickrun)
+
 let g:quickrun_config = extend(get(g:, 'quickrun_config', {}), {
-\   '_': {
-\       'outputter/buffer/close_on_empty': v:true,
-\       'outputter/buffer/opener': 'vertical botright new',
-\       'hook/time/enable': v:true,
-\       'runner': has('nvim') ? 'neovim_job' : 'job',
-\   },
-\   'typescript': {
-\       'command': 'deno',
-\       'cmdopt': '--allow-all --unstable',
-\       'exec': 'NO_COLOR=1 %c run %o %s',
-\   },
-\   'elm': {
-\       'command': 'elm',
-\       'exec': '%c make %S --output %a',
-\   },
-\   'tex': {
-\       'command': 'make',
-\       'exec': '%c',
-\   },
-\   'objc': {
-\       'type': 'c',
-\       'cmdopt': '-fmodules',
-\   },
-\ })
+      \   '_': {
+      \       'outputter/buffer/close_on_empty': v:true,
+      \       'outputter/buffer/opener': 'vertical botright new',
+      \       'hook/time/enable': v:true,
+      \       'runner': has('nvim') ? 'neovim_job' : 'job',
+      \   },
+      \   'typescript': {
+      \       'command': 'deno',
+      \       'cmdopt': '--allow-all --unstable',
+      \       'exec': 'NO_COLOR=1 %c run %o %s',
+      \   },
+      \   'elm': {
+      \       'command': 'elm',
+      \       'exec': '%c make %S --output %a',
+      \   },
+      \   'tex': {
+      \       'command': 'make',
+      \       'exec': '%c',
+      \   },
+      \   'objc': {
+      \       'type': 'c',
+      \       'cmdopt': '-fmodules',
+      \   },
+      \ })
 """
 depends = ["vim-quickrun-neovim-job"]
 on_map = { n = "<Plug>" }
@@ -334,37 +335,37 @@ hook_add = """
 xmap v <Plug>(expand_region_expand)
 xmap V <Plug>(expand_region_shrink)
 if has('nvim')
-    let g:expand_region_text_objects = {
-          \ 'iw'  :0,
-          \ 'iW'  :0,
-          \ 'i"'  :0,
-          \ "i'"  :0,
-          \ 'i]'  :1,
-          \ 'ib'  :1,
-          \ 'iB'  :0,
-          \ 'il'  :1,
-          \ 'ip'  :1,
-          \ 'iL'  :1,
-          \ 'aL'  :1,
-          \ 'iF'  :1,
-          \ 'aF'  :1,
-          \ 'iC'  :1,
-          \ 'aC'  :1,
-          \ 'ie'  :0,
-          \ }
+  let g:expand_region_text_objects = {
+        \ 'iw'  :0,
+        \ 'iW'  :0,
+        \ 'i"'  :0,
+        \ "i'"  :0,
+        \ 'i]'  :1,
+        \ 'ib'  :1,
+        \ 'iB'  :0,
+        \ 'il'  :1,
+        \ 'ip'  :1,
+        \ 'iL'  :1,
+        \ 'aL'  :1,
+        \ 'iF'  :1,
+        \ 'aF'  :1,
+        \ 'iC'  :1,
+        \ 'aC'  :1,
+        \ 'ie'  :0,
+        \ }
 else
-    let g:expand_region_text_objects = {
-          \ 'iw'  :0,
-          \ 'iW'  :0,
-          \ 'i"'  :0,
-          \ "i'"  :0,
-          \ 'i]'  :1,
-          \ 'ib'  :1,
-          \ 'iB'  :0,
-          \ 'il'  :1,
-          \ 'ip'  :1,
-          \ 'ie'  :0,
-          \ }
+  let g:expand_region_text_objects = {
+        \ 'iw'  :0,
+        \ 'iW'  :0,
+        \ 'i"'  :0,
+        \ "i'"  :0,
+        \ 'i]'  :1,
+        \ 'ib'  :1,
+        \ 'iB'  :0,
+        \ 'il'  :1,
+        \ 'ip'  :1,
+        \ 'ie'  :0,
+        \ }
 endif
 """
 on_map = { x = "<Plug>" }
@@ -471,13 +472,13 @@ on_cmd = "PrevimOpen"
 hook_add = """
 let g:previm_wsl_mode = has('wsl')
 if has('macunix')
-    let g:previm_open_cmd = 'open'
+  let g:previm_open_cmd = 'open'
 elseif g:previm_wsl_mode
-    let s:nodename = split(system('uname --nodename'))[0]
-    let s:wsl_vivaldi_path = '/mnt/c/Users/' .. s:nodename .. '/AppData/Local/Vivaldi/Application/vivaldi.exe'
-    let g:previm_open_cmd = s:wsl_vivaldi_path
+  let s:nodename = split(system('uname --nodename'))[0]
+  let s:wsl_vivaldi_path = '/mnt/c/Users/' .. s:nodename .. '/AppData/Local/Vivaldi/Application/vivaldi.exe'
+  let g:previm_open_cmd = s:wsl_vivaldi_path
 else
-    let g:previm_open_cmd = $BROWSER
+  let g:previm_open_cmd = $BROWSER
 endif
 let g:previm_show_header = v:false
 """
@@ -523,8 +524,8 @@ on_event = "BufRead"
 repo = "Shougo/context_filetype.vim"
 hook_source = """
 let g:context_filetype#ignore_patterns = {
-\   'toml': ['^\s*#\s*'],
-\}
+      \ 'toml': ['^\s*#\s*'],
+      \ }
 """
 
 [[plugins]]
@@ -674,19 +675,19 @@ repo = "pappasam/vim-filetype-formatter"
 hook_add = """
 " TODO: If exists makefile, package.json, etc, use it.
 let g:vim_filetype_formatter_commands = {
-\   'ruby': 'rufo -x',
-\   'json': 'jq .',
-\   'python': 'black --quiet - | isort --quiet -',
-\   'go': 'goimports | gofmt',
-\   'typescript': 'deno fmt -',
-\   'sh': 'shfmt -ln bash -i 2 -bn -ci -sr -kp',
-\   'fortran': 'fprettify -i 2 -S',
-\   'elm': 'elm-format --stdin',
-\   'dockerfile': 'dockfmt fmt',
-\ }
+      \   'ruby': 'rufo -x',
+      \   'json': 'jq .',
+      \   'python': 'black --quiet - | isort --quiet -',
+      \   'go': 'goimports | gofmt',
+      \   'typescript': 'deno fmt -',
+      \   'sh': 'shfmt -ln bash -i 2 -bn -ci -sr -kp',
+      \   'fortran': 'fprettify -i 2 -S',
+      \   'elm': 'elm-format --stdin',
+      \   'dockerfile': 'dockfmt fmt',
+      \ }
 let g:vim_filetype_formatter_ft_maps = {
-\   'bash': 'sh',
-\ }
+      \   'bash': 'sh',
+      \ }
 """
 on_cmd = "FiletypeFormat"
 [plugins.ftplugin]
