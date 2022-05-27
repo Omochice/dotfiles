@@ -164,14 +164,6 @@ else
   command! Tterm tabnew | terminal ++curwin
 endif
 
-noremap  <M--> <Cmd>Hterm<CR>
-noremap! <M--> <Cmd>Hterm<CR>
-tnoremap <M--> <Cmd>Hterm<CR>
-
-noremap  <M-\> <Cmd>Vterm<CR>
-noremap! <M-\> <Cmd>Vterm<CR>
-tnoremap <M-\> <Cmd>Vterm<CR>
-
 if has('gui_running')
   set guifont=Firge35\ Console\ 18
   set guioptions-=r
