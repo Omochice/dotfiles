@@ -237,6 +237,12 @@ augroup myFiletypeAugroup
   " FIXME: 読み込み順の問題か/ftdetect/objcだとうまくいかない
   autocmd BufRead,BufNewFile *.m set filetype=objc
   " FIXME: BufReadだと2回発火する?
+  " FIXME: ファイラ経由で発火すると無限に呼び出されている?
+  "   reproduce:
+  "     $ mkdir /tmp/sample && touch /tmp/sample/a.js /tmp/sample/a.ts
+  "     $ vim /tmp/sample
+  "     :Fern .
+  "     and open a.js
   autocmd FileType javascript call s:open_it_really()
 augroup END
 
