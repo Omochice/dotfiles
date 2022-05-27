@@ -32,19 +32,19 @@ repo = "itchyny/lightline.vim"
 hook_add = """
 set noshowmode
 let g:lightline = {
-\   'colorscheme': 'sonokai',
-\   'active': {
-\       'left': [
-\           ['mode', 'paste'],
-\           ['gitbranch', 'readonly', 'filename', 'modified'],
-\       ],
-\   },
-\   'component_function': {
-\       'gitbranch': 'gitbranch#name',
-\       'filetype': 'LightlineFileType',
-\       'fileformat': 'LightlineFotmat',
-\   },
-\ }
+      \ 'colorscheme': 'sonokai',
+      \ 'active': {
+      \   'left': [
+      \     ['mode', 'paste'],
+      \     ['gitbranch', 'readonly', 'filename', 'modified'],
+      \   ],
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name',
+      \   'filetype': 'LightlineFileType',
+      \   'fileformat': 'LightlineFotmat',
+      \   },
+      \ }
 
 function! LightlineFileType() abort
   if winwidth(0) > 70
@@ -127,8 +127,8 @@ nmap <buffer> ? <Plug>(fern-action-help)  " This may be redundant
 nmap <buffer> t <Plug>(fern-action-open:tabedit)
 nmap <buffer><expr> <Plug>(fern-action-open-or-expand:stay) fern#smart#leaf("<Plug>(fern-action-open)", "<Plug>(fern-action-expand:stay)")
 nmap <buffer><expr> <CR> getline('.') =~# '^\s*\|-\s'
-                   \ ? '<Plug>(fern-action-collapse)'
-                   \ : '<Plug>(fern-action-open-or-expand:stay)'
+      \ ? '<Plug>(fern-action-collapse)'
+      \ : '<Plug>(fern-action-open-or-expand:stay)'
 """
 
 [[plugins]]
