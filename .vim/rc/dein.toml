@@ -104,19 +104,12 @@ let g:findroot_not_for_subdir = v:false
 """
 
 [[plugins]]
-repo = "cocopon/vaffle.vim"
-hook_add = """
-cnoreabbrev va Vaffle
-cnoreabbrev vap Vaffle %p
-command! TVaffle tabnew | Vaffle
-"""
-
-[[plugins]]
 repo = "lambdalisue/fern.vim"
 hook_add = """
 let g:fern#disable_default_mappings = v:true
 cnoreabbrev fe Fern .
 cnoreabbrev fep Fern . -reveal=%
+command! TFern tabnew | Fern .
 """
 [plugins.ftplugin]
 fern = """
@@ -130,9 +123,16 @@ nmap <buffer> p <Plug>(fern-action-clipboard-paste)
 nmap <buffer> h <Plug>(fern-action-collapse)
 nmap <buffer> l <Plug>(fern-action-open-or-expand)
 nmap <buffer> ! <Plug>(fern-action-hidden:toggle)
-nmap <buffer> ? <Plug>(fern-action-help)
+nmap <buffer> ? <Plug>(fern-action-help)  " This may be redundant
 nmap <buffer> t <Plug>(fern-action-open:tabedit)
+nmap <buffer><expr> <Plug>(fern-action-open-or-expand:stay) fern#smart#leaf("<Plug>(fern-action-open)", "<Plug>(fern-action-expand:stay)")
+nmap <buffer><expr> <CR> getline('.') =~# '^\s*\|-\s'
+                   \ ? '<Plug>(fern-action-collapse)'
+                   \ : '<Plug>(fern-action-open-or-expand:stay)'
 """
+
+[[plugins]]
+repo = "lambdalisue/fern-hijack.vim"
 
 [[plugins]]
 repo = "vim-jp/vim-streem"
