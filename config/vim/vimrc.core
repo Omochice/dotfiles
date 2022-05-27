@@ -221,6 +221,9 @@ nnoremap F <Cmd>call <SID>grep_in_file()<CR>
 " copy buffer command
 command! CopyBuffer %y
 
+" yank here with line number
+nnoremap yh <Cmd>let @+ = expand('%') . '#L' . line('.')<CR>
+
 " Disable message that show when start without args (I)
 set shortmess=asTIcF
 
