@@ -38,9 +38,9 @@ endif
 if has('termguicolors')
   set termguicolors
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  " TODO
-  " If disable below. any background will be transparency. :(
-  " include lightline, popup menu.
+  " TODO:
+  "   If delete below on Vim, Background of terminal will be transparency
+  "   but lightline will be transparency too.
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
@@ -146,7 +146,7 @@ if has('nvim')
   tnoremap <ESC> <C-\><C-n>
   " feed insert mode when move terminal window
   autocmd vimrc#terminal TermOpen * startinsert
-  autocmd vimrc#terminal TermOpen * setlocal nonumber "FIXME not work
+  autocmd vimrc#terminal TermOpen * setlocal nonumber
   autocmd vimrc#terminal WinEnter * if &buftype ==# 'terminal' | startinsert | endif
   " auto close
   autocmd vimrc#terminal TermClose * call feedkeys('\<CR>')
