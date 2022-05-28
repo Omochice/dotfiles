@@ -18,9 +18,14 @@ let g:ddc_source_options = {
       \   'ignoreCase': v:true,
       \   },
       \ }
-let g:ddc_base_sources = ['vsnip', 'vim-lsp', 'around', 'rg', 'buffer']
+let g:ddc_sources = {
+      \ 'snippet': ['vsnip'],
+      \ 'lsp': ['vim-lsp'],
+      \ 'in-vim': ['around', 'buffer'],
+      \ 'out-vim': ['rg'],
+      \ }
 if has('wsl')
-    let g:ddc_base_sources += ['tmux']
+  let g:ddc_sources['out-vim'] += ['tmux']
 endif
 
 inoremap <silent><expr> <C-Space> ddc#manual_complete()
@@ -31,15 +36,15 @@ endif
 """
 hook_source = """
 call ddc#custom#patch_global(
-      \ 'sources', g:ddc_base_sources,
+      \ 'sources', g:ddc_sources['snippet'] + g:ddc_sources['lsp'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
       \ )
 call ddc#custom#patch_global('sourceOptions', g:ddc_source_options,)
 " Drop lsp source on vim/toml, because it provide a:a:content.
 call ddc#custom#patch_filetype(
-      \ ['toml', 'vim'], 'sources', g:ddc_base_sources[0:0] + ['necovim'] + g:ddc_base_sources[2:-1],
+      \ ['toml', 'vim'], 'sources', g:ddc_sources['snippet'] + ['necovim'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
       \ )
 call ddc#custom#patch_filetype(
-      \ ['markdown'], 'sources', g:ddc_base_sources[0:1] + ['file'] + g:ddc_base_sources[2:-1],
+      \ ['markdown'], 'sources', g:ddc_sources['snippet'] + ['file'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
       \ )
 
 if g:ddc_use_pum
