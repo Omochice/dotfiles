@@ -62,11 +62,6 @@ hook_add = """
 inoremap <expr> <C-n> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<C-n>'
 inoremap <expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<C-p>'
 """
-# hook_source = """
-# " Sourcing lexima provide some `lexima#expand() to mapping`
-# " So, below is wrote into hook_source
-# " imap <silent><expr> <CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : lexima#expand('<LT>CR>', 'i')
-# """
 
 # [[multiple_plugins]]
 # plugins = ["pum.vim", "lexima.vim"]
