@@ -90,11 +90,11 @@ xnoremap n <Cmd>call searchx#next_dir()<CR>
 " nnoremap <C-l> <Cmd>call searchx#clear()<CR>
 
 let g:searchx = {
-\ 'auto_accept': v:true,
-\ 'scrolloff': &scrolloff,
-\ 'scrolltime': 0,
-\ 'markers': split('ABCDEFGHIJKLMNOPQRSTUVWXYZ', '.\zs'),
-\ }
+      \ 'auto_accept': v:true,
+      \ 'scrolloff': &scrolloff,
+      \ 'scrolltime': 0,
+      \ 'markers': split('ABCDEFGHIJKLMNOPQRSTUVWXYZ', '.\zs'),
+      \ }
 
 " Convert search pattern.
 function g:searchx.convert(input) abort
@@ -112,9 +112,9 @@ on_map = { x = "<Plug>", i = "<Plug>" }
 hook_add = """
 let g:vsnip_snippet_dir = g:config_dir . '/snippets'
 let g:vsnip_filetypes = {
-\ 'plaintex': ['tex'],
-\ 'objc': ['c', 'objc'],
-\ }
+      \ 'plaintex': ['tex'],
+      \ 'objc': ['c', 'objc'],
+      \ }
 """
 hook_source = """
 imap <silent><expr> <Tab>   vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<Tab>', 'i')
@@ -143,9 +143,9 @@ let g:lexima_enable_endwise_rules = v:true
 let g:lexima_enable_newline_rules = v:true
 """
 hook_source = """
-" too lang to write here
+" too long to write here
 execute 'source ' . g:config_dir . '/mysettings/lexima.vim'
-if g:is_deno_executable
+if dein#tap('pum.vim')
   imap <silent><expr> <CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : lexima#expand('<LT>CR>', 'i')
 endif
 """
@@ -239,15 +239,15 @@ on_map = { n = "<Plug>", x = "<Plug>" }
 [[plugins]]
 repo = "tyru/caw.vim"
 hook_add = """
-" Brute force solution
-" https://github.com/tyru/caw.vim/issues/166
 nmap gc <Plug>(caw:prefix)
 xmap gc <Plug>(caw:prefix)
+" Brute force solution
+" https://github.com/tyru/caw.vim/issues/166
 nmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
 xmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
 """
 depends = ["context_filetype.vim", "vim-repeat"]
-on_map = { n = "<Plug>", v = "<Plug>" }
+on_map = { n = "<Plug>", x = "<Plug>" }
 
 [[plugins]]
 repo = "markonm/traces.vim"
@@ -482,7 +482,6 @@ else
 endif
 let g:previm_show_header = v:false
 """
-
 
 [[plugins]]
 repo = "ap/vim-css-color"
