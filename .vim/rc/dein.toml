@@ -152,3 +152,7 @@ repo = "posva/vim-vue"
 [[plugins]]
 repo = "cespare/vim-toml"
 if = "!has('nvim') && !has('patch-8.2.3532')"
+
+[[plugins]]
+repo = "aklt/plantuml-syntax"
+
