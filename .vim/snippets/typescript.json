@@ -66,5 +66,17 @@
       "})"
     ],
     "description": "Deno.test"
+  },
+  "typedoc": {
+    "prefix": "typedoc",
+    "body": [
+      "/**",
+      "* $1",
+      "*",
+      "* @param $2",
+      "* @returns $3",
+      "*/"
+    ],
+    "description": "typedoc template"
   }
 }
