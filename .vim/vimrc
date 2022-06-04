@@ -73,6 +73,3 @@ if len(s:removed_plugins) > 0
 endif
 " }}}
 
-" re-enable
-syntax on
-filetype plugin indent on
