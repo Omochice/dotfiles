@@ -650,6 +650,7 @@ rev = "release/rpc"
 hook_add = """
 nnoremap [fzf-p] <Nop>
 nmap <C-p> [fzf-p]
+nnoremap [fzf-p]<C-g> <Nop>
 nnoremap [fzf-p]<C-p> <Cmd>FzfPreviewDirectoryFilesRpc<CR>
 nnoremap [fzf-p]c     <Cmd>FzfPreviewCommandPaletteRpc<CR>
 nnoremap [fzf-p]g     :<C-u>FzfPreviewProjectGrepRpc<Space>
