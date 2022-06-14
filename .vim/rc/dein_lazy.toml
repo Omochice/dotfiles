@@ -141,6 +141,7 @@ hook_add = """
 let g:lexima_map_escape = ''
 let g:lexima_enable_endwise_rules = v:true
 let g:lexima_enable_newline_rules = v:true
+let g:lexima_disable_on_nofile = v:false
 """
 hook_source = """
 " too long to write here
