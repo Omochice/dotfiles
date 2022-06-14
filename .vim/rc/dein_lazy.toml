@@ -716,3 +716,8 @@ nnoremap <C-g> <Cmd>Lazygit<CR>
 on_cmd = ["FloatermNew"]
 [plugins.ftplugin]
 floaterm = "tnoremap <buffer> <ESC> <ESC>"
+
+[[plugins]]
+repo = "vim-jp/vital.vim"
+on_cmd = ["Vitalize"]
+
