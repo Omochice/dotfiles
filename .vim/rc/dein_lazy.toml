@@ -466,9 +466,7 @@ on_ft = "markdown"
 on_cmd = "MakeTable"
 
 [[plugins]]
-# repo = "previm/previm"
-repo = "Omochice/previm"
-rev = "support-true/false"
+repo = "previm/previm"
 on_cmd = "PrevimOpen"
 hook_add = """
 let g:previm_wsl_mode = has('wsl')
