@@ -718,3 +718,9 @@ nnoremap <C-g> <Cmd>Lazygit<CR>
 on_cmd = ["FloatermNew"]
 [plugins.ftplugin]
 floaterm = "tnoremap <buffer> <ESC> <ESC>"
+[[plugins]]
+repo = "thinca/vim-partedit"
+hook_add = """
+let g:partedit#opener = 'vsplit'
+command! -range PlantUml call partedit#start(<line1>, <line2>, {'filetype': 'plantuml'})
+"""
