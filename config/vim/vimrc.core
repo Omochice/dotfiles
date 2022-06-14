@@ -212,7 +212,7 @@ endfunction
 nnoremap F <Cmd>call <SID>grep_in_file()<CR>
 
 " copy buffer command
-command! CopyBuffer %y
+command! CopyBuffer %yank
 
 " yank here with line number
 nnoremap yh <Cmd>let @+ = expand('%') . '#L' . line('.')<CR>
