@@ -141,6 +141,7 @@ hook_add = """
 let g:lexima_map_escape = ''
 let g:lexima_enable_endwise_rules = v:true
 let g:lexima_enable_newline_rules = v:true
+let g:lexima_disable_on_nofile = v:false
 """
 hook_source = """
 " too long to write here
@@ -163,7 +164,7 @@ on_event = "InsertEnter"
 repo = "prabirshrestha/vim-lsp"
 hook_add = """
 function! s:is_node_project(path) abort
-  if isdirectory(a:path . '/node_modules')
+  if isdirectory(a:path . '/node_modules') || filereadable(a:path . '/package.json') || filereadable(a:path. '/package-lock-json')
     return v:true
   elseif (a:path ==# '/')
     return v:false
@@ -540,7 +541,7 @@ require('nvim-treesitter.configs').setup {
     highlight = {
         enable = true,
     },
-    ignore_instal = {'phpdoc', 'toml'},
+    ignore_install = {'phpdoc', 'toml'},
 }
 EOF
 """
@@ -649,6 +650,7 @@ rev = "release/rpc"
 hook_add = """
 nnoremap [fzf-p] <Nop>
 nmap <C-p> [fzf-p]
+nnoremap [fzf-p]<C-g> <Nop>
 nnoremap [fzf-p]<C-p> <Cmd>FzfPreviewDirectoryFilesRpc<CR>
 nnoremap [fzf-p]c     <Cmd>FzfPreviewCommandPaletteRpc<CR>
 nnoremap [fzf-p]g     :<C-u>FzfPreviewProjectGrepRpc<Space>
@@ -721,3 +723,9 @@ floaterm = "tnoremap <buffer> <ESC> <ESC>"
 repo = "vim-jp/vital.vim"
 on_cmd = ["Vitalize"]
 
+[[plugins]]
+repo = "thinca/vim-partedit"
+hook_add = """
+let g:partedit#opener = 'vsplit'
+command! -range PlantUml call partedit#start(<line1>, <line2>, {'filetype': 'plantuml'})
+"""

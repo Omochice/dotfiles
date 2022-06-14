@@ -126,3 +126,12 @@ endif
 elm = """
 inoreabbrev <buffer> ;; ->
 """
+
+markdown = """
+inoreabbrev <buffer> ;; ->
+"""
+
+plantuml = """
+inoreabbrev <buffer> ;; ->
+inoreabbrev <buffer? :: -->
+"""

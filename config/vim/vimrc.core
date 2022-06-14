@@ -57,6 +57,8 @@ endif
 
 if has('win32') || has('mac')
   set clipboard=unnamed
+elseif has('wsl')
+  set clipboard=unnamedplus
 else
   set clipboard=unnamed,unnamedplus
 endif
