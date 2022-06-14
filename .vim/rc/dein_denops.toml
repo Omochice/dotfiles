@@ -31,7 +31,7 @@ endif
 inoremap <silent><expr> <C-Space> ddc#manual_complete()
 
 if dein#tap('vim-vsnip-integ')
-  let g:ddc_source_options['vsnip'] = {'mark': 'Snp'}
+  let g:ddc_source_options['vsnip'] = {'mark': '[Snp]'}
 endif
 """
 hook_source = """
@@ -72,7 +72,7 @@ inoremap <expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>
 repo = "shun/ddc-vim-lsp"
 hook_source = """
 let g:ddc_source_options['vim-lsp'] = {
-      \   'mark': 'LSP',
+      \   'mark': '[LSP]',
       \   'isVolatile': v:true,
       \   'forceCompletionPattern': '\..?|:|->|\w+/',
       \ }
@@ -83,7 +83,7 @@ on_source = "ddc.vim"
 [[plugins]]
 repo = "Shougo/ddc-around"
 hook_source = """
-let g:ddc_source_options['around'] = {'mark': 'Ard'}
+let g:ddc_source_options['around'] = {'mark': '[Ard]'}
 """
 on_source = "ddc.vim"
 
@@ -109,14 +109,14 @@ on_source = "ddc.vim"
 [[plugins]]
 repo = "Shougo/neco-vim"
 hook_source = """
-let g:ddc_source_options['necovim'] = {'mark': 'Nec'}
+let g:ddc_source_options['necovim'] = {'mark': '[Nec]'}
 """
 on_source = "ddc.vim"
 
 [[plugins]]
 repo = "matsui54/ddc-buffer"
 hook_source = """
-let g:ddc_source_options['buffer'] = {'mark': 'Buf'}
+let g:ddc_source_options['buffer'] = {'mark': '[Buf]'}
 """
 on_source = "ddc.vim"
 
@@ -127,7 +127,7 @@ on_source = "ddc.vim"
 [[plugins]]
 repo = "delphinus/ddc-tmux"
 hook_source = """
-let g:ddc_source_options['tmux'] = {'mark': 'Tmx'}
+let g:ddc_source_options['tmux'] = {'mark': '[Tmx]'}
 """
 on_source = "ddc.vim"
 
@@ -139,7 +139,7 @@ on_source = "ddc.vim"
 repo = "LumaKernel/ddc-file"
 hook_source = """
 let g:ddc_source_options['file'] = {
-      \   'mark': 'Fil',
+      \   'mark': '[Fil]',
       \   'isVolatile': v:true,
       \   'forceCompletionPattern': '\S/\S*',
       \ }
@@ -150,7 +150,7 @@ on_source = "ddc.vim"
 repo = "Shougo/ddc-rg"
 hook_source = """
 let g:ddc_source_options['rg'] = {
-      \   'mark': 'Rg',
+      \   'mark': '[Rg]',
       \   'minAutoCompleteLength': 4,
       \   'maxItems': 20,
       \ }
