@@ -82,4 +82,4 @@ if [[ -e $HOME/.asdf ]]; then
     export PATH=$PATH:$HOME/.asdf/bin
 fi
 
-
+source $HOME/.bashrc
