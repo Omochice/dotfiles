@@ -133,5 +133,5 @@ inoreabbrev <buffer> ;; ->
 
 plantuml = """
 inoreabbrev <buffer> ;; ->
-inoreabbrev <buffer? :: -->
+inoreabbrev <buffer> :: -->
 """
