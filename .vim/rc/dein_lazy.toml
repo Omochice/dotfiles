@@ -46,6 +46,18 @@ omap ii <Plug>(textobj-indent-i)
 on_map = { x = "<Plug>", o = "<Plug>" }
 
 [[plugins]]
+repo = "Omochice/vim-textobj-codeblock"
+# repo = "~/workspace/vim-textobj-codeblock"
+depends = ["vim-textobj-user"]
+hook_add = """
+xmap ac <Plug>(textobj-codeblock-a)
+xmap ic <Plug>(textobj-codeblock-i)
+omap ac <Plug>(textobj-codeblock-a)
+omap ic <Plug>(textobj-codeblock-i)
+"""
+on_map = { x = "<Plug>", o = "<Plug>" }
+
+[[plugins]]
 repo = "kana/vim-operator-user"
 
 [[plugins]]
