@@ -46,6 +46,17 @@ omap ii <Plug>(textobj-indent-i)
 on_map = { x = "<Plug>", o = "<Plug>" }
 
 [[plugins]]
+repo = "kana/vim-textobj-fold"
+hook_add = """
+xmap az <Plug>(textobj-fold-a)
+xmap iz <Plug>(textobj-fold-i)
+omap az <Plug>(textobj-fold-a)
+omap iz <Plug>(textobj-fold-i)
+"""
+depends = ["vim-textobj-user"]
+on_map = { x = "<Plug>", o = "<Plug>" }
+
+[[plugins]]
 repo = "kana/vim-operator-user"
 
 [[plugins]]
