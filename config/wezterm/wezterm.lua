@@ -2,9 +2,8 @@ local wezterm = require("wezterm");
 local io = require("io")
 
 -- utils
-function merged(...)
+function merged(tables)
     local results = {}
-    local tables = { ... }
     for i = 1, #tables do
         _merged(results, tables[i])
     end
@@ -134,8 +133,8 @@ local windows = {
 }
 
 local domains = {
-    unix_domains = { name = "unix" },
-    default_gui_startup_args = { "connext", "unix" },
+    unix_domains = { { name = "unix" }, },
+    default_gui_startup_args = { "connect", "unix" },
 }
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
@@ -157,10 +156,13 @@ if wezterm.target_triple:find("windows") then
 end
 
 return merged(
-    keys,
-    fonts,
-    bars,
-    domains,
-    windows,
-    others
+    {
+        keys,
+        fonts,
+        bars,
+        domains,
+        windows,
+        colors,
+        others,
+    }
 )
