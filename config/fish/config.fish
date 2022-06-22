@@ -80,14 +80,14 @@ abbr germanium "germanium -f Firge35NerdConsole-Regular"
 
 # On WSL, use tmux instead wezterm.
 # tmux session must be singleton
-if set __ (string match "*microsoft*" (string lower (uname --kernel-release)))
-    set count (ps aux | grep tmux | grep -v grep | wc -l)
-    if test $count -eq 0
-        command tmux
-    else if test $count -eq 1
-        command tmux a
-    end
-end
+# if set __ (string match "*microsoft*" (string lower (uname --kernel-release)))
+#     set count (ps aux | grep tmux | grep -v grep | wc -l)
+#     if test $count -eq 0
+#         command tmux
+#     else if test $count -eq 1
+#         command tmux a
+#     end
+# end
 
 # asdf for fish
 if type "asdf" >/dev/null 2>&1
