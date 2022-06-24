@@ -58,7 +58,6 @@ on_map = { x = "<Plug>", o = "<Plug>" }
 
 [[plugins]]
 repo = "Omochice/vim-textobj-codeblock"
-# repo = "~/workspace/vim-textobj-codeblock"
 depends = ["vim-textobj-user"]
 hook_add = """
 xmap ac <Plug>(textobj-codeblock-a)
@@ -748,5 +747,20 @@ on_cmd = ["Vitalize"]
 repo = "thinca/vim-partedit"
 hook_add = """
 let g:partedit#opener = 'vsplit'
-command! -range PlantUml call partedit#start(<line1>, <line2>, {'filetype': 'plantuml'})
+"""
+on_cmd = ["Partedit"]
+on_func = ["partedit#start"]
+
+[[plugins]]
+repo = "Omochice/vim-operator-partedit"
+depends = ["vim-operator-user", "vim-partedit"]
+hook_add = """
+nmap qe <Plug>(operator-partedit-start)
+xmap qe <Plug>(operator-partedit-start)
+"""
+on_map = { x = "<Plug>", n = "<Plug>" }
+[plugins.ftplugin]
+markdown = """
+nmap <buffer> qe <Plug>(operator-partedit-codeblock)
+xmap <buffer> qe <Plug>(operator-partedit-codeblock)
 """
