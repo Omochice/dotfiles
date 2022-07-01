@@ -8,48 +8,45 @@ import {
 } from "https://raw.githubusercontent.com/stsysd/classopt/v0.1.2/mod.ts";
 import { parse } from "https://deno.land/std@0.140.0/encoding/toml.ts";
 import { expandHome } from "https://deno.land/x/expandhome@v0.0.5/mod.ts";
+import { basename } from "https://deno.land/std@0.146.0/path/mod.ts";
 
 type Shell = "bash" | "zsh" | "fish";
 
 function getShell(): Shell {
-  const tmp = (Deno.env.get("SHELL") ?? "bash").split("/");
-  return tmp[tmp.length - 1] as Shell;
+  return basename(Deno.env.get("SHELL") ?? "bash") as Shell;
 }
 
-interface Setting {
+interface Option {
+  os?: typeof Deno.build.os | typeof Deno.build.os[];
+  arch?: typeof Deno.build.arch;
+  only?: Shell | Shell[];
+  if_executable?: string;
+  if_exists?: string;
+}
+
+interface Setting extends Option {
   paths: ExecutablePath[];
   environments: Environment[];
   aliases: Alias[];
   sources: Source[];
 }
 
-interface ExecutablePath {
+interface ExecutablePath extends Option {
   path: string;
-  if_executable?: string;
-  only?: Shell | Shell[];
 }
 
-interface Environment {
+interface Environment extends Option {
   from: string;
   to: string;
-  if_executable?: string;
-  if_exists?: string;
-  only?: Shell | Shell[];
 }
 
-interface Alias {
+interface Alias extends Option {
   from: string;
   to: string;
-  if_executable?: string;
-  if_exists?: string;
-  only?: Shell | Shell[];
 }
 
-interface Source {
+interface Source extends Option {
   path: string;
-  if_executable?: string;
-  if_exists?: string;
-  only?: Shell | Shell[];
 }
 
 async function loadToml(path: string): Promise<Setting> {
