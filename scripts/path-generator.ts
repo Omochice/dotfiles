@@ -66,9 +66,18 @@ function filterByShell<
   arr: T[],
   shell: Shell,
 ): T[] {
-  return arr.filter((e) =>
-    e.only == undefined || e.only == shell || e.only.includes(shell)
-  );
+  const acceptOnly = (e: Option): boolean => {
+    return e.only === undefined || e.only === shell || e.only.includes(shell);
+  };
+  const acceptOs = (e: Option): boolean => {
+    return e.os === undefined || e.os === Deno.build.os ||
+      e.os.includes(Deno.build.os);
+  };
+  const acceptArch = (e: Option): boolean => {
+    return e.arch === undefined || e.arch === Deno.build.arch ||
+      e.arch.includes(Deno.build.arch);
+  };
+  return arr.filter((e) => acceptOnly(e) && acceptOs(e) && acceptArch(e));
 }
 
 function executable(command: string): string {
