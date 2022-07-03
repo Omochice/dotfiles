@@ -19,7 +19,7 @@ path = "~/.yarn/bin"
 [[paths]]
 path = "~/.asdf/bin"
 
-[[environments]]
+[[aliases]]
 from = "nvim"
 to = "vim"
 if_executable = "nvim"
@@ -60,7 +60,7 @@ os = "darwin"
 
 [[aliases]]
 from = "shutdown -h now"
-to = "shotdown"
+to = "shutdown"
 os = "linux"
 
 [[aliases]]
