@@ -700,7 +700,7 @@ let g:vim_filetype_formatter_commands = {
       \   'json': 'jq .',
       \   'python': 'black --quiet - | isort --quiet -',
       \   'go': 'goimports | gofmt',
-      \   'typescript': 'deno fmt -',
+      \   'typescript': 'NO_COLOR= deno fmt -',
       \   'sh': 'shfmt -ln bash -i 2 -bn -ci -sr -kp',
       \   'fortran': 'fprettify -i 2 -S',
       \   'elm': 'elm-format --stdin',
@@ -764,3 +764,4 @@ markdown = """
 nmap <buffer> qe <Plug>(operator-partedit-codeblock)
 xmap <buffer> qe <Plug>(operator-partedit-codeblock)
 """
+
