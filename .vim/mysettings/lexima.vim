@@ -5,6 +5,11 @@ let s:rules += [
       \ {'char': '<BS>', 'at': '<\%#>', 'input': '<BS>', 'delete': 1, },
       \ ]
 
+"" javascript
+let s:rules += [
+      \ {'filetype': ['javascript', 'typescript'], 'char': '<Space>', 'at': '^\s*\(}\s*else\s\)\?if\%#', 'input': '<Space>(', 'input_after': ')' },
+      \ ]
+
 "" ruby
 let s:rules += [
       \ {'filetype': 'ruby', 'char': '<Bar>', 'at': '\(do\|{\)\s*\%#', 'input': '<Bar>', 'input_after': '<Bar>', },
