@@ -129,6 +129,13 @@ endfunction
 on_func = "searchx"
 
 [[plugins]]
+repo = "haya14busa/vim-asterisk"
+hook_add = """
+nmap * <Plug>(asterisk-z*)
+"""
+on_map = { n = "<Plug>" }
+
+[[plugins]]
 repo = "hrsh7th/vim-vsnip"
 on_map = { x = "<Plug>", i = "<Plug>" }
 hook_add = """
