@@ -1,0 +1,162 @@
+[[paths]]
+path = "~/.local/bin"
+
+[[paths]]
+path = "/usr/local/go/bin"
+
+[[paths]]
+path = "~/.go/bin"
+
+[[paths]]
+path = "~/go/bin"
+
+[[paths]]
+path = "~/.deno/bin"
+
+[[paths]]
+path = "~/.yarn/bin"
+
+[[paths]]
+path = "~/.asdf/bin"
+
+[[aliases]]
+from = "nvim"
+to = "vim"
+if_executable = "nvim"
+
+[[environments]]
+from = "nvim"
+to = "EDITOR"
+if_executable = "nvim"
+
+[[environments]]
+from = "~/.config/starship/config.toml"
+to = "STARSHIP_CONFIG"
+
+[[environments]]
+from = "wezterm"
+to = "TERMINAL"
+if_executable = "wezterm"
+
+[[environments]]
+from = "~/.config"
+to = "XDG_CONFIG_HOME"
+if_exists = "~/.config"
+
+[[aliases]]
+from = "osascript -e 'tell app \"loginwindow\" to «event aevtrsdn»'"
+to = "shutdown"
+os = "darwin"
+
+[[aliases]]
+from = "osascript -e 'tell app \"loginwindow\" to «event aevtrrst»'"
+to = "reboot"
+os = "darwin"
+
+[[aliases]]
+from = "pmset displaysleepnow"
+to = "lock"
+os = "darwin"
+
+[[aliases]]
+from = "shutdown -h now"
+to = "shutdown"
+os = "linux"
+
+[[aliases]]
+from = "xsel --clipboard --input"
+to = "pbcopy"
+os = "linux"
+if_executable = "xsel"
+
+[[aliases]]
+from = "xsel --clipboard --output"
+to = "pbpaste"
+os = "linux"
+if_executable = "xsel"
+
+[[aliases]]
+from = "bat"
+to = "cat"
+if_executable = "bat"
+
+[[aliases]]
+from = "batcat"
+to = "cat"
+if_executable = "batcat"
+
+[[aliases]]
+from = "exa --icons -g --time-style=long-iso"
+to = "ls"
+if_executable = "exa"
+
+[[aliases]]
+from = "ptpython --vi"
+to = "ptpython"
+if_executable = "ptpython"
+
+[[aliases]]
+from = "ptipython --vi"
+to = "ptipython"
+if_executable = "ptipython"
+
+[[aliases]]
+from = "glab"
+to = "gl"
+if_executable = "glab"
+
+[[aliases]]
+from = "date '+%Y-%m-%d'"
+to = "today"
+
+[[aliases]]
+from = "date '+%Y-%m-%d' --date '+1 day'"
+to = "tomorrow"
+
+[[aliases]]
+from = "$EDITOR -R"
+to = "view"
+
+[[aliases]]
+from = "paru"
+to = "yay"
+if_executable = "paru"
+
+[[sources]]
+path = "(dirname (dirname (command -v asdf)))/asdf.fish"
+if_executable = "asdf"
+only = "fish"
+
+[[sources]]
+path = "dirname(dirname(command -v asdf))/asdf.sh"
+if_executable = "asdf"
+only = "bash"
+
+[[sources]]
+path = "$XDG_CONFIG_HOME/fish/abbr.fish"
+only = "fish"
+
+[[executes]]
+command = "eval (gh completion --shell fish | source)"
+if_executable = "gh"
+only = "fish"
+
+[[executes]]
+command = "eval \"$(gh completion --shell bash)\""
+if_executable = "gh"
+only = "bash"
+
+[[executes]]
+command = "eval (glab completion --shell fish | source)"
+if_executable = "glab"
+only = "fish"
+
+[[executes]]
+command = "eval \"$(glab completion --shell bash)\""
+if_executable = "glab"
+only = "bash"
+
+[[executes]]
+command = "starship init fish | source"
+if_executable = "starship"
+only = "fish"
