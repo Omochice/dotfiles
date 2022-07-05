@@ -19,6 +19,9 @@ path = "~/.yarn/bin"
 [[paths]]
 path = "~/.asdf/bin"
 
+[[paths]]
+path = "~/.cargo/bin"
+
 [[aliases]]
 from = "nvim"
 to = "vim"
