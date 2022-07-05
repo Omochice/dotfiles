@@ -67,7 +67,7 @@ let s:rules += [
 "" plantuml
 let s:rules += [
       \ { 'filetype': 'plantuml', 'char': '<CR>', 'at': '\s*\(alt\|opt\|loop\|par\|group\)\s\?.*\%#', 'input': '<CR>', 'input_after': '<CR>end' },
-      \ { 'filetype': 'plantuml', 'char': '<CR>', 'at': '\s*note \(left of\|right of\|over\).*\%#', 'input': '<CR>', 'input_after': '<CR>end note' },
+      \ { 'filetype': 'plantuml', 'char': '<CR>', 'at': '\s*note \(left\( of\)\?\|right\( of\)\?\|over\).*\%#', 'input': '<CR>', 'input_after': '<CR>end note' },
       \ { 'filetype': 'plantuml', 'char': '<CR>', 'at': '\s*box.*\%#', 'input': '<CR>', 'input_after': '<CR>end box' },
       \ { 'filetype': 'plantuml', 'char': '=', 'at': '^\s*=\%#', 'input': '=', 'input_after': '==' },
       \ { 'filetype': 'plantuml', 'char': '<Space>', 'at': '==\%#==', 'input': ' ', 'input_after': ' ' },
