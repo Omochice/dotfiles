@@ -4,6 +4,7 @@ let g:is_deno_executable = executable('deno')
 let g:dein#inline_vimrcs = [
       \ expand('~/.config/vim/vimrc.core'),
       \ g:config_dir . '/fcitx.vim',
+      \ g:config_dir . '/zenhan.vim',
       \ ]
 
 " dein.vim settings {{
