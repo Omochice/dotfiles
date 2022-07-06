@@ -762,13 +762,13 @@ on_func = ["partedit#start"]
 repo = "Omochice/vim-operator-partedit"
 depends = ["vim-operator-user", "vim-partedit"]
 hook_add = """
-nmap qe <Plug>(operator-partedit-start)
-xmap qe <Plug>(operator-partedit-start)
+nmap <buffer> qe <Plug>(operator-partedit-start)
+xmap <buffer> qe <Plug>(operator-partedit-start)
 """
 on_map = { x = "<Plug>", n = "<Plug>" }
+
 [plugins.ftplugin]
 markdown = """
 nmap <buffer> qe <Plug>(operator-partedit-codeblock)
 xmap <buffer> qe <Plug>(operator-partedit-codeblock)
 """
-
