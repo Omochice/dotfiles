@@ -11,13 +11,23 @@ import { expandHome } from "https://deno.land/x/expandhome@v0.0.5/mod.ts";
 import { basename } from "https://deno.land/std@0.146.0/path/mod.ts";
 
 type Shell = "bash" | "zsh" | "fish";
+type OS = "wsl" | typeof Deno.build.os;
 
 function getShell(): Shell {
   return basename(Deno.env.get("SHELL") ?? "bash") as Shell;
 }
 
+function getOS(): OS {
+  try {
+    const b = Deno.readTextFileSync("/proc/version").toString().toLowerCase();
+    return b.includes("microsoft") ? "wsl" : Deno.build.os;
+  } catch {
+    return Deno.build.os;
+  }
+}
+
 interface Option {
-  os?: typeof Deno.build.os | typeof Deno.build.os[];
+  os?: OS | OS[];
   arch?: typeof Deno.build.arch;
   only?: Shell | Shell[];
   if_executable?: string;
@@ -70,8 +80,7 @@ function filterByShell<
     return e.only === undefined || e.only === shell || e.only.includes(shell);
   };
   const acceptOs = (e: Option): boolean => {
-    return e.os === undefined || e.os === Deno.build.os ||
-      e.os.includes(Deno.build.os);
+    return e.os === undefined || e.os === getOS() || e.os.includes(getOS());
   };
   const acceptArch = (e: Option): boolean => {
     return e.arch === undefined || e.arch === Deno.build.arch ||
