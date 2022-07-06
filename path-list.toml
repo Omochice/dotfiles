@@ -79,6 +79,18 @@ os = "linux"
 if_executable = "xsel"
 
 [[aliases]]
+from = "win32yank.exe -i"
+to = "pbcopy"
+os = "wsl"
+if_executable = "win32yank.exe"
+
+[[aliases]]
+from = "win32yank.exe -o"
+to = "pbpaste"
+os = "wsl"
+if_executable = "win32yank.exe"
+
+[[aliases]]
 from = "bat"
 to = "cat"
 if_executable = "bat"
