@@ -138,6 +138,9 @@ to = "yay"
 if_executable = "paru"
 
 [[sources]]
+path = "~/.nix-profile/etc/profile.d/nix.sh"
+
+[[sources]]
 path = "(dirname (dirname (command -v asdf)))/asdf.fish"
 if_executable = "asdf"
 only = "fish"
