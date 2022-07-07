@@ -12,6 +12,7 @@
 !/.vim/mysettings/*
 !/.vim/vimrc
 !/.vim/fcitx.vim
+!/.vim/zenhan.vim
 .vim/dein
 !/.vim/snippets/*.json
 !/.vim/templates/**/*
@@ -64,3 +65,4 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/karabiner/**
 !/config/sketchybar/**
 !/config/glab-cli/aliases.yml
+!/config/gh/config.yml
