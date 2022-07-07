@@ -26,43 +26,43 @@ function getOS(): OS {
   }
 }
 
-interface Option {
+type Option = {
   os?: OS | OS[];
   arch?: typeof Deno.build.arch;
   only?: Shell | Shell[];
   if_executable?: string;
   if_exists?: string;
-}
+};
 
-interface Setting extends Option {
+type Setting = {
   paths: ExecutablePath[];
   environments: Environment[];
   aliases: Alias[];
   sources: Source[];
   executes: Execute[];
-}
+};
 
-interface ExecutablePath extends Option {
+type ExecutablePath = Option & {
   path: string;
-}
+};
 
-interface Environment extends Option {
+type Environment = Option & {
   from: string;
   to: string;
-}
+};
 
-interface Alias extends Option {
+type Alias = Option & {
   from: string;
   to: string;
-}
+};
 
-interface Source extends Option {
+type Source = Option & {
   path: string;
-}
+};
 
-interface Execute extends Option {
+type Execute = Option & {
   command: string;
-}
+};
 
 async function loadToml(path: string): Promise<Setting> {
   const contents = Deno.readTextFile(path);
@@ -70,8 +70,7 @@ async function loadToml(path: string): Promise<Setting> {
 }
 
 function filterByShell<
-  T extends ExecutablePath | Environment | Alias | Source | Execute =
-    ExecutablePath,
+  T extends ExecutablePath | Environment | Alias | Source | Execute,
 >(
   arr: T[],
   shell: Shell,
