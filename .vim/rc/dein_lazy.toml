@@ -405,9 +405,9 @@ depends = ["vim-textobj-user", "vim-textobj-line", "vim-textobj-anyblock"]
 [[plugins]]
 repo = "alvan/vim-closetag"
 hook_add = """
-let g:closetag_filenames = '*.html, *,vue, *.xml, *.jsx, *.erb'
+let g:closetag_filenames = '*.html, *.xml, *.jsx, *.erb'
 """
-on_ft = ["html", "vue", "xml", "erb", "jsx", "htmldjango"]
+on_ft = ["html", "xml", "erb", "jsx", "htmldjango"]
 
 [[plugins]]
 repo = "heavenshell/vim-pydocstring"
