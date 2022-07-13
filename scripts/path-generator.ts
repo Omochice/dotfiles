@@ -35,11 +35,11 @@ type Option = {
 };
 
 type Setting = {
-  paths: ExecutablePath[];
-  environments: Environment[];
-  aliases: Alias[];
-  sources: Source[];
-  executes: Execute[];
+  paths?: ExecutablePath[];
+  environments?: Environment[];
+  aliases?: Alias[];
+  sources?: Source[];
+  executes?: Execute[];
 };
 
 type ExecutablePath = Option & {
