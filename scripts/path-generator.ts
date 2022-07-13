@@ -92,19 +92,25 @@ function executable(command: string): string {
   return `command -v ${command} >/dev/null 2>&1`;
 }
 
-function generateFactory(kind: Option, shell: Shell) {
+function isExists(path: string): boolean {
+  try {
+    Deno.lstatSync(path);
+  } catch (_) {
+    return false;
+  }
+  return true;
+}
+
+function generateFactory(
+  kind: Option,
+): (...commands: string[]) => string {
   return (...commands: string[]): string => {
     const conditions = [];
-    const exists = (path: string): string => {
-      return shell === "fish"
-        ? `test -e ${expandHome(path)}`
-        : `[[ -e ${expandHome(path)} ]]`;
-    };
     if (kind.if_executable !== undefined) {
       conditions.push(executable(kind.if_executable));
     }
-    if (kind.if_exists !== undefined) {
-      conditions.push(exists(expandHome(kind.if_exists)));
+    if (kind.if_exists !== undefined && !isExists(expandHome(kind.if_exists))) {
+      return "";
     }
 
     return [...conditions, ...commands].join(" && ");
@@ -112,24 +118,19 @@ function generateFactory(kind: Option, shell: Shell) {
 }
 
 function generatePath(config: ExecutablePath, shell: Shell): string {
-  const generate = generateFactory(config, shell);
+  const generate = generateFactory(config);
   const path = expandHome(config.path);
+  config.if_exists = path;
   if (shell === "fish") {
-    return generate(
-      `test -d ${path}`,
-      `set --path PATH \$PATH ${path}`,
-    );
+    return generate(`set --path PATH \$PATH ${path}`);
   } else {
-    return generate(
-      `[[ -d ${path} ]]`,
-      `export PATH=${path}:\$PATH`,
-    );
+    return generate(`export PATH=${path}:\$PATH`);
   }
 }
 
 function generateAlias(alias: Alias, shell: Shell): string {
   const from = expandHome(alias.from);
-  const generate = generateFactory(alias, shell);
+  const generate = generateFactory(alias);
   if (shell === "fish") {
     return generate(`alias ${alias.to} "${from}"`);
   } else {
@@ -140,7 +141,7 @@ function generateAlias(alias: Alias, shell: Shell): string {
 function generateEnviroment(environment: Environment, shell: Shell): string {
   const from = expandHome(environment.from);
   const to = environment.to;
-  const generate = generateFactory(environment, shell);
+  const generate = generateFactory(environment);
   if (shell === "fish") {
     return generate(`set --unpath ${to} ${from}`);
   } else {
@@ -150,7 +151,7 @@ function generateEnviroment(environment: Environment, shell: Shell): string {
 
 function generateSource(source: Source, shell: Shell): string {
   const path = expandHome(source.path);
-  const generate = generateFactory(source, shell);
+  const generate = generateFactory(source);
   if (shell === "fish") {
     return generate(`test -f ${path}`, `source ${path}`);
   } else {
@@ -158,8 +159,8 @@ function generateSource(source: Source, shell: Shell): string {
   }
 }
 
-function generateExecute(execute: Execute, shell: Shell): string {
-  const generate = generateFactory(execute, shell);
+function generateExecute(execute: Execute): string {
+  const generate = generateFactory(execute);
   return generate(execute.command);
 }
 
@@ -217,20 +218,24 @@ class Program extends Command {
     for (const exec of filterByShell(tomlData.executes ?? [], this.shell)) {
       if (this.debug) {
         console.error(exec);
-        console.error(generateExecute(exec, this.shell));
+        console.error(generateExecute(exec));
       }
-      execs.push(generateExecute(exec, this.shell));
+      execs.push(generateExecute(exec));
     }
 
-    console.log(
-      [
-        paths.join("\n"),
-        sources.join("\n"),
-        aliases.join("\n"),
-        envs.join("\n"),
-        execs.join("\n"),
-      ].filter((e) => e.length > 0).join("\n\n"),
+    const contents = [
+      paths,
+      sources,
+      aliases,
+      envs,
+      execs,
+    ].map((generated) =>
+      generated
+        .filter((e) => e.length > 0)
+        .join("\n")
     );
+
+    console.log(contents.filter((c) => c.length > 0).join("\n\n"));
   }
 }
 
