@@ -88,6 +88,10 @@ function filterByShell<
   return arr.filter((e) => acceptOnly(e) && acceptOs(e) && acceptArch(e));
 }
 
+function executable(command: string): string {
+  return `command -v ${command} >/dev/null 2>&1`;
+}
+
 function isExists(path: string): boolean {
   try {
     Deno.lstatSync(path);
@@ -97,38 +101,13 @@ function isExists(path: string): boolean {
   return true;
 }
 
-function executableFactory() {
-  const pathDirs = (Deno.env.get("PATH") ?? "").split(":");
-  return {
-    addPath: (pathDir: string): void => {
-      pathDirs.push(pathDir);
-    },
-    executable: (command: string): boolean => {
-      const pathDirs = (Deno.env.get("PATH") ?? "").split(":");
-      return pathDirs.some((dir: string) => {
-        try {
-          const mode = Deno.statSync(`${dir}/${command}`).mode;
-          if (mode === null) {
-            return false;
-          }
-          return (mode & parseInt("100", 8)) === parseInt("100", 8);
-        } catch (_) {
-          return false;
-        }
-      });
-    },
-  };
-}
-// NOTE: this closures have same ref: `pathDirs` variable
-const { addPath, executable } = executableFactory();
-
 function generateFactory(
   kind: Option,
 ): (...commands: string[]) => string {
   return (...commands: string[]): string => {
-    const conditions: string[] = [];
-    if (kind.if_executable !== undefined && !executable(kind.if_executable)) {
-      return "";
+    const conditions = [];
+    if (kind.if_executable !== undefined) {
+      conditions.push(executable(kind.if_executable));
     }
     if (kind.if_exists !== undefined && !isExists(expandHome(kind.if_exists))) {
       return "";
@@ -142,13 +121,11 @@ function generatePath(config: ExecutablePath, shell: Shell): string {
   const generate = generateFactory(config);
   const path = expandHome(config.path);
   config.if_exists = path;
-  const generated = shell === "fish"
-    ? generate(`set --path PATH \$PATH ${path}`)
-    : generate(`export PATH=${path}:\$PATH`);
-  if (generated !== "") {
-    addPath(path);
+  if (shell === "fish") {
+    return generate(`set --path PATH \$PATH ${path}`);
+  } else {
+    return generate(`export PATH=${path}:\$PATH`);
   }
-  return generated;
 }
 
 function generateAlias(alias: Alias, shell: Shell): string {
@@ -201,7 +178,6 @@ class Program extends Command {
 
   async execute() {
     const tomlData = await loadToml(this.config);
-
     const paths: string[] = [];
     for (const p of filterByShell(tomlData.paths ?? [], this.shell)) {
       if (this.debug) {
