@@ -2,7 +2,8 @@ add_newline = true
 format = """
 ┌───────────────────> $git_branch $git_status $env_var
 ├ $username at $hostname in $directory
-└─> $character """
+└─> $character
+"""
 
 [character]
 success_symbol = "\\$"
