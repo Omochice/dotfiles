@@ -12,16 +12,16 @@ omap il <Plug>(textobj-line-i)
 """
 on_map = { x = "<Plug>", o = "<Plug>" }
 
-[[plugins]]
-repo = "rhysd/vim-textobj-anyblock"
-depends = ["vim-textobj-user"]
-hook_add = """
-xmap ab <Plug>(textobj-anyblock-a)
-xmap ib <Plug>(textobj-anyblock-i)
-omap ab <Plug>(textobj-anyblock-a)
-omap ib <Plug>(textobj-anyblock-i)
-"""
-on_map = { x = "<Plug>", o = "<Plug>" }
+#[[plugins]]
+#repo = "rhysd/vim-textobj-anyblock"
+#depends = ["vim-textobj-user"]
+#hook_add = """
+#xmap ab <Plug>(textobj-anyblock-a)
+#xmap ib <Plug>(textobj-anyblock-i)
+#omap ab <Plug>(textobj-anyblock-a)
+#omap ib <Plug>(textobj-anyblock-i)
+#"""
+#on_map = { x = "<Plug>", o = "<Plug>" }
 
 [[plugins]]
 repo = "thinca/vim-textobj-between"
@@ -263,8 +263,23 @@ nmap sd <Plug>(sandwich-delete)
 nmap sdb <Plug>(sandwich-delete-auto)
 nmap sr <Plug>(sandwich-replace)
 nmap srb <Plug>(sandwich-replace-auto)
+nmap ib <Plug>(sandwich)
+
+omap ib <Plug>(textobj-sandwich-auto-i)
+xmap ib <Plug>(textobj-sandwich-auto-i)
+omap ab <Plug>(textobj-sandwich-auto-a)
+xmap ab <Plug>(textobj-sandwich-auto-a)
+
+omap is <Plug>(textobj-sandwich-query-i)
+xmap is <Plug>(textobj-sandwich-query-i)
+omap as <Plug>(textobj-sandwich-query-a)
+xmap as <Plug>(textobj-sandwich-query-a)
 """
-on_map = { n = "<Plug>", x = "<Plug>" }
+depends = "vim-textobj-user"
+[plugins.on_map]
+n = "<Plug>"
+x = ["<Plug>", "<Plug>(textobj-sandwich"]
+o = "<Plug>(textobj-sandwich"
 
 [[plugins]]
 repo = "tyru/caw.vim"
