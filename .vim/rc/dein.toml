@@ -49,7 +49,7 @@ let g:lightline = {
 function! LightlineFileType() abort
   if winwidth(0) > 70
     if strlen(&filetype) > 0
-      return &filetype . ' ' . WebDevIconsGetFileTypeSymbol()
+      return &filetype . ' ' . nerdfont#find()
     else
       return 'no ft'
     endif
@@ -60,20 +60,13 @@ endfunction
 
 function! LightlineFotmat() abort
   if winwidth(0) > 70
-    return &fileformat .  ' ' . WebDevIconsGetFileFormatSymbol()
+    return &fileformat .  ' ' . nerdfont#fileformat#find()
   else
     return ''
   endif
 endfunction
-
-let g:colors_map = {}
-function! ChangeColor(colorname) abort
-  execute 'colorscheme' . ' ' . a:colorname
-  let g:lightline.colorscheme = get(g:colors_map, a:colorname, a:colorname)
-  call lightline#enable()
-endfunction
 """
-depends = ["vim-devicons", 'vim-gitbranch']
+depends = ["nerdfont.vim", 'vim-gitbranch']
 
 [[plugins]]
 repo = "itchyny/vim-gitbranch"
@@ -89,7 +82,7 @@ endif
 """
 
 [[plugins]]
-repo = "ryanoasis/vim-devicons"
+repo = "lambdalisue/nerdfont.vim"
 
 [[plugins]]
 repo = "lambdalisue/seethrough.vim"
