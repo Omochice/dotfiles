@@ -47,8 +47,14 @@ source = ["target/release/wezterm", "target/release/wezterm-gui", "target/releas
 [[tools]]
 repo = "neovim/neovim"
 build = """
-rm -r build/ .deps*
+rm -r build/ .deps
 make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX=~/.local/nvim install
+rm ~/.local/nvim/share/nvim/runtime/plugin/gzip.vim
+rm ~/.local/nvim/share/nvim/runtime/plugin/netrwPlugin.vim
+rm ~/.local/nvim/share/nvim/runtime/shada.vim
+rm ~/.local/nvim/share/nvim/runtime/tarPlugin.vim
+rm ~/.local/nvim/share/nvim/runtime/tohtml.vim
+rm ~/.local/nvim/share/nvim/runtime/zipPlugin.vim
 """
 [tools.symlink]
 source = "~/.local/nvim/bin/nvim"
