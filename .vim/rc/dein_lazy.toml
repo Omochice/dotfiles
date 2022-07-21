@@ -285,7 +285,7 @@ o = "<Plug>(textobj-sandwich"
 repo = "tyru/caw.vim"
 hook_add = """
 nmap gc <Plug>(caw:prefix)
-xmap gc <Plug>(caw:prefix)
+xmap gc <Plug>(caw:hatpos:toggle)
 " Brute force solution
 " https://github.com/tyru/caw.vim/issues/166
 nmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
