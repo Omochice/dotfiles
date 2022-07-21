@@ -23,7 +23,7 @@
       "console.log"
     ],
     "body": [
-      "console.log({${1:object}})"
+      "console.log(${1:object})"
     ],
     "description": "console.log"
   },
@@ -71,11 +71,14 @@
     "prefix": "typedoc",
     "body": [
       "/**",
-      "* $1",
-      "*",
-      "* @param $2",
-      "* @returns $3",
-      "*/"
+      " * $1",
+      " *",
+      " * @param $2",
+      " * @return $3",
+      " * @example $4",
+      " * how to use",
+      " * // whats are returned?",
+      " */"
     ],
     "description": "typedoc template"
   }
