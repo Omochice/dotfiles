@@ -61,7 +61,9 @@ source = "~/.local/nvim/bin/nvim"
 
 [[tools]]
 repo = "jesseduffield/lazygit"
-build = "go install"
+build = "go build"
+[tools.symlink]
+source = "lazygit"
 
 [[tools]]
 repo = "asdf-vm/asdf"
