@@ -50,7 +50,15 @@ $fontReleaseInfo.assets | ForEach {
 
 $destination = (New-Object -ComObject Shell.Application).Namespace(0x14)
 Get-ChildItem -Path $tempDir -Include "*.ttf" -Recurse | ForEach {
-    $destination.CopyHere($_.FullName, 0x10)
+    if (-not(Test-Path (Join-Path $UserProfile -ChildPath "AppData" |
+                                     Join-Path -ChildPath "Local" |
+                                     Join-Path -ChildPath "Microsoft" |
+                                     Join-Path -ChildPath "Windows" |
+                                     Join-Path -ChildPath "Fonts" |
+                                     Join-Path -ChildPath $_.Name
+                                     ))) {
+        $destination.CopyHere($_.FullName, 0x10)
+    }
 }
 Remove-Item $tempDir -Recurse
 ## }}}
