@@ -37,6 +37,24 @@ if(!$hasPackageManager)
 winget install "App Installer" -s msstore
 
 ## }}}
+
+## install font {{{
+$tempDir = Join-Path -Path $env:SystemRoot -ChildPath "Windows" | Join-Path -ChildPath "Temp" | Join-Path -ChildPath "Fonts"
+New-Item $tempDir -Type Directory -Force
+$fontReleaseInfo = Invoke-RestMethod -uri "https://api.github.com/repos/yuru7/Firge/releases/latest"
+$fontReleaseInfo.assets | ForEach {
+    $outFile = (Join-Path -Path $UserProfile -ChildPath "downloads" | Join-Path -ChildPath $_.name)
+    Invoke-WebRequest -Uri $_.browser_download_url -OutFile $outFile
+    Expand-Archive -LiteralPath $outFile -Destination $tempDir
+}
+
+$destination = (New-Object -ComObject Shell.Application).Namespace(0x14)
+Get-ChildItem -Path $tempDir -Include "*.ttf" -Recurse | ForEach {
+    $destination.CopyHere($_.FullName, 0x10)
+}
+Remove-Item $tempDir -Recurse
+## }}}
+
 ## wezterm
 if ($null -eq (Get-Command "wezterm.exe" -ErrorAction SilentlyContinue)) {
     winget install Wez.WezTerm
