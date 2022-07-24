@@ -12,16 +12,16 @@ omap il <Plug>(textobj-line-i)
 """
 on_map = { x = "<Plug>", o = "<Plug>" }
 
-[[plugins]]
-repo = "rhysd/vim-textobj-anyblock"
-depends = ["vim-textobj-user"]
-hook_add = """
-xmap ab <Plug>(textobj-anyblock-a)
-xmap ib <Plug>(textobj-anyblock-i)
-omap ab <Plug>(textobj-anyblock-a)
-omap ib <Plug>(textobj-anyblock-i)
-"""
-on_map = { x = "<Plug>", o = "<Plug>" }
+#[[plugins]]
+#repo = "rhysd/vim-textobj-anyblock"
+#depends = ["vim-textobj-user"]
+#hook_add = """
+#xmap ab <Plug>(textobj-anyblock-a)
+#xmap ib <Plug>(textobj-anyblock-i)
+#omap ab <Plug>(textobj-anyblock-a)
+#omap ib <Plug>(textobj-anyblock-i)
+#"""
+#on_map = { x = "<Plug>", o = "<Plug>" }
 
 [[plugins]]
 repo = "thinca/vim-textobj-between"
@@ -263,14 +263,29 @@ nmap sd <Plug>(sandwich-delete)
 nmap sdb <Plug>(sandwich-delete-auto)
 nmap sr <Plug>(sandwich-replace)
 nmap srb <Plug>(sandwich-replace-auto)
+nmap ib <Plug>(sandwich)
+
+omap ib <Plug>(textobj-sandwich-auto-i)
+xmap ib <Plug>(textobj-sandwich-auto-i)
+omap ab <Plug>(textobj-sandwich-auto-a)
+xmap ab <Plug>(textobj-sandwich-auto-a)
+
+omap is <Plug>(textobj-sandwich-query-i)
+xmap is <Plug>(textobj-sandwich-query-i)
+omap as <Plug>(textobj-sandwich-query-a)
+xmap as <Plug>(textobj-sandwich-query-a)
 """
-on_map = { n = "<Plug>", x = "<Plug>" }
+depends = "vim-textobj-user"
+[plugins.on_map]
+n = "<Plug>"
+x = ["<Plug>", "<Plug>(textobj-sandwich"]
+o = "<Plug>(textobj-sandwich"
 
 [[plugins]]
 repo = "tyru/caw.vim"
 hook_add = """
 nmap gc <Plug>(caw:prefix)
-xmap gc <Plug>(caw:prefix)
+xmap gc <Plug>(caw:hatpos:toggle)
 " Brute force solution
 " https://github.com/tyru/caw.vim/issues/166
 nmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
@@ -405,9 +420,9 @@ depends = ["vim-textobj-user", "vim-textobj-line", "vim-textobj-anyblock"]
 [[plugins]]
 repo = "alvan/vim-closetag"
 hook_add = """
-let g:closetag_filenames = '*.html, *,vue, *.xml, *.jsx, *.erb'
+let g:closetag_filenames = '*.html, *.xml, *.jsx, *.erb'
 """
-on_ft = ["html", "vue", "xml", "erb", "jsx", "htmldjango"]
+on_ft = ["html", "xml", "erb", "jsx", "htmldjango"]
 
 [[plugins]]
 repo = "heavenshell/vim-pydocstring"
@@ -773,3 +788,37 @@ markdown = """
 nmap <buffer> qe <Plug>(operator-partedit-codeblock)
 xmap <buffer> qe <Plug>(operator-partedit-codeblock)
 """
+
+[[plugins]]
+repo = "lambdalisue/fern.vim"
+hook_add = """
+let g:fern#disable_default_mappings = v:true
+cnoreabbrev fe Fern .
+cnoreabbrev fep Fern . -reveal=%
+command! TFern tabnew | Fern .
+cnoreabbrev tf TFern
+"""
+on_cmd = ["Fern"]
+[plugins.ftplugin]
+fern = """
+nmap <buffer> qq <Cmd>bprevious<CR>
+nmap <buffer> i <Plug>(fern-action-new-file)
+nmap <buffer> o <Plug>(fern-action-new-dir)
+nmap <buffer> r <Plug>(fern-action-rename)
+nmap <buffer> dd <Plug>(fern-action-remove=)
+nmap <buffer> yy <Plug>(fern-action-clipboard-copy)
+nmap <buffer> p <Plug>(fern-action-clipboard-paste)
+nmap <buffer> h <Plug>(fern-action-collapse)
+nmap <buffer> l <Plug>(fern-action-open-or-expand)
+nmap <buffer> ! <Plug>(fern-action-hidden:toggle)
+nmap <buffer> ? <Plug>(fern-action-help)  " This may be redundant
+nmap <buffer> t <Plug>(fern-action-open:tabedit)
+nmap <buffer><expr> <Plug>(fern-action-open-or-expand:stay) fern#smart#leaf("<Plug>(fern-action-open)", "<Plug>(fern-action-expand:stay)")
+nmap <buffer><expr> <CR> getline('.') =~# '^\s*\|-\s'
+      \ ? '<Plug>(fern-action-collapse)'
+      \ : '<Plug>(fern-action-open-or-expand:stay)'
+"""
+
+[[plugins]]
+repo = "lambdalisue/fern-hijack.vim"
+on_source = "fern.vim"

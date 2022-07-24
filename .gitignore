@@ -30,6 +30,7 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/paru/*
 /config/fish/fish_variables
 !/config/git/ignore
+!/config/git/gitmessage
 !/config/vim/vimrc.core
 !/config/nvim/init.vim
 !/config/i3/config
