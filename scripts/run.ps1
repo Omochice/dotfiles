@@ -19,6 +19,24 @@ reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeli
 
 # }}}
 
+## install winget via github-release {{{
+$hasPackageManager = Get-AppPackage -name "Microsoft.DesktopAppInstaller"
+
+if(!$hasPackageManager)
+{
+    $releases_url = "https://api.github.com/repos/microsoft/winget-cli/releases/latest"
+
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    $releases = Invoke-RestMethod -uri "$($releases_url)"
+    $latestRelease = $releases.assets | Where { $_.browser_download_url.EndsWith("msixbundle") } | Select -First 1
+
+    Add-AppxPackage -Path $latestRelease.browser_download_url
+}
+
+### replace winget by from msstore
+winget install "App Installer" -s msstore
+
+## }}}
 ## wezterm
 if ($null -eq (Get-Command "wezterm.exe" -ErrorAction SilentlyContinue)) {
     winget install Wez.WezTerm
