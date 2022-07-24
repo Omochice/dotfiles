@@ -139,6 +139,13 @@ if_executable = "paru"
 
 [[sources]]
 path = "~/.nix-profile/etc/profile.d/nix.sh"
+if_exists = "~/.nix-profile"
+only = ["bash", "zsh"]
+
+[[sources]]
+path = "~/.config/fish/nix.fish"
+if_exists = "~/.nix-profile"
+only = ["fish"]
 
 [[sources]]
 path = "(dirname (dirname (command -v asdf)))/asdf.fish"

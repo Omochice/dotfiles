@@ -2,7 +2,7 @@ local wezterm = require("wezterm");
 local io = require("io")
 
 -- utils
-function merged(tables)
+local function merged(tables)
     local results = {}
     for i = 1, #tables do
         _merged(results, tables[i])
@@ -22,7 +22,7 @@ function _merged(t1, t2) -- from [https://github.com/yutkat/dotfiles/blob/357691
     return t1
 end
 
-function basename(path)
+local function basename(path)
     if path == nil then
         return ""
     else
@@ -31,7 +31,7 @@ function basename(path)
     -- return path
 end
 
-function get_process_name(p)
+local function get_process_name(p)
     return basename(string.match(p, "^(.-)%s"))
 end
 
@@ -46,7 +46,7 @@ function os.capture(cmd)
     return outputed
 end
 
-function is_opened_already()
+local function is_opened_already()
     local res = os.capture("ps axh | grep wezterm-gui")
     return #res > 3
 end

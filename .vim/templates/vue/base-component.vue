@@ -3,21 +3,17 @@
 </template>
 
 
-<script>
-export default {
-  name: "SampleComponent",
-  data: () => {
-    return {
+<script lang="ts">
+import { defineComponent } from "vue"
 
-    }
-  },
-  methods: {
-
+export default defineComponent({
+  setup: () => {
+    console.log("This is sample")
   }
-}
+})
 </script>
 
 
-<style>
+<style scoped>
 
 </style>

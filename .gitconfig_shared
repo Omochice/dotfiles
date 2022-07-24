@@ -37,3 +37,6 @@
 
 [init]
     defaultBranch = main
+
+[commit]
+    template = ~/.config/git/gitmessage
