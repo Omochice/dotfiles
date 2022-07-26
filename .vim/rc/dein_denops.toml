@@ -24,9 +24,9 @@ let g:ddc_sources = {
       \ 'in-vim': ['around', 'buffer'],
       \ 'out-vim': ['rg'],
       \ }
-if has('wsl')
-  let g:ddc_sources['out-vim'] += ['tmux']
-endif
+" if has('wsl')
+"   let g:ddc_sources['out-vim'] += ['tmux']
+" endif
 
 inoremap <silent><expr> <C-Space> ddc#manual_complete()
 
@@ -53,7 +53,7 @@ if g:ddc_use_pum
 endif
 call ddc#enable()
 """
-depends = ["denops.vim", "context_filetype.vim", "pum.vim"]
+depends = ["denops.vim", "pum.vim"]
 on_event = "InsertEnter"
 
 [[plugins]]
@@ -280,12 +280,14 @@ on_cmd = "GhostStart"
 # on_source = "denops.vim"
 # # on_cmd = ""
 
-# ddc.vim {{{
+# ddu.vim {{{
 [[plugins]]
 repo = "Shougo/ddu-commands.vim"
 depends = "ddu.vim"
 on_cmd = ["Ddu"]
 
+# TODO: ddu関連windowをまとめて閉じれるようにする
+# TODO: previewをいい感じにする
 [[plugins]]
 repo = "Shougo/ddu.vim"
 depends = "denops.vim"
@@ -314,10 +316,10 @@ call ddu#custom#patch_global({
 \     'filterSplitDirection': 'floating',
 \     'filterFloatingPosition': 'top',
 \     'prompt': '> ',
-\     'winWidth': float2nr(&columns * g:ddu_window_width_percent),
+\     'winWidth': float2nr(&columns * g:ddu_window_width_percent*2),
 \     'winHeight': float2nr(&lines * g:ddu_window_height_percent),
-\     'winCol': float2nr((&columns - (&columns * g:ddu_window_width_percent) * 2) / 2),
-\     'winRow': float2nr((&lines - (&lines * g:ddu_window_height_percent)) / 2),
+\     'winCol': float2nr((1 - g:ddu_window_width_percent * 2) * &columns),
+\     'winRow': float2nr((1 - g:ddu_window_height_percent) * &lines),
 \     'previewFloating': v:true,
 \     'previewVertical': v:true,
 \     'previewWidth': float2nr(&columns * g:ddu_window_width_percent),
@@ -327,6 +329,8 @@ call ddu#custom#patch_global({
 \ },
 \ })
 """
+# \     'winCol': float2nr((&columns - (&columns * g:ddu_window_width_percent) * 2) / 2),
+# \     'winRow': float2nr((&lines - (&lines * g:ddu_window_height_percent)) / 2),
 
 [[plugins]]
 repo = "Shougo/ddu-ui-ff"
@@ -338,11 +342,11 @@ ddu-ff = """
 "   autocmd!
 "   autocmd CursorMoved <buffer> call ddu#ui#ff#do_action('preview')
 " augroup END
-nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
-nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
-nnoremap <buffer><silent> i <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
-nnoremap <buffer><silent> q <Cmd>call ddu#ui#ff#do_action('quit')<CR>
-nnoremap <buffer><silent> p <Cmd>call ddu#ui#ff#do_action('preview')<CR>
+nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#item_action('itemAction')<CR>
+nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#ff#item_action('toggleSelectItem')<CR>
+nnoremap <buffer><silent> i <Cmd>call ddu#ui#ff#item_action('openFilterWindow')<CR>
+nnoremap <buffer><silent> q <Cmd>call ddu#ui#ff#item_action('quit')<CR>
+nnoremap <buffer><silent> p <Cmd>call ddu#ui#ff#item_action('preview')<CR>
 """
 ddu-ff-filter = """
 inoremap <buffer><silent> <CR> <Esc><Cmd>close<CR>
@@ -371,5 +375,5 @@ on_source = "ddu.vim"
 # }}}
 
 [[plugins]]
-repo = "~/workspace/dps-popup-toy"
-on_cmd = "DpsPopupToy"
+repo = "lambdalisue/gin.vim"
+depends = "denops.vim"
