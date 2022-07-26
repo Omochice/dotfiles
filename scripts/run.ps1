@@ -49,6 +49,9 @@ $maps = $(
             "00000000" # terminater
         )
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout" /v "Scancode Map" /t REG_BINARY /d ($maps -join "") /f
+
+# disable whether news
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Feeds" /v "ShellFeedsTaskViewMode" /t REG_DWORD /d "2" /f
 # }}}
 
 Write-Host "---install winget via github-release---" -ForegoundColor Cyan
@@ -102,8 +105,8 @@ Write-Host "install wezterm" -ForegoundColor Cyan
 if ($null -eq (Get-Command "wezterm.exe" -ErrorAction SilentlyContinue)) {
     winget install Wez.WezTerm
 }
-Get-ChildItem -Path (Join-Path -Path $DotDir -ChildPath config/wezterm) | ForEach-Object {
-    New-Item -ItemType SymbolicLink -Path (Join-Path -Path $env:ProgramW6432 -ChildPath $_.Name) -Target $_.FullName -Force
+Get-ChildItem -Path (Join-Path -Path $DotDir -ChildPath "config/wezterm") | ForEach-Object {
+    New-Item -ItemType SymbolicLink -Path (Join-Path -Path $env:ProgramW6432 -ChildPath "WezTerm" | Join-Path -ChildPath $_.Name) -Target $_.FullName -Force
 }
 
 Write-Host "install browsers"
