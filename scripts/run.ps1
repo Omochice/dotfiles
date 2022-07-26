@@ -37,13 +37,13 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" /
 
 ## Remap keylayout
 ## caps(003A) to left-ctrl(001D)
-## hiragana/katakana(0070) to left-win(E05C)
+## hiragana/katakana(0070) to left-win(E05B)
 ## muhenkan(007B) to esc(0001)
 $maps = $(
             "0000000000000000"
             "05000000" # num of remap + 1
             "1d003a00" # caps to ctrl
-            "5ce07000" # kana to win
+            "5be07000" # kana to win
             "01007b00" # muhenkan to esc
             "00000000" # terminater
         )
