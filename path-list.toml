@@ -20,6 +20,9 @@ path = "~/.yarn/bin"
 path = "~/.asdf/bin"
 
 [[paths]]
+path = "~/Tools/asdf/bin"
+
+[[paths]]
 path = "~/.cargo/bin"
 
 [[aliases]]
@@ -158,7 +161,7 @@ if_executable = "asdf"
 only = "bash"
 
 [[sources]]
-path = "$XDG_CONFIG_HOME/fish/abbr.fish"
+path = "~/.config/fish/abbr.fish"
 only = "fish"
 
 [[executes]]
