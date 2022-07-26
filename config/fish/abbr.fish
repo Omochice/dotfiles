@@ -1,0 +1,1 @@
+abbr --add :q exit
