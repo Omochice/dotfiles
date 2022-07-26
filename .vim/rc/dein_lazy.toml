@@ -226,6 +226,7 @@ let g:lsp_settings = {
       \ 'clangd': {'allowlist': ['c', 'cpp', 'objc']},
       \  }
 let g:lsp_text_edit_enabled = v:true
+let g:lsp_document_code_action_signs_enabled = v:false
 let g:lsp_diagnostics_signs_error = {'text': '🥺'}
 let g:lsp_diagnostics_signs_warning = {'text': '🤔'}
 let g:lsp_settings_filetype_objc = ['clangd']
@@ -285,13 +286,15 @@ o = "<Plug>(textobj-sandwich"
 repo = "tyru/caw.vim"
 hook_add = """
 nmap gc <Plug>(caw:prefix)
+" xmap gc <Plug>(caw:prefix)
 xmap gc <Plug>(caw:hatpos:toggle)
+" TODO: can use `silent`?
 " Brute force solution
 " https://github.com/tyru/caw.vim/issues/166
-nmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
-xmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
+" nmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
+" xmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
 """
-depends = ["context_filetype.vim", "vim-repeat"]
+depends = ["vim-repeat"]
 on_map = { n = "<Plug>", x = "<Plug>" }
 
 [[plugins]]
@@ -566,8 +569,8 @@ on_event = "BufRead"
 repo = "Shougo/context_filetype.vim"
 hook_source = """
 let g:context_filetype#ignore_patterns = {
-      \ 'toml': ['^\s*#\s*'],
-      \ }
+     \ 'toml': ['^\s*#\s*'],
+     \ }
 """
 
 [[plugins]]
@@ -611,6 +614,52 @@ require('nvim-treesitter.configs').setup{
             },
         },
     },
+}
+EOF
+"""
+
+[[plugins]]
+repo = "nvim-treesitter/nvim-treesitter-context"
+on_source = "nvim-treesitter"
+hook_source = """
+lua <<EOF
+require('treesitter-context').setup{
+    enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+    max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+    trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+    patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+        -- For all filetypes
+        -- Note that setting an entry here replaces all other patterns for this entry.
+        -- By setting the 'default' entry below, you can control which nodes you want to
+        -- appear in the context window.
+        default = {
+            'class',
+            'function',
+            'method',
+            -- 'for', -- These won't appear in the context
+            -- 'while',
+            -- 'if',
+            -- 'switch',
+            -- 'case',
+        },
+        -- Example for a specific filetype.
+        -- If a pattern is missing, *open a PR* so everyone can benefit.
+        --   rust = {
+        --       'impl_item',
+        --   },
+    },
+    exact_patterns = {
+        -- Example for a specific filetype with Lua patterns
+        -- Treat patterns.rust as a Lua pattern (i.e "^impl_item$" will
+        -- exactly match "impl_item" only)
+        -- rust = true,
+    },
+
+    -- [!] The options below are exposed but shouldn't require your attention,
+    --     you can safely ignore them.
+
+    zindex = 20, -- The Z-index of the context window
+    mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
 }
 EOF
 """
@@ -699,12 +748,12 @@ nnoremap [fzf-p]g     :<C-u>FzfPreviewProjectGrepRpc<Space>
 nnoremap [fzf-p]<C-w> <Cmd>FzfPreviewProjectMrwFilesRpc --add-fzf-arg=--no-sort<CR>
 nnoremap [fzf-p]<C-b> <Cmd>FzfPreviewAllBuffersRpc<CR>
 let g:fzf_preview_fzf_preview_window_option = 'right:50%'
-let g:fzf_preview_use_dev_icons = v:true
+let g:fzf_preview_use_dev_icons = v:false " TODO: use nerdfont.vim
 let g:fzf_preview_dev_icon_prefix_string_length = 3
 let g:fzf_preview_dev_icons_limit = 5000
 let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never --sort=path --with-filename'
 """
-depends = ["vim-devicons", "fzf"]
+depends = ["fzf"]
 on_cmd = [
     "FzfPreviewAllBuffersRpc",
     "FzfPreviewCommandPaletteRpc",
@@ -778,8 +827,8 @@ on_func = ["partedit#start"]
 repo = "Omochice/vim-operator-partedit"
 depends = ["vim-operator-user", "vim-partedit"]
 hook_add = """
-nmap <buffer> qe <Plug>(operator-partedit-start)
-xmap <buffer> qe <Plug>(operator-partedit-start)
+nmap qe <Plug>(operator-partedit-start)
+xmap qe <Plug>(operator-partedit-start)
 """
 on_map = { x = "<Plug>", n = "<Plug>" }
 
