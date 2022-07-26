@@ -10,6 +10,8 @@ set ignorecase
 set incsearch
 set infercase
 set laststatus=2
+" DONT USE MOUSE
+set mouse=
 set nobackup
 set noswapfile
 set noshowcmd " Use screenkey to show them
