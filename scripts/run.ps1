@@ -18,6 +18,12 @@ reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Notiticatio
 ## Disable hints
 reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SoftLandingEnabled" /t REG_DWORD /d "0" /f
 # NOTE: Software and SOFTWARE is same ?
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-338389Enabled" /t REG_DWORD /d "0" /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-338388Enabled" /t REG_DWORD /d "0" /f
+# disable hint at lock
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-338387Enabled" /t REG_DWORD /d "0" /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SystemPaneSuggestionsEnabled" /t REG_DWORD /d "0" /f
+# NOTE: WHAT THE NUMBERS????
 
 ## Disable notification when switch ime mode
 reg add "HKCU\Software\Microsoft\IME\15.0\IMEJP\MSIME" /v "ShowImeModeNotification" /t REG_DWORD /d "0" /f
@@ -35,6 +41,9 @@ reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Ad
 
 ## Disable feeds
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" /v "EnableFeeds" /t REG_DWORD /d "0" /f
+
+
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem" /v "NtfsDisableLastAccessUpdate" /t REG_DWORD "1" /f
 
 ## Remap keylayout
 ## caps(003A) to left-ctrl(001D)
@@ -150,6 +159,9 @@ Get-ChildItem -Path (Join-Path -Path $DotDir -ChildPath "win-config/PowerToys") 
         -Target $_.FullName `
         -Force
 }
+
+## Google IME
+winget install Google.JapaneseIME
 
 # stop while user input
 Read-Host "DONE!!"
