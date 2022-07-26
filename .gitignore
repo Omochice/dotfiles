@@ -21,6 +21,7 @@
 !/config/fish/*
 !/config/fish/fishfile
 !/config/fish/functions/*
+!/config/fish/abbr.fish
 config/fish/functions/__z*.fish
 config/fish/functions/balias.fish
 config/fish/functions/emptyls.fish
