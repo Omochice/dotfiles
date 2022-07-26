@@ -143,7 +143,7 @@ function generateEnviroment(environment: Environment, shell: Shell): string {
   const to = environment.to;
   const generate = generateFactory(environment);
   if (shell === "fish") {
-    return generate(`set --unpath ${to} ${from}`);
+    return generate(`set --export --unpath ${to} ${from}`);
   } else {
     return generate(`export ${to} ${from}`);
   }
