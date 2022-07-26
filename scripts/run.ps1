@@ -7,7 +7,8 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 $DotDir = ([System.IO.FileInfo]$PSScriptRoot).Directory.FullName
 $UserProfile = $env:USERPROFILE
 
-# setting by registry {{{
+Write-Host "---setting by registry---" -ForegoundColor Cyan
+# {{{
 ## show extention
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "HideFileExt" /t REG_DWORD /d "0" /f
 
@@ -16,10 +17,41 @@ reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Notiticatio
 
 ## Disable hints
 reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SoftLandingEnabled" /t REG_DWORD /d "0" /f
+# NOTE: Software and SOFTWARE is same ?
 
+## Disable notification when switch ime mode
+reg add "HKCU\Software\Microsoft\IME\15.0\IMEJP\MSIME" /v "ShowImeModeNotification" /t REG_DWORD /d "0" /f
+# NOTE: HKCU is HKEY_CURRENT_USER ?
+
+## Hide searchbox by taskbar
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v "SearchboxTaskbarMode" /t REG_DWORD /d "0" /f
+
+## Hide taskview by taskbar
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowTaskViewButton" /t REG_DWORD /d "0" /f
+
+## Disable cortana
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AlloaCortana" /t REG_DWORD /d "0" /f
+
+## Disable feeds
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" /v "EnableFeeds" /t REG_DWORD /d "0" /f
+
+## Remap keylayout
+## caps(003A) to left-ctrl(001D)
+## hiragana/katakana(0070) to left-win(E05B)
+## muhenkan(007B) to esc(0001)
+$maps = $(
+            "0000000000000000"
+            "05000000" # num of remap + 1
+            "1d003a00" # caps to ctrl
+            "5be07000" # kana to win
+            "01007b00" # muhenkan to esc
+            "00000000" # terminater
+        )
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout" /v "Scancode Map" /t REG_BINARY /d ($maps -join "") /f
 # }}}
 
-## install winget via github-release {{{
+Write-Host "---install winget via github-release---" -ForegoundColor Cyan
+# {{{
 $hasPackageManager = Get-AppPackage -name "Microsoft.DesktopAppInstaller"
 
 if(!$hasPackageManager)
@@ -38,7 +70,8 @@ winget install "App Installer" -s msstore
 
 ## }}}
 
-## install font {{{
+Write-Host "---install font---" -ForegoundColor Cyan
+# {{{
 $tempDir = Join-Path -Path $env:SystemRoot -ChildPath "Windows" | Join-Path -ChildPath "Temp" | Join-Path -ChildPath "Fonts"
 New-Item $tempDir -Type Directory -Force
 $fontReleaseInfo = Invoke-RestMethod -uri "https://api.github.com/repos/yuru7/Firge/releases/latest"
@@ -50,12 +83,21 @@ $fontReleaseInfo.assets | ForEach {
 
 $destination = (New-Object -ComObject Shell.Application).Namespace(0x14)
 Get-ChildItem -Path $tempDir -Include "*.ttf" -Recurse | ForEach {
-    $destination.CopyHere($_.FullName, 0x10)
+    if (-not(Test-Path (Join-Path $UserProfile -ChildPath "AppData" |`
+                                     Join-Path -ChildPath "Local" |`
+                                     Join-Path -ChildPath "Microsoft" |`
+                                     Join-Path -ChildPath "Windows" |`
+                                     Join-Path -ChildPath "Fonts" |`
+                                     Join-Path -ChildPath $_.Name `
+                                     ))) {
+        $destination.CopyHere($_.FullName, 0x10)
+    }
 }
 Remove-Item $tempDir -Recurse
-## }}}
+# }}}
 
-## wezterm
+Write-Host "install wezterm" -ForegoundColor Cyan
+# wezterm
 if ($null -eq (Get-Command "wezterm.exe" -ErrorAction SilentlyContinue)) {
     winget install Wez.WezTerm
 }
@@ -63,8 +105,9 @@ Get-ChildItem -Path (Join-Path -Path $DotDir -ChildPath config/wezterm) | ForEac
     New-Item -ItemType SymbolicLink -Path (Join-Path -Path $env:ProgramW6432 -ChildPath $_.Name) -Target $_.FullName -Force
 }
 
-## Browsers {{{
+Write-Host "install browsers"
 
+# {{{
 ## Vivaldi
 if ($null -eq (Get-Command (Join-Path -Path $UserProfile -ChildPath "AppData/Local/Vivaldi/application/vivaldi.exe") -ErrorAction SilentlyContinue)) {
     winget install VivaldiTechnologies.Vivaldi
@@ -72,23 +115,23 @@ if ($null -eq (Get-Command (Join-Path -Path $UserProfile -ChildPath "AppData/Loc
 
 ## Chrome
 if ($null -eq (Get-Command (Join-Path -Path $env:ProgramW6432 -ChildPath "Google/Chrome/application/chrome.exe") -ErrorAction SilentlyContinue)) {
-    winget install VivaldiTechnologies.Vivaldi
+    winget install Google.Chrome
 }
 
 ## Firefox
 if ($null -eq (Get-Command (Join-Path -Path $env:ProgramW6432 -ChildPath "Mozilla Firefox/firefox.exe") -ErrorAction SilentlyContinue)) {
-    winget install VivaldiTechnologies.Vivaldi
+    winget install Mozilla.Firefox
 }
 ## }}}
 
 ## vscode
-if ($null -eq (Get-Command "code")) {
+if ($null -eq (Get-Command "code" -ErrorAction SilentlyContinue)) {
     winget install Microsoft.VisutalStudioCode
 }
 
 ## powertoys
-if ($null -eq (Get-Command (Join-Path -Path $env:ProgramW6432 -ChildPath "Google/Chrome/application/chrome.exe") -ErrorAction SilentlyContinue)) {
-    winget install Google.Chrome
+if ($null -eq (Get-Command (Join-Path -Path $env:ProgramW6432 -ChildPath "PowerToys" | Join-Path -ChildPath "PowerToys.exe") -ErrorAction SilentlyContinue)) {
+    winget install Microsoft.PowerToys
 }
 Get-ChildItem -Path (Join-Path -Path $DotDir -ChildPath "win-config/PowerToys") -Recurse -File | ForEach-Object {
     New-Item `
@@ -103,3 +146,6 @@ Get-ChildItem -Path (Join-Path -Path $DotDir -ChildPath "win-config/PowerToys") 
         -Target $_.FullName `
         -Force
 }
+
+# stop while user input
+Read-Host "DONE!!"
