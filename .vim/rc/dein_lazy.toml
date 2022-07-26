@@ -850,7 +850,7 @@ cnoreabbrev tf TFern
 on_cmd = ["Fern"]
 [plugins.ftplugin]
 fern = """
-nmap <buffer> qq <Cmd>bprevious<CR>
+nmap <buffer><nowait> q <Cmd>bprevious<CR>
 nmap <buffer> i <Plug>(fern-action-new-file)
 nmap <buffer> o <Plug>(fern-action-new-dir)
 nmap <buffer> r <Plug>(fern-action-rename)
