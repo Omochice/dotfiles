@@ -19,6 +19,7 @@ import os from "https://deno.land/x/dos@v0.11.0/mod.ts";
 import { expandGlobSync } from "https://deno.land/std@0.140.0/fs/mod.ts";
 
 type OSType = "mac" | "wsl" | "linux";
+type OS = "wsl" | typeof Deno.build.os;
 
 interface Setting {
   tools: Tool[];
@@ -37,17 +38,16 @@ interface SymlinkOption {
   destination?: string;
 }
 
-function getOSName(): OSType {
-  if (os.platform() == "darwin") {
-    return "mac";
-  } else if (Deno.osRelease().toLowerCase().match("microsoft") !== null) {
-    return "wsl";
-  } else {
-    return "linux";
+function getOS(): OS {
+  try {
+    const b = Deno.readTextFileSync("/proc/version").toString().toLowerCase();
+    return b.includes("microsoft") ? "wsl" : Deno.build.os;
+  } catch {
+    return Deno.build.os;
   }
 }
 
-const osName = getOSName();
+const osName = getOS();
 
 const Decorder = new TextDecoder();
 
@@ -64,26 +64,60 @@ function expand(path: string): string {
   return Path.normalize(path).replace(/^~/, Deno.env.get("HOME") || "");
 }
 
-function debugLog(message: string, show: boolean): void {
-  if (show) {
-    console.log(Colors.blue(`[DEBUG] ${message}`));
-  }
+function debugLog(message: string): void {
+  console.log(Colors.blue(`[DEBUG] ${message}`));
+}
+
+function showError(repo: string, errorMessage: string): void {
+  console.error(
+    Colors.red(
+      `Error on ${repo}: ${errorMessage}`,
+    ),
+  );
 }
 
 async function handleError(
   process: Deno.Process,
   repo: string,
+  onError = showError,
 ): Promise<boolean> {
   if (!(await process.status()).success) {
-    console.error(
-      Colors.red(
-        `Error on ${repo}: ${decodeMessage(await process.stderrOutput())}`,
-      ),
-    );
+    onError(repo, decodeMessage(await process.stderrOutput()));
     return true;
-  } else {
-    return false;
   }
+  return false;
+}
+
+async function clone(
+  repo: string,
+  installTo: string,
+  debug = false,
+): Promise<void> {
+  debug && debugLog(`Start clone ${repo}`);
+  const clone_process = Deno.run({
+    cmd: ["git", "clone", `https://github.com/${repo}`, installTo],
+    stdout: "null",
+    stderr: "piped",
+  });
+  await handleError(clone_process, repo);
+}
+
+async function getHeadCommitID(
+  cwd: string,
+): Promise<string> {
+}
+
+async function pull(
+  repo: string,
+  cwd: string,
+  debug = false,
+): Promise<boolean> {
+  const old_rev_process = Deno.run({
+    cmd: ["git", "rev-parse", "HEAD"],
+    stdout: "piped",
+    stderr: "piped",
+    cwd: install_to,
+  });
 }
 
 async function install(
@@ -91,9 +125,9 @@ async function install(
   install_to: string,
   debug = false,
 ): Promise<boolean> {
-  debugLog(`Start install ${repo}`, debug);
+  debug && debugLog(`Start install ${repo}`);
   if (existsSync(install_to)) {
-    debugLog(`call first rev-parse on ${repo}`, debug);
+    debug && debugLog(`call first rev-parse on ${repo}`);
     const old_rev_process = Deno.run({
       cmd: ["git", "rev-parse", "HEAD"],
       stdout: "piped",
@@ -103,7 +137,7 @@ async function install(
     if (await handleError(old_rev_process, repo)) {
       return false; // dont process other if error occur
     }
-    debugLog(`call pull on ${repo}`, debug);
+    debug && debugLog(`call pull on ${repo}`);
     const pull_process = Deno.run({
       cmd: ["git", "pull"],
       stdout: "null",
@@ -113,7 +147,7 @@ async function install(
     if (await handleError(pull_process, repo)) {
       return false;
     }
-    debugLog(`call second rev-parse on ${repo}`, debug);
+    debug && debugLog(`call second rev-parse on ${repo}`);
     const new_rev_process = Deno.run({
       cmd: ["git", "rev-parse", "HEAD"],
       stdout: "piped",
@@ -129,18 +163,17 @@ async function install(
     ]);
     const updated = !equals(old_hash, new_hash);
     if (updated) {
-      debugLog(
+      debug && debugLog(
         `${repo} is updated ${decodeMessage(old_hash).trim()} to ${
           decodeMessage(new_hash).trim()
         }`,
-        debug,
       );
     } else {
-      debugLog(`${repo} is newest already`, debug);
+      debug && debugLog(`${repo} is newest already`);
     }
     return updated;
   } else {
-    debugLog(`Start clone ${repo}`, debug);
+    debug && debugLog(`Start clone ${repo}`);
     const clone_process = Deno.run({
       cmd: ["git", "clone", `https://github.com/${repo}`, install_to],
       stdout: "null",
@@ -157,9 +190,9 @@ async function build(
   working_directory: string,
   debug = false,
 ): Promise<void> {
-  debugLog(`Start build on ${working_directory}`, debug);
+  debug && debugLog(`Start build on ${working_directory}`);
   for (const command of commands) {
-    debugLog(`run ${command} on ${working_directory}`, debug);
+    debug && debugLog(`run ${command} on ${working_directory}`);
     const build_process = Deno.run({
       cmd: command.split(/\s+/),
       stderr: "piped",
@@ -176,7 +209,7 @@ async function link(
   debug = false,
 ) {
   // link
-  debugLog(`Start link ${source} to ${destination}`, debug);
+  debug && debugLog(`Start link ${source} to ${destination}`);
   const link_process = Deno.run({
     cmd: ["ln", "-snf", source, destination],
     stdout: "null",
@@ -196,7 +229,7 @@ async function sync(
   const [_owner, repo] = tool.repo.split("/");
   const path_to_clone = Path.join(expand(base_dir), tool.destination || repo);
 
-  debugLog(`Start sync on ${tool.repo} to ${path_to_clone}`, debug);
+  debug && debugLog(`Start sync on ${tool.repo} to ${path_to_clone}`);
   const updated = await install(tool.repo, path_to_clone, debug);
   if (tool.build && updated) {
     console.log(Colors.yellow(`Building ${repo}...`));
