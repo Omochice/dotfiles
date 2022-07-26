@@ -5,7 +5,7 @@ import {
   Help,
   Opt,
   Version,
-} from "https://raw.githubusercontent.com/stsysd/classopt/v0.1.2/mod.ts";
+} from "https://deno.land/x/classopt@v0.1.2/mod.ts"
 import { parse } from "https://deno.land/std@0.140.0/encoding/toml.ts";
 import { expandHome } from "https://deno.land/x/expandhome@v0.0.5/mod.ts";
 import { basename } from "https://deno.land/std@0.146.0/path/mod.ts";
