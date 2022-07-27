@@ -49,6 +49,7 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/ranger/rc.conf
 !/config/wezterm/wezterm.lua
 !/config/wezterm/colors/sonokai.toml
+!/config/powershell/profile.ps1
 !/zshell/*
 !/zshell/.zsh.d/*
 !/.gitconfig_shared

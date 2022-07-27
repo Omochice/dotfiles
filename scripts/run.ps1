@@ -63,6 +63,9 @@ reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout" /v
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Feeds" /v "ShellFeedsTaskViewMode" /t REG_DWORD /d "2" /f
 # }}}
 
+Write-Host "---Link powershell shetting---" -ForegoundColor Cyan
+New-Item -ItemType SymbolicLink -Path (Join-Path -Path $PSHOME -ChildPath "Profile.ps1") -Target (Join-Path -Path $DotDir -ChildPath "config" | Join-Path -ChildPath "powershell" | Join-Path -ChildPath "profile.ps1") -Force
+
 Write-Host "---install winget via github-release---" -ForegoundColor Cyan
 # {{{
 $hasPackageManager = Get-AppPackage -name "Microsoft.DesktopAppInstaller"
