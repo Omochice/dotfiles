@@ -163,6 +163,11 @@ Get-ChildItem -Path (Join-Path -Path $DotDir -ChildPath "win-config/PowerToys") 
         -Force
 }
 
+## nushell
+if ($null -eq (Get-Command "nu" -ErrorAction SilentlyContinue)) {
+    winget install --exact --id Nushell.Nushell
+}
+
 ## Google IME
 winget install Google.JapaneseIME
 
