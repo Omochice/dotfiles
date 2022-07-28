@@ -82,7 +82,7 @@ if(!$hasPackageManager)
 }
 
 ### replace winget by from msstore
-winget install "App Installer" -s msstore
+winget install "App Installer" --source msstore
 
 ## }}}
 
@@ -115,7 +115,7 @@ Remove-Item $tempDir -Recurse
 Write-Host "install wezterm" -ForegoundColor Cyan
 # wezterm
 if ($null -eq (Get-Command "wezterm.exe" -ErrorAction SilentlyContinue)) {
-    winget install Wez.WezTerm
+    winget install --exact --id Wez.WezTerm
 }
 Get-ChildItem -Path (Join-Path -Path $DotDir -ChildPath "config/wezterm") | ForEach-Object {
     New-Item -ItemType SymbolicLink -Path (Join-Path -Path $env:ProgramW6432 -ChildPath "WezTerm" | Join-Path -ChildPath $_.Name) -Target $_.FullName -Force
@@ -126,28 +126,28 @@ Write-Host "install browsers"
 # {{{
 ## Vivaldi
 if ($null -eq (Get-Command (Join-Path -Path $UserProfile -ChildPath "AppData/Local/Vivaldi/application/vivaldi.exe") -ErrorAction SilentlyContinue)) {
-    winget install VivaldiTechnologies.Vivaldi
+    winget install --exact --id VivaldiTechnologies.Vivaldi
 }
 
 ## Chrome
 if ($null -eq (Get-Command (Join-Path -Path $env:ProgramW6432 -ChildPath "Google/Chrome/application/chrome.exe") -ErrorAction SilentlyContinue)) {
-    winget install Google.Chrome
+    winget install --exact --id Google.Chrome
 }
 
 ## Firefox
 if ($null -eq (Get-Command (Join-Path -Path $env:ProgramW6432 -ChildPath "Mozilla Firefox/firefox.exe") -ErrorAction SilentlyContinue)) {
-    winget install Mozilla.Firefox
+    winget install --exact --id Mozilla.Firefox
 }
 ## }}}
 
 ## vscode
 if ($null -eq (Get-Command "code" -ErrorAction SilentlyContinue)) {
-    winget install Microsoft.VisutalStudioCode
+    winget install --exact --id Microsoft.VisutalStudioCode
 }
 
 ## powertoys
 if ($null -eq (Get-Command (Join-Path -Path $env:ProgramW6432 -ChildPath "PowerToys" | Join-Path -ChildPath "PowerToys.exe") -ErrorAction SilentlyContinue)) {
-    winget install Microsoft.PowerToys
+    winget install --exact --id Microsoft.PowerToys
 }
 Get-ChildItem -Path (Join-Path -Path $DotDir -ChildPath "win-config/PowerToys") -Recurse -File | ForEach-Object {
     New-Item `
@@ -169,7 +169,7 @@ if ($null -eq (Get-Command "nu" -ErrorAction SilentlyContinue)) {
 }
 
 ## Google IME
-winget install Google.JapaneseIME
+winget install --exact --id Google.JapaneseIME
 
 # stop while user input
 Read-Host "DONE!!"
