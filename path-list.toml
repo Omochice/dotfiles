@@ -30,6 +30,15 @@ from = "nvim"
 to = "vim"
 if_executable = "nvim"
 
+[[aliases]]
+from = "exa -T"
+to = "tree"
+if_executable = "exa"
+
+[[aliases]]
+from = "ls -al"
+to = "la"
+
 [[environments]]
 from = "nvim"
 to = "EDITOR"
