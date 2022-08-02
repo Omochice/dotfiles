@@ -61,6 +61,13 @@ reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout" /v
 
 # disable whether news
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Feeds" /v "ShellFeedsTaskViewMode" /t REG_DWORD /d "2" /f
+
+# DONT EXECUTE UNEXPECTED SHOTCUTS
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "DisabledHotkeys" /t REG_SZ /d "ABCEFHIJKOPRSTUVXZ,.;+-:" /f
+
+# DISABLE BING
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "DisableSearchBoxSuggestions" /t REG_DWORD /d "1" /f
+reg add "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Search" /v "BingSearchEnabled" /t REG_DWORD /d "0" /f
 # }}}
 
 Write-Host "---Link powershell shetting---" -ForegoundColor Cyan
