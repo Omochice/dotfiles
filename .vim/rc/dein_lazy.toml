@@ -12,17 +12,6 @@ omap il <Plug>(textobj-line-i)
 """
 on_map = { x = "<Plug>", o = "<Plug>" }
 
-#[[plugins]]
-#repo = "rhysd/vim-textobj-anyblock"
-#depends = ["vim-textobj-user"]
-#hook_add = """
-#xmap ab <Plug>(textobj-anyblock-a)
-#xmap ib <Plug>(textobj-anyblock-i)
-#omap ab <Plug>(textobj-anyblock-a)
-#omap ib <Plug>(textobj-anyblock-i)
-#"""
-#on_map = { x = "<Plug>", o = "<Plug>" }
-
 [[plugins]]
 repo = "thinca/vim-textobj-between"
 depends = ["vim-textobj-user"]
