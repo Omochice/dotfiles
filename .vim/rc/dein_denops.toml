@@ -377,3 +377,9 @@ on_source = "ddu.vim"
 [[plugins]]
 repo = "lambdalisue/gin.vim"
 depends = "denops.vim"
+on_cmd = ["Gin", "GinStatus"]
+[plugins.ftplugin]
+gin-status = """
+nnoremap <buffer><nowait> q <Cmd>bprevious<CR>
+nnoremap <buffer> cc <Cmd>Gin commit<CR>
+"""
