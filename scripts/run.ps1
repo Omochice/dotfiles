@@ -6,8 +6,11 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 
 $DotDir = ([System.IO.FileInfo]$PSScriptRoot).Directory.FullName
 $UserProfile = $env:USERPROFILE
+$MyAppDir = (Join-Path -Path $HOME -ChildPath "apps")
 
-Write-Host "---setting by registry---" -ForegoundColor Cyan
+New-Item $MyAppDir -Type Directory -Force
+
+Write-Host -ForegoundColor Cyan "---setting by registry---"
 # {{{
 ## show extention
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "HideFileExt" /t REG_DWORD /d "0" /f
@@ -68,12 +71,15 @@ reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Ad
 # DISABLE BING
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "DisableSearchBoxSuggestions" /t REG_DWORD /d "1" /f
 reg add "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Search" /v "BingSearchEnabled" /t REG_DWORD /d "0" /f
+
+# DISABLE SUPER + L TO USE LOCK
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\system" /v "DisableLockWorkstation" /t REG_DWORD /d "1" /f
 # }}}
 
 Write-Host "---Link powershell shetting---" -ForegoundColor Cyan
 New-Item -ItemType SymbolicLink -Path (Join-Path -Path $PSHOME -ChildPath "Profile.ps1") -Target (Join-Path -Path $DotDir -ChildPath "config" | Join-Path -ChildPath "powershell" | Join-Path -ChildPath "profile.ps1") -Force
 
-Write-Host "---install winget via github-release---" -ForegoundColor Cyan
+Write-Host -ForegoundColor Cyan "---install winget via github-release---"
 # {{{
 $hasPackageManager = Get-AppPackage -name "Microsoft.DesktopAppInstaller"
 
@@ -89,11 +95,11 @@ if(!$hasPackageManager)
 }
 
 ### replace winget by from msstore
-winget install "App Installer" --source msstore
+winget install --accept-package-agreements "App Installer" --source msstore
 
 ## }}}
 
-Write-Host "---install font---" -ForegoundColor Cyan
+Write-Host -ForegoundColor Cyan "---install font---"
 # {{{
 $tempDir = Join-Path -Path $env:SystemRoot -ChildPath "Windows" | Join-Path -ChildPath "Temp" | Join-Path -ChildPath "Fonts"
 New-Item $tempDir -Type Directory -Force
@@ -102,6 +108,7 @@ $fontReleaseInfo.assets | ForEach {
     $outFile = (Join-Path -Path $UserProfile -ChildPath "downloads" | Join-Path -ChildPath $_.name)
     Invoke-WebRequest -Uri $_.browser_download_url -OutFile $outFile
     Expand-Archive -LiteralPath $outFile -Destination $tempDir
+    Remove-Item $outFile -Recurse
 }
 
 $destination = (New-Object -ComObject Shell.Application).Namespace(0x14)
@@ -122,7 +129,7 @@ Remove-Item $tempDir -Recurse
 Write-Host "install wezterm" -ForegoundColor Cyan
 # wezterm
 if ($null -eq (Get-Command "wezterm.exe" -ErrorAction SilentlyContinue)) {
-    winget install --exact --id Wez.WezTerm
+    winget install --accept-package-agreements --exact --id Wez.WezTerm
 }
 Get-ChildItem -Path (Join-Path -Path $DotDir -ChildPath "config/wezterm") | ForEach-Object {
     New-Item -ItemType SymbolicLink -Path (Join-Path -Path $env:ProgramW6432 -ChildPath "WezTerm" | Join-Path -ChildPath $_.Name) -Target $_.FullName -Force
@@ -133,28 +140,28 @@ Write-Host "install browsers"
 # {{{
 ## Vivaldi
 if ($null -eq (Get-Command (Join-Path -Path $UserProfile -ChildPath "AppData/Local/Vivaldi/application/vivaldi.exe") -ErrorAction SilentlyContinue)) {
-    winget install --exact --id VivaldiTechnologies.Vivaldi
+    winget install --accept-package-agreements --exact --id VivaldiTechnologies.Vivaldi
 }
 
 ## Chrome
 if ($null -eq (Get-Command (Join-Path -Path $env:ProgramW6432 -ChildPath "Google/Chrome/application/chrome.exe") -ErrorAction SilentlyContinue)) {
-    winget install --exact --id Google.Chrome
+    winget install --accept-package-agreements --exact --id Google.Chrome
 }
 
 ## Firefox
 if ($null -eq (Get-Command (Join-Path -Path $env:ProgramW6432 -ChildPath "Mozilla Firefox/firefox.exe") -ErrorAction SilentlyContinue)) {
-    winget install --exact --id Mozilla.Firefox
+    winget install --accept-package-agreements --exact --id Mozilla.Firefox
 }
 ## }}}
 
 ## vscode
 if ($null -eq (Get-Command "code" -ErrorAction SilentlyContinue)) {
-    winget install --exact --id Microsoft.VisutalStudioCode
+    winget install --accept-package-agreements --exact --id Microsoft.VisutalStudioCode
 }
 
 ## powertoys
 if ($null -eq (Get-Command (Join-Path -Path $env:ProgramW6432 -ChildPath "PowerToys" | Join-Path -ChildPath "PowerToys.exe") -ErrorAction SilentlyContinue)) {
-    winget install --exact --id Microsoft.PowerToys
+    winget install --accept-package-agreements --exact --id Microsoft.PowerToys
 }
 Get-ChildItem -Path (Join-Path -Path $DotDir -ChildPath "win-config/PowerToys") -Recurse -File | ForEach-Object {
     New-Item `
@@ -172,11 +179,28 @@ Get-ChildItem -Path (Join-Path -Path $DotDir -ChildPath "win-config/PowerToys") 
 
 ## nushell
 if ($null -eq (Get-Command "nu" -ErrorAction SilentlyContinue)) {
-    winget install --exact --id Nushell.Nushell
+    winget install --accept-package-agreements --exact --id Nushell.Nushell
 }
 
 ## Google IME
-winget install --exact --id Google.JapaneseIME
+winget install --accept-package-agreements --exact --id Google.JapaneseIME
+
+## komorebi
+# {{{
+# TODO: use winget instead when it became downloadable via winget
+$komorebiRelease = Invoke-RestMethod -uri "https://api.github.com/repos/LGUG2Z/komorebi/releases/latest"
+$komorebiReleaseInfo = $komorebiRelease.assets | Where { $_.browser_download_url.EndsWith(".zip") } | Select -First 1
+$outFile = (Join-Path -Path $UserProfile -ChildPath "downloads" | Join-Path -ChildPath $komorebiReleaseInfo.name)
+Invoke-WebRequest -Uri $komorebiReleaseInfo.browser_download_url -OutFile $outFile
+Expand-Archive -LiteralPath $outFile -Destination (Join-Path -Path $MyAppDir -ChildPath "komorebi")
+Remove-Item $outFile -Recurse
+# }}}
+
+# Envs {{{
+[Environment]::SetEnvironmentVariable("PATH", $Env:PATH + ";" + (Join-Path -Path $Env:ProgramW6432 -ChildPath "AutoHotKey"), [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable("KOMOREBI_CONFIG_HOME", (Join-Path -Path $DotDir -ChildPath "config/komorebi"), [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable("PATH", $Env:PATH + ";" + (Join-Path -Path $MyAppDir -ChildPath "komorebi"), [EnvironmentVariableTarget]::Machine)
+# }}}
 
 # stop while user input
 Read-Host "DONE!!"
