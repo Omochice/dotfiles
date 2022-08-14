@@ -69,4 +69,5 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/sketchybar/**
 !/config/glab-cli/aliases.yml
 !/config/gh/config.yml
+!/config/komorebi/config.ahk
 !/win-config/**
