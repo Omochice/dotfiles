@@ -308,11 +308,11 @@ repo = "simeji/winresizer"
 hook_add = """
 nnoremap <C-e> <Cmd>WinResizerStartResize<CR>
 nnoremap <expr><C-w><C-w> len(tabpagebuflist()) > 2
-    \ ? '<cmd>WinResizerStartMove<CR>'
+    \ ? '<cmd>WinResizerStartFocus<CR>'
     \ : '<C-w><C-w>'
 let g:winresizer_vert_resize = 3
 """
-on_cmd = ["WinResizerStartResize", "WinResizerStartMove"]
+on_cmd = ["WinResizerStartResize", "WinResizerStartFocus"]
 
 [[plugins]]
 repo = "thinca/vim-quickrun"
