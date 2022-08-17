@@ -16,10 +16,17 @@ augroup END
 [[plugins]]
 repo = "sainnhe/sonokai"
 hook_add = """
+function s:disable_bgcolor() abort
+  highlight FloatBorder ctermbg=NONE guibg=NONE
+  highlight NormalFloat ctermbg=NONE guibg=NONE
+  highlight Special ctermbg=NONE guibg=NONE
+  highlight link TreesitterContext Pmenu
+endfunction
+
 if !has('gui_running')
   augroup colorschemeSetting
     autocmd!
-    autocmd VimEnter * nested colorscheme sonokai | highlight FloatBorder ctermbg=NONE guibg=NONE
+    autocmd VimEnter * nested colorscheme sonokai | call <SID>disable_bgcolor()
   augroup END
 endif
 let g:sonokai_style = 'espresso'
