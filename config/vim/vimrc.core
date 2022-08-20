@@ -65,9 +65,9 @@ else
   set clipboard=unnamed,unnamedplus
 endif
 
-" move f/b in insert mode like commandline
-inoremap <C-f> <right>
-inoremap <C-b> <Left>
+" move f/b in insert mode like commandline without split undo unit
+inoremap <C-f> <C-g>U<Right>
+inoremap <C-b> <C-g>U<Left>
 
 " move UP/DOWN at fold context as same as displayed
 nnoremap j gj
