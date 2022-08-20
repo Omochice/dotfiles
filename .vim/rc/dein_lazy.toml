@@ -306,8 +306,19 @@ let g:vista_default_executive = 'vim_lsp'
 [[plugins]]
 repo = "simeji/winresizer"
 hook_add = """
+function s:number_of_non_float() abort
+  let l:bufnrs = tabpagebuflist()
+  let l:winids = []
+  for l:bufnr in l:bufnrs
+    let l:winids = l:winids + win_findbuf(l:bufnr)
+  endfor
+
+  " on floating / popup window is return 'popup'.
+  return len(filter(uniq(sort(l:winids)), {_, val -> win_gettype(val) != 'popup'}))
+endfunction
+
 nnoremap <C-e> <Cmd>WinResizerStartResize<CR>
-nnoremap <expr><C-w><C-w> len(tabpagebuflist()) > 2
+nnoremap <expr><C-w><C-w> <SID>number_of_non_float() > 2
     \ ? '<cmd>WinResizerStartFocus<CR>'
     \ : '<C-w><C-w>'
 let g:winresizer_vert_resize = 3
@@ -616,7 +627,7 @@ repo = "nvim-treesitter/nvim-treesitter-context"
 on_source = "nvim-treesitter"
 hook_source = """
 lua <<EOF
-require('treesitter-context').setup{
+require('treesitter-context').setup({
     enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
     max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
     trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
@@ -653,7 +664,7 @@ require('treesitter-context').setup{
 
     zindex = 20, -- The Z-index of the context window
     mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
-}
+})
 EOF
 """
 
@@ -844,7 +855,7 @@ on_cmd = ["Fern"]
 [plugins.ftplugin]
 fern = """
 nmap <buffer><nowait> q <Cmd>bprevious<CR>
-nmap <buffer> i <Plug>(fern-action-new-file)
+nmap <buffer><nowait> i <Plug>(fern-action-new-file)
 nmap <buffer> o <Plug>(fern-action-new-dir)
 nmap <buffer> r <Plug>(fern-action-rename)
 nmap <buffer> dd <Plug>(fern-action-remove=)
