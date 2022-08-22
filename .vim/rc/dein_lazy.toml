@@ -192,17 +192,24 @@ function! s:is_node_project(path) abort
   endif
 endfunction
 
+function! s:enable_current_lsp(server_func) abort
+  return !(lsp#get_server_names()
+        \         ->filter({_, v -> lsp#get_server_status(v) ==# 'running'
+        \                         && funcref(a:server_func)(v)})
+        \         ->empty())
+endfunction
+
 let g:lsp_diagnostics_enabled = v:true
 let g:lsp_diagnostics_virtual_text_enabled = v:false
 let g:lsp_diagnostics_echo_cursor = v:true
 let g:lsp_diagnostics_echo_delay = 100
 " let g:lsp_log_verbose = v:true
-let g:lsp_log_file = ('/tmp/vim-lsp.log')
+" let g:lsp_log_file = ('/tmp/vim-lsp.log')
 let g:lsp_preview_float = v:false
 let g:lsp_hover_ui = 'preview'
 let g:lsp_signature_help_enabled = v:false
-nmap <expr> K <SID>enable_help_by_lsp() ? "\<Plug>(lsp-hover)" : 'K'
-nmap <expr> gd <SID>enable_definition_by_lsp() ? "\<Plug>(lsp-definition)" : 'gd'
+nmap <expr> K <SID>enable_current_lsp('lsp#capabilities#has_hover_provider') ? "\<Plug>(lsp-hover)" : 'K'
+nmap <expr> gd <SID>enable_current_lsp('lsp#capabilities#has_definition_provider') ? "\<Plug>(lsp-definition)" : 'gd'
 nmap <silent> <Space>f <Plug>(lsp-document-format)
 nmap <silent> <Space>d <Plug>(lsp-document-diagnostics)
 nmap <silent> <Space>r <Plug>(lsp-rename)
@@ -223,20 +230,7 @@ let g:lsp_settings_filetype_objc = ['clangd']
 
 let s:ls_of_jsts = s:is_node_project(expand('%:p:h')) ? 'typescript-language-server' : 'deno'
 let g:lsp_settings_filetype_typescript = [s:ls_of_jsts]
-let g:lsp_settings_filetype_javascript = [s:ls_of_jsts]
 
-" TODO: 複数のfiletypeを開いてるときにうまく動かない
-function! s:enable_help_by_lsp() abort
-  let l:servers = lsp#get_server_names()
-  return !(len(l:servers) == 0
-        \ || uniq(map(l:servers, {_, v -> lsp#capabilities#has_hover_provider(v)})) == [0])
-endfunction
-
-function s:enable_definition_by_lsp() abort
-  let l:servers = lsp#get_server_names()
-  return !(len(l:servers) == 0
-        \ || uniq(map(l:servers, {_, v -> lsp#capabilities#has_definition_provider(v)})) == [0])
-endfunction
 """
 on_event = "BufRead"
 
