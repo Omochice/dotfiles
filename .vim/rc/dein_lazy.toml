@@ -875,3 +875,10 @@ nmap <buffer><expr> <CR> getline('.') =~# '^\s*\|-\s'
 [[plugins]]
 repo = "lambdalisue/fern-hijack.vim"
 on_source = "fern.vim"
+
+[[plugins]]
+repo = "mattn/emmet-vim"
+hook_add = """
+let g:user_emmet_expandabbr_key = '<C-y><C-y>'
+"""
+on_ft = ["vue", "html"]
