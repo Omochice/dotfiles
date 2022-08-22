@@ -29,6 +29,7 @@ let g:ddc_sources = {
 " endif
 
 inoremap <silent><expr> <C-Space> ddc#manual_complete()
+inoremap <silent><expr> <C-x> ddc#manual_complete(["vim-lsp"])
 
 if dein#tap('vim-vsnip-integ')
   let g:ddc_source_options['vsnip'] = {'mark': '[Snp]'}
@@ -36,7 +37,7 @@ endif
 """
 hook_source = """
 call ddc#custom#patch_global(
-      \ 'sources', g:ddc_sources['snippet'] + g:ddc_sources['lsp'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
+      \ 'sources', g:ddc_sources['snippet'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
       \ )
 call ddc#custom#patch_global('sourceOptions', g:ddc_source_options,)
 " Drop lsp source on vim/toml, because it provide a:a:content.
