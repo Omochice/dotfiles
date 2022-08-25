@@ -1,3 +1,5 @@
+. (Join-Path -Path $PSScriptRoot -ChildPath "functions.ps1")
+
 ## change to administer mode
 # NOTE: powershell dont allow make symlink as normal user
 if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole("Administrators")) {
@@ -194,6 +196,11 @@ $outFile = (Join-Path -Path $UserProfile -ChildPath "downloads" | Join-Path -Chi
 Invoke-WebRequest -Uri $komorebiReleaseInfo.browser_download_url -OutFile $outFile
 Expand-Archive -LiteralPath $outFile -Destination (Join-Path -Path $MyAppDir -ChildPath "komorebi")
 Remove-Item $outFile -Recurse
+
+# registor as auto-start
+Create-ShortCut -Source (Join-Path -Path $MyAppDir -ChildPath "komorebi" | Join-Path -ChildPath "komorebic.exe")`
+                -Arguments "start"
+                -Destinaton $(Get-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders').StartUp
 # }}}
 
 # Envs {{{
