@@ -90,8 +90,27 @@ local keys = {
         { key = "8", mods = "ALT", action = wezterm.action({ ActivateTab = 7 }) },
         { key = "9", mods = "ALT", action = wezterm.action({ ActivateTab = 8 }) },
         { key = "Enter", mods = "ALT", action = "QuickSelect" },
-        { key = "/", mods = "ALT", action = act.Search("CurrentSelectionOrEmptyString") },
+        { key = "/", mods = "ALT", action = wezterm.action.Search("CurrentSelectionOrEmptyString") },
+        { key = "r", mods = "ALT", action = wezterm.action({ ActivateKeyTable = {
+                name = "resize_pane",
+                one_shot = false,
+                timeout_milliseconds = 3001,
+                replace_current = false,
+            }, }),
+        },
     },
+    resize_pane = {
+		{ key = "LeftArrow", action = wezterm.action({ AdjustPaneSize = { "Left", 3 } }) },
+		{ key = "h", action = wezterm.action({ AdjustPaneSize = { "Left", 3 } }) },
+		{ key = "RightArrow", action = wezterm.action({ AdjustPaneSize = { "Right", 3 } }) },
+		{ key = "l", action = wezterm.action({ AdjustPaneSize = { "Right", 3 } }) },
+		{ key = "UpArrow", action = wezterm.action({ AdjustPaneSize = { "Up", 3 } }) },
+		{ key = "k", action = wezterm.action({ AdjustPaneSize = { "Up", 3 } }) },
+		{ key = "DownArrow", action = wezterm.action({ AdjustPaneSize = { "Down", 3 } }) },
+		{ key = "j", action = wezterm.action({ AdjustPaneSize = { "Down", 3 } }) },
+		-- Cancel the mode by pressing escape
+		{ key = "Escape", action = "PopKeyTable" },
+	},
     -- TODO: copy-modeのときにC-u/dを使えるようにする
 }
 
