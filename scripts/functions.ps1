@@ -7,7 +7,7 @@ function Create-ShortCut {
     $Shortcut = $WScriptShell.CreateShortcut($dst)
     $Shortcut.Targetpath = $Source
     if ($Arguments.count -gt 0){
-        $Shortcut.Arguments = $Arguments
+        $Shortcut.Arguments = $Arguments -join " "
     }
     $Shortcut.Save()
 

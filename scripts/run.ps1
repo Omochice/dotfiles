@@ -199,8 +199,8 @@ Remove-Item $outFile -Recurse
 
 # registor as auto-start
 Create-ShortCut -Source (Join-Path -Path $MyAppDir -ChildPath "komorebi" | Join-Path -ChildPath "komorebic.exe")`
-                -Arguments "start"
-                -Destinaton (Get-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders').StartUp
+                -Arguments "start" `
+                -Destination (Get-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders').StartUp
 # }}}
 
 # Envs {{{
