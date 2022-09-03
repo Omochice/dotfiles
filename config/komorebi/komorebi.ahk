@@ -9,12 +9,12 @@ Run, komorebic.exe active-window-border disable, , Hide
 ; Enable focus follows mouse
 Run, komorebic.exe focus-follows-mouse disable, , Hide
 
-; Ensure there are 5 workspaces on each monitor
+; Ensure there are 6 workspaces on each monitor
 ; NOTE: 80 = SM_CMONITORS
 SysGet, N_MONITOR, 80
 Loop, %N_MONITOR% {
     m = A_Index - 1
-    Run, komorebic.exe ensure-workspaces %m% 5, , Hide
+    Run, komorebic.exe ensure-workspaces %m% 6, , Hide
 }
 
 ; Set the layouts of different workspaces
@@ -93,42 +93,134 @@ return
 
 ; Switch to workspace
 #1::
-Run, komorebic.exe focus-workspace 0, , Hide
+if (N_MONITOR = 1) {
+    Run, komorebic.exe focus-workspace 0, , Hide
+} else if (N_MONITOR = 2) {
+    Run, komorebic.exe focus-monitor-workspace 1 0, , Hide
+} else if (N_MONITOR = 3) {
+    Run, komorebic.exe focus-monitor-workspace 2 0, , Hide
+}
 return
 
 #2::
-Run, komorebic.exe focus-workspace 1, , Hide
+if (N_MONITOR = 1) {
+    Run, komorebic.exe focus-workspace 1, , Hide
+} else if (N_MONITOR = 2) {
+    Run, komorebic.exe focus-monitor-workspace 1 1, , Hide
+} else if (N_MONITOR = 3) {
+    Run, komorebic.exe focus-monitor-workspace 2 1, , Hide
+}
 return
 
 #3::
-Run, komorebic.exe focus-workspace 2, , Hide
+if (N_MONITOR = 1) {
+    Run, komorebic.exe focus-workspace 2, , Hide
+} else if (N_MONITOR = 2) {
+    Run, komorebic.exe focus-monitor-workspace 1 2, , Hide
+} else if (N_MONITOR = 3) {
+    Run, komorebic.exe focus-monitor-workspace 1 0, , Hide
+}
 return
 
 #4::
-Run, komorebic.exe focus-workspace 3, , Hide
+if (N_MONITOR = 1) {
+    Run, komorebic.exe focus-workspace 3, , Hide
+} else if (N_MONITOR = 2) {
+    Run, komorebic.exe focus-monitor-workspace 0 0, , Hide
+} else if (N_MONITOR = 3) {
+    Run, komorebic.exe focus-monitor-workspace 1 1, , Hide
+}
 return
 
 #5::
-Run, komorebic.exe focus-workspace 4, , Hide
+if (N_MONITOR = 1) {
+    Run, komorebic.exe focus-workspace 4, , Hide
+} else if (N_MONITOR = 2) {
+    Run, komorebic.exe focus-monitor-workspace 0 1, , Hide
+} else if (N_MONITOR = 3) {
+    Run, komorebic.exe focus-monitor-workspace 0 0, , Hide
+}
+return
+
+#6::
+if (N_MONITOR = 1) {
+    Run, komorebic.exe focus-workspace 5, , Hide
+} else if (N_MONITOR = 2) {
+    Run, komorebic.exe focus-monitor-workspace 0 2, , Hide
+} else if (N_MONITOR = 3) {
+    Run, komorebic.exe focus-monitor-workspace 0 1, , Hide
+}
 return
 
 ; Move window to workspace
 #+1::
-Run, komorebic.exe move-to-workspace 0, , Hide
+if (N_MONITOR = 1) {
+    Run, komorebic.exe move-to-workspace 0, , Hide
+} else if (N_MONITOR = 2) {
+    Run, komorebic.exe send-to-monitor-workspace 1 0, , Hide
+    Run, komorebic.exe focus-monitor-workspace 1 0, , Hide
+} else if (N_MONITOR = 3) {
+    Run, komorebic.exe send-to-monitor-workspace 2 0, , Hide
+    Run, komorebic.exe focus-monitor-workspace 2 0, , Hide
+}
 return
 
 #+2::
-Run, komorebic.exe move-to-workspace 1, , Hide
+if (N_MONITOR = 1) {
+    Run, komorebic.exe move-to-workspace 1, , Hide
+} else if (N_MONITOR = 2) {
+    Run, komorebic.exe send-to-monitor-workspace 1 1, , Hide
+    Run, komorebic.exe focus-monitor-workspace 1 1, , Hide
+} else if (N_MONITOR = 3) {
+    Run, komorebic.exe send-to-monitor-workspace 2 1, , Hide
+    Run, komorebic.exe focus-monitor-workspace 2 1, , Hide
+}
 return
 
 #+3::
-Run, komorebic.exe move-to-workspace 2, , Hide
+if (N_MONITOR = 1) {
+    Run, komorebic.exe move-to-workspace 2, , Hide
+} else if (N_MONITOR = 2) {
+    Run, komorebic.exe send-to-monitor-workspace 1 2, , Hide
+    Run, komorebic.exe focus-monitor-workspace 1 2, , Hide
+} else if (N_MONITOR = 3) {
+    Run, komorebic.exe send-to-monitor-workspace 1 0, , Hide
+    Run, komorebic.exe focus-monitor-workspace 1 0, , Hide
+}
 return
 
 #+4::
-Run, komorebic.exe move-to-workspace 3, , Hide
+if (N_MONITOR = 1) {
+    Run, komorebic.exe move-to-workspace 3, , Hide
+} else if (N_MONITOR = 2) {
+    Run, komorebic.exe send-to-monitor-workspace 0 0, , Hide
+    Run, komorebic.exe focus-monitor-workspace 0 0, , Hide
+} else if (N_MONITOR = 3) {
+    Run, komorebic.exe send-to-monitor-workspace 1 1, , Hide
+    Run, komorebic.exe focus-monitor-workspace 1 1, , Hide
+}
 return
 
 #+5::
-Run, komorebic.exe move-to-workspace 4, , Hide
+if (N_MONITOR = 1) {
+    Run, komorebic.exe move-to-workspace 4, , Hide
+} else if (N_MONITOR = 2) {
+    Run, komorebic.exe send-to-monitor-workspace 0 1, , Hide
+    Run, komorebic.exe focus-monitor-workspace 0 1, , Hide
+} else if (N_MONITOR = 3) {
+    Run, komorebic.exe send-to-monitor-workspace 0 0, , Hide
+    Run, komorebic.exe focus-monitor-workspace 0 0, , Hide
+}
+return
+
+#+6::
+if (N_MONITOR = 1) {
+    Run, komorebic.exe move-to-workspace 5, , Hide
+} else if (N_MONITOR = 3) {
+    Run, komorebic.exe send-to-monitor-workspace 0 2, , Hide
+    Run, komorebic.exe focus-monitor-workspace 0 2, , Hide
+} else if (N_MONITOR = 3) {
+    Run, komorebic.exe send-to-monitor-workspace 0 1, , Hide
+    Run, komorebic.exe focus-monitor-workspace 0 1, , Hide
+}
 return
