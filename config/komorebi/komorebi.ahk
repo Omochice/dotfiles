@@ -81,12 +81,13 @@ return
 Run, komorebic.exe flip-layout vertical, , Hide
 return
 
-; Float the focused window, Alt + T
+; Toggle focused window floatly, super + space
 #Space::
 Run, komorebic.exe toggle-float, , Hide
 return
 
-; Reload ~/komorebi.ahk, Alt + O
+; Reload ~/komorebi.ahk, super + c
+; NOTE: Maybe this not re-order virtual desktop?
 #+c::
 Run, komorebic.exe reload-configuration, , Hide
 return
