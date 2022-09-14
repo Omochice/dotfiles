@@ -68,7 +68,7 @@ reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout" /v
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Feeds" /v "ShellFeedsTaskViewMode" /t REG_DWORD /d "2" /f
 
 # DONT EXECUTE UNEXPECTED SHOTCUTS
-reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "DisabledHotkeys" /t REG_SZ /d "ABCEFHIJKOPRSTUVXZ,.;+-:" /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "DisabledHotkeys" /t REG_SZ /d "ABCEFHIJKNOPQRSTUVXZ,.;+-:" /f
 
 # DISABLE BING
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "DisableSearchBoxSuggestions" /t REG_DWORD /d "1" /f
@@ -189,25 +189,29 @@ winget install --accept-package-agreements --exact --id Google.JapaneseIME
 
 ## komorebi
 # {{{
-# TODO: use winget instead when it became downloadable via winget
-$komorebiRelease = Invoke-RestMethod -uri "https://api.github.com/repos/LGUG2Z/komorebi/releases/latest"
-$komorebiReleaseInfo = $komorebiRelease.assets | Where { $_.browser_download_url.EndsWith(".zip") } | Select -First 1
-$outFile = (Join-Path -Path $UserProfile -ChildPath "downloads" | Join-Path -ChildPath $komorebiReleaseInfo.name)
-Invoke-WebRequest -Uri $komorebiReleaseInfo.browser_download_url -OutFile $outFile
-Expand-Archive -LiteralPath $outFile -Destination (Join-Path -Path $MyAppDir -ChildPath "komorebi")
-Remove-Item $outFile -Recurse
+winget install --accept-package-agreements --exact --id LGUG2Z.komorebi
+# NOTE: komorebi add Path automatically
 
 # registor as auto-start
-Create-ShortCut -Source (Join-Path -Path $MyAppDir -ChildPath "komorebi" | Join-Path -ChildPath "komorebic.exe")`
+Create-ShortCut -Source (Get-Command komorebic).Definition `
                 -Arguments "start" `
                 -Destination (Get-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders').StartUp `
                 -WindowStyle 7
 # }}}
 
 # Envs {{{
-[Environment]::SetEnvironmentVariable("PATH", $Env:PATH + ";" + (Join-Path -Path $Env:ProgramW6432 -ChildPath "AutoHotKey"), [EnvironmentVariableTarget]::Machine)
+$paths = @(
+    (Join-Path -Path $Env:ProgramW6432 -ChildPath "AutoHotKey")
+    )
+$orginalPath = $Env:PATH
+foreach ($p in $paths) {
+    # if $p is include PATH already, remove it.
+    $orginalPath = $orginalPath.Replace($p + ";", "")
+    # add it
+    $orginalPath = $orginalPath + $p + ";"
+}
+[Environment]::SetEnvironmentVariable("PATH", $orginalPath, [EnvironmentVariableTarget]::Machine)
 [Environment]::SetEnvironmentVariable("KOMOREBI_CONFIG_HOME", (Join-Path -Path $DotDir -ChildPath "config/komorebi"), [EnvironmentVariableTarget]::Machine)
-[Environment]::SetEnvironmentVariable("PATH", $Env:PATH + ";" + (Join-Path -Path $MyAppDir -ChildPath "komorebi"), [EnvironmentVariableTarget]::Machine)
 # }}}
 
 # stop while user input
