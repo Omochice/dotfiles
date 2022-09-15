@@ -129,6 +129,21 @@ inoreabbrev <buffer> ;; ->
 """
 
 markdown = """
+function s:toggle_checkbox() abort
+  let l:lnum = line('.')
+  let l:line = getline(l:lnum)
+  if l:line =~# '\[x\]'
+    let l:line = substitute(l:line, '\[x\]', '[ ]', '')
+    call setline(l:lnum, l:line)
+    return
+  elseif l:line =~# '\[ \]'
+    let l:line = substitute(l:line, '\[ \]', '[x]', '')
+    call setline(l:lnum, l:line)
+    return
+  endif
+endfunction
+
+nnoremap <buffer><C-x> <Cmd>call <SID>toggle_checkbox()<CR>
 inoreabbrev <buffer> ;; ->
 """
 
