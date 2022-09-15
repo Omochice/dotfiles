@@ -373,49 +373,6 @@ let g:strip_whitespace_on_save = v:false
 on_event = "BufRead"
 
 [[plugins]]
-repo = "terryma/vim-expand-region"
-hook_add = """
-xmap v <Plug>(expand_region_expand)
-xmap V <Plug>(expand_region_shrink)
-if has('nvim')
-  let g:expand_region_text_objects = {
-        \ 'iw'  :0,
-        \ 'iW'  :0,
-        \ 'i"'  :0,
-        \ "i'"  :0,
-        \ 'i]'  :1,
-        \ 'ib'  :1,
-        \ 'iB'  :0,
-        \ 'il'  :1,
-        \ 'ip'  :1,
-        \ 'iL'  :1,
-        \ 'aL'  :1,
-        \ 'iF'  :1,
-        \ 'aF'  :1,
-        \ 'iC'  :1,
-        \ 'aC'  :1,
-        \ 'ie'  :0,
-        \ }
-else
-  let g:expand_region_text_objects = {
-        \ 'iw'  :0,
-        \ 'iW'  :0,
-        \ 'i"'  :0,
-        \ "i'"  :0,
-        \ 'i]'  :1,
-        \ 'ib'  :1,
-        \ 'iB'  :0,
-        \ 'il'  :1,
-        \ 'ip'  :1,
-        \ 'ie'  :0,
-        \ }
-endif
-"""
-on_map = { x = "<Plug>" }
-# if nvim, depends treesitter-textobjects.
-depends = ["vim-textobj-user", "vim-textobj-line", "vim-textobj-anyblock"]
-
-[[plugins]]
 repo = "alvan/vim-closetag"
 hook_add = """
 let g:closetag_filenames = '*.html, *.xml, *.jsx, *.erb'
