@@ -141,13 +141,16 @@ on_event = "InsertEnter"
 
 [[plugins]]
 repo = "hrsh7th/vim-vsnip-integ"
+on_source = "vim-vsnip"
+
+[[multiple_plugins]]
+plugins = ["vim-vsnip-integ", "pum.vim"]
 hook_add = """
 augroup vsnip_for_pum
   autocmd!
   autocmd User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
 augroup END
 """
-on_source = "vim-vsnip"
 
 [[plugins]]
 repo = "cohama/lexima.vim"
