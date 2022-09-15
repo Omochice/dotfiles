@@ -530,9 +530,7 @@ repo = "nvim-treesitter/nvim-treesitter"
 if = "has('nvim')"
 on_event = "BufRead"
 hook_post_update = "TSUpdate"
-# TODO: change to 'maintained'
-hook_source = """
-lua <<EOF
+lua_source = """
 require('nvim-treesitter.configs').setup {
     ensure_installed = 'all',
     highlight = {
@@ -540,15 +538,13 @@ require('nvim-treesitter.configs').setup {
     },
     ignore_install = {'phpdoc', 'toml'},
 }
-EOF
 """
 
 [[plugins]]
 repo = "nvim-treesitter/nvim-treesitter-textobjects"
 on_source = "nvim-treesitter"
 # Use upper case for treesitter, it prevent to confuse at Vim's one.
-hook_source = """
-lua <<EOF
+lua_source = """
 require('nvim-treesitter.configs').setup{
     textobjects = {
         select = {
@@ -567,14 +563,13 @@ require('nvim-treesitter.configs').setup{
         },
     },
 }
-EOF
 """
 
 [[plugins]]
 repo = "nvim-treesitter/nvim-treesitter-context"
+# TODO: i wait to show context on top-right position
 on_source = "nvim-treesitter"
-hook_source = """
-lua <<EOF
+lua_source = """
 require('treesitter-context').setup({
     enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
     max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
@@ -613,7 +608,6 @@ require('treesitter-context').setup({
     zindex = 20, -- The Z-index of the context window
     mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
 })
-EOF
 """
 
 [[plugins]]
