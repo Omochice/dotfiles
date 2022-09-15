@@ -777,7 +777,6 @@ nmap qe <Plug>(operator-partedit-start)
 xmap qe <Plug>(operator-partedit-start)
 """
 on_map = { x = "<Plug>", n = "<Plug>" }
-
 [plugins.ftplugin]
 markdown = """
 nmap <buffer> qe <Plug>(operator-partedit-codeblock)
@@ -820,7 +819,10 @@ on_source = "fern.vim"
 
 [[plugins]]
 repo = "mattn/emmet-vim"
-hook_add = """
-let g:user_emmet_expandabbr_key = '<C-y><C-y>'
-"""
 on_ft = ["vue", "html"]
+
+[[multiple_plugins]]
+plugins = ["vim-vsnip", "emmet-vim"]
+hook_add = """
+imap <expr><C-y><C-y> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<Plug>(emmet-expand-abbr)'
+"""
