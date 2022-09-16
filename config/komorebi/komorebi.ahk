@@ -217,7 +217,7 @@ return
 #+6::
 if (N_MONITOR = 1) {
     Run, komorebic.exe move-to-workspace 5, , Hide
-} else if (N_MONITOR = 3) {
+} else if (N_MONITOR = 2) {
     Run, komorebic.exe send-to-monitor-workspace 0 2, , Hide
     Run, komorebic.exe focus-monitor-workspace 0 2, , Hide
 } else if (N_MONITOR = 3) {
