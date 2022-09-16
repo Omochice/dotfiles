@@ -1,53 +1,43 @@
 let g:config_dir = fnamemodify(expand('<sfile>'), ':h')
-let g:is_deno_executable = executable('deno')
-
-let g:dein#inline_vimrcs = [
-      \ expand('~/.config/vim/vimrc.core'),
-      \ g:config_dir . '/fcitx.vim',
-      \ g:config_dir . '/zenhan.vim',
-      \ ]
-
-" dein.vim settings {{
-" install dir {{{
-let g:dein_dir = g:config_dir . '/dein'
-let s:dein_repo_dir = g:dein_dir . '/repos/github.com/Shougo/dein.vim'
-" }}}
 
 " dein installation check {{{
+let s:dein_dir = g:config_dir .. '/dein'
+let s:dein_repo_dir = s:dein_dir .. '/repos/github.com/Shougo/dein.vim'
+
 if &runtimepath !~# '/dein.vim'
   if !isdirectory(s:dein_repo_dir)
     execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
   endif
-  execute 'set runtimepath^=' . s:dein_repo_dir
+  execute 'set runtimepath^=' .. s:dein_repo_dir
 endif
 " }}}
-"
+
+" options {{{
+let g:dein#auto_recache = !has('win32')
+let g:dein#lazy_rplugins = v:true
+" }}}
 
 " begin settings {{{
-if dein#load_state(g:dein_dir)
-  call dein#begin(g:dein_dir)
+if dein#min#load_state(s:dein_dir)
+  let g:dein#inline_vimrcs = [
+       \ expand('~/.config/vim/vimrc.core'),
+       \ g:config_dir .. '/fcitx.vim',
+       \ g:config_dir .. '/zenhan.vim',
+       \ ]
   " .toml file
-  let s:rc_dir = g:config_dir . '/rc'
-  if !isdirectory(s:rc_dir)
-    call mkdir(s:rc_dir, 'p')
-  endif
-  let s:toml = s:rc_dir . '/dein.toml'
-  let s:lazy_toml = s:rc_dir . '/dein_lazy.toml'
-  let s:dein_denops = s:rc_dir . '/dein_denops.toml'
-  let s:dein_ft_toml = s:rc_dir . '/deinft.toml'
-  let s:dein_asyncomplete = s:rc_dir . '/dein_asyncomplete.toml'
+  let s:rc_dir = g:config_dir .. '/rc'
 
+  let s:toml = s:rc_dir .. '/dein.toml'
+  let s:lazy_toml = s:rc_dir .. '/dein_lazy.toml'
+  let s:denops_toml = s:rc_dir .. '/dein_denops.toml'
+  let s:ft_toml = s:rc_dir .. '/deinft.toml'
+
+  call dein#begin(s:dein_dir, [expand('<sfile>'), s:toml, s:lazy_toml, s:denops_toml, s:ft_toml])
   " read toml and cache
-  call dein#load_toml(s:toml, {'lazy': 0})
-  call dein#load_toml(s:lazy_toml, {'lazy': 1})
-  if g:is_deno_executable
-    call dein#load_toml(s:dein_denops, {'lazy': 1})
-  else
-    echomsg 'deno is not executable, so stoped loading denops plugins.'
-    echomsg 'load asyncomplete instead of ddc.vim'
-    call dein#load_toml(s:dein_asyncomplete, {'lazy': 1})
-  endif
-  call dein#load_toml(s:dein_ft_toml)
+  call dein#load_toml(s:toml, {'lazy': v:false})
+  call dein#load_toml(s:lazy_toml, {'lazy': v:true})
+  call dein#load_toml(s:denops_toml, {'lazy': v:true})
+  call dein#load_toml(s:ft_toml, {'lazy': v:false})
 
   " end settings
   call dein#end()
@@ -56,9 +46,9 @@ endif
 " }}}
 
 " plugin installation check {{{
-let g:dein#install_github_api_token = $DEIN_GITHUB_TOKEN
 if dein#check_install()
-  if g:dein#install_github_api_token !=# ''
+  if $DEIN_GITHUB_TOKEN !=# ''
+    let g:dein#install_github_api_token = $DEIN_GITHUB_TOKEN
     call dein#check_update(v:true)
   else
     call dein#install()
@@ -69,7 +59,7 @@ endif
 " plugin remove check {{{
 let s:removed_plugins = dein#check_clean()
 if len(s:removed_plugins) > 0
-  call map(s:removed_plugins, "delete(v:val, 'rf')")
+  call map(s:removed_plugins, { _, val -> delete(val) })
   call dein#recache_runtimepath()
 endif
 " }}}
