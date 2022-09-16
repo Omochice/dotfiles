@@ -1,7 +1,6 @@
 [[plugins]]
 repo = "Shougo/dein.vim"
 hook_add = """
-let g:dein#auto_recache = !has('win32')
 function! s:dein_toml_syntax() abort
   if expand('%:p') =~# '\vrc/[^/]+.toml$'
     call dein#toml#syntax()
@@ -9,7 +8,7 @@ function! s:dein_toml_syntax() abort
 endfunction
 augroup dein_augroup_internal
   autocmd!
-  autocmd FileType toml ++nested call timer_start(0, {id->s:dein_toml_syntax()})
+  autocmd FileType toml ++nested call timer_start(0, { -> s:dein_toml_syntax() })
 augroup END
 """
 
@@ -26,7 +25,8 @@ endfunction
 if !has('gui_running')
   augroup colorschemeSetting
     autocmd!
-    autocmd VimEnter * nested colorscheme sonokai | call <SID>disable_bgcolor()
+    autocmd VimEnter * nested colorscheme sonokai
+    autocmd ColorScheme * call timer_start(0, { -> s:disable_bgcolor() })
   augroup END
 endif
 let g:sonokai_style = 'espresso'
@@ -111,16 +111,6 @@ repo = "vim-scripts/fish.vim"
 
 # [[plugins]]
 # repo = "mityu/vim-applescript"
-
-[[plugins]]
-repo = "gko/vim-coloresque"
-
-[[plugins]]
-repo = "posva/vim-vue"
-
-[[plugins]]
-repo = "cespare/vim-toml"
-if = "!has('nvim') && !has('patch-8.2.3532')"
 
 [[plugins]]
 repo = "aklt/plantuml-syntax"
