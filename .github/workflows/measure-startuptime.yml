@@ -1,0 +1,24 @@
+name: Measure Vim Startup Time
+
+on:
+  - push
+
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/vim-denops/neovim:latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install vim-startup by github release
+        uses: jaxxstorm/action-install-gh-release@v1.7.1
+        with:
+          repo: rhysd/vim-startuptime
+          platform: linux
+          arch: amd64
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run commands
+        run: >
+          vim-startuptime -vimpath /opt/neovim/bin/nvim -- -u ./.vim/vimrc
+
