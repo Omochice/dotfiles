@@ -73,13 +73,27 @@
       "/**",
       " * $1",
       " *",
-      " * @param $2",
-      " * @return $3",
-      " * @example $4",
-      " * how to use",
-      " * // whats are returned?",
+      " * @param${2: }",
+      " * @return${3: }",
+      " * @example",
+      " * ```ts",
+      " * ```",
       " */"
     ],
     "description": "typedoc template"
+  },
+  "enum": {
+    "prefix": "enum",
+    "body": [
+      "type ${1:name} = typeof ${1:name}[keyof typeof ${1:name}]"
+    ],
+    "description": "enum shorthand"
+  },
+  "enumkey": {
+    "prefix": "enumkey",
+    "body": [
+      "${1}: \"${1}\""
+    ],
+    "description": "enumkey shorthand"
   }
 }
