@@ -37,12 +37,16 @@ endif
 """
 hook_source = """
 call ddc#custom#patch_global(
-      \ 'sources', g:ddc_sources['snippet'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
+      \ 'sources', g:ddc_sources['snippet'] + g:ddc_sources['lsp'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
       \ )
 call ddc#custom#patch_global('sourceOptions', g:ddc_source_options,)
 " Drop lsp source on vim/toml, because it provide a:a:content.
 call ddc#custom#patch_filetype(
       \ ['toml', 'vim'], 'sources', g:ddc_sources['snippet'] + ['necovim'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
+      \ )
+" NOTE: volar is too slow to show with other sources.
+call ddc#custom#patch_filetype(
+      \ ['vue'], 'sources', g:ddc_sources['snippet'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
       \ )
 call ddc#custom#patch_filetype(
       \ ['markdown'], 'sources', g:ddc_sources['snippet'] + ['file'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
