@@ -128,7 +128,7 @@ elm = """
 inoreabbrev <buffer> ;; ->
 """
 
-markdown = """
+gitcommit_markdown = """
 function s:toggle_checkbox() abort
   let l:lnum = line('.')
   let l:line = getline(l:lnum)
@@ -143,7 +143,21 @@ function s:toggle_checkbox() abort
   endif
 endfunction
 
+function s:toggle_listitem(marker) abort
+  let l:lnum = line('.')
+  let l:line = getline(l:lnum)
+  if l:line =~# '^\s*' .. a:marker
+    " `- text` => `text`
+    let l:line = substitute(l:line, a:marker .. '\s*', '', '')
+    call setline(l:lnum, l:line)
+  else
+    let l:line = a:marker .. " " .. l:line
+    call setline(l:lnum, l:line)
+  endif
+endfunction
+
 nnoremap <buffer><C-x> <Cmd>call <SID>toggle_checkbox()<CR>
+nnoremap <buffer>- <Cmd>call <SID>toggle_listitem('-')<CR>
 inoreabbrev <buffer> ;; ->
 """
 
