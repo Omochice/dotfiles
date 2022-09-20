@@ -7,7 +7,7 @@ let s:rules += [
 
 "" javascript
 let s:rules += [
-      \ {'filetype': ['javascript', 'typescript'], 'char': '<Space>', 'at': '^\s*\(}\s*else\s\)\?if\%#', 'input': '<Space>(', 'input_after': ')' },
+      \ {'filetype': ['javascript', 'typescript', 'vue'], 'char': '<Space>', 'at': '^\s*\(}\s*else\s\)\?if\%#', 'input': '<Space>(', 'input_after': ')' },
       \ ]
 
 "" ruby
