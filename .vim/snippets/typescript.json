@@ -85,14 +85,17 @@
   "enum": {
     "prefix": "enum",
     "body": [
+      "const ${1:name} = {",
+      "",
+      "} as const",
       "type ${1:name} = typeof ${1:name}[keyof typeof ${1:name}]"
     ],
-    "description": "enum shorthand"
+    "description": "enum template"
   },
   "enumkey": {
     "prefix": "enumkey",
     "body": [
-      "${1}: \"${1}\""
+      "${1}: \"${1}\","
     ],
     "description": "enumkey shorthand"
   }
