@@ -232,6 +232,9 @@ on_event = "BufRead"
 
 [[plugins]]
 repo = "mattn/vim-lsp-settings"
+hook_add = """
+let g:lsp_settings_enable_suggestions = v:false
+"""
 on_source = "vim-lsp"
 
 [[plugins]]
