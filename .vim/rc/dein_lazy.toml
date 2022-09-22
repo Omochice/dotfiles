@@ -525,21 +525,28 @@ if = "has('nvim')"
 on_event = "BufRead"
 hook_post_update = "TSUpdate"
 lua_source = """
-require('nvim-treesitter.configs').setup {
+require('nvim-treesitter.configs').setup({
     ensure_installed = 'all',
     highlight = {
         enable = true,
     },
-    ignore_install = {'phpdoc', 'toml'},
-}
+    ignore_install = {'phpdoc'},
+    playground = {
+        enable = true,
+    },
+})
 """
+
+[[plugins]]
+repo = "nvim-treesitter/playground"
+on_source = "nvim-treesitter"
 
 [[plugins]]
 repo = "nvim-treesitter/nvim-treesitter-textobjects"
 on_source = "nvim-treesitter"
 # Use upper case for treesitter, it prevent to confuse at Vim's one.
 lua_source = """
-require('nvim-treesitter.configs').setup{
+require('nvim-treesitter.configs').setup({
     textobjects = {
         select = {
             enable = true,
@@ -556,7 +563,7 @@ require('nvim-treesitter.configs').setup{
             },
         },
     },
-}
+})
 """
 
 [[plugins]]
