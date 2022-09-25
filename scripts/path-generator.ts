@@ -1,16 +1,17 @@
-import {
-  Arg,
-  Command,
-  Flag,
-  Help,
-  Opt,
-  Version,
-} from "https://deno.land/x/classopt@v0.1.2/mod.ts";
-import { parse } from "https://deno.land/std@0.157.0/encoding/toml.ts";
+import { parse as parseToml } from "https://deno.land/std@0.157.0/encoding/toml.ts";
+import { parse as parseArguments } from "https://deno.land/std@0.157.0/flags/mod.ts";
 import { basename } from "https://deno.land/std@0.157.0/path/mod.ts";
-import { assertString } from "https://deno.land/x/unknownutil@v2.0.0/mod.ts";
+import {
+  ensureArray,
+  ensureString,
+  isString,
+} from "https://deno.land/x/unknownutil@v2.0.0/mod.ts";
 
-type Shell = "bash" | "zsh" | "fish";
+const supportedShell = ["bash", "zsh", "fish"] as const;
+type Shell = typeof supportedShell[keyof typeof supportedShell];
+function isShell(x: unknown): x is Shell {
+  return supportedShell.some((e) => e === x); // NOTE: if use includes then show error by lsp
+}
 type OS = "wsl" | typeof Deno.build.os;
 
 function getShell(): Shell {
@@ -66,12 +67,11 @@ type Execute = Option & {
 
 async function loadToml(path: string): Promise<Setting> {
   const contents = Deno.readTextFile(path);
-  return (parse(await contents) as unknown as Setting);
+  return (parseToml(await contents) as unknown as Setting);
 }
 
-const home = Deno.env.get("HOME");
+const home = ensureString(Deno.env.get("HOME"));
 function expandHome(p: string): string {
-  assertString(home); // NOTE: assertion is must be here because of lsp error
   return p.replace(/^~/, home);
 }
 
@@ -165,84 +165,88 @@ function generateSource(source: Source, shell: Shell): string {
   }
 }
 
-function generateExecute(execute: Execute): string {
+function generateExecute(execute: Execute, _shell: Shell): string {
   const generate = generateFactory(execute);
   return generate(execute.command);
 }
 
-@Help("Path file generator for me")
-@Version("0.0.0")
-class Program extends Command {
-  @Arg({ about: "path to config file" })
-  config!: string;
+type Argument = {
+  configs: string[];
+  debug: boolean;
+  shell: Shell;
+  help: boolean;
+};
 
-  @Opt({ about: `Format shell type. default: ${getShell()}` })
-  shell: Shell = getShell();
+function parseArgs(args: string[]): [Argument, null] | [null, Error] {
+  const defaultShell = basename(Deno.env.get("SHELL") ?? "bash");
+  const description = "Path file generator for me";
+  const thisFile = basename(import.meta.url);
+  const helpmsg = `
+${thisFile} - ${description}
 
-  @Flag({ about: "enable debug mode" })
-  debug = false;
+[USASE]
+  ${thisFile} [OPTIONS] <configs...>
 
-  async execute() {
-    const tomlData = await loadToml(this.config);
-    const paths: string[] = [];
-    for (const p of filterByShell(tomlData.paths ?? [], this.shell)) {
-      if (this.debug) {
-        console.error(p);
-        console.error(generatePath(p, this.shell));
-      }
-      paths.push(generatePath(p, this.shell));
-    }
+[ARGUMENTS]
+  config: setting toml file.
 
-    const aliases: string[] = [];
-    for (const al of filterByShell(tomlData.aliases ?? [], this.shell)) {
-      if (this.debug) {
-        console.error(al);
-        console.error(generateAlias(al, this.shell));
-      }
-      aliases.push(generateAlias(al, this.shell));
-    }
-
-    const envs: string[] = [];
-    for (const env of filterByShell(tomlData.environments ?? [], this.shell)) {
-      if (this.debug) {
-        console.error(env);
-        console.error(generateEnviroment(env, this.shell));
-      }
-      envs.push(generateEnviroment(env, this.shell));
-    }
-
-    const sources: string[] = [];
-    for (const source of filterByShell(tomlData.sources ?? [], this.shell)) {
-      if (this.debug) {
-        console.error(source);
-        console.error(generateSource(source, this.shell));
-      }
-      sources.push(generateSource(source, this.shell));
-    }
-
-    const execs: string[] = [];
-    for (const exec of filterByShell(tomlData.executes ?? [], this.shell)) {
-      if (this.debug) {
-        console.error(exec);
-        console.error(generateExecute(exec));
-      }
-      execs.push(generateExecute(exec));
-    }
-
-    const contents = [
-      paths,
-      sources,
-      aliases,
-      envs,
-      execs,
-    ].map((generated) =>
-      generated
-        .filter((e) => e.length > 0)
-        .join("\n")
-    );
-
-    console.log(contents.filter((c) => c.length > 0).join("\n\n"));
+[OPTIONS]
+  --help -h: Show this message.
+  --debug: Run debug mode.
+  --shell: Output file format: default is ${defaultShell}
+  `;
+  const parsed = parseArguments(args, {
+    default: {
+      debug: false,
+      shell: defaultShell,
+      help: false,
+    },
+    boolean: ["debug", "help"],
+    alias: { h: "help" },
+  });
+  if (parsed.help) {
+    return [null, new Error(helpmsg)];
+  } else if (!isShell(parsed.shell)) {
+    return [
+      null,
+      new Error(
+        `${parsed.shell} is not supported. supporteds is ${supportedShell}.`,
+      ),
+    ];
+  } else if (parsed._.length === 0) {
+    return [null, new Error("Any config passed.")];
   }
+  return [{
+    configs: ensureArray(parsed._, isString),
+    debug: parsed.debug,
+    shell: parsed.shell,
+    help: parsed.help,
+  }, null];
 }
 
-await Program.run(Deno.args);
+if (import.meta.main) {
+  const [args, err] = parseArgs(Deno.args);
+  if (err !== null) {
+    console.error(err.message);
+    Deno.exit();
+  }
+  const contents = [];
+  for (const file of args.configs) {
+    const tomlData = await loadToml(file);
+    const keyFuncMap = [
+      { key: "paths", func: generatePath },
+      { key: "aliases", func: generateAlias },
+      { key: "environments", func: generateEnviroment },
+      { key: "sources", func: generateSource },
+      { key: "executes", func: generateExecute },
+    ];
+    for (const { key, func } of keyFuncMap) {
+      const buf: string[] = [];
+      for (const values of filterByShell(tomlData[key] ?? [], args.shell)) {
+        buf.push(func(values, args.shell));
+      }
+      contents.push([...buf]);
+    }
+  }
+  console.log(contents.flat().filter((e) => e.length > 0).join("\n"));
+}
