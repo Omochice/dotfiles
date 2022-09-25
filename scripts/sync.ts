@@ -1,15 +1,14 @@
-import * as path from "https://deno.land/std@0.135.0/path/mod.ts";
-import { blue, green } from "https://deno.land/std@0.125.0/fmt/colors.ts";
+import * as path from "https://deno.land/std@0.157.0/path/mod.ts";
+import { blue, green } from "https://deno.land/std@0.157.0/fmt/colors.ts";
 import ini from "https://cdn.skypack.dev/ini";
 import { ensureString } from "https://deno.land/x/unknownutil@v2.0.0/mod.ts";
 import {
-  Arg,
   Command,
   Flag,
   Help,
   Opt,
   Version,
-} from "https://raw.githubusercontent.com/stsysd/classopt/v0.1.0/mod.ts";
+} from "https://pax.deno.dev/stsysd/classopt@v0.1.2/mod.ts";
 
 const globalOption = {
   executePath: path.fromFileUrl(import.meta.url),
@@ -112,29 +111,11 @@ function writeGitConfig(sharedFile: string): void {
   }
 }
 
-function linkProfile(): void {
-  const profileMap: Record<string, string> = {
-    bash: ".bash_profile",
-    zsh: ".zprofile",
-  };
-  const source = path.join(globalOption.dotDir, "profile");
-  const target = path.join(
-    globalOption.homeDir,
-    ensureString(profileMap[globalOption.shell]),
-  );
-  try {
-    Deno.removeSync(target);
-  } catch (_) {
-    // not exist, do nothing
-  }
-  Deno.symlinkSync(source, target);
-}
-
 @Help("Installer for Dotfiles")
 @Version("0.0.0")
 class Program extends Command {
   @Opt({
-    about: "Path of directory to backup if file is exist already" +
+    about: "Path of directory to backup if file is exist already." +
       ` default: ${globalOption.backupDir}`,
   })
   backupDir = undefined;
@@ -149,19 +130,19 @@ class Program extends Command {
     globalOption.backupDir = this.backupDir ?? globalOption.backupDir;
     globalOption.quiet = this.quiet;
     globalOption.debug = this.debug;
+    this.quiet || console.log(blue("Linking to home directory ..."));
     await linkToHomedir();
-    this.quiet || console.log(blue("Linking to home directory ... DONE!"));
+    this.quiet || console.log(blue("DONE!"));
+
+    this.quiet || console.log(blue("Linking to config directory ..."));
     await linkToConfig();
-    this.quiet || console.log(blue("Linking to config directory ... DONE!"));
+    this.quiet || console.log(blue("DONE!"));
+
+    this.quiet || console.log(blue("Including shared config ..."));
     writeGitConfig(
       path.join(globalOption.dotDir, ".gitconfig_shared"),
     );
-    this.quiet || console.log(blue("Including shared config ... DONE!"));
-    linkProfile();
-    this.quiet ||
-      console.log(
-        blue(`Shell if ${globalOption.shell}, profile linking ... DONE!`),
-      );
+    this.quiet || console.log(blue("DONE!"));
   }
 }
 

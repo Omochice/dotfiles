@@ -1,5 +1,5 @@
-import * as Path from "https://deno.land/std@0.135.0/path/mod.ts";
-import { equals } from "https://deno.land/std@0.135.0/bytes/mod.ts";
+import * as Path from "https://deno.land/std@0.157.0/path/mod.ts";
+import { equals } from "https://deno.land/std@0.157.0/bytes/mod.ts";
 import {
   Arg,
   Command,
@@ -8,15 +8,15 @@ import {
   Opt,
   Version,
 } from "https://raw.githubusercontent.com/stsysd/classopt/v0.1.2/mod.ts";
-import * as Colors from "https://deno.land/std@0.135.0/fmt/colors.ts";
-import { parse } from "https://deno.land/std@0.135.0/encoding/toml.ts";
+import * as Colors from "https://deno.land/std@0.157.0/fmt/colors.ts";
+import { parse } from "https://deno.land/std@0.157.0/encoding/toml.ts";
 import {
   ensureDirSync,
   exists,
   existsSync,
-} from "https://deno.land/std@0.135.0/fs/mod.ts";
+} from "https://deno.land/std@0.157.0/fs/mod.ts";
 import os from "https://deno.land/x/dos@v0.11.0/mod.ts";
-import { expandGlobSync } from "https://deno.land/std@0.140.0/fs/mod.ts";
+import { expandGlobSync } from "https://deno.land/std@0.157.0/fs/mod.ts";
 
 type OSType = "mac" | "wsl" | "linux";
 type OS = "wsl" | typeof Deno.build.os;
