@@ -5,10 +5,10 @@ import {
   Help,
   Opt,
   Version,
-} from "https://deno.land/x/classopt@v0.1.2/mod.ts"
-import { parse } from "https://deno.land/std@0.140.0/encoding/toml.ts";
-import { expandHome } from "https://deno.land/x/expandhome@v0.0.5/mod.ts";
-import { basename } from "https://deno.land/std@0.146.0/path/mod.ts";
+} from "https://deno.land/x/classopt@v0.1.2/mod.ts";
+import { parse } from "https://deno.land/std@0.157.0/encoding/toml.ts";
+import { basename } from "https://deno.land/std@0.157.0/path/mod.ts";
+import { assertString } from "https://deno.land/x/unknownutil@v2.0.0/mod.ts";
 
 type Shell = "bash" | "zsh" | "fish";
 type OS = "wsl" | typeof Deno.build.os;
@@ -67,6 +67,12 @@ type Execute = Option & {
 async function loadToml(path: string): Promise<Setting> {
   const contents = Deno.readTextFile(path);
   return (parse(await contents) as unknown as Setting);
+}
+
+const home = Deno.env.get("HOME");
+function expandHome(p: string): string {
+  assertString(home); // NOTE: assertion is must be here because of lsp error
+  return p.replace(/^~/, home);
 }
 
 function filterByShell<
