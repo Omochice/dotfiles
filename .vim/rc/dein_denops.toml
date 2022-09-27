@@ -46,7 +46,7 @@ call ddc#custom#patch_filetype(
       \ )
 " NOTE: volar is too slow to show with other sources.
 call ddc#custom#patch_filetype(
-      \ ['vue'], 'sources', g:ddc_sources['snippet'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
+      \ 'vue', 'sources', g:ddc_sources['snippet'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
       \ )
 call ddc#custom#patch_filetype(
       \ ['markdown'], 'sources', g:ddc_sources['snippet'] + ['file'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
@@ -299,6 +299,15 @@ depends = "denops.vim"
 hook_add = """
 let g:ddu_window_width_percent = 0.45
 let g:ddu_window_height_percent = 0.9
+nmap <C-k> <Plug>(ddu-prefix)
+nmap <silent><Plug>(ddu-prefix)<C-k> <Cmd>call ddu#start({})<CR>
+nmap <silent><Plug>(ddu-prefix)<C-g> <Cmd>call <SID>ddu_grep_wrapper()<CR>
+function s:ddu_grep_wrapper() abort
+  let l:input = input('ddu grep >')
+  if !empty(l:input)
+    call ddu#start({'sources': [{'name': 'rg', 'params': {'input': l:input}}], 'sourceOptions': {'rg': { 'matchers': ['converter_display_word', 'matcher_fzf'] }}})
+  endif
+endfunction
 """
 hook_source = """
 call ddu#custom#patch_global({
@@ -310,6 +319,14 @@ call ddu#custom#patch_global({
 \     'matchers': ['matcher_fzf'],
 \   },
 \ },
+\ 'sourceParams': {
+\   'rg': {
+\     'rg': {
+\       'matchers': ['converter_display_word', 'matcher_substring'],
+\     },
+\     'args'  : ["--json"],
+\   },
+\ },
 \ 'kindOptions': {
 \   'file': {
 \     'defaultAction': 'open',
@@ -317,6 +334,7 @@ call ddu#custom#patch_global({
 \ },
 \ 'uiParams': {
 \   'ff': {
+\     'ignoreEmpty': v:true,
 \     'split': 'floating',
 \     'filterSplitDirection': 'floating',
 \     'filterFloatingPosition': 'top',
@@ -324,50 +342,79 @@ call ddu#custom#patch_global({
 \     'winWidth': float2nr(&columns * g:ddu_window_width_percent*2),
 \     'winHeight': float2nr(&lines * g:ddu_window_height_percent),
 \     'winCol': float2nr((1 - g:ddu_window_width_percent * 2)/2 * &columns),
-\     'winRow': float2nr((1 - g:ddu_window_height_percent)/2 * &lines),
+\     'winRow': float2nr((1 - g:ddu_window_height_percent)/2 * &lines) + 1,
 \     'previewFloating': v:true,
 \     'previewVertical': v:true,
 \     'previewWidth': float2nr(&columns * g:ddu_window_width_percent),
-\     'previewHeight': float2nr(&columns * g:ddu_window_height_percent),
+\     'previewHeight': float2nr(&lines * g:ddu_window_height_percent),
 \     'startFilter': v:true,
+\     'floatingBorder': ['┌', '─', '┐', '│', '┘', '─', '└', '│'],
+\     'previewFloatingBorder': ['┌', '─', '┐', '│', '┘', '─', '└', '│'],
 \   },
 \ },
 \ })
 """
+# \     'autoAction': { 'name': 'preview' },
 # \     'winCol': float2nr((&columns - (&columns * g:ddu_window_width_percent) * 2) / 2),
 # \     'winRow': float2nr((&lines - (&lines * g:ddu_window_height_percent)) / 2),
 
 [[plugins]]
 repo = "Shougo/ddu-ui-ff"
 # repo = "~/workspace/toybox/ddu-ui-ff"
+hook_add = """
+function s:close_previews()
+    echomsg 'hey'
+  call ddu#ui#ff#execute('call ddu#ui#ff#close()')
+  for l:bufnr in tabpagebuflist()
+    if bufname(l:bufnr) =~# '^ddu-ff:'
+      execute 'bwipeout' l:bufnr
+    endif
+  endfor
+endfunction
+
+augroup autocCloseDdu
+  autocmd!
+  " autocmd BufWinLeave ddu-ff-filter-default call ddu#ui#ff#execute('call ddu#ui#ff#close()')
+  " autocmd BufWinLeave duu-ff-default call <SID>close_previews()
+  autocmd BufWinLeave ddu-ff-filter-default call <SID>close_previews()
+augroup END
+"""
 on_source = "ddu.vim"
 [plugins.ftplugin]
 ddu-ff = """
-" augroup ddu_my_settings
-"   autocmd!
-"   autocmd CursorMoved <buffer> call ddu#ui#ff#do_action('preview')
-" augroup END
-nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#item_action('itemAction')<CR>
-nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#ff#item_action('toggleSelectItem')<CR>
-nnoremap <buffer><silent> i <Cmd>call ddu#ui#ff#item_action('openFilterWindow')<CR>
-nnoremap <buffer><silent> q <Cmd>call ddu#ui#ff#item_action('quit')<CR>
-nnoremap <buffer><silent> p <Cmd>call ddu#ui#ff#item_action('preview')<CR>
+nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
+nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
+nnoremap <buffer><nowait><silent> i <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
+nnoremap <buffer><nowait><silent> q <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+nnoremap <buffer><nowait><silent> p <Cmd>call ddu#ui#ff#do_action('preview')<CR>
+nnoremap <buffer> <C-w><C-w> <C-w><C-w>
 """
 ddu-ff-filter = """
-inoremap <buffer><silent> <CR> <Esc><Cmd>close<CR>
-nnoremap <buffer><silent> <CR> <Cmd>close<CR>
-nnoremap <buffer><silent> q <Cmd>close<CR>
+" TODO: close all buffer
+inoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#execute('call ddu#ui#ff#do_action("itemAction")')<CR>
+nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#close()<CR>
+nnoremap <buffer><nowait><silent> q <Cmd>call ddu#ui#ff#close()<CR>
 inoremap <buffer> <C-n> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")+1,0)')<CR>
 inoremap <buffer> <C-p> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")-1,0)')<CR>
+nnoremap <buffer> <C-w><C-w> <C-w><C-w>
 """
 
 [[plugins]]
 repo = "Shougo/ddu-source-file_rec"
 on_source = "ddu.vim"
 
-# [[plugins]]
-# repo = "Shougo/ddu-filter-matcher_substring"
-# on_source = "ddu.vim"
+[[plugins]]
+repo = "shun/ddu-source-rg"
+on_source = "ddu.vim"
+
+[[plugins]]
+repo = "Shougo/ddu-filter-converter_display_word"
+on_source = "ddu.vim"
+
+
+[[plugins]]
+repo = "Shougo/ddu-filter-matcher_substring"
+on_source = "ddu.vim"
 
 [[plugins]]
 repo = "yuki-yano/ddu-filter-fzf"
@@ -388,3 +435,8 @@ gin-status = """
 nnoremap <buffer><nowait> q <Cmd>bprevious<CR>
 nnoremap <buffer> cc <Cmd>Gin commit<CR>
 """
+
+[[plugins]]
+repo = "Omochice/tataku.vim"
+depends = "denops.vim"
+on_func = "tataku#call_recipe"
