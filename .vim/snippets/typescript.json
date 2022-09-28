@@ -98,5 +98,12 @@
       "${1}: \"${1}\","
     ],
     "description": "enumkey shorthand"
+  },
+  "promise": {
+    "prefix": "promise",
+    "body": [
+      "Promise<${1:T}>"
+    ],
+    "description": "promise snip"
   }
 }
