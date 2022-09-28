@@ -1,0 +1,16 @@
+{
+  "button-type": {
+    "prefix": "btntype",
+    "body": [
+      "(payload: MouseEvent) => void"
+    ],
+    "description": "vue button type snip"
+  },
+  "proptype": {
+    "prefix": "proptype",
+    "body": [
+      "PropType<$1>"
+    ],
+    "description": "vue proptype snip"
+  }
+}
