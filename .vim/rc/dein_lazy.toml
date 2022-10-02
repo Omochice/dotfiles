@@ -842,10 +842,8 @@ imap <expr><C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<Plug>(emmet-exp
 [[plugins]]
 repo = "Omochice/yank-remote-url.vim"
 hook_add = """
-let g:yank_remote_url#auto_cache = v:true
+let g:yank_remote_url#enable_cache = v:true
 let g:yank_remote_url#use_direct_hash = v:true
 let g:yank_remote_url#remote_name = 'origin'
-nmap yr <Cmd>YankRemoteURL<CR>
-xmap yr :YankRemoteURL<CR>
 """
 on_cmd = "YankRemoteURL"
