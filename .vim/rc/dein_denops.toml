@@ -202,33 +202,6 @@ on_cmd = "PaizaIO"
 repo = "Omochice/dps-codic-vim"
 # repo = "~/workspace/dps-codic-vim"
 on_cmd = "Codic"
-#
-[[plugins]]
-repo = "Omochice/dps-translate-vim"
-# repo = "~/workspace/dps-translate-vim"
-hook_add = """
-let g:dps_translate_source = 'en'
-let g:dps_translate_target = 'ja'
-let g:dps_translate_deepl_token = $DEEPL_TOKEN
-let g:dps_translate_engine = empty(g:dps_translate_deepl_token) ? 'google' : 'deepl'
-let g:dps_translate_deepl_is_pro = v:false
-let g:dps_translate_border = {
-    \ 'topLeft': '┌',
-    \ 'top':  '─',
-    \ 'topRight': '┐',
-    \ 'left': '│',
-    \ 'right': '│',
-    \ 'bottomLeft': '└',
-    \ 'bottom':  '─',
-    \ 'bottomRight': '┘',
-    \ }
-
-nnoremap tr <Cmd>Translate<CR>
-nnoremap tR <Cmd>Translate!<CR>
-xnoremap <silent>tr :TranslateJoin<CR>
-xnoremap <silent>tR :TranslateJoin!<CR>
-"""
-on_cmd = ["Translate", "TranslateJoin"]
 
 # [[plugins]]
 # repo = "yuki-yano/dps-slack-status.vim"
@@ -438,5 +411,51 @@ nnoremap <buffer> cc <Cmd>Gin commit<CR>
 
 [[plugins]]
 repo = "Omochice/tataku.vim"
-depends = "denops.vim"
+hook_add = """
+let g:tataku_recipes = {
+      \ 'translate_en_to_ja': {
+      \   'collector': {'name': 'current_line', 'options': {}},
+      \   'processor': [
+      \     {'name': 'intl_segmenter', 'options': {'locale': 'en'}},
+      \     {'name': 'google_translate', 'options': {'source': "en", 'target': 'ja'}},
+      \     {'name': 'intl_segmenter', 'options': {'locale': 'ja'}},
+      \   ],
+      \   'emitter': {'name': 'nvim_floatwin', 'options': {}}
+      \ },
+      \ 'translate_ja_to_en': {
+      \   'collector': {'name': 'current_line', 'options': {}},
+      \   'processor': [
+      \     {'name': 'intl_segmenter', 'options': {'locale': 'ja'}},
+      \     {'name': 'google_translate', 'options': {'source': "ja", 'target': 'en'}},
+      \     {'name': 'intl_segmenter', 'options': {'locale': 'en'}},
+      \   ],
+      \   'emitter': {'name': 'nvim_floatwin', 'options': {}}
+      \ },
+      \ }
+let g:tataku_enable_operator = v:true
+nmap tr <Plug>(operator-tataku-translate_en_to_ja)
+xmap tr <Plug>(operator-tataku-translate_en_to_ja)
+nmap tR <Plug>(operator-tataku-translate_ja_to_en)
+xmap tR <Plug>(operator-tataku-translate_ja_to_en)
+nmap trr <Cmd>call tataku#call_recipe('translate_en_to_ja')<CR>
+nmap tRR <Cmd>call tataku#call_recipe('translate_ja_to_en')<CR>
+"""
+depends = ["denops.vim", "vim-operator-user"]
 on_func = "tataku#call_recipe"
+on_map = { n = "<Plug>(operator-tataku", x = "<Plug>(operator-tataku" }
+
+[[plugins]]
+repo = "Omochice/tataku-collector-current_line"
+on_source = "tataku.vim"
+
+[[plugins]]
+repo = "Omochice/tataku-processor-google_translate"
+on_source = "tataku.vim"
+
+[[plugins]]
+repo = "Omochice/tataku-processor-intl_segmenter"
+on_source = "tataku.vim"
+
+[[plugins]]
+repo = "Omochice/tataku-emitter-nvim_floatwin"
+on_source = "tataku.vim"
