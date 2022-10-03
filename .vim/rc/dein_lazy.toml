@@ -847,3 +847,7 @@ let g:yank_remote_url#use_direct_hash = v:true
 let g:yank_remote_url#remote_name = 'origin'
 """
 on_cmd = "YankRemoteURL"
+
+[[plugins]]
+repo = "tweekmonster/helpful.vim"
+on_cmd = "HelpfulVersion"
