@@ -2,7 +2,7 @@ let s:rules = []
 
 let s:rules += [
       \ {'char': '<CR>', 'at': '"""\%#"""', 'input': '<CR>', 'input_after': '<CR>', },
-      \ {'char': '<BS>', 'at': '<\%#>', 'input': '<BS>', 'delete': v:true, },
+      \ {'char': '<BS>', 'at': '<\%#>', 'input': '<BS>', 'delete': 1, },
       \ ]
 
 "" javascript
@@ -10,10 +10,15 @@ let s:rules += [
       \ {'filetype': ['javascript', 'typescript', 'vue'], 'char': '<Space>', 'at': '^\s*\(}\s*else\s\)\?if\%#', 'input': '<Space>(', 'input_after': ')' },
       \ ]
 
+"" vue
+let s:rules += [
+     \ {'filetype': 'vue', 'char': '<', 'at': 'define\(Props\|Emits\)\%#', 'input': '<', 'input_after': '>',},
+     \ ]
+
 "" ruby
 let s:rules += [
       \ {'filetype': 'ruby', 'char': '<Bar>', 'at': '\(do\|{\)\s*\%#', 'input': '<Bar>', 'input_after': '<Bar>', },
-      \ {'filetype': 'ruby', 'char': '<BS>', 'at': '|\%#|', 'input': '<BS>', 'delete': v:true, },
+      \ {'filetype': 'ruby', 'char': '<BS>', 'at': '|\%#|', 'input': '<BS>', 'delete': 1, },
       \ ]
 
 "" markdown
@@ -46,7 +51,7 @@ let s:rules += [
 "" shell
 let s:rules += [
       \ {'filetype': ['sh', 'zsh', 'bash', 'fish'], 'char': '[', 'at': 'if\s\%#', 'input': '[<Space>', 'input_after': '<Space>]',},
-      \ {'filetype': ['sh', 'zsh', 'bash'], 'char': '[', 'at': 'if\s[\s\%#', 'input': '<BS>[<Space>', 'input_after': '<Space>]', 'delete': v:true,},
+      \ {'filetype': ['sh', 'zsh', 'bash'], 'char': '[', 'at': 'if\s[\s\%#', 'input': '<BS>[<Space>', 'input_after': '<Space>]', 'delete': 1,},
       \ {'filetype': ['sh', 'zsh', 'bash'], 'char': '<Space>', 'at': '^\s*if\%#', 'input': '<Space>', 'input_after': ';<Space>then',},
       \ ]
 
@@ -70,7 +75,7 @@ let s:rules += [
 let s:rules += [
       \ { 'filetype': ['tex', 'plaintex'], 'char': '$', 'at': '[^\$]*\%#', 'input': '$', 'input_after': '$', },
       \ { 'filetype': ['tex', 'plaintex'], 'char': '$', 'at': '\$\%#\$', 'input': '$<CR>', 'input_after': '<CR>$', 'priority': 10 },
-      \ { 'filetype': ['tex', 'plaintex'], 'char': '<BS>', 'at': '\$\%#\$', 'input': '<BS>', 'delete': v:true, },
+      \ { 'filetype': ['tex', 'plaintex'], 'char': '<BS>', 'at': '\$\%#\$', 'input': '<BS>', 'delete': 1, },
       \ { 'filetype': ['tex', 'plaintex'], 'char': '<CR>', 'at': '^\s*\\item\s.\+\%#$', 'input': '<CR>\item ', },
       \ { 'filetype': ['tex', 'plaintex'], 'char': '<CR>', 'at': '\\begin{\(\w\+\*\?\)}\%#$', 'input': '<CR>', 'input_after': '<CR>\\end{\1}', 'with_submatch': v:true },
       \ ]
@@ -84,8 +89,8 @@ let s:rules += [
       \ { 'filetype': 'plantuml', 'char': '<CR>', 'at': 'then\%#', 'input': '<CR>', 'input_after': '<CR>endif' },
       \ { 'filetype': 'plantuml', 'char': '=', 'at': '^\s*=\%#', 'input': '=', 'input_after': '==' },
       \ { 'filetype': 'plantuml', 'char': '<Space>', 'at': '==\%#==', 'input': ' ', 'input_after': ' ' },
-      \ { 'filetype': 'plantuml', 'char': '<BS>', 'at': '=\%#=', 'input': '<BS>', 'delete': v:true },
-      \ { 'filetype': 'plantuml', 'char': '<BS>', 'at': '= \%# =', 'input': '<BS>', 'delete': v:true },
+      \ { 'filetype': 'plantuml', 'char': '<BS>', 'at': '=\%#=', 'input': '<BS>', 'delete': 1, },
+      \ { 'filetype': 'plantuml', 'char': '<BS>', 'at': '= \%# =', 'input': '<BS>', 'delete': 1, },
       \ ]
 
 for s:rule in s:rules
