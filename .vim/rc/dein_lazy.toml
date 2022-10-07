@@ -57,6 +57,17 @@ omap ic <Plug>(textobj-codeblock-i)
 on_map = { x = "<Plug>", o = "<Plug>" }
 
 [[plugins]]
+repo = "kana/vim-textobj-entire"
+depends = ["vim-textobj-user"]
+hook_add = """
+xmap ae <Plug>(textobj-entire-a)
+xmap ie <Plug>(textobj-entire-i)
+omap ae <Plug>(textobj-entire-a)
+omap ie <Plug>(textobj-entire-i)
+"""
+on_map = { x = "<Plug>", o = "<Plug>" }
+
+[[plugins]]
 repo = "kana/vim-operator-user"
 
 [[plugins]]
