@@ -473,16 +473,32 @@ repo = "previm/previm"
 on_cmd = "PrevimOpen"
 hook_add = """
 let g:previm_wsl_mode = has('wsl')
-if has('macunix')
-  let g:previm_open_cmd = 'open'
-elseif g:previm_wsl_mode
-  let s:nodename = split(system('uname --nodename'))[0]
-  let s:wsl_vivaldi_path = '/mnt/c/Users/' .. s:nodename .. '/AppData/Local/Vivaldi/Application/vivaldi.exe'
-  let g:previm_open_cmd = s:wsl_vivaldi_path
-else
-  let g:previm_open_cmd = $BROWSER
-endif
 let g:previm_show_header = v:false
+"""
+
+[[plugins]]
+repo = "tyru/open-browser.vim"
+hook_add = """
+nmap <expr> gf expand('<cWORD>') =~# 'https://' ? '<Plug>(openbrowser-open)' : 'gf'
+nmap go <Plug>(openbrowser-open)
+"""
+on_map = { n = "<Plug>(openbrowser" }
+
+[[multiple_plugins]]
+plugins = ["previm", "open-browser.vim"]
+hook_add = """
+if has('macunix')
+  let g:browser_cmd = 'open'
+elseif has('wsl')
+  let s:nodename = systemlist('uname --nodename')[0]
+  let s:wsl_vivaldi_path = '/mnt/c/Users/' .. s:nodename .. '/AppData/Local/Vivaldi/Application/vivaldi.exe'
+  let g:browser_cmd = s:wsl_vivaldi_path
+else
+  let g:browser_cmd = $BROWSER
+endif
+let g:openbrowser_browser_commands = [
+    \ {"name": g:browser_cmd, "args": ["{browser}", "{uri}"]},
+    \ ]
 """
 
 [[plugins]]
