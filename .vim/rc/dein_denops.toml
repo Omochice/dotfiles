@@ -237,26 +237,6 @@ let g:dps_ghosttext#ftmap = {
 """
 depends = "denops.vim"
 on_cmd = "GhostStart"
-#
-# [[plugins]]
-# repo = "skanehira/denops-germanium.vim"
-# hook_add = """
-# command! -range MyGermanium Germanium -f=Firge35NerdConsole-Regular
-# """
-# depends = "denops.vim"
-# on_cmd = ["MyGermanium", "Germanium"]
-#
-# [[plugins]]
-# # repo = "~/workspace/dps-dein-star.vim"
-# repo = "Omochice/dps-dein-star.vim"
-# hook_add = """
-# let g:dps_dein_star_token = $GITHUB_TOKEN
-# let g:dps_dein_star_ignore_users = ['Omochice']
-# let g:dps_dein_star_debug = v:true
-# """
-# # depends = "denops.vim"
-# on_source = "denops.vim"
-# # on_cmd = ""
 
 # ddu.vim {{{
 [[plugins]]
