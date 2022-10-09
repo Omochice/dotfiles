@@ -40,7 +40,9 @@ let s:rules += [
       \ {'filetype': 'markdown', 'char': 'x', 'at': '\[ \%# \]', 'input': '<BS>x<Delete>',},
       \ {'filetype': 'markdown', 'char': '<Space>', 'at': '\[ \%# \]', 'input': '<BS><Space><Delete><C-g>U<Right><Space>',},
       \ {'filetype': 'markdown', 'char': '~', 'at': '\~\%#[^\~]\?', 'input': '~', 'input_after': '~~',},
+      \ {'filetype': ['markdown', 'gitcommit'], 'char': ':', 'at': '^\%#', 'input': ':', 'input_after': ':',},
       \ ]
+
 
 "" vim
 let s:rules += [
