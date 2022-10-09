@@ -191,7 +191,7 @@ on_event = "InsertEnter"
 repo = "prabirshrestha/vim-lsp"
 hook_add = """
 function! s:is_node_project(path) abort
-  if isdirectory(a:path . '/node_modules') || filereadable(a:path . '/package.json') || filereadable(a:path. '/package-lock-json')
+  if isdirectory(a:path . '/node_modules') || filereadable(a:path . '/package.json')
     return v:true
   elseif (a:path ==# '/')
     return v:false
