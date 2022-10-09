@@ -246,3 +246,22 @@ function! s:open_it_really() abort
     endif
   endif
 endfunction
+
+" Digraph
+" NOTE: ref: https://qiita.com/monaqa/items/dcd43a53d3040293142a
+nnoremap fj f<C-k>j
+onoremap fj f<C-k>j
+xnoremap fj f<C-k>j
+call digraph_setlist([
+      \ ['jj', 'j'],
+      \ ['j(', '（'],
+      \ ['j)', '）'],
+      \ ['j[', '「'],
+      \ ['j]', '」'],
+      \ ['j,', '、'],
+      \ ['j.', '。'],
+      \ ['j!', '！'],
+      \ ['j?', '？'],
+      \ ['j~', '～'],
+      \ ])
+

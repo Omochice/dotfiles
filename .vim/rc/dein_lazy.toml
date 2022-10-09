@@ -76,7 +76,6 @@ repo = "kana/vim-repeat"
 [[plugins]]
 repo = "easymotion/vim-easymotion"
 hook_add = """
-nmap f <Plug>(easymotion-sn)
 nmap <Space>j <Plug>(easymotion-j)
 nmap <Space>k <Plug>(easymotion-k)
 nmap <Space>l <Plug>(easymotion-lineforward)
