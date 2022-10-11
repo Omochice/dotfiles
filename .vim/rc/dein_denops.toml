@@ -400,7 +400,7 @@ let g:tataku_recipes = {
       \     {'name': 'google_translate', 'options': {'source': "en", 'target': 'ja'}},
       \     {'name': 'intl_segmenter', 'options': {'locale': 'ja'}},
       \   ],
-      \   'emitter': {'name': 'nvim_floatwin', 'options': {}}
+      \   'emitter': {'name': 'nvim_floatwin', 'options': {'border': 'single'}}
       \ },
       \ 'translate_ja_to_en': {
       \   'collector': {'name': 'current_line', 'options': {}},
@@ -409,7 +409,7 @@ let g:tataku_recipes = {
       \     {'name': 'google_translate', 'options': {'source': "ja", 'target': 'en'}},
       \     {'name': 'intl_segmenter', 'options': {'locale': 'en'}},
       \   ],
-      \   'emitter': {'name': 'nvim_floatwin', 'options': {}}
+      \   'emitter': {'name': 'nvim_floatwin', 'options': {'border': 'single'}}
       \ },
       \ }
 let g:tataku_enable_operator = v:true
