@@ -3,6 +3,7 @@ let s:rules = []
 let s:rules += [
       \ {'char': '<CR>', 'at': '"""\%#"""', 'input': '<CR>', 'input_after': '<CR>', },
       \ {'char': '<BS>', 'at': '<\%#>', 'input': '<BS>', 'delete': 1, },
+      \ {'char': '　', 'at': '\%#', 'input': ' ', },
       \ ]
 
 "" javascript
@@ -41,6 +42,7 @@ let s:rules += [
       \ {'filetype': 'markdown', 'char': '<Space>', 'at': '\[ \%# \]', 'input': '<BS><Space><Delete><C-g>U<Right><Space>',},
       \ {'filetype': 'markdown', 'char': '~', 'at': '\~\%#[^\~]\?', 'input': '~', 'input_after': '~~',},
       \ {'filetype': ['markdown', 'gitcommit'], 'char': ':', 'at': '^\%#', 'input': ':', 'input_after': ':',},
+      \ {'filetype': ['markdown', 'gitcommit'], 'char': '<BS>', 'at': '^:\%#:', 'input': '<BS>', 'delete': 1,},
       \ ]
 
 
