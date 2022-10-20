@@ -555,8 +555,9 @@ require('nvim-treesitter.configs').setup({
     ensure_installed = 'all',
     highlight = {
         enable = true,
+        disable = {"help"},
     },
-    ignore_install = {'phpdoc'},
+    ignore_install = {'phpdoc', 'help'},
     playground = {
         enable = true,
     },
