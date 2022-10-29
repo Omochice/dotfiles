@@ -125,6 +125,7 @@ on_func = "searchx"
 repo = "haya14busa/vim-asterisk"
 hook_add = """
 nmap * <Plug>(asterisk-z*)
+xmap * <Plug>(asterisk-z*)
 """
 on_map = { n = "<Plug>" }
 
