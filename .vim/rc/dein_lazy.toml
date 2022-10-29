@@ -855,6 +855,14 @@ repo = "lambdalisue/fern-hijack.vim"
 on_source = "fern.vim"
 
 [[plugins]]
+repo = "lambdalisue/fern-renderer-nerdfont.vim"
+hook_add = """
+let g:fern#renderer = "nerdfont"
+let g:fern#renderer#nerdfont#indent_markers = 1
+"""
+on_source = "fern.vim"
+
+[[plugins]]
 repo = "mattn/emmet-vim"
 hook_add = """
 let g:user_emmet_install_global = v:false
