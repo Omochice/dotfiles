@@ -259,19 +259,30 @@ hook_add = """
 let g:ddu_window_width_percent = 0.45
 let g:ddu_window_height_percent = 0.9
 nmap <C-k> <Plug>(ddu-prefix)
-nmap <silent><Plug>(ddu-prefix)<C-k> <Cmd>call ddu#start({})<CR>
-nmap <silent><Plug>(ddu-prefix)<C-g> <Cmd>call <SID>ddu_grep_wrapper()<CR>
-function s:ddu_grep_wrapper() abort
-  let l:input = input('ddu grep >')
-  if !empty(l:input)
-    call ddu#start({'sources': [{'name': 'rg', 'params': {'input': l:input}}], 'sourceOptions': {'rg': { 'matchers': ['converter_display_word', 'matcher_fzf'] }}})
+nmap <Plug>(ddu-prefix)<C-k> <Cmd>call ddu#start({})<CR>
+" nmap <silent><Plug>(ddu-prefix)<C-g> <Cmd>call <SID>ddu_grep_wrapper()<CR>
+nmap <Plug>(ddu-prefix)<C-w> <Cmd>call ddu#start({'sources': [{'name': 'mru'}]})<CR>
+nmap <Plug>(ddu-prefix)<C-b> <Cmd>call ddu#start({'sources': [{'name': 'buffer'}]})<CR>
+function! s:ddu_grep_wrapper(query) abort
+  if !empty(a:query)
+    call ddu#start({'sources': [{'name': 'rg', 'params': {'input': a:query}}], 'sourceOptions': {'rg': { 'matchers': ['converter_display_word', 'matcher_fzf'] }}})
   endif
 endfunction
+
+command! -nargs=1 DduGrep call <SID>ddu_grep_wrapper(<q-args>)
+nmap <Plug>(ddu-prefix)<C-g> :<C-u>DduGrep<Space>
+nmap <Plug>(ddu-prefix)<C-l> <Cmd>call ddu#start({
+    \ 'sources': [{'name': 'rg', 'options': {'matcher': []}}],
+    \ 'uiParams': {
+    \   'ff': { 'ignoreEmpty': v:false,}
+    \ },
+    \ 'volatile': v:true,
+    \ })<CR>
 """
 hook_source = """
-call ddu#custom#patch_global({
+let s:config = {
 \ 'ui': 'ff',
-\ 'sources': [{'name': 'file_rec', 'params': {},}],
+\ 'sources': [{'name': 'file_rec', 'params': { 'ignoredDirectories': ['.git', 'node_modules', 'dein'] },}],
 \ 'sourceOptions': {
 \   '_': {
 \     'ignoreCase': v:true,
@@ -285,6 +296,20 @@ call ddu#custom#patch_global({
 \     },
 \     'args'  : ["--json"],
 \   },
+\   'mru': {
+\     'mr': {
+\       'kind': 'mru',
+\       'current': v:true,
+\     },
+\   },
+\ },
+\ 'filterParams': {
+\   'matcher_fzf': {
+\     'highlightMatched': 'Search',
+\   },
+\   'matcher_substring': {
+\     'highlightMatched': 'Search',
+\   },
 \ },
 \ 'kindOptions': {
 \   'file': {
@@ -297,25 +322,38 @@ call ddu#custom#patch_global({
 \     'split': 'floating',
 \     'filterSplitDirection': 'floating',
 \     'filterFloatingPosition': 'top',
-\     'prompt': '> ',
-\     'winWidth': float2nr(&columns * g:ddu_window_width_percent*2),
-\     'winHeight': float2nr(&lines * g:ddu_window_height_percent),
-\     'winCol': float2nr((1 - g:ddu_window_width_percent * 2)/2 * &columns),
-\     'winRow': float2nr((1 - g:ddu_window_height_percent)/2 * &lines) + 1,
+\     'prompt': '>',
 \     'previewFloating': v:true,
 \     'previewVertical': v:true,
-\     'previewWidth': float2nr(&columns * g:ddu_window_width_percent),
-\     'previewHeight': float2nr(&lines * g:ddu_window_height_percent),
 \     'startFilter': v:true,
 \     'floatingBorder': ['┌', '─', '┐', '│', '┘', '─', '└', '│'],
 \     'previewFloatingBorder': ['┌', '─', '┐', '│', '┘', '─', '└', '│'],
+\     'previewFloatingZindex': 100,
+\     'autoAction': { 'name': 'preview' },
 \   },
 \ },
-\ })
+\ }
+function! s:set_size() abort
+  " this from kuuote/dotvim
+  let s:config.uiParams.ff.winWidth = float2nr(&columns * g:ddu_window_width_percent*2)
+  let s:config.uiParams.ff.winHeight = float2nr(&lines * g:ddu_window_height_percent)
+  let s:config.uiParams.ff.winCol = float2nr((1 - g:ddu_window_width_percent * 2)/2 * &columns)
+  let s:config.uiParams.ff.winRow = float2nr((1 - g:ddu_window_height_percent)/2 * &lines) + 1
+  let s:config.uiParams.ff.previewWidth = float2nr(&columns * g:ddu_window_width_percent)
+  let s:config.uiParams.ff.previewHeight = float2nr(&lines * g:ddu_window_height_percent)
+endfunction
+
+function! s:reset_size() abort
+  call s:set_size()
+  call ddu#custom#patch_global(s:config)
+endfunction
+
+call s:reset_size()
+augroup ddu-reset-size
+  autocmd!
+  autocmd VimResized * call s:reset()
+augroup END
 """
-# \     'autoAction': { 'name': 'preview' },
-# \     'winCol': float2nr((&columns - (&columns * g:ddu_window_width_percent) * 2) / 2),
-# \     'winRow': float2nr((&lines - (&lines * g:ddu_window_height_percent)) / 2),
 
 [[plugins]]
 repo = "Shougo/ddu-ui-ff"
@@ -350,11 +388,30 @@ nnoremap <buffer> <C-w><C-w> <C-w><C-w>
 """
 ddu-ff-filter = """
 " TODO: close all buffer
-inoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#execute('call ddu#ui#ff#do_action("itemAction")')<CR>
+inoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#execute(
+\ 'call ddu#ui#ff#do_action(
+\   "itemAction",
+\   { "name": "open", "params": { "command": "edit" }, }
+\)')<CR>
+inoremap <buffer><silent> <C-t> <Cmd>call ddu#ui#ff#execute(
+\ 'call ddu#ui#ff#do_action(
+\   "itemAction",
+\   { "name": "open", "params": { "command": "tabedit" }, }
+\)')<CR>gt
+inoremap <buffer><silent> <C-v> <Cmd>call ddu#ui#ff#execute(
+\ 'call ddu#ui#ff#do_action(
+\   "itemAction",
+\   { "name": "open", "params": { "command": "vsplit" }, }
+\)')<CR>
+inoremap <buffer><silent> <C-s> <Cmd>call ddu#ui#ff#execute(
+\ 'call ddu#ui#ff#do_action(
+\   "itemAction",
+\   { "name": "open", "params": { "command": "split" }, }
+\)')<CR>
 nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#close()<CR>
 nnoremap <buffer><nowait><silent> q <Cmd>call ddu#ui#ff#close()<CR>
-inoremap <buffer> <C-n> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")+1,0)')<CR>
-inoremap <buffer> <C-p> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")-1,0)')<CR>
+inoremap <buffer> <C-n> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")+1,0)<Bar>redraw')<CR>
+inoremap <buffer> <C-p> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")-1,0)<Bar>redraw')<CR>
 nnoremap <buffer> <C-w><C-w> <C-w><C-w>
 """
 
@@ -367,9 +424,16 @@ repo = "shun/ddu-source-rg"
 on_source = "ddu.vim"
 
 [[plugins]]
-repo = "Shougo/ddu-filter-converter_display_word"
+repo = "kuuote/ddu-source-mr"
 on_source = "ddu.vim"
 
+[[plugins]]
+repo = "shun/ddu-source-buffer"
+on_source = "ddu.vim"
+
+[[plugins]]
+repo = "Shougo/ddu-filter-converter_display_word"
+on_source = "ddu.vim"
 
 [[plugins]]
 repo = "Shougo/ddu-filter-matcher_substring"
