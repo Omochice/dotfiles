@@ -876,10 +876,27 @@ inoremap <Plug>(emmet-expand-abbr-with-cmd) <Cmd>call <SID>expand()<CR>
 """
 on_map = { i = "<Plug>" }
 
-[[multiple_plugins]]
-plugins = ["vim-vsnip", "emmet-vim"]
+[[plugins]]
+repo = "Omochice/toy-postfix.vim"
 hook_add = """
-imap <expr><C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<Plug>(emmet-expand-abbr-with-cmd)'
+let g:toy_postfix#rule_dir = '~/.vim/postfix'
+let g:toy_postfix#extends = { 'typescript': 'javascript', 'vue': ['typescript', 'javascript'], }
+"""
+on_func = ["toy_postfix#expandable", "toy_postfix#expand"]
+
+[[multiple_plugins]]
+plugins = ["vim-vsnip", "emmet-vim", "toy-postfix.vim"]
+hook_add = """
+function! s:expand_snippets() abort
+  if toy_postfix#expandable()
+    return "\<Cmd>call toy_postfix#expand()\<CR>"
+  elseif vsnip#expandable()
+    return "\<Plug>(vsnip-expand)"
+  else
+    return "\<Plug>(emmet-expand-abbr-with-cmd)"
+  endif
+endfunction
+inoremap <expr><C-j> <SID>expand_snippets()
 """
 
 [[plugins]]
