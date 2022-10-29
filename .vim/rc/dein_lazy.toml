@@ -869,9 +869,8 @@ let g:user_emmet_install_global = v:false
 function s:expand() abort
   call emmet#util#closePopup()
   call emmet#expandAbbr(0, '')
-  let l:col = getcurpos()[2]
   " NOTE: after expand. cursor position is: `div` => `<div|></div>`
-  call cursor(0, l:col+1)
+  silent! normal! 1l
 endfunction
 inoremap <Plug>(emmet-expand-abbr-with-cmd) <Cmd>call <SID>expand()<CR>
 """
