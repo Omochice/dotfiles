@@ -514,3 +514,12 @@ on_source = "tataku.vim"
 [[plugins]]
 repo = "Omochice/tataku-emitter-nvim_floatwin"
 on_source = "tataku.vim"
+
+[[plugins]]
+repo = "4513ECHO/denops-gitter.vim"
+hook_add = """
+let g:gitter#token = $GITTER_TOKEN
+command! ReadingVimrcGitter tabnew gitter://room/vim-jp/reading-vimrc
+"""
+depends = ["denops.vim"]
+on_path = "gitter://*"
