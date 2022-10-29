@@ -496,6 +496,8 @@ elseif has('wsl')
 else
   let g:browser_cmd = $BROWSER
 endif
+
+let g:previm_open_cmd = g:browser_cmd
 let g:openbrowser_browser_commands = [
     \ {"name": g:browser_cmd, "args": ["{browser}", "{uri}"]},
     \ ]
