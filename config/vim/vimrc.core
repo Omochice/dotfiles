@@ -18,12 +18,12 @@ set noshowcmd " Use screenkey to show them
 set nowrap
 set nowritebackup
 set nonumber
-set shiftwidth=4
+set shiftwidth=2
 set signcolumn=yes
 set showmatch
 set smartindent
-set softtabstop=4
-set tabstop=4
+set softtabstop=2
+set tabstop=2
 set virtualedit=onemore
 set wildmenu
 
@@ -122,9 +122,8 @@ cnoremap <C-d> <Del>
 cnoremap <C-a> <Home>
 inoremap <expr> <C-a> getline('.')[0 : col('.') - 2] =~# '^\s\+$' ? '<C-o>0' : '<C-o>^'
 noremap!        <C-e> <End>
-
-" nnoremap + <C-a>
-" nnoremap - <C-x>
+nnoremap <C-n> gt
+nnoremap <C-S-n> gT
 
 " Automatically indent with i and A
 nnoremap <expr> i len(getline('.')) !=# 0 ? 'i' : '"_cc'
@@ -208,9 +207,6 @@ nnoremap F <Cmd>call <SID>grep_in_file()<CR>
 " copy buffer command
 command! CopyBuffer %yank
 
-" yank here with line number
-nnoremap yh <Cmd>let @+ = expand('%') . '#L' . line('.')<CR>
-
 " Disable message that show when start without args (I)
 set shortmess=asTIcF
 
@@ -265,3 +261,18 @@ call digraph_setlist([
       \ ['j~', '～'],
       \ ])
 
+" NOTE: from https://github.com/thinca/config/dotfiles/dot.vim/vimrc
+augroup vimrc#auto_mkdir
+  autocmd!
+  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+  function s:auto_mkdir(dir, force) abort
+    if &l:buftype !=# '' || bufname('%') =~# '^[^:]\+://'
+      return
+    endif
+    let l:mes = '"%s" does not exist. Create? [y/N]'
+    if !isdirectory(a:dir) && (a:force ||
+    \    input(printf(l:mes, a:dir)) =~? '^y\%[es]$')
+      call mkdir(a:dir, 'p')
+    endif
+  endfunction
+augroup END
