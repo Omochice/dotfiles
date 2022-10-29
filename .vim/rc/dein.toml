@@ -1,3 +1,18 @@
+hook_add = """
+function s:disable_bgcolor() abort
+  highlight FloatBorder ctermbg=NONE guibg=NONE
+  highlight NormalFloat ctermbg=NONE guibg=NONE
+  highlight Special ctermbg=NONE guibg=NONE
+  highlight link TreesitterContext Pmenu
+endfunction
+
+augroup vimrc#color-setting
+  autocmd!
+  autocmd ColorScheme * call timer_start(0, { -> s:disable_bgcolor() })
+  autocmd VimEnter * nested colorscheme sonokai
+augroup END
+"""
+
 [[plugins]]
 repo = "Shougo/dein.vim"
 hook_add = """
@@ -15,23 +30,19 @@ augroup END
 [[plugins]]
 repo = "sainnhe/sonokai"
 hook_add = """
-function s:disable_bgcolor() abort
-  highlight FloatBorder ctermbg=NONE guibg=NONE
-  highlight NormalFloat ctermbg=NONE guibg=NONE
-  highlight Special ctermbg=NONE guibg=NONE
-  highlight link TreesitterContext Pmenu
-endfunction
-
-if !has('gui_running')
-  augroup colorschemeSetting
-    autocmd!
-    autocmd VimEnter * nested colorscheme sonokai
-    autocmd ColorScheme * call timer_start(0, { -> s:disable_bgcolor() })
-  augroup END
-endif
 let g:sonokai_style = 'espresso'
 let g:sonokai_enable_italic = v:false
 let g:sonokai_disable_italic_comment = v:true
+"""
+
+[[plugins]]
+repo = "catppuccin/vim"
+name = "catpuccin"
+hook_add = """
+augroup erace-cursorline
+  autocmd!
+  autocmd ColorScheme * highlight CursorLine guisp=NONE guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=NONE cterm=NONE
+augroup END
 """
 
 [[plugins]]
@@ -39,7 +50,7 @@ repo = "itchyny/lightline.vim"
 hook_add = """
 set noshowmode
 let g:lightline = {
-      \ 'colorscheme': 'sonokai',
+      \ 'colorscheme': 'default',
       \ 'active': {
       \   'left': [
       \     ['mode', 'paste'],
@@ -71,6 +82,18 @@ function! LightlineFotmat() abort
   else
     return ''
   endif
+endfunction
+
+augroup vimrc#lightline-update-highlight
+  autocmd!
+  autocmd ColorScheme * call <SID>update_lightline_color()
+augroup END
+
+function! s:update_lightline_color() abort
+  let g:lightline.colorscheme = g:colors_name
+  " Reload lightline
+  call lightline#disable()
+  call lightline#enable()
 endfunction
 """
 depends = ["nerdfont.vim", 'vim-gitbranch']
