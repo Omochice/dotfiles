@@ -452,6 +452,11 @@ on_source = "ddu.vim"
 [[plugins]]
 repo = "lambdalisue/gin.vim"
 depends = "denops.vim"
+hook_add = """
+cnoreabbrev gin Gin
+cnoreabbrev gins GinStatus
+cnoreabbrev ginb GinBranch
+"""
 on_cmd = ["Gin", "GinStatus"]
 [plugins.ftplugin]
 gin-status = """
