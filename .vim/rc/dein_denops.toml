@@ -28,8 +28,8 @@ let g:ddc_sources = {
 "   let g:ddc_sources['out-vim'] += ['tmux']
 " endif
 
-inoremap <silent><expr> <C-Space> ddc#manual_complete()
-inoremap <silent><expr> <C-x> ddc#manual_complete(["vim-lsp"])
+inoremap <silent><expr> <C-Space> ddc#map#manual_complete()
+inoremap <silent><expr> <C-x> ddc#map#manual_complete(["vim-lsp"])
 
 if dein#tap('vim-vsnip-integ')
   let g:ddc_source_options['vsnip'] = {'mark': '[Snp]'}
@@ -53,7 +53,8 @@ call ddc#custom#patch_filetype(
       \ )
 
 if g:ddc_use_pum
-  call ddc#custom#patch_global('completionMenu', 'pum.vim')
+  call ddc#custom#patch_global('ui', 'pum')
+  " call ddc#custom#patch_global('completionMenu', 'pum.vim')
   call ddc#custom#patch_global('backspaceCompletion', v:true)
 endif
 call ddc#enable()
@@ -67,6 +68,11 @@ hook_add = """
 inoremap <expr> <C-n> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<C-n>'
 inoremap <expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<C-p>'
 """
+
+[[plugins]]
+repo = "Shougo/ddc-ui-pum"
+on_source = "ddc.vim"
+depends = ["pum.vim"]
 
 # [[multiple_plugins]]
 # plugins = ["pum.vim", "lexima.vim"]
