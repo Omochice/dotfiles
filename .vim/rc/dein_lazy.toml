@@ -839,3 +839,12 @@ on_cmd = "YankRemoteURL"
 [[plugins]]
 repo = "tweekmonster/helpful.vim"
 on_cmd = "HelpfulVersion"
+
+[[plugins]]
+repo = "rhysd/git-messenger.vim"
+hook_add = """
+let g:git_messenger_no_default_mappings = v:true
+let g:git_messenger_floating_win_opts = { 'border': 'single' }
+nmap <Space>gm <Plug>(git-messenger)
+"""
+on_map = { n = "<Plug>" }
