@@ -1,0 +1,7 @@
+[[rules]]
+regex = "\(\S\+\)\.if"
+template = """
+if {{__$1__}}
+  {{__cursor__}}
+endif
+"""
