@@ -57,6 +57,15 @@ omap ic <Plug>(textobj-codeblock-i)
 on_map = { x = "<Plug>", o = "<Plug>" }
 
 [[plugins]]
+repo = "Omochice/vim-textobj-bettertag"
+hook_add = """
+xnoremap it <Plug>(textobj-bettertag-i)
+onoremap it <Plug>(textobj-bettertag-i)
+"""
+on_map = { x = "<Plug>(textobj-bettertag", o = "<Plug>(textobj-bettertag" }
+depends = ["vim-textobj-user"]
+
+[[plugins]]
 repo = "kana/vim-textobj-entire"
 depends = ["vim-textobj-user"]
 hook_add = """
