@@ -1,0 +1,15 @@
+[[rules]]
+regex = "from:\(\S\+\)"
+template = "import {{__cursor__}} from \"{{__$1__}}\";"
+
+[[rules]]
+regex = "\(\S\+\)\.echo"
+template = "console.log({{__$1__}})"
+
+[[rules]]
+regex = "\(\S\+\)\.if"
+template = """
+if ({{__$1__}}) {
+  {{__cursor__}}
+}
+"""
