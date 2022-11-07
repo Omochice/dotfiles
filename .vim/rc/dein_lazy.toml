@@ -378,7 +378,6 @@ repo = "lambdalisue/vim-quickrun-neovim-job"
 
 [[plugins]]
 repo = "Omochice/TeXTable.vim"
-# on_ft = ["tex", "plaintex"]
 on_cmd = "TeXTable"
 
 [[plugins]]
@@ -403,7 +402,6 @@ on_cmd = ["Pydocstring", "PydocstringFormat"]
 
 [[plugins]]
 repo = "mattn/vim-maketable"
-on_ft = "markdown"
 on_cmd = "MakeTable"
 
 [[plugins]]
