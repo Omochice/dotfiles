@@ -209,7 +209,7 @@ exec --no-startup-id light-locker --lock-on-suspend
 exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
 exec --no-startup-id xfce4-power-manager
 
-exec_always --no-startup-id i3-workscreen && nitrogen --restore && $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id i3-workscreen; nitrogen --restore; $HOME/.config/polybar/launch.sh
 
 # autostart(with gui)
 exec --no-startup-id i3-msg 'workspace -1 -;exec $TERMINAL'
