@@ -16,6 +16,7 @@
 .vim/dein
 !/.vim/snippets/*.json
 !/.vim/templates/**/*
+!/.vim/postfix/*.toml
 !/config/*
 !/config/efm-langserver/config.yaml
 !/config/fish/*
