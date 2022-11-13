@@ -874,3 +874,7 @@ let g:git_messenger_floating_win_opts = { 'border': 'single' }
 nmap <Space>gm <Plug>(git-messenger)
 """
 on_map = { n = "<Plug>" }
+
+[[plugins]]
+repo = "tyru/capture.vim"
+on_cmd = "Capture"
