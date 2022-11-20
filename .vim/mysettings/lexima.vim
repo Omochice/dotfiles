@@ -98,6 +98,12 @@ let s:rules += [
       \ { 'filetype': 'plantuml', 'char': '<BS>', 'at': '= \%# =', 'input': '<BS>', 'delete': 1, },
       \ ]
 
+"" react
+let s:rules += [
+      \ #{ filetype: 'typescriptreact', char: '>', at: '<\%#', input: '>', input_after: '</>' },
+      \ #{ filetype: 'typescriptreact', char: '<CR>', at: '<>\%#</>', input: '<CR>', input_after: '<CR>' },
+      \ ]
+
 for s:rule in s:rules
   call lexima#add_rule(s:rule)
 endfor
