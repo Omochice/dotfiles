@@ -9,20 +9,20 @@ command! DenopsRestart call denops#server#restart() " NOTE: not work?
 repo = "Shougo/ddc.vim"
 hook_add = """
 let g:ddc_use_pum = v:true
-let g:ddc_source_options = {
-      \ '_': {
-      \   'matchers': ['matcher_fuzzy'],
-      \   'sorters': ['sorter_fuzzy'],
-      \   'converters': ['converter_remove_overlap', 'converter_fuzzy'],
-      \   'minAutoCompleteLength': 2,
-      \   'ignoreCase': v:true,
+let g:ddc_source_options = #{
+      \ _: #{
+      \   matchers: ['matcher_fuzzy'],
+      \   sorters: ['sorter_fuzzy'],
+      \   converters: ['converter_remove_overlap', 'converter_fuzzy'],
+      \   minAutoCompleteLength: 2,
+      \   ignoreCase: v:true,
       \   },
       \ }
-let g:ddc_sources = {
-      \ 'snippet': ['vsnip'],
-      \ 'lsp': ['vim-lsp'],
-      \ 'in-vim': ['around', 'buffer'],
-      \ 'out-vim': ['rg'],
+let g:ddc_sources = #{
+      \ snippet: ['vsnip'],
+      \ lsp: ['vim-lsp'],
+      \ in-vim: ['around', 'buffer'],
+      \ out-vim: ['rg'],
       \ }
 " if has('wsl')
 "   let g:ddc_sources['out-vim'] += ['tmux']
@@ -82,10 +82,10 @@ depends = ["pum.vim"]
 [[plugins]]
 repo = "shun/ddc-vim-lsp"
 hook_source = """
-let g:ddc_source_options['vim-lsp'] = {
-      \   'mark': '[LSP]',
-      \   'isVolatile': v:true,
-      \   'forceCompletionPattern': '\..?|:|->|\w+/',
+let g:ddc_source_options['vim-lsp'] = #{
+      \   mark: '[LSP]',
+      \   isVolatile: v:true,
+      \   forceCompletionPattern: '\..?|:|->|\w+/',
       \ }
 """
 depends = ["vim-lsp"]
@@ -94,7 +94,7 @@ on_source = "ddc.vim"
 [[plugins]]
 repo = "Shougo/ddc-around"
 hook_source = """
-let g:ddc_source_options['around'] = {'mark': '[Ard]'}
+let g:ddc_source_options['around'] = #{mark: '[Ard]'}
 """
 on_source = "ddc.vim"
 
@@ -120,14 +120,14 @@ on_source = "ddc.vim"
 [[plugins]]
 repo = "Shougo/neco-vim"
 hook_source = """
-let g:ddc_source_options['necovim'] = {'mark': '[Nec]'}
+let g:ddc_source_options['necovim'] = #{mark: '[Nec]'}
 """
 on_source = "ddc.vim"
 
 [[plugins]]
 repo = "matsui54/ddc-buffer"
 hook_source = """
-let g:ddc_source_options['buffer'] = {'mark': '[Buf]'}
+let g:ddc_source_options['buffer'] = #{mark: '[Buf]'}
 """
 on_source = "ddc.vim"
 
@@ -138,7 +138,7 @@ on_source = "ddc.vim"
 [[plugins]]
 repo = "delphinus/ddc-tmux"
 hook_source = """
-let g:ddc_source_options['tmux'] = {'mark': '[Tmx]'}
+let g:ddc_source_options['tmux'] = #{mark: '[Tmx]'}
 """
 on_source = "ddc.vim"
 
@@ -149,10 +149,10 @@ on_source = "ddc.vim"
 [[plugins]]
 repo = "LumaKernel/ddc-file"
 hook_source = """
-let g:ddc_source_options['file'] = {
-      \   'mark': '[Fil]',
-      \   'isVolatile': v:true,
-      \   'forceCompletionPattern': '\S/\S*',
+let g:ddc_source_options['file'] = #{
+      \   mark: '[Fil]',
+      \   isVolatile: v:true,
+      \   forceCompletionPattern: '\S/\S*',
       \ }
 """
 on_source = "ddc.vim"
@@ -160,10 +160,10 @@ on_source = "ddc.vim"
 [[plugins]]
 repo = "Shougo/ddc-rg"
 hook_source = """
-let g:ddc_source_options['rg'] = {
-      \   'mark': '[Rg]',
-      \   'minAutoCompleteLength': 4,
-      \   'maxItems': 20,
+let g:ddc_source_options['rg'] = #{
+      \   mark: '[Rg]',
+      \   minAutoCompleteLength: 4,
+      \   maxItems: 20,
       \ }
 """
 on_source = "ddc.vim"
@@ -178,8 +178,8 @@ on_source = "ddc.vim"
 [[plugins]]
 repo = "matsui54/denops-signature_help"
 hook_add = """
-let g:signature_help_config = {
-      \   'style': 'labelOnly',
+let g:signature_help_config = #{
+      \   style: 'labelOnly',
       \ }
 """
 hook_source = """
@@ -265,71 +265,72 @@ nmap <Plug>(ddu-prefix)<C-w> <Cmd>call ddu#start({'sources': [{'name': 'mru'}]})
 nmap <Plug>(ddu-prefix)<C-b> <Cmd>call ddu#start({'sources': [{'name': 'buffer'}]})<CR>
 function! s:ddu_grep_wrapper(query) abort
   if !empty(a:query)
-    call ddu#start({'sources': [{'name': 'rg', 'params': {'input': a:query}}], 'sourceOptions': {'rg': { 'matchers': ['converter_display_word', 'matcher_fzf'] }}})
+    call ddu#start(#{sources: [#{name: 'rg', params: #{input: a:query}}], sourceOptions: #{rg: #{ matchers: ['converter_display_word', 'matcher_fzf'] }}})
   endif
 endfunction
 
 command! -nargs=1 DduGrep call <SID>ddu_grep_wrapper(<q-args>)
 nmap <Plug>(ddu-prefix)<C-g> :<C-u>DduGrep<Space>
-nmap <Plug>(ddu-prefix)<C-l> <Cmd>call ddu#start({
-    \ 'sources': [{'name': 'rg', 'options': {'matcher': []}}],
-    \ 'uiParams': {
-    \   'ff': { 'ignoreEmpty': v:false,}
+nmap <Plug>(ddu-prefix)<C-l> <Cmd>call ddu#start(#{
+    \ sources: [#{name: 'rg', options: #{matcher: []}}],
+    \ uiParams: #{
+    \   ff: #{ ignoreEmpty: v:false,}
     \ },
-    \ 'volatile': v:true,
+    \ volatile: v:true,
     \ })<CR>
+nmap <Plug>(ddu-prefix)g <Cmd>call <SID>ddu_grep_wrapper(expand('<cword>'))<CR>
 """
 hook_source = """
-let s:config = {
-\ 'ui': 'ff',
-\ 'sources': [{'name': 'file_rec', 'params': { 'ignoredDirectories': ['.git', 'node_modules', 'dein'] },}],
-\ 'sourceOptions': {
-\   '_': {
-\     'ignoreCase': v:true,
-\     'matchers': ['matcher_fzf'],
+let s:config = #{
+\ ui: 'ff',
+\ sources: [#{name: 'file_rec', params: #{ ignoredDirectories: ['.git', 'node_modules', 'dein'] },}],
+\ sourceOptions: #{
+\   _: #{
+\     ignoreCase: v:true,
+\     matchers: ['matcher_fzf'],
 \   },
 \ },
-\ 'sourceParams': {
-\   'rg': {
-\     'rg': {
-\       'matchers': ['converter_display_word', 'matcher_substring'],
+\ sourceParams: #{
+\   rg: #{
+\     rg: #{
+\       matchers: ['converter_display_word', 'matcher_substring'],
 \     },
-\     'args'  : ["--json"],
+\     args  : ["--json", "--ignore-case"],
 \   },
-\   'mru': {
-\     'mr': {
-\       'kind': 'mru',
-\       'current': v:true,
+\   mru: #{
+\     mr: #{
+\       kind: 'mru',
+\       current: v:true,
 \     },
 \   },
 \ },
-\ 'filterParams': {
-\   'matcher_fzf': {
-\     'highlightMatched': 'Search',
+\ filterParams: #{
+\   matcher_fzf: #{
+\     highlightMatched: 'Search',
 \   },
-\   'matcher_substring': {
-\     'highlightMatched': 'Search',
-\   },
-\ },
-\ 'kindOptions': {
-\   'file': {
-\     'defaultAction': 'open',
+\   matcher_substring: #{
+\     highlightMatched: 'Search',
 \   },
 \ },
-\ 'uiParams': {
-\   'ff': {
-\     'ignoreEmpty': v:true,
-\     'split': 'floating',
-\     'filterSplitDirection': 'floating',
-\     'filterFloatingPosition': 'top',
-\     'prompt': '>',
-\     'previewFloating': v:true,
-\     'previewVertical': v:true,
-\     'startFilter': v:true,
-\     'floatingBorder': ['┌', '─', '┐', '│', '┘', '─', '└', '│'],
-\     'previewFloatingBorder': ['┌', '─', '┐', '│', '┘', '─', '└', '│'],
-\     'previewFloatingZindex': 100,
-\     'autoAction': { 'name': 'preview' },
+\ kindOptions: #{
+\   file: #{
+\     defaultAction: 'open',
+\   },
+\ },
+\ uiParams: #{
+\   ff: #{
+\     ignoreEmpty: v:true,
+\     split: 'floating',
+\     filterSplitDirection: 'floating',
+\     filterFloatingPosition: 'top',
+\     prompt: '>',
+\     previewFloating: v:true,
+\     previewVertical: v:true,
+\     startFilter: v:true,
+\     floatingBorder: ['┌', '─', '┐', '│', '┘', '─', '└', '│'],
+\     previewFloatingBorder: ['┌', '─', '┐', '│', '┘', '─', '└', '│'],
+\     previewFloatingZindex: 100,
+      autoAction: #{ name: 'preview' },
 \   },
 \ },
 \ }
@@ -354,10 +355,10 @@ augroup ddu-reset-size
   autocmd VimResized * call s:reset()
 augroup END
 """
+# \     'autoAction': { 'name': 'preview' },
 
 [[plugins]]
 repo = "Shougo/ddu-ui-ff"
-# repo = "~/workspace/toybox/ddu-ui-ff"
 hook_add = """
 function s:close_previews()
     echomsg 'hey'
@@ -387,31 +388,34 @@ nnoremap <buffer><nowait><silent> p <Cmd>call ddu#ui#ff#do_action('preview')<CR>
 nnoremap <buffer> <C-w><C-w> <C-w><C-w>
 """
 ddu-ff-filter = """
-" TODO: close all buffer
-inoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#execute(
+inoremap <buffer><nowait> <C-o> <Cmd>call ddu#ui#ff#execute('call ddu#ui#ff#do_action("preview")')<CR>
+inoremap <buffer> <CR> <Cmd>call ddu#ui#ff#execute(
 \ 'call ddu#ui#ff#do_action(
 \   "itemAction",
-\   { "name": "open", "params": { "command": "edit" }, }
+\   #{ name: "open", params: #{ command: "edit" }, }
 \)')<CR>
-inoremap <buffer><silent> <C-t> <Cmd>call ddu#ui#ff#execute(
+" NOTE: gt is needed
+inoremap <buffer> <C-t> <Cmd>call ddu#ui#ff#execute(
 \ 'call ddu#ui#ff#do_action(
 \   "itemAction",
-\   { "name": "open", "params": { "command": "tabedit" }, }
+\   #{ name: "open", params: #{ command: "tabedit" }, }
 \)')<CR>gt
-inoremap <buffer><silent> <C-v> <Cmd>call ddu#ui#ff#execute(
+inoremap <buffer> <C-v> <Cmd>call ddu#ui#ff#execute(
 \ 'call ddu#ui#ff#do_action(
 \   "itemAction",
-\   { "name": "open", "params": { "command": "vsplit" }, }
+\   #{ name: "open", params: #{ command: "vsplit" }, }
 \)')<CR>
-inoremap <buffer><silent> <C-s> <Cmd>call ddu#ui#ff#execute(
+inoremap <buffer> <C-s> <Cmd>call ddu#ui#ff#execute(
 \ 'call ddu#ui#ff#do_action(
 \   "itemAction",
-\   { "name": "open", "params": { "command": "split" }, }
+\   #{ name: "open", params: #{ command: "split" }, }
 \)')<CR>
-nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#close()<CR>
-nnoremap <buffer><nowait><silent> q <Cmd>call ddu#ui#ff#close()<CR>
+nnoremap <buffer> <CR> <Cmd>call ddu#ui#ff#close()<CR>
+nnoremap <buffer><nowait> q <Cmd>call ddu#ui#ff#close()<CR>
 inoremap <buffer> <C-n> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")+1,0)<Bar>redraw')<CR>
 inoremap <buffer> <C-p> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")-1,0)<Bar>redraw')<CR>
+nnoremap <buffer> <C-n> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")+1,0)<Bar>redraw')<CR>
+nnoremap <buffer> <C-p> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")-1,0)<Bar>redraw')<CR>
 nnoremap <buffer> <C-w><C-w> <C-w><C-w>
 """
 
@@ -467,24 +471,24 @@ nnoremap <buffer> cc <Cmd>Gin commit<CR>
 [[plugins]]
 repo = "Omochice/tataku.vim"
 hook_add = """
-let g:tataku_recipes = {
-      \ 'translate_en_to_ja': {
-      \   'collector': {'name': 'current_line', 'options': {}},
-      \   'processor': [
-      \     {'name': 'intl_segmenter', 'options': {'locale': 'en'}},
-      \     {'name': 'google_translate', 'options': {'source': "en", 'target': 'ja'}},
-      \     {'name': 'intl_segmenter', 'options': {'locale': 'ja'}},
+let g:tataku_recipes = #{
+      \ translate_en_to_ja: #{
+      \   collector: #{name: 'current_line', options: {}},
+      \   processor: [
+      \     #{name: 'intl_segmenter', options: #{locale: 'en'}},
+      \     #{name: 'google_translate', options: #{source: "en", target: 'ja'}},
+      \     #{name: 'intl_segmenter', options: #{locale: 'ja'}},
       \   ],
-      \   'emitter': {'name': 'nvim_floatwin', 'options': {'border': 'single'}}
+      \   emitter: #{name: 'nvim_floatwin', options: #{border: 'single'}}
       \ },
-      \ 'translate_ja_to_en': {
-      \   'collector': {'name': 'current_line', 'options': {}},
-      \   'processor': [
-      \     {'name': 'intl_segmenter', 'options': {'locale': 'ja'}},
-      \     {'name': 'google_translate', 'options': {'source': "ja", 'target': 'en'}},
-      \     {'name': 'intl_segmenter', 'options': {'locale': 'en'}},
+      \ translate_ja_to_en: #{
+      \   collector: #{name: 'current_line', options: {}},
+      \   processor: [
+      \     #{name: 'intl_segmenter', options: #{locale: 'ja'}},
+      \     #{name: 'google_translate', options: #{source: "ja", target: 'en'}},
+      \     #{name: 'intl_segmenter', options: #{locale: 'en'}},
       \   ],
-      \   'emitter': {'name': 'nvim_floatwin', 'options': {'border': 'single'}}
+      \   emitter: #{name: 'nvim_floatwin', options: #{border: 'single'}}
       \ },
       \ }
 let g:tataku_enable_operator = v:true
