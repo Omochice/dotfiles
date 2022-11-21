@@ -49,18 +49,18 @@ augroup END
 repo = "itchyny/lightline.vim"
 hook_add = """
 set noshowmode
-let g:lightline = {
-      \ 'colorscheme': 'default',
-      \ 'active': {
-      \   'left': [
+let g:lightline = #{
+      \ colorscheme: 'default',
+      \ active: #{
+      \   left: [
       \     ['mode', 'paste'],
       \     ['gitbranch', 'readonly', 'filename', 'modified'],
       \   ],
       \ },
-      \ 'component_function': {
-      \   'gitbranch': 'gitbranch#name',
-      \   'filetype': 'LightlineFileType',
-      \   'fileformat': 'LightlineFotmat',
+      \ component_function: #{
+      \   gitbranch: 'gitbranch#name',
+      \   filetype: 'LightlineFileType',
+      \   fileformat: 'LightlineFotmat',
       \   },
       \ }
 
