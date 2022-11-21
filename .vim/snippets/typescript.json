@@ -20,6 +20,7 @@
   "console.log": {
     "prefix": [
       "log",
+      "echo",
       "console.log"
     ],
     "body": [
@@ -93,7 +94,7 @@
     "description": "enum template"
   },
   "enumkey": {
-    "prefix": "enumkey",
+    "prefix": "ekey",
     "body": [
       "${1}: \"${1}\","
     ],
