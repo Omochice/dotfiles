@@ -284,20 +284,31 @@ n = "<Plug>"
 x = ["<Plug>", "<Plug>(textobj-sandwich"]
 o = "<Plug>(textobj-sandwich"
 
+# [[plugins]]
+# repo = "tyru/caw.vim"
+# hook_add = """
+# nmap gc <Plug>(caw:prefix)
+# " xmap gc <Plug>(caw:prefix)
+# xmap gc <Plug>(caw:hatpos:toggle)
+# " TODO: can use `silent`?
+# " Brute force solution
+# " https://github.com/tyru/caw.vim/issues/166
+# " nmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
+# " xmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
+# """
+# depends = ["vim-repeat"]
+# on_map = { n = "<Plug>", x = "<Plug>" }
+
 [[plugins]]
-repo = "tyru/caw.vim"
+repo = "uga-rosa/contextment.vim"
 hook_add = """
-nmap gc <Plug>(caw:prefix)
-" xmap gc <Plug>(caw:prefix)
-xmap gc <Plug>(caw:hatpos:toggle)
-" TODO: can use `silent`?
-" Brute force solution
-" https://github.com/tyru/caw.vim/issues/166
-" nmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
-" xmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
+nnoremap gc <Plug>(contextment)
+nnoremap gcc <Plug>(contextment-line)
+xnoremap gc <Plug>(contextment)
+onoremap gc <Plug>(contextment)
 """
-depends = ["vim-repeat"]
-on_map = { n = "<Plug>", x = "<Plug>" }
+depends = ["context_filetype.vim"]
+on_map = { nxo = "<Plug>" }
 
 [[plugins]]
 repo = "markonm/traces.vim"
