@@ -27,6 +27,17 @@ set tabstop=2
 set virtualedit=onemore
 set wildmenu
 
+augroup vimrc#autocmd
+  autocmd!
+augroup END
+
+let g:file_color_max_size = 1024 * 1000
+function s:on_buf_read_pre() abort
+  if getfsize(@%) > g:file_color_max_size
+    syntax off
+  endif
+endfunction
+
 if has('nvim')
   set wildmode=full
   set wildoptions+=pum
@@ -129,21 +140,16 @@ nnoremap <C-S-n> gT
 nnoremap <expr> i len(getline('.')) !=# 0 ? 'i' : '"_cc'
 nnoremap <expr> A len(getline('.')) !=# 0 ? 'A' : '"_cc'
 
-augroup vimrc#terminal
-  autocmd!
-augroup END
-
-
 if has('nvim')
   " neovim terminal settings
   " tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
   tnoremap <ESC> <C-\><C-n>
   " feed insert mode when move terminal window
-  autocmd vimrc#terminal TermOpen * startinsert
-  autocmd vimrc#terminal TermOpen * setlocal nonumber
-  autocmd vimrc#terminal WinEnter * if &buftype ==# 'terminal' | startinsert | endif
+  autocmd vimrc#autocmd TermOpen * startinsert
+  autocmd vimrc#autocmd TermOpen * setlocal nonumber
+  autocmd vimrc#autocmd WinEnter * if &buftype ==# 'terminal' | startinsert | endif
   " auto close
-  autocmd vimrc#terminal TermClose * call feedkeys('\<CR>')
+  autocmd vimrc#autocmd TermClose * call feedkeys('\<CR>')
   " helper commands
   command! Vterm vertical botright vnew term://${SHELL}
   command! Hterm botright new term://${SHELL}
@@ -151,7 +157,7 @@ if has('nvim')
 else
   " Vim terminal settings
   tnoremap <ESC> <C-w>N
-  autocmd vimrc#terminal TerminalOpen * setlocal nonumber
+  autocmd vimrc#autocmd TerminalOpen * setlocal nonumber
   " helper commands
   command! Vterm vertical botright vnew | terminal ++curwin
   command! Hterm botright new | terminal ++curwin
@@ -169,11 +175,8 @@ if has('gui_running')
   set guioptions-=T
 else
   set t_Co=256
-  augroup term_vim_c_space
-    autocmd!
-    autocmd VimEnter * map <Nul> <C-Space>
-    autocmd VimEnter * map! <Nul> <C-Space>
-  augroup END
+  autocmd vimrc#autocmd VimEnter * map <Nul> <C-Space>
+  autocmd vimrc#autocmd VimEnter * map! <Nul> <C-Space>
 endif
 
 " use ripgrep
@@ -218,19 +221,16 @@ endif
 
 let g:filetype_m = 'mma'
 
-augroup vimrc#filetype
-  autocmd!
-  " FIXME: 読み込み順の問題か/ftdetect/objcだとうまくいかない
-  autocmd BufRead,BufNewFile *.m set filetype=objc
-  " FIXME: BufReadだと2回発火する?
-  " FIXME: ファイラ経由で発火すると無限に呼び出されている?
-  "   reproduce:
-  "     $ mkdir /tmp/sample && touch /tmp/sample/a.js /tmp/sample/a.ts
-  "     $ vim /tmp/sample
-  "     :Fern .
-  "     and open a.js
-  autocmd FileType javascript call s:open_it_really()
-augroup END
+" FIXME: 読み込み順の問題か/ftdetect/objcだとうまくいかない
+autocmd vimrc#autocmd BufRead,BufNewFile *.m set filetype=objc
+" FIXME: BufReadだと2回発火する?
+" FIXME: ファイラ経由で発火すると無限に呼び出されている?
+"   reproduce:
+"     $ mkdir /tmp/sample && touch /tmp/sample/a.js /tmp/sample/a.ts
+"     $ vim /tmp/sample
+"     :Fern .
+"     and open a.js
+autocmd vimrc#autocmd FileType javascript call s:open_it_really()
 
 function! s:open_it_really() abort
   let l:current_bufnr = bufnr()
@@ -262,17 +262,15 @@ call digraph_setlist([
       \ ])
 
 " NOTE: from https://github.com/thinca/config/dotfiles/dot.vim/vimrc
-augroup vimrc#auto_mkdir
-  autocmd!
-  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
-  function s:auto_mkdir(dir, force) abort
-    if &l:buftype !=# '' || bufname('%') =~# '^[^:]\+://'
-      return
-    endif
-    let l:mes = '"%s" does not exist. Create? [y/N]'
-    if !isdirectory(a:dir) && (a:force ||
-    \    input(printf(l:mes, a:dir)) =~? '^y\%[es]$')
-      call mkdir(a:dir, 'p')
-    endif
-  endfunction
-augroup END
+" auto mkdir
+autocmd vimrc#autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+function s:auto_mkdir(dir, force) abort
+  if &l:buftype !=# '' || bufname('%') =~# '^[^:]\+://'
+    return
+  endif
+  let l:mes = '"%s" does not exist. Create? [y/N]'
+  if !isdirectory(a:dir) && (a:force ||
+  \    input(printf(l:mes, a:dir)) =~? '^y\%[es]$')
+    call mkdir(a:dir, 'p')
+  endif
+endfunction
