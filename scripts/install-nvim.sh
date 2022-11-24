@@ -1,6 +1,7 @@
 #!/bin/sh
 # original is from Shougo/shougo-s-github/install-nvim
 
+make clean
 make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX=~/.local/nvim install
 
 # Remove default plugins
