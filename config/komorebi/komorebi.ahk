@@ -87,6 +87,10 @@ return
 Run, komorebic.exe toggle-float, , Hide
 return
 
+; DO NOT OPEN ONENOTE
+#n::
+return
+
 ; Reload ~/komorebi.ahk, super + c
 ; NOTE: Maybe this not re-order virtual desktop?
 #+c::
