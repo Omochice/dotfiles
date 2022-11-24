@@ -191,7 +191,7 @@ function! s:grep_in_file() abort
     return
   endif
   try
-    silent execute 'lvimgrep ' . l:query . ' % | lw'
+    silent execute 'lvimgrep ' .. l:query .. ' % | lw'
     " conceal has bug about wrapping
     setlocal conceallevel=3 concealcursor=nvc nowrap
     syntax match grep_internal '^.\{-}|\@=' conceal
@@ -236,7 +236,7 @@ function! s:open_it_really() abort
   let l:current_bufnr = bufnr()
   let l:tsfile = expand('%:p:r') . '.ts'
   if filewritable(l:tsfile)
-    if confirm("Exists " . fnamemodify(l:tsfile, ':t') . ". Open it?", "&Yes\n&No\n", 1) ==# 1
+    if confirm("Exists " .. fnamemodify(l:tsfile, ':t') .. ". Open it?", "&Yes\n&No\n", 1) ==# 1
       execute 'edit' l:tsfile
       execute 'bwipeout' l:current_bufnr
     endif
