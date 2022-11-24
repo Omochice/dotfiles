@@ -14,7 +14,8 @@ set laststatus=2
 set mouse=
 set nobackup
 set noswapfile
-set noshowcmd " Use screenkey to show them
+" Use screenkey to show them
+set noshowcmd
 set nowrap
 set nowritebackup
 set nonumber
@@ -90,12 +91,16 @@ nnoremap Q <Cmd>copen<CR>
 
 " easy force write/quit
 cnoreabbrev qq quit!
-cnoreabbrev QQ qall!
 cnoreabbrev ww update!
 cnoreabbrev w update
 
+" easy open memo buffer
+cnoreabbrev scratch tabnew +set\ buftype=nofile
+
 " TODO
 " cnoreabbrev w:q wq
+
+" type "&" is too hard to me on JIS keyboard
 
 " dont use clipboard
 nnoremap x "_x
@@ -133,8 +138,6 @@ cnoremap <C-d> <Del>
 cnoremap <C-a> <Home>
 inoremap <expr> <C-a> getline('.')[0 : col('.') - 2] =~# '^\s\+$' ? '<C-o>0' : '<C-o>^'
 noremap!        <C-e> <End>
-nnoremap <C-n> gt
-nnoremap <C-S-n> gT
 
 " Automatically indent with i and A
 nnoremap <expr> i len(getline('.')) !=# 0 ? 'i' : '"_cc'
@@ -180,10 +183,13 @@ else
 endif
 
 " use ripgrep
-if executable('rg')
-  set grepprg=rg\ --vimgrep\ --no-heading
-  set grepformat=%f:%l:%c:%m,%f:%l:%m
-endif
+function! s:set_rg() abort
+  if executable('rg')
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+  endif
+endfunction
+call timer_start(0, { -> s:set_rg() })
 
 function! s:grep_in_file() abort
   let l:query = input('grep: ')
@@ -205,6 +211,7 @@ function! s:grep_in_file() abort
   endtry
 endfunction
 
+" FIXME: なんかよくない気がする
 nnoremap F <Cmd>call <SID>grep_in_file()<CR>
 
 " copy buffer command
