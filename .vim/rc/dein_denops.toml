@@ -32,7 +32,7 @@ inoremap <silent><expr> <C-Space> ddc#map#manual_complete()
 inoremap <silent><expr> <C-x> ddc#map#manual_complete(["vim-lsp"])
 
 if dein#tap('vim-vsnip-integ')
-  let g:ddc_source_options['vsnip'] = {'mark': '[Snp]'}
+  let g:ddc_source_options['vsnip'] = #{mark: '[Snp]'}
 endif
 """
 hook_source = """
@@ -260,9 +260,8 @@ let g:ddu_window_width_percent = 0.45
 let g:ddu_window_height_percent = 0.9
 nmap <C-k> <Plug>(ddu-prefix)
 nmap <Plug>(ddu-prefix)<C-k> <Cmd>call ddu#start({})<CR>
-" nmap <silent><Plug>(ddu-prefix)<C-g> <Cmd>call <SID>ddu_grep_wrapper()<CR>
-nmap <Plug>(ddu-prefix)<C-w> <Cmd>call ddu#start({'sources': [{'name': 'mru'}]})<CR>
-nmap <Plug>(ddu-prefix)<C-b> <Cmd>call ddu#start({'sources': [{'name': 'buffer'}]})<CR>
+nmap <Plug>(ddu-prefix)<C-w> <Cmd>call ddu#start(#{sources: [#{name: 'mr', params: #{ kind: 'mru' }}]})<CR>
+nmap <Plug>(ddu-prefix)<C-b> <Cmd>call ddu#start(#{sources: [#{name: 'buffer'}]})<CR>
 function! s:ddu_grep_wrapper(query) abort
   if !empty(a:query)
     call ddu#start(#{sources: [#{name: 'rg', params: #{input: a:query}}], sourceOptions: #{rg: #{ matchers: ['converter_display_word', 'matcher_fzf'] }}})
@@ -330,7 +329,6 @@ let s:config = #{
 \     floatingBorder: ['┌', '─', '┐', '│', '┘', '─', '└', '│'],
 \     previewFloatingBorder: ['┌', '─', '┐', '│', '┘', '─', '└', '│'],
 \     previewFloatingZindex: 100,
-      autoAction: #{ name: 'preview' },
 \   },
 \ },
 \ }
@@ -380,11 +378,14 @@ augroup END
 on_source = "ddu.vim"
 [plugins.ftplugin]
 ddu-ff = """
-nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
-nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
-nnoremap <buffer><nowait><silent> i <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
-nnoremap <buffer><nowait><silent> q <Cmd>call ddu#ui#ff#do_action('quit')<CR>
-nnoremap <buffer><nowait><silent> p <Cmd>call ddu#ui#ff#do_action('preview')<CR>
+nnoremap <buffer> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
+nnoremap <buffer><nowait> T <Cmd>call ddu#ui#ff#do_action('itemAction', { 'name': 'open', 'params': { 'command': 'tabedit' } })<CR>
+nnoremap <buffer><nowait> V <Cmd>call ddu#ui#ff#do_action('itemAction', { 'name': 'open', 'params': { 'command': 'vsplit' } })<CR>
+nnoremap <buffer><nowait> S <Cmd>call ddu#ui#ff#do_action('itemAction', { 'name': 'open', 'params': { 'command': 'split' } })<CR>
+nnoremap <buffer> <Space> <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
+nnoremap <buffer><nowait> i <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
+nnoremap <buffer><nowait> q <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+nnoremap <buffer><nowait> p <Cmd>call ddu#ui#ff#do_action('preview')<CR>
 nnoremap <buffer> <C-w><C-w> <C-w><C-w>
 """
 ddu-ff-filter = """
