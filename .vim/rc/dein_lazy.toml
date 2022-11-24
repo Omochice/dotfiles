@@ -330,14 +330,14 @@ let g:vista_default_executive = 'vim_lsp'
 repo = "simeji/winresizer"
 hook_add = """
 function s:number_of_non_float() abort
-  let l:bufnrs = tabpagebuflist()
-  let l:winids = []
-  for l:bufnr in l:bufnrs
-    let l:winids = l:winids + win_findbuf(l:bufnr)
-  endfor
-
   " on floating / popup window is return 'popup'.
-  return len(filter(uniq(sort(l:winids)), {_, val -> win_gettype(val) != 'popup'}))
+  return tabpagebuflist()
+        \ ->map({ _, nr -> win_findbuf(nr) })
+        \ ->flatten()
+        \ ->sort()
+        \ ->uniq()
+        \ ->filter({ _, nr -> win_gettype(nr) != 'popup' })
+        \ ->len()
 endfunction
 
 nnoremap <C-e> <Cmd>WinResizerStartResize<CR>
