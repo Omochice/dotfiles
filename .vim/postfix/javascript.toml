@@ -13,3 +13,18 @@ if ({{__$1__}}) {
   {{__cursor__}}
 }
 """
+
+[[rules]]
+regex = "\(\d\+\)\.times"
+template = """
+for (let i = 0; i < {{__$1__}} ; i++) {
+  {{__cursor__}}
+}
+"""
+
+[[rules]]
+regex = "\(\S\+\)\.each"
+template = """
+for (const {{__cursor__}} of {{__$1__}}) {
+}
+"""
