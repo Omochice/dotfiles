@@ -88,7 +88,7 @@ Run, komorebic.exe toggle-float, , Hide
 return
 
 ; DO NOT OPEN ONENOTE
-#n::
+#+n::
 return
 
 ; Reload ~/komorebi.ahk, super + c
