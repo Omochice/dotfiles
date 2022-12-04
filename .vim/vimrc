@@ -30,6 +30,7 @@ if dein#min#load_state(s:dein_dir)
   let s:toml = s:rc_dir .. '/dein.toml'
   let s:lazy_toml = s:rc_dir .. '/dein_lazy.toml'
   let s:denops_toml = s:rc_dir .. '/dein_denops.toml'
+  let s:ddu = s:rc_dir .. '/ddu.toml'
   let s:ft_toml = s:rc_dir .. '/deinft.toml'
 
   call dein#begin(s:dein_dir, [expand('<sfile>'), s:toml, s:lazy_toml, s:denops_toml, s:ft_toml])
@@ -37,6 +38,7 @@ if dein#min#load_state(s:dein_dir)
   call dein#load_toml(s:toml, {'lazy': v:false})
   call dein#load_toml(s:lazy_toml, {'lazy': v:true})
   call dein#load_toml(s:denops_toml, {'lazy': v:true})
+  call dein#load_toml(s:ddu, {'lazy': v:true})
   call dein#load_toml(s:ft_toml, {'lazy': v:false})
 
   " end settings
