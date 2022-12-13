@@ -4,8 +4,8 @@ depends = "denops.vim"
 hook_add = """
 let g:ddu_window_width_percent = 0.45
 let g:ddu_window_height_percent = 0.9
-nmap <C-k> <Plug>(ddu-prefix)
-nmap <Plug>(ddu-prefix)<C-k> <Cmd>call ddu#start({})<CR>
+nmap <C-p> <Plug>(ddu-prefix)
+nmap <Plug>(ddu-prefix)<C-p> <Cmd>call ddu#start({})<CR>
 nmap <Plug>(ddu-prefix)<C-w> <Cmd>call ddu#start(#{sources: [#{name: 'mr', params: #{ kind: 'mru' }}]})<CR>
 nmap <Plug>(ddu-prefix)<C-b> <Cmd>call ddu#start(#{sources: [#{name: 'buffer'}]})<CR>
 function! s:ddu_grep_wrapper(query) abort
@@ -75,7 +75,6 @@ let s:config = #{
 \     floatingBorder: ['┌', '─', '┐', '│', '┘', '─', '└', '│'],
 \     previewFloatingBorder: ['┌', '─', '┐', '│', '┘', '─', '└', '│'],
 \     previewFloatingZindex: 100,
-\     autoAction: #{ name: 'preview' },
 \   },
 \ },
 \ }
@@ -83,7 +82,7 @@ function! s:set_size() abort
   " this from kuuote/dotvim
   let s:config.uiParams.ff.winWidth = float2nr(&columns * g:ddu_window_width_percent*2)
   let s:config.uiParams.ff.winHeight = float2nr(&lines * g:ddu_window_height_percent)
-  let s:config.uiParams.ff.winCol = float2nr((1 - g:ddu_window_width_percent * 2)/2 * &columns)
+  let s:config.uiParams.ff.winCol = float2nr((1 - g:ddu_window_width_percent * 2)/2 * &columns) + 2
   let s:config.uiParams.ff.winRow = float2nr((1 - g:ddu_window_height_percent)/2 * &lines) + 1
   let s:config.uiParams.ff.previewWidth = float2nr(&columns * g:ddu_window_width_percent)
   let s:config.uiParams.ff.previewHeight = float2nr(&lines * g:ddu_window_height_percent)
@@ -97,9 +96,11 @@ endfunction
 call s:reset_size()
 augroup ddu-reset-size
   autocmd!
-  autocmd VimResized * call s:reset()
+  autocmd VimResized * call <SID>reset()
 augroup END
 """
+
+# \     autoAction: #{ name: 'preview' },
 
 [[plugins]]
 repo = "Shougo/ddu-ui-ff"

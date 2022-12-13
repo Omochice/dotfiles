@@ -1,0 +1,180 @@
+[[plugins]]
+repo = "Shougo/ddc.vim"
+hook_add = """
+let g:ddc_use_pum = v:true
+let g:ddc_source_options = #{
+      \ _: #{
+      \   matchers: ['matcher_fuzzy'],
+      \   sorters: ['sorter_fuzzy'],
+      \   converters: ['converter_remove_overlap', 'converter_fuzzy'],
+      \   minAutoCompleteLength: 2,
+      \   ignoreCase: v:true,
+      \   },
+      \ }
+let g:ddc_sources = #{
+      \ snippet: ['vsnip'],
+      \ lsp: ['vim-lsp'],
+      \ in-vim: ['around', 'buffer'],
+      \ out-vim: ['rg'],
+      \ }
+" if has('wsl')
+"   let g:ddc_sources['out-vim'] += ['tmux']
+" endif
+
+inoremap <silent><expr> <C-Space> ddc#map#manual_complete()
+inoremap <silent><expr> <C-x><C-x> ddc#map#manual_complete(['vim-lsp'])
+
+if dein#tap('vim-vsnip-integ')
+  let g:ddc_source_options['vsnip'] = #{mark: '[Snp]'}
+endif
+"""
+hook_source = """
+call ddc#custom#patch_global(
+      \ 'sources', g:ddc_sources['snippet'] + g:ddc_sources['lsp'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
+      \ )
+call ddc#custom#patch_global('sourceOptions', g:ddc_source_options,)
+" Drop lsp source on vim/toml, because it provide a:a:content.
+call ddc#custom#patch_filetype(
+      \ ['toml', 'vim'], 'sources', g:ddc_sources['snippet'] + ['necovim'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
+      \ )
+"" NOTE: volar is too slow to show with other sources.
+"call ddc#custom#patch_filetype(
+"      \ 'vue', 'sources', g:ddc_sources['snippet'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
+"      \ )
+call ddc#custom#patch_filetype(
+      \ ['markdown'], 'sources', g:ddc_sources['snippet'] + ['file'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
+      \ )
+
+if g:ddc_use_pum
+  call ddc#custom#patch_global('ui', 'pum')
+  call ddc#custom#patch_global('backspaceCompletion', v:true)
+endif
+call ddc#enable()
+"""
+depends = ["denops.vim"]
+on_event = "InsertEnter"
+
+[[plugins]]
+repo = "Shougo/pum.vim"
+hook_add = """
+inoremap <expr> <C-n> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<C-n>'
+inoremap <expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<C-p>'
+"""
+
+[[plugins]]
+repo = "Shougo/ddc-ui-pum"
+on_source = "ddc.vim"
+depends = ["pum.vim"]
+
+# [[multiple_plugins]]
+# plugins = ["pum.vim", "lexima.vim"]
+# hook_source in multiple_plugins is not provided
+# hook_source =
+
+[[plugins]]
+repo = "shun/ddc-vim-lsp"
+hook_source = """
+let g:ddc_source_options['vim-lsp'] = #{
+      \   mark: '[LSP]',
+      \   isVolatile: v:true,
+      \   forceCompletionPattern: '\..?|:|->|\w+/',
+      \ }
+"""
+depends = ["vim-lsp"]
+on_source = "ddc.vim"
+
+[[plugins]]
+repo = "Shougo/ddc-around"
+hook_source = """
+let g:ddc_source_options['around'] = #{mark: '[Ard]'}
+"""
+on_source = "ddc.vim"
+
+# [[plugins]]
+# repo = "Shougo/ddc-matcher_head"
+# on_source = "ddc.vim"
+
+# [[plugins]]
+# repo = "Shougo/ddc-sorter_rank"
+# on_source = "ddc.vim"
+
+# [[plugins]]
+# repo = 'Shougo/ddc-cmdline-history'
+# hook_source = """
+# let g:ddc_source_options['cmdline-history'] = {
+# \   'mark': 'Hst',
+# \   'maxItems': 100,
+# \   'minAutoCompleteLength': 5,
+# \ }
+# """
+# on_source = 'ddc.vim'
+
+[[plugins]]
+repo = "Shougo/neco-vim"
+hook_source = """
+let g:ddc_source_options['necovim'] = #{mark: '[Nec]'}
+"""
+on_source = "ddc.vim"
+
+[[plugins]]
+repo = "matsui54/ddc-buffer"
+hook_source = """
+let g:ddc_source_options['buffer'] = #{mark: '[Buf]'}
+"""
+on_source = "ddc.vim"
+
+[[plugins]]
+repo = "Shougo/ddc-converter_remove_overlap"
+on_source = "ddc.vim"
+
+[[plugins]]
+repo = "delphinus/ddc-tmux"
+hook_source = """
+let g:ddc_source_options['tmux'] = #{mark: '[Tmx]'}
+"""
+on_source = "ddc.vim"
+
+[[plugins]]
+repo = "tani/ddc-fuzzy"
+on_source = "ddc.vim"
+
+[[plugins]]
+repo = "LumaKernel/ddc-file"
+hook_source = """
+let g:ddc_source_options['file'] = #{
+      \   mark: '[Fil]',
+      \   isVolatile: v:true,
+      \   forceCompletionPattern: '\S/\S*',
+      \ }
+"""
+on_source = "ddc.vim"
+
+[[plugins]]
+repo = "Shougo/ddc-rg"
+hook_source = """
+let g:ddc_source_options['rg'] = #{
+      \   mark: '[Rg]',
+      \   minAutoCompleteLength: 4,
+      \   maxItems: 20,
+      \ }
+"""
+on_source = "ddc.vim"
+
+# [[plugins]]
+# repo = "matsui54/denops-popup-preview.vim"
+# hook_source = """
+# call popup_preview#enable()
+# """
+# on_source = "ddc.vim"
+
+[[plugins]]
+repo = "matsui54/denops-signature_help"
+hook_add = """
+let g:signature_help_config = #{
+      \   style: 'labelOnly',
+      \ }
+"""
+hook_source = """
+call signature_help#enable()
+"""
+on_source = "ddc.vim"
