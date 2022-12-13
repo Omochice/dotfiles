@@ -108,6 +108,7 @@ setlocal wrap
 
 gitcommit = """
 setlocal spell
+setlocal formatoptions=q
 """
 
 # from https://thinca.hatenablog.com/entry/20110903/1314982646
@@ -164,4 +165,9 @@ inoreabbrev <buffer> ;; ->
 plantuml = """
 inoreabbrev <buffer> ;; ->
 inoreabbrev <buffer> :: -->
+"""
+
+fish = """
+setlocal comments=:#
+setlocal commentstring=#%s
 """
