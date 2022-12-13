@@ -4,7 +4,11 @@ template = "import {{__cursor__}} from \"{{__$1__}}\";"
 
 [[rules]]
 regex = "\(\S\+\)\.echo"
-template = "console.log({{__$1__}})"
+template = "console.log({{__$1__}}){{__cursor__}}"
+
+[[rules]]
+regex = "\(\S\+\)\.warn"
+template = "console.warn({{__$1__}}){{__cursor__}}"
 
 [[rules]]
 regex = "\(\S\+\)\.if"
@@ -15,7 +19,7 @@ if ({{__$1__}}) {
 """
 
 [[rules]]
-regex = "\(\d\+\)\.times"
+regex = "\(\S\+\)\.times"
 template = """
 for (let i = 0; i < {{__$1__}} ; i++) {
   {{__cursor__}}
