@@ -24,17 +24,6 @@ omap if <Plug>(textobj-between-i)
 on_map = { x = "<Plug>", o = "<Plug>" }
 
 [[plugins]]
-repo = "kana/vim-textobj-indent"
-depends = ["vim-textobj-user"]
-hook_add = """
-xmap ai <Plug>(textobj-indent-a)
-xmap ii <Plug>(textobj-indent-i)
-omap ai <Plug>(textobj-indent-a)
-omap ii <Plug>(textobj-indent-i)
-"""
-on_map = { x = "<Plug>", o = "<Plug>" }
-
-[[plugins]]
 repo = "kana/vim-textobj-fold"
 hook_add = """
 xmap az <Plug>(textobj-fold-a)
@@ -284,21 +273,6 @@ n = "<Plug>"
 x = ["<Plug>", "<Plug>(textobj-sandwich"]
 o = "<Plug>(textobj-sandwich"
 
-# [[plugins]]
-# repo = "tyru/caw.vim"
-# hook_add = """
-# nmap gc <Plug>(caw:prefix)
-# " xmap gc <Plug>(caw:prefix)
-# xmap gc <Plug>(caw:hatpos:toggle)
-# " TODO: can use `silent`?
-# " Brute force solution
-# " https://github.com/tyru/caw.vim/issues/166
-# " nmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
-# " xmap <Plug>(caw:prefix)c <Plug>(caw:hatpos:toggle)<ESC>
-# """
-# depends = ["vim-repeat"]
-# on_map = { n = "<Plug>", x = "<Plug>" }
-
 [[plugins]]
 repo = "uga-rosa/contextment.vim"
 hook_add = """
@@ -473,13 +447,13 @@ let g:openbrowser_browser_commands = [
 repo = "ap/vim-css-color"
 on_ft = ["css", "scss", "vue"]
 
-[[plugins]]
-repo = "pechorin/any-jump.vim"
-hook_add = """
-let g:any_jump_disable_default_keybindings = v:true
-nnoremap <silent><C-f> <Cmd>AnyJump<CR>
-"""
-on_cmd = ["AnyJump", "AnyJumpVisual", "AnyJumpBack", "AnyJumpLastResults"]
+#[[plugins]]
+#repo = "pechorin/any-jump.vim"
+#hook_add = """
+#let g:any_jump_disable_default_keybindings = v:true
+#nnoremap <silent><C-f> <Cmd>AnyJump<CR>
+#"""
+#on_cmd = ["AnyJump", "AnyJumpVisual", "AnyJumpBack", "AnyJumpLastResults"]
 
 [[plugins]]
 repo = "y0za/vim-reading-vimrc"
@@ -676,39 +650,6 @@ nnoremap <Plug>(fzf-p-prefix)<C-t> <Cmd>call fzf#sonictemplate#run()<CR>
 " nnoremap <Plug>(fzf-p-prefix)t <Cmd>call fzf#sonictemplate#run()<CR>
 """
 
-[[plugins]]
-repo = "junegunn/fzf"
-build = "./install --all"
-merged = 0
-
-[[plugins]]
-# FIXME: 初回起動だけ枠線とかがうまく表示されない
-# ref: https://github.com/Omochice/dotfiles/issues/12
-repo = "yuki-yano/fzf-preview.vim"
-rev = "release/rpc"
-hook_add = """
-nmap <Plug>(fzf-p-prefix) <Nop>
-nmap <C-p> <Plug>(fzf-p-prefix)
-nnoremap <Plug>(fzf-p-prefix)<C-g> <Nop>
-nnoremap <Plug>(fzf-p-prefix)<C-p> <Cmd>FzfPreviewDirectoryFilesRpc<CR>
-nnoremap <Plug>(fzf-p-prefix)c     <Cmd>FzfPreviewCommandPaletteRpc<CR>
-nnoremap <Plug>(fzf-p-prefix)g     :<C-u>FzfPreviewProjectGrepRpc<Space>
-nnoremap <Plug>(fzf-p-prefix)<C-w> <Cmd>FzfPreviewProjectMrwFilesRpc --add-fzf-arg=--no-sort<CR>
-nnoremap <Plug>(fzf-p-prefix)<C-b> <Cmd>FzfPreviewAllBuffersRpc<CR>
-let g:fzf_preview_fzf_preview_window_option = 'right:50%'
-let g:fzf_preview_use_dev_icons = v:false " TODO: use nerdfont.vim
-let g:fzf_preview_dev_icon_prefix_string_length = 3
-let g:fzf_preview_dev_icons_limit = 5000
-let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never --sort=path --with-filename'
-"""
-depends = ["fzf"]
-on_cmd = [
-    "FzfPreviewAllBuffersRpc",
-    "FzfPreviewCommandPaletteRpc",
-    "FzfPreviewDirectoryFilesRpc",
-    "FzfPreviewProjectGrepRpc",
-    "FzfPreviewProjectMrwFilesRpc",
-]
 
 [[plugins]]
 repo = "pappasam/vim-filetype-formatter"
