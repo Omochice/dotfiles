@@ -1,0 +1,12 @@
+@startuml
+class Class {
+    - PrivateProparty: number
+    # ProtectedProparty: string
+    + PublicProparty: boolean
+    ..
+    - PrivateMethod()
+    # ProtectedMethod()
+    + PublicMethod()
+}
+
+@enduml

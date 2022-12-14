@@ -8,15 +8,6 @@
 !/.gyazo.config.yml
 !/bash/*
 !/bash/functions/*
-!/.vim/rc/*
-!/.vim/mysettings/*
-!/.vim/vimrc
-!/.vim/fcitx.vim
-!/.vim/zenhan.vim
-.vim/dein
-!/.vim/snippets/*.json
-!/.vim/templates/**/*
-!/.vim/postfix/*.toml
 !/config/*
 !/config/efm-langserver/config.yaml
 !/config/fish/*
@@ -34,7 +25,9 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/git/ignore
 !/config/git/gitmessage
 !/config/vim/vimrc.core
-!/config/nvim/init.vim
+!/config/nvim
+!/config/nvim/*
+!/config/nvim/**/*
 !/config/i3/config
 !/config/bumblebee-status
 !/config/bumblebee-status/themes/*

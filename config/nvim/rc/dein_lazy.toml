@@ -51,7 +51,7 @@ hook_add = """
 xnoremap it <Plug>(textobj-bettertag-i)
 onoremap it <Plug>(textobj-bettertag-i)
 """
-on_map = { x = "<Plug>(textobj-bettertag", o = "<Plug>(textobj-bettertag" }
+on_map = { x = "<Plug>", o = "<Plug>" }
 depends = ["vim-textobj-user"]
 
 [[plugins]]
@@ -86,21 +86,15 @@ on_map = { n = "<Plug>" }
 [[plugins]]
 repo = "hrsh7th/vim-searchx"
 hook_add = """
-" Overwrite / and ?.
-nnoremap ? <Cmd>call searchx#start({ 'dir': 0 })<CR>
-nnoremap / <Cmd>call searchx#start({ 'dir': 1 })<CR>
-xnoremap ? <Cmd>call searchx#start({ 'dir': 0 })<CR>
-xnoremap / <Cmd>call searchx#start({ 'dir': 1 })<CR>
-" cnoremap ; <Cmd>call searchx#select()<CR>
+nnoremap ? <Cmd>call searchx#start(#{ dir: 0 })<CR>
+nnoremap / <Cmd>call searchx#start(#{ dir: 1 })<CR>
+xnoremap ? <Cmd>call searchx#start(#{ dir: 0 })<CR>
+xnoremap / <Cmd>call searchx#start(#{ dir: 1 })<CR>
 
-" Move to next/prev match.
 nnoremap N <Cmd>call searchx#prev_dir()<CR>
 nnoremap n <Cmd>call searchx#next_dir()<CR>
 xnoremap N <Cmd>call searchx#prev_dir()<CR>
 xnoremap n <Cmd>call searchx#next_dir()<CR>
-
-" Clear highlights
-" nnoremap <C-l> <Cmd>call searchx#clear()<CR>
 
 let g:searchx = #{
       \ auto_accept: v:true,
@@ -131,7 +125,7 @@ on_map = { n = "<Plug>" }
 repo = "hrsh7th/vim-vsnip"
 on_map = { x = "<Plug>", i = "<Plug>" }
 hook_add = """
-let g:vsnip_snippet_dir = g:config_dir . '/snippets'
+let g:vsnip_snippet_dir = g:config_dir .. '/snippets'
 let g:vsnip_filetypes = #{
       \ plaintex: ['tex'],
       \ objc: ['c', 'objc'],
@@ -170,8 +164,7 @@ let g:lexima_enable_newline_rules = v:true
 let g:lexima_disable_on_nofile = v:false
 """
 hook_source = """
-" too long to write here
-execute 'source ' . g:config_dir . '/mysettings/lexima.vim'
+call myvimrc#lexima#load_rules()
 if dein#tap('pum.vim')
   imap <silent><expr> <CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : lexima#expand('<LT>CR>', 'i')
 endif
@@ -210,8 +203,8 @@ let g:lsp_diagnostics_enabled = v:true
 let g:lsp_diagnostics_virtual_text_enabled = v:false
 let g:lsp_diagnostics_echo_cursor = v:true
 let g:lsp_diagnostics_echo_delay = 100
-" let g:lsp_log_verbose = v:true
-" let g:lsp_log_file = ('/tmp/vim-lsp.log')
+let g:lsp_log_verbose = v:true
+let g:lsp_log_file = '/tmp/vim-lsp.log'
 let g:lsp_preview_float = v:false
 let g:lsp_hover_ui = 'preview'
 let g:lsp_signature_help_enabled = v:false
@@ -237,7 +230,7 @@ let g:lsp_settings_filetype_objc = ['clangd']
 
 let g:lsp_settings_filetype_typescript = [s:is_node_project(expand('%:p:h')) ? 'typescript-language-server' : 'deno']
 """
-on_event = "BufRead"
+on_event = ["BufRead", "BufNewFile"]
 
 [[plugins]]
 repo = "mattn/vim-lsp-settings"
@@ -250,6 +243,7 @@ on_source = "vim-lsp"
 repo = "machakann/vim-sandwich"
 hook_add = """
 let g:sandwich_no_default_key_mappings = v:true
+nnoremap s <nop>
 nmap sa <Plug>(sandwich-add)
 xmap S <Plug>(sandwich-add)
 nmap sd <Plug>(sandwich-delete)
@@ -275,6 +269,7 @@ o = "<Plug>(textobj-sandwich"
 
 [[plugins]]
 repo = "uga-rosa/contextment.vim"
+# repo = "~/Toy/contextment.vim"
 hook_add = """
 nnoremap gc <Plug>(contextment)
 nnoremap gcc <Plug>(contextment-line)
@@ -287,10 +282,6 @@ on_map = { nxo = "<Plug>" }
 [[plugins]]
 repo = "markonm/traces.vim"
 on_event = "CmdlineEnter"
-# FIXME: If set this false/none, help command confuse like:
-# :help dps-translate-vim
-# > trace.vim/doc/dps-translate-vim.txt is not found
-merged = true
 
 [[plugins]]
 repo = "liuchengxu/vista.vim"
@@ -379,14 +370,15 @@ nnoremap <buffer> <Space>q <Cmd>call <SID>run()<CR>
 
 [[plugins]]
 repo = "lambdalisue/vim-quickrun-neovim-job"
+on_source = "vim-quickrun"
 
-[[plugins]]
-repo = "Omochice/TeXTable.vim"
-on_cmd = "TeXTable"
+# [[plugins]]
+# repo = "Omochice/TeXTable.vim"
+# on_cmd = "TeXTable"
 
-[[plugins]]
-repo = "Omochice/TeXOutline.vim"
-on_cmd = "TeXOutline"
+# [[plugins]]
+# repo = "Omochice/TeXOutline.vim"
+# on_cmd = "TeXOutline"
 
 [[plugins]]
 repo = "ntpeters/vim-better-whitespace"
@@ -419,8 +411,7 @@ let g:previm_show_header = v:false
 [[plugins]]
 repo = "tyru/open-browser.vim"
 hook_add = """
-nmap <expr> gf expand('<cWORD>') =~# 'https://' ? '<Plug>(openbrowser-open)' : 'gf'
-nmap go <Plug>(openbrowser-open)
+nmap gx <Plug>(openbrowser-open)
 """
 on_map = { n = "<Plug>(openbrowser" }
 
@@ -544,45 +535,24 @@ require('nvim-treesitter.configs').setup({
 [[plugins]]
 repo = "nvim-treesitter/nvim-treesitter-context"
 # TODO: i wait to show context on top-right position
+# TODO: show context like A>B>C
 on_source = "nvim-treesitter"
 lua_source = """
 require('treesitter-context').setup({
-    enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-    max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
-    trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-    patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
-        -- For all filetypes
-        -- Note that setting an entry here replaces all other patterns for this entry.
-        -- By setting the 'default' entry below, you can control which nodes you want to
-        -- appear in the context window.
+    enable = true,
+    max_lines = 0,
+    trim_scope = 'outer',
+    patterns = {
         default = {
             'class',
             'function',
             'method',
-            -- 'for', -- These won't appear in the context
-            -- 'while',
-            -- 'if',
-            -- 'switch',
-            -- 'case',
         },
-        -- Example for a specific filetype.
-        -- If a pattern is missing, *open a PR* so everyone can benefit.
-        --   rust = {
-        --       'impl_item',
-        --   },
     },
     exact_patterns = {
-        -- Example for a specific filetype with Lua patterns
-        -- Treat patterns.rust as a Lua pattern (i.e "^impl_item$" will
-        -- exactly match "impl_item" only)
-        -- rust = true,
     },
-
-    -- [!] The options below are exposed but shouldn't require your attention,
-    --     you can safely ignore them.
-
-    zindex = 20, -- The Z-index of the context window
-    mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
+    zindex = 20,
+    mode = 'cursor',
 })
 """
 
@@ -635,7 +605,7 @@ if = "!has('nvim')"
 
 [[plugins]]
 repo = "machakann/vim-vimhelplint"
-on_ft = "help"
+on_cmd = ["VimhelpLint"]
 [plugins.ftplugin]
 help = """
 nnoremap <silent><buffer><Space>d <Cmd>VimhelpLint!<CR>
@@ -643,13 +613,46 @@ nnoremap <silent><buffer><Space>d <Cmd>VimhelpLint!<CR>
 
 [[plugins]]
 repo = "mattn/vim-sonictemplate"
-on_func = "fzf#sonictemplate#run"
+on_cmd = ["Template"]
 hook_add = """
-let g:sonictemplate_vim_template_dir = g:config_dir . '/templates'
+let g:sonictemplate_vim_template_dir = g:config_dir .. '/templates'
 nnoremap <Plug>(fzf-p-prefix)<C-t> <Cmd>call fzf#sonictemplate#run()<CR>
-" nnoremap <Plug>(fzf-p-prefix)t <Cmd>call fzf#sonictemplate#run()<CR>
+nnoremap <Plug>(fzf-p-prefix)t <Cmd>call fzf#sonictemplate#run()<CR>
 """
 
+# [[plugins]]
+# repo = "junegunn/fzf"
+# build = "./install --all"
+# merged = 0
+
+# [[plugins]]
+# # FIXME: 初回起動だけ枠線とかがうまく表示されない
+# # ref: https://github.com/Omochice/dotfiles/issues/12
+# repo = "yuki-yano/fzf-preview.vim"
+# rev = "release/rpc"
+# hook_add = """
+# nmap <Plug>(fzf-p-prefix) <Nop>
+# nmap <C-p> <Plug>(fzf-p-prefix)
+# nnoremap <Plug>(fzf-p-prefix)<C-g> <Nop>
+# nnoremap <Plug>(fzf-p-prefix)<C-p> <Cmd>FzfPreviewDirectoryFilesRpc<CR>
+# nnoremap <Plug>(fzf-p-prefix)c     <Cmd>FzfPreviewCommandPaletteRpc<CR>
+# nnoremap <Plug>(fzf-p-prefix)g     :<C-u>FzfPreviewProjectGrepRpc<Space>
+# nnoremap <Plug>(fzf-p-prefix)<C-w> <Cmd>FzfPreviewProjectMrwFilesRpc --add-fzf-arg=--no-sort<CR>
+# nnoremap <Plug>(fzf-p-prefix)<C-b> <Cmd>FzfPreviewAllBuffersRpc<CR>
+# let g:fzf_preview_fzf_preview_window_option = 'right:50%'
+# let g:fzf_preview_use_dev_icons = v:false " TODO: use nerdfont.vim
+# let g:fzf_preview_dev_icon_prefix_string_length = 3
+# let g:fzf_preview_dev_icons_limit = 5000
+# let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never --sort=path --with-filename'
+# """
+# depends = ["fzf"]
+# on_cmd = [
+#     "FzfPreviewAllBuffersRpc",
+#     "FzfPreviewCommandPaletteRpc",
+#     "FzfPreviewDirectoryFilesRpc",
+#     "FzfPreviewProjectGrepRpc",
+#     "FzfPreviewProjectMrwFilesRpc",
+# ]
 
 [[plugins]]
 repo = "pappasam/vim-filetype-formatter"
@@ -709,7 +712,6 @@ repo = "thinca/vim-partedit"
 hook_add = """
 let g:partedit#opener = 'vsplit'
 """
-on_cmd = ["Partedit"]
 on_func = ["partedit#start"]
 
 [[plugins]]
@@ -783,9 +785,10 @@ inoremap <Plug>(emmet-expand-abbr-with-cmd) <Cmd>call <SID>expand()<CR>
 on_map = { i = "<Plug>" }
 
 [[plugins]]
+# repo = "~/Toy/toy-postfix.vim"
 repo = "Omochice/toy-postfix.vim"
 hook_add = """
-let g:toy_postfix#rule_dir = '~/.vim/postfix'
+let g:toy_postfix#rule_dir = g:config_dir .. '/postfix'
 let g:toy_postfix#extends = { 'typescript': 'javascript', 'vue': ['typescript', 'javascript'], }
 """
 on_func = ["toy_postfix#expandable", "toy_postfix#expand"]
@@ -802,15 +805,18 @@ function! s:expand_snippets() abort
     return "\<Plug>(emmet-expand-abbr-with-cmd)"
   endif
 endfunction
-inoremap <expr><C-j> <SID>expand_snippets()
+inoremap <expr><C-j> "\<C-g>u" .. <SID>expand_snippets()
 """
 
 [[plugins]]
 repo = "Omochice/yank-remote-url.vim"
+# repo = "~/Toy/yank-remote-url.vim"
 hook_add = """
 let g:yank_remote_url#enable_cache = v:true
 let g:yank_remote_url#use_direct_hash = v:true
 let g:yank_remote_url#remote_name = 'origin'
+let g:yank_remote_url#_debug = v:false
+nnoremap <Space>gy <Cmd>YankRemoteURL<CR>
 """
 on_cmd = "YankRemoteURL"
 
