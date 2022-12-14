@@ -6,7 +6,7 @@ function s:disable_bgcolor() abort
   highlight link TreesitterContext Pmenu
 endfunction
 
-augroup vimrc#color-setting
+augroup vimrc#colorsetting
   autocmd!
   autocmd ColorScheme * call timer_start(0, { -> s:disable_bgcolor() })
   autocmd VimEnter * nested colorscheme sonokai
@@ -41,7 +41,7 @@ name = "catpuccin"
 hook_add = """
 augroup erace-cursorline
   autocmd!
-  autocmd ColorScheme * highlight CursorLine guisp=NONE guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=NONE cterm=NONE
+"  autocmd ColorScheme * highlight CursorLine guisp=NONE guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=NONE cterm=NONE
 augroup END
 """
 
@@ -134,7 +134,3 @@ repo = "vim-scripts/fish.vim"
 
 # [[plugins]]
 # repo = "mityu/vim-applescript"
-
-[[plugins]]
-repo = "aklt/plantuml-syntax"
-

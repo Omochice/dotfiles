@@ -100,6 +100,8 @@ setlocal shiftwidth=2
 
 qf = """
 setlocal wrap
+nnoremap <buffer> j j
+nnoremap <buffer> k k
 """
 
 quickrun = """

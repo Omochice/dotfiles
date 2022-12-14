@@ -111,5 +111,12 @@
       "</div>"
     ],
     "description": "div tag"
+  },
+  "link": {
+    "prefix": "link",
+    "body": [
+      "[$1]()"
+    ],
+    "description": "link"
   }
 }
