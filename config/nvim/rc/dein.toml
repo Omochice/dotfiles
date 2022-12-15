@@ -15,17 +15,6 @@ augroup END
 
 [[plugins]]
 repo = "Shougo/dein.vim"
-hook_add = """
-function! s:dein_toml_syntax() abort
-  if expand('%:p') =~# '\vrc/[^/]+.toml$'
-    call dein#toml#syntax()
-  endif
-endfunction
-augroup dein_augroup_internal
-  autocmd!
-  autocmd FileType toml ++nested call timer_start(0, { -> s:dein_toml_syntax() })
-augroup END
-"""
 
 [[plugins]]
 repo = "sainnhe/sonokai"
