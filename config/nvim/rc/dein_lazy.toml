@@ -91,10 +91,10 @@ nnoremap / <Cmd>call searchx#start(#{ dir: 1 })<CR>
 xnoremap ? <Cmd>call searchx#start(#{ dir: 0 })<CR>
 xnoremap / <Cmd>call searchx#start(#{ dir: 1 })<CR>
 
-nnoremap N <Cmd>call searchx#prev_dir()<CR>
-nnoremap n <Cmd>call searchx#next_dir()<CR>
-xnoremap N <Cmd>call searchx#prev_dir()<CR>
-xnoremap n <Cmd>call searchx#next_dir()<CR>
+nnoremap N <Cmd>call searchx#prev()<CR>
+nnoremap n <Cmd>call searchx#next()<CR>
+xnoremap N <Cmd>call searchx#prev()<CR>
+xnoremap n <Cmd>call searchx#next()<CR>
 
 let g:searchx = #{
       \ auto_accept: v:true,
