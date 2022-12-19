@@ -21,5 +21,7 @@ function fzf-nvim
     return 1
   end
 
-  nvim -p $files
+  commandline --function repaint
+  commandline --replace "nvim -p $files"
+  commandline --function execute
 end
