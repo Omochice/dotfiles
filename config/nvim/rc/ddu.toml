@@ -2,15 +2,13 @@
 repo = "Shougo/ddu.vim"
 depends = "denops.vim"
 hook_add = """
-let g:ddu_window_width_percent = 0.45
-let g:ddu_window_height_percent = 0.9
 nmap <C-p> <Plug>(ddu-prefix)
 nmap <Plug>(ddu-prefix)<C-p> <Cmd>call ddu#start({})<CR>
-nmap <Plug>(ddu-prefix)<C-w> <Cmd>call ddu#start(#{sources: [#{name: 'mr', params: #{ kind: 'mru' }}]})<CR>
-nmap <Plug>(ddu-prefix)<C-b> <Cmd>call ddu#start(#{sources: [#{name: 'buffer'}]})<CR>
+nmap <Plug>(ddu-prefix)<C-w> <Cmd>call ddu#start(#{ui: 'ff', sources: [#{name: 'mr', params: #{ kind: 'mrw' }}]})<CR>
+nmap <Plug>(ddu-prefix)<C-b> <Cmd>call ddu#start(#{ui: 'ff', sources: [#{name: 'buffer'}]})<CR>
 function! s:ddu_grep_wrapper(query) abort
   if !empty(a:query)
-    call ddu#start(#{sources: [#{name: 'rg', params: #{input: a:query}}], sourceOptions: #{rg: #{ matchers: ['converter_display_word', 'matcher_fzf'] }}})
+    call ddu#start(#{ui: 'ff', sources: [#{name: 'rg', params: #{input: a:query}}], sourceOptions: #{rg: #{ matchers: ['converter_display_word', 'matcher_fzf'] }}})
   endif
 endfunction
 
@@ -78,14 +76,22 @@ let s:config = #{
 \   },
 \ },
 \ }
+
 function! s:set_size() abort
   " this from kuuote/dotvim
-  let s:config.uiParams.ff.winWidth = float2nr(&columns * g:ddu_window_width_percent*2)
-  let s:config.uiParams.ff.winHeight = float2nr(&lines * g:ddu_window_height_percent)
-  let s:config.uiParams.ff.winCol = float2nr((1 - g:ddu_window_width_percent * 2)/2 * &columns) + 2
-  let s:config.uiParams.ff.winRow = float2nr((1 - g:ddu_window_height_percent)/2 * &lines) + 1
-  let s:config.uiParams.ff.previewWidth = float2nr(&columns * g:ddu_window_width_percent)
-  let s:config.uiParams.ff.previewHeight = float2nr(&lines * g:ddu_window_height_percent)
+  let l:winCol = &columns / 10
+  let l:winWidth = &columns - (&columns / 5)
+  let l:winRow = &lines / 10
+  let l:winHeight = &lines - (&lines / 5)
+  let s:config.uiParams.ff.winCol = l:winCol
+  let s:config.uiParams.ff.winWidth = l:winWidth
+  let s:config.uiParams.ff.winRow = l:winRow
+  let s:config.uiParams.ff.winHeight = l:winHeight
+
+  let s:config.uiParams.ff.previewCol = l:winCol + (l:winWidth / 2) - l:winWidth
+  let s:config.uiParams.ff.previewWidth = l:winWidth / 2
+  let s:config.uiParams.ff.previewRow = l:winRow
+  let s:config.uiParams.ff.previewHeight = l:winHeight
 endfunction
 
 function! s:reset_size() abort
@@ -96,7 +102,7 @@ endfunction
 call s:reset_size()
 augroup ddu-reset-size
   autocmd!
-  autocmd VimResized * call <SID>reset()
+  autocmd VimResized * call <SID>reset_size()
 augroup END
 """
 
@@ -163,6 +169,10 @@ on_source = "ddu.vim"
 [[plugins]]
 repo = "kuuote/ddu-source-mr"
 on_source = "ddu.vim"
+
+[[plugins]]
+repo = "lambdalisue/mr.vim"
+on_func = ["mr#mru#list", "mr#mrr#list", "mr#mrw#list"]
 
 [[plugins]]
 repo = "shun/ddu-source-buffer"
