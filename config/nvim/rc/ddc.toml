@@ -1,7 +1,6 @@
 [[plugins]]
 repo = "Shougo/ddc.vim"
 hook_add = """
-let g:ddc_use_pum = v:true
 let g:ddc_source_options = #{
       \ _: #{
       \   matchers: ['matcher_fuzzy'],
@@ -45,10 +44,8 @@ call ddc#custom#patch_filetype(
       \ ['markdown'], 'sources', g:ddc_sources['snippet'] + ['file'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
       \ )
 
-if g:ddc_use_pum
-  call ddc#custom#patch_global('ui', 'pum')
-  call ddc#custom#patch_global('backspaceCompletion', v:true)
-endif
+call ddc#custom#patch_global('ui', 'pum')
+call ddc#custom#patch_global('backspaceCompletion', v:true)
 call ddc#enable()
 """
 depends = ["denops.vim"]
