@@ -22,6 +22,14 @@ GetMonitorNr()
   Return N_MONITOR
 }
 
+; NOTE: if process exists then return 1 else return 0
+IsKomorebiRunning()
+{
+  Process, Exist, komorebic.exe
+  pid = %ErrorLevel%
+  Return pid > 0
+}
+
 ; Set the layouts of different workspaces
 Run, komorebic.exe workspace-layout 0 1 columns, , Hide
 
@@ -108,6 +116,10 @@ return
 ; Switch to workspace
 #1::
 {
+  if IsKomorebiRunning() {
+    #1
+    return
+  }
   n_monitor := GetMonitorNr()
   if (n_monitor = 1) {
       Run, komorebic.exe focus-workspace 0, , Hide
@@ -122,6 +134,10 @@ return
 
 #2::
 {
+  if IsKomorebiRunning() {
+    #2
+    return
+  }
   n_monitor := GetMonitorNr()
   if (n_monitor = 1) {
       Run, komorebic.exe focus-workspace 1, , Hide
@@ -136,6 +152,10 @@ return
 
 #3::
 {
+  if IsKomorebiRunning() {
+    #3
+    return
+  }
   n_monitor := GetMonitorNr()
   if (n_monitor = 1) {
       Run, komorebic.exe focus-workspace 2, , Hide
@@ -150,6 +170,10 @@ return
 
 #4::
 {
+  if IsKomorebiRunning() {
+    #4
+    return
+  }
   n_monitor := GetMonitorNr()
   if (n_monitor = 1) {
       Run, komorebic.exe focus-workspace 3, , Hide
@@ -164,6 +188,10 @@ return
 
 #5::
 {
+  if IsKomorebiRunning() {
+    #5
+    return
+  }
   n_monitor := GetMonitorNr()
   if (n_monitor = 1) {
       Run, komorebic.exe focus-workspace 4, , Hide
@@ -178,6 +206,10 @@ return
 
 #6::
 {
+  if IsKomorebiRunning() {
+    #6
+    return
+  }
   n_monitor := GetMonitorNr()
   if (n_monitor = 1) {
       Run, komorebic.exe focus-workspace 5, , Hide
@@ -193,6 +225,10 @@ return
 ; Move window to workspace
 #+1::
 {
+  if IsKomorebiRunning() {
+    #+1
+    return
+  }
   n_monitor := GetMonitorNr()
   if (n_monitor = 1) {
       Run, komorebic.exe move-to-workspace 0, , Hide
@@ -208,6 +244,10 @@ return
 
 #+2::
 {
+  if IsKomorebiRunning() {
+    #+2
+    return
+  }
   n_monitor := GetMonitorNr()
   if (n_monitor = 1) {
       Run, komorebic.exe move-to-workspace 1, , Hide
@@ -223,6 +263,10 @@ return
 
 #+3::
 {
+  if IsKomorebiRunning() {
+    #+3
+    return
+  }
   n_monitor := GetMonitorNr()
   if (n_monitor = 1) {
       Run, komorebic.exe move-to-workspace 2, , Hide
@@ -238,6 +282,10 @@ return
 
 #+4::
 {
+  if IsKomorebiRunning() {
+    #+4
+    return
+  }
   n_monitor := GetMonitorNr()
   if (n_monitor = 1) {
       Run, komorebic.exe move-to-workspace 3, , Hide
@@ -253,6 +301,10 @@ return
 
 #+5::
 {
+  if IsKomorebiRunning() {
+    #+5
+    return
+  }
   n_monitor := GetMonitorNr()
   if (n_monitor = 1) {
       Run, komorebic.exe move-to-workspace 4, , Hide
@@ -268,6 +320,10 @@ return
 
 #+6::
 {
+  if IsKomorebiRunning() {
+    #+6
+    return
+  }
   n_monitor := GetMonitorNr()
   if (n_monitor = 1) {
       Run, komorebic.exe move-to-workspace 5, , Hide
