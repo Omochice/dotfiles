@@ -1,4 +1,4 @@
-function fzf-nvim
+function fzf-editor
   # if not install fzf return early
   if not type "fzf" >/dev/null 2>&1
     command echo "need fzf"
@@ -21,7 +21,16 @@ function fzf-nvim
     return 1
   end
 
+  set --local editor $EDITOR
+  if test -z "$editor"
+    set editor "vim"
+  end
+
+  if echo "$editor" | grep "n\?vim" 2>&1
+    set editor "$editor -p"
+  end
+
   commandline --function repaint
-  commandline --replace "nvim -p $files"
+  commandline --replace "$editor $files"
   commandline --function execute
 end
