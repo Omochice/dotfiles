@@ -173,7 +173,7 @@ if_executable = "asdf"
 only = "fish"
 
 [[sources]]
-path = "dirname(dirname(command -v asdf))/asdf.sh"
+path = "\"$dirname $(dirname $(command -v asdf))/asdf.sh\""
 if_executable = "asdf"
 only = "bash"
 
