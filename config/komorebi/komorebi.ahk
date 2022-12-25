@@ -11,21 +11,22 @@ Run, komorebic.exe focus-follows-mouse disable, , Hide
 
 ; Ensure there are 6 workspaces on each monitor
 ; NOTE: 80 = SM_CMONITORS
-; FIXME: 初回評価時に固定されている？
+; FIXME: 初回評価時に固定されている
 GetMonitorNr()
 {
-  SysGet, N_MONITOR, 80
-  Loop, %N_MONITOR% {
+  SysGet, monitorNr, 80
+  Loop, %monitorNr% {
       m = A_Index - 1
       Run, komorebic.exe ensure-workspaces %m% 6, , Hide
   }
-  Return N_MONITOR
+  Return monitorNr
 }
 
 ; NOTE: if process exists then return 1 else return 0
+
 IsKomorebiRunning()
 {
-  Process, Exist, komorebic.exe
+  Process, Exist, komorebi.exe
   pid = %ErrorLevel%
   Return pid > 0
 }
@@ -50,41 +51,96 @@ Run, komorebic.exe float-rule class TaskManagerWindow, , Hide
 ;; KEY BINDS
 ; Move focus with Super + hjkl
 #h::
-Run, komorebic.exe focus left, , Hide
-return
+{
+  if IsKomorebiRunning() {
+    Run, komorebic.exe focus left, , Hide
+  } else {
+    send, #h
+  }
+  return
+}
 
 #j::
-Run, komorebic.exe focus down, , Hide
-return
+{
+  if IsKomorebiRunning() {
+    Run, komorebic.exe focus down, , Hide
+  } else {
+    send, #j
+  }
+  return
+}
 
 #k::
-Run, komorebic.exe focus up, , Hide
-return
+{
+  if IsKomorebiRunning() {
+    Run, komorebic.exe focus up, , Hide
+  } else {
+    send, #k
+  }
+  return
+}
 
 #l::
-Run, komorebic.exe focus right, , Hide
-return
+{
+  if IsKomorebiRunning() {
+    Run, komorebic.exe focus right, , Hide
+  } else {
+    send, #l
+  }
+  return
+}
 
 ; Move focused window with Super + Shift + hjkl
 #+h::
-Run, komorebic.exe move left, , Hide
-return
+{
+  if IsKomorebiRunning() {
+    Run, komorebic.exe move left, , Hide
+  } else {
+    send, #{Left}
+  }
+  return
+}
 
 #+j::
-Run, komorebic.exe move down, , Hide
-return
+{
+  if IsKomorebiRunning() {
+    Run, komorebic.exe move down, , Hide
+  } else {
+    send, #{Down}
+  }
+  return
+}
 
 #+k::
-Run, komorebic.exe move up, , Hide
-return
+{
+  if IsKomorebiRunning() {
+    Run, komorebic.exe move up, , Hide
+  } else {
+    send, #{Up}
+  }
+  return
+}
 
 #+l::
-Run, komorebic.exe move right, , Hide
-return
+{
+  if IsKomorebiRunning() {
+    Run, komorebic.exe move right, , Hide
+  } else {
+    send, #{Right}
+  }
+  return
+}
 
 #f::
-Run, komorebic.exe toggle-maximize, , Hide
-return
+{
+  if IsKomorebiRunning() {
+    Run, komorebic.exe toggle-maximize, , Hide
+  } else {
+    ; TODO: toggle
+    send, #{Up}
+  }
+  return
+}
 
 #s::
 Run, komorebic.exe flip-layout horizontal, , Hide
@@ -117,7 +173,7 @@ return
 #1::
 {
   if IsKomorebiRunning() {
-    #1
+    send, #1
     return
   }
   n_monitor := GetMonitorNr()
@@ -135,7 +191,7 @@ return
 #2::
 {
   if IsKomorebiRunning() {
-    #2
+    send, #2
     return
   }
   n_monitor := GetMonitorNr()
@@ -153,7 +209,7 @@ return
 #3::
 {
   if IsKomorebiRunning() {
-    #3
+    send, #3
     return
   }
   n_monitor := GetMonitorNr()
@@ -171,7 +227,7 @@ return
 #4::
 {
   if IsKomorebiRunning() {
-    #4
+    send, #4
     return
   }
   n_monitor := GetMonitorNr()
@@ -189,7 +245,7 @@ return
 #5::
 {
   if IsKomorebiRunning() {
-    #5
+    send, #5
     return
   }
   n_monitor := GetMonitorNr()
@@ -207,7 +263,7 @@ return
 #6::
 {
   if IsKomorebiRunning() {
-    #6
+    send, #6
     return
   }
   n_monitor := GetMonitorNr()
@@ -226,7 +282,7 @@ return
 #+1::
 {
   if IsKomorebiRunning() {
-    #+1
+    send, #+1
     return
   }
   n_monitor := GetMonitorNr()
@@ -245,7 +301,7 @@ return
 #+2::
 {
   if IsKomorebiRunning() {
-    #+2
+    send, #+2
     return
   }
   n_monitor := GetMonitorNr()
@@ -264,7 +320,7 @@ return
 #+3::
 {
   if IsKomorebiRunning() {
-    #+3
+    send, #+3
     return
   }
   n_monitor := GetMonitorNr()
@@ -283,7 +339,7 @@ return
 #+4::
 {
   if IsKomorebiRunning() {
-    #+4
+    send, #+4
     return
   }
   n_monitor := GetMonitorNr()
@@ -302,7 +358,7 @@ return
 #+5::
 {
   if IsKomorebiRunning() {
-    #+5
+    send, #+5
     return
   }
   n_monitor := GetMonitorNr()
@@ -321,7 +377,7 @@ return
 #+6::
 {
   if IsKomorebiRunning() {
-    #+6
+    send, #+6
     return
   }
   n_monitor := GetMonitorNr()
