@@ -103,6 +103,9 @@ endfunction
 
 nnoremap <buffer><nowait> d <Cmd>call <SID>open_diff()<CR>
 """
+gin-branch = """
+nnoremap <buffer> i <Plug>(gin-action-new)
+"""
 
 [[plugins]]
 # repo = "Omochice/tataku.vim"
