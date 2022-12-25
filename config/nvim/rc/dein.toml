@@ -20,6 +20,7 @@ repo = "Shougo/dein.vim"
 repo = "sainnhe/sonokai"
 hook_add = """
 let g:sonokai_style = 'espresso'
+let g:sonokai_dim_inactive_windows = v:false
 let g:sonokai_enable_italic = v:false
 let g:sonokai_disable_italic_comment = v:true
 """
