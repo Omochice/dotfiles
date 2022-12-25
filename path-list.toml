@@ -25,6 +25,9 @@ path = "~/Tools/asdf/bin"
 [[paths]]
 path = "~/.cargo/bin"
 
+[[paths]]
+path = "~/.local/share/pnpm"
+
 [[aliases]]
 from = "nvim"
 to = "vim"
@@ -57,6 +60,11 @@ if_executable = "wezterm"
 from = "~/.config"
 to = "XDG_CONFIG_HOME"
 if_exists = "~/.config"
+
+[[environments]]
+from = "~/.local/share/pnpm"
+to = "PNPM_HOME"
+if_exists = "~/.local/share/pnpm"
 
 [[aliases]]
 from = "osascript -e 'tell app \"loginwindow\" to «event aevtrsdn»'"
