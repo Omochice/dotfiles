@@ -1,31 +1,23 @@
 import { parse as parseToml } from "https://deno.land/std@0.157.0/encoding/toml.ts";
-import { parse as parseArguments } from "https://deno.land/std@0.157.0/flags/mod.ts";
+import { deepMerge } from "https://deno.land/std@0.166.0/collections/deep_merge.ts";
 import { basename } from "https://deno.land/std@0.157.0/path/mod.ts";
+import { parse as parseArguments } from "https://deno.land/std@0.157.0/flags/mod.ts";
 import {
   ensureArray,
   ensureString,
+  isArray,
+  isObject,
   isString,
 } from "https://deno.land/x/unknownutil@v2.0.0/mod.ts";
 
 const supportedShell = ["bash", "zsh", "fish"] as const;
-type Shell = typeof supportedShell[keyof typeof supportedShell];
+type Shell = typeof supportedShell[number];
 function isShell(x: unknown): x is Shell {
-  return supportedShell.some((e) => e === x); // NOTE: if use includes then show error by lsp
+  // NOTE: if use includes then show error by lsp
+  return supportedShell.some((e) => e === x);
 }
+
 type OS = "wsl" | typeof Deno.build.os;
-
-function getShell(): Shell {
-  return basename(Deno.env.get("SHELL") ?? "bash") as Shell;
-}
-
-function getOS(): OS {
-  try {
-    const b = Deno.readTextFileSync("/proc/version").toString().toLowerCase();
-    return b.includes("microsoft") ? "wsl" : Deno.build.os;
-  } catch {
-    return Deno.build.os;
-  }
-}
 
 type Option = {
   os?: OS | OS[];
@@ -33,14 +25,16 @@ type Option = {
   only?: Shell | Shell[];
   if_executable?: string;
   if_exists?: string;
+  tag?: string;
+  depends?: string[];
 };
 
 type Setting = {
-  paths?: ExecutablePath[];
-  environments?: Environment[];
-  aliases?: Alias[];
-  sources?: Source[];
-  executes?: Execute[];
+  paths: ExecutablePath[];
+  environments: Environment[];
+  aliases: Alias[];
+  sources: Source[];
+  executes: Execute[];
 };
 
 type ExecutablePath = Option & {
@@ -65,111 +59,315 @@ type Execute = Option & {
   command: string;
 };
 
-async function loadToml(path: string): Promise<Setting> {
-  const contents = Deno.readTextFile(path);
-  return (parseToml(await contents) as unknown as Setting);
-}
-
-const home = ensureString(Deno.env.get("HOME"));
-function expandHome(p: string): string {
-  return p.replace(/^~/, home);
-}
-
-function filterByShell<
-  T extends ExecutablePath | Environment | Alias | Source | Execute,
->(
-  arr: T[],
-  shell: Shell,
-): T[] {
-  const acceptOnly = (e: Option): boolean => {
-    return e.only === undefined || e.only === shell || e.only.includes(shell);
-  };
-  const acceptOs = (e: Option): boolean => {
-    return e.os === undefined || e.os === getOS() || e.os.includes(getOS());
-  };
-  const acceptArch = (e: Option): boolean => {
-    return e.arch === undefined || e.arch === Deno.build.arch ||
-      e.arch.includes(Deno.build.arch);
-  };
-  return arr.filter((e) => acceptOnly(e) && acceptOs(e) && acceptArch(e));
-}
-
-function executable(command: string): string {
-  return `command -v ${command} >/dev/null 2>&1`;
-}
-
-function isExists(path: string): boolean {
-  try {
-    Deno.lstatSync(path);
-  } catch (_) {
+/**
+ * judge x is `Setting`
+ *
+ * @param x target
+ * @return whether x is `Setting`
+ */
+function isSetting(x: unknown): x is Setting {
+  if (!isObject(x)) {
     return false;
   }
-  return true;
+  return (
+    isArray(x.paths) &&
+    isArray(x.environments) &&
+    isArray(x.aliases) &&
+    isArray(x.sources) &&
+    isArray(x.executes)
+  );
 }
 
-function generateFactory(
-  kind: Option,
-): (...commands: string[]) => string {
-  return (...commands: string[]): string => {
-    const conditions = [];
-    if (kind.if_executable !== undefined) {
-      conditions.push(executable(kind.if_executable));
+/**
+ * ensure Record<> is Setting
+ *
+ * @param setting raw Record<>
+ * @return ensured one
+ */
+function ensureSetting(setting: Record<string, unknown>): Setting {
+  if (setting.paths === undefined) {
+    setting.paths = [];
+  }
+  if (setting.environments === undefined) {
+    setting.environments = [];
+  }
+  if (setting.aliases === undefined) {
+    setting.aliases = [];
+  }
+  if (setting.sources === undefined) {
+    setting.sources = [];
+  }
+  if (setting.executes === undefined) {
+    setting.executes = [];
+  }
+
+  if (!isSetting(setting)) {
+    // unreach here
+    throw Error("unexpected error");
+  }
+  return setting;
+}
+
+/**
+ * load toml file
+ *
+ * @param path path to toml file
+ * @return loaded one
+ */
+function loadToml(path: string) {
+  const contents = Deno.readTextFileSync(path);
+  return ensureSetting(parseToml(contents));
+}
+
+/**
+ * load setting files as merged setting
+ *
+ * @param paths array of path to setting file
+ * @return merged one
+ */
+function loadSetting(paths: string[]): Setting {
+  return paths.map((e) => loadToml(e)).reduce(
+    (prev, curr) => deepMerge(prev, curr),
+  );
+}
+
+class shellStringGenerator {
+  #shell: Shell;
+  #home = ensureString(Deno.env.get("HOME"));
+
+  constructor(shell: Shell) {
+    this.#shell = shell;
+  }
+
+  /**
+   * generate shell setting string
+   *
+   * @param setting setting
+   * @return setting for shell
+   */
+  shellString(setting: Setting): string {
+    const contents = [
+      setting.paths.map((e) => this.generatePath(e)),
+      setting.environments.map((e) => this.generateEnviroment(e)),
+      setting.sources.map((e) => this.generateSource(e)),
+      setting.executes.map((e) => this.generateExecute(e)),
+      setting.aliases.map((e) => this.generateAlias(e)),
+    ];
+    return contents
+      .flat()
+      .filter((e) => e.length > 0)
+      .join("\n");
+  }
+
+  /**
+   * generate path string according to each shell
+   *
+   * @param config path config
+   * @return generated one
+   */
+  generatePath(config: ExecutablePath): string {
+    const generate = this.#generateFactory(config);
+    const path = this.#expandHome(config.path);
+    config.if_exists = path;
+    if (this.#shell === "fish") {
+      return generate(`set --path PATH \$PATH ${path}`);
+    } else {
+      return generate(`export PATH=${path}:\$PATH`);
     }
-    if (kind.if_exists !== undefined && !isExists(expandHome(kind.if_exists))) {
-      return "";
+  }
+
+  /**
+   * generate alias string according to each shell
+   *
+   * @param alias alias config
+   * @return generated one
+   */
+  generateAlias(alias: Alias): string {
+    const from = this.#expandHome(alias.from);
+    const generate = this.#generateFactory(alias);
+    if (this.#shell === "fish") {
+      return generate(`alias ${alias.to} "${from}"`);
+    } else {
+      return generate(`alias ${alias.to}="${from}"`);
     }
+  }
 
-    return [...conditions, ...commands].join(" && ");
-  };
-}
+  /**
+   * generate environment string according to each shell
+   *
+   * @param environment environment config
+   * @return generated one
+   */
+  generateEnviroment(environment: Environment): string {
+    const from = this.#expandHome(environment.from);
+    const to = environment.to;
+    const generate = this.#generateFactory(environment);
+    if (this.#shell === "fish") {
+      return generate(`set --export --unpath ${to} ${from}`);
+    } else {
+      return generate(`export ${to}=${from}`);
+    }
+  }
 
-function generatePath(config: ExecutablePath, shell: Shell): string {
-  const generate = generateFactory(config);
-  const path = expandHome(config.path);
-  config.if_exists = path;
-  if (shell === "fish") {
-    return generate(`set --path PATH \$PATH ${path}`);
-  } else {
-    return generate(`export PATH=${path}:\$PATH`);
+  /**
+   * generate source string according to each shell
+   *
+   * @param source source config
+   * @return generated one
+   */
+  generateSource(source: Source): string {
+    const path = this.#expandHome(source.path);
+    const generate = this.#generateFactory(source);
+    if (this.#shell === "fish") {
+      return generate(`test -f ${path}`, `source ${path}`);
+    } else {
+      return generate(`[[ -f ${path} ]]`, `source ${path}`);
+    }
+  }
+
+  /**
+   * generate execute string
+   *
+   * @param execute execute config
+   * @return generated one
+   */
+  generateExecute(execute: Execute): string {
+    const generate = this.#generateFactory(execute);
+    return generate(execute.command);
+  }
+
+  #generateFactory(kind: Option): (...commands: string[]) => string {
+    return (...commands: string[]): string => {
+      const conditions = [];
+      if (kind.if_executable !== undefined) {
+        conditions.push(this.#executable(kind.if_executable));
+      }
+      if (
+        kind.if_exists !== undefined &&
+        !this.#isExists(this.#expandHome(kind.if_exists))
+      ) {
+        return "";
+      }
+
+      return [...conditions, ...commands].join(" && ");
+    };
+  }
+
+  #executable(command: string): string {
+    return `command -v ${command} >/dev/null 2>&1`;
+  }
+
+  #isExists(path: string): boolean {
+    try {
+      Deno.lstatSync(path);
+    } catch (_) {
+      return false;
+    }
+    return true;
+  }
+
+  #expandHome(path: string): string {
+    return path.replace(/^~/, this.#home);
   }
 }
 
-function generateAlias(alias: Alias, shell: Shell): string {
-  const from = expandHome(alias.from);
-  const generate = generateFactory(alias);
-  if (shell === "fish") {
-    return generate(`alias ${alias.to} "${from}"`);
-  } else {
-    return generate(`alias ${alias.to}="${from}"`);
+class CandidateGenerator {
+  #shell: Shell;
+  #os: OS;
+  constructor(shell: Shell) {
+    this.#shell = shell;
+    this.#os = this.#getOS();
+  }
+
+  *getCandidates(setting: Setting) {
+    const candidates: Record<string, unknown> = {};
+    for (const [key, value] of Object.entries(setting)) {
+      const target = this.#filter(value as unknown as Option[]);
+      candidates[key] = target;
+    }
+    let remain = ensureSetting(candidates);
+
+    let tags = new Set<string>();
+    while (
+      Object
+        .values(remain)
+        .some((v: unknown[]) => v.length > 0)
+    ) {
+      const target: Record<string, unknown[]> = {};
+      const notTarget: Record<string, unknown[]> = {};
+      const tempTags = new Set<string>();
+      for (const [key, value] of Object.entries(remain)) {
+        for (const e of value) {
+          if (
+            e.depends === undefined ||
+            e.depends.every((d) => tags.has(d))
+          ) {
+            if (Array.isArray(target[key])) {
+              target[key].push(e);
+            } else {
+              target[key] = [e];
+            }
+            if (e.tag !== undefined) {
+              tempTags.add(e.tag);
+            }
+          } else {
+            if (Array.isArray(notTarget[key])) {
+              notTarget[key].push(e);
+            } else {
+              notTarget[key] = [e];
+            }
+          }
+        }
+      }
+      if (Object.values(target).every((v) => v.length === 0)) {
+        // NOTE: If number of new candidates are 0 then all of remains are dead link
+        break;
+      }
+      remain = ensureSetting(notTarget);
+      tags = new Set([...tags, ...tempTags]);
+      yield ensureSetting(target);
+    }
+  }
+
+  #filter<T extends Option>(
+    targets: T[],
+  ): T[] {
+    const acceptOnly = (e: Option): boolean => {
+      return e.only === undefined ||
+        e.only === this.#shell ||
+        (Array.isArray(e.only) &&
+          e.only.some((e) => e === this.#shell));
+    };
+    const acceptOs = (e: Option): boolean => {
+      return e.os === undefined ||
+        e.os === this.#os ||
+        e.os.includes(this.#os);
+    };
+    const acceptArch = (e: Option): boolean => {
+      return (
+        e.arch === undefined ||
+        e.arch === Deno.build.arch ||
+        e.arch.includes(Deno.build.arch)
+      );
+    };
+    return targets
+      .filter(
+        (e) =>
+          acceptOnly(e) &&
+          acceptOs(e) &&
+          acceptArch(e),
+      );
+  }
+
+  #getOS(): OS {
+    try {
+      const b = Deno.readTextFileSync("/proc/version").toString().toLowerCase();
+      return b.includes("microsoft") ? "wsl" : Deno.build.os;
+    } catch {
+      return Deno.build.os;
+    }
   }
 }
-
-function generateEnviroment(environment: Environment, shell: Shell): string {
-  const from = expandHome(environment.from);
-  const to = environment.to;
-  const generate = generateFactory(environment);
-  if (shell === "fish") {
-    return generate(`set --export --unpath ${to} ${from}`);
-  } else {
-    return generate(`export ${to} ${from}`);
-  }
-}
-
-function generateSource(source: Source, shell: Shell): string {
-  const path = expandHome(source.path);
-  const generate = generateFactory(source);
-  if (shell === "fish") {
-    return generate(`test -f ${path}`, `source ${path}`);
-  } else {
-    return generate(`[[ -f ${path} ]]`, `source ${path}`);
-  }
-}
-
-function generateExecute(execute: Execute, _shell: Shell): string {
-  const generate = generateFactory(execute);
-  return generate(execute.command);
-}
-
 type Argument = {
   configs: string[];
   debug: boolean;
@@ -185,16 +383,16 @@ function parseArgs(args: string[]): [Argument, null] | [null, Error] {
 ${thisFile} - ${description}
 
 [USASE]
-  ${thisFile} [OPTIONS] <configs...>
+\t${thisFile} [OPTIONS] <configs...>
 
 [ARGUMENTS]
-  config: setting toml file.
+\tconfig: setting toml file.
 
 [OPTIONS]
-  --help -h: Show this message.
-  --debug: Run debug mode.
-  --shell: Output file format: default is ${defaultShell}
-  `;
+\t--help -h: Show this message.
+\t--debug: Run debug mode.
+\t--shell: Output file format: default is ${defaultShell}
+`;
   const parsed = parseArguments(args, {
     default: {
       debug: false,
@@ -216,37 +414,33 @@ ${thisFile} - ${description}
   } else if (parsed._.length === 0) {
     return [null, new Error("Any config passed.")];
   }
-  return [{
-    configs: ensureArray(parsed._, isString),
-    debug: parsed.debug,
-    shell: parsed.shell,
-    help: parsed.help,
-  }, null];
+  return [
+    {
+      configs: ensureArray(parsed._, isString),
+      debug: parsed.debug,
+      shell: parsed.shell,
+      help: parsed.help,
+    },
+    null,
+  ];
 }
 
-if (import.meta.main) {
+function main() {
   const [args, err] = parseArgs(Deno.args);
   if (err !== null) {
     console.error(err.message);
     Deno.exit();
   }
-  const contents = [];
-  for (const file of args.configs) {
-    const tomlData = await loadToml(file);
-    const keyFuncMap = [
-      { key: "paths", func: generatePath },
-      { key: "aliases", func: generateAlias },
-      { key: "environments", func: generateEnviroment },
-      { key: "sources", func: generateSource },
-      { key: "executes", func: generateExecute },
-    ];
-    for (const { key, func } of keyFuncMap) {
-      const buf: string[] = [];
-      for (const values of filterByShell(tomlData[key] ?? [], args.shell)) {
-        buf.push(func(values, args.shell));
-      }
-      contents.push([...buf]);
-    }
+  const setting = loadSetting(args.configs);
+
+  const generator = new CandidateGenerator(args.shell);
+  const shellstring = new shellStringGenerator(args.shell);
+
+  for (const candidates of generator.getCandidates(setting)) {
+    console.log(shellstring.shellString(candidates));
   }
-  console.log(contents.flat().filter((e) => e.length > 0).join("\n"));
+}
+
+if (import.meta.main) {
+  main();
 }
