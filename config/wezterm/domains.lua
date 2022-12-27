@@ -3,8 +3,11 @@ local wezterm = require("wezterm")
 
 if wezterm.target_triple:find("windows") then
   M = {
-    name = 'WSL:Ubuntu-20.04',
-    distribution = 'Ubuntu',
+    wsl_domains = { {
+      name = 'WSL:main',
+      distribution = 'Ubuntu',
+    }, },
+    default_gui_startup_args = { "connect", "WSL:main" },
   }
 else
   M = {
