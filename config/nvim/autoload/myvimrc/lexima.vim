@@ -111,6 +111,11 @@ function! myvimrc#lexima#load_rules() abort
         \ #{ filetype: 'typescriptreact', char: '<CR>', at: '<>\%#</>', input: '<CR>', input_after: '<CR>' },
         \ ]
 
+  "" lua
+  let l:rules += [
+        \ #{ filetype: 'lua', char: '<CR>', at: '^function.*\%#', input: '<CR>', input_after: '<CR>end' },
+        \ ]
+
   for l:rule in l:rules
     call lexima#add_rule(l:rule)
   endfor
