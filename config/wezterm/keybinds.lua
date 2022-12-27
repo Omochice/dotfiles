@@ -54,24 +54,22 @@ local M = {
   -- TODO: copy-modeのときにC-u/dを使えるようにする
 }
 
-local additional_bindings = {}
 if wezterm.target_triple:find("windows") then
-  additional_bindings = {
+  table.insert(M.keys, {
     { key = "c", mods = "ALT|SHIFT", action = act.SpawnCommandInNewTab({ args = { "nu.exe" }, cwd = "~" }) },
-  }
-elseif wezterm.target_triple:find("darwin") then
-  additional_bindings = {
-    { key = "mapped:¥", mods = "ALT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-    { key = "¥", action = act({ SendString = "\\" }) },
-    -- なぜかweztermだけyenとbackslashが反転するっぽい
-  }
-else -- Linux
-  additional_bindings = {
-    { key = "\\", mods = "ALT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-  }
+  })
 end
-for _, v in pairs(additional_bindings) do
-  table.insert(M.keys, v)
+
+if wezterm.target_triple:find("darwin") then
+  table.insert(M.keys, {
+    { key = "mapped:¥", mods = "ALT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+    { key = "¥", action = act.SendString("\\") },
+    -- なぜかweztermだけyenとbackslashが反転するっぽい
+  })
+else -- Linux / windows
+  table.insert(M.keys, {
+    { key = "\\", mods = "ALT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+  })
 end
 
 return M
