@@ -57,7 +57,7 @@ local M = {
 local additional_bindings = {}
 if wezterm.target_triple:find("windows") then
   additional_bindings = {
-    { key = "c", mods = "ALT|SHIFT", action = act.SpawnCommandInNewTab({ args = "nu.exe", cwd = "~" }) },
+    { key = "c", mods = "ALT|SHIFT", action = act.SpawnCommandInNewTab({ args = { "nu.exe" }, cwd = "~" }) },
   }
 elseif wezterm.target_triple:find("darwin") then
   additional_bindings = {
