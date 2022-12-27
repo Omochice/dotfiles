@@ -55,15 +55,36 @@ local M = {
 }
 
 if wezterm.target_triple:find("windows") then
-  table.insert(M.keys, { key = "c", mods = "ALT|SHIFT", action = act.SpawnCommandInNewTab({ args = { "nu.exe" }, cwd = "~" }) })
+  table.insert(M.keys, {
+    key = "c",
+    mods = "ALT|SHIFT",
+    action = act.SpawnCommandInNewTab({
+      args = { "nu.exe" }, cwd = "~", domain = { DomainName = "local" }
+    })
+  })
 end
 
 if wezterm.target_triple:find("darwin") then
-  table.insert(M.keys, { key = "mapped:¥", mods = "ALT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) })
+  table.insert(M.keys, {
+    key = "mapped:¥",
+    mods = "ALT",
+    action = act.SplitHorizontal({
+      domain = "CurrentPaneDomain",
+    })
+  })
   -- なぜかweztermだけyenとbackslashが反転するっぽい
-  table.insert(M.keys, { key = "¥", action = act.SendString("\\") })
+  table.insert(M.keys, {
+    key = "¥",
+    action = act.SendString("\\"),
+  })
 else -- Linux / windows
-  table.insert(M.keys, { key = "\\", mods = "ALT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) })
+  table.insert(M.keys, {
+    key = "\\",
+    mods = "ALT",
+    action = act.SplitHorizontal({
+      domain = "CurrentPaneDomain",
+    })
+  })
 end
 
 return M

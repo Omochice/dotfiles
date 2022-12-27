@@ -59,7 +59,6 @@ local others = {
 }
 
 if wezterm.target_triple:find("windows") then
-  others.default_prog = { "wsl.exe", "~", "--distribution", "Ubuntu" }
   fonts.font_size = 14
 end
 
