@@ -6,6 +6,7 @@ if wezterm.target_triple:find("windows") then
     wsl_domains = { {
       name = 'WSL:main',
       distribution = 'Ubuntu',
+      default_cwd = "~",
     }, },
     default_gui_startup_args = { "connect", "WSL:main" },
   }
