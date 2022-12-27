@@ -6,7 +6,7 @@ local M = {
   keys = {
     { key = "c", mods = "ALT", action = act.SpawnTab("DefaultDomain") },
     { key = "n", mods = "ALT", action = act.ActivateTabRelative(1) },
-    { key = "p", mods = "ALT", action = act.ActivateTabRelative(-1) },
+    { key = "n", mods = "ALT|SHIFT", action = act.ActivateTabRelative(-1) },
     { key = "-", mods = "ALT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
     { key = "h", mods = "ALT", action = act.ActivatePaneDirection("Left") },
     { key = "j", mods = "ALT", action = act.ActivatePaneDirection("Down") },
