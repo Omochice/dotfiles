@@ -95,7 +95,8 @@ cnoreabbrev ww update!
 cnoreabbrev w update
 
 " easy open memo buffer
-cnoreabbrev scratch tabnew +set\ buftype=nofile
+command Scratch tabnew +set\ buftype=nofile
+cnoreabbrev memo Scratch
 
 " TODO
 " cnoreabbrev w:q wq
