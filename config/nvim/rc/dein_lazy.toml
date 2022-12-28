@@ -38,6 +38,7 @@ on_map = { x = "<Plug>", o = "<Plug>" }
 repo = "Omochice/vim-textobj-codeblock"
 depends = ["vim-textobj-user"]
 hook_add = """
+let g:textobj_codeblock_fence = #{ toml: '\"\"\"' }
 xmap ac <Plug>(textobj-codeblock-a)
 xmap ic <Plug>(textobj-codeblock-i)
 omap ac <Plug>(textobj-codeblock-a)
