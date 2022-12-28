@@ -163,6 +163,7 @@ let g:lexima_map_escape = ''
 let g:lexima_enable_endwise_rules = v:true
 let g:lexima_enable_newline_rules = v:true
 let g:lexima_disable_on_nofile = v:false
+let g:lexima_ctrlh_as_backspace = v:true
 """
 hook_source = """
 call myvimrc#lexima#load_rules()
