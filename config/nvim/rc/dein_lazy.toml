@@ -409,6 +409,7 @@ hook_add = """
 let g:previm_wsl_mode = has('wsl')
 let g:previm_show_header = v:false
 """
+depends = ["open-browser.vim"]
 
 [[plugins]]
 repo = "tyru/open-browser.vim"
