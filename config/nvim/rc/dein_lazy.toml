@@ -418,25 +418,6 @@ nmap gx <Plug>(openbrowser-open)
 """
 on_map = { n = "<Plug>(openbrowser" }
 
-[[multiple_plugins]]
-plugins = ["previm", "open-browser.vim"]
-hook_add = """
-if has('macunix')
-  let g:browser_cmd = 'open'
-elseif has('wsl')
-  let s:nodename = systemlist('uname --nodename')[0]
-  let s:wsl_vivaldi_path = '/mnt/c/Users/' .. s:nodename .. '/AppData/Local/Vivaldi/Application/vivaldi.exe'
-  let g:browser_cmd = s:wsl_vivaldi_path
-else
-  let g:browser_cmd = $BROWSER
-endif
-
-let g:previm_open_cmd = g:browser_cmd
-let g:openbrowser_browser_commands = [
-    \ {"name": g:browser_cmd, "args": ["{browser}", "{uri}"]},
-    \ ]
-"""
-
 [[plugins]]
 repo = "ap/vim-css-color"
 on_ft = ["css", "scss", "vue"]
