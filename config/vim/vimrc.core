@@ -77,7 +77,7 @@ else
   set clipboard=unnamed,unnamedplus
 endif
 
-" move f/b in insert mode like commandline without split undo unit
+" move f/b in insert mode like commandline with split undo unit
 inoremap <C-f> <C-g>U<Right>
 inoremap <C-b> <C-g>U<Left>
 
