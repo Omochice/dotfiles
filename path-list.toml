@@ -141,6 +141,11 @@ to = "gl"
 if_executable = "glab"
 
 [[aliases]]
+from = "fzf-emoji"
+to = "emoji"
+only = "fish"
+
+[[aliases]]
 from = "date '+%Y-%m-%d'"
 to = "today"
 
@@ -210,3 +215,27 @@ only = "bash"
 command = "starship init fish | source"
 if_executable = "starship"
 only = "fish"
+
+[[executes]]
+command = "eval $(starship init zsh)"
+if_executable = "starship"
+only = "zsh"
+
+[[executes]]
+command = "eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\""
+if_exists = "/home/linuxbrew/.linuxbrew/bin/brew"
+only = ["bash", "zsh"]
+
+[[executes]]
+command = "deno completions fish | source"
+if_executable = "deno"
+only = "fish"
+
+[[executes]]
+command = "bindkey -e"
+only = "zsh"
+
+[[executes]]
+command = "eval \"$(sheldon source)\""
+if_executable = "sheldon"
+only = "zsh"
