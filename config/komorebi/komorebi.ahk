@@ -173,7 +173,7 @@ return
 ; Switch to workspace
 #1::
 {
-  if IsKomorebiRunning() {
+  if !IsKomorebiRunning() {
     send, #1
     return
   }
@@ -191,7 +191,7 @@ return
 
 #2::
 {
-  if IsKomorebiRunning() {
+  if !IsKomorebiRunning() {
     send, #2
     return
   }
@@ -209,7 +209,7 @@ return
 
 #3::
 {
-  if IsKomorebiRunning() {
+  if !IsKomorebiRunning() {
     send, #3
     return
   }
@@ -227,7 +227,7 @@ return
 
 #4::
 {
-  if IsKomorebiRunning() {
+  if !IsKomorebiRunning() {
     send, #4
     return
   }
@@ -245,7 +245,7 @@ return
 
 #5::
 {
-  if IsKomorebiRunning() {
+  if !IsKomorebiRunning() {
     send, #5
     return
   }
@@ -263,7 +263,7 @@ return
 
 #6::
 {
-  if IsKomorebiRunning() {
+  if !IsKomorebiRunning() {
     send, #6
     return
   }
@@ -282,7 +282,7 @@ return
 ; Move window to workspace
 #+1::
 {
-  if IsKomorebiRunning() {
+  if !IsKomorebiRunning() {
     send, #+1
     return
   }
@@ -301,7 +301,7 @@ return
 
 #+2::
 {
-  if IsKomorebiRunning() {
+  if !IsKomorebiRunning() {
     send, #+2
     return
   }
@@ -320,7 +320,7 @@ return
 
 #+3::
 {
-  if IsKomorebiRunning() {
+  if !IsKomorebiRunning() {
     send, #+3
     return
   }
@@ -339,7 +339,7 @@ return
 
 #+4::
 {
-  if IsKomorebiRunning() {
+  if !IsKomorebiRunning() {
     send, #+4
     return
   }
@@ -358,7 +358,7 @@ return
 
 #+5::
 {
-  if IsKomorebiRunning() {
+  if !IsKomorebiRunning() {
     send, #+5
     return
   }
@@ -377,7 +377,7 @@ return
 
 #+6::
 {
-  if IsKomorebiRunning() {
+  if !IsKomorebiRunning() {
     send, #+6
     return
   }
