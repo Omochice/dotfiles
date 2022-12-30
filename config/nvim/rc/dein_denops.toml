@@ -111,26 +111,37 @@ nnoremap <buffer> i <Plug>(gin-action-new)
 # repo = "Omochice/tataku.vim"
 repo = "~/Toy/tataku.vim"
 hook_add = """
-let g:tataku_recipes = #{
-      \ translate_en_to_ja: #{
-      \   collector: #{name: 'current_line', options: {}},
-      \   processor: [
-      \     #{name: 'intl_segmenter', options: #{locale: 'en'}},
-      \     #{name: 'google_translate', options: #{source: "en", target: 'ja'}},
-      \     #{name: 'intl_segmenter', options: #{locale: 'ja'}},
-      \   ],
-      \   emitter: #{name: 'nvim_floatwin', options: #{border: 'single'}}
-      \ },
-      \ translate_ja_to_en: #{
-      \   collector: #{name: 'current_line', options: {}},
-      \   processor: [
-      \     #{name: 'intl_segmenter', options: #{locale: 'ja'}},
-      \     #{name: 'google_translate', options: #{source: "ja", target: 'en'}},
-      \     #{name: 'intl_segmenter', options: #{locale: 'en'}},
-      \   ],
-      \   emitter: #{name: 'nvim_floatwin', options: #{border: 'single'}}
-      \ },
-      \ }
+function! s:reset() abort
+  let g:tataku_recipes = #{
+        \ translate_en_to_ja: #{
+        \   collector: #{name: 'current_line', options: {}},
+        \   processor: [
+        \     #{name: 'intl_segmenter', options: #{locale: 'en'}},
+        \     #{name: 'google_translate', options: #{source: "en", target: 'ja'}},
+        \     #{name: 'intl_segmenter', options: #{locale: 'ja'}},
+        \     #{name: 'split_by_displaywidth', options: #{width: &columns - 2, float: "left", is_wrap: v:true }},
+        \   ],
+        \   emitter: #{name: 'nvim_floatwin', options: #{border: 'single'}}
+        \ },
+        \ translate_ja_to_en: #{
+        \   collector: #{name: 'current_line', options: {}},
+        \   processor: [
+        \     #{name: 'intl_segmenter', options: #{locale: 'ja'}},
+        \     #{name: 'google_translate', options: #{source: "ja", target: 'en'}},
+        \     #{name: 'intl_segmenter', options: #{locale: 'en'}},
+        \     #{name: 'split_by_displaywidth', options: #{width: &columns - 2, float: "left", is_wrap: v:true }},
+        \   ],
+        \   emitter: #{name: 'nvim_floatwin', options: #{border: 'single'}}
+        \ },
+        \ }
+endfunction
+
+call s:reset()
+augroup tataku-setting
+  autocmd!
+  autocmd VimResized * call <SID>reset()
+augroup END
+
 let g:tataku_enable_operator = v:true
 nmap tr <Plug>(operator-tataku-translate_en_to_ja)
 xmap tr <Plug>(operator-tataku-translate_en_to_ja)
@@ -161,6 +172,10 @@ on_source = "tataku.vim"
 [[plugins]]
 # repo = "Omochice/tataku-emitter-nvim_floatwin"
 repo = "~/Toy/tataku-emitter-nvim_floatwin"
+on_source = "tataku.vim"
+
+[[plugins]]
+repo = "Omochice/tataku-processor-split_by_displaywidth"
 on_source = "tataku.vim"
 
 [[plugins]]
