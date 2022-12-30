@@ -138,7 +138,7 @@ Run, komorebic.exe float-rule class TaskManagerWindow, , Hide
     Run, komorebic.exe toggle-maximize, , Hide
   } else {
     ; TODO: toggle
-    send, #{Up}
+    WinMaximize, A
   }
   return
 }
