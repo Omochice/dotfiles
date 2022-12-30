@@ -291,10 +291,8 @@ return
       Run, komorebic.exe move-to-workspace 0, , Hide
   } else if (n_monitor = 2) {
       Run, komorebic.exe send-to-monitor-workspace 1 0, , Hide
-      Run, komorebic.exe focus-monitor-workspace 1 0, , Hide
   } else if (n_monitor = 3) {
       Run, komorebic.exe send-to-monitor-workspace 2 0, , Hide
-      Run, komorebic.exe focus-monitor-workspace 2 0, , Hide
   }
   return
 }
@@ -310,10 +308,8 @@ return
       Run, komorebic.exe move-to-workspace 1, , Hide
   } else if (n_monitor = 2) {
       Run, komorebic.exe send-to-monitor-workspace 1 1, , Hide
-      Run, komorebic.exe focus-monitor-workspace 1 1, , Hide
   } else if (n_monitor = 3) {
       Run, komorebic.exe send-to-monitor-workspace 2 1, , Hide
-      Run, komorebic.exe focus-monitor-workspace 2 1, , Hide
   }
   return
 }
@@ -329,10 +325,8 @@ return
       Run, komorebic.exe move-to-workspace 2, , Hide
   } else if (n_monitor = 2) {
       Run, komorebic.exe send-to-monitor-workspace 1 2, , Hide
-      Run, komorebic.exe focus-monitor-workspace 1 2, , Hide
   } else if (n_monitor = 3) {
       Run, komorebic.exe send-to-monitor-workspace 1 0, , Hide
-      Run, komorebic.exe focus-monitor-workspace 1 0, , Hide
   }
   return
 }
@@ -348,10 +342,8 @@ return
       Run, komorebic.exe move-to-workspace 3, , Hide
   } else if (n_monitor = 2) {
       Run, komorebic.exe send-to-monitor-workspace 0 0, , Hide
-      Run, komorebic.exe focus-monitor-workspace 0 0, , Hide
   } else if (n_monitor = 3) {
       Run, komorebic.exe send-to-monitor-workspace 1 1, , Hide
-      Run, komorebic.exe focus-monitor-workspace 1 1, , Hide
   }
   return
 }
@@ -367,10 +359,8 @@ return
       Run, komorebic.exe move-to-workspace 4, , Hide
   } else if (n_monitor = 2) {
       Run, komorebic.exe send-to-monitor-workspace 0 1, , Hide
-      Run, komorebic.exe focus-monitor-workspace 0 1, , Hide
   } else if (n_monitor = 3) {
       Run, komorebic.exe send-to-monitor-workspace 0 0, , Hide
-      Run, komorebic.exe focus-monitor-workspace 0 0, , Hide
   }
   return
 }
@@ -386,10 +376,8 @@ return
       Run, komorebic.exe move-to-workspace 5, , Hide
   } else if (n_monitor = 2) {
       Run, komorebic.exe send-to-monitor-workspace 0 2, , Hide
-      Run, komorebic.exe focus-monitor-workspace 0 2, , Hide
   } else if (n_monitor = 3) {
       Run, komorebic.exe send-to-monitor-workspace 0 1, , Hide
-      Run, komorebic.exe focus-monitor-workspace 0 1, , Hide
   }
   return
 }
