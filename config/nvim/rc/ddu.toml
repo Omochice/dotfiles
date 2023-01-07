@@ -149,6 +149,11 @@ inoremap <buffer> <C-s> <Cmd>call ddu#ui#ff#execute(
 \   "itemAction",
 \   #{ name: "open", params: #{ command: "split" }, }
 \)')<CR>
+inoremap <buffer> <C-q> <Cmd>call ddu#ui#ff#execute(
+\ 'call ddu#ui#ff#do_action(
+\   "itemAction",
+\   #{ name: "quickfix", }
+\)')<CR>
 nnoremap <buffer> <CR> <Cmd>call ddu#ui#ff#close()<CR>
 nnoremap <buffer><nowait> q <Cmd>call ddu#ui#ff#close()<CR>
 inoremap <buffer> <C-n> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")+1,0)<Bar>redraw')<CR>
