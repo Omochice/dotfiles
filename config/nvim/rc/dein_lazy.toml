@@ -836,3 +836,5 @@ if = "has('nvim')"
 on_event = ["BufRead", "BufNewFile"]
 
 [[plugins]]
+repo = "thinca/vim-qfreplace"
+on_cmd = "Qfreplace"
