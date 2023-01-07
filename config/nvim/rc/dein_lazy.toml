@@ -826,3 +826,13 @@ on_cmd = "Capture"
 capture = """
 setlocal wrap
 """
+
+[[plugins]]
+repo = "lewis6991/gitsigns.nvim"
+lua_source = """
+require('gitsigns').setup()
+"""
+if = "has('nvim')"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
