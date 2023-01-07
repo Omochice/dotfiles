@@ -115,9 +115,9 @@ on_source = "ddu.vim"
 ddu-ff = """
 cnoreabbrev <buffer> q call ddu#ui#ff#do_action('quit')
 nnoremap <buffer> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
-nnoremap <buffer><nowait> T <Cmd>call ddu#ui#ff#do_action('itemAction', { 'name': 'open', 'params': { 'command': 'tabedit' } })<CR>
-nnoremap <buffer><nowait> V <Cmd>call ddu#ui#ff#do_action('itemAction', { 'name': 'open', 'params': { 'command': 'vsplit' } })<CR>
-nnoremap <buffer><nowait> S <Cmd>call ddu#ui#ff#do_action('itemAction', { 'name': 'open', 'params': { 'command': 'split' } })<CR>
+nnoremap <buffer><nowait> T <Cmd>call ddu#ui#ff#do_action('itemAction', #{ name: 'open', params: #{ command: 'tabedit' } })<CR>
+nnoremap <buffer><nowait> V <Cmd>call ddu#ui#ff#do_action('itemAction', #{ name: 'open', params: #{ command: 'vsplit' } })<CR>
+nnoremap <buffer><nowait> S <Cmd>call ddu#ui#ff#do_action('itemAction', #{ name: 'open', params: #{ command: 'split' } })<CR>
 nnoremap <buffer> <Space> <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
 nnoremap <buffer><nowait> i <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
 nnoremap <buffer><nowait> q <Cmd>call ddu#ui#ff#do_action('quit')<CR>
