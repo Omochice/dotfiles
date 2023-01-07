@@ -128,17 +128,9 @@ repo = "vim-scripts/fish.vim"
 [[plugins]]
 repo = "rcarriga/nvim-notify"
 lua_source = """
-notify = require("notify")
-notify.setup({
+require('notify').setup({
   background_colour = '#000000',
 })
-vim.notify = notify
-ns = vim.api.nvim_create_namespace('sample')
-vim.ui_attach(ns, {ext_popupmenu=true}, function (a, ...)
-  vim.fn.echomsg(a)
-  vim.fn.echomsg(...)
-  -- notify.notify(a, vim.inspect { ... })
-end)
 """
 if = "has('nvim')"
 
@@ -153,14 +145,6 @@ set cmdheight=0
 """
 lua_source = """
 require("noice").setup({
-  lsp = {
-    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-    override = {
-      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-      ["vim.lsp.util.stylize_markdown"] = true,
-      ["cmp.entry.get_documentation"] = true,
-    },
-  },
   -- you can enable a preset for easier configuration
   presets = {
     bottom_search = true, -- use a classic bottom cmdline for search
