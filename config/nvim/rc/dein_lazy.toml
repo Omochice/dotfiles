@@ -822,3 +822,7 @@ on_map = { n = "<Plug>" }
 [[plugins]]
 repo = "tyru/capture.vim"
 on_cmd = "Capture"
+[plugins.ftplugin]
+capture = """
+setlocal wrap
+"""
