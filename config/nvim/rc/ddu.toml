@@ -78,7 +78,7 @@ let s:config = #{
 \ }
 
 function! s:set_size() abort
-  " this from kuuote/dotvim
+  " this is from kuuote/dotvim
   let l:winCol = &columns / 10
   let l:winWidth = &columns - (&columns / 5)
   let l:winRow = &lines / 10
