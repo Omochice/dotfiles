@@ -168,7 +168,9 @@ let g:lexima_ctrlh_as_backspace = v:true
 hook_source = """
 call myvimrc#lexima#load_rules()
 if dein#tap('pum.vim')
-  imap <silent><expr> <CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : lexima#expand('<LT>CR>', 'i')
+  imap <silent><expr> <CR> pum#visible()
+        \ ? pum#get_pos().size ==# 1 ? '<CR>' : '<Cmd>call pum#map#confirm()<CR>'
+        \ : lexima#expand('<LT>CR>', 'i')
 endif
 """
 on_event = "InsertEnter"
