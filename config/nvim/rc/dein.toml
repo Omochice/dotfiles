@@ -124,36 +124,3 @@ repo = "vim-scripts/fish.vim"
 
 # [[plugins]]
 # repo = "mityu/vim-applescript"
-
-[[plugins]]
-repo = "rcarriga/nvim-notify"
-lua_source = """
-require('notify').setup({
-  background_colour = '#000000',
-})
-"""
-if = "has('nvim')"
-
-[[plugins]]
-repo = "MunifTanjim/nui.nvim"
-if = "has('nvim')"
-
-[[plugins]]
-repo = "folke/noice.nvim"
-hook_add = """
-set cmdheight=0
-"""
-lua_source = """
-require("noice").setup({
-  -- you can enable a preset for easier configuration
-  presets = {
-    bottom_search = true, -- use a classic bottom cmdline for search
-    command_palette = true, -- position the cmdline and popupmenu together
-    long_message_to_split = true, -- long messages will be sent to a split
-    inc_rename = false, -- enables an input dialog for inc-rename.nvim
-    lsp_doc_border = false, -- add a border to hover docs and signature help
-  },
-})
-"""
-depends = ["nui.nvim", "nvim-notify"]
-if = "has('nvim')"
