@@ -1,4 +1,4 @@
-function fzf-editor
+function fzf-select
   # if not install fzf return early
   if not type "fzf" >/dev/null 2>&1
     command echo "need fzf"
@@ -13,7 +13,7 @@ function fzf-editor
   else
     set preview_cmd "less"
   end
-  set --local files (fd --exclude ".git" | fzf --no-sort --multi --preview="$preview_cmd {}" --height=30%)
+  set --local files (fd --exclude ".git" --type file | fzf --no-sort --multi --preview="$preview_cmd {}" --height=30%)
 
   # if any file selected, fail this function
   if test -z "$files"
@@ -21,16 +21,6 @@ function fzf-editor
     return 1
   end
 
-  set --local editor $EDITOR
-  if test -z "$editor"
-    set editor "vim"
-  end
-
-  if echo "$editor" | grep "n\?vim" 2>&1
-    set editor "$editor -p"
-  end
-
+  commandline --insert "$files"
   commandline --function repaint
-  commandline --replace "$editor $files"
-  commandline --function execute
 end
