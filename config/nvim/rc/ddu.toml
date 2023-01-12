@@ -113,6 +113,7 @@ repo = "Shougo/ddu-ui-ff"
 on_source = "ddu.vim"
 [plugins.ftplugin]
 ddu-ff = """
+setlocal cursorline
 cnoreabbrev <buffer> q call ddu#ui#ff#do_action('quit')
 nnoremap <buffer> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
 nnoremap <buffer><nowait> T <Cmd>call ddu#ui#ff#do_action('itemAction', #{ name: 'open', params: #{ command: 'tabedit' } })<CR>
