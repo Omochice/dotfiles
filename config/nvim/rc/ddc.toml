@@ -54,6 +54,8 @@ on_event = "InsertEnter"
 [[plugins]]
 repo = "Shougo/pum.vim"
 hook_add = """
+call pum#set_option("auto_select", v:true)
+inoremap <expr> <C-y> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<C-n>'
 inoremap <expr> <C-n> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<C-n>'
 inoremap <expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<C-p>'
 """
