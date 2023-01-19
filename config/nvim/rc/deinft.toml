@@ -132,7 +132,11 @@ inoreabbrev <buffer> ;; ->
 """
 
 gitcommit_markdown = """
-function s:toggle_checkbox() abort
+function! s:is_checkbox() abort
+  return getline(line('.')) =~# '^\s*\(- \)\?\[[x ]\]'
+endfunction
+
+function! s:toggle_checkbox() abort
   let l:lnum = line('.')
   let l:line = getline(l:lnum)
   if l:line =~# '\[x\]'
@@ -146,7 +150,7 @@ function s:toggle_checkbox() abort
   endif
 endfunction
 
-function s:toggle_listitem(marker) abort
+function! s:toggle_listitem(marker) abort
   let l:lnum = line('.')
   let l:line = getline(l:lnum)
   if l:line =~# '^\s*' .. a:marker
@@ -159,7 +163,7 @@ function s:toggle_listitem(marker) abort
   endif
 endfunction
 
-nnoremap <buffer><C-x> <Cmd>call <SID>toggle_checkbox()<CR>
+nnoremap <buffer><expr> <C-x> <SID>is_checkbox() ? '<CMD>call <SID>toggle_checkbox()<CR>' : '<C-x>'
 nnoremap <buffer>- <Cmd>call <SID>toggle_listitem('-')<CR>
 inoreabbrev <buffer> ;; ->
 """
