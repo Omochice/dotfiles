@@ -158,7 +158,7 @@ function! s:toggle_listitem(marker) abort
     let l:line = substitute(l:line, a:marker .. '\s*', '', '')
     call setline(l:lnum, l:line)
   else
-    let l:line = a:marker .. " " .. l:line
+    let l:line = substitute(l:line, '\(\S\)', a:marker .. ' ' .. '\1', '')
     call setline(l:lnum, l:line)
   endif
 endfunction
