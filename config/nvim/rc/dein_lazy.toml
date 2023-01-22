@@ -67,6 +67,17 @@ omap ie <Plug>(textobj-entire-i)
 on_map = { x = "<Plug>", o = "<Plug>" }
 
 [[plugins]]
+repo = "kana/vim-textobj-indent"
+depends = ["vim-textobj-user"]
+hook_add = """
+xmap ai <Plug>(textobj-indent-a)
+xmap ii <Plug>(textobj-indent-i)
+omap ai <Plug>(textobj-indent-a)
+omap ii <Plug>(textobj-indent-i)
+"""
+on_map = { x = "<Plug>", o = "<Plug>" }
+
+[[plugins]]
 repo = "kana/vim-operator-user"
 
 [[plugins]]
@@ -347,6 +358,10 @@ let g:quickrun_config = extend(get(g:, 'quickrun_config', {}), #{
       \       type: 'c',
       \       cmdopt: '-fmodules',
       \   },
+      \   fennel: #{
+      \       command: 'fennel',
+      \       exec: '%c --compile %s | lua'
+      \   },
       \ })
 """
 depends = ["vim-quickrun-neovim-job"]
@@ -543,6 +558,16 @@ require('treesitter-context').setup({
 """
 
 [[plugins]]
+# repo = "nvim-treesitter/nvim-tree-docs"
+repo = "~/workspace/nvim-tree-docs"
+on_source = "nvim-treesitter"
+lua_source = """
+require('nvim-treesitter.configs').setup({
+  tree_docs = { enable = true }
+})
+"""
+
+[[plugins]]
 repo = "yuki-yano/vim-operator-replace"
 depends = "vim-operator-user"
 on_map = { n = "<Plug>", x = "<Plug>" }
@@ -605,40 +630,6 @@ let g:sonictemplate_vim_template_dir = g:config_dir .. '/templates'
 nnoremap <Plug>(fzf-p-prefix)<C-t> <Cmd>call fzf#sonictemplate#run()<CR>
 nnoremap <Plug>(fzf-p-prefix)t <Cmd>call fzf#sonictemplate#run()<CR>
 """
-
-# [[plugins]]
-# repo = "junegunn/fzf"
-# build = "./install --all"
-# merged = 0
-
-# [[plugins]]
-# # FIXME: 初回起動だけ枠線とかがうまく表示されない
-# # ref: https://github.com/Omochice/dotfiles/issues/12
-# repo = "yuki-yano/fzf-preview.vim"
-# rev = "release/rpc"
-# hook_add = """
-# nmap <Plug>(fzf-p-prefix) <Nop>
-# nmap <C-p> <Plug>(fzf-p-prefix)
-# nnoremap <Plug>(fzf-p-prefix)<C-g> <Nop>
-# nnoremap <Plug>(fzf-p-prefix)<C-p> <Cmd>FzfPreviewDirectoryFilesRpc<CR>
-# nnoremap <Plug>(fzf-p-prefix)c     <Cmd>FzfPreviewCommandPaletteRpc<CR>
-# nnoremap <Plug>(fzf-p-prefix)g     :<C-u>FzfPreviewProjectGrepRpc<Space>
-# nnoremap <Plug>(fzf-p-prefix)<C-w> <Cmd>FzfPreviewProjectMrwFilesRpc --add-fzf-arg=--no-sort<CR>
-# nnoremap <Plug>(fzf-p-prefix)<C-b> <Cmd>FzfPreviewAllBuffersRpc<CR>
-# let g:fzf_preview_fzf_preview_window_option = 'right:50%'
-# let g:fzf_preview_use_dev_icons = v:false " TODO: use nerdfont.vim
-# let g:fzf_preview_dev_icon_prefix_string_length = 3
-# let g:fzf_preview_dev_icons_limit = 5000
-# let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never --sort=path --with-filename'
-# """
-# depends = ["fzf"]
-# on_cmd = [
-#     "FzfPreviewAllBuffersRpc",
-#     "FzfPreviewCommandPaletteRpc",
-#     "FzfPreviewDirectoryFilesRpc",
-#     "FzfPreviewProjectGrepRpc",
-#     "FzfPreviewProjectMrwFilesRpc",
-# ]
 
 [[plugins]]
 repo = "pappasam/vim-filetype-formatter"
@@ -722,6 +713,8 @@ cnoreabbrev fe Fern .
 cnoreabbrev fep Fern . -reveal=%
 command! TFern tabnew | Fern .
 cnoreabbrev tf TFern
+command! Drawer Fern . -reveal=% -drawer
+cnoreabbrev drawer Drawer
 """
 on_cmd = ["Fern"]
 [plugins.ftplugin]
@@ -736,7 +729,8 @@ nmap <buffer> p <Plug>(fern-action-clipboard-paste)
 nmap <buffer> h <Plug>(fern-action-collapse)
 nmap <buffer> l <Plug>(fern-action-open-or-expand)
 nmap <buffer> ! <Plug>(fern-action-hidden:toggle)
-nmap <buffer> ? <Plug>(fern-action-help)  " This may be redundant
+" This may be redundant
+nmap <buffer> ? <Plug>(fern-action-help)
 nmap <buffer> t <Plug>(fern-action-open:tabedit)
 nmap <buffer><expr> <Plug>(fern-action-open-or-expand:stay) fern#smart#leaf("<Plug>(fern-action-open)", "<Plug>(fern-action-expand:stay)")
 nmap <buffer><expr> <CR> getline('.') =~# '^\s*\|-\s'
@@ -842,8 +836,67 @@ on_cmd = "Qfreplace"
 [[plugins]]
 repo = "rcarriga/nvim-notify"
 lua_source = """
+local stages_util = require('notify.stages.util')
 require('notify').setup({
   background_colour = '#000000',
+  render = "compact",
+  stages = {
+    function(state)
+      -- border: 2
+      local next_height = state.message.height + 2
+      local next_row = stages_util.available_slot(
+        state.open_windows,
+        next_height,
+        stages_util.DIRECTION.BOTTOM_UP
+      )
+      if not next_row then
+        return nil
+      end
+      return {
+        relative = 'editor',
+        anchor = 'NE',
+        width = state.message.width,
+        height = state.message.height,
+        col = vim.opt.columns:get(),
+        row = next_row,
+        border = 'rounded',
+        style = 'minimal',
+        opacity = 0,
+      }
+    end,
+    function()
+      return {
+        opacity = { 100 },
+        col = { vim.opt.columns:get() },
+      }
+    end,
+    function()
+      return {
+        col = { vim.opt.columns:get() },
+        time = true,
+      }
+    end,
+    function()
+      return {
+        width = {
+          1,
+          frequency = 2.5,
+          damping = 0.9,
+          complete = function(cur_width)
+            return cur_width < 3
+          end,
+        },
+        opacity = {
+          0,
+          frequency = 2,
+          complete = function(cur_opacity)
+            return cur_opacity <= 4
+          end,
+        },
+        col = { vim.opt.columns:get() },
+      }
+    end,
+  },
 })
 """
 if = "has('nvim')"
