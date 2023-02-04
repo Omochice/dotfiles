@@ -97,6 +97,15 @@ on_map = { n = "<Plug>" }
 
 [[plugins]]
 repo = "hrsh7th/vim-searchx"
+lua_add = """
+local vimx = require("artemis")
+vimx.g.searchx = {
+  auto_accept = true,
+  scrollof = vimx.go.scrolloff,
+  scrolltile = 0,
+  markers = vimx.fn.split("ABCDEFGHIJKLMNOPQRSTUVWXYZ", ".\\zs"),
+}
+"""
 hook_add = """
 nnoremap ? <Cmd>call searchx#start(#{ dir: 0 })<CR>
 nnoremap / <Cmd>call searchx#start(#{ dir: 1 })<CR>
@@ -107,13 +116,6 @@ nnoremap N <Cmd>call searchx#prev()<CR>
 nnoremap n <Cmd>call searchx#next()<CR>
 xnoremap N <Cmd>call searchx#prev()<CR>
 xnoremap n <Cmd>call searchx#next()<CR>
-
-let g:searchx = #{
-      \ auto_accept: v:true,
-      \ scrolloff: &scrolloff,
-      \ scrolltime: 0,
-      \ markers: split('ABCDEFGHIJKLMNOPQRSTUVWXYZ', '.\zs'),
-      \ }
 
 " Convert search pattern.
 function g:searchx.convert(input) abort
@@ -138,11 +140,14 @@ repo = "hrsh7th/vim-vsnip"
 on_map = { x = "<Plug>", i = "<Plug>" }
 hook_add = """
 let g:vsnip_snippet_dir = g:config_dir .. '/snippets'
-let g:vsnip_filetypes = #{
-      \ plaintex: ['tex'],
-      \ objc: ['c', 'objc'],
-      \ vue: ['typescript'],
-      \ }
+lua <<EOF
+local vimx = require('artemis')
+vimx.g.vsnip_filetypes = {
+  plaintex = {'tex'},
+  objc = {'c', 'objc'},
+  vuex = {'javascript', 'typescript'},
+}
+EOF
 """
 hook_source = """
 " NOTE: work only when <TAB>. Not <Tab>.
@@ -229,14 +234,14 @@ nmap <silent> <Space>f <Plug>(lsp-document-format)
 nmap <silent> <Space>d <Plug>(lsp-document-diagnostics)
 nmap <silent> <Space>r <Plug>(lsp-rename)
 
-let g:lsp_settings = #{
-      \ efm-langserver: #{
-      \   allowlist: ['markdown'],
-      \ },
-      \ html-langserver: #{allowlist: ['html', 'htmldjango']},
-      \ taplo-lsp: #{workspace_config: #{formatter: #{reorderKeys: v:false}}},
-      \ clangd: #{allowlist: ['c', 'cpp', 'objc']},
-      \  }
+lua <<EOF
+local vimx = require('artemis') 
+vimx.g.lsp_settings = {
+  ['efm-langserver'] = { allowlist = { 'markdown' } },
+  ['html-langserver'] = { allowlist = { 'html', 'htmldjango' } },
+  ['taplo-lsp'] = { workspace_config = { formatter = {reorderKeys = false} } },
+}
+EOF
 let g:lsp_text_edit_enabled = v:true
 let g:lsp_document_code_action_signs_enabled = v:false
 let g:lsp_diagnostics_signs_error = {'text': '🥺'}
@@ -633,22 +638,22 @@ nnoremap <Plug>(fzf-p-prefix)t <Cmd>call fzf#sonictemplate#run()<CR>
 
 [[plugins]]
 repo = "pappasam/vim-filetype-formatter"
-hook_add = """
-" TODO: If exists makefile, package.json, etc, use it.
-let g:vim_filetype_formatter_commands = #{
-      \   ruby: 'rufo -x',
-      \   json: 'jq .',
-      \   python: 'black --quiet - | isort --quiet -',
-      \   go: 'goimports | gofmt',
-      \   typescript: 'NO_COLOR= deno fmt -',
-      \   sh: 'shfmt -ln bash -i 2 -bn -ci -sr -kp',
-      \   fortran: 'fprettify -i 2 -S',
-      \   elm: 'elm-format --stdin',
-      \   dockerfile: 'dockfmt fmt',
-      \ }
-let g:vim_filetype_formatter_ft_maps = #{
-      \   bash: 'sh',
-      \ }
+lua_add = """
+local vimx = require('artemis')
+vimx.g.vim_filetype_formatter_commands = {
+  ruby = 'rufo -x',
+  json = 'jq .',
+  go = 'goimports | gofmt',
+  typescript = 'NO_COLOR= deno fmt -',
+  sh = 'shfmt -ln bash -i 2 -bn -ci -sr -kp',
+  fortran = 'fprettify -i 2 -S',
+  elm = 'elm-format --stdin',
+  dockerfile = 'dockfmt fmt',
+}
+
+vimx.g.vim_filetype_formatter_ft_maps = {
+  bash = 'sh',
+}
 """
 on_cmd = "FiletypeFormat"
 [plugins.ftplugin]
@@ -767,9 +772,13 @@ on_map = { i = "<Plug>" }
 [[plugins]]
 # repo = "~/Toy/toy-postfix.vim"
 repo = "Omochice/toy-postfix.vim"
-hook_add = """
-let g:toy_postfix#rule_dir = g:config_dir .. '/postfix'
-let g:toy_postfix#extends = { 'typescript': 'javascript', 'vue': ['typescript', 'javascript'], }
+lua_add = """
+local vimx = require('artemis')
+vimx.g['toy_postfix#rule_dir'] = vimx.g.config_dir .. '/postfix'
+vimx.g['toy_postfix#extends'] = {
+  typescript = 'javascript',
+  vue = { 'typescript', 'javascript' },
+}
 """
 on_func = ["toy_postfix#expandable", "toy_postfix#expand"]
 
@@ -806,10 +815,11 @@ on_cmd = "HelpfulVersion"
 
 [[plugins]]
 repo = "rhysd/git-messenger.vim"
-hook_add = """
-let g:git_messenger_no_default_mappings = v:true
-let g:git_messenger_floating_win_opts = #{ border: 'single' }
-nmap <Space>gm <Plug>(git-messenger)
+lua_add = """
+local vimx = require('artemis')
+vimx.g.git_messenger_no_default_mappings = false
+vimx.g.git_messenger_floating_win_opts = { border = 'single' }
+vimx.keymap.set('n', '<Space>gm', '<Plug>(git-messenger)')
 """
 on_map = { n = "<Plug>" }
 

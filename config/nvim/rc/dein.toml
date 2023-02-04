@@ -17,6 +17,9 @@ augroup END
 repo = "Shougo/dein.vim"
 
 [[plugins]]
+repo = "tani/vim-artemis"
+
+[[plugins]]
 repo = "sainnhe/sonokai"
 hook_add = """
 let g:sonokai_style = 'espresso'
@@ -37,23 +40,45 @@ augroup END
 
 [[plugins]]
 repo = "itchyny/lightline.vim"
-hook_add = """
-set noshowmode
-let g:lightline = #{
-      \ colorscheme: 'default',
-      \ active: #{
-      \   left: [
-      \     ['mode', 'paste'],
-      \     ['gitbranch', 'readonly', 'filename', 'modified'],
-      \   ],
-      \ },
-      \ component_function: #{
-      \   gitbranch: 'gitbranch#name',
-      \   filetype: 'LightlineFileType',
-      \   fileformat: 'LightlineFotmat',
-      \   },
-      \ }
+lua_add = """
+local vimx = require("artemis")
 
+vimx.go.showmode = false
+
+vimx.g.lightline = {
+  colorscheme = "default",
+  active = {
+    left = {
+      { "mode", "paste" },
+      { "gitbranch", "readonly", "filename", "modified" },
+    },
+    component_function = {
+      gitbranch = "gitbranch#name",
+      filetype = "LightlineFileType",
+      fileformat = "LightlineFormat",
+    },
+  }
+}
+local group = vimx.create_augroup(
+  "vimrc#ligjtline-update-highlight",
+  { clear = true }
+)
+vimx.create_autocmd(
+  "ColorScheme",
+  {
+    pattern = "*",
+    group = group,
+    callback = function()
+      -- タイミングかなんかの問題かluaだとうまくいかんので
+      vimx.cmd("let g:lightline.colorscheme = g:colors_name")
+      -- vimx.g.lightline.colorscheme = vimx.g.colors_name
+      vimx.fn.lightline.disable()
+      vimx.fn.lightline.enable()
+    end
+  }
+)
+"""
+hook_add = """
 function! LightlineFileType() abort
   if winwidth(0) > 70
     if strlen(&filetype) > 0
@@ -66,24 +91,12 @@ function! LightlineFileType() abort
   endif
 endfunction
 
-function! LightlineFotmat() abort
+function! LightlineFormat() abort
   if winwidth(0) > 70
     return &fileformat .  ' ' . nerdfont#fileformat#find()
   else
     return ''
   endif
-endfunction
-
-augroup vimrc#lightline-update-highlight
-  autocmd!
-  autocmd ColorScheme * call <SID>update_lightline_color()
-augroup END
-
-function! s:update_lightline_color() abort
-  let g:lightline.colorscheme = g:colors_name
-  " Reload lightline
-  call lightline#disable()
-  call lightline#enable()
 endfunction
 """
 depends = ["nerdfont.vim", 'vim-gitbranch']

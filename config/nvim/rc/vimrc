@@ -18,6 +18,16 @@ if &runtimepath !~# '/dein.vim'
 endif
 " }}}
 
+" artemis bootstrap {{{
+if &runtimepath !~# '/vim-artemis'
+  let s:artemis = s:dein_dir .. '/repos/github.com/tani/vim-artemis'
+  if !isdirectory(s:artemis)
+    execute '!git clone https://github.com/tani/vim-artemis' s:artemis
+  endif
+  execute 'set runtimepath^=' .. s:artemis
+endif
+" }}}
+
 " options {{{
 let g:dein#auto_recache = !has('win32')
 let g:dein#lazy_rplugins = v:true

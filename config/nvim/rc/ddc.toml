@@ -1,52 +1,79 @@
 [[plugins]]
 repo = "Shougo/ddc.vim"
-hook_add = """
-let g:ddc_source_options = #{
-      \ _: #{
-      \   matchers: ['matcher_fuzzy'],
-      \   sorters: ['sorter_fuzzy'],
-      \   converters: ['converter_remove_overlap', 'converter_fuzzy'],
-      \   minAutoCompleteLength: 2,
-      \   ignoreCase: v:true,
-      \   },
-      \ }
-let g:ddc_sources = #{
-      \ snippet: ['vsnip'],
-      \ lsp: ['vim-lsp'],
-      \ in-vim: ['around', 'buffer'],
-      \ out-vim: ['rg'],
-      \ }
-" if has('wsl')
-"   let g:ddc_sources['out-vim'] += ['tmux']
-" endif
+lua_add = """
+local vimx = require("artemis")
+vimx.g.ddc_source_options = {
+  _ = {
+    matchers = { "matcher_fuzzy" },
+    sorters = { "sorter_fuzzy" },
+    converters = { "converter_remove_overlap", "converter_fuzzy" },
+    minAutoCompleteLength = 2,
+    ignoreCase = true,
+  }
+}
 
-inoremap <silent><expr> <C-Space> ddc#map#manual_complete()
-inoremap <silent><expr> <C-x><C-x> ddc#map#manual_complete(['vim-lsp'])
+vimx.g.ddc_sources = {
+  snippet = { "vsnip" },
+  lsp = { "vim-lsp" },
+  ["in-vim"] = { "around", "buffer" },
+  ["out-vim"] = { "rg" },
+}
 
-if dein#tap('vim-vsnip-integ')
-  let g:ddc_source_options['vsnip'] = #{mark: '[Snp]'}
-endif
+vimx.keymap.set(
+  "i",
+  "<C-Space>",
+  "",
+  {
+    expr = true,
+    callback = function()
+      vimx.fn.ddc.map.manual_complete()
+    end
+  }
+)
+vimx.keymap.set(
+  "i",
+  "<C-x><C-x>",
+  "",
+  {
+    expr = true,
+    callback = function()
+      vimx.fn.ddc.map.manual_complete({ "vim-lsp" })
+    end
+  }
+)
+if vimx.fn.dein.tap("vim-vsnip-integ") == 1 then
+  vimx.g.ddc_source_options.vsnip = { mark = "[Snp]" }
+end
 """
-hook_source = """
-call ddc#custom#patch_global(
-      \ 'sources', g:ddc_sources['snippet'] + g:ddc_sources['lsp'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
-      \ )
-call ddc#custom#patch_global('sourceOptions', g:ddc_source_options,)
-" Drop lsp source on vim/toml, because it provide a:a:content.
-call ddc#custom#patch_filetype(
-      \ ['toml', 'vim'], 'sources', g:ddc_sources['snippet'] + ['necovim'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
-      \ )
-"" NOTE: volar is too slow to show with other sources.
-"call ddc#custom#patch_filetype(
-"      \ 'vue', 'sources', g:ddc_sources['snippet'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
-"      \ )
-call ddc#custom#patch_filetype(
-      \ ['markdown'], 'sources', g:ddc_sources['snippet'] + ['file'] + g:ddc_sources['in-vim'] + g:ddc_sources['out-vim'],
-      \ )
+lua_source = """
+local vimx = require("artemis")
+vimx.fn.ddc.custom.patch_global(
+  "sources",
+  { "vsnip", "vim-lsp", "around", "buffer", "rg", }
+)
 
-call ddc#custom#patch_global('ui', 'pum')
-call ddc#custom#patch_global('backspaceCompletion', v:true)
-call ddc#enable()
+-- TODO: なんかよくわからんけどluaだといけない
+-- vimx.fn.ddc.custom.patch_global(
+--   "sourceOptions",
+--   vimx.cast(vimx.g.ddc_source_options)
+-- )
+vimx.cmd "call ddc#custom#patch_global('sourceOptions', g:ddc_source_options)"
+
+vimx.fn.ddc.custom.patch_filetype(
+  { "toml", "vim" },
+  "sources",
+  { "vsnip", "necovim", "vim-lsp", "around", "buffer", "rg" }
+)
+
+vimx.fn.ddc.custom.patch_filetype(
+  "markdown",
+  "sources",
+  { "vsnip", "file", "around", "buffer", "rg", }
+)
+
+vimx.fn.ddc.custom.patch_global("ui", "pum")
+vimx.fn.ddc.custom.patch_global("backspaceCompletion", true)
+vimx.fn.ddc.enable()
 """
 depends = ["denops.vim"]
 on_event = "InsertEnter"
@@ -54,10 +81,12 @@ on_event = "InsertEnter"
 [[plugins]]
 repo = "Shougo/pum.vim"
 hook_add = """
-call pum#set_option("auto_select", v:true)
-inoremap <expr> <C-y> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<C-n>'
+inoremap <expr> <C-y> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<C-y>'
 inoremap <expr> <C-n> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<C-n>'
 inoremap <expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<C-p>'
+"""
+hook_source = """
+call pum#set_option("auto_select", v:true)
 """
 
 [[plugins]]
@@ -72,12 +101,13 @@ depends = ["pum.vim"]
 
 [[plugins]]
 repo = "shun/ddc-vim-lsp"
-hook_source = """
-let g:ddc_source_options['vim-lsp'] = #{
-      \   mark: '[LSP]',
-      \   isVolatile: v:true,
-      \   forceCompletionPattern: '\..?|:|->|\w+/',
-      \ }
+lua_source = """
+local vimx  = require("artemis")
+vimx.g.ddc_source_options["vim-lsp"] = {
+  mark = "[LSP]",
+  isVolatile = true,
+  forceCompletionPattern = [[\..?|:|->|\w+/]]
+}
 """
 depends = ["vim-lsp"]
 on_source = "ddc.vim"
