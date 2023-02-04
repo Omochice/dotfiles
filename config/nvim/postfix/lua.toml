@@ -1,0 +1,7 @@
+[[rules]]
+regex = "lambda"
+template = """
+function()
+  {{__cursor__}}
+end
+"""
