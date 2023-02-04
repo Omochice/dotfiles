@@ -1,110 +1,209 @@
 [[plugins]]
 repo = "Shougo/ddu.vim"
 depends = "denops.vim"
-hook_add = """
-nmap <C-p> <Plug>(ddu-prefix)
-nmap <Plug>(ddu-prefix)<C-p> <Cmd>call ddu#start({})<CR>
-nmap <Plug>(ddu-prefix)<C-w> <Cmd>call ddu#start(#{ui: 'ff', sources: [#{name: 'mr', params: #{ kind: 'mrw' }}]})<CR>
-nmap <Plug>(ddu-prefix)<C-b> <Cmd>call ddu#start(#{ui: 'ff', sources: [#{name: 'buffer'}]})<CR>
-function! s:ddu_grep_wrapper(query) abort
-  if !empty(a:query)
-    call ddu#start(#{ui: 'ff', sources: [#{name: 'rg', params: #{input: a:query}}], sourceOptions: #{rg: #{ matchers: ['converter_display_word', 'matcher_fzf'] }}})
-  endif
-endfunction
+lua_add = """
+local vimx = require("artemis")
 
-command! -nargs=1 DduGrep call <SID>ddu_grep_wrapper(<q-args>)
-nmap <Plug>(ddu-prefix)<C-g> :<C-u>DduGrep<Space>
-nmap <Plug>(ddu-prefix)<C-l> <Cmd>call ddu#start(#{
-    \ sources: [#{name: 'rg', options: #{matcher: []}}],
-    \ uiParams: #{
-    \   ff: #{ ignoreEmpty: v:false,}
-    \ },
-    \ volatile: v:true,
-    \ })<CR>
-nmap <Plug>(ddu-prefix)g <Cmd>call <SID>ddu_grep_wrapper(expand('<cword>'))<CR>
+vimx.keymap.set("n", "<C-p>", "<Plug>(ddu-prefix)")
+-- artemis.dict({})がarrayを返してきてるっぽいのでー
+vimx.keymap.set(
+  "n",
+  "<Plug>(ddu-prefix)<C-p>",
+  "<Cmd>call ddu#start({})<CR>"
+)
+
+vimx.keymap.set(
+  "n",
+  "<Plug>(ddu-prefix)<C-w>",
+  function()
+    vimx.fn.ddu.start({
+      ui = "ff",
+      sources = { {
+        name = "mr",
+        params = { kind = "mrw" }
+      } }
+    })
+  end
+)
+
+vimx.keymap.set(
+  "n",
+  "<Plug>(ddu-prefix)<C-b>",
+  function()
+    vimx.fn.ddu.start({
+      ui = "ff",
+      sources = { {
+        name = "buffer"
+      } }
+    })
+  end
+)
+
+vimx.keymap.set(
+  "n",
+  "<Plug>(ddu-prefix)<C-l>",
+  function()
+    vimx.fn.ddu.start({
+      ui = "ff",
+      sources = { {
+        name = "rg",
+        options = { marcher = {} }
+      } },
+      uiParams = {
+        ff = { ignoreEmpty = false }
+      },
+      volaitle = true,
+    })
+  end
+)
+
+function grepWrapper(word)
+  if word == "" then
+    return
+  end
+  vimx.fn.ddu.start({
+    ui = "ff",
+    sources = { {
+      name = "rg",
+      params = { input = word },
+    } },
+    sourceOptions = {
+      rg = { matchers = {
+        'converter_display_word',
+        'matcher_fzf',
+      } }
+    }
+  })
+end
+
+vimx.create_command(
+  "DduGrep",
+  function(opts)
+    grepWrapper(opts.args)
+  end,
+  { nargs = 1 }
+)
+
+vimx.keymap.set(
+  "n",
+  "<Plug>(ddu-prefix)<C-g>",
+  ":<C-u>DduGrep "
+)
+
+vimx.keymap.set(
+  "n",
+  "<Plug>(ddu-prefix)g",
+  function()
+    grepWrapper(vimx.fn.expand("<cword>"))
+  end
+)
 """
-hook_source = """
-let s:config = #{
-\ ui: 'ff',
-\ sources: [#{name: 'file_rec', params: #{ ignoredDirectories: ['.git', 'node_modules', 'dein'] },}],
-\ sourceOptions: #{
-\   _: #{
-\     ignoreCase: v:true,
-\     matchers: ['matcher_fzf'],
-\   },
-\ },
-\ sourceParams: #{
-\   rg: #{
-\     rg: #{
-\       matchers: ['converter_display_word', 'matcher_substring'],
-\     },
-\     args  : ["--json", "--ignore-case"],
-\   },
-\   mru: #{
-\     mr: #{
-\       kind: 'mru',
-\       current: v:true,
-\     },
-\   },
-\ },
-\ filterParams: #{
-\   matcher_fzf: #{
-\     highlightMatched: 'Search',
-\   },
-\   matcher_substring: #{
-\     highlightMatched: 'Search',
-\   },
-\ },
-\ kindOptions: #{
-\   file: #{
-\     defaultAction: 'open',
-\   },
-\ },
-\ uiParams: #{
-\   ff: #{
-\     ignoreEmpty: v:true,
-\     split: 'floating',
-\     filterSplitDirection: 'floating',
-\     filterFloatingPosition: 'top',
-\     prompt: '>',
-\     previewFloating: v:true,
-\     previewVertical: v:true,
-\     startFilter: v:true,
-\     floatingBorder: ['┌', '─', '┐', '│', '┘', '─', '└', '│'],
-\     previewFloatingBorder: ['┌', '─', '┐', '│', '┘', '─', '└', '│'],
-\     previewFloatingZindex: 100,
-\   },
-\ },
-\ }
+lua_source = """
+local vimx = require("artemis")
 
-function! s:set_size() abort
-  " this is from kuuote/dotvim
-  let l:winCol = &columns / 10
-  let l:winWidth = &columns - (&columns / 5)
-  let l:winRow = &lines / 10
-  let l:winHeight = &lines - (&lines / 5)
-  let s:config.uiParams.ff.winCol = l:winCol
-  let s:config.uiParams.ff.winWidth = l:winWidth
-  let s:config.uiParams.ff.winRow = l:winRow
-  let s:config.uiParams.ff.winHeight = l:winHeight
+local config = {
+  ui = "ff",
+  sources = { {
+    name = "file_rec",
+    params = {
+      ignoredDirectories = {
+        ".git",
+        "node_modules",
+      }
+    }
+  } },
+  sourceOptions = {
+    _ = {
+      ignoreCase = true,
+      matchers = { "matcher_fzf" },
+    },
+  },
+  sourceParams = {
+    rg = {
+      rg = {
+        matchers = {
+          "converter_display_word",
+          "matcher_substring",
+        }
+      },
+      args = {
+        "--json",
+        "--ignore-case",
+      }
+    },
+    mru = {
+      mr = {
+        kind = "mru",
+        current = true,
+      }
+    }
+  },
+  filterParams = {
+    matcher_fzf = {
+      highlightMathced = "Search",
+    },
+    matcher_substring = {
+      highlightMathced = "Search",
+    }
+  },
+  kindOptions = {
+    file = {
+      defaultAction = "open"
+    },
+  },
+  uiParams = {
+    ff = {
+      ignoreEmpty = true,
+      split = "floating",
+      filterSplitDirection = "floating",
+      filterFloatingPosition = "top",
+      prompt = ">",
+      previewFloating = true,
+      previewVertical = true,
+      startFilter = true,
+      floatingBorder = {
+        "┌", "─", "┐", "│", "┘", "─", "└", "│",
+      },
+      previewFloatingBorder = {
+        "┌", "─", "┐", "│", "┘", "─", "└", "│",
+      },
+      previewFloatingZindex = 100,
+    }
+  }
+}
 
-  let s:config.uiParams.ff.previewCol = l:winCol + (l:winWidth / 2) - l:winWidth
-  let s:config.uiParams.ff.previewWidth = l:winWidth / 2
-  let s:config.uiParams.ff.previewRow = l:winRow
-  let s:config.uiParams.ff.previewHeight = l:winHeight
-endfunction
+local function reset_size()
+  local win_col = math.floor(vimx.go.columns * 0.1)
+  local win_width = math.floor(vimx.go.columns * 0.8)
+  local win_row = math.floor(vimx.go.lines * 0.1)
+  local win_height = math.floor(vimx.go.lines * 0.8)
+  config.uiParams.ff.winCol = win_col
+  config.uiParams.ff.winWidth = win_width
+  config.uiParams.ff.winRow = win_row
+  config.uiParams.ff.winHeight = win_height
 
-function! s:reset_size() abort
-  call s:set_size()
-  call ddu#custom#patch_global(s:config)
-endfunction
+  config.uiParams.ff.previewCol = math.floor(win_col - win_width * 0.5)
+  config.uiParams.ff.previewWidth = math.floor(win_width * 0.5)
+  config.uiParams.ff.previewRow = win_row
+  config.uiParams.ff.previewheight = win_height
+  vimx.fn.ddu.custom.patch_global(config)
+  vimx.g.hogehoge = config
+end
 
-call s:reset_size()
-augroup ddu-reset-size
-  autocmd!
-  autocmd VimResized * call <SID>reset_size()
-augroup END
+reset_size()
+
+local group = vimx.create_augroup("ddu-reset-size", { clear = true })
+vimx.create_autocmd(
+  "VimResized",
+  {
+    group = group,
+    pattern = "*",
+    callback = reset_size
+  }
+)
 """
+on_func = ["ddu#start"]
+on_map = { n = "<Plug>(ddu" }
 
 # \     autoAction: #{ name: 'preview' },
 
@@ -124,7 +223,7 @@ nnoremap <buffer><nowait> i <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR
 nnoremap <buffer><nowait> q <Cmd>call ddu#ui#ff#do_action('quit')<CR>
 nnoremap <buffer><nowait> p <Cmd>call ddu#ui#ff#do_action('preview')<CR>
 nnoremap <buffer> <C-w><C-w> <C-w><C-w>
-nnoremap <buffer> <C-o> <Cmd>call ddu#ui#ff#do_action('test')<CR>
+" nnoremap <buffer> <C-o> <Cmd>call ddu#ui#ff#do_action('test')<CR>
 """
 ddu-ff-filter = """
 cnoreabbrev <buffer> q call ddu#ui#ff#do_action('quit')
@@ -133,28 +232,28 @@ inoremap <buffer> <CR> <Cmd>call ddu#ui#ff#execute(
 \ 'call ddu#ui#ff#do_action(
 \   "itemAction",
 \   #{ name: "open", params: #{ command: "edit" }, }
-\)')<CR>
+\ )')<CR>
 " NOTE: gt is needed
 inoremap <buffer> <C-t> <Cmd>call ddu#ui#ff#execute(
 \ 'call ddu#ui#ff#do_action(
 \   "itemAction",
 \   #{ name: "open", params: #{ command: "tabedit" }, }
-\)')<CR>gtgTgt
+\ )')<CR>gtgTgt
 inoremap <buffer> <C-v> <Cmd>call ddu#ui#ff#execute(
 \ 'call ddu#ui#ff#do_action(
 \   "itemAction",
 \   #{ name: "open", params: #{ command: "vsplit" }, }
-\)')<CR>
+\ )')<CR>
 inoremap <buffer> <C-s> <Cmd>call ddu#ui#ff#execute(
 \ 'call ddu#ui#ff#do_action(
 \   "itemAction",
 \   #{ name: "open", params: #{ command: "split" }, }
-\)')<CR>
+\ )')<CR>
 inoremap <buffer> <C-q> <Cmd>call ddu#ui#ff#execute(
 \ 'call ddu#ui#ff#do_action(
 \   "itemAction",
 \   #{ name: "quickfix", }
-\)')<CR>
+\ )')<CR>
 nnoremap <buffer> <CR> <Cmd>call ddu#ui#ff#close()<CR>
 nnoremap <buffer><nowait> q <Cmd>call ddu#ui#ff#close()<CR>
 inoremap <buffer> <C-n> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")+1,0)<Bar>redraw')<CR>
@@ -200,3 +299,8 @@ on_source = "ddu.vim"
 [[plugins]]
 repo = "Shougo/ddu-kind-file"
 on_source = "ddu.vim"
+
+# [[plugins]]
+# repo = "lambdalisue/kensaku.vim"
+# depends = ["denops.vim"]
+# on_source = "denops.vim"
