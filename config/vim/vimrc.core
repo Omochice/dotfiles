@@ -224,10 +224,8 @@ command! CopyBuffer %yank
 set shortmess=asTIcF
 
 " filetype settings
-if has('nvim') " not work if v:true/false
-  let g:did_load_filetypes = 0
-  let g:do_filetype = 1
-endif
+" if nvim then use lua filetype module
+let g:did_load_filetyps = has('nvim')
 
 let g:filetype_m = 'mma'
 
