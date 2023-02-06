@@ -52,12 +52,12 @@ vimx.g.lightline = {
       { "mode", "paste" },
       { "gitbranch", "readonly", "filename", "modified" },
     },
-    component_function = {
-      gitbranch = "gitbranch#name",
-      filetype = "LightlineFileType",
-      fileformat = "LightlineFormat",
-    },
-  }
+  },
+  component_function = {
+    gitbranch = "gitbranch#name",
+    filetype = "LightlineFileType",
+    fileformat = "LightlineFormat",
+  },
 }
 local group = vimx.create_augroup(
   "vimrc#ligjtline-update-highlight",
