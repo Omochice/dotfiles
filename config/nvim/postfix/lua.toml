@@ -5,3 +5,11 @@ function()
   {{__cursor__}}
 end
 """
+
+[[rules]]
+regex = "\(\S\+\)\.each"
+template = """
+for k, v in ipairs({{__$1__}}) do
+  {{__cursor__}}
+end
+"""
