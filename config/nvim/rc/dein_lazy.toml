@@ -199,6 +199,34 @@ on_event = "InsertEnter"
 
 [[plugins]]
 repo = "prabirshrestha/vim-lsp"
+lua_add = """
+local vimx = require("artemis")
+vimx.g.lsp_settings = {
+	["efm-langserver"] = { allowlist = { "markdown" } },
+	["html-langserver"] = { allowlist = { "html", "htmldjango" } },
+	["taplo-lsp"] = { workspace_config = { formatter = { reorderKeys = false } } },
+}
+if vimx.fn.has("nvim") == 1 then
+	vimx.g.lsp_settings["sumneko-lua-language-server"] = {
+		workspace_config = {
+			Lua = {
+				runtime = {
+					version = "LuaJIT",
+				},
+				diagnostics = {
+					globals = { "vim" },
+				},
+				workspace = {
+					library = vim.api.nvim_get_runtime_file("", true),
+				},
+				telemetry = {
+					enable = false,
+				},
+			},
+		},
+	}
+end
+"""
 hook_add = """
 function! s:is_node_project(path) abort
   if isdirectory(a:path . '/node_modules') || filereadable(a:path . '/package.json')
@@ -232,14 +260,6 @@ nmap <silent> <Space>f <Plug>(lsp-document-format)
 nmap <silent> <Space>d <Plug>(lsp-document-diagnostics)
 nmap <silent> <Space>r <Plug>(lsp-rename)
 
-lua <<EOF
-local vimx = require('artemis')
-vimx.g.lsp_settings = {
-  ['efm-langserver'] = { allowlist = { 'markdown' } },
-  ['html-langserver'] = { allowlist = { 'html', 'htmldjango' } },
-  ['taplo-lsp'] = { workspace_config = { formatter = {reorderKeys = false} } },
-}
-EOF
 let g:lsp_text_edit_enabled = v:true
 let g:lsp_document_code_action_signs_enabled = v:false
 let g:lsp_diagnostics_signs_error = {'text': '🥺'}
@@ -637,6 +657,9 @@ repo = "mattn/vim-sonictemplate"
 on_cmd = ["Template"]
 hook_add = """
 let g:sonictemplate_vim_template_dir = g:config_dir .. '/templates'
+let g:sonic_template_key = v:false
+let g:sonic_template_intelligent_key = v:false
+let g:sonic_template_postfix_key = v:false
 nnoremap <Plug>(fzf-p-prefix)<C-t> <Cmd>call fzf#sonictemplate#run()<CR>
 nnoremap <Plug>(fzf-p-prefix)t <Cmd>call fzf#sonictemplate#run()<CR>
 """
@@ -922,8 +945,10 @@ if = "has('nvim')"
 
 [[plugins]]
 repo = "folke/noice.nvim"
+hook_add = """
+set cmdheight=0
+"""
 lua_source = """
-vim.go.cmdheight = 0
 require("noice").setup({
   -- you can enable a preset for easier configuration
   presets = {
