@@ -365,12 +365,12 @@ vimx.g.quickrun_config = {
     ["outputter/buffer/close_on_empty"] = true,
     ["outputter/buffer/opener"] = "vertical botright new",
     ["hook/time/enable"] = true,
-    runner = vimx.fn.has("nvim") == 1 and "neovim" or "job",
+    runner = vimx.fn.has("nvim") == 1 and "neovim_job" or "job",
   },
   typescript = {
     command = "deno",
     cmdopt = "run --allow-all --unstable",
-    exec = "NO_COLOR1 %c %o %s",
+    exec = "NO_COLOR=1 %c %o %s",
   },
   elm = {
     command = "elm",
