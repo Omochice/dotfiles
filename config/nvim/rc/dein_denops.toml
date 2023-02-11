@@ -112,8 +112,8 @@ nnoremap <buffer> i <Plug>(gin-action-new)
 """
 
 [[plugins]]
-# repo = "Omochice/tataku.vim"
-repo = "~/Toy/tataku.vim"
+repo = "Omochice/tataku.vim"
+# repo = "~/Toy/tataku.vim"
 lua_add = """
 local vimx = require("artemis")
 
@@ -224,23 +224,23 @@ on_func = "tataku#call_recipe"
 on_map = { n = "<Plug>(operator-tataku", x = "<Plug>(operator-tataku" }
 
 [[plugins]]
-repo = "~/Toy/tataku-collector-current_line"
-# repo = "Omochice/tataku-collector-current_line"
+# repo = "~/Toy/tataku-collector-current_line"
+repo = "Omochice/tataku-collector-current_line"
 on_source = "tataku.vim"
 
 [[plugins]]
-repo = "~/Toy/tataku-processor-google_translate"
-# repo = "Omochice/tataku-processor-google_translate"
+# repo = "~/Toy/tataku-processor-google_translate"
+repo = "Omochice/tataku-processor-google_translate"
 on_source = "tataku.vim"
 
 [[plugins]]
-# repo = "Omochice/tataku-processor-intl_segmenter"
-repo = "~/Toy/tataku-processor-intl_segmenter"
+repo = "Omochice/tataku-processor-intl_segmenter"
+# repo = "~/Toy/tataku-processor-intl_segmenter"
 on_source = "tataku.vim"
 
 [[plugins]]
-# repo = "Omochice/tataku-emitter-nvim_floatwin"
-repo = "~/Toy/tataku-emitter-nvim_floatwin"
+repo = "Omochice/tataku-emitter-nvim_floatwin"
+# repo = "~/Toy/tataku-emitter-nvim_floatwin"
 on_source = "tataku.vim"
 
 [[plugins]]
