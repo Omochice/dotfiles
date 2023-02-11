@@ -588,8 +588,8 @@ require("treesitter-context").setup({
 """
 
 [[plugins]]
-# repo = "nvim-treesitter/nvim-tree-docs"
-repo = "~/workspace/nvim-tree-docs"
+repo = "nvim-treesitter/nvim-tree-docs"
+# repo = "~/workspace/nvim-tree-docs"
 on_source = "nvim-treesitter"
 lua_source = """
 require("nvim-treesitter.configs").setup({
