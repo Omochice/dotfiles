@@ -80,23 +80,20 @@ vimx.create_autocmd(
 """
 hook_add = """
 function! LightlineFileType() abort
-  if winwidth(0) > 70
-    if strlen(&filetype) > 0
-      return &filetype . ' ' . nerdfont#find()
-    else
-      return 'no ft'
-    endif
-  else
+  if winwidth(0) <= 70
     return ''
   endif
+  if strlen(&filetype) ==# 0
+    return 'no ft'
+  endif
+  return printf('%s %s', &filetype, nerdfont#find())
 endfunction
 
 function! LightlineFormat() abort
-  if winwidth(0) > 70
-    return &fileformat .  ' ' . nerdfont#fileformat#find()
-  else
+  if winwidth(0) <= 70
     return ''
   endif
+    return printf('%s %s', &fileformat, nerdfont#fileformat#find())
 endfunction
 """
 depends = ["nerdfont.vim", 'vim-gitbranch']
