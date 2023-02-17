@@ -69,6 +69,44 @@ tools:
     format-command: 'goimports'
     format-stdin: true
 
+  eslint-lint: &eslint-lint
+    prefix: eslint
+    lint-command: 'npx --no-install eslint -f unix --stdin --stdin-filename ${INPUT}'
+    lint-ignore-exit-code: true
+    lint-stdin: true
+    root-markers:
+      - package.json
+      - .eslintrc.js
+      - .eslintrc.yaml
+      - .eslintrc.yml
+      - .eslintrc.json
+    commands:
+      - title: 'eslint fix'
+        command: npx
+        arguments:
+          - '--no-install'
+          - 'eslint'
+          - '--fix'
+          - '${INPUT}'
+
+  stylelint-lint: &stylelint-lint
+    prefix: stylelint
+    lint-command: 'npx --no-install stylelint --formatter unix --stdin --stdin-filename ${INPUT}'
+    lint-ignore-exit-code: false
+    lint-stdin: true
+    lint-formats:
+      - '%f:%l:%c: %m [%t%*[a-z]]'
+    root-markers:
+      - package.json
+      - .stylelintrc.json
+    commands:
+      - title: 'stylelint fix'
+        command: npx
+        arguments:
+          - '--no-install'
+          - 'stylelint'
+          - '--fix'
+          - '${INPUT}'
 
 languages:
   json:
@@ -86,9 +124,12 @@ languages:
 
   vue:
     # - <<: *prettier
+    - <<: *eslint-lint
+    - <<: *stylelint-lint
 
   typescript:
-    # - <<: *prettier
+    - <<: *prettier
+    - <<: *eslint-lint
 
   markdown:
     - <<: *textlint
