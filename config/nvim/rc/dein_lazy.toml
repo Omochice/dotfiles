@@ -144,7 +144,7 @@ vimx.g.vsnip_snippet_dir = vimx.g.config_dir .. "/snippets"
 vimx.g.vsnip_filetypes = {
   plaintex = { "tex" },
   objc = { "c", "objc" },
-  vuex = { "javascript", "typescript" },
+  vue = { "javascript", "typescript" },
 }
 """
 hook_source = """
