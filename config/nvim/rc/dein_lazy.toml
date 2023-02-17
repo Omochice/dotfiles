@@ -202,7 +202,7 @@ repo = "prabirshrestha/vim-lsp"
 lua_add = """
 local vimx = require("artemis")
 vimx.g.lsp_settings = {
-	["efm-langserver"] = { allowlist = { "markdown" } },
+	["efm-langserver"] = { disabled = false },
 	["html-langserver"] = { allowlist = { "html", "htmldjango" } },
 	["taplo-lsp"] = { workspace_config = { formatter = { reorderKeys = false } } },
 }
