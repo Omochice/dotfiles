@@ -114,6 +114,7 @@ function! myvimrc#lexima#load_rules() abort
   "" lua
   let l:rules += [
         \ #{ filetype: 'lua', char: '<CR>', at: '^function.*\%#', input: '<CR>', input_after: '<CR>end' },
+        \ #{ filetype: 'lua', char: '<Space>', at: 'if\%#', input: '<Space>', input_after: '<Space>then<CR>end' }
         \ ]
 
   for l:rule in l:rules
