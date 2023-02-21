@@ -43,8 +43,6 @@ Run, komorebic.exe workspace-rule exe Discord.exe 0 1, , Hide
 
 ; Floating rules
 Run, komorebic.exe float-rule title "Control Panel", , Hide
-Run, komorebic.exe float-rule exe "Teams.exe", , Hide
-Run, komorebic.exe float-rule exe "Chrome.exe", , Hide
 Run, komorebic.exe float-rule exe "Explorer.EXE", , Hide
 Run, komorebic.exe float-rule class TaskManagerWindow, , Hide
 
