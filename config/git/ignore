@@ -3,3 +3,5 @@
 **/venv
 **/.DB_Store
 **/__pycache__
+**/momomo
+**/node_modules
