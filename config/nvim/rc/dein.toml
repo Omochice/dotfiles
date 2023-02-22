@@ -49,14 +49,16 @@ vimx.g.lightline = {
   colorscheme = "default",
   active = {
     left = {
-      { "mode", "paste" },
+      { "mode", "paste", "recording" },
       { "gitbranch", "readonly", "filename", "modified" },
     },
   },
   component_function = {
     gitbranch = "gitbranch#name",
+    -- globalにはやしてるのいやなのでlambdaにしたい
     filetype = "LightlineFileType",
     fileformat = "LightlineFormat",
+    recording = "LightlineRecording",
   },
 }
 local group = vimx.create_augroup(
@@ -94,6 +96,14 @@ function! LightlineFormat() abort
     return ''
   endif
     return printf('%s %s', &fileformat, nerdfont#fileformat#find())
+endfunction
+
+function! LightlineRecording() abort
+  let l:reg = reg_recording()
+  if l:reg ==# ''
+    return ''
+  endif
+  return printf(' %s', l:reg)
 endfunction
 """
 depends = ["nerdfont.vim", 'vim-gitbranch']
