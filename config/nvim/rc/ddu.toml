@@ -52,7 +52,7 @@ vimx.keymap.set(
       uiParams = {
         ff = { ignoreEmpty = false }
       },
-      volaitle = true,
+      volatile = true,
     })
   end
 )
