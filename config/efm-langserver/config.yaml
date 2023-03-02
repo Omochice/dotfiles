@@ -41,6 +41,13 @@ tools:
 
   prettier: &prettier
     format-command: 'prettier ${--tab-width:tabWidth}'
+    root-markers:
+      - package.json
+      - .prettierrc
+      - .prettierrc.json
+      - .prettiertc.js
+      - .prettiertc.cjs
+      - .prettiertc.mjs
 
   textlint: &textlint
     lint-command: 'textlint --format unix ${INPUT}'
@@ -80,6 +87,7 @@ tools:
       - .eslintrc.yaml
       - .eslintrc.yml
       - .eslintrc.json
+      - eslint.config.js
     commands:
       - title: 'eslint fix'
         command: npx
@@ -123,9 +131,13 @@ languages:
     # - <<: *fprettify
 
   vue:
-    # - <<: *prettier
+    - <<: *prettier
     - <<: *eslint-lint
     - <<: *stylelint-lint
+
+  javascript:
+    - <<: *prettier
+    - <<: *eslint-lint
 
   typescript:
     - <<: *prettier
