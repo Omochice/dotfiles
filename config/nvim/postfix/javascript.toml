@@ -32,3 +32,12 @@ template = """
 for (const {{__cursor__}} of {{__$1__}}) {
 }
 """
+
+[[rules]]
+regex = "\(\S\+\)\.func"
+template = """
+{{__$1__}}() {
+  {{__cursor__}}
+}
+"""
+
