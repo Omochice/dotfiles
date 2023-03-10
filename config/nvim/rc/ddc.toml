@@ -84,6 +84,10 @@ hook_add = """
 inoremap <expr> <C-y> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<C-y>'
 inoremap <expr> <C-n> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<C-n>'
 inoremap <expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<C-p>'
+augroup myvimrc#pum#internal
+  autocmd!
+  autocmd User myvimrc#close_pum call pum#close()
+augroup END
 """
 hook_source = """
 call pum#set_option("auto_select", v:true)
