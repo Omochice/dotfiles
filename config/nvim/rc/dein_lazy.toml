@@ -845,6 +845,7 @@ on_func = ["toy_postfix#expandable", "toy_postfix#expand"]
 plugins = ["vim-vsnip", "emmet-vim", "toy-postfix.vim"]
 hook_add = """
 function! s:expand_snippets() abort
+  silent! doautocmd <nomodeline> User myvimrc#close_pum
   if toy_postfix#expandable()
     return "\<Cmd>call toy_postfix#expand()\<CR>"
   elseif vsnip#expandable()
