@@ -10,88 +10,74 @@ YELLOW=0xFFF0C66F
 WHITE=0xFFFFFFFF
 SEESROUGH=0x00000000
 
-
-############## BAR ##############
+# bar {{{
 barHeight=27
-sketchybar -m --bar height=$barHeight        \
-                    blur_radius=50   \
-                    position=top     \
-                    y_offset=5 \
-                    padding_left=8  \
-                    padding_right=8 \
-                    icon.height=$barHeight \
-                    label.height=$barHeight \
-                    color=$SEESROUGH
+bar=(
+    height=$barHeight
+    blur_radius=50
+    position=top
+    y_offset=5
+    padding_left=8
+    padding_right=8
+    color=$SEESROUGH
+)
+sketchybar -m --bar "${bar[@]}"
+# }}}
 
-############## GLOBAL DEFAULTS ##############
-sketchybar -m --default updates=when_shown                    \
-                        drawing=on                            \
-                        cache_scripts=on                      \
-                        icon.font="Firge35Nerd Console:Regular:18.0"  \
-                        icon.color=$WHITE                 \
-                        icon.align=center \
-                        label.font="Firge35Nerd Console:Regular:18.0" \
-                        label.color=$WHITE \
-                        label.align=center \
-                        # icon.background.corner_radius=$barHeight \
+# global_default {{{
+default=(
+  updates=when_shown
+  drawing=on
+  icon.font="Firge35Nerd Console:Regular:18.0"
+  icon.color=$WHITE
+  icon.align=center
+  label.font="Firge35Nerd Console:Regular:18.0"
+  label.color=$WHITE
+  label.align=center
+)
+sketchybar -m --default "${default[@]}"
+# }}}
 
-############## SPACE DEFAULTS ##############
-sketchybar -m --default icon.padding_left=8  \
-                        icon.padding_right=8 \
-                        icon.background.color=$RED \
-                        icon.highlight_color=$BLACK \
-                        icon.background.highlight_color=$WHITE \
-                        icon.background.height=$barHeight \
-                        label.drawing=off
+# space default {{{
+# }}}
 
+# spaces {{{
+counter=1
+for spaces in $(yabai --message query --displays | jq -c ".[].spaces"); do
+  for space in $(echo $spaces | jq ".[]"); do
+    space_config=(
+        associated_display="${counter}"
+        associated_space="${space}"
+        click_script="yabai --message space --focus ${space}"
+        icon="${space}"
+        icon.highlight_color="${BLACK}"
+        icon.padding_left=8
+        icon.padding_right=8
+        icon.background.color=$RED
+        icon.background.height=$barHeight
+        label.drawing=off
+    )
+    id="${counter}-${space}"
+    sketchybar  --add space "${id}" e \
+                --set "${id}" "${space_config[@]}"
+  done
+  let counter=$(echo "${counter} + 1" | bc)
+done
+unset counter
+#}}}
 
-############## PRIMARY DISPLAY SPACES ##############
-sketchybar -m --add space main q                              \
-              --set main associated_display=1                    \
-                         associated_space=1                      \
-                         icon=1                                  \
-                         click_script="yabai -m space --focus 1" \
-                                                                 \
-              --add space second e                               \
-              --set second associated_display=1                    \
-                         associated_space=2                      \
-                         icon=2                                  \
-                         click_script="yabai -m space --focus 2" \
-
-############## SECONDARY DISPLAY SPACES ##############
-sketchybar -m --add item foo center \
-              --set foo \
-                        associated_display=2 \
-                        label= \
-                        label.color=$YELLOW \
-                        label.y_offset=1 \
-                        background.padding_right=10 \
-                        icon.drawing=off \
-              \
-              --add space third center                               \
-              --set third associated_display=2                    \
-                             associated_space=3                      \
-                             icon=3 \
-                             click_script="yabai -m space --focus 3" \
-                             \
-            --add space forth center                               \
-            --set forth associated_display=2                    \
-                        associated_space=4                      \
-                        icon=4                                  \
-                        click_script="yabai -m space --focus 4" \
 
 ############## ITEM DEFAULTS ###############
 sketchybar -m --default \
                 label.color=$BLACK \
                 label.padding_left=0 \
-                label.padding_right=0
+                label.padding_right=0 \
                 label.background.height=$barHeight \
                 icon.color=$BLACK \
                 icon.padding_right=0 \
                 icon.padding_left=0 \
                 icon.background.height=$barHeight \
                 icon.background.color=0xFF000000 \
-                icon.font="Firge35Nerd Console:pixelsize=16;3" \
                 background.padding_left=0 \
                 background.padding_right=0 \
 
@@ -361,7 +347,7 @@ sketchybar -m --add item BRD right \
               --set RRD \
                         label= \
                         label.color=$RED \
-                        Label.background.color=$SEESROUGH \
+                        label.background.color=$SEESROUGH \
                         label.y_offset=1 \
                         background.padding_right=10 \
                         icon.drawing=off \
@@ -389,7 +375,7 @@ sketchybar -m --add item BRD right \
               --set HRD \
                         label= \
                         label.color=$WHITE \
-                        Label.background.color=$SEESROUGH \
+                        label.background.color=$SEESROUGH \
                         label.y_offset=1 \
                         background.padding_right=10 \
                         icon.drawing=off \
