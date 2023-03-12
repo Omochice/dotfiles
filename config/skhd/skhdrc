@@ -38,6 +38,9 @@ shift + cmd - 8 : yabai --message window --space 8
 shift + cmd - 9 : yabai --message window --space 9
 
 
+# super+"=" does as same as <C-w>= on vim
+cmd + shift - 0x1B : yabai --message space --balance
+
 cmd - f : yabai --message window --toggle zoom-fullscreen
 cmd + shift - space : yabai --message window --toggle float; yabai --message window --grid 12:12:1:1:10:10
 cmd - space : yabai --message window --toggle split
