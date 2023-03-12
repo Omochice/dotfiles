@@ -5,10 +5,10 @@ cmd - k : yabai --message window --focus north || yabai --message display --focu
 cmd - l : yabai --message window --focus east  || yabai --message display --focus east
 
 # move window
-shift + cmd - h : yabai --message window --warp west
-shift + cmd - j : yabai --message window --warp south
-shift + cmd - k : yabai --message window --warp north
-shift + cmd - l : yabai --message window --warp east
+shift + cmd - h : yabai --message window --swap west || $(yabai -m window --display west; yabai -m display --focus west)
+shift + cmd - j : yabai --message window --swap south || $(yabai -m window --display south; yabai -m display --focus south)
+shift + cmd - k : yabai --message window --swap north || $(yabai -m window --display north; yabai -m display --focus north)
+shift + cmd - l : yabai --message window --swap east || $(yabai -m window --display east; yabai -m display --focus east)
 
 # close window
 shift + cmd - q : yabai --message window --close | yabai --message query --spaces --space | jq ".windows[0]" | xargs yabai --message window --focus
