@@ -11,7 +11,7 @@ WHITE=0xFFFFFFFF
 SEESROUGH=0x00000000
 
 # bar {{{
-barHeight=27
+barHeight=28
 bar=(
     height=$barHeight
     blur_radius=50
@@ -53,14 +53,21 @@ for spaces in $(yabai --message query --displays | jq -c ".[].spaces"); do
         icon.highlight_color="${BLACK}"
         icon.padding_left=8
         icon.padding_right=8
-        icon.background.color=$RED
-        icon.background.height=$barHeight
         label.drawing=off
     )
     id="${counter}-${space}"
     sketchybar  --add space "${id}" e \
                 --set "${id}" "${space_config[@]}"
+    unset id
   done
+  id="space-${counter}"
+  bracket=(
+      background.color="${RED}"
+      background.corner_radius=$(echo "${barHeight}" / 2 | bc)
+      background.height="${barHeight}"
+  )
+  sketchybar --add bracket "${id}" "/${counter}-.*/" \
+             --set "${id}" "${bracket[@]}"
   let counter=$(echo "${counter} + 1" | bc)
 done
 unset counter
