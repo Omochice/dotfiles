@@ -141,6 +141,16 @@ Run, komorebic.exe float-rule class TaskManagerWindow, , Hide
   return
 }
 
+#+q::
+{
+  if IsKomorebiRunning() {
+    Run, komorebic.exe close, , Hide
+  } else {
+    WinClose, A
+  }
+  return
+}
+
 #s::
 Run, komorebic.exe flip-layout horizontal, , Hide
 return
