@@ -13,7 +13,7 @@ function fzf-select
   else
     set preview_cmd "less"
   end
-  set --local files (fd --exclude ".git" --type file | fzf --no-sort --multi --preview="$preview_cmd {}" --height=30%)
+  set --local files (fd --exclude ".git" --type file | fzf --no-sort --tac --multi --preview="$preview_cmd {}" --height=30%)
 
   # if any file selected, fail this function
   if test -z "$files"
