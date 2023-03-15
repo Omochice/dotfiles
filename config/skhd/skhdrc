@@ -11,7 +11,7 @@ shift + cmd - k : if not yabai --message window --swap north; yabai -m window --
 shift + cmd - l : if not yabai --message window --swap east ; yabai -m window --display east ; yabai -m display --focus east ; end
 
 # close window
-shift + cmd - q : yabai --message window --close | yabai --message query --spaces --space | jq ".display" | xargs yabai --message query --windows --space | jq ".[0].id" | xargs yabai --message window --focus
+shift + cmd - q : yabai --message window --close | yabai --message query --spaces --space | jq '.["first-window"]' | xargs yabai --message window --focus
 
 # virtual desktops
 # TODO: if not exists desctop, create it.
