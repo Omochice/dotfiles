@@ -389,3 +389,8 @@ return
   }
   return
 }
+
+#+r::
+{
+  Run, komorebic.exe stop, , Hide
+}
