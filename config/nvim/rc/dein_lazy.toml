@@ -539,7 +539,7 @@ vimx.g["context_filetype#ignore_patterns"] = {
 [[plugins]]
 repo = "nvim-treesitter/nvim-treesitter"
 if = "has('nvim')"
-on_event = "BufRead"
+on_event = ["BufRead", "BufNewFile"]
 hook_post_update = "TSUpdate"
 lua_source = """
 require("nvim-treesitter.configs").setup({
