@@ -170,7 +170,7 @@ return
 return
 
 #+s::
-Run, %PROGRAMFILES(X86)%\Gyazo\Gyazowin.exe, , Hide
+Run, %PROGRAMFILES\(X86\)%\Gyazo\Gyazowin.exe, , Hide
 return
 
 ; Reload ~/komorebi.ahk, super + c
