@@ -168,6 +168,10 @@ return
 #+n::
 return
 
+#+s::
+Run, %PROGRAMFILES(X86)%\Gyazo\Gyazowin.exe, , Hide
+return
+
 ; Reload ~/komorebi.ahk, super + c
 ; NOTE: Maybe this not re-order virtual desktop?
 #+c::
