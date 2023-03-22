@@ -170,8 +170,12 @@ return
 return
 
 #+s::
-Run, %PROGRAMFILES\(X86\)%\Gyazo\Gyazowin.exe, , Hide
-return
+{
+  ; NOTE: bracket is invalid in %%, so move other variable
+  EnvGet, program_files_x86, ProgramFiles(x86)
+  Run, %program_files_x86%\Gyazo\Gyazowin.exe, , Hide
+  return
+}
 
 ; Reload ~/komorebi.ahk, super + c
 ; NOTE: Maybe this not re-order virtual desktop?
