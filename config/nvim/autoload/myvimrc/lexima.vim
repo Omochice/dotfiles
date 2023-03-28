@@ -16,6 +16,7 @@ function! myvimrc#lexima#load_rules() abort
         \ #{filetype: ['javascript', 'typescript', 'vue'], char: '<Space>', at: '^\s*\(}\s*else\s\)\?if\%#', input: '<Space>(', input_after: ')' },
         \ #{filetype: ['javascript', 'typescript', 'vue'], char: '>', at: '(\%#)', input: '<Right><Space>=><Space>' },
         \ #{filetype: ['typescript', 'vue'], char: '<', at: 'Record\%#', input: '<', input_after: '>' },
+        \ #{filetype: ['javascript', 'typescript'], char: '*', at: '^\s*/\%#', input: '*<Space>', input_after: '<Space>*/' },
         \ #{filetype: ['javascript', 'typescript'], char: '*', at: '/*\s\%#', input: '<BS>*<Space>' },
         \ ]
 
