@@ -1009,3 +1009,17 @@ on_event = [
   "CmdlineEnter",
 ]
 on_lua = "notify"
+
+[[plugins]]
+repo = "uga-rosa/ccc.nvim"
+lua_source = """
+local ccc = require("ccc")
+ccc.setup({
+  highlighter = {
+    auto_enable = true,
+    lsp = true,
+  },
+  disable_default_mappings = true,
+})
+"""
+on_event = ["BufRead", "BufNewFile"]
