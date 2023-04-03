@@ -3,18 +3,31 @@ repo = "Shougo/ddu.vim"
 depends = "denops.vim"
 lua_add = """
 local vimx = require("artemis")
+local prefix = "<Plug>(ddu-prefix)"
 
-vimx.keymap.set("n", "<C-p>", "<Plug>(ddu-prefix)")
--- artemis.dict({})がarrayを返してきてるっぽいのでー
+vimx.keymap.set("n", "<C-p>", prefix)
 vimx.keymap.set(
   "n",
-  "<Plug>(ddu-prefix)<C-p>",
-  "<Cmd>call ddu#start({})<CR>"
+  prefix .. "<C-p>",
+  function()
+    vimx.fn.ddu.start({
+      ui = "ff",
+      sources = { {
+        name = "file_rec",
+        params = {
+          ignoredDirectories = {
+            ".git",
+            "node_modules",
+          }
+        }
+      } }
+    })
+  end
 )
 
 vimx.keymap.set(
   "n",
-  "<Plug>(ddu-prefix)<C-w>",
+  prefix .. "<C-w>",
   function()
     vimx.fn.ddu.start({
       ui = "ff",
@@ -28,7 +41,7 @@ vimx.keymap.set(
 
 vimx.keymap.set(
   "n",
-  "<Plug>(ddu-prefix)<C-b>",
+  prefix .. "<C-b>",
   function()
     vimx.fn.ddu.start({
       ui = "ff",
@@ -41,7 +54,7 @@ vimx.keymap.set(
 
 vimx.keymap.set(
   "n",
-  "<Plug>(ddu-prefix)<C-l>",
+  prefix .. "<C-l>",
   function()
     vimx.fn.ddu.start({
       ui = "ff",
@@ -53,6 +66,30 @@ vimx.keymap.set(
         ff = { ignoreEmpty = false }
       },
       volatile = true,
+    })
+  end
+)
+
+vimx.keymap.set(
+  "n",
+  prefix .. "<C-t>",
+  function()
+    local id = vimx.fn.denops.callback.register(
+      function(s)
+        vimx.fn.sonictemplate.apply(s, "n")
+      end,
+      { once = true }
+    )
+    vimx.fn.ddu.start({
+      sources = {
+        {
+          name = "custom-list",
+          params = {
+            texts = vimx.fn.sonictemplate.complete("", "", 0),
+            callbackId = id,
+          }
+        }
+      }
     })
   end
 )
@@ -86,13 +123,13 @@ vimx.create_command(
 
 vimx.keymap.set(
   "n",
-  "<Plug>(ddu-prefix)<C-g>",
+  prefix .. "<C-g>",
   ":<C-u>DduGrep "
 )
 
 vimx.keymap.set(
   "n",
-  "<Plug>(ddu-prefix)g",
+  prefix .. "g",
   function()
     grepWrapper(vimx.fn.expand("<cword>"))
   end
@@ -150,6 +187,9 @@ local config = {
     file = {
       defaultAction = "open"
     },
+    ["custom-list"] = {
+      defaultAction = "callback",
+    },
   },
   uiParams = {
     ff = {
@@ -159,7 +199,8 @@ local config = {
       filterFloatingPosition = "top",
       prompt = ">",
       previewFloating = true,
-      previewVertical = true,
+      previewSplit = "vertical",
+      autoAction = { name = "preview" },
       startFilter = true,
       floatingBorder = {
         "┌", "─", "┐", "│", "┘", "─", "└", "│",
@@ -187,7 +228,6 @@ local function reset_size()
   config.uiParams.ff.previewRow = win_row
   config.uiParams.ff.previewheight = win_height
   vimx.fn.ddu.custom.patch_global(config)
-  vimx.g.hogehoge = config
 end
 
 reset_size()
@@ -205,62 +245,113 @@ vimx.create_autocmd(
 on_func = ["ddu#start"]
 on_map = { n = "<Plug>(ddu" }
 
-# \     autoAction: #{ name: 'preview' },
-
 [[plugins]]
 repo = "Shougo/ddu-ui-ff"
 on_source = "ddu.vim"
-[plugins.ftplugin]
-ddu-ff = """
-setlocal cursorline
-cnoreabbrev <buffer> q call ddu#ui#ff#do_action('quit')
-nnoremap <buffer> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
-nnoremap <buffer><nowait> T <Cmd>call ddu#ui#ff#do_action('itemAction', #{ name: 'open', params: #{ command: 'tabedit' } })<CR>
-nnoremap <buffer><nowait> V <Cmd>call ddu#ui#ff#do_action('itemAction', #{ name: 'open', params: #{ command: 'vsplit' } })<CR>
-nnoremap <buffer><nowait> S <Cmd>call ddu#ui#ff#do_action('itemAction', #{ name: 'open', params: #{ command: 'split' } })<CR>
-nnoremap <buffer> <Space> <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
-nnoremap <buffer><nowait> i <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
-nnoremap <buffer><nowait> q <Cmd>call ddu#ui#ff#do_action('quit')<CR>
-nnoremap <buffer><nowait> p <Cmd>call ddu#ui#ff#do_action('preview')<CR>
-nnoremap <buffer> <C-w><C-w> <C-w><C-w>
-" nnoremap <buffer> <C-o> <Cmd>call ddu#ui#ff#do_action('test')<CR>
-"""
-ddu-ff-filter = """
-cnoreabbrev <buffer> q call ddu#ui#ff#do_action('quit')
-inoremap <buffer><nowait> <C-o> <Cmd>call ddu#ui#ff#execute('call ddu#ui#ff#do_action("preview")')<CR>
-inoremap <buffer> <CR> <Cmd>call ddu#ui#ff#execute(
-\ 'call ddu#ui#ff#do_action(
-\   "itemAction",
-\   #{ name: "open", params: #{ command: "edit" }, }
-\ )')<CR>
-" NOTE: gt is needed
-inoremap <buffer> <C-t> <Cmd>call ddu#ui#ff#execute(
-\ 'call ddu#ui#ff#do_action(
-\   "itemAction",
-\   #{ name: "open", params: #{ command: "tabedit" }, }
-\ )')<CR>gtgTgt
-inoremap <buffer> <C-v> <Cmd>call ddu#ui#ff#execute(
-\ 'call ddu#ui#ff#do_action(
-\   "itemAction",
-\   #{ name: "open", params: #{ command: "vsplit" }, }
-\ )')<CR>
-inoremap <buffer> <C-s> <Cmd>call ddu#ui#ff#execute(
-\ 'call ddu#ui#ff#do_action(
-\   "itemAction",
-\   #{ name: "open", params: #{ command: "split" }, }
-\ )')<CR>
-inoremap <buffer> <C-q> <Cmd>call ddu#ui#ff#execute(
-\ 'call ddu#ui#ff#do_action(
-\   "itemAction",
-\   #{ name: "quickfix", }
-\ )')<CR>
-nnoremap <buffer> <CR> <Cmd>call ddu#ui#ff#close()<CR>
-nnoremap <buffer><nowait> q <Cmd>call ddu#ui#ff#close()<CR>
-inoremap <buffer> <C-n> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")+1,0)<Bar>redraw')<CR>
-inoremap <buffer> <C-p> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")-1,0)<Bar>redraw')<CR>
-nnoremap <buffer> <C-n> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")+1,0)<Bar>redraw')<CR>
-nnoremap <buffer> <C-p> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")-1,0)<Bar>redraw')<CR>
-nnoremap <buffer> <C-w><C-w> <C-w><C-w>
+lua_add = """
+local vimx = require("artemis")
+local opts = { buffer = true, nowait = true }
+local group = vimx.create_augroup("vimrc#ddu_keymap", { clear = true })
+local resets = { { key = "<C-w><C-w>" } }
+vimx.create_autocmd(
+  "FileType",
+  {
+    group = group,
+    pattern = "ddu-ff",
+    callback = function()
+      vimx.bo.cursorline = true
+      vimx.cmd([[cnoreabbrev <buffer> q call ddu#ui#do_action('quit')]])
+      local mappings = {
+        { key = "<CR>", action = "itemAction" },
+        { key = "T", action = "itemAction", opts = { name = "open", params = { command = "tabedit" } } },
+        { key = "V", action = "itemAction", opts = { name = "open", params = { command = "vsplit" } } },
+        { key = "S", action = "itemAction", opts = { name = "open", params = { command = "split" } } },
+        { key = "<Space>", action = "toggleSelectItem" },
+        { key = "i", action = "openFilterWindow" },
+        { key = "q", action = "quit" },
+        { key = "p", action = "preview" },
+      }
+      for _, mapping in ipairs(mappings) do
+        vimx.keymap.set(
+          "n",
+          mapping.key,
+          function()
+            vimx.fn.ddu.ui.do_action(mapping.action, mapping.opts)
+          end
+        )
+      end
+      for _, mapping in ipairs(resets) do
+        vimx.keymap.set("n", mapping.key, mapping.key, opts)
+      end
+    end
+  }
+)
+vimx.create_autocmd(
+  "FileType",
+  {
+    group = group,
+    pattern = "ddu-ff-filter",
+    callback = function()
+      vimx.cmd([[cnoreabbrev <buffer> q call ddu#ui#do_action('quit')]])
+      -- mapping of "do_action"
+      local mode_mappings = {
+        i = {
+          { key = "<CR>", actions = {{ action = "itemAction" }} },
+          { key = "<C-t>", actions = {{ action = "itemAction", opts = { name = "open", params = { command = "tabedit" } } }} },
+          { key = "<C-v>", actions = {{ action = "itemAction", opts = { name = "open", params = { command = "vsplit" } } }} },
+          { key = "<C-s>", actions = {{ action = "itemAction", opts = { name = "open", params = { command = "split" } } }} },
+          { key = "<C-q>", actions = {{ action = "itemAction", opts = { name = "quickfix" } }} },
+          { key = "<Space>", actions = {{ action = "toggleSelectItem", opts = { name = "quickfix" } }} },
+          { key = "<C-g>", actions = {
+              { action = "clearSelectAllItems" },
+              { action = "toggleAllItems" },
+              { action = "itemAction", opts = { name = "quickfix" } },
+          } },
+          { key = "<C-o>", actions = {{ action = "preview" }} },
+        },
+        n = {
+          { key = "<CR>", actions = {{ action = "closeFilterWindow" }} }
+        }
+      }
+      for mode, mappings in pairs(mode_mappings) do
+        for _, mapping in ipairs(mappings) do
+          vimx.keymap.set(
+            mode,
+            mapping.key,
+            function()
+              for _, act in ipairs(mapping.actions) do
+                vimx.fn.ddu.ui.do_action(act.action, act.opts)
+              end
+            end,
+            opts
+          )
+        end
+      end
+      -- mapping of "execute"
+      local executes = {
+        { key = "<C-n>", executes = { "call cursor(line('.')+1,0)", "redraw" } },
+        { key = "<C-p>", executes = { "call cursor(line('.')-1,0)", "redraw" } },
+      }
+      for _, mode in ipairs({ "n", "i" }) do
+        for _, execute in ipairs(executes) do
+          vimx.keymap.set(
+            mode,
+            execute.key,
+            function()
+              for _, cmd in ipairs(execute.executes) do
+                vimx.fn.ddu.ui.ff.execute(cmd)
+              end
+            end,
+            opts
+          )
+        end
+      end
+      for _, mapping in ipairs(resets) do
+        vimx.keymap.set("n", mapping.key, mapping.key, opts)
+      end
+    end
+  }
+)
 """
 
 [[plugins]]
@@ -282,6 +373,10 @@ on_func = ["mr#mru#list", "mr#mrr#list", "mr#mrw#list"]
 
 [[plugins]]
 repo = "shun/ddu-source-buffer"
+on_source = "ddu.vim"
+
+[[plugins]]
+repo = "liquidz/ddu-source-custom-list"
 on_source = "ddu.vim"
 
 [[plugins]]
