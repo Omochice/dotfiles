@@ -247,110 +247,78 @@ on_map = { n = "<Plug>(ddu" }
 [[plugins]]
 repo = "Shougo/ddu-ui-ff"
 on_source = "ddu.vim"
-lua_add = """
-local vimx = require("artemis")
-local opts = { buffer = true, nowait = true }
-local group = vimx.create_augroup("vimrc#ddu_keymap", { clear = true })
-local resets = { { key = "<C-w><C-w>" } }
-vimx.create_autocmd(
-  "FileType",
-  {
-    group = group,
-    pattern = "ddu-ff",
-    callback = function()
-      vimx.bo.cursorline = true
-      vimx.cmd([[cnoreabbrev <buffer> q call ddu#ui#do_action('quit')]])
-      local mappings = {
-        { key = "<CR>", action = "itemAction" },
-        { key = "T", action = "itemAction", opts = { name = "open", params = { command = "tabedit" } } },
-        { key = "V", action = "itemAction", opts = { name = "open", params = { command = "vsplit" } } },
-        { key = "S", action = "itemAction", opts = { name = "open", params = { command = "split" } } },
-        { key = "<Space>", action = "toggleSelectItem" },
-        { key = "i", action = "openFilterWindow" },
-        { key = "q", action = "quit" },
-        { key = "p", action = "preview" },
-      }
-      for _, mapping in ipairs(mappings) do
-        vimx.keymap.set(
-          "n",
-          mapping.key,
-          function()
-            vimx.fn.ddu.ui.do_action(mapping.action, mapping.opts)
-          end
-        )
-      end
-      for _, mapping in ipairs(resets) do
-        vimx.keymap.set("n", mapping.key, mapping.key, opts)
-      end
-    end
-  }
-)
-vimx.create_autocmd(
-  "FileType",
-  {
-    group = group,
-    pattern = "ddu-ff-filter",
-    callback = function()
-      vimx.cmd([[cnoreabbrev <buffer> q call ddu#ui#do_action('quit')]])
-      -- mapping of "do_action"
-      local mode_mappings = {
-        i = {
-          { key = "<CR>", actions = {{ action = "itemAction" }} },
-          { key = "<C-t>", actions = {{ action = "itemAction", opts = { name = "open", params = { command = "tabedit" } } }} },
-          { key = "<C-v>", actions = {{ action = "itemAction", opts = { name = "open", params = { command = "vsplit" } } }} },
-          { key = "<C-s>", actions = {{ action = "itemAction", opts = { name = "open", params = { command = "split" } } }} },
-          { key = "<C-q>", actions = {{ action = "itemAction", opts = { name = "quickfix" } }} },
-          { key = "<Space>", actions = {{ action = "toggleSelectItem", opts = { name = "quickfix" } }} },
-          { key = "<C-g>", actions = {
-              { action = "clearSelectAllItems" },
-              { action = "toggleAllItems" },
-              { action = "itemAction", opts = { name = "quickfix" } },
-          } },
-          { key = "<C-o>", actions = {{ action = "preview" }} },
-        },
-        n = {
-          { key = "<CR>", actions = {{ action = "closeFilterWindow" }} }
-        }
-      }
-      for mode, mappings in pairs(mode_mappings) do
-        for _, mapping in ipairs(mappings) do
-          vimx.keymap.set(
-            mode,
-            mapping.key,
-            function()
-              for _, act in ipairs(mapping.actions) do
-                vimx.fn.ddu.ui.do_action(act.action, act.opts)
-              end
-            end,
-            opts
-          )
-        end
-      end
-      -- mapping of "execute"
-      local executes = {
-        { key = "<C-n>", executes = { "call cursor(line('.')+1,0)", "redraw" } },
-        { key = "<C-p>", executes = { "call cursor(line('.')-1,0)", "redraw" } },
-      }
-      for _, mode in ipairs({ "n", "i" }) do
-        for _, execute in ipairs(executes) do
-          vimx.keymap.set(
-            mode,
-            execute.key,
-            function()
-              for _, cmd in ipairs(execute.executes) do
-                vimx.fn.ddu.ui.ff.execute(cmd)
-              end
-            end,
-            opts
-          )
-        end
-      end
-      for _, mapping in ipairs(resets) do
-        vimx.keymap.set("n", mapping.key, mapping.key, opts)
-      end
-    end
-  }
-)
+[plugins.ftplugin]
+ddu-ff = """
+setlocal cursorline
+cnoreabbrev <buffer> q call ddu#ui#do_action('quit')
+nnoremap <C-w><C-w> <C-w><C-w>
+" mapping for normal-mode
+let mappings = [
+  \ #{ key: '<CR>', action: 'itemAction' },
+  \ #{ key: 'T', action: 'itemAction', opts: #{ name: 'open', params: #{ command: 'tabedit' } } },
+  \ #{ key: 'V', action: 'itemAction', opts: #{ name: 'open', params: #{ command: 'vsplit' } } },
+  \ #{ key: 'S', action: 'itemAction', opts: #{ name: 'open', params: #{ command: 'split' } } },
+  \ #{ key: 'Q', action: 'itemAction', opts: #{ name: 'quickfix' } },
+  \ #{ key: '<Space>', action: 'toggleSelectItem' },
+  \ #{ key: 'q', action: 'quit' },
+  \ #{ key: 'p', action: 'preview' },
+  \ ]
+for mapping in mappings
+  execute printf('nnoremap <buffer><nowait> %s <Cmd>call ddu#ui#do_action("%s", %s)<CR>',
+  \ mapping.key, mapping.action, get(mapping, 'opts', {})
+  \ )
+endfor
+"""
+ddu-ff-filter = """
+cnoreabbrev <buffer> q call ddu#ui#do_action('quit')
+nnoremap <C-w><C-w> <C-w><C-w>
+let mode_mappings = #{
+  \ inore: [
+  \   #{ key: '<CR>', actions: [#{ action: 'itemAction' }] },
+  \   #{ key: '<C-t>', actions: [#{ action: 'itemAction', opts: #{ name: 'open', params: #{ command: 'tabedit' } } } ] },
+  \   #{ key: '<C-v>', actions: [#{ action: 'itemAction', opts: #{ name: 'open', params: #{ command: 'vsplit' } } } ] },
+  \   #{ key: '<C-s>', actions: [#{ action: 'itemAction', opts: #{ name: 'open', params: #{ command: 'split' } } } ] },
+  \   #{ key: '<C-q>', actions: [#{ action: 'itemAction', opts: #{ name: 'quickfix' } } ] },
+  \   #{ key: '<Space>', actions: [#{ action: 'toggleSelectItem' } ] },
+  \   #{ key: '<C-g>', actions: [
+  \     #{ action: 'clearSelectAllItems' },
+  \     #{ action: 'toggleAllItems' },
+  \     #{ action: 'itemAction', opts: #{ name: 'quickfix' } },
+  \   ] },
+  \   #{ key: '<C-o>', actions: [#{ action: 'preview' }] },
+  \ ],
+  \ nnore: [
+  \  #{ key: '<CR>', actions: [#{ action: 'closeFilterWindow' }] },
+  \ ],
+  \ }
+for mode in keys(mode_mappings)
+  let mappings = mode_mappings[mode]
+  for mapping in mappings
+    execute printf(
+      \ '%smap <buffer><nowait> %s %s',
+      \ mode,
+      \ mapping.key,
+      \ mapping.actions
+      \  ->map({-> printf('<Cmd>call ddu#ui#do_action("%s", %s)<CR>', v:val.action, get(v:val, 'opts', {}))})
+      \  ->join('')
+      \ )
+  endfor
+endfor
+
+let executes = [
+\ #{ key: '<C-n>', executes: ['call cursor(line(".")+1,0)', 'redraw'] },
+\ #{ key: '<C-p>', executes: ['call cursor(line(".")-1,0)', 'redraw'] },
+\ ]
+for mode in ['nnore', 'inore']
+  for execute in executes
+    execute printf(
+      \ '%smap <buffer><nowait> %s <Cmd>call ddu#ui#ff#execute("%s")<CR>',
+      \ mode,
+      \ execute.key,
+      \ execute.executes->join('<Bar>')->escape('"')
+      \ )
+  endfor
+endfor
 """
 
 [[plugins]]
