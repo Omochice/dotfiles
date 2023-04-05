@@ -252,73 +252,34 @@ ddu-ff = """
 setlocal cursorline
 cnoreabbrev <buffer> q call ddu#ui#do_action('quit')
 nnoremap <C-w><C-w> <C-w><C-w>
-" mapping for normal-mode
-let mappings = [
-  \ #{ key: '<CR>', action: 'itemAction' },
-  \ #{ key: 'T', action: 'itemAction', opts: #{ name: 'open', params: #{ command: 'tabedit' } } },
-  \ #{ key: 'V', action: 'itemAction', opts: #{ name: 'open', params: #{ command: 'vsplit' } } },
-  \ #{ key: 'S', action: 'itemAction', opts: #{ name: 'open', params: #{ command: 'split' } } },
-  \ #{ key: 'Q', action: 'itemAction', opts: #{ name: 'quickfix' } },
-  \ #{ key: '<Space>', action: 'toggleSelectItem' },
-  \ #{ key: 'q', action: 'quit' },
-  \ #{ key: 'p', action: 'preview' },
-  \ ]
-for mapping in mappings
-  execute printf('nnoremap <buffer><nowait> %s <Cmd>call ddu#ui#do_action("%s", %s)<CR>',
-  \ mapping.key, mapping.action, get(mapping, 'opts', {})
-  \ )
-endfor
+
+nnoremap <buffer><nowait> <CR> <Cmd>call ddu#ui#do_action('itemAction')<CR>
+nnoremap <buffer><nowait> T <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'open', params: #{ command: 'tabedit' } })<CR>
+nnoremap <buffer><nowait> V <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'open', params: #{ command: 'vsplit' } })<CR>
+nnoremap <buffer><nowait> S <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'open', params: #{ command: 'split' } })<CR>
+nnoremap <buffer><nowait> Q <Cmd>call ddu#ui#do_action('itemACtion', #{ name: 'quickfix' })<CR>
+nnoremap <buffer><nowait> <Space> <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
+nnoremap <buffer><nowait> p <Cmd>call ddu#ui#do_action('preview')<CR>
+nnoremap <buffer><nowait> q <Cmd>call ddu#ui#do_action('quit')<CR>
 """
 ddu-ff-filter = """
 cnoreabbrev <buffer> q call ddu#ui#do_action('quit')
-nnoremap <C-w><C-w> <C-w><C-w>
-let mode_mappings = #{
-  \ inore: [
-  \   #{ key: '<CR>', actions: [#{ action: 'itemAction' }] },
-  \   #{ key: '<C-t>', actions: [#{ action: 'itemAction', opts: #{ name: 'open', params: #{ command: 'tabedit' } } } ] },
-  \   #{ key: '<C-v>', actions: [#{ action: 'itemAction', opts: #{ name: 'open', params: #{ command: 'vsplit' } } } ] },
-  \   #{ key: '<C-s>', actions: [#{ action: 'itemAction', opts: #{ name: 'open', params: #{ command: 'split' } } } ] },
-  \   #{ key: '<C-q>', actions: [#{ action: 'itemAction', opts: #{ name: 'quickfix' } } ] },
-  \   #{ key: '<Space>', actions: [#{ action: 'toggleSelectItem' } ] },
-  \   #{ key: '<C-g>', actions: [
-  \     #{ action: 'clearSelectAllItems' },
-  \     #{ action: 'toggleAllItems' },
-  \     #{ action: 'itemAction', opts: #{ name: 'quickfix' } },
-  \   ] },
-  \   #{ key: '<C-o>', actions: [#{ action: 'preview' }] },
-  \ ],
-  \ nnore: [
-  \  #{ key: '<CR>', actions: [#{ action: 'closeFilterWindow' }] },
-  \ ],
-  \ }
-for mode in keys(mode_mappings)
-  let mappings = mode_mappings[mode]
-  for mapping in mappings
-    execute printf(
-      \ '%smap <buffer><nowait> %s %s',
-      \ mode,
-      \ mapping.key,
-      \ mapping.actions
-      \  ->map({-> printf('<Cmd>call ddu#ui#do_action("%s", %s)<CR>', v:val.action, get(v:val, 'opts', {}))})
-      \  ->join('')
-      \ )
-  endfor
-endfor
+nnoremap <buffer><nowait> <C-w><C-w> <C-w><C-w>
 
-let executes = [
-\ #{ key: '<C-n>', executes: ['call cursor(line(".")+1,0)', 'redraw'] },
-\ #{ key: '<C-p>', executes: ['call cursor(line(".")-1,0)', 'redraw'] },
-\ ]
-for mode in ['nnore', 'inore']
-  for execute in executes
-    execute printf(
-      \ '%smap <buffer><nowait> %s <Cmd>call ddu#ui#ff#execute("%s")<CR>',
-      \ mode,
-      \ execute.key,
-      \ execute.executes->join('<Bar>')->escape('"')
-      \ )
-  endfor
-endfor
+inoremap <buffer><nowait> <CR> <Cmd>call ddu#ui#do_action('itemAction')<CR>
+inoremap <buffer><nowait> <C-t> <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'open', params: #{ command: 'tabedit' } })<CR>
+inoremap <buffer><nowait> <C-v> <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'open', params: #{ command: 'vsplit' } })<CR>
+inoremap <buffer><nowait> <C-s> <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'open', params: #{ command: 'split' } })<CR>
+inoremap <buffer><nowait> <C-q> <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'quickfix' })<CR>
+inoremap <buffer><nowait> <Space> <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
+inoremap <buffer><nowait> <C-g> <Cmd>call ddu#ui#multi_actions([['clearSelectAllItems'], ['toggleAllItems'], ['itemAction', #{ name: 'quickfix' }]])<CR>
+inoremap <buffer><nowait> <C-o> <Cmd>call ddu#ui#do_action('preview')<CR>
+nnoremap <buffer><nowait> <CR> <Cmd>call ddu#ui#do_action('closeFilterWindow')<CR>
+
+nnoremap <buffer><nowait> <C-n> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")+1,0)<Bar>redraw')<CR>
+nnoremap <buffer><nowait> <C-p> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")-1,0)<Bar>redraw')<CR>
+inoremap <buffer><nowait> <C-n> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")+1,0)<Bar>redraw')<CR>
+inoremap <buffer><nowait> <C-p> <Cmd>call ddu#ui#ff#execute('call cursor(line(".")-1,0)<Bar>redraw')<CR>
 """
 
 [[plugins]]
