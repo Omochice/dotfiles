@@ -1,0 +1,11 @@
+{
+  "debug-log": {
+    "prefix": "debug",
+    "body": [
+      "final String _c = new Throwable().getStackTrace()[0];",
+      "Log.d(\"momomo\", String.format(\"--> %s$1\", _c))",
+      "Log.d(\"momomo\", String.format(\"<-- %s$1\", _c))"
+    ],
+    "description": "debug-log"
+  }
+}
