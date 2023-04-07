@@ -9,4 +9,4 @@ if [[ "$download" = "null" ]] || [[ "$upload" = "null" ]] ; then
     exit 1
 fi
 
-sketchybar -m --set $NAME label="${download} Mbps/${upload} Mbps"
+sketchybar -m --set $NAME label="${download}Mbps/${upload}Mbps"
