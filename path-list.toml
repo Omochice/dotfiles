@@ -17,12 +17,6 @@ path = "~/.deno/bin"
 path = "~/.yarn/bin"
 
 [[paths]]
-path = "~/.asdf/bin"
-
-[[paths]]
-path = "~/Tools/asdf/bin"
-
-[[paths]]
 path = "~/.cargo/bin"
 
 [[paths]]
@@ -48,6 +42,11 @@ to = "EDITOR"
 if_executable = "nvim"
 
 [[environments]]
+from = "fish"
+to = "SHELL"
+if_executable = "fish"
+
+[[environments]]
 from = "~/.config/starship/config.toml"
 to = "STARSHIP_CONFIG"
 
@@ -67,12 +66,12 @@ to = "PNPM_HOME"
 if_exists = "~/.local/share/pnpm"
 
 [[aliases]]
-from = "osascript -e 'tell app \"loginwindow\" to «event aevtrsdn»'"
+from = "sudo shutdown -h now"
 to = "shutdown"
 os = "darwin"
 
 [[aliases]]
-from = "osascript -e 'tell app \"loginwindow\" to «event aevtrrst»'"
+from = "sudo reboot"
 to = "reboot"
 os = "darwin"
 
@@ -194,6 +193,10 @@ only = "fish"
 
 [[sources]]
 path = "~/.config/fish/abbr.fish"
+only = "fish"
+
+[[sources]]
+path = "(brew --prefix asdf)/libexec/asdf.fish"
 only = "fish"
 
 [[executes]]
