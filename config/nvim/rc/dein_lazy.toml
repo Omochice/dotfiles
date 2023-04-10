@@ -167,15 +167,13 @@ let g:lexima_enable_endwise_rules = v:true
 let g:lexima_enable_newline_rules = v:true
 let g:lexima_disable_on_nofile = v:false
 let g:lexima_ctrlh_as_backspace = v:true
-"""
-hook_source = """
-call myvimrc#lexima#load_rules()
 if dein#tap('pum.vim')
   imap <silent><expr> <CR> pum#visible()
         \ ? pum#get_pos().size ==# 1 ? '<CR>' : '<Cmd>call pum#map#confirm()<CR>'
         \ : lexima#expand('<LT>CR>', 'i')
 endif
 """
+hooks_file = "$DEIN_RC_DIR/hooks/lexima.vim"
 on_event = "InsertEnter"
 
 # Below not work
