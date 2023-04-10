@@ -1,5 +1,6 @@
 let s:rc_dir = fnamemodify(expand('<sfile>'), ':p:h')
 let g:config_dir = fnamemodify(s:rc_dir, ':h')
+let $DEIN_RC_DIR = s:rc_dir
 
 " dein installation check {{{
 let $CACHE = expand('~/.cache')
