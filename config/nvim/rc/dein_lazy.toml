@@ -173,7 +173,7 @@ if dein#tap('pum.vim')
         \ : lexima#expand('<LT>CR>', 'i')
 endif
 """
-hooks_file = "$DEIN_RC_DIR/hooks/lexima.vim"
+hooks_file = "$DEIN_RC_DIR/hooks/lexima.lua"
 on_event = "InsertEnter"
 
 # Below not work
