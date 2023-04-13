@@ -56,8 +56,6 @@ local rules = {
     input = [[<CR>\1<Space>]],
     with_submatch = true,
   },
-  { filetype = ft.md, char = [[<Tab>]], at = [[^\s*[-+\*]\s.*\%#]], input = [[<C-t>]] },
-  { filetype = ft.md, char = [[<S-Tab>]], at = [[^\s*[-+\*]\s.*\%#]], input = [[<C-d>]] },
   { filetype = ft.md, char = char.bs, at = [[^\s*[-+\*]\s\%#]], input = [[<BS><BS>]] },
   { filetype = ft.md, char = char.cr, at = [[^\s*[-+\*]\s\w.*\%#]], input = [[<CR>-<Space>]] },
   { filetype = ft.md, char = "x", at = [=[\[ \%# \]]=], input = [[<BS>x<Delete>]] },
