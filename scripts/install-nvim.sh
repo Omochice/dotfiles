@@ -7,6 +7,7 @@ make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX=~/.local/nvim install
 # Remove default plugins
 if [ -d ~/.local/nvim/share/nvim/runtime/plugin ]; then
     rm ~/.local/nvim/share/nvim/runtime/plugin/gzip.vim
+    rm ~/.local/nvim/share/nvim/runtime/plugin/health.vim
     rm ~/.local/nvim/share/nvim/runtime/plugin/matchit.vim
     rm ~/.local/nvim/share/nvim/runtime/plugin/matchparen.vim
     rm ~/.local/nvim/share/nvim/runtime/plugin/netrwPlugin.vim
