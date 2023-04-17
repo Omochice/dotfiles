@@ -29,6 +29,7 @@ local rules = {
   { char = char.cr, at = [["""\%#"""]], input = char.cr, input_after = char.cr },
   { char = char.bs, at = [[<\%#>]], input = char.bs, delete = 1 },
   { char = "　", at = [[\%#]], input = " " },
+  { char = char.bs, at = [[=\%#=]], input = char.bs, delete = 1 },
   -- js/ts
   { filetype = ft.js, char = char.sp, at = [[^\s*\(}\s*else\s\)\?if\%#]], input = [[<Space>(]], input_after = ")" },
   { filetype = ft.js, char = ">", at = [[(\%#)]], input = [[<Right><Space>=><Space>]] },
@@ -44,11 +45,8 @@ local rules = {
   { filetype = ft.md, char = char.bs, at = [[^#\s\%#[^#]\?]], input = [[<BS><BS>]] },
   { filetype = ft.md, char = char.bs, at = [[^#\{2,}\s\%#[^#]\?]], input = [[<BS><BS><Space>]] },
   { filetype = ft.md, char = "-", at = [[^\s*\%#]], input = [[-<Space>]] },
-  { filetype = ft.md, char = "-", at = [[^-\s\%#]], input = [[<BS>-]] },
   { filetype = ft.md, char = "+", at = [[^\s*\%#]], input = [[+<Space>]] },
-  { filetype = ft.md, char = "+", at = [[^+\s\%#]], input = [[<BS>+]] },
   { filetype = ft.md, char = "*", at = [[^\s*\%#]], input = [[*<Space>]] },
-  { filetype = ft.md, char = "+", at = [[^*\s\%#]], input = [[<BS>*]] },
   {
     filetype = ft.md,
     char = char.cr,
@@ -58,12 +56,13 @@ local rules = {
   },
   { filetype = ft.md, char = char.bs, at = [[^\s*[-+\*]\s\%#]], input = [[<BS><BS>]] },
   { filetype = ft.md, char = char.cr, at = [[^\s*[-+\*]\s\w.*\%#]], input = [[<CR>-<Space>]] },
-  { filetype = ft.md, char = "x", at = [=[\[ \%# \]]=], input = [[<BS>x<Delete>]] },
   { filetype = ft.md, char = "~", at = [[\~\%#[^\~]\?]], input = "~", input_after = "~~" },
   { filetype = ft.md, char = char.bs, at = [[\~\%#\~]], input = char.bs, delete = 1 },
   { filetype = ft.md, char = char.sp, at = [[^\s*-\s\+\%#]], input = "" },
   { filetype = ft.md, char = ":", at = [[^\%#]], input = ":", input_after = ":" },
   { filetype = ft.md, char = char.bs, at = [[^:\%#:]], input = char.bs, delete = 1 },
+  -- checkbox on markdown
+  { filetype = ft.md, char = char.sp, at = [=[^\s*[-+\*]\s\+\[\%#\]]=], input = [[<Space><Right><Space>]] },
   -- vim
   { filetype = ft.md, char = char.cr, at = [[[\[{]\s\?\%#[\]}]$]], input = [[<CR>\<Space>]] },
   { filetype = ft.md, char = char.cr, at = [[^\s*\\.\+\%#]], input = [[<CR>\<Space>]] },
@@ -131,6 +130,7 @@ local rules = {
     input = char.cr,
     input_after = [[<CR>end]],
   },
+  { filetype = ft.lua, char = "=", at = [=[\[=*\%#=*\]]=], input = "=", input_after = "=" },
   { filetype = ft.lua, char = char.sp, at = [[if\%#]], input = char.sp, input_after = [[<Space>then<CR>end]] },
   -- java
   { filetype = ft.java, char = char.sp, at = [[^\s*\(}\s*else\s\)\?if\%#]], input = [[<Space>(]], input_after = ")" },
