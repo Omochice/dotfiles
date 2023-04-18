@@ -13,12 +13,18 @@ vimx.keymap.set(
     vimx.fn.ddu.start({
       ui = "ff",
       sources = { {
-        name = "file_rec",
+        name = "file_external",
         params = {
-          ignoredDirectories = {
+          cmd = {
+            "fd",
+            "--hidden",
+            "--color",
+            "never",
+            "--type",
+            "file",
+            "--exclude",
             ".git",
-            "node_modules",
-          }
+          },
         }
       } }
     })
@@ -148,6 +154,20 @@ local config = {
         "node_modules",
       }
     }
+  }, {
+    name = "file_external",
+    params = {
+      cmd = {
+        "fd",
+        "--hidden",
+        "--color",
+        "never",
+        "--type",
+        "file",
+        "--exclude",
+        [[.git]],
+      },
+    }
   } },
   sourceOptions = {
     _ = {
@@ -200,7 +220,7 @@ local config = {
       prompt = ">",
       previewFloating = true,
       previewSplit = "vertical",
-      autoAction = { name = "preview" },
+      -- autoAction = { name = "preview" },
       startFilter = true,
       floatingBorder = {
         "┌", "─", "┐", "│", "┘", "─", "└", "│",
@@ -305,6 +325,10 @@ on_source = "ddu.vim"
 
 [[plugins]]
 repo = "liquidz/ddu-source-custom-list"
+on_source = "ddu.vim"
+
+[[plugins]]
+repo = "matsui54/ddu-source-file_external"
 on_source = "ddu.vim"
 
 [[plugins]]
