@@ -58,8 +58,9 @@ local rules = {
   -- js/ts
   { filetype = ft.js, char = char.sp, at = [[^\s*\(}\s*else\s\)\?if\%#]], input = [[<Space>(]], input_after = ")" },
   { filetype = ft.js, char = ">", at = [[(\%#)]], input = [[<Right><Space>=><Space>]] },
-  { filetype = ft.js, char = "*", at = [[^\s*/\%#]], input = [[*<Space>]], input_after = [[<Scape>*/]] },
+  { filetype = ft.js, char = "*", at = [[^\s*/\%#]], input = [[*<Space>]], input_after = [[<Space>*/]] },
   { filetype = ft.js, char = "*", at = [[/*\s\%#]], input = [[<BS>*<Space>]] },
+  { filetype = ft.js, char = char.bs, at = [[/\*\*\s\%#\s\*/]], input = [[<BS><BS><Space>]] },
   -- ruby
   { filetype = ft.ruby, char = [[<Bar>]], at = [[\(do\|{\)\s*\%#}]], input = [[<Bar>]], input_after = [[<Bar>]] },
   { filetype = ft.ruby, char = char.bs, at = [[|\%#|]], input = char.bs, delete = 1 },
