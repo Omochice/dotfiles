@@ -1,3 +1,28 @@
+-- lua_add {{{
+local vimx = require("artemis")
+vimx.g.lexima_map_escape = ""
+vimx.g.lexima_enable_endwise_rules = true
+vimx.g.lexima_enable_newline_rules = true
+vimx.g.lexima_disable_on_nofile = false
+vimx.g.lexima_ctrlh_as_backspace = true
+if vimx.fn.dein.tap("pum.vim") then
+  vimx.keymap.set(
+    "i",
+    [[<CR>]],
+    function()
+      if vimx.fn.pum.visible() then
+        if vimx.fn.vim.size() == 1 then
+          return [[<CR>]]
+        end
+        vimx.fn.pum.map.confirm()
+        return
+      end
+      return vimx.fn.lexima.expand([[<LT>CR>]], "i")
+    end
+  )
+end
+-- }}}
+
 -- lua_source {{{
 local vimx = require("artemis")
 
