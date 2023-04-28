@@ -71,6 +71,7 @@ local rules = {
   { filetype = ft.md, char = char.bs, at = [[^#\s\%#[^#]\?]], input = [[<BS><BS>]] },
   { filetype = ft.md, char = char.bs, at = [[^#\{2,}\s\%#[^#]\?]], input = [[<BS><BS><Space>]] },
   { filetype = ft.md, char = "-", at = [[^\s*\%#]], input = [[-<Space>]] },
+  { filetype = ft.md, char = "-", at = [[^\s*-\s\%#]], input = [[<BS>-]] },
   { filetype = ft.md, char = "+", at = [[^\s*\%#]], input = [[+<Space>]] },
   { filetype = ft.md, char = "*", at = [[^\s*\%#]], input = [[*<Space>]] },
   {
