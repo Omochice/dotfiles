@@ -179,7 +179,12 @@ local vimx = require("artemis")
 vimx.g.lsp_settings = {
 	["efm-langserver"] = { disabled = false },
 	["html-langserver"] = { allowlist = { "html", "htmldjango" } },
-	["taplo-lsp"] = { workspace_config = { formatter = { reorderKeys = false } } },
+	["taplo-lsp"] = { workspace_config = { formatter = {
+      reorderKeys = false,
+      compactArray = false,
+      arrayAutoCollapse	= false,
+      alignEntries = true,
+    } } },
 }
 if vimx.fn.has("nvim") == 1 then
 	vimx.g.lsp_settings["sumneko-lua-language-server"] = {
