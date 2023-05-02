@@ -4,6 +4,7 @@
 !*/
 # user setting
 !/.gitignore
+!/Makefile
 !/.bashrc
 !/Brewfile
 !/.gyazo.config.yml
