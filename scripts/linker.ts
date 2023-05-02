@@ -1,5 +1,4 @@
 import ini from "https://cdn.skypack.dev/-/ini@v4.1.0-LGvECHuzD3m8uiMCeDsZ/dist=es2019,mode=imports/optimized/ini.js";
-import { isWindowsDeviceRoot } from "https://deno.land/std@0.157.0/path/_util.ts";
 import { dirname } from "https://deno.land/std@0.157.0/path/win32.ts";
 import {
   basename,
@@ -7,9 +6,7 @@ import {
   join,
   resolve,
 } from "https://deno.land/std@0.185.0/path/mod.ts";
-import { err, ok } from "npm:neverthrow@6.0.0";
-import { blue, green } from "https://deno.land/std@0.157.0/fmt/colors.ts";
-import { DenoStdInternalError } from "https://deno.land/std@0.157.0/_util/assert.ts";
+import { blue } from "https://deno.land/std@0.157.0/fmt/colors.ts";
 
 type Task = { from: string; to: string };
 
@@ -30,8 +27,9 @@ function isDotfile(path: string): boolean {
   return base.startsWith(".") && !(base == ".git" || base == ".gitignore");
 }
 
-function makeBuckupDirectory() {
-  return Deno.makeTempDirSync();
+function makeBuckupDirectory(dir = join(HOME, ".cache", "dotbackup")) {
+  Deno.mkdirSync(dir, { recursive: true });
+  return Deno.makeTempDirSync({ dir });
 }
 
 async function link(
@@ -99,12 +97,10 @@ if (import.meta.main) {
   const backupDir = makeBuckupDirectory();
   console.log(blue("Linking to home directory ..."));
   linkToHome()
-    // .forEach((task: Task) => console.log(`${task.from} to ${task.to}`));
     .forEach((task: Task) => link(task, backupDir));
 
   console.log(blue("Linking to config directory ..."));
   linkToConfig()
-    // .forEach((task: Task) => console.log(`${task.from} to ${task.to}`));
     .forEach((task: Task) => link(task, backupDir));
 
   console.log(blue("Including shared config ..."));
