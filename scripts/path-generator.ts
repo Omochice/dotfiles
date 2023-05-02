@@ -1,14 +1,14 @@
-import { parse as parseToml } from "https://deno.land/std@0.157.0/encoding/toml.ts";
-import { deepMerge } from "https://deno.land/std@0.166.0/collections/deep_merge.ts";
-import { basename } from "https://deno.land/std@0.157.0/path/mod.ts";
-import { parse as parseArguments } from "https://deno.land/std@0.157.0/flags/mod.ts";
+import { parse as parseToml } from "https://deno.land/std@0.185.0/toml/parse.ts";
+import { deepMerge } from "https://deno.land/std@0.185.0/collections/deep_merge.ts";
+import { basename } from "https://deno.land/std@0.185.0/path/mod.ts";
+import { parse as parseArguments } from "https://deno.land/std@0.185.0/flags/mod.ts";
 import {
   ensureArray,
   ensureString,
   isArray,
   isObject,
   isString,
-} from "https://deno.land/x/unknownutil@v2.0.0/mod.ts";
+} from "https://deno.land/x/unknownutil@v2.1.0/mod.ts";
 
 const supportedShell = ["bash", "zsh", "fish"] as const;
 type Shell = typeof supportedShell[number];
