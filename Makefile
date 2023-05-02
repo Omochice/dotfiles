@@ -1,9 +1,33 @@
-all: ~/.deno install-brew
+BASE_DIR:=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+
+all: link install-brew nvim
 
 ~/.deno:
 	curl -fsSL https://deno.land/x/install/install.sh | bash
 
 .PHONY: install-brew
 install-brew:
-	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+	command -v brew &>/dev/null || curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+
+install: install-brew
+	command -v pacman &>/dev/null && sudo pacman -S 13-wm polybar picom rofi base-devel || true
+	# M1
+	[ -e /opt/homebrew/bin/brew ] && /opt/homebrew/bin/brew bundle --file=$(BASE_DIR)/Brewfile || true
+	# linux
+	[ -e /home/linuxbrew/.linuxbrew/bin/brew ] && /home/linuxbrew/.linuxbrew/bin/brew bundle --file=$(BASE_DIR)/Brewfile || true
+
+link: ~/.deno
+	~/.deno/bin/deno run -A $(BASE_DIR)/scripts/sync.ts
+
+.PHYNY: nvim
+nvim:
+	[ -d ~/Tools ] || mkdir -p ~/Tools
+	[ -d ~/Tools/neovim ] || git clone --depth 10 https://github.com/neovim/neovim.git ~/Tools/neovim
+	cd ~/Tools/neovim && git pull && $(BASE_DIR)/scripts/install-nvim.sh
+
+
+
+fish: install ~/.deno
+	~/.deno/bin/deno run -A $(BASE_DIR)/scripts/path-generator.ts $(BASE_DIR)/path-list* --shell fish ~/.config/fish/config.fish
+
 
