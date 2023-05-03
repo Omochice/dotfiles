@@ -1,6 +1,6 @@
 BASE_DIR:=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
-all: link install-brew nvim
+all: link install-brew nvim chsh font
 
 ~/.deno:
 	bash -c "$$(curl -fsSL https://deno.land/x/install/install.sh)"
