@@ -3,11 +3,11 @@ BASE_DIR:=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 all: link install-brew nvim
 
 ~/.deno:
-	curl -fsSL https://deno.land/x/install/install.sh | bash
+	bash -c "$$(curl -fsSL https://deno.land/x/install/install.sh)"
 
 .PHONY: install-brew
 install-brew:
-	command -v brew &>/dev/null || curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+	command -v brew &>/dev/null || bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 install: install-brew
 	command -v pacman &>/dev/null && sudo pacman -S 13-wm polybar picom rofi base-devel wezterm vivaldi || true
