@@ -10,7 +10,7 @@ install-brew:
 	command -v brew &>/dev/null || bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 install: install-brew
-	command -v pacman &>/dev/null && sudo pacman -S 13-wm polybar picom rofi base-devel wezterm vivaldi || true
+	command -v pacman &>/dev/null && sudo pacman -S i3-wm polybar picom rofi base-devel wezterm vivaldi || true
 	# M1
 	[ -e /opt/homebrew/bin/brew ] && /opt/homebrew/bin/brew bundle --file=$(BASE_DIR)/Brewfile || true
 	# linux
