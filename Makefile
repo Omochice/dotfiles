@@ -10,7 +10,7 @@ install-brew:
 	command -v brew &>/dev/null || curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
 
 install: install-brew
-	command -v pacman &>/dev/null && sudo pacman -S 13-wm polybar picom rofi base-devel wezterm || true
+	command -v pacman &>/dev/null && sudo pacman -S 13-wm polybar picom rofi base-devel wezterm vivaldi || true
 	# M1
 	[ -e /opt/homebrew/bin/brew ] && /opt/homebrew/bin/brew bundle --file=$(BASE_DIR)/Brewfile || true
 	# linux
@@ -27,7 +27,7 @@ nvim:
 
 
 
-fish: install ~/.deno
+fish: install ~/.deno link
 	~/.deno/bin/deno run -A $(BASE_DIR)/scripts/path-generator.ts $(BASE_DIR)/path-list* --shell fish > ~/.config/fish/config.fish
 
 
