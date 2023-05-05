@@ -60,7 +60,7 @@ config/fish/functions/fzf_key_bindings.fish
 !/src/*.md
 !/.zshrc
 !tool-list.toml
-!/scripts/*
+!/scripts/**
 !/config/skhd/skhdrc
 !/config/karabiner/**
 !/config/sketchybar/**
