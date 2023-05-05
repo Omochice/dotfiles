@@ -37,9 +37,5 @@ chsh: fish
 
 
 .PHONY: font
-font: install
-	wget https://github.com/yuru7/Firge/releases/download/v0.2.0/FirgeNerd_v0.2.0.zip --directory-prefix /tmp
-	unzip /tmp/FirgeNerd_v0.2.0.zip -d /tmp
-	mkdir -p ~/.local/share/font/ttf ~/.local/share/font/otf
-	mv /tmp/FirgeNerd_v0.2.0/*.ttf ~/.local/share/font/ttf
-	fc-cache --force --verbose
+font: ~/.deno
+	~/.deno/bin/deno run -A scripts/tasks/install-font.ts
