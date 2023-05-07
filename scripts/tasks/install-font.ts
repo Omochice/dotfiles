@@ -56,7 +56,9 @@ async function downloadFont(): Promise<void> {
 
   const zipName = $.path.basename(url.pathname);
 
-  const tmp = Deno.makeTempDirSync();
+  const tmp = Deno.makeTempDirSync({
+    dir: $.path.join(Deno.env.get("HOME") ?? "~", ".cache"),
+  });
 
   await $.request(url)
     .showProgress()
