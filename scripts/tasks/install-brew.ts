@@ -51,7 +51,7 @@ async function main(): Promise<void> {
     $.log("brew is installed already");
     return;
   }
-  await installBrew();
+  await ensureInstalled();
 }
 
 if (import.meta.main) {
