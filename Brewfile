@@ -27,6 +27,6 @@ brew "gettext"
 brew "curl"
 cask "wezterm"
 cask "google-japanese-ime"
-brew "koekeishiya/formulae/skhd"
-brew "koekeishiya/formulae/yabai"
-brew "felixkratz/formulae/sketchybar"
+brew "koekeishiya/formulae/skhd" if OS.mac?
+brew "koekeishiya/formulae/yabai" if OS.mac?
+brew "felixkratz/formulae/sketchybar" if OS.mac?
