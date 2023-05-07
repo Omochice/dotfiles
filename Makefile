@@ -6,15 +6,11 @@ all: link install-brew nvim chsh font
 	bash -c "$$(curl -fsSL https://deno.land/x/install/install.sh)"
 
 .PHONY: install-brew
-install-brew:
-	command -v brew &>/dev/null || bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+install-brew: ~/.deno
+	~/.deno/bin/deno run -A $(BASE_DIR)/scripts/tasks/install-brew.ts
 
 install: install-brew
-	command -v pacman &>/dev/null && sudo pacman -S i3-wm polybar picom rofi base-devel wezterm vivaldi || true
-	# M1
-	[ -e /opt/homebrew/bin/brew ] && /opt/homebrew/bin/brew bundle --file=$(BASE_DIR)/Brewfile || true
-	# linux
-	[ -e /home/linuxbrew/.linuxbrew/bin/brew ] && /home/linuxbrew/.linuxbrew/bin/brew bundle --file=$(BASE_DIR)/Brewfile || true
+	~/.deno/bin/deno run -A $(BASE_DIR)/scripts/tasks/install-commands.ts
 
 link: ~/.deno
 	~/.deno/bin/deno run -A $(BASE_DIR)/scripts/linker.ts
@@ -26,15 +22,12 @@ nvim:
 	cd ~/Tools/neovim && git pull && $(BASE_DIR)/scripts/install-nvim.sh
 
 
-
 fish: install ~/.deno link
 	~/.deno/bin/deno run -A $(BASE_DIR)/scripts/path-generator.ts $(BASE_DIR)/path-list* --shell fish > ~/.config/fish/config.fish
-
 
 .PHONY: chsh
 chsh: fish
 	sudo chsh -s $(shell brew --prefix)/bin/fish
-
 
 .PHONY: font
 font: ~/.deno

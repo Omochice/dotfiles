@@ -1,17 +1,37 @@
 import $ from "https://deno.land/x/dax@0.31.1/mod.ts";
 import { WalkEntry } from "https://deno.land/std@0.182.0/fs/_util.ts";
 
-async function moveFontFiles(baseDir: string): Promise<void> {
-  for (const ext of ["ttf", "otf"]) {
-    const fontDir = $.path.join(
+type FontType = "otf" | "ttf";
+type Destination = { [K in FontType]: string };
+
+const DESTINATION: Destination = Deno.build.os === "darwin"
+  ? {
+    otf: $.path.join("/", "Library", "Fonts"),
+    ttf: $.path.join("/", "Library", "Fonts"),
+  }
+  : {
+    otf: $.path.join(
       Deno.env.get("HOME") ?? "~",
       ".local",
       "share",
       "fonts",
-      ext,
-    );
+      "otf",
+    ),
+    ttf: $.path.join(
+      Deno.env.get("HOME") ?? "~",
+      ".local",
+      "share",
+      "fonts",
+      "ttf",
+    ),
+  };
+
+async function moveFontFiles(baseDir: string): Promise<void> {
+  const exts: readonly FontType[] = ["ttf", "otf"] as const;
+  for (const ext of exts) {
+    const dir = DESTINATION[ext];
     Deno.mkdirSync(
-      fontDir,
+      dir,
       { recursive: true },
     );
 
@@ -21,7 +41,7 @@ async function moveFontFiles(baseDir: string): Promise<void> {
         .map((fontFile: WalkEntry) =>
           $.fs.move(
             fontFile.path,
-            $.path.join(fontDir, fontFile.name),
+            $.path.join(dir, fontFile.name),
             { overwrite: true },
           )
         ),
@@ -50,10 +70,16 @@ async function downloadFont(): Promise<void> {
     .with(async () => await moveFontFiles(unzipTo));
 }
 
-await downloadFont()
-  .then(() => {
-    $.progress("fc-cache")
-      .with(async () => {
-        await $`fc-cache --force --verbose`.stdout("null");
-      });
-  });
+async function main() {
+  await downloadFont()
+    .then(() => {
+      $.progress("fc-cache")
+        .with(async () => {
+          await $`fc-cache --force --verbose`.stdout("null");
+        });
+    });
+}
+
+if (import.meta.main) {
+  await main();
+}
