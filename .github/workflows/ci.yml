@@ -1,0 +1,15 @@
+name: Denopendabot
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * FRI"
+
+jobs:
+  update:
+    name: Update by Denopendabot
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hasundue/denopendabot@0.16.1
+        with:
+          user-token: ${{ secrets.GITHUB_TOKEN }}
