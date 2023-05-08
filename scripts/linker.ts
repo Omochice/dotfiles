@@ -10,6 +10,12 @@ import { blue } from "https://deno.land/std@0.157.0/fmt/colors.ts";
 
 type Task = { from: string; to: string };
 
+const IGNOREDOTS = [
+  ".git",
+  ".github",
+  ".gitignore",
+] as const satisfies readonly string[];
+
 const DOTDIR = dirname(
   dirname(
     resolve(
@@ -24,7 +30,7 @@ const CONFIG = Deno.env.get("XDG_CONFIG_HOME") ?? join(HOME, ".config");
 
 function isDotfile(path: string): boolean {
   const base = basename(path);
-  return base.startsWith(".") && !(base == ".git" || base == ".gitignore");
+  return base.startsWith(".") && !(IGNOREDOTS.includes(base));
 }
 
 function makeBuckupDirectory(dir = join(HOME, ".cache", "dotbackup")) {
