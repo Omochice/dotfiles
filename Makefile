@@ -23,7 +23,7 @@ nvim:
 
 
 fish: install ~/.deno link
-	~/.deno/bin/deno run -A $(BASE_DIR)/scripts/path-generator.ts $(BASE_DIR)/path-list* --shell fish > ~/.config/fish/config.fish
+	~/.deno/bin/deno run -A https://raw.githubusercontent.com/Omochice/deno-shellrc-generator/main/src/cli.ts $(BASE_DIR)/path-list* --shell fish > $(BASE_DIR)/config/fish/config.fish
 
 .PHONY: chsh
 chsh: fish
