@@ -13,7 +13,7 @@ install: install-brew
 	~/.deno/bin/deno run -A $(BASE_DIR)/scripts/tasks/install-commands.ts
 
 link: ~/.deno
-	~/.deno/bin/deno run -A $(BASE_DIR)/scripts/linker.ts
+	~/.deno/bin/deno run -A $(BASE_DIR)/scripts/tasks/link-files.ts
 
 .PHONY: nvim
 nvim:
