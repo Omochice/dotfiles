@@ -23,7 +23,7 @@ async function makeBuckupDirectory(
   dir = HOME.join(".cache", "dotbackup").toString(),
 ): Promise<string> {
   await $.path(dir).mkdir({ recursive: true });
-  return Deno.makeTempFile({ dir });
+  return Deno.makeTempDir({ dir });
 }
 
 async function link(
