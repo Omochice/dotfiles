@@ -1,80 +1,6 @@
 [[plugins]]
 repo = "Shougo/ddc.vim"
-lua_add = """
-local vimx = require("artemis")
-vimx.g.ddc_source_options = {
-  _ = {
-    matchers = { "matcher_fuzzy" },
-    sorters = { "sorter_fuzzy" },
-    converters = { "converter_remove_overlap", "converter_fuzzy" },
-    minAutoCompleteLength = 2,
-    ignoreCase = true,
-  }
-}
-
-vimx.g.ddc_sources = {
-  snippet = { "vsnip" },
-  lsp = { "vim-lsp" },
-  ["in-vim"] = { "around", "buffer" },
-  ["out-vim"] = { "rg" },
-}
-
-vimx.keymap.set(
-  "i",
-  "<C-Space>",
-  "",
-  {
-    expr = true,
-    callback = function()
-      vimx.fn.ddc.map.manual_complete()
-    end
-  }
-)
-vimx.keymap.set(
-  "i",
-  "<C-x><C-x>",
-  "",
-  {
-    expr = true,
-    callback = function()
-      vimx.fn.ddc.map.manual_complete({ "vim-lsp" })
-    end
-  }
-)
-if vimx.fn.dein.tap("vim-vsnip-integ") == 1 then
-  vimx.g.ddc_source_options.vsnip = { mark = "[Snp]" }
-end
-"""
-lua_source = """
-local vimx = require("artemis")
-vimx.fn.ddc.custom.patch_global(
-  "sources",
-  { "vsnip", "vim-lsp", "around", "buffer", "rg", }
-)
-
--- TODO: なんかよくわからんけどluaだといけない
--- vimx.fn.ddc.custom.patch_global(
---   "sourceOptions",
---   vimx.cast(vimx.g.ddc_source_options)
--- )
-vimx.cmd "call ddc#custom#patch_global('sourceOptions', g:ddc_source_options)"
-
-vimx.fn.ddc.custom.patch_filetype(
-  { "toml", "vim" },
-  "sources",
-  { "vsnip", "necovim", "vim-lsp", "around", "buffer", "rg" }
-)
-
-vimx.fn.ddc.custom.patch_filetype(
-  "markdown",
-  "sources",
-  { "vsnip", "file", "around", "buffer", "rg", }
-)
-
-vimx.fn.ddc.custom.patch_global("ui", "pum")
-vimx.fn.ddc.custom.patch_global("backspaceCompletion", true)
-vimx.fn.ddc.enable()
-"""
+hooks_file = "$DEIN_RC_DIR/hooks/ddc.lua"
 depends = ["denops.vim"]
 on_event = "InsertEnter"
 
@@ -115,6 +41,20 @@ vimx.g.ddc_source_options["vim-lsp"] = {
 """
 depends = ["vim-lsp"]
 on_source = "ddc.vim"
+if = "!has('nvim')"
+
+[[plugins]]
+repo = "Shougo/ddc-source-nvim-lsp"
+on_source = "ddc.vim"
+depends = ["nvim-lspconfig", "mason.nvim", "mason-lspconfig.nvim"]
+lua_source = """
+local vimx = require("artemis")
+vimx.g.ddc_source_options["nvim-lsp"] = {
+  mark = "[LSP]",
+  forceCompletionPattern = [[\..?|:|->|\w+/]],
+}
+"""
+if = "has('nvim')"
 
 [[plugins]]
 repo = "Shougo/ddc-around"
