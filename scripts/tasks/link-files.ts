@@ -61,7 +61,7 @@ function linkToConfigTasks(): Task[] {
 }
 
 function writeGitConfig(sharedFile: PathRef): void {
-  const target = HOME.join(".gitignore");
+  const target = HOME.join(".gitconfig");
   const empty = {};
   const gitConfig = (() => {
     try {
