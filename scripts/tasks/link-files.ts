@@ -4,11 +4,11 @@ import { blue } from "https://deno.land/std@0.157.0/fmt/colors.ts";
 
 type Task = { from: PathRef; to: PathRef };
 
-const IGNOREDOTS = [
+const IGNOREDOTS = new Set([
   ".git",
   ".github",
   ".gitignore",
-] as const satisfies readonly string[];
+]);
 
 const DOTDIR = $.path(import.meta.url).join("..", "..", "..");
 const HOME = $.path(Deno.env.get("HOME") ?? "~");
@@ -16,7 +16,7 @@ const CONFIG = $.path(Deno.env.get("XDG_CONFIG_HOME") ?? HOME.join(".config"));
 
 function isDotfile(path: string): boolean {
   const base = $.path.basename(path);
-  return base.startsWith(".") && !(IGNOREDOTS.includes(base));
+  return base.startsWith(".") && !(IGNOREDOTS.has(base));
 }
 
 async function makeBuckupDirectory(
