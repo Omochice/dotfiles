@@ -27,6 +27,7 @@ fish: install ~/.deno link
 
 .PHONY: chsh
 chsh: fish
+	~/.deno/bin/deno run -A scripts/tasks/show-fishpath.ts | sudo tee --append /etc/shells
 	~/.deno/bin/deno run -A scripts/tasks/chsh-to-fish.ts
 
 .PHONY: font
