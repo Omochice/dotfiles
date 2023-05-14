@@ -938,14 +938,6 @@ on_lua = "notify"
 
 [[plugins]]
 repo = "uga-rosa/ccc.nvim"
-lua_source = """
-local ccc = require("ccc")
-ccc.setup({
-  highlighter = {
-    auto_enable = true,
-    lsp = true,
-  },
-  disable_default_mappings = true,
-})
-"""
+hooks_file = "$DEIN_RC_DIR/hooks/ccc.lua"
 on_event = ["BufRead", "BufNewFile"]
+if = "has('nvim')"
