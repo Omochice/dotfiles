@@ -244,6 +244,7 @@ let g:lsp_settings_filetype_objc = ['clangd']
 let g:lsp_settings_filetype_typescript = [<SID>is_node_project() ? 'typescript-language-server' : 'deno']
 """
 on_event = ["BufRead", "BufNewFile"]
+if = "!has('nvim')"
 
 [[plugins]]
 repo = "mattn/vim-lsp-settings"
@@ -251,6 +252,22 @@ hook_add = """
 let g:lsp_settings_enable_suggestions = v:false
 """
 on_source = "vim-lsp"
+
+[[plugins]]
+repo = "neovim/nvim-lspconfig"
+on_lua = "lspconfig"
+if = "has('nvim')"
+
+[[plugins]]
+repo = "williamboman/mason.nvim"
+on_lua = "mason"
+if = "has('nvim')"
+
+[[plugins]]
+repo = "williamboman/mason-lspconfig.nvim"
+on_event = ["BufRead", "BufNewFile"]
+hooks_file = "$DEIN_RC_DIR/hooks/mason-lspconfig.lua"
+if = "has('nvim')"
 
 [[plugins]]
 repo = "machakann/vim-sandwich"
