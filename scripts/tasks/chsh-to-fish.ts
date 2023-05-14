@@ -1,5 +1,5 @@
 import $ from "https://deno.land/x/dax@0.31.1/mod.ts";
-import { getBrewPath } from "./install-brew.ts";
+import { ensureInstalled, getBrewPath } from "./install-brew.ts";
 import { err, ok, Result } from "npm:neverthrow@6.0.0";
 
 function getFishPath(): Result<string, Error> {
@@ -20,6 +20,7 @@ async function chsh(): Promise<Result<void, Error>> {
 }
 
 if (import.meta.main) {
+  await ensureInstalled();
   const result = await chsh();
   if (result.isErr()) {
     console.error(result.error);
