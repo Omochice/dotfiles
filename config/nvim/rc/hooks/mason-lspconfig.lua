@@ -5,6 +5,7 @@ local function enableLspKeymaps()
   vim.keymap.set("n", "<Space>f", function() vim.lsp.buf.format() end, opts)
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
   vim.keymap.set("n", "<Space>r", function() vim.lsp.buf.rename() end, opts)
+  vim.keymap.set("n", "<Space>d", function() vim.diagnostic.open_float() end, opts)
 end
 local group = vim.api.nvim_create_augroup("vimrc#nvim-lsp", {
   clear = true
@@ -14,6 +15,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     enableLspKeymaps()
   end,
   group = group,
+})
+
+vim.diagnostic.config({
+  virtual_text = false,
 })
 -- }}}
 
