@@ -1,11 +1,13 @@
 -- lua_add {{{
 local function enableLspKeymaps()
   local opts = { buffer = true }
-  vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-  vim.keymap.set("n", "<Space>f", function() vim.lsp.buf.format() end, opts)
-  vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-  vim.keymap.set("n", "<Space>r", function() vim.lsp.buf.rename() end, opts)
-  vim.keymap.set("n", "<Space>d", function() vim.diagnostic.open_float() end, opts)
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+  vim.keymap.set("n", "<Space>f", vim.lsp.buf.format, opts)
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+  vim.keymap.set("n", "<Space>r", vim.lsp.buf.rename, opts)
+  vim.keymap.set("n", "<Space>d", vim.diagnostic.open_float, opts)
+  vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev({ float = false }) end, opts)
+  vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next({ float = false }) end, opts)
 end
 local group = vim.api.nvim_create_augroup("vimrc#nvim-lsp", {
   clear = true
