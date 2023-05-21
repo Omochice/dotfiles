@@ -32,7 +32,7 @@ inoremap <buffer><nowait> <C-t> <Cmd>call ddu#ui#do_action('itemAction', #{ name
 inoremap <buffer><nowait> <C-v> <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'open', params: #{ command: 'vsplit' } })<CR>
 inoremap <buffer><nowait> <C-s> <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'open', params: #{ command: 'split' } })<CR>
 inoremap <buffer><nowait> <C-q> <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'quickfix' })<CR>
-inoremap <buffer><nowait> <Space> <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
+inoremap <buffer><nowait> <C-Space> <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
 inoremap <buffer><nowait> <C-g> <Cmd>call ddu#ui#multi_actions([['clearSelectAllItems'], ['toggleAllItems'], ['itemAction', #{ name: 'quickfix' }]])<CR>
 inoremap <buffer><nowait> <C-o> <Cmd>call ddu#ui#do_action('preview')<CR>
 nnoremap <buffer><nowait> <CR> <Cmd>call ddu#ui#do_action('closeFilterWindow')<CR>
