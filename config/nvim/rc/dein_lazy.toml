@@ -270,6 +270,11 @@ hooks_file = "$DEIN_RC_DIR/hooks/mason-lspconfig.lua"
 if = "has('nvim')"
 
 [[plugins]]
+repo = "nvimdev/lspsaga.nvim"
+on_event = ["LspAttach"]
+hooks_file = "$DEIN_RC_DIR/hooks/lspsaga.lua"
+
+[[plugins]]
 repo = "machakann/vim-sandwich"
 hook_add = """
 let g:sandwich_no_default_key_mappings = v:true
@@ -318,7 +323,7 @@ repo = "liuchengxu/vista.vim"
 depends = ["vim-lsp"]
 on_cmd = "Vista"
 hook_add = """
-let g:vista_default_executive = 'vim_lsp'
+let g:vista_default_executive = has('nvim') ? 'nvim_lsp' : 'vim_lsp'
 """
 
 [[plugins]]

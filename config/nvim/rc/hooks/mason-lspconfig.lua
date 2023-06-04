@@ -5,7 +5,9 @@ local function enableLspKeymaps()
   vim.keymap.set("n", "<Space>f", vim.lsp.buf.format, opts)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "<Space>r", vim.lsp.buf.rename, opts)
-  vim.keymap.set("n", "<Space>d", vim.diagnostic.open_float, opts)
+  vim.keymap.set("n", "<Space>d", vim.diagnostic.setloclist, opts)
+  vim.keymap.set("n", "<Space>D", vim.diagnostic.show, opts)
+  vim.keymap.set("n", "<Space>a", [[<Cmd>Lspsaga code_action<CR>]], opts)
   vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev({ float = false }) end, opts)
   vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next({ float = false }) end, opts)
 end
@@ -30,9 +32,20 @@ require("mason-lspconfig").setup()
 require("mason-lspconfig").setup_handlers({
   function(server_name)
     local opts = {}
-    if server_name == "denols" then
-      opts.root_dir =
-          require("lspconfig").util.root_pattern('deno.json', 'deno.jsonc')
+    local is_node_repo = vim.fn.findfile("package.json", ".;") ~= ""
+
+    if server_name == "vtsls" or server_name == "tsserver" then
+      -- Must be node directory
+      if not is_node_repo then
+        return
+      end
+    elseif server_name == 'denols' then
+      -- Must not be node directory
+      if is_node_repo then
+        return
+      end
+
+      opts.root_dir = require("lspconfig").util.root_pattern('deno.json', 'deno.jsonc')
       opts.single_file_support = true
       opts.init_options = {
         lint = true,
@@ -68,46 +81,8 @@ require("mason-lspconfig").setup_handlers({
   end
 })
 
-local help_bufnr = nil
-
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  function(_, result, context)
-    -- NOTE: hevily based on vim-lsp: under_cursor.vil
-    if context.bufnr ~= vim.fn.bufnr() then
-      -- NOTE: changed buffer before responce reach
-      vim.notify("LSP mey be slow...", vim.log.levels.WARN)
-      return
-    end
-
-    local contents = vim.lsp.util.trim_empty_lines(
-      vim.lsp.util.convert_input_to_markdown_lines(result.contents)
-    )
-    if vim.tbl_isempty(contents) then
-      local server_name = vim.lsp.get_client_by_id(context.client_id).name
-      vim.notify(
-        string.format("No hover information found in server: %s", server_name),
-        vim.log.levels.WARN
-      )
-      return
-    end
-
-    help_bufnr = help_bufnr == nil and vim.api.nvim_create_buf(false, true) or help_bufnr
-    vim.bo[help_bufnr].filetype = "markdown"
-    vim.bo[help_bufnr].buftype = "nofile"
-    vim.bo[help_bufnr].buflisted = false
-    vim.bo[help_bufnr].readonly = false
-    vim.bo[help_bufnr].bufhidden = "hide"
-    vim.bo[help_bufnr].swapfile = false
-
-    vim.fn.deletebufline(help_bufnr, 1, "$")
-    vim.fn.setbufline(help_bufnr, 1, contents)
-
-    vim.cmd(string.format("leftabove sbuffer %d", help_bufnr))
-    local winid = vim.api.nvim_get_current_win()
-    vim.wo[winid].previewwindow = true
-    vim.wo[winid].conceallevel = 2
-    vim.wo[winid].wrap = true
-  end,
+  require("vimrc/traditional-behavior-lsp").on_hover,
   {}
 )
 -- }}}
