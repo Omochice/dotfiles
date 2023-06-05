@@ -15,12 +15,9 @@ install: install-brew
 link: ~/.deno
 	~/.deno/bin/deno run -A $(BASE_DIR)/scripts/tasks/link-files.ts
 
-.PHONY: nvim
+.PHONY: ~/.deno
 nvim:
-	[ -d ~/Tools ] || mkdir -p ~/Tools
-	[ -d ~/Tools/neovim ] || git clone --depth 10 https://github.com/neovim/neovim.git ~/Tools/neovim
-	cd ~/Tools/neovim && git pull && $(BASE_DIR)/scripts/install-nvim.sh
-
+	~/.deno/bin/deno run -A $(BASE_DIR)/scripts/tasks/install-nvim.ts
 
 fish: install ~/.deno link
 	~/.deno/bin/deno run -A https://raw.githubusercontent.com/Omochice/deno-shellrc-generator/main/src/cli.ts $(BASE_DIR)/path-list* --shell fish > $(BASE_DIR)/config/fish/config.fish
