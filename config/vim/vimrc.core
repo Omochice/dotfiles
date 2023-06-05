@@ -1,6 +1,7 @@
 " user settings
 syntax on
 filetype plugin indent on
+set encoding=utf-8
 set autoindent
 set autoread
 set backspace=indent,eol,start
@@ -25,7 +26,6 @@ set shiftwidth=2
 set signcolumn=yes
 set showmatch
 set smartindent
-set softtabstop=2
 set tabstop=2
 set virtualedit=onemore
 set wildmenu
