@@ -1,5 +1,5 @@
 import $ from "https://deno.land/x/dax@0.31.1/mod.ts";
-import { WalkEntry } from "https://deno.land/std@0.182.0/fs/_util.ts";
+import type { WalkEntry } from "https://deno.land/std@0.187.0/fs/mod.ts";
 
 type FontType = "otf" | "ttf";
 type Destination = { [K in FontType]: string };
@@ -72,7 +72,7 @@ async function downloadFont(): Promise<void> {
     .with(async () => await moveFontFiles(unzipTo));
 }
 
-async function main() {
+async function main(): Promise<void> {
   await downloadFont()
     .then(() => {
       $.progress("fc-cache")
