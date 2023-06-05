@@ -276,9 +276,9 @@ function s:auto_mkdir(dir, force) abort
   if &l:buftype !=# '' || bufname('%') =~# '^[^:]\+://'
     return
   endif
-  let l:mes = '"%s" does not exist. Create? [y/N]'
+  let l:mes = '"%s" does not exist. Create?'
   if !isdirectory(a:dir) && (a:force ||
-  \    input(printf(l:mes, a:dir)) =~? '^y\%[es]$')
+  \    confirm(printf(l:mes, a:dir), "&Yes\n&No", 1) ==# 1)
     call mkdir(a:dir, 'p')
   endif
 endfunction
