@@ -101,6 +101,10 @@ repo = "Shougo/ddc-converter_remove_overlap"
 on_source = "ddc.vim"
 
 [[plugins]]
+repo = "Shougo/ddc-filter-converter_truncate_abbr"
+on_source = "ddc.vim"
+
+[[plugins]]
 repo = "delphinus/ddc-tmux"
 hook_source = """
 let g:ddc_source_options['tmux'] = #{mark: '[Tmx]'}

@@ -4,7 +4,7 @@ vimx.g.ddc_source_options = {
   _ = {
     matchers = { "matcher_fuzzy" },
     sorters = { "sorter_fuzzy" },
-    converters = { "converter_remove_overlap", "converter_fuzzy" },
+    converters = { "converter_remove_overlap", "converter_truncate_abbr", "converter_fuzzy" },
     minAutoCompleteLength = 2,
     ignoreCase = true,
   }
@@ -46,7 +46,7 @@ vimx.fn.ddc.custom.patch_global(
 )
 
 -- TODO: なんかよくわからんけどluaだといけない
-vim.print(vimx.cast(vimx.g.ddc_source_options))
+-- vim.print(vimx.cast(vimx.g.ddc_source_options))
 -- vimx.fn.ddc.custom.patch_global(
 --   "sourceOptions",
 --   vimx.g.ddc_source_options
