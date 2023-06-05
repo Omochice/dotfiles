@@ -350,68 +350,10 @@ on_cmd = ["WinResizerStartResize", "WinResizerStartFocus"]
 
 [[plugins]]
 repo = "thinca/vim-quickrun"
-lua_add = """
-local vimx = require("artemis")
-vimx.keymap.set(
-  "n",
-  "<Space>q",
-  "<Plug>(quickrun)"
-)
-vimx.g.quickrun_config = {
-  _ = {
-    ["outputter/buffer/close_on_empty"] = true,
-    ["outputter/buffer/opener"] = "vertical botright new",
-    ["hook/time/enable"] = true,
-    runner = vimx.fn.has("nvim") == 1 and "neovim_job" or "job",
-  },
-  typescript = {
-    command = "deno",
-    cmdopt = "run --allow-all --unstable",
-    exec = "NO_COLOR=1 %c %o %s",
-  },
-  elm = {
-    command = "elm",
-    exec = "%c make %S --output %a",
-  },
-  tex = {
-    command = "make",
-    exec = "%c",
-  },
-  objc = {
-    type = "c",
-    cmdopt = "-fmodules",
-  },
-  fennel = {
-    command = "fennel",
-    exec = "%c --compile %s | lua",
-  },
-}
-"""
-hook_add = """
-cnoreabbrev qr QuickRun
-"""
 depends = ["vim-quickrun-neovim-job"]
+hooks_file = "$DEIN_RC_DIR/hooks/quickrun.lua"
 on_map = { n = "<Plug>" }
 on_cmd = ["QuickRun"]
-[plugins.ftplugin]
-vim = """
-function! s:run() abort
-  let l:config = {}
-  for l:line in getline(1, 3)
-    if l:line =~# 'themis#'
-      let l:config = #{
-        \ command: 'themis',
-        \ exec: '%c %s',
-        \ runner: g:quickrun_config._.runner,
-        \ }
-      break
-    endif
-  endfor
-  call quickrun#run(l:config)
-endfunction
-
-nnoremap <buffer> <Space>q <Cmd>call <SID>run()<CR>
-"""
 
 [[plugins]]
 repo = "lambdalisue/vim-quickrun-neovim-job"
