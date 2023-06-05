@@ -9,7 +9,7 @@ async function installCommands() {
     return;
   }
 
-  if (ISWSL) {
+  if (ISWSL || Deno.build.os === "darwin") {
     return;
   }
 
