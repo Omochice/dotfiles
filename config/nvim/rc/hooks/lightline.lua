@@ -34,14 +34,14 @@ function get_branch()
 	return vimx.fn.gitbranch.name()
 end
 
-vimx.g.GetBranch = get_branch
-vimx.g.GetRecording = get_recording
-vimx.g.lightline_component_function = vimx.dict({
-	get_filetype = get_filetype,
-	get_format = get_format,
-	get_branch = get_branch,
-	get_recording = get_recording,
-})
+-- vimx.g.GetBranch = get_branch
+-- vimx.g.GetRecording = get_recording
+-- vimx.g.lightline_component_function = vimx.dict({
+-- 	get_filetype = get_filetype,
+-- 	get_format = get_format,
+-- 	get_branch = get_branch,
+-- 	get_recording = get_recording,
+-- })
 
 vimx.g.lightline = vimx.dict({
   colorscheme = "default",
