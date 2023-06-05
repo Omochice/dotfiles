@@ -1,9 +1,18 @@
 -- lua_source {{{
-require("ccc").setup({
+local ccc = require("ccc")
+ccc.setup({
+  disable_default_mappings = true,
   highlighter = {
     auto_enable = true,
     lsp = true,
   },
-  disable_default_mappings = true,
+  pickers = {
+    ccc.picker.trailing_whitespace({
+      palette = {},
+      default_color = "#db7093",
+      enable = true,
+      disable = {},
+    }),
+  },
 })
 -- }}}
