@@ -374,6 +374,7 @@ let g:better_whitespace_enabled = v:true
 let g:strip_whitespace_on_save = v:false
 """
 on_event = "BufRead"
+if = "!has('nvim')"
 
 [[plugins]]
 repo = "heavenshell/vim-pydocstring"
