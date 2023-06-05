@@ -41,72 +41,7 @@ augroup END
 
 [[plugins]]
 repo = "itchyny/lightline.vim"
-lua_add = """
-local vimx = require("artemis")
-
-vimx.go.showmode = false
-
-vimx.g.lightline = {
-  colorscheme = "default",
-  active = {
-    left = {
-      { "mode", "paste", "recording" },
-      { "gitbranch", "readonly", "filename", "modified" },
-    },
-  },
-  component_function = {
-    gitbranch = "gitbranch#name",
-    -- globalにはやしてるのいやなのでlambdaにしたい
-    filetype = "LightlineFileType",
-    fileformat = "LightlineFormat",
-    recording = "LightlineRecording",
-  },
-}
-local group = vimx.create_augroup(
-  "vimrc#ligjtline-update-highlight",
-  { clear = true }
-)
-vimx.create_autocmd(
-  "ColorScheme",
-  {
-    pattern = "*",
-    group = group,
-    callback = function()
-      -- タイミングかなんかの問題かluaだとうまくいかんので
-      vimx.cmd("let g:lightline.colorscheme = g:colors_name")
-      -- vimx.g.lightline.colorscheme = vimx.g.colors_name
-      vimx.fn.lightline.disable()
-      vimx.fn.lightline.enable()
-    end
-  }
-)
-"""
-hook_add = """
-function! LightlineFileType() abort
-  if winwidth(0) <= 70
-    return ''
-  endif
-  if strlen(&filetype) ==# 0
-    return 'no ft'
-  endif
-  return printf('%s %s', &filetype, nerdfont#find())
-endfunction
-
-function! LightlineFormat() abort
-  if winwidth(0) <= 70
-    return ''
-  endif
-    return printf('%s %s', &fileformat, nerdfont#fileformat#find())
-endfunction
-
-function! LightlineRecording() abort
-  let l:reg = reg_recording()
-  if l:reg ==# ''
-    return ''
-  endif
-  return printf(' %s', l:reg)
-endfunction
-"""
+hooks_file = "$DEIN_RC_DIR/hooks/lightline.lua"
 depends = ["nerdfont.vim", 'vim-gitbranch']
 
 [[plugins]]
