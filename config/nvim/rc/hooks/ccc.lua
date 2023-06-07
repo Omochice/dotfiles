@@ -11,7 +11,7 @@ ccc.setup({
       palette = {},
       default_color = "#db7093",
       enable = true,
-      disable = {},
+      disable = { "floaterm", "help" },
     }),
   },
 })
