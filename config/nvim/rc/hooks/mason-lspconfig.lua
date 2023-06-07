@@ -6,7 +6,7 @@ local function enableLspKeymaps()
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "<Space>r", vim.lsp.buf.rename, opts)
   vim.keymap.set("n", "<Space>d", vim.diagnostic.setloclist, opts)
-  vim.keymap.set("n", "<Space>D", vim.diagnostic.show, opts)
+  vim.keymap.set("n", "<Space>D", vim.diagnostic.open_float, opts)
   vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev({ float = false }) end, opts)
   vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next({ float = false }) end, opts)
 end
