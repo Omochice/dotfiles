@@ -9,6 +9,7 @@ vimx.keymap.set(
     callback = function()
       if vimx.fn.pum.visible() then
         vimx.fn.pum.map.confirm()
+        return
       end
       return [[<C-y>]]
     end
@@ -23,6 +24,7 @@ vimx.keymap.set(
     callback = function()
       if vimx.fn.pum.visible() then
         vimx.fn.pum.map.insert_relative(1)
+        return
       end
       return [[<C-n>]]
     end
@@ -37,6 +39,7 @@ vimx.keymap.set(
     callback = function()
       if vimx.fn.pum.visible() then
         vimx.fn.pum.map.insert_relative(-1)
+        return
       end
       return [[<C-p>]]
     end
