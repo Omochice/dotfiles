@@ -7,11 +7,10 @@ vimx.keymap.set(
   {
     expr = true,
     callback = function()
-      if vimx.fn.pum.visible() then
-        vimx.fn.pum.map.confirm()
-        return
+      if not vimx.fn.pum.visible() then
+        return [[<C-y>]]
       end
-      return [[<C-y>]]
+      vimx.fn.pum.map.confirm()
     end
   }
 )
@@ -22,11 +21,10 @@ vimx.keymap.set(
   {
     expr = true,
     callback = function()
-      if vimx.fn.pum.visible() then
-        vimx.fn.pum.map.insert_relative(1)
-        return
+      if not vimx.fn.pum.visible() then
+        return [[<C-n>]]
       end
-      return [[<C-n>]]
+      vimx.fn.pum.map.insert_relative(1)
     end
   }
 )
@@ -37,11 +35,10 @@ vimx.keymap.set(
   {
     expr = true,
     callback = function()
-      if vimx.fn.pum.visible() then
-        vimx.fn.pum.map.insert_relative(-1)
-        return
+      if not vimx.fn.pum.visible() then
+        return [[<C-p>]]
       end
-      return [[<C-p>]]
+      vimx.fn.pum.map.insert_relative(-1)
     end
   }
 )
