@@ -11,18 +11,6 @@ vimx.keymap.set(
       ui = "ff",
       sources = { {
         name = "file_external",
-        params = {
-          cmd = {
-            "fd",
-            "--hidden",
-            "--color",
-            "never",
-            "--type",
-            "file",
-            "--exclude",
-            ".git",
-          },
-        }
       } }
     })
   end
@@ -36,7 +24,6 @@ vimx.keymap.set(
       ui = "ff",
       sources = { {
         name = "mr",
-        params = { kind = "mrw" }
       } }
     })
   end
@@ -108,10 +95,12 @@ function grepWrapper(word)
       params = { input = word },
     } },
     sourceOptions = {
-      rg = { matchers = {
-        'converter_display_word',
-        'matcher_fzf',
-      } }
+      rg = {
+        matchers = {
+          'converter_display_word',
+          'matcher_fzf',
+        }
+      }
     }
   })
 end
@@ -141,122 +130,38 @@ vimx.keymap.set(
 
 -- lua_source {{{
 local vimx = require("artemis")
-
-local config = {
-  ui = "ff",
-  sources = { {
-    name = "file_rec",
-    params = {
-      ignoredDirectories = {
-        ".git",
-        "node_modules",
-      }
-    }
-  }, {
-    name = "file_external",
-    params = {
-      cmd = {
-        "fd",
-        "--hidden",
-        "--color",
-        "never",
-        "--type",
-        "file",
-        "--exclude",
-        [[.git]],
-      },
-    }
-  } },
-  sourceOptions = {
-    _ = {
-      ignoreCase = true,
-      matchers = { "matcher_fzf" },
-    },
-  },
-  sourceParams = {
-    rg = {
-      rg = {
-        matchers = {
-          "converter_display_word",
-          "matcher_substring",
-        }
-      },
-      args = {
-        "--json",
-        "--ignore-case",
-      }
-    },
-    mru = {
-      mr = {
-        kind = "mru",
-        current = true,
-      }
-    }
-  },
-  filterParams = {
-    matcher_fzf = {
-      highlightMathced = "Search",
-    },
-    matcher_substring = {
-      highlightMathced = "Search",
-    }
-  },
-  kindOptions = {
-    file = {
-      defaultAction = "open"
-    },
-    ["custom-list"] = {
-      defaultAction = "callback",
-    },
-  },
-  uiParams = {
-    ff = {
-      ignoreEmpty = true,
-      split = "floating",
-      filterSplitDirection = "floating",
-      filterFloatingPosition = "top",
-      prompt = ">",
-      previewFloating = true,
-      previewSplit = "vertical",
-      -- autoAction = { name = "preview" },
-      startFilter = true,
-      floatingBorder = {
-        "┌", "─", "┐", "│", "┘", "─", "└", "│",
-      },
-      previewFloatingBorder = {
-        "┌", "─", "┐", "│", "┘", "─", "└", "│",
-      },
-    }
-  }
-}
+vimx.fn.ddu.custom.load_config(vimx.fn.expand("$DEIN_RC_DIR/ts/ddu.ts"))
 
 local function reset_size()
-  local win_col = math.floor(vimx.go.columns * 0.1)
-  local win_width = math.floor(vimx.go.columns * 0.8)
-  local win_row = math.floor(vimx.go.lines * 0.1)
-  local win_height = math.floor(vimx.go.lines * 0.8)
-  config.uiParams.ff.winCol = win_col
-  config.uiParams.ff.winWidth = win_width
-  config.uiParams.ff.winRow = win_row
-  config.uiParams.ff.winHeight = win_height
-
-  config.uiParams.ff.previewCol = math.floor(win_col - win_width * 0.5)
-  config.uiParams.ff.previewWidth = math.floor(win_width * 0.5)
-  config.uiParams.ff.previewRow = win_row
-  config.uiParams.ff.previewheight = win_height
-  vimx.fn.ddu.custom.patch_global(config)
+  local size = {
+    col = math.floor(vimx.go.columns * 0.1),
+    row = math.floor(vimx.go.lines * 0.1),
+    width = math.floor(vimx.go.columns * 0.8),
+    height = math.floor(vimx.go.lines * 0.8),
+  }
+  local config = {
+    ff = {
+      winCol = size.col,
+      winRow = size.row,
+      winWidth = size.width,
+      winHeight = size.height,
+      previewCol = math.floor(size.col - size.width * 0.5),
+      previewWidth = math.floor(size.width * 0.5),
+      previewRow = size.row,
+      previewheight = size.height,
+    }
+  }
+  vimx.fn.ddu.custom.patch_global("uiParams", config)
 end
 
 reset_size()
 
-local group = vimx.create_augroup("ddu-reset-size", { clear = true })
 vimx.create_autocmd(
   "VimResized",
   {
-    group = group,
+    group = vimx.create_augroup("vimrc#ddu_resize", { clear = true }),
     pattern = "*",
     callback = reset_size
   }
 )
 -- }}}
-
