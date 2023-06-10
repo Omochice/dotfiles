@@ -3,7 +3,7 @@ BASE_DIR:=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 all: link install-brew nvim chsh font
 
 ~/.deno:
-	bash -c "$$(curl -fsSL https://deno.land/x/install/install.sh)"
+	command -v deno 2>&1 && deno upgrade || bash -c "$$(curl -fsSL https://deno.land/x/install/install.sh)"
 
 .PHONY: install-brew
 install-brew: ~/.deno
