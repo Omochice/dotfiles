@@ -20,14 +20,6 @@ depends = ["pum.vim"]
 
 [[plugins]]
 repo = "shun/ddc-vim-lsp"
-lua_source = """
-local vimx  = require("artemis")
-vimx.g.ddc_source_options["vim-lsp"] = {
-  mark = "[LSP]",
-  isVolatile = true,
-  forceCompletionPattern = [[\..?|:|->|\w+/]]
-}
-"""
 depends = ["vim-lsp"]
 on_source = "ddc.vim"
 if = "!has('nvim')"
@@ -36,20 +28,10 @@ if = "!has('nvim')"
 repo = "Shougo/ddc-source-nvim-lsp"
 on_source = "ddc.vim"
 depends = ["nvim-lspconfig", "mason.nvim", "mason-lspconfig.nvim"]
-lua_source = """
-local vimx = require("artemis")
-vimx.g.ddc_source_options["nvim-lsp"] = {
-  mark = "[LSP]",
-  forceCompletionPattern = [[\..?|:|->|\w+/]],
-}
-"""
 if = "has('nvim')"
 
 [[plugins]]
 repo = "Shougo/ddc-around"
-hook_source = """
-let g:ddc_source_options['around'] = #{mark: '[Ard]'}
-"""
 on_source = "ddc.vim"
 
 # [[plugins]]
@@ -73,16 +55,10 @@ on_source = "ddc.vim"
 
 [[plugins]]
 repo = "Shougo/neco-vim"
-hook_source = """
-let g:ddc_source_options['necovim'] = #{mark: '[Nec]'}
-"""
 on_source = "ddc.vim"
 
 [[plugins]]
 repo = "matsui54/ddc-buffer"
-hook_source = """
-let g:ddc_source_options['buffer'] = #{mark: '[Buf]'}
-"""
 on_source = "ddc.vim"
 
 [[plugins]]
@@ -95,9 +71,6 @@ on_source = "ddc.vim"
 
 [[plugins]]
 repo = "delphinus/ddc-tmux"
-hook_source = """
-let g:ddc_source_options['tmux'] = #{mark: '[Tmx]'}
-"""
 on_source = "ddc.vim"
 
 [[plugins]]
@@ -106,24 +79,10 @@ on_source = "ddc.vim"
 
 [[plugins]]
 repo = "LumaKernel/ddc-file"
-hook_source = """
-let g:ddc_source_options['file'] = #{
-      \   mark: '[Fil]',
-      \   isVolatile: v:true,
-      \   forceCompletionPattern: '\S/\S*',
-      \ }
-"""
 on_source = "ddc.vim"
 
 [[plugins]]
 repo = "Shougo/ddc-rg"
-hook_source = """
-let g:ddc_source_options['rg'] = #{
-      \   mark: '[Rg]',
-      \   minAutoCompleteLength: 4,
-      \   maxItems: 20,
-      \ }
-"""
 on_source = "ddc.vim"
 
 # [[plugins]]
@@ -136,9 +95,7 @@ on_source = "ddc.vim"
 [[plugins]]
 repo = "matsui54/denops-signature_help"
 hook_add = """
-let g:signature_help_config = #{
-      \   style: 'labelOnly',
-      \ }
+let g:signature_help_config = #{ style: 'labelOnly' }
 """
 hook_source = """
 call signature_help#enable()
