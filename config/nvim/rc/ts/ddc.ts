@@ -18,6 +18,7 @@ export class Config extends BaseConfig {
           sorters: ["sorter_fuzzy"],
           converters: ["converter_remove_overlap", "converter_truncate_abbr"],
           minAutoCompleteLength: 2,
+          ignoreCase: true,
         },
         around: {
           mark: "[Ard]",
