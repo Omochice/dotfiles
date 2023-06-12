@@ -28,4 +28,5 @@ vimx.keymap.set(
 -- lua_source {{{
 local vimx = require("artemis")
 vimx.fn.ddc.custom.load_config(vimx.fn.expand("$DEIN_RC_DIR/ts/ddc.ts"))
+vimx.fn.ddc.enable()
 -- }}}
