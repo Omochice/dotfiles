@@ -1,4 +1,4 @@
-import $ from "https://deno.land/x/dax@0.31.1/mod.ts";
+import $ from "https://deno.land/x/dax@0.32.0/mod.ts";
 
 export const ISWSL = Deno.build.os === "linux" && /microsoft/.test(await $`uname --kernel-release`.text());
 

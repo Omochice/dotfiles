@@ -1,4 +1,4 @@
-import $ from "https://deno.land/x/dax@0.31.1/mod.ts";
+import $ from "https://deno.land/x/dax@0.32.0/mod.ts";
 import { err, ok, Result } from "npm:neverthrow@6.0.0";
 
 export async function installBrew(): Promise<void> {

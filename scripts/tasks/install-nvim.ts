@@ -1,4 +1,4 @@
-import $, { PathRef } from "https://deno.land/x/dax@0.31.1/mod.ts";
+import $, { PathRef } from "https://deno.land/x/dax@0.32.0/mod.ts";
 import { ensureInstalled } from "./install-brew.ts";
 
 const HOME = $.path(Deno.env.get("HOME") ?? "~");
