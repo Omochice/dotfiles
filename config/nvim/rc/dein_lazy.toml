@@ -798,6 +798,9 @@ on_map = { n = "<Plug>" }
 
 [[plugins]]
 repo = "tyru/capture.vim"
+hook_add = """
+cnoremap <C-c> <Home>Capture<Space><CR>
+"""
 on_cmd = "Capture"
 [plugins.ftplugin]
 capture = """
