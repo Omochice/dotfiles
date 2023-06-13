@@ -61,7 +61,7 @@ export class Config extends BaseConfig {
     }
     for (const ft of ["markdown"]) {
       args.contextBuilder.patchFiletype(ft, {
-        sources: ["vsnip", "file", "sround", "buffer", "rg"],
+        sources: ["vsnip", "file", "around", "buffer", "rg"],
       });
     }
     return await Promise.resolve();
