@@ -28,6 +28,7 @@ export default [
       ...ts.configs["eslint-recommended"].rules,
       ...airbnbBase.rules,
       ...airbnb.rules,
+      "@typescript-eslint/consistent-type-imports": ["error"],
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
