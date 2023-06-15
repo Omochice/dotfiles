@@ -13,7 +13,7 @@ function! myvimrc#zenhan#enable() abort
   endif
   augroup zenhan_autodisable
     autocmd!
-    autocmd InsertLeave * call system('zenhan.exe 0')
+    autocmd InsertLeave * call timer_start(0, {-> system('zenhan.exe 0')})
   augroup END
   let s:enabled_zenhan = v:true
 endfunction
