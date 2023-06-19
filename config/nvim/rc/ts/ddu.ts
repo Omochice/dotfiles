@@ -74,6 +74,12 @@ export class Config extends BaseConfig {
         "custom-list": {
           defaultAction: "callback",
         },
+        lsp: {
+          defaultAction: "open",
+        },
+        lsp_codeAction: {
+          defaultAction: "apply",
+        },
       },
     });
     return Promise.resolve();
