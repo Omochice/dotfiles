@@ -126,6 +126,65 @@ vimx.keymap.set(
     grepWrapper(vimx.fn.expand("<cword>"))
   end
 )
+
+vimx.create_autocmd(
+  "LspAttach",
+  {
+    pattern = "*",
+    group = vimx.create_augroup("vimrc#ddu#lsp", { clear = true }),
+    callback = function()
+      vimx.keymap.set(
+        "n",
+        prefix .. "r",
+        function()
+          vimx.fn.ddu.start({
+            ui = "ff",
+            sources = { {
+              name = "lsp_references",
+            } }
+          })
+        end,
+        { buffer = true }
+      )
+
+      vimx.keymap.set(
+        "n",
+        prefix .. "d",
+        function()
+          vimx.fn.ddu.start({
+            ui = "ff",
+            uiParams = {
+              ff = {
+                immediateAction = "open",
+              },
+            },
+            sources = { {
+              name = "lsp_definition",
+              params = { method = "textDocument/definition" }
+            } },
+            sync = true,
+          })
+        end,
+        { buffer = true }
+      )
+
+      -- FIXME: applyできてなさそう
+      vimx.keymap.set(
+        "n",
+        prefix .. "a",
+        function()
+          vimx.fn.ddu.start({
+            ui = "ff",
+            sources = { {
+              name = "lsp_codeAction"
+            } }
+          })
+        end,
+        { buffer = true }
+      )
+    end
+  }
+)
 -- }}}
 
 -- lua_source {{{

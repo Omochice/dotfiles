@@ -41,6 +41,10 @@ repo = "matsui54/ddu-source-file_external"
 on_source = "ddu.vim"
 
 [[plugins]]
+repo = "uga-rosa/ddu-source-lsp"
+on_source = "ddu.vim"
+
+[[plugins]]
 repo = "Shougo/ddu-filter-converter_display_word"
 on_source = "ddu.vim"
 
