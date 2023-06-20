@@ -454,25 +454,7 @@ repo = "nvim-treesitter/nvim-treesitter"
 if = "has('nvim')"
 on_event = ["BufRead", "BufNewFile"]
 hook_post_update = "TSUpdate"
-lua_source = """
-require("nvim-treesitter.configs").setup({
-  ensure_installed = "all",
-  highlight = {
-    enable = true,
-    disable = { "help" },
-  },
-  disable = function(lang)
-    local ok = pcall(function()
-      vim.treesitter.get_query(lang, "highlights")
-    end)
-    return not ok
-  end,
-  ignore_install = { "phpdoc", "help" },
-  playground = {
-    enable = true,
-  },
-})
-"""
+hooks_file = "$DEIN_RC_DIR/hooks/treesitter.lua"
 
 [[plugins]]
 repo = "nvim-treesitter/playground"
@@ -482,26 +464,6 @@ on_source = "nvim-treesitter"
 repo = "nvim-treesitter/nvim-treesitter-textobjects"
 on_source = "nvim-treesitter"
 # Use upper case for treesitter, it prevent to confuse at Vim's one.
-lua_source = """
-require("nvim-treesitter.configs").setup({
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true,
-      keymaps = {
-        ["aF"] = "@function.outer",
-        ["iF"] = "@function.inner",
-        ["aC"] = "@class.outer",
-        ["iC"] = "@class.inner",
-        ["iL"] = "@loop.inner",
-        ["aL"] = "@loop.outer",
-        ["iP"] = "@parameter.inner",
-        ["aP"] = "@parameter.outer",
-      },
-    },
-  },
-})
-"""
 
 [[plugins]]
 repo = "nvim-treesitter/nvim-treesitter-context"
@@ -531,11 +493,6 @@ require("treesitter-context").setup({
 repo = "nvim-treesitter/nvim-tree-docs"
 # repo = "~/workspace/nvim-tree-docs"
 on_source = "nvim-treesitter"
-lua_source = """
-require("nvim-treesitter.configs").setup({
-  tree_docs = { enable = true, keymap = false }
-})
-"""
 
 [[plugins]]
 repo = "yuki-yano/vim-operator-replace"
