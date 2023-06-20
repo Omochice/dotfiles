@@ -135,7 +135,7 @@ vimx.create_autocmd(
     callback = function()
       vimx.keymap.set(
         "n",
-        prefix .. "r",
+        "gr",
         function()
           vimx.fn.ddu.start({
             ui = "ff",
@@ -149,7 +149,7 @@ vimx.create_autocmd(
 
       vimx.keymap.set(
         "n",
-        prefix .. "d",
+        "gd",
         function()
           vimx.fn.ddu.start({
             ui = "ff",
@@ -168,10 +168,9 @@ vimx.create_autocmd(
         { buffer = true }
       )
 
-      -- FIXME: applyできてなさそう
       vimx.keymap.set(
         "n",
-        prefix .. "a",
+        "<Space>a",
         function()
           vimx.fn.ddu.start({
             ui = "ff",
