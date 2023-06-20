@@ -407,13 +407,12 @@ on_map = { n = "<Plug>(openbrowser" }
 repo = "ap/vim-css-color"
 on_ft = ["css", "scss", "vue"]
 
-#[[plugins]]
-#repo = "pechorin/any-jump.vim"
-#hook_add = """
-#let g:any_jump_disable_default_keybindings = v:true
-#nnoremap <silent><C-f> <Cmd>AnyJump<CR>
-#"""
-#on_cmd = ["AnyJump", "AnyJumpVisual", "AnyJumpBack", "AnyJumpLastResults"]
+[[plugins]]
+repo = "pechorin/any-jump.vim"
+hook_add = """
+let g:any_jump_disable_default_keybindings = v:true
+"""
+on_cmd = ["AnyJump", "AnyJumpVisual", "AnyJumpBack", "AnyJumpLastResults"]
 
 [[plugins]]
 repo = "y0za/vim-reading-vimrc"
