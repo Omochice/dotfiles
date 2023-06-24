@@ -1,0 +1,17 @@
+pre-commit:
+  commands:
+    prettier:
+      glob: "*.{js,ts}"
+      run: pnpm prettier --write {staged_files} && git add {staged_files}
+    gofmt:
+      glob: "*.go"
+      run: go fmt {staged_files} && git add {staged_files}
+    denofmt:
+      glog: "*.{js,ts}"
+      run: deno fmt --quiet {staged_files} && git add {staged_files}
+
+pre-push:
+  commands:
+    eslint:
+      glob: "*.{js,ts}"
+      run: pnpm lint
