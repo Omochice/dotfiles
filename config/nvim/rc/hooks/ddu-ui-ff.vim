@@ -17,7 +17,7 @@ nnoremap <buffer><nowait> q <Cmd>call ddu#ui#do_action('quit')<CR>
 cnoreabbrev <buffer> q call ddu#ui#do_action('quit')
 nnoremap <buffer><nowait> <C-w><C-w> <C-w><C-w>
 
-inoremap <buffer><nowait> <CR> <Cmd>call ddu#ui#do_action('itemAction')<CR>
+inoremap <buffer><nowait> <CR> <Cmd>call ddu#ui#do_action('itemAction')<CR><Esc>
 inoremap <buffer><nowait> <C-t> <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'open', params: #{ command: 'tabedit' } })<CR>
 inoremap <buffer><nowait> <C-v> <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'open', params: #{ command: 'vsplit' } })<CR>
 inoremap <buffer><nowait> <C-s> <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'open', params: #{ command: 'split' } })<CR>
