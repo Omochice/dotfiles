@@ -45,5 +45,8 @@ vimx.keymap.set(
 -- }}}
 
 -- lua_source {{{
-require("artemis").fn.pum.set_option("auto_select", true)
+require("artemis").fn.pum.set_option({
+  auto_select = true,
+  use_complete = true,
+})
 -- }}}
