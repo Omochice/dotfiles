@@ -24,7 +24,7 @@ vimx.keymap.set(
       if not vimx.fn.pum.visible() then
         return [[<C-n>]]
       end
-      vimx.fn.pum.map.insert_relative(1)
+      return [[<Cmd>call pum#map#insert_relative(1)<CR>]]
     end
   }
 )
@@ -38,7 +38,7 @@ vimx.keymap.set(
       if not vimx.fn.pum.visible() then
         return [[<C-p>]]
       end
-      vimx.fn.pum.map.insert_relative(-1)
+      return [[<Cmd>call pum#map#insert_relative(-1)<CR>]]
     end
   }
 )
