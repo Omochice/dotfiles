@@ -12,7 +12,7 @@ I'm using several OSs :( (because of my work...)
     - WM: i3-gaps
 - Mac (Umm... I'm not good at bsd-line os...)
     - OS: Mac(M1)
-    - WM: [yabai](https://github.com/koekeishiya/yabai)
+    - WM: [yabai](https://github.com/koekeishiya/yabai), [SketchyBar](https://github.com/FelixKratz/SketchyBar)
     - hotkeys: [skhd](https://github.com/koekeishiya/skhd), [karabiner-element](https://github.com/pqrs-org/Karabiner-Elements)
 - Windows (Wht? Why?)
     - OS: Windows10
