@@ -1,0 +1,8 @@
+{
+  "tasks": {
+    "fmt": "deno fmt ./**/*.ts",
+    "fmt:check": "deno fmt --check ./**/*.ts",
+    "check": "deno check ./**/*.ts",
+    "lint": "deno lint ./**/*.ts"
+  }
+}
