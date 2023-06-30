@@ -5,7 +5,7 @@ import {
   Help,
   Opt,
   Version,
-} from "https://raw.githubusercontent.com/stsysd/classopt/v0.1.0/mod.ts";
+} from "https://raw.githubusercontent.com/stsysd/classopt/v0.1.2/mod.ts";
 
 @Help("Sample CLI tool")
 @Version("0.0.0")
