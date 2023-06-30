@@ -114,7 +114,7 @@ nnoremap <buffer> i <Plug>(gin-action-new)
 [[plugins]]
 repo = "Omochice/tataku.vim"
 # repo = "~/Toy/tataku.vim"
-hooks_fike = "$DEIN_RC_DIR/hooks/tataku.lua"
+hooks_file = "$DEIN_RC_DIR/hooks/tataku.lua"
 depends = ["denops.vim", "vim-operator-user"]
 on_func = "tataku#call_recipe"
 on_map = { n = "<Plug>(operator-tataku", x = "<Plug>(operator-tataku" }
