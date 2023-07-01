@@ -126,23 +126,8 @@ on_map = { n = "<Plug>" }
 
 [[plugins]]
 repo = "hrsh7th/vim-vsnip"
+hooks_file = "$DEIN_RC_DIR/hooks/vsnip.lua"
 on_map = { x = "<Plug>", i = "<Plug>" }
-lua_add = """
-local vimx = require("artemis")
-vimx.g.vsnip_snippet_dir = vimx.g.config_dir .. "/snippets"
-vimx.g.vsnip_filetypes = {
-  plaintex = { "tex" },
-  objc = { "c", "objc" },
-  vue = { "javascript", "typescript" },
-}
-"""
-hook_source = """
-" NOTE: work only when <TAB>. Not <Tab>.
-imap <silent><expr> <Tab>   vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : lexima#expand('<LT>TAB>', 'i')
-smap <silent><expr> <Tab>   vsnip#jumpable(+1) ? '<Plug>(vsnip-jump-next)' : '<Tab>'
-imap <silent><expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : lexima#expand('<LT>S-TAB>', 'i')
-smap <silent><expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
-"""
 depends = ["lexima.vim"] # Need this for control order to sourcing
 on_event = "InsertEnter"
 
