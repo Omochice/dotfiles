@@ -1,4 +1,8 @@
 [[plugins]]
+repo = "hrsh7th/vim-vsnip-integ"
+on_source = "vim-vsnip"
+
+[[plugins]]
 repo = "prabirshrestha/asyncomplete.vim"
 hook_source = """
 imap <C-Space> <Plug>(asyncomplete_force_refresh)
