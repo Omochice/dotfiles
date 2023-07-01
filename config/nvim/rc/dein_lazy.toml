@@ -147,10 +147,6 @@ depends = ["lexima.vim"] # Need this for control order to sourcing
 on_event = "InsertEnter"
 
 [[plugins]]
-repo = "hrsh7th/vim-vsnip-integ"
-on_source = "vim-vsnip"
-
-[[plugins]]
 repo = "cohama/lexima.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/lexima.lua"
 on_event = "InsertEnter"
