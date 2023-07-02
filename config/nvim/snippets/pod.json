@@ -1,0 +1,69 @@
+{
+  "head1": {
+    "prefix": "h1",
+    "body": [
+      "=head1 $1"
+    ],
+    "description": "head1"
+  },
+  "head2": {
+    "prefix": "h2",
+    "body": [
+      "=head2 $1"
+    ],
+    "description": "head2"
+  },
+  "head3": {
+    "prefix": "h3",
+    "body": [
+      "=head3 $1"
+    ],
+    "description": "head3"
+  },
+  "head4": {
+    "prefix": "h4",
+    "body": [
+      "=head4 $1"
+    ],
+    "description": "head4"
+  },
+  "list": {
+    "prefix": "li",
+    "body": [
+      "=over",
+      "",
+      "=item",
+      "",
+      "=back"
+    ],
+    "description": "list"
+  },
+  "link": {
+    "prefix": ["link", "anchor"],
+    "body": [
+      "L<${1:text}|${2:url}>"
+    ],
+    "description": "link"
+  },
+  "inline-code": {
+    "prefix": "code",
+    "body": [
+      "C<$1>"
+    ],
+    "description": "inline code block"
+  },
+  "italic": {
+    "prefix": "italic",
+    "body": [
+      "I<$1>"
+    ],
+    "description": "italic text"
+  },
+  "bold": {
+    "prefix": "bold",
+    "body": [
+      "B<$1>"
+    ],
+    "description": "bold text"
+  }
+}
