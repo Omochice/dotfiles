@@ -17,11 +17,10 @@ vimx.keymap.set(
   {
     expr = true,
     callback = function()
-      if vimx.fn.vsnip.jumpable(1) then
+      if vimx.fn.vsnip.jumpable(1) == 1 then
         return [[<Plug>(vsnip-jump-next)]]
       end
-      vimx.fn.lexima.expend([[<LT>TAB>]], "i")
-      return ""
+      return vimx.fn.lexima.expand([[<LT>TAB>]], "i")
     end,
   }
 )
@@ -32,7 +31,7 @@ vimx.keymap.set(
   {
     expr = true,
     callback = function()
-      if vimx.fn.vsnip.jumpable(1) then
+      if vimx.fn.vsnip.jumpable(1) == 1 then
         return [[<Plug>(vsnip-jump-next)]]
       end
       return [[<Tab>]]
@@ -46,11 +45,10 @@ vimx.keymap.set(
   {
     expr = true,
     callback = function()
-      if vimx.fn.vsnip.jumpable(-1) then
+      if vimx.fn.vsnip.jumpable(-1) == 1 then
         return [[<Plug>(vsnip-jump-prev)]]
       end
-      vimx.fn.lexima.expend([[<LT>S-TAB>]], "i")
-      return ""
+      return vimx.fn.lexima.expend([[<LT>S-TAB>]], "i")
     end
   }
 )
@@ -61,7 +59,7 @@ vimx.keymap.set(
   {
     expr = true,
     callback = function()
-      if vimx.fn.vsnip.jumpable(1) then
+      if vimx.fn.vsnip.jumpable(1) == 1 then
         return [[<Plug>(vsnip-jump-prev)]]
       end
       return [[<S-Tab>]]
