@@ -39,7 +39,10 @@
     "description": "list"
   },
   "link": {
-    "prefix": ["link", "anchor"],
+    "prefix": [
+      "link",
+      "anchor"
+    ],
     "body": [
       "L<${1:text}|${2:url}>"
     ],
@@ -65,5 +68,26 @@
       "B<$1>"
     ],
     "description": "bold text"
+  },
+  "index": {
+    "prefix": "index",
+    "body": [
+      "X<$1>"
+    ],
+    "description": "index"
+  },
+  "less than": {
+    "prefix": "lt",
+    "body": [
+      "E<lt>"
+    ],
+    "description": "less than shorthand"
+  },
+  "grater than": {
+    "prefix": "gt",
+    "body": [
+      "E<gt>"
+    ],
+    "description": "grater than"
   }
 }
