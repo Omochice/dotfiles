@@ -1,4 +1,15 @@
 {
+  "pod": {
+    "prefix": "pod",
+    "body": [
+      "=pod",
+      "",
+      "$1",
+      "",
+      "=cut"
+    ],
+    "description": "pod"
+  },
   "head1": {
     "prefix": "h1",
     "body": [
