@@ -7,7 +7,7 @@ if (import.meta.main) {
       conflicts: ["--stdin"],
       required: true,
     })
-    .option("--stdin [stdin:boolean]", "use stdin", {
+    .option("--stdin", "use stdin", {
       conflicts: ["in"],
       default: false,
       required: true,
