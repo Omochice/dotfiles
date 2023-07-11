@@ -3,10 +3,17 @@ local vimx = require("artemis")
 local sources = {
   snippet = { "vsnip" },
   lsp = vimx.fn.has("nvim") and { "nvim-lsp" } or { "vim-lsp" },
-  ["in-vim"] = { "around", "buffer" },
-  ["out-vim"] = { "rg" },
+  internal = { "around", "buffer" },
+  external = { "rg" },
   file = { "file" },
+  line = { "line" },
 }
+
+vimx.keymap.set(
+  "i",
+  "<C-x>",
+  "<Nop>"
+)
 
 vimx.keymap.set(
   "i",
@@ -20,7 +27,7 @@ vimx.keymap.set(
   "i",
   "<C-x><C-f>",
   function()
-    vimx.fn.ddc.map.manual_complete({ sources = { "file" } })
+    vimx.fn.ddc.map.manual_complete({ sources = sources.file })
   end
 )
 
@@ -28,7 +35,7 @@ vimx.keymap.set(
   "i",
   "<C-x><C-n>",
   function()
-    vimx.fn.ddc.map.manual_complete({ sources = { "buffer" } })
+    vimx.fn.ddc.map.manual_complete({ sources = sources.internal })
   end
 )
 
@@ -36,7 +43,7 @@ vimx.keymap.set(
   "i",
   "<C-x><C-s>",
   function()
-    vimx.fn.ddc.map.manual_complete({ sources = { "vsnip" } })
+    vimx.fn.ddc.map.manual_complete({ sources = sources.snippet })
   end
 )
 
@@ -44,17 +51,25 @@ vimx.keymap.set(
   "i",
   "<C-x><C-l>",
   function()
-    vimx.fn.ddc.map.manual_complete({ sources = { "line" } })
+    vimx.fn.ddc.map.manual_complete({ sources = sources.line })
   end
 )
--- TODO: use instead omnifunc = ddu#...?
--- vimx.keymap.set(
---   "i",
---   "<C-x><C-o>",
---   function()
---     vimx.fn.ddc.map.manual_complete(sources.lsp)
---   end
--- )
+
+vimx.create_autocmd("LspAttach", {
+  callback = function()
+    vimx.keymap.set(
+      "i",
+      "<C-x><C-o>",
+      function()
+        vimx.fn.ddc.map.manual_complete({ sources = sources.lsp })
+      end,
+      { buffer = true }
+    )
+  end,
+  group = vimx.create_augroup("vimrc#ddc-omni", {
+    clear = true
+  })
+})
 -- }}}
 
 -- lua_source {{{
