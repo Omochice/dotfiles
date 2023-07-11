@@ -15,7 +15,7 @@ if vimx.fn.dein.tap("pum.vim") then
           return [[<CR>]]
         end
         vimx.fn.pum.map.confirm()
-        return
+        return ""
       end
       return vimx.fn.lexima.expand([[<LT>CR>]], "i")
     end
@@ -56,7 +56,7 @@ local rules = {
   { char = "　", at = [[\%#]], input = " " },
   { char = char.bs, at = [[=\%#=]], input = char.bs, delete = 1 },
   -- js/ts
-  { filetype = ft.js, char = char.sp, at = [[^\s*\(}\s*else\s\)\?if\%#]], input = [[<Space>(]], input_after = ")" },
+  { filetype = ft.js, char = char.sp, at = [[^\s*\(}\s*else\s\)\?if\%#\s*$]], input = [[<Space>(]], input_after = ")" },
   { filetype = ft.js, char = ">", at = [[(\%#)]], input = [[<Right><Space>=><Space>]] },
   { filetype = ft.js, char = "*", at = [[^\s*/\%#]], input = [[*<Space>]], input_after = [[<Space>*/]] },
   { filetype = ft.js, char = "*", at = [[/\*\s\%#]], input = [[<BS>*<Space>]] },
