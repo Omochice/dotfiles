@@ -11,7 +11,7 @@ export class Config extends BaseConfig {
         "TextChangedP",
       ],
       backspaceCompletion: true,
-      sources: ["vsnip", "nvim-lsp", "around", "buffer", "rg"],
+      sources: ["nvim-lsp", "around", "buffer", "rg"],
       sourceOptions: {
         _: {
           matchers: ["matcher_fuzzy"],
@@ -51,17 +51,25 @@ export class Config extends BaseConfig {
         vsnip: {
           mark: "[Snp]",
         },
+        line: {
+          mark: "[Lin]",
+        }
       },
+      sourceParams: {
+        lines: {
+          maxSize: 1000,
+        }
+      }
     });
 
     for (const ft of ["toml", "vim"]) {
       args.contextBuilder.patchFiletype(ft, {
-        sources: ["vsnip", "necovim", "nvim-lsp", "around", "buffer", "rg"],
+        sources: ["necovim", "nvim-lsp", "around", "buffer", "rg"],
       });
     }
     for (const ft of ["markdown"]) {
       args.contextBuilder.patchFiletype(ft, {
-        sources: ["vsnip", "file", "around", "buffer", "rg"],
+        sources: ["file", "around", "buffer", "rg"],
       });
     }
     return await Promise.resolve();
