@@ -628,14 +628,8 @@ on_map = { n = "<Plug>" }
 
 [[plugins]]
 repo = "tyru/capture.vim"
-hook_add = """
-cnoremap <expr><C-c> empty(trim(getcmdline())) ? "<C-c>" : "<Home>Capture<Space><CR>"
-"""
+hooks_file = "$DEIN_RC_DIR/hooks/capture.lua"
 on_cmd = "Capture"
-[plugins.ftplugin]
-capture = """
-setlocal wrap
-"""
 
 [[plugins]]
 repo = "lewis6991/gitsigns.nvim"
