@@ -20,6 +20,7 @@ set noswapfile
 " Use screenkey to show them
 set noshowcmd
 set nowrap
+set nowrapscan
 set nowritebackup
 set nonumber
 set shiftwidth=2
