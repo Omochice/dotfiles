@@ -127,6 +127,32 @@ vimx.keymap.set(
   end
 )
 
+vimx.keymap.set(
+  "n",
+  "gd",
+  function()
+    vimx.fn.ddu.start({
+      ui = "ff",
+      sources = { {
+        name = "anyjump_definition",
+      } }
+    })
+  end
+)
+
+vimx.keymap.set(
+  "n",
+  "gr",
+  function()
+    vimx.fn.ddu.start({
+      ui = "ff",
+      sources = { {
+        name = "anyjump_reference",
+      } }
+    })
+  end
+)
+
 vimx.create_autocmd(
   "LspAttach",
   {

@@ -58,6 +58,13 @@ export class Config extends BaseConfig {
             current: true,
           },
         },
+        anyjump_definition: {
+          removeCommentsFromResults: true,
+        },
+        anyjump_reference: {
+          removeCommentsFromResults: true,
+          onlyCurrentFiletype: false,
+        },
       },
       filterParams: {
         matcher_fzf: {
