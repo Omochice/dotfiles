@@ -287,3 +287,4 @@ nnoremap qn <Cmd>cnext<CR>
 nnoremap qp <Cmd>cprev<CR>
 
 onoremap A $
+cnoremap <C-o> expand('%')
