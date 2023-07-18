@@ -69,7 +69,7 @@
     "description": "Deno.test"
   },
   "typedoc": {
-    "prefix": "typedoc",
+    "prefix": ["typedoc", "jsdoc"],
     "body": [
       "/**",
       " * $1",
