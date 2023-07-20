@@ -100,5 +100,16 @@
       "E<gt>"
     ],
     "description": "grater than"
+  },
+  "begin block": {
+    "prefix": "begin",
+    "body": [
+      "=begin ${1}",
+      "",
+      "${2}",
+      "",
+      "=end ${1}"
+    ],
+    "description": "begin block"
   }
 }
