@@ -39,6 +39,7 @@ local ft = {
   react = { "typescriptreact" },
   lua = "lua",
   java = "java",
+  pod = "pod",
 }
 
 local char = {
@@ -161,6 +162,15 @@ local rules = {
   { filetype = ft.lua, char = char.sp, at = [[if\%#]], input = char.sp, input_after = [[<Space>then<CR>end]] },
   -- java
   { filetype = ft.java, char = char.sp, at = [[^\s*\(}\s*else\s\)\?if\%#]], input = [[<Space>(]], input_after = ")" },
+  -- pod
+  {
+    filetype = ft.pod,
+    char = char.cr,
+    at = [[=begin{\(\w\+\*\?\)}\%#$]],
+    input = char.cr,
+    input_after = [[<CR>=end{\1}]],
+    with_submatch = true,
+  },
 }
 
 for _, rule in ipairs(rules) do
