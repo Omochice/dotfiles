@@ -38,16 +38,30 @@
     ],
     "description": "head4"
   },
-  "list": {
-    "prefix": "li",
+  "over": {
+    "prefix": "over",
     "body": [
-      "=over",
+      "=over ${1:indent-level}",
       "",
-      "=item",
+      "$0",
       "",
       "=back"
     ],
-    "description": "list"
+    "description": "over"
+  },
+  "ol": {
+    "prefix": "ol",
+    "body": [
+      "=item 1 $0"
+    ],
+    "description": "ordered list"
+  },
+  "ul": {
+    "prefix": "ul",
+    "body": [
+      "=item * $0"
+    ],
+    "description": "unordered list"
   },
   "link": {
     "prefix": [
