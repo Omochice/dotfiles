@@ -174,11 +174,6 @@ hooks_file = "$DEIN_RC_DIR/hooks/mason-lspconfig.lua"
 if = "has('nvim')"
 
 [[plugins]]
-repo = "nvimdev/lspsaga.nvim"
-on_event = ["LspAttach"]
-hooks_file = "$DEIN_RC_DIR/hooks/lspsaga.lua"
-
-[[plugins]]
 repo = "machakann/vim-sandwich"
 hook_add = """
 let g:sandwich_no_default_key_mappings = v:true
