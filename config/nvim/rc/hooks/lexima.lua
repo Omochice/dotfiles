@@ -92,8 +92,8 @@ local rules = {
   -- checkbox on markdown
   { filetype = ft.md, char = char.sp, at = [=[^\s*[-+\*]\s\+\[\%#\]]=], input = [[<Space><Right><Space>]] },
   -- vim
-  { filetype = ft.md, char = char.cr, at = [[[\[{]\s\?\%#[\]}]$]], input = [[<CR>\<Space>]] },
-  { filetype = ft.md, char = char.cr, at = [[^\s*\\.\+\%#]], input = [[<CR>\<Space>]] },
+  { filetype = ft.vim, char = char.cr, at = [[[\[{]\s\?\%#[\]}]$]], input = [[<CR>\<Space>]] },
+  { filetype = ft.vim, char = char.cr, at = [[^\s*\\.\+\%#]], input = [[<CR>\<Space>]] },
   -- sh
   { filetype = ft.sh, char = "[", at = [[if\s\%#]], input = [=[[<Space>]=], input_after = [=[<Space>]]=] },
   {
