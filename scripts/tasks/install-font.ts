@@ -1,4 +1,4 @@
-import $ from "https://deno.land/x/dax@0.32.0/mod.ts";
+import $ from "https://deno.land/x/dax@0.33.0/mod.ts";
 import type { WalkEntry } from "https://deno.land/std@0.192.0/fs/mod.ts";
 
 type FontType = "otf" | "ttf";
