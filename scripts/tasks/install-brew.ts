@@ -1,9 +1,16 @@
 import $ from "https://deno.land/x/dax@0.32.0/mod.ts";
 import { err, ok, Result } from "npm:neverthrow@6.0.0";
 
+const repoName = "Homebrew/install";
+const ref = "HEAD";
+const path = "install.sh";
+
+const github = new URL("https://raw.githubusercontent.com");
+
 export async function installBrew(): Promise<void> {
   const url = new URL(
-    "https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh",
+    $.path.join(repoName, ref, path),
+    github,
   );
   const script = await $.request(url).text();
 
