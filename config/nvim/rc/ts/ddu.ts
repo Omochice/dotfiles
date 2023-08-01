@@ -16,7 +16,7 @@ export class Config extends BaseConfig {
           prompt: ">",
           previewFloating: true,
           previewSplit: "vertical",
-          startFilter: true,
+          startFilter: false,
           floatingBorder: border,
           previewFloatingBorder: border,
         },
