@@ -40,6 +40,7 @@ local ft = {
   lua = "lua",
   java = "java",
   pod = "pod",
+  vim = "vim",
 }
 
 local char = {
