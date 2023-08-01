@@ -1,4 +1,4 @@
-local wezterm = require("weztern")
+local wezterm = require("wezterm")
 local act = wezterm.action
 
 local M = {
