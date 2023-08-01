@@ -3,7 +3,7 @@ local act = wezterm.action
 
 local M = {
   disable_default_key_bindings = true,
-  key = require("keybinds.terminal_move"),
+  keys = require("keybinds.terminal_move"),
 }
 
 M.key_tables = {
