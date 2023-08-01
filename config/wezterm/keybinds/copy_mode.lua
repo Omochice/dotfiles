@@ -153,6 +153,8 @@ local scroll = {
   { key = "PageDown", mods = "NONE",  action = act.CopyMode("PageDown") },
   { key = "b",        mods = "CTRL",  action = act.CopyMode("PageUp") },
   { key = "f",        mods = "CTRL",  action = act.CopyMode("PageDown") },
+  { key = "u",        mods = "CTRL",  action = act.CopyMode({ MoveByPage = -0.5 }) },
+  { key = "d",        mods = "CTRL",  action = act.CopyMode({ MoveByPage = 0.5 }) },
 }
 
 
