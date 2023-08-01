@@ -45,6 +45,7 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/lazygit/config.yml
 !/config/ranger/rc.conf
 !/config/wezterm/*.lua
+!/config/wezterm/keybinds/*.lua
 !/config/wezterm/colors/sonokai.toml
 !/config/powershell/profile.ps1
 !/config/stylua/stylua.toml
