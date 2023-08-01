@@ -1,17 +1,15 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
---- Merge list2 into list1
---- @param list1 table base table
-local function merge(list1, ...)
+local function merge_lists(...)
+  local result = {}
   for _, list in ipairs({ ... }) do
-    for i = 1, #list do
-      list1[#list1 + i] = list[i]
+    for _, v in ipairs(list) do
+      table.insert(result, v)
     end
   end
+  return result
 end
-
-local M = {}
 
 local generic = {
   {
@@ -157,8 +155,8 @@ local scroll = {
   { key = "f",        mods = "CTRL",  action = act.CopyMode("PageDown") },
 }
 
-merge(
-  M,
+
+local M = merge_lists(
   generic,
   move_one_char,
   move_one_word,
