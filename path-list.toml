@@ -142,7 +142,7 @@ if_executable = "glab"
 [[aliases]]
 from = "fzf-emoji"
 to = "emoji"
-only = "fish"
+shell = "fish"
 
 [[aliases]]
 from = "date '+%Y-%m-%d'"
@@ -164,86 +164,91 @@ if_executable = "paru"
 [[sources]]
 path = "~/.nix-profile/etc/profile.d/nix.sh"
 if_exists = "~/.nix-profile"
-only = ["bash", "zsh"]
+shell = ["bash", "zsh"]
 
 [[sources]]
 path = "~/.config/fish/nix.fish"
 if_exists = "~/.nix-profile"
-only = ["fish"]
+shell = ["fish"]
 
 [[sources]]
 path = "(dirname (dirname (command -v asdf)))/asdf.fish"
 if_executable = "asdf"
-only = "fish"
+shell = "fish"
 
 [[sources]]
 path = "\"$dirname $(dirname $(command -v asdf))/asdf.sh\""
 if_executable = "asdf"
-only = "bash"
+shell = "bash"
 
 [[executes]]
 command = "eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 if_exists = "/home/linuxbrew/.linuxbrew/bin/brew"
-only = "fish"
+shell = "fish"
 
 [[executes]]
 command = "eval (/opt/homebrew/bin/brew shellenv)"
 if_exists = "/opt/homebrew/bin/brew"
-only = "fish"
+shell = "fish"
 
 [[sources]]
 path = "~/.config/fish/abbr.fish"
-only = "fish"
+shell = "fish"
 
 [[sources]]
 path = "(brew --prefix asdf)/libexec/asdf.fish"
-only = "fish"
+shell = "fish"
 
 [[executes]]
 command = "eval (gh completion --shell fish | source)"
 if_executable = "gh"
-only = "fish"
+shell = "fish"
 
 [[executes]]
 command = "eval \"$(gh completion --shell bash)\""
 if_executable = "gh"
-only = "bash"
+shell = "bash"
 
 [[executes]]
 command = "eval (glab completion --shell fish | source)"
 if_executable = "glab"
-only = "fish"
+shell = "fish"
 
 [[executes]]
 command = "eval \"$(glab completion --shell bash)\""
 if_executable = "glab"
-only = "bash"
+shell = "bash"
 
 [[executes]]
 command = "starship init fish | source"
 if_executable = "starship"
-only = "fish"
+shell = "fish"
 
 [[executes]]
 command = "eval $(starship init zsh)"
 if_executable = "starship"
-only = "zsh"
+shell = "zsh"
 
 [[executes]]
 command = "eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\""
 if_exists = "/home/linuxbrew/.linuxbrew/bin/brew"
-only = ["bash", "zsh"]
+shell = ["bash", "zsh"]
 
 [[executes]]
 command = "deno completions fish | source"
 if_executable = "deno"
-only = "fish"
+shell = "fish"
 
 [[executes]]
 command = "bindkey -e"
-only = "zsh"
+shell = "zsh"
 
 [[executes]]
 command = "eval \"$(sheldon source)\""
 if_executable = "sheldon"
-only = "zsh"
+shell = "zsh"
+
+[[executes]]
+command = "direnv hook fish | source"
+if_executable = "direnv"
+shell = "fish"
