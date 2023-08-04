@@ -1,4 +1,5 @@
 [[paths]]
+label = "local-bin"
 path = "~/.local/bin"
 
 [[paths]]
@@ -23,11 +24,13 @@ path = "~/.cargo/bin"
 path = "~/.local/share/pnpm"
 
 [[aliases]]
+depends = ["local-bin"]
 from = "nvim"
 to = "vim"
 if_executable = "nvim"
 
 [[aliases]]
+depends = ["brew"]
 from = "exa -T"
 to = "tree"
 if_executable = "exa"
@@ -37,6 +40,7 @@ from = "ls -al"
 to = "la"
 
 [[environments]]
+depends = ["local-bin"]
 from = "nvim"
 to = "EDITOR"
 if_executable = "nvim"
@@ -98,18 +102,21 @@ os = "linux"
 if_executable = "xsel"
 
 [[aliases]]
+depends = ["local-bin"]
 from = "win32yank.exe -i"
 to = "pbcopy"
 os = "wsl"
 if_executable = "win32yank.exe"
 
 [[aliases]]
+depends = ["local-bin"]
 from = "win32yank.exe -o"
 to = "pbpaste"
 os = "wsl"
 if_executable = "win32yank.exe"
 
 [[aliases]]
+depends = ["brew"]
 from = "bat"
 to = "cat"
 if_executable = "bat"
@@ -120,6 +127,7 @@ to = "cat"
 if_executable = "batcat"
 
 [[aliases]]
+depends = ["brew"]
 from = "exa --icons -g --time-style=long-iso"
 to = "ls"
 if_executable = "exa"
@@ -172,21 +180,25 @@ if_exists = "~/.nix-profile"
 shell = ["fish"]
 
 [[sources]]
+depends = ["brew"]
 path = "(dirname (dirname (command -v asdf)))/asdf.fish"
 if_executable = "asdf"
 shell = "fish"
 
 [[sources]]
+depends = ["brew"]
 path = "\"$dirname $(dirname $(command -v asdf))/asdf.sh\""
 if_executable = "asdf"
 shell = "bash"
 
 [[executes]]
+label = "brew"
 command = "eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 if_exists = "/home/linuxbrew/.linuxbrew/bin/brew"
 shell = "fish"
 
 [[executes]]
+label = "brew"
 command = "eval (/opt/homebrew/bin/brew shellenv)"
 if_exists = "/opt/homebrew/bin/brew"
 shell = "fish"
@@ -195,16 +207,19 @@ shell = "fish"
 path = "~/.config/fish/abbr.fish"
 shell = "fish"
 
-[[sources]]
-path = "(brew --prefix asdf)/libexec/asdf.fish"
-shell = "fish"
+# [[sources]]
+# depends = ["brew"]
+# path = "(brew --prefix asdf)/libexec/asdf.fish"
+# shell = "fish"
 
 [[executes]]
+depends = ["brew"]
 command = "eval (gh completion --shell fish | source)"
 if_executable = "gh"
 shell = "fish"
 
 [[executes]]
+depends = ["brew"]
 command = "eval \"$(gh completion --shell bash)\""
 if_executable = "gh"
 shell = "bash"
@@ -220,6 +235,7 @@ if_executable = "glab"
 shell = "bash"
 
 [[executes]]
+depends = "brew"
 command = "starship init fish | source"
 if_executable = "starship"
 shell = "fish"
