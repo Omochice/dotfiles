@@ -1,7 +1,7 @@
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
-if type "ranger" >/dev/null 2>&1; then
-    export RANGER_LOAD_DEFAULT_RC FALSE
-fi
+command -v fcitx5 2>&1 && fcitx5 &
+command -v vivaldi-stable 2>&1 && export BROWSER=vivaldi-stable
+command -v wezterm 2>&1 && export TERMINAL=wezterm
 set -b
