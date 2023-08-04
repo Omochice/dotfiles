@@ -23,8 +23,13 @@ path = "~/.cargo/bin"
 [[paths]]
 path = "~/.local/share/pnpm"
 
+[[paths]]
+label = "nvim"
+path = "~/.local/nvim/bin"
+if_exists = "~/.local/nvim"
+
 [[aliases]]
-depends = ["local-bin"]
+depends = ["local-bin", "nvim"]
 from = "nvim"
 to = "vim"
 if_executable = "nvim"
@@ -40,7 +45,7 @@ from = "ls -al"
 to = "la"
 
 [[environments]]
-depends = ["local-bin"]
+depends = ["local-bin", "nvim"]
 from = "nvim"
 to = "EDITOR"
 if_executable = "nvim"
@@ -53,6 +58,11 @@ if_executable = "fish"
 [[environments]]
 from = "~/.config/starship/config.toml"
 to = "STARSHIP_CONFIG"
+
+[[environments]]
+from = "vivaldi-stable"
+to = "BROWSER"
+if_executable = "vivaldi-stable"
 
 [[environments]]
 from = "wezterm"
