@@ -191,12 +191,6 @@ shell = ["fish"]
 
 [[sources]]
 depends = ["brew"]
-path = "(dirname (dirname (command -v asdf)))/asdf.fish"
-if_executable = "asdf"
-shell = "fish"
-
-[[sources]]
-depends = ["brew"]
 path = "\"$dirname $(dirname $(command -v asdf))/asdf.sh\""
 if_executable = "asdf"
 shell = "bash"
@@ -217,10 +211,10 @@ shell = "fish"
 path = "~/.config/fish/abbr.fish"
 shell = "fish"
 
-# [[sources]]
-# depends = ["brew"]
-# path = "(brew --prefix asdf)/libexec/asdf.fish"
-# shell = "fish"
+[[sources]]
+depends = ["brew"]
+path = "(brew --prefix asdf)/libexec/asdf.fish"
+shell = "fish"
 
 [[executes]]
 depends = ["brew"]
