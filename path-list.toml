@@ -278,3 +278,9 @@ shell = "zsh"
 command = "direnv hook fish | source"
 if_executable = "direnv"
 shell = "fish"
+
+[[executes]]
+command = "zoxide init fish | source"
+if_executable = "zoxide"
+shell = "fish"
+depends = ["brew"]
