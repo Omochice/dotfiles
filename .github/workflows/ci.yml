@@ -10,7 +10,7 @@ jobs:
     name: Update by Denopendabot
     runs-on: ubuntu-latest
     steps:
-      - uses: hasundue/denopendabot@0.16.3
+      - uses: hasundue/denopendabot@0.17.0
         with:
           user-token: ${{ secrets.GITHUB_TOKEN }}
           exclude: Makefile
