@@ -42,3 +42,6 @@
 [commit]
     template = ~/.config/git/gitmessage
     verbose = true
+
+[user]
+    useConfigOnly = true
