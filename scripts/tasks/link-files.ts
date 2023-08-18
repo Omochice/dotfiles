@@ -1,4 +1,4 @@
-import $, { PathRef } from "https://deno.land/x/dax@0.33.0/mod.ts";
+import $, { PathRef } from "https://deno.land/x/dax@0.34.0/mod.ts";
 import ini from "npm:ini@4.1.1";
 import { blue } from "https://deno.land/std@0.197.0/fmt/colors.ts";
 
