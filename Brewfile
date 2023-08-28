@@ -35,6 +35,7 @@ brew "reviewdog/tap/reviewdog"
 brew "itchyny/tap/mmv"
 cask "wezterm"
 cask "google-japanese-ime"
+cask "alt-tab"
 brew "koekeishiya/formulae/skhd" if OS.mac?
 brew "koekeishiya/formulae/yabai" if OS.mac?
 brew "felixkratz/formulae/sketchybar" if OS.mac?
