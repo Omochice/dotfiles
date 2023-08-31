@@ -59,9 +59,13 @@ local function ensure_window_is_opened(bufnr)
 end
 
 local function setup_contents(result)
-  return vim.lsp.util.trim_empty_lines(
+  local lines = vim.lsp.util.trim_empty_lines(
     vim.lsp.util.convert_input_to_markdown_lines(result.contents)
   )
+  for index, line in ipairs(lines) do
+    lines[index] = string.gsub(line, "%s+$", "")
+  end
+  return lines
 end
 
 local function ensure_contents(result, context)
