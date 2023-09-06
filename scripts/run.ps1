@@ -194,7 +194,7 @@ winget install --accept-package-agreements --exact --id LGUG2Z.komorebi
 
 # registor as auto-start
 Create-ShortCut -Source (Get-Command komorebic).Definition `
-                -Arguments "start" `
+                -Arguments "start --await-configuration" `
                 -Destination (Get-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders').StartUp `
                 -WindowStyle 7
 # }}}
