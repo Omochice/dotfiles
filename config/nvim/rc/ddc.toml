@@ -1,7 +1,7 @@
 [[plugins]]
 repo = "Shougo/ddc.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/ddc.lua"
-depends = ["denops.vim"]
+on_source = "denops.vim"
 on_event = "InsertEnter"
 
 [[plugins]]
@@ -94,12 +94,13 @@ on_source = "ddc.vim"
 repo = "Shougo/ddc-rg"
 on_source = "ddc.vim"
 
-# [[plugins]]
-# repo = "matsui54/denops-popup-preview.vim"
-# hook_source = """
-# call popup_preview#enable()
-# """
-# on_source = "ddc.vim"
+[[plugins]]
+repo = "matsui54/denops-popup-preview.vim"
+hook_source = """
+call popup_preview#enable()
+"""
+on_source = "ddc.vim"
+if = "!has('nvim')"
 
 [[plugins]]
 repo = "matsui54/denops-signature_help"
@@ -110,3 +111,9 @@ hook_source = """
 call signature_help#enable()
 """
 on_source = "ddc.vim"
+
+[[plugins]]
+repo = "uga-rosa/ddc-previewer-floating"
+on_source = "ddc.vim"
+hooks_file = "$DEIN_RC_DIR/hooks/ddc-previewer-floating.lua"
+if = "has('nvim')"
