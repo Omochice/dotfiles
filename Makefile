@@ -17,7 +17,7 @@ link: ~/.deno
 
 .PHONY: ~/.deno
 nvim:
-	~/.deno/bin/deno run --allow-env --allow-write --allow-read --allow-run https://pax.deno.dev/Omochice/deno-nvim-install-wrapper/cli.ts --pull-to ~/tools/nvim --install-to ~/.local/nvim
+	~/.deno/bin/deno run --allow-env --allow-net --allow-write --allow-read --allow-run https://pax.deno.dev/Omochice/deno-nvim-install-wrapper/cli.ts --pull-to ~/tools/nvim --install-to ~/.local/nvim --force
 
 fish: install ~/.deno link
 	~/.deno/bin/deno run -A https://pax.deno.dev/Omochice/deno-shellrc-generator/cli.ts $(BASE_DIR)/path-list* --shell fish > $(BASE_DIR)/config/fish/config.fish
