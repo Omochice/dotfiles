@@ -1,0 +1,19 @@
+name: Check Deno type
+
+on:
+  push:
+    paths:
+      - "scripts/**/*.ts"
+      - "config/nvim/rc/ts/*.ts"
+
+jobs:
+  check:
+    name: Check type
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup deno
+        uses: denoland/setup-deno@v1
+      - name: type check
+        run: deno check scripts/**/*.ts config/nvim/rc/ts/*.ts
+      - name: linting
+        run: deno lint scripts/**/*.ts config/nvim/rc/ts/*.ts
