@@ -1,5 +1,5 @@
-import { BaseConfig } from "https://deno.land/x/ddu_vim@v3.5.1/types.ts";
-import { ConfigArguments } from "https://deno.land/x/ddu_vim@v3.5.1/base/config.ts";
+import { BaseConfig } from "https://deno.land/x/ddu_vim@v3.6.0/types.ts";
+import { ConfigArguments } from "https://deno.land/x/ddu_vim@v3.6.0/base/config.ts";
 
 const border = ["┌", "─", "┐", "│", "┘", "─", "└", "│"] as const;
 
