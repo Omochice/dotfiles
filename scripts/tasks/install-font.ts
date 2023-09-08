@@ -1,5 +1,5 @@
 import $ from "https://deno.land/x/dax@0.34.0/mod.ts";
-import type { WalkEntry } from "https://deno.land/std@0.200.0/fs/mod.ts";
+import type { WalkEntry } from "https://deno.land/std@0.201.0/fs/mod.ts";
 
 type FontType = "otf" | "ttf";
 type Destination = { [K in FontType]: string };
