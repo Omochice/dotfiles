@@ -7,7 +7,7 @@ import {
   $object,
   $string,
   type Infer,
-} from "npm:lizod@0.2.6";
+} from "npm:lizod@0.2.7";
 
 const isSpace = $object({
   id: $number,
