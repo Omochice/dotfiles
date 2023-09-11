@@ -43,5 +43,12 @@
       ":memo: "
     ],
     "description": "document"
+  },
+  "co-author": {
+    "prefix": "co-author",
+    "body": [
+      "Co-authored-by: ${1:NAME} <${2:ANOTHER-NAME@EXAMPLE.COM}>"
+    ],
+    "description": "co-authored-by"
   }
 }
