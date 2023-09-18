@@ -4,6 +4,7 @@
 !*/
 # user setting
 !/.gitignore
+!/.github/workflows/*.yml
 !/Makefile
 !/.bashrc
 !/Brewfile
@@ -69,4 +70,5 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/glab-cli/aliases.yml
 !/config/gh/config.yml
 !/config/komorebi/komorebi.ahk
+!/config/glazewm/config.yaml
 !/win-config/**

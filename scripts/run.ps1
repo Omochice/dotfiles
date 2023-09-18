@@ -199,6 +199,16 @@ Create-ShortCut -Source (Get-Command komorebic).Definition `
                 -WindowStyle 7
 # }}}
 
+# glazewm {{{
+winget install --accept-package-agreements --exact --id lars-berger.GlazeWM
+## NOTE: alias only work when installed by administer
+## SEE: https://github.com/microsoft/winget-cli/issues/3437
+Create-ShortCut -Source (Get-Command glazewm).Definition `
+                -Arguments ("--config=" + (Join-Path $DotDir "config\glazewm\config.yaml")) `
+                -Destination (Get-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders').StartUp `
+                -WindowStyle 7
+# }}}
+
 # Envs {{{
 $paths = @(
     (Join-Path -Path $Env:ProgramW6432 -ChildPath "AutoHotKey")

@@ -1,0 +1,86 @@
+gaps:
+  inner_gap: 20
+  outer_gap: 20
+
+bar:
+  height: "30px"
+  position: "top"
+  opacity: 1.0
+  background: "#20242cc4"
+  foreground: "#ffffff"
+  font_family: "Segoe UI"
+  font_size: "13px"
+  padding: "4px 6px"
+  components_left:
+    - type: "workspaces"
+      focused_workspace_background: "#ffffff33"
+      displayed_workspace_background: "#00000033"
+      default_workspace_background: "transparent"
+  components_right:
+    - type: "tiling direction"
+      background: "#ffffff33"
+      margin: "0 4px"
+      padding: "0 8px"
+    - type: "binding mode"
+      background: "#ffffff33"
+      margin: "0 4px 0 0"
+      padding: "0 8px"
+    - type: "clock"
+      time_formatting: "hh:mm tt  ddd MMM d"
+      margin: "0 0 0 10px"
+
+workspaces:
+  - name: "1"
+  - name: "2"
+  - name: "3"
+  - name: "4"
+  - name: "5"
+  - name: "6"
+  - name: "7"
+  - name: "8"
+  - name: "9"
+
+window_rules:
+  # Task Manager requires admin privileges to manage and should be ignored unless running
+  # the WM as admin.
+  - command: "ignore"
+    match_process_name: "Taskmgr"
+
+  # Launches system dialogs as floating by default (eg. File Explorer save/open dialog).
+  - command: "set floating"
+    match_class_name: "#32770"
+
+  # Some applications (eg. Steam) have borders that extend past the normal border size.
+  - command: "resize borders 0px -7px -7px -7px"
+    match_process_name: "steam"
+
+keybindings:
+  - command: "focus workspace 1"
+    binding: "LWin+1"
+  - command: "focus workspace 2"
+    binding: "LWin+2"
+  - command: "focus workspace 3"
+    binding: "LWin+3"
+  - command: "focus workspace 4"
+    binding: "LWin+4"
+  - command: "focus workspace 5"
+    binding: "LWin+5"
+  - command: "focus workspace 6"
+    binding: "LWin+6"
+  - command: "focus left"
+    binding: "LWin+H"
+  - command: "focus down"
+    binding: "LWin+J"
+  - command: "focus up"
+    binding: "LWin+K"
+  - command: "focus right"
+    binding: "LWin+L"
+  - command: "move left"
+    binding: "LWin+Shift+H"
+  - command: "move down"
+    binding: "LWin+Shift+J"
+  - command: "move up"
+    binding: "LWin+Shift+K"
+  - command: "move right"
+    binding: "LWin+Shift+L"
+
