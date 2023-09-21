@@ -1,4 +1,4 @@
-import $ from "https://deno.land/x/dax@0.34.0/mod.ts";
+import $ from "https://deno.land/x/dax@0.35.0/mod.ts";
 import { ensureInstalled, getBrewPath } from "./install-brew.ts";
 import { err, ok, Result } from "npm:neverthrow@6.0.0";
 
