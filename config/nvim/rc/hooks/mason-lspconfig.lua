@@ -77,6 +77,13 @@ require("mason-lspconfig").setup_handlers({
         }
       }
     end
+    if server_name == "yamlls" then
+      opts.settings = {
+        yaml = {
+          keyOrdering = false,
+        }
+      }
+    end
     require("lspconfig")[server_name].setup(opts)
   end
 })
