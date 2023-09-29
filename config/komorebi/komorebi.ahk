@@ -1,5 +1,7 @@
 #SingleInstance Force
 
+Run('powershell -Command "Start-Process komorebi.exe -WindowStyle hidden"')
+
 ; Enable hot reloading of changes to this file
 Run("komorebic.exe watch-configuration enable", , "Hide")
 
