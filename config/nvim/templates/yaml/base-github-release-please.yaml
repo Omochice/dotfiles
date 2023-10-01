@@ -1,0 +1,35 @@
+name: release-please
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        with:
+          release-type: simple
+            # can be specified below
+            # - elixir
+            # - go
+            # - help
+            # - java
+            # - maven
+            # - node
+            # - ocaml
+            # - python
+            # - php
+            # - ruby
+            # - rust
+            # - sfdx
+            # - simple
+            # - terraform-module
+          package-name: release-please-action
+
