@@ -1,14 +1,14 @@
 stages:
   - build
 
-build:
-  stage: build
+.prepare-pnpm:
+  tags:
+    - Input-Your-Runner-Tags
   image: node:lts-alpine
   before_script:
     - corepack enable
     - corepack prepare pnpm@latest --activate
     - pnpm config set store-dir .pnpm-store
-  script:
     - pnpm install # install dependencies
   cache:
     key:
