@@ -36,9 +36,9 @@ if_executable = "nvim"
 
 [[aliases]]
 depends = ["brew"]
-from = "exa -T"
+from = "eza -T"
 to = "tree"
-if_executable = "exa"
+if_executable = "eza"
 
 [[aliases]]
 from = "ls -al"
@@ -138,9 +138,9 @@ if_executable = "batcat"
 
 [[aliases]]
 depends = ["brew"]
-from = "exa --icons -g --time-style=long-iso"
+from = "eza --icons -g --time-style=long-iso"
 to = "ls"
-if_executable = "exa"
+if_executable = "eza"
 
 [[aliases]]
 from = "ptpython --vi"
