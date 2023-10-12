@@ -40,7 +40,7 @@ vimx.keymap.set("n", "<Plug>(fern-action-open-or-expand:stay)",
 )
 vimx.keymap.set("n", "<CR>",
   function()
-    return vimx.fn.fern.smart.leaf("<CR>", "<Plug>(fern-action-open-or-expand:stay)", "<Plug>(fern-action-collapse)")
+    return vimx.fn.fern.smart.leaf("<Plug>(fern-action-open)", "<Plug>(fern-action-open-or-expand:stay)", "<Plug>(fern-action-collapse)")
   end,
   { buffer = true, expr = true }
 )
