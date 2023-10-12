@@ -185,12 +185,7 @@ o = "<Plug>(textobj-sandwich"
 [[plugins]]
 repo = "uga-rosa/contextment.vim"
 # repo = "~/Toy/contextment.vim"
-hook_add = """
-nnoremap gc <Plug>(contextment)
-nnoremap gcc <Plug>(contextment-line)
-xnoremap gc <Plug>(contextment)
-onoremap gc <Plug>(contextment)
-"""
+hooks_file = "$DEIN_RC_DIR/hooks/contextment.lua"
 depends = ["context_filetype.vim"]
 on_map = { nxo = "<Plug>" }
 
