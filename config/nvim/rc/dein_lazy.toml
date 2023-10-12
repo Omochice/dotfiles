@@ -80,34 +80,7 @@ on_map = { n = "<Plug>" }
 
 [[plugins]]
 repo = "hrsh7th/vim-searchx"
-lua_add = """
-local vimx = require("artemis")
-vimx.g.searchx = {
-  auto_accept = true,
-  scrollof = vimx.go.scrolloff,
-  scrolltile = 0,
-  markers = vimx.fn.split("ABCDEFGHIJKLMNOPQRSTUVWXYZ", [[.\zs]]),
-}
-"""
-hook_add = """
-nnoremap ? <Cmd>call searchx#start(#{ dir: 0 })<CR>
-nnoremap / <Cmd>call searchx#start(#{ dir: 1 })<CR>
-xnoremap ? <Cmd>call searchx#start(#{ dir: 0 })<CR>
-xnoremap / <Cmd>call searchx#start(#{ dir: 1 })<CR>
-
-nnoremap N <Cmd>call searchx#prev()<CR>
-nnoremap n <Cmd>call searchx#next()<CR>
-xnoremap N <Cmd>call searchx#prev()<CR>
-xnoremap n <Cmd>call searchx#next()<CR>
-
-" Convert search pattern.
-function g:searchx.convert(input) abort
-  if a:input !~# '\k'
-    return '\V' .. a:input
-  endif
-  return join(split(a:input, ' '), '.\{-}')
-endfunction
-"""
+hooks_file = "$DEIN_RC_DIR/hooks/searchx.lua"
 on_func = "searchx"
 
 [[plugins]]
