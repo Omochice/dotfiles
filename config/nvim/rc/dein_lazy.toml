@@ -544,7 +544,8 @@ xmap <buffer> qe <Plug>(operator-partedit-codeblock)
 
 [[plugins]]
 repo = "lambdalisue/fern.vim"
-hooks_file = "$DEIN_RC_DIR/hooks/fern.vim"
+hooks_file = "$DEIN_RC_DIR/hooks/fern.lua"
+on_cmd = "Fern"
 
 [[plugins]]
 repo = "lambdalisue/fern-hijack.vim"
