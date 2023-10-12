@@ -175,26 +175,7 @@ if = "has('nvim')"
 
 [[plugins]]
 repo = "machakann/vim-sandwich"
-hook_add = """
-let g:sandwich_no_default_key_mappings = v:true
-nnoremap s <nop>
-nmap sa <Plug>(sandwich-add)
-xmap S <Plug>(sandwich-add)
-nmap sd <Plug>(sandwich-delete)
-nmap sdb <Plug>(sandwich-delete-auto)
-nmap sr <Plug>(sandwich-replace)
-nmap srb <Plug>(sandwich-replace-auto)
-
-omap ib <Plug>(textobj-sandwich-auto-i)
-xmap ib <Plug>(textobj-sandwich-auto-i)
-omap ab <Plug>(textobj-sandwich-auto-a)
-xmap ab <Plug>(textobj-sandwich-auto-a)
-
-omap is <Plug>(textobj-sandwich-query-i)
-xmap is <Plug>(textobj-sandwich-query-i)
-omap as <Plug>(textobj-sandwich-query-a)
-xmap as <Plug>(textobj-sandwich-query-a)
-"""
+hooks_file = "$DEIN_RC_DIR/hooks/sandwich.lua"
 depends = "vim-textobj-user"
 [plugins.on_map]
 n = "<Plug>"
