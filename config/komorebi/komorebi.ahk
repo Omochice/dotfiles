@@ -46,6 +46,7 @@ Run('komorebic.exe float-rule title "Control Panel"', , "Hide")
 Run('komorebic.exe float-rule exe "Explorer.EXE"', , "Hide")
 Run('komorebic.exe float-rule exe "ScreenToGif.exe"', , "Hide")
 Run("komorebic.exe float-rule class TaskManagerWindow", , "Hide")
+Run('komorebic.exe float-rule exe "keyviz.exe"', , "Hide")
 
 
 ;; KEY BINDS
