@@ -65,6 +65,11 @@ to = "BROWSER"
 if_executable = "vivaldi-stable"
 
 [[environments]]
+from = "open"
+to = "BROWSER"
+os = "darwin"
+
+[[environments]]
 from = "wezterm"
 to = "TERMINAL"
 if_executable = "wezterm"
