@@ -55,6 +55,7 @@ window_rules:
     match_process_name: "steam"
 
 keybindings:
+  # focus workspace {{{
   - command: "focus workspace 1"
     binding: "LWin+1"
   - command: "focus workspace 2"
@@ -67,6 +68,34 @@ keybindings:
     binding: "LWin+5"
   - command: "focus workspace 6"
     binding: "LWin+6"
+  - command: "focus workspace 7"
+    binding: "LWin+7"
+  - command: "focus workspace 8"
+    binding: "LWin+8"
+  - command: "focus workspace 9"
+    binding: "LWin+9"
+  # }}}
+  # move workspace {{{
+  - command: "move to workspace 1"
+    binding: "LWin+Shift+1"
+  - command: "move to workspace 2"
+    binding: "LWin+Shift+2"
+  - command: "move to workspace 3"
+    binding: "LWin+Shift+3"
+  - command: "move to workspace 4"
+    binding: "LWin+Shift+4"
+  - command: "move to workspace 5"
+    binding: "LWin+Shift+5"
+  - command: "move to workspace 6"
+    binding: "LWin+Shift+6"
+  - command: "move to workspace 7"
+    binding: "LWin+Shift+7"
+  - command: "move to workspace 8"
+    binding: "LWin+Shift+8"
+  - command: "move to workspace 9"
+    binding: "LWin+Shift+9"
+  # }}}
+  # focus window {{{
   - command: "focus left"
     binding: "LWin+H"
   - command: "focus down"
@@ -75,6 +104,8 @@ keybindings:
     binding: "LWin+K"
   - command: "focus right"
     binding: "LWin+L"
+  # }}}
+  # move window {{{
   - command: "move left"
     binding: "LWin+Shift+H"
   - command: "move down"
@@ -83,4 +114,28 @@ keybindings:
     binding: "LWin+Shift+K"
   - command: "move right"
     binding: "LWin+Shift+L"
-
+  # }}}
+  # grow or shrink window size {{{
+  - command: "shrink width"
+    keybind: "LWin+Left"
+  - command: "grow width"
+    keybind: "LWin+Right"
+  - command: "shrink height"
+    keybind: "LWin+Up"
+  - command: "grow height"
+    keybind: "LWin+Down"
+  # }}}
+  # toggle vertical or horizontal {{{
+  - command: "layout vertical"
+    keybind: "LWin+V"
+  - command: "layout horizontal"
+    keybind: "LWin+Shift+V"
+  # }}}
+  - command: "kill window"
+    keybind: "LWin+Shift+Q"
+  - command: "reload config"
+    keybind: "LWin+Shift+C"
+  - command: "toggle maximized"
+    keybind: "LWin+F"
+  - command: "focus floating/tiling"
+    keybind: "LWin+Space"
