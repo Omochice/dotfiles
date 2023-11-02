@@ -1,5 +1,6 @@
 -- lua_add {{{
 local vimx = require("artemis")
+vimx.g.user_emment_install_global = false
 vimx.keymap.set("i", "<Plug>(emmet-expand-abbr-with-cmd)", function()
   vimx.fn.emmet.util.closePopup()
   vimx.fn.emmet.expandAbbr(0, "")
