@@ -1,6 +1,6 @@
 import $, { PathRef } from "https://deno.land/x/dax@0.35.0/mod.ts";
 import ini from "npm:ini@4.1.1";
-import { blue } from "https://deno.land/std@0.204.0/fmt/colors.ts";
+import { blue } from "https://deno.land/std@0.205.0/fmt/colors.ts";
 
 type Task = { from: PathRef; to: PathRef };
 
