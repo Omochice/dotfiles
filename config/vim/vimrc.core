@@ -289,3 +289,16 @@ nnoremap qp <Cmd>cprev<CR>
 
 onoremap A $
 cnoremap <C-o> expand('%')
+
+if !exists('g:config_dir')
+  function! s:is_pre(char)
+    let l:pre = getline('.')[col('.') - 2]
+    return l:pre ==# a:char
+  endfunction
+  " NOTE: source this file directory liek `-u ...`
+  inoremap <expr> " <SID>is_pre('"') ? '"' : '""<C-o>h'
+  inoremap <expr> ' <SID>is_pre("'") ? '"' : "''\<C-o>h"
+  inoremap ( ()<C-o>h
+  inoremap [ []<C-o>h
+  inoremap { {}<C-o>h
+endif
