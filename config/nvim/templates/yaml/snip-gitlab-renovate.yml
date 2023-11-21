@@ -1,0 +1,11 @@
+renovate:
+  stage: check
+  image:
+    name: renovate/renovate:latest
+    entrypoint: [""]
+  tags:
+    - Docker
+  script:
+    - npx renovate --platform gitlab --endpoint $CI_API_V4_URL $CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
