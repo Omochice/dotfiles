@@ -1,5 +1,7 @@
 import $ from "https://deno.land/x/dax@0.35.0/mod.ts";
 import { err, ok, Result } from "npm:neverthrow@6.1.0";
+import { join } from "https://deno.land/std@0.207.0/path/join.ts";
+import { join as urlJoin } from "https://deno.land/std@0.207.0/url/join.ts"
 
 const repoName = "Homebrew/install";
 const ref = "HEAD";
@@ -9,7 +11,7 @@ const github = new URL("https://raw.githubusercontent.com");
 
 export async function installBrew(): Promise<void> {
   const url = new URL(
-    $.path.join(repoName, ref, path),
+    urlJoin(repoName, ref, path),
     github,
   );
   const script = await $.request(url).text();
@@ -24,7 +26,7 @@ export function getBrewPath(): Result<string, Error> {
   if (Deno.build.os === "darwin") {
     if (Deno.build.arch === "aarch64") {
       const expected = $.path(
-        $.path.join("/", "opt", "homebrew", "bin", "brew"),
+        join("/", "opt", "homebrew", "bin", "brew"),
       );
       if (expected.isFile()) {
         return ok(expected.toString());
@@ -34,7 +36,7 @@ export function getBrewPath(): Result<string, Error> {
     return err(new Error("Currently intel mac is not supported"));
   } else if (Deno.build.os === "linux") {
     const expected = $.path(
-      $.path.join("/", "home", "linuxbrew", ".linuxbrew", "bin", "brew"),
+      join("/", "home", "linuxbrew", ".linuxbrew", "bin", "brew"),
     );
     if (expected.isFile()) {
       return ok(expected.toString());
