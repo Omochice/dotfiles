@@ -1,6 +1,7 @@
 import $ from "https://deno.land/x/dax@0.35.0/mod.ts";
 import { ensureInstalled } from "./install-brew.ts";
 import { DOTDIR, ISWSL } from "./mod.ts";
+import { join } from "https://deno.land/std@0.207.0/path/join.ts";
 
 async function installCommands() {
   const supported = new Set(["darwin", "linux"]);
@@ -41,7 +42,7 @@ async function installCommands() {
 
 async function installViaBrew(): Promise<void> {
   const brewPath = await ensureInstalled();
-  await $`${brewPath} bundle --file=${$.path.join(DOTDIR, "Brewfile")}`;
+  await $`${brewPath} bundle --file=${join(DOTDIR, "Brewfile")}`;
 }
 
 async function main(): Promise<void> {

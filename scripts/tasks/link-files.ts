@@ -1,6 +1,7 @@
 import $, { PathRef } from "https://deno.land/x/dax@0.35.0/mod.ts";
 import ini from "npm:ini@4.1.1";
 import { blue } from "https://deno.land/std@0.207.0/fmt/colors.ts";
+import { basename } from "https://deno.land/std@0.207.0/path/basename.ts";
 
 type Task = { from: PathRef; to: PathRef };
 
@@ -15,7 +16,7 @@ const HOME = $.path(Deno.env.get("HOME") ?? "~");
 const CONFIG = $.path(Deno.env.get("XDG_CONFIG_HOME") ?? HOME.join(".config"));
 
 function isDotfile(path: string): boolean {
-  const base = $.path.basename(path);
+  const base = basename(path);
   return base.startsWith(".") && !(IGNOREDOTS.has(base));
 }
 

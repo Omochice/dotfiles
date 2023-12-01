@@ -1,23 +1,27 @@
 import $ from "https://deno.land/x/dax@0.35.0/mod.ts";
 import type { WalkEntry } from "https://deno.land/std@0.207.0/fs/mod.ts";
+import { join } from "https://deno.land/std@0.207.0/path/join.ts";
+import { basename } from "https://deno.land/std@0.207.0/path/basename.ts";
+import { expandGlobSync } from "https://deno.land/std@0.207.0/fs/expand_glob.ts";
+import { move } from "https://deno.land/std@0.207.0/fs/move.ts";
 
 type FontType = "otf" | "ttf";
 type Destination = { [K in FontType]: string };
 
 const DESTINATION: Destination = Deno.build.os === "darwin"
   ? {
-    otf: $.path.join("/", "Library", "Fonts"),
-    ttf: $.path.join("/", "Library", "Fonts"),
+    otf: join("/", "Library", "Fonts"),
+    ttf: join("/", "Library", "Fonts"),
   }
   : {
-    otf: $.path.join(
+    otf: join(
       Deno.env.get("HOME") ?? "~",
       ".local",
       "share",
       "fonts",
       "otf",
     ),
-    ttf: $.path.join(
+    ttf: join(
       Deno.env.get("HOME") ?? "~",
       ".local",
       "share",
@@ -37,11 +41,11 @@ async function moveFontFiles(baseDir: string): Promise<void> {
 
     await Promise.all(
       Array
-        .from($.fs.expandGlobSync(`${baseDir}/**/*.${ext}`))
+        .from(expandGlobSync(`${baseDir}/**/*.${ext}`))
         .map((fontFile: WalkEntry) =>
-          $.fs.move(
+          move(
             fontFile.path,
-            $.path.join(dir, fontFile.name),
+            join(dir, fontFile.name),
             { overwrite: true },
           )
         ),
@@ -54,19 +58,19 @@ async function downloadFont(): Promise<void> {
     "https://github.com/yuru7/Firge/releases/download/v0.2.0/FirgeNerd_v0.2.0.zip",
   );
 
-  const zipName = $.path.basename(url.pathname);
+  const zipName = basename(url.pathname);
 
   const tmp = Deno.makeTempDirSync({
-    dir: $.path.join(Deno.env.get("HOME") ?? "~", ".cache"),
+    dir: join(Deno.env.get("HOME") ?? "~", ".cache"),
   });
 
   await $.request(url)
     .showProgress()
     .pipeToPath(tmp);
 
-  const unzipTo = $.path.join(tmp, `${zipName}.d`);
+  const unzipTo = join(tmp, `${zipName}.d`);
 
-  await $`unzip ${$.path.join(tmp, zipName)} -d ${unzipTo}`.stdout("null");
+  await $`unzip ${join(tmp, zipName)} -d ${unzipTo}`.stdout("null");
 
   $.progress("Moveing font files...")
     .with(async () => await moveFontFiles(unzipTo));
