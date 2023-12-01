@@ -32,7 +32,7 @@ async function link(
   backupDirectory: string,
 ): Promise<void> {
   if (task.to.existsSync()) {
-    if (task.to.isSymlink()) {
+    if (task.to.isSymlinkSync()) {
       // NOTE: if symlink exists, unlink it.
       Deno.removeSync(task.to.toFileUrl());
     } else {

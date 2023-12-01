@@ -28,7 +28,7 @@ export function getBrewPath(): Result<string, Error> {
       const expected = $.path(
         join("/", "opt", "homebrew", "bin", "brew"),
       );
-      if (expected.isFile()) {
+      if (expected.isFileSync()) {
         return ok(expected.toString());
       }
       return err(new Error(`${expected} is missing, maybe install yet`));
@@ -38,7 +38,7 @@ export function getBrewPath(): Result<string, Error> {
     const expected = $.path(
       join("/", "home", "linuxbrew", ".linuxbrew", "bin", "brew"),
     );
-    if (expected.isFile()) {
+    if (expected.isFileSync()) {
       return ok(expected.toString());
     }
     return err(new Error(`${expected} is missing, maybe install yet`));
