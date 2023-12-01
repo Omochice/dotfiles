@@ -1,4 +1,4 @@
-import { Command } from "https://deno.land/x/cliffy@v1.0.0-rc.2/command/mod.ts";
+import { Command } from "https://deno.land/x/cliffy@v1.0.0-rc.3/command/mod.ts";
 
 if (import.meta.main) {
   const { options } = await new Command()
