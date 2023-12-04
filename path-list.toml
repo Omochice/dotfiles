@@ -84,6 +84,10 @@ from = "~/.local/share/pnpm"
 to = "PNPM_HOME"
 if_exists = "~/.local/share/pnpm"
 
+[[environments]]
+from = "~/.config/aquaproj-aqua/aqua.yaml"
+to = "AQUA_GLOBAL_CONFIG"
+
 [[aliases]]
 from = "sudo shutdown -h now"
 to = "shutdown"
