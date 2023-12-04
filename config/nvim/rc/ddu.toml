@@ -68,3 +68,11 @@ on_source = "ddu.vim"
 [[plugins]]
 repo = "Omochice/ddu-source-anyjump"
 on_source = "ddu.vim"
+
+[[plugins]]
+repo = "Omochice/ddu-source-redmine"
+on_source = "ddu.vim"
+
+[[plugins]]
+repo = "Shougo/ddu-source-action"
+on_source = "ddu.vim"
