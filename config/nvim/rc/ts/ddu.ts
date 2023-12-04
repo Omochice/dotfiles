@@ -18,7 +18,7 @@ export class Config extends BaseConfig {
           previewSplit: "vertical",
           startFilter: false,
           floatingBorder: border,
-          previewFloatingBorder: border,
+          previewFloatingBorder: "single",
         },
         filer: {
           sort: "filename",
