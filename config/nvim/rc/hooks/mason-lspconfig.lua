@@ -29,6 +29,51 @@ vim.diagnostic.config({
 -- lua_source {{{
 require("mason").setup()
 require("mason-lspconfig").setup()
+
+---Get client id from client name
+---@param name string The language server client name
+---@return nil | number
+local function get_client_id(name)
+  for _, client in ipairs(vim.lsp.get_active_clients()) do
+    if client.name == name then
+      return client.id
+    end
+  end
+  return nil
+end
+
+local lspconfig = require("lspconfig")
+lspconfig.denols.setup({
+  cmd = { "deno", "lsp" },
+  root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
+  single_file_support = true,
+  init_options = {
+    lint = true,
+    unstable = true,
+    suggest = {
+      autoImports = true,
+      completeFunctionCalls = true,
+      names = true,
+      paths = true,
+      imports = {
+        autoDiscover = true,
+        hosts = {
+          ["https://deno.land"] = true,
+        }
+      }
+    }
+  },
+  on_attach = function()
+    if vim.fn.findfile("package.json", ".;") == "" then
+      return
+    end
+    local id = get_client_id("denols")
+    if id == nil then
+      return
+    end
+    vim.lsp.stop_client(id)
+  end
+})
 require("mason-lspconfig").setup_handlers({
   function(server_name)
     local opts = {}
@@ -39,30 +84,6 @@ require("mason-lspconfig").setup_handlers({
       if not is_node_repo then
         return
       end
-    elseif server_name == 'denols' then
-      -- Must not be node directory
-      if is_node_repo then
-        return
-      end
-
-      opts.root_dir = require("lspconfig").util.root_pattern('deno.json', 'deno.jsonc')
-      opts.single_file_support = true
-      opts.init_options = {
-        lint = true,
-        unstable = true,
-        suggest = {
-          autoImports = true,
-          completeFunctionCalls = true,
-          names = true,
-          paths = true,
-          imports = {
-            autoDiscover = true,
-            hosts = {
-              ["https://deno.land"] = true,
-            }
-          }
-        }
-      }
     end
     if server_name == "lua_ls" then
       opts.settings = {
