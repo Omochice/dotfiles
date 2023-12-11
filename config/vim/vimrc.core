@@ -16,7 +16,8 @@ set laststatus=2
 set mouse=
 set nobackup
 set nocursorline
-set noswapfile
+set swapfile
+set directory=$XDG_CACHE_HOME/vim,$HOME/.cache/vim
 " Use screenkey to show them
 set noshowcmd
 set nowrap
