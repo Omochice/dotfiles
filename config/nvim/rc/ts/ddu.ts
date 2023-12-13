@@ -87,6 +87,9 @@ export class Config extends BaseConfig {
         lsp_codeAction: {
           defaultAction: "apply",
         },
+        action: {
+          defaultAction: "do",
+        },
       },
     });
     return Promise.resolve();
