@@ -11,7 +11,7 @@ export class Config extends BaseConfig {
         "TextChangedP",
       ],
       backspaceCompletion: true,
-      sources: ["nvim-lsp", "around", "buffer", "rg"],
+      sources: ["lsp", "around", "buffer", "rg"],
       sourceOptions: {
         _: {
           matchers: ["matcher_fuzzy"],
@@ -29,9 +29,9 @@ export class Config extends BaseConfig {
         necovim: {
           mark: "[Nec]",
         },
-        "nvim-lsp": {
+        lsp: {
           mark: "[LSP]",
-          forceCompletionPattern: "\\..?|:|->|\\w+/",
+          forceCompletionPattern: "\\.\\w*|:\\w*|->\\w*",
         },
         "vim-lsp": {
           mark: "[LSP]",
@@ -53,18 +53,25 @@ export class Config extends BaseConfig {
         },
         line: {
           mark: "[Lin]",
-        }
+        },
       },
       sourceParams: {
         lines: {
           maxSize: 1000,
-        }
-      }
+        },
+        lsp: {
+          snippetEngine: async (body: string) => {
+            await args.denops.call("vsnip#snonymous", body);
+          },
+          enagbleResolveItem: true,
+          enableAdditionalTextEdit: true,
+        },
+      },
     });
 
     for (const ft of ["toml", "vim"]) {
       args.contextBuilder.patchFiletype(ft, {
-        sources: ["necovim", "nvim-lsp", "around", "buffer", "rg"],
+        sources: ["necovim", "lsp", "around", "buffer", "rg"],
       });
     }
     for (const ft of ["markdown"]) {
