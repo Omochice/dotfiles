@@ -31,17 +31,17 @@ export class Config extends BaseConfig {
         },
         lsp: {
           mark: "[LSP]",
-          forceCompletionPattern: "\\.\\w*|:\\w*|->\\w*",
+          forceCompletionPattern: String.raw`\.\w*|:\w*|->\w*`,
         },
         "vim-lsp": {
           mark: "[LSP]",
           isVolatile: true,
-          forceCompletionPattern: "\\..?|:|->|\\w+/",
+          forceCompletionPattern: String.raw`\..?|:|->|\w+/`,
         },
         file: {
           mark: "[Fil]",
           isVolatile: true,
-          forceCompletionPattern: "\\S/\\S*",
+          forceCompletionPattern: String.raw`\\S/\\S*`,
         },
         rg: {
           mark: "[Rg]",
