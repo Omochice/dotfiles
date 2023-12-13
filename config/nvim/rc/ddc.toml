@@ -25,12 +25,10 @@ on_source = "ddc.vim"
 if = "!has('nvim')"
 
 [[plugins]]
-repo = "Shougo/ddc-source-nvim-lsp"
+repo = "Shougo/ddc-source-lsp"
 on_source = "ddc.vim"
 depends = ["nvim-lspconfig", "mason.nvim", "mason-lspconfig.nvim"]
 if = "has('nvim')"
-# NOTE: I fix version because to prevent: `[denops] Failed to handle message 2,invoke,dispatch,ddc,onEvent,FileType ReferenceError: __DENO_NODE_GLOBAL_THIS_0_44_0__ is not defined`
-rev = "a5620bcf08ad8f694c64c1659ce6e895aa88e8ce"
 
 [[plugins]]
 repo = "uga-rosa/ddc-source-vsnip"
