@@ -70,6 +70,7 @@ let g:seethrough_disabled = has('gui_running')
 repo = "mattn/vim-findroot"
 hook_add = """
 let g:findroot_not_for_subdir = v:false
+let g:findroot_patterns = ['.git/']
 """
 
 # [[plugins]]
