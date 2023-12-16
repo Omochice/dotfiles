@@ -43,11 +43,11 @@ vimx.keymap.set("n", "d", function()
   local winid = get_winid_by_filetype("gin-diff")
   if winid == nil then
     local current_winid = vimx.fn.win_getid()
-    vimx.cmd(string.format([[GinDiff ++opener=botright\ vsplit -- %s]], filename))
+    vimx.cmd(string.format([[GinDiff HEAD ++opener=botright\ vsplit -- %s]], filename))
     vimx.fn.win_gotoid(current_winid)
     return
   end
-  vimx.fn.win_execute(vimx.fn.win_getid(winid), string.format("GinDiff -- %s", filename))
+  vimx.fn.win_execute(vimx.fn.win_getid(winid), string.format("GinDiff HEAD -- %s", filename))
 end, { buffer = true, nowait = true })
 -- }}}
 
