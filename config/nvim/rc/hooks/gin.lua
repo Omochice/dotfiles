@@ -1,6 +1,7 @@
 -- lua_add {{{
 local vimx = require("artemis")
 local prefix = "<C-g>"
+vimx.g.gin_proxy_apply_without_confirm = true
 vimx.keymap.set("n", prefix .. "<C-g>", "<Cmd>GinStatus<CR>")
 vimx.keymap.set("n", prefix .. "<C-b>", "<Cmd>GinBranch<CR>")
 vimx.keymap.set("n", prefix .. "<C-l>", "<Cmd>GinLog<CR>")
