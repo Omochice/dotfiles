@@ -61,7 +61,7 @@ export class Config extends BaseConfig {
         },
         lsp: {
           snippetEngine: async (body: string) => {
-            await args.denops.call("vsnip#snonymous", body);
+            await args.denops.call("vsnip#anonymous", body);
           },
           enagbleResolveItem: true,
           enableAdditionalTextEdit: true,
