@@ -5,6 +5,22 @@ vimx.g.gin_proxy_apply_without_confirm = true
 vimx.keymap.set("n", prefix .. "<C-g>", "<Cmd>GinStatus<CR>")
 vimx.keymap.set("n", prefix .. "<C-b>", "<Cmd>GinBranch<CR>")
 vimx.keymap.set("n", prefix .. "<C-l>", "<Cmd>GinLog<CR>")
+vimx.create_autocmd("BufWinLeave", {
+  pattern = "ginstatus:///*",
+  group = vimx.create_augroup("myvimrc#gin", {
+    clear = true
+  }),
+  callback = function()
+    local winids = vimx.fn.tabpagebuflist()
+    for _, val in ipairs(winids) do
+      local winnr = vimx.fn.bufwinnr(val)
+      local winvar = vimx.fn.getwinvar(winnr, "&filetype")
+      if winvar == "gin-diff" then
+        vimx.cmd(string.format("%dclose", winnr))
+      end
+    end
+  end
+})
 -- }}}
 
 -- lua_gin-diff {{{
@@ -57,15 +73,11 @@ vimx.keymap.set("n", "d", function()
 end, { buffer = true, nowait = true })
 
 vimx.keymap.set("n", "q", function()
-  local diff_winid = get_winid_by_filetype("gin-diff")
-  if not (diff_winid == nil) then
-    vimx.cmd(string.format("%dclose", diff_winid))
-  end
   vimx.cmd("silent! bprevious")
 end, { buffer = true, nowait = true })
 -- }}}
 
 -- lua_gin-branch {{{
 local vimx = require("artemis")
-vimx.keymap.set("n", "i", "<Plug>(gin-action-new)", { buffer = true })
+vimx.keymap.set("n", "c", "<Plug>(gin-action-new)", { buffer = true, nowait = true })
 -- }}}
