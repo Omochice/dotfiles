@@ -6,11 +6,16 @@ vimx.keymap.set("n", prefix .. "<C-b>", "<Cmd>GinBranch<CR>")
 vimx.keymap.set("n", prefix .. "<C-l>", "<Cmd>GinLog<CR>")
 -- }}}
 
+-- lua_gin-diff {{{
+local vimx = require("artemis")
+vimx.bo.buflisted = false
+-- }}}
+
 -- lua_gin-status {{{
 local vimx = require("artemis")
 vimx.keymap.set("n", "h", "<Plug>(gin-action-stage)", { buffer = true })
 vimx.keymap.set("n", "l", "<Plug>(gin-action-unstage)", { buffer = true })
-vimx.keymap.set("n", "q", "<Cmd>bprevious<CR>", { buffer = true, nowait = true })
+-- vimx.keymap.set("n", "q", "<Cmd>bprevious<CR>", { buffer = true, nowait = true })
 vimx.keymap.set("n", "cc", "<Cmd>Gin commit<CR>", { buffer = true })
 
 --- Get winid by filetype
@@ -48,6 +53,14 @@ vimx.keymap.set("n", "d", function()
     return
   end
   vimx.fn.win_execute(vimx.fn.win_getid(winid), string.format("GinDiff HEAD -- %s", filename))
+end, { buffer = true, nowait = true })
+
+vimx.keymap.set("n", "q", function()
+  local diff_winid = get_winid_by_filetype("gin-diff")
+  if not (diff_winid == nil) then
+    vimx.cmd(string.format("%dclose", diff_winid))
+  end
+  vimx.cmd("silent! bprevious")
 end, { buffer = true, nowait = true })
 -- }}}
 
