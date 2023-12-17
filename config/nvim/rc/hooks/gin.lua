@@ -6,7 +6,7 @@ vimx.keymap.set("n", prefix .. "<C-g>", "<Cmd>GinStatus<CR>")
 vimx.keymap.set("n", prefix .. "<C-b>", "<Cmd>GinBranch<CR>")
 vimx.keymap.set("n", prefix .. "<C-l>", "<Cmd>GinLog<CR>")
 vimx.create_autocmd("BufWinLeave", {
-  pattern = "ginstatus:///*",
+  pattern = "ginstatus://*",
   group = vimx.create_augroup("myvimrc#gin", {
     clear = true
   }),
@@ -32,7 +32,6 @@ vimx.bo.buflisted = false
 local vimx = require("artemis")
 vimx.keymap.set("n", "h", "<Plug>(gin-action-stage)", { buffer = true })
 vimx.keymap.set("n", "l", "<Plug>(gin-action-unstage)", { buffer = true })
--- vimx.keymap.set("n", "q", "<Cmd>bprevious<CR>", { buffer = true, nowait = true })
 vimx.keymap.set("n", "cc", "<Cmd>Gin commit<CR>", { buffer = true })
 
 --- Get winid by filetype
@@ -51,6 +50,9 @@ local function get_winid_by_filetype(filetype)
 end
 
 vimx.keymap.set("n", "d", function()
+  if vimx.bo.filetype ~= "gin-status" then
+    return
+  end
   if vimx.fn.line(".") == 1 then
     return
   end
@@ -58,18 +60,32 @@ vimx.keymap.set("n", "d", function()
   if string.len(line) <= 3 then
     return
   end
-  local filename = string.sub(line, 3)
-  if not string.match(filename, "^%s+$") == nil then
+  local filename = string.sub(line, 4)
+  if string.match(filename, "^%s+$") ~= nil then
     return
   end
+  local diff_type = string.sub(line, 0, 2)
+  -- local is_tracked = string.match(diff_type, "^%?%?") == nil
+  local is_staged = string.match(diff_type, "^M") ~= nil
+  local staged = is_staged and "--staged" or ""
   local winid = get_winid_by_filetype("gin-diff")
+  -- FIXME: I want to show untracked file as all new code
+  -- but, there are some problem:
+  -- 1. gin replace `/dev/null` to relative path
+  --   ref: https://github.com/lambdalisue/gin.vim/blob/5f27fb643056e725476234f27141859415cd31ed/denops/gin/command/diff/command.ts#L36
+  -- 1. Return 1 as status code when exec `git diff -- /dev/null path/to/file`.
+  --    And gin throw if get error code...
+  --   ref: https://github.com/lambdalisue/gin.vim/blob/5f27fb643056e725476234f27141859415cd31ed/denops/gin/git/executor.ts#L85+L87
+  -- local dev_null = is_tracked and "" or "/dev/null"
   if winid == nil then
     local current_winid = vimx.fn.win_getid()
-    vimx.cmd(string.format([[GinDiff HEAD ++opener=botright\ vsplit -- %s]], filename))
+    local cmd = string.format([[GinDiff HEAD %s ++opener=botright\ vsplit -- %s]], staged, filename)
+    vimx.cmd(cmd)
     vimx.fn.win_gotoid(current_winid)
     return
   end
-  vimx.fn.win_execute(vimx.fn.win_getid(winid), string.format("GinDiff HEAD -- %s", filename))
+  local cmd = string.format("GinDiff HEAD %s -- %s", staged, filename)
+  vimx.fn.win_execute(vimx.fn.win_getid(winid), cmd)
 end, { buffer = true, nowait = true })
 
 vimx.keymap.set("n", "q", function()
