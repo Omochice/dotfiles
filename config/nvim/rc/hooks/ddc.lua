@@ -2,7 +2,7 @@
 local vimx = require("artemis")
 local sources = {
   snippet = { "vsnip" },
-  lsp = vimx.fn.has("nvim") and { "nvim-lsp" } or { "vim-lsp" },
+  lsp = { "lsp" },
   internal = { "around", "buffer" },
   external = { "rg" },
   file = { "file" },
