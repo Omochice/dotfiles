@@ -8,7 +8,6 @@ local M = {
 
 M.key_tables = {
   resize_pane = require("keybinds.resize_pane"),
-  -- TODO: copy-modeのときにC-u/dを使えるようにする
   copy_mode = require("keybinds.copy_mode")
 }
 

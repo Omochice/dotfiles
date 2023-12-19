@@ -29,6 +29,7 @@ local M = {
   { key = "9",          mods = "ALT",       action = act.ActivateTab(8) },
   { key = "Enter",      mods = "ALT",       action = act.QuickSelect },
   { key = "/",          mods = "ALT",       action = act.Search("CurrentSelectionOrEmptyString") },
+  { key = "v",          mods = "ALT",       action = act.PasteFrom("Clipboard") },
   {
     key = "r",
     mods = "ALT",
