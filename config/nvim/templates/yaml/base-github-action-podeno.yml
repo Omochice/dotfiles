@@ -1,0 +1,23 @@
+name: Generate docs from pod
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: Omochice/actions-podeno@v0.1.0
+        with:
+          config: |
+            [
+              { type: "markdown", in: "README.pod", out: "README.md", },
+              { type: "vimdoc", in: "README.pod", out: "doc/plugin-name.txt", },
+            ]
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "docs: update docs"
+          branch: ${{ github.head_ref }}
