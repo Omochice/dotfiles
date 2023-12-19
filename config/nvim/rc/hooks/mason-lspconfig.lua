@@ -8,11 +8,15 @@ local function enableLspKeymaps()
   vim.keymap.set("n", "<Space>r", vim.lsp.buf.rename, opts)
   vim.keymap.set("n", "<Space>d", vim.diagnostic.setloclist, opts)
   vim.keymap.set("n", "<Space>D", vim.diagnostic.open_float, opts)
-  vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev({ float = false }) end, opts)
-  vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next({ float = false }) end, opts)
+  vim.keymap.set("n", "[d", function()
+    vim.diagnostic.goto_prev({ float = false })
+  end, opts)
+  vim.keymap.set("n", "]d", function()
+    vim.diagnostic.goto_next({ float = false })
+  end, opts)
 end
 local group = vim.api.nvim_create_augroup("vimrc#nvim-lsp", {
-  clear = true
+  clear = true,
 })
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(_)
@@ -59,9 +63,9 @@ lspconfig.denols.setup({
         autoDiscover = true,
         hosts = {
           ["https://deno.land"] = true,
-        }
-      }
-    }
+        },
+      },
+    },
   },
   on_attach = function()
     if vim.fn.findfile("package.json", ".;") == "" then
@@ -72,7 +76,7 @@ lspconfig.denols.setup({
       return
     end
     vim.lsp.stop_client(id)
-  end
+  end,
 })
 require("mason-lspconfig").setup_handlers({
   function(server_name)
@@ -94,23 +98,31 @@ require("mason-lspconfig").setup_handlers({
             library = vim.api.nvim_get_runtime_file("", true),
             checkThirdParty = false, -- NOTE: Prevent `Do you need to configure ...`
           },
+          format = {
+            defaultConfig = {
+              indent_style = "space",
+              indent_size = "2",
+              quote_style = "double",
+              call_arg_parentheses = "keep",
+              align_continuous_assign_statement = "false",
+              align_continuous_rect_table_field = "false",
+              align_array_table = "false",
+            },
+          },
           telemetry = { enable = false },
-        }
+        },
       }
     end
     if server_name == "yamlls" then
       opts.settings = {
         yaml = {
           keyOrdering = false,
-        }
+        },
       }
     end
     require("lspconfig")[server_name].setup(opts)
-  end
+  end,
 })
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  require("vimrc/traditional-behavior-lsp").on_hover,
-  {}
-)
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(require("vimrc/traditional-behavior-lsp").on_hover, {})
 -- }}}
