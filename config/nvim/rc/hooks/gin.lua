@@ -91,6 +91,7 @@ end, { buffer = true, nowait = true })
 vimx.keymap.set("n", "q", function()
   vimx.cmd("silent! bprevious")
 end, { buffer = true, nowait = true })
+vimx.keymap.set("n", "A", "<Cmd>Gin commit --amend --no-edit --allow-empty<CR>", { buffer = true, nowait = true })
 -- }}}
 
 -- lua_gin-branch {{{
