@@ -92,6 +92,18 @@ vimx.keymap.set("n", "q", function()
   vimx.cmd("silent! bprevious")
 end, { buffer = true, nowait = true })
 vimx.keymap.set("n", "A", "<Cmd>Gin commit --amend --no-edit --allow-empty<CR>", { buffer = true, nowait = true })
+vimx.keymap.set("n", "D", function()
+  if vimx.fn.line(".") == 1 then
+    return
+  end
+  local line = vimx.fn.getline(".")
+  local filename = string.sub(line, 4)
+  if filename == nil then
+    return
+  end
+  vimx.cmd(string.format("Gin checkout -- %s", filename))
+  -- vimx.cmd(string.format("echo 'Checkout %s'", filename))
+end, { buffer = true, nowait = true })
 -- }}}
 
 -- lua_gin-branch {{{
