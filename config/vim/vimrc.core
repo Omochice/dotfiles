@@ -303,3 +303,8 @@ if !exists('g:config_dir')
   inoremap [ []<C-o>h
   inoremap { {}<C-o>h
 endif
+
+nnoremap gt gt<Plug>(vimrc-gt)
+nnoremap <Plug>(vimrc-gt)t gt<Plug>(vimrc-gt)
+nnoremap gT gT<Plug>(vimrc-gt)
+nnoremap <Plug>(vimrc-gt)T gT<Plug>(vimrc-gt)
