@@ -38,8 +38,8 @@ function M.is_opened_already()
 end
 
 function os.capture(cmd)
-  local f = assert(io.popen(cmd, 'r'))
-  local s = assert(f:read('*a'))
+  local f = assert(io.popen(cmd, "r"))
+  local s = assert(f:read("*a"))
   io.close(f)
   local outputed = {}
   for line in string.gmatch(s, "([^\n]*)\n?") do
