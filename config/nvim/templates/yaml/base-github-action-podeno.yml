@@ -10,12 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: Omochice/actions-normalize-vim-plugin-name@v0.1.0
+        id: normalize
+        with:
+          trim-tail-dot-vim: true
       - uses: Omochice/actions-podeno@v0.1.0
         with:
           config: |
             [
               { type: "markdown", in: "README.pod", out: "README.md", },
-              { type: "vimdoc", in: "README.pod", out: "doc/plugin-name.txt", },
+              { type: "vimdoc", in: "README.pod", out: "doc/${{ steps.normalize.outputs.normalizedName }}.txt", },
             ]
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
