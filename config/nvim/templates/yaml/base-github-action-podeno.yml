@@ -10,18 +10,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: Omochice/actions-normalize-vim-plugin-name@v0.1.0
+      - name: Check is main protected
+        id: branchCheck
+        run: |
+          RESPONSE=$(curl -s -H "Authorization: Bearer ${{ secrets.token }}" \
+          "https://api.github.com/repos/${{ github.repository }}/branches/main")
+          PROTECTED=$(echo ${RESPONSE} | jq -r '.protected')
+          echo "${PROTECTED}"
+          echo "{isProtected}={${PROTECTED}}" >> $GITHUB_OUTPUT
+      - uses: Omochice/action-normalize-vim-plugin-name@v0.1.0
         id: normalize
         with:
           trim-tail-dot-vim: true
-      - uses: Omochice/actions-podeno@v0.1.0
+      - uses: Omochice/action-podeno@v0.1.0
         with:
           config: |
             [
               { type: "markdown", in: "README.pod", out: "README.md", },
               { type: "vimdoc", in: "README.pod", out: "doc/${{ steps.normalize.outputs.normalizedName }}.txt", },
             ]
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Remove deno.lock
+        run: test -f deno.lock && rm deno.lock || true
+      - name: Create auto commit
+        uses: stefanzweifel/git-auto-commit-action@v5
+        if: ${{ steps.branchCheck.outputs.isProtected != true }}
         with:
           commit_message: "docs: update docs"
           branch: ${{ github.head_ref }}
+      - name: Create Pull Request
+        if: ${{ steps.branchCheck.outputs.isProtected == true }}
+        uses: peter-evans/create-pull-request@v5
+        with:
+          title: "docs: update docs"
+          body: |
+            This PR is created by [create-pull-request](https://github.com/peter-evans/create-pull-request).
+            The docs are generated automaticaly.
+          author: "GitHub <noreply@github.com>"
+          delete-branch: true
