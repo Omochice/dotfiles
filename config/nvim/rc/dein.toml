@@ -11,6 +11,51 @@ augroup vimrc#colorsetting
   autocmd ColorScheme * call timer_start(0, { -> s:disable_bgcolor() })
   autocmd VimEnter * nested colorscheme sonokai
 augroup END
+
+if has('mac')
+  let g:clipboard = #{
+    \   name: 'pbcopy',
+    \   copy: {
+    \     '+': ['pbcopy'],
+    \     '*': ['pbcopy'],
+    \   },
+    \   paste: {
+    \     '+': ['pbpaste'],
+    \     '*': ['pbpaste'],
+    \   },
+    \   cache_enabled: v:false,
+    \ }
+endif
+
+if has('linux') && has('wsl')
+  let g:clipboard = #{
+    \   name: 'win32yank',
+    \   copy: {
+    \     '+': ['win32yank.exe', '-i', '--crlf'],
+    \     '+': ['win32yank.exe', '-i', '--crlf'],
+    \   },
+    \   paste: {
+    \     '+': ['win32yank.exe', '-o', '--lf'],
+    \     '*': ['win32yank.exe', '-o', '--lf'],
+    \   },
+    \   cache_enabled: v:false,
+    \ }
+endif
+
+if has('linux') && !has('wsl')
+  let g:clipboard = #{
+    \   name: 'xsel',
+    \   copy: {
+    \     '+': ['xsel', '--nodetach', '--input', '--clipboard'],
+    \     '*': ['xsel', '--nodetach', '--input', '--primary'],
+    \   },
+    \   paste: {
+    \     '+': ['xsel', '--output', '--clipboard'],
+    \     '*': ['xsel', '--output', '--primary'],
+    \   },
+    \   cache_enabled: v:true,
+    \ }
+endif
 """
 
 [[plugins]]
