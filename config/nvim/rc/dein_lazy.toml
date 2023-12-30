@@ -599,3 +599,9 @@ repo = "uga-rosa/ccc.nvim"
 hooks_file = "$DEIN_RC_DIR/hooks/ccc.lua"
 on_event = ["BufRead", "BufNewFile"]
 if = "has('nvim')"
+
+[[plugins]]
+repo = "https://github.com/shellRaining/hlchunk.nvim"
+hooks_file = "$DEIN_RC_DIR/hooks/hlchunk.lua"
+on_event = ["BufRead", "BufNewFile"]
+if = "has('nvim')"
