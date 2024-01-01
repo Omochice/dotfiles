@@ -71,6 +71,31 @@ local function reset()
         options = { border = "single" }
       }
     },
+    review = {
+      collector = {
+        name = "buffer"
+      },
+      processor = {
+        {
+          name = "eta",
+          options = {
+            type = "file",
+            templateDirectory = vimx.fn.expand("$DEIN_RC_DIR") .. "/eta",
+            templateFileName = "review.eta",
+          }
+        },
+        {
+          name = "ollama",
+          options = {
+            model = "codellama",
+          }
+        }
+      },
+      emitter = {
+        name = "window",
+        options = { cmd = "tabedit", bufname = "ollama:///review" }
+      }
+    },
   }
 end
 
