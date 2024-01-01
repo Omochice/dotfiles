@@ -106,6 +106,26 @@ repo = "Omochice/tataku-processor-split_by_displaywidth"
 on_source = "tataku.vim"
 
 [[plugins]]
+repo = "Omochice/tataku-processor-ollama"
+on_source = "tataku.vim"
+
+[[plugins]]
+repo = "Omochice/tataku-emitter-window"
+on_source = "tataku.vim"
+
+[[plugins]]
+repo = "Omochice/tataku-emitter-echo"
+on_source = "tataku.vim"
+
+[[plugins]]
+repo = "Omochice/tataku-collector-buffer"
+on_source = "tataku.vim"
+
+[[plugins]]
+repo = "Omochice/tataku-processor-eta"
+on_source = "tataku.vim"
+
+[[plugins]]
 repo = "4513ECHO/denops-gitter.vim"
 hook_add = """
 let g:gitter#token = $GITTER_TOKEN
