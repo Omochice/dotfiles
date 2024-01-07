@@ -1,43 +1,42 @@
 # focus window
-cmd - h : yabai --message window --focus west  || yabai --message display --focus west
-cmd - j : yabai --message window --focus south || yabai --message display --focus south
-cmd - k : yabai --message window --focus north || yabai --message display --focus north
-cmd - l : yabai --message window --focus east  || yabai --message display --focus east
+cmd - h : deno run -A ~/.config/skhd/queries/focus-window.ts west
+cmd - j : deno run -A ~/.config/skhd/queries/focus-window.ts south
+cmd - k : deno run -A ~/.config/skhd/queries/focus-window.ts north
+cmd - l : deno run -A ~/.config/skhd/queries/focus-window.ts east
 
 # move window
-shift + cmd - h : if not yabai --message window --swap west ; yabai -m window --display west ; yabai -m display --focus west ; end
-shift + cmd - j : if not yabai --message window --swap south; yabai -m window --display south; yabai -m display --focus south; end
-shift + cmd - k : if not yabai --message window --swap north; yabai -m window --display north; yabai -m display --focus north; end
-shift + cmd - l : if not yabai --message window --swap east ; yabai -m window --display east ; yabai -m display --focus east ; end
+shift + cmd - h : deno run -A ~/.config/skhd/queries/move-window.ts west
+shift + cmd - j : deno run -A ~/.config/skhd/queries/move-window.ts south
+shift + cmd - k : deno run -A ~/.config/skhd/queries/move-window.ts north
+shift + cmd - l : deno run -A ~/.config/skhd/queries/move-window.ts east
 
 # close window
-shift + cmd - q : yabai --message window --close | yabai --message query --spaces --space | jq '.["first-window"]' | xargs yabai --message window --focus
+shift + cmd - q : deno run -A ~/.config/skhd/queries/close-window.ts
 # close space
 shift + cmd + ctrl - q : yabai --message space --destroy
 
 # virtual desktops
-# TODO: if not exists desctop, create it.
 # focus desktop
-cmd - 1 : if yabai --message space --focus 1; then; yabai --message query --windows --space 1 | jq '[.[] | select(.["is-visible"] == true and .["is-hidden"] == false and .["is-minimized"] == false and .["is-sticky"] == false)] | .[0].id' | xargs yabai --message window --focus; else; yabai --message space --create; yabai --message query --spaces | jq .[-1].index | xargs yabai --message space --focus; fi
-cmd - 2 : if yabai --message space --focus 2; then; yabai --message query --windows --space 2 | jq '[.[] | select(.["is-visible"] == true and .["is-hidden"] == false and .["is-minimized"] == false and .["is-sticky"] == false)] | .[0].id' | xargs yabai --message window --focus; else; yabai --message space --create; yabai --message query --spaces | jq .[-1].index | xargs yabai --message space --focus; fi
-cmd - 3 : if yabai --message space --focus 3; then; yabai --message query --windows --space 3 | jq '[.[] | select(.["is-visible"] == true and .["is-hidden"] == false and .["is-minimized"] == false and .["is-sticky"] == false)] | .[0].id' | xargs yabai --message window --focus; else; yabai --message space --create; yabai --message query --spaces | jq .[-1].index | xargs yabai --message space --focus; fi
-cmd - 4 : if yabai --message space --focus 4; then; yabai --message query --windows --space 4 | jq '[.[] | select(.["is-visible"] == true and .["is-hidden"] == false and .["is-minimized"] == false and .["is-sticky"] == false)] | .[0].id' | xargs yabai --message window --focus; else; yabai --message space --create; yabai --message query --spaces | jq .[-1].index | xargs yabai --message space --focus; fi
-cmd - 5 : if yabai --message space --focus 5; then; yabai --message query --windows --space 5 | jq '[.[] | select(.["is-visible"] == true and .["is-hidden"] == false and .["is-minimized"] == false and .["is-sticky"] == false)] | .[0].id' | xargs yabai --message window --focus; else; yabai --message space --create; yabai --message query --spaces | jq .[-1].index | xargs yabai --message space --focus; fi
-cmd - 6 : if yabai --message space --focus 6; then; yabai --message query --windows --space 6 | jq '[.[] | select(.["is-visible"] == true and .["is-hidden"] == false and .["is-minimized"] == false and .["is-sticky"] == false)] | .[0].id' | xargs yabai --message window --focus; else; yabai --message space --create; yabai --message query --spaces | jq .[-1].index | xargs yabai --message space --focus; fi
-cmd - 7 : if yabai --message space --focus 7; then; yabai --message query --windows --space 7 | jq '[.[] | select(.["is-visible"] == true and .["is-hidden"] == false and .["is-minimized"] == false and .["is-sticky"] == false)] | .[0].id' | xargs yabai --message window --focus; else; yabai --message space --create; yabai --message query --spaces | jq .[-1].index | xargs yabai --message space --focus; fi
-cmd - 8 : if yabai --message space --focus 8; then; yabai --message query --windows --space 8 | jq '[.[] | select(.["is-visible"] == true and .["is-hidden"] == false and .["is-minimized"] == false and .["is-sticky"] == false)] | .[0].id' | xargs yabai --message window --focus; else; yabai --message space --create; yabai --message query --spaces | jq .[-1].index | xargs yabai --message space --focus; fi
-cmd - 9 : if yabai --message space --focus 9; then; yabai --message query --windows --space 9 | jq '[.[] | select(.["is-visible"] == true and .["is-hidden"] == false and .["is-minimized"] == false and .["is-sticky"] == false)] | .[0].id' | xargs yabai --message window --focus; else; yabai --message space --create; yabai --message query --spaces | jq .[-1].index | xargs yabai --message space --focus; fi
+cmd - 1 : deno run -A  ~/.config/skhd/queries/focus-space.ts 1
+cmd - 2 : deno run -A  ~/.config/skhd/queries/focus-space.ts 2
+cmd - 3 : deno run -A  ~/.config/skhd/queries/focus-space.ts 3
+cmd - 4 : deno run -A  ~/.config/skhd/queries/focus-space.ts 4
+cmd - 5 : deno run -A  ~/.config/skhd/queries/focus-space.ts 5
+cmd - 6 : deno run -A  ~/.config/skhd/queries/focus-space.ts 6
+cmd - 7 : deno run -A  ~/.config/skhd/queries/focus-space.ts 7
+cmd - 8 : deno run -A  ~/.config/skhd/queries/focus-space.ts 8
+cmd - 9 : deno run -A  ~/.config/skhd/queries/focus-space.ts 9
 
 # move window to specified window
-shift + cmd - 1 : yabai --message window --space 1
-shift + cmd - 2 : yabai --message window --space 2
-shift + cmd - 3 : yabai --message window --space 3
-shift + cmd - 4 : yabai --message window --space 4
-shift + cmd - 5 : yabai --message window --space 5
-shift + cmd - 6 : yabai --message window --space 6
-shift + cmd - 7 : yabai --message window --space 7
-shift + cmd - 8 : yabai --message window --space 8
-shift + cmd - 9 : yabai --message window --space 9
+shift + cmd - 1 : deno run -A  ~/.config/skhd/queries/move-space.ts 1
+shift + cmd - 2 : deno run -A  ~/.config/skhd/queries/move-space.ts 2
+shift + cmd - 3 : deno run -A  ~/.config/skhd/queries/move-space.ts 3
+shift + cmd - 4 : deno run -A  ~/.config/skhd/queries/move-space.ts 4
+shift + cmd - 5 : deno run -A  ~/.config/skhd/queries/move-space.ts 5
+shift + cmd - 6 : deno run -A  ~/.config/skhd/queries/move-space.ts 6
+shift + cmd - 7 : deno run -A  ~/.config/skhd/queries/move-space.ts 7
+shift + cmd - 8 : deno run -A  ~/.config/skhd/queries/move-space.ts 8
+shift + cmd - 9 : deno run -A  ~/.config/skhd/queries/move-space.ts 9
 
 
 # super+"=" does as same as <C-w>= on vim
