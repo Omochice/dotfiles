@@ -1,5 +1,5 @@
 import $ from "https://deno.land/x/dax@0.36.0/mod.ts";
-import { dirname } from "https://deno.land/std@0.210.0/path/dirname.ts";
+import { dirname } from "https://deno.land/std@0.211.0/path/dirname.ts";
 
 export const ISWSL = Deno.build.os === "linux" &&
   /microsoft/.test(await $`uname --kernel-release`.text());
