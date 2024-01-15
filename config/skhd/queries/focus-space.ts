@@ -4,7 +4,7 @@ import {
   getSpaces,
   getWindows,
 } from "https://deno.land/x/deno_yabai@v0.1.2/query.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.13.0/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.14.1/mod.ts";
 import { errAsync, okAsync, ResultAsync } from "npm:neverthrow@6.1.0";
 import { createSpaces } from "./create-spaces.ts";
 
