@@ -5,6 +5,7 @@ on:
     paths:
       - "scripts/**/*.ts"
       - "config/nvim/rc/ts/*.ts"
+      - "config/skhd/queries/*.ts"
 
 jobs:
   check:
