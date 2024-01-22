@@ -36,67 +36,16 @@ require("mason-lspconfig").setup_handlers({
   function(server_name)
     local opts = {}
     if server_name == "lua_ls" then
-      opts.settings = {
-        Lua = {
-          runtime = { version = "LuaJIT" },
-          diagnostics = { globals = { "vim" } },
-          workspace = {
-            library = vim.api.nvim_get_runtime_file("", true),
-            checkThirdParty = false, -- NOTE: Prevent `Do you need to configure ...`
-          },
-          format = {
-            defaultConfig = {
-              indent_style = "space",
-              indent_size = "2",
-              quote_style = "double",
-              call_arg_parentheses = "keep",
-              align_continuous_assign_statement = "false",
-              align_continuous_rect_table_field = "false",
-              align_array_table = "false",
-            },
-          },
-          telemetry = { enable = false },
-        },
-      }
+      opts = require("vimrc/lsp/lua_ls").config()
     end
     if server_name == "yamlls" then
-      opts.settings = {
-        yaml = {
-          keyOrdering = false,
-        },
-      }
+      opts = require("vimrc/lsp/yamlls").config()
     end
     lspconfig[server_name].setup(opts)
   end,
 })
 
-lspconfig.denols.setup({
-  cmd = { "deno", "lsp" },
-  root_dir = function(...)
-    if lspconfig.util.root_pattern("package.json", "node_modules")(...) ~= nil then
-      return nil
-    end
-    local found = lspconfig.util.root_pattern("deno.json", "deno.jsonc")(...)
-    return found or vim.fn.getcwd()
-  end,
-  single_file_support = false,
-  init_options = {
-    lint = true,
-    unstable = true,
-    suggest = {
-      autoImports = true,
-      completeFunctionCalls = true,
-      names = true,
-      paths = true,
-      imports = {
-        autoDiscover = true,
-        hosts = {
-          ["https://deno.land"] = true,
-        },
-      },
-    },
-  },
-})
+lspconfig.denols.setup(require("vimrc/lsp/denols").config())
 lspconfig.nushell.setup({})
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(require("vimrc/traditional-behavior-lsp").on_hover, {})
