@@ -19,9 +19,7 @@ local group = vim.api.nvim_create_augroup("vimrc#nvim-lsp", {
   clear = true,
 })
 vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(_)
-    enableLspKeymaps()
-  end,
+  callback = enableLspKeymaps,
   group = group,
 })
 
@@ -31,64 +29,12 @@ vim.diagnostic.config({
 -- }}}
 
 -- lua_source {{{
+local lspconfig = require("lspconfig")
 require("mason").setup()
 require("mason-lspconfig").setup()
-
----Get client id from client name
----@param name string The language server client name
----@return nil | number
-local function get_client_id(name)
-  for _, client in ipairs(vim.lsp.get_active_clients()) do
-    if client.name == name then
-      return client.id
-    end
-  end
-  return nil
-end
-
-local lspconfig = require("lspconfig")
-lspconfig.denols.setup({
-  cmd = { "deno", "lsp" },
-  root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
-  single_file_support = true,
-  init_options = {
-    lint = true,
-    unstable = true,
-    suggest = {
-      autoImports = true,
-      completeFunctionCalls = true,
-      names = true,
-      paths = true,
-      imports = {
-        autoDiscover = true,
-        hosts = {
-          ["https://deno.land"] = true,
-        },
-      },
-    },
-  },
-  on_attach = function()
-    if vim.fn.findfile("package.json", ".;") == "" then
-      return
-    end
-    local id = get_client_id("denols")
-    if id == nil then
-      return
-    end
-    vim.lsp.stop_client(id)
-  end,
-})
 require("mason-lspconfig").setup_handlers({
   function(server_name)
     local opts = {}
-    local is_node_repo = vim.fn.findfile("package.json", ".;") ~= ""
-
-    if server_name == "vtsls" or server_name == "tsserver" then
-      -- Must be node directory
-      if not is_node_repo then
-        return
-      end
-    end
     if server_name == "lua_ls" then
       opts.settings = {
         Lua = {
@@ -120,9 +66,38 @@ require("mason-lspconfig").setup_handlers({
         },
       }
     end
-    require("lspconfig")[server_name].setup(opts)
+    lspconfig[server_name].setup(opts)
   end,
 })
+
+lspconfig.denols.setup({
+  cmd = { "deno", "lsp" },
+  root_dir = function(...)
+    if lspconfig.util.root_pattern("package.json", "node_modules")(...) ~= nil then
+      return nil
+    end
+    local found = lspconfig.util.root_pattern("deno.json", "deno.jsonc")(...)
+    return found or vim.fn.getcwd()
+  end,
+  single_file_support = false,
+  init_options = {
+    lint = true,
+    unstable = true,
+    suggest = {
+      autoImports = true,
+      completeFunctionCalls = true,
+      names = true,
+      paths = true,
+      imports = {
+        autoDiscover = true,
+        hosts = {
+          ["https://deno.land"] = true,
+        },
+      },
+    },
+  },
+})
+lspconfig.nushell.setup({})
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(require("vimrc/traditional-behavior-lsp").on_hover, {})
 -- }}}
