@@ -31,6 +31,19 @@ vimx.keymap.set(
 
 vimx.keymap.set(
   "n",
+  prefix .. "<C-i>",
+  function()
+    vimx.fn.ddu.start({
+      ui = "ff",
+      sources = {{
+        name = "redmine_issue",
+      }}
+    })
+  end
+)
+
+vimx.keymap.set(
+  "n",
   prefix .. "<C-b>",
   function()
     vimx.fn.ddu.start({
