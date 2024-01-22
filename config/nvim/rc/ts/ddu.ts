@@ -1,5 +1,6 @@
 import { BaseConfig } from "https://deno.land/x/ddu_vim@v3.10.0/types.ts";
 import { ConfigArguments } from "https://deno.land/x/ddu_vim@v3.10.0/base/config.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.10.0/mod.ts";
 
 const border = ["┌", "─", "┐", "│", "┘", "─", "└", "│"] as const;
 
@@ -65,6 +66,13 @@ export class Config extends BaseConfig {
           removeCommentsFromResults: true,
           onlyCurrentFiletype: false,
         },
+        redmine_issue: is.String(Deno.env.get("REDMINE_ENDPOINT"))
+          ? {
+            endpoint: ensure(Deno.env.get("REDMINE_ENDPOINT"), is.String),
+            apiKey: ensure(Deno.env.get("REDMINE_APIKEY"), is.String),
+            onlyAsignedTo: "me",
+          }
+          : {},
       },
       filterParams: {
         matcher_fzf: {
@@ -87,8 +95,16 @@ export class Config extends BaseConfig {
         lsp_codeAction: {
           defaultAction: "apply",
         },
+        redmine_issue: {
+          defaultAction: "note",
+        },
         action: {
           defaultAction: "do",
+        },
+      },
+      kindParams: {
+        redmine_issue: {
+          command: "tabedit",
         },
       },
     });
