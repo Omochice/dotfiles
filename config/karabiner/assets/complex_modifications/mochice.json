@@ -2,6 +2,38 @@
   "title": "keyboard settings for me (@omochicemgr)",
   "rules": [
     {
+      "description": "eisu to escape",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "japanese_eisuu"
+          },
+          "to": [
+            {
+              "key_code": "escape"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "left command to alt",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "left_command"
+          },
+          "to": [
+            {
+              "key_code": "left_option"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
       "description": "underscore to backslash",
       "manipulators": [
         {
