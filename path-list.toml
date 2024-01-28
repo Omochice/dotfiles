@@ -85,7 +85,7 @@ to = "PNPM_HOME"
 if_exists = "~/.local/share/pnpm"
 
 [[environments]]
-from = "~/.config/aquaproj-aqua/aqua.yaml"
+from = "~/.config/aqua/aqua.yaml"
 to = "AQUA_GLOBAL_CONFIG"
 
 [[aliases]]
