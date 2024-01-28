@@ -46,6 +46,7 @@ cask "google-japanese-ime"
 cask "alt-tab"
 cask "vivaldi"
 cask "slack"
+cask "scroll-reverser"
 brew "koekeishiya/formulae/skhd" if OS.mac?
 brew "koekeishiya/formulae/yabai" if OS.mac?
 brew "felixkratz/formulae/sketchybar" if OS.mac?
