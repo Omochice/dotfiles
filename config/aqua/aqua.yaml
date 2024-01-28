@@ -12,14 +12,11 @@ registries:
 packages:
 - name: cli/cli@v2.42.1
 - name: junegunn/fzf@0.46.0
-- name: eza-community/eza@v0.17.3
 - name: sharkdp/fd@v9.0.0
 - name: dandavison/delta@0.16.5
 - name: charmbracelet/glow@v1.5.1
 - name: sharkdp/hyperfine@v1.18.0
-- name: sharkdp/bat@v0.24.0
 - name: jesseduffield/lazygit@v0.40.2
-- name: aristocratos/btop@v1.3.0
 - name: ollama/ollama@v0.1.22
 - name: BurntSushi/ripgrep@14.1.0
 - name: chmln/sd@v1.0.0
@@ -29,3 +26,4 @@ packages:
 - name: itchyny/mmv@v0.1.6
 - name: reviewdog/reviewdog@v0.17.0
 - name: direnv/direnv@v2.33.0
+- name: dylanaraps/neofetch@7.1.0
