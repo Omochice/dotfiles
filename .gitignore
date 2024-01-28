@@ -73,4 +73,5 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/komorebi/komorebi.ahk
 !/config/glazewm/config.yaml
 !/config/mise/config.toml
+!/config/aqua/aqua.yaml
 !/win-config/**
