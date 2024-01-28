@@ -27,6 +27,7 @@ cask "vivaldi"
 cask "slack"
 cask "scroll-reverser"
 cask "gyazo"
+cask "karabiner-elements"
 brew "koekeishiya/formulae/skhd" if OS.mac?
 brew "koekeishiya/formulae/yabai" if OS.mac?
 brew "felixkratz/formulae/sketchybar" if OS.mac?
