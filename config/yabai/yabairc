@@ -1,0 +1,54 @@
+#!/usr/bin/env sh
+
+# load sa for M1 mac
+sudo yabai --load-sa
+yabai --message signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+# if close window, check does empty space exist.
+yabai -m signal --add event=window_destroyed action="~/.deno/bin/deno run -A ~/dotfiles/scripts/tools/yabai-close-empty-spaces.ts"
+
+# global settings
+yabai -m config mouse_follows_focus          off
+yabai -m config focus_follows_mouse          off
+yabai -m config window_origin_display        default
+yabai -m config window_placement             second_child
+yabai -m config window_topmost               off
+yabai -m config window_shadow                on
+yabai -m config window_opacity               off
+yabai -m config window_opacity_duration      0.0
+yabai -m config active_window_opacity        1.0
+yabai -m config normal_window_opacity        0.90
+yabai -m config split_ratio                  0.50
+yabai -m config auto_balance                 off
+yabai -m config mouse_modifier               fn
+yabai -m config mouse_action1                move
+yabai -m config mouse_action2                resize
+yabai -m config mouse_drop_action            swap
+
+# general space settings
+yabai -m config layout                       bsp
+yabai -m config top_padding                  12
+yabai -m config bottom_padding               12
+yabai -m config left_padding                 12
+yabai -m config right_padding                12
+yabai -m config window_gap                   12
+yabai -m config external_bar all:30:0
+
+# set color to focused window
+yabai -m config window_border on
+yabai -m config window_border_width          3
+yabai -m config active_window_border_color 0xFF21C7e8
+yabai -m config normal_window_border_color 0x002E3440
+yabai -m config insert_feedback_color      0xffd75f5f # where?
+
+# Apps that disable titling layout
+yabai -m rule --add app="^Karabiner-Elements$" manage=off
+yabai -m rule --add app="^Karabiner-EventViewer$" manage=off
+yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^System Information$" manage=off
+yabai -m rule --add app="^Finder" manage=off
+# yabai -m rule --add app="^UTM" manage=off
+yabai -m rule --add title="^システム環境設定$" manage=off # why I cannot use "system Preferences"???
+yabai -m rule --add title="Bluetooth" manage=off # why I cannot use "system Preferences"???
+
+echo "yabai configuration loaded.."
