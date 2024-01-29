@@ -66,6 +66,7 @@ config/fish/functions/fzf_key_bindings.fish
 !/scripts/**
 !/config/skhd/skhdrc
 !/config/skhd/queries/*
+!/config/yabai/yabairc
 !/config/karabiner/**
 !/config/sketchybar/**
 !/config/glab-cli/aliases.yml
