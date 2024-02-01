@@ -31,3 +31,4 @@ packages:
 - name: sharkdp/bat@v0.24.0
 - name: jqlang/jq@jq-1.7.1
 - name: mvdan/sh@v3.7.0
+- name: sharkdp/pastel@v0.9.0
