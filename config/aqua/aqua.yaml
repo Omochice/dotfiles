@@ -28,3 +28,4 @@ packages:
 - name: direnv/direnv@v2.33.0
 - name: dylanaraps/neofetch@7.1.0
 - name: crates.io/eza@0.18.0
+- name: sharkdp/bat@v0.24.0
