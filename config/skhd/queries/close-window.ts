@@ -1,5 +1,5 @@
-import { close, focus } from "https://deno.land/x/deno_yabai@v0.1.2/window.ts";
-import { getSpaces } from "https://deno.land/x/deno_yabai@v0.1.2/query.ts";
+import { close, focus } from "https://deno.land/x/deno_yabai@v0.1.3/window.ts";
+import { getSpaces } from "https://deno.land/x/deno_yabai@v0.1.3/query.ts";
 import { errAsync, okAsync } from "npm:neverthrow@6.1.0";
 
 if (import.meta.main) {

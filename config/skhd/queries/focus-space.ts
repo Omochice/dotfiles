@@ -1,9 +1,9 @@
-import { focus as focusSpace } from "https://deno.land/x/deno_yabai@v0.1.2/space.ts";
-import { focus as focusWindow } from "https://deno.land/x/deno_yabai@v0.1.2/window.ts";
+import { focus as focusSpace } from "https://deno.land/x/deno_yabai@v0.1.3/space.ts";
+import { focus as focusWindow } from "https://deno.land/x/deno_yabai@v0.1.3/window.ts";
 import {
   getSpaces,
   getWindows,
-} from "https://deno.land/x/deno_yabai@v0.1.2/query.ts";
+} from "https://deno.land/x/deno_yabai@v0.1.3/query.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.14.1/mod.ts";
 import { errAsync, okAsync, ResultAsync } from "npm:neverthrow@6.1.0";
 import { createSpaces } from "./create-spaces.ts";
