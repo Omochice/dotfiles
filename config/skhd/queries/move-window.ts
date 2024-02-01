@@ -2,7 +2,7 @@ import {
   relocate,
   swap,
   warp,
-} from "https://deno.land/x/deno_yabai@v0.1.2/window.ts";
+} from "https://deno.land/x/deno_yabai@v0.1.3/window.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.14.1/mod.ts";
 
 if (import.meta.main) {
