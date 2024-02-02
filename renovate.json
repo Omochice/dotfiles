@@ -3,7 +3,7 @@
   "extends": [
     "github>Omochice/renovate-config",
     "github>Omochice/renovate-config:deno",
-    "github>aquaproj/aqua-renovate-config#1.13.0"
+    "github>aquaproj/aqua-renovate-config#2.0.0"
   ],
   "github-actions": {
     "fileMatch": [
