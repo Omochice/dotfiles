@@ -5,5 +5,8 @@
     "check": "deno check ./**/*.ts",
     "lint": "deno lint ./**/*.ts"
   },
-  "lock": false
+  "lock": false,
+  "fmt": {
+    "exclude": ["CHANGELOG.md"]
+  }
 }
