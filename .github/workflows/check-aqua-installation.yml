@@ -1,0 +1,20 @@
+name: Check that tools can be installed via aqua
+
+on:
+  - push:
+      paths:
+        - "config/aqua/aqua.yaml"
+  - pull_request:
+      paths:
+        - "config/aqua/aqua.yaml"
+
+jobs:
+  check:
+    name: Run aqua
+    runs-on: ubuntu-latest
+    steps:
+      - uses: aquaproj/aqua-installer@v2.3.0
+        with:
+          aqua_version: v2.23.1
+      - name: check tools can install
+        run: aqua install --all
