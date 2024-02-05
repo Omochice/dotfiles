@@ -46,6 +46,7 @@ require("mason-lspconfig").setup_handlers({
 })
 
 lspconfig.denols.setup(require("vimrc/lsp/denols").config())
+lspconfig.gopls.setup({})
 lspconfig.nushell.setup({})
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(require("vimrc/traditional-behavior-lsp").on_hover, {})
