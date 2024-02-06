@@ -24,13 +24,13 @@
     ],
     "body": [
       "if err != nil {",
-      "  $1",
+      "\t${1:return err}",
       "}"
     ]
   },
   "for-range": {
     "prefix": [
-      "forr"
+      "forof"
     ],
     "body": [
       "for i, ${1:v} := range $2 {",
