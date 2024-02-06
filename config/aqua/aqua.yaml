@@ -35,3 +35,4 @@ packages:
 - name: gitlab.com/gitlab-org/cli@v1.36.0
 - name: x-motemen/ghq@v1.5.0
 - name: golang/tools/goimports@v0.17.0
+- name: golang.org/x/tools/gopls@v0.14.2
