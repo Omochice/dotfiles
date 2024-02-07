@@ -1,8 +1,8 @@
 [env]
 
 [tools]
-node = "20"
-python = "3.10"
-ruby = "3.3"
-rust = "1.75.0"
-go = "1.21.6"
+node = "20"     # renovate: mise
+python = "3.10" # renovate: mise
+ruby = "3.3"    # renovate: mise
+rust = "1.75.0" # renovate: mise
+go = "1.21.6"   # renovate: mise
