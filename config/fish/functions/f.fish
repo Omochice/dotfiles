@@ -9,7 +9,7 @@ function f --description "fuzzy moving with ghq"
   end
   set --local root (ghq root)
 
-  set --local repo (ghq list | fzf --preview "cat '$root/{}/README.md' || echo 'NO README'")
+  set --local repo (ghq list | fzf --preview "cat '$root/{}/README.md' || echo 'NO README'" --query "$argv[1]")
   if test -z "$repo"
     return (false)
   end
