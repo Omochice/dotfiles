@@ -18,5 +18,7 @@ jobs:
       - uses: aquaproj/aqua-installer@v2.3.0
         with:
           aqua_version: v2.23.1
+      - name: show aqua.yaml
+        run: cat "${AQUA_GLOBAL_CONFIG}"
       - name: check tools can install
         run: aqua install --all
