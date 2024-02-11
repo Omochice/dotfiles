@@ -1,0 +1,34 @@
+{
+  "title": "Application shortcut for me. (@Omochicemgr)",
+  "rules": [
+    {
+      "description": "launch wezterm without slack",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "return_or_enter",
+            "modifiers": {
+              "mandatory": [
+                "command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open --new -a \"wezTerm\""
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "^com\\.tinyspeck\\.slackmacgap$"
+              ]
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    }
+  ]
+}
