@@ -18,6 +18,27 @@
                 },
                 "rules": [
                     {
+                        "description": "launch vivaldi",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "w",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "open --new -a \"vivaldi\""
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "launch wezterm without slack",
                         "manipulators": [
                             {
