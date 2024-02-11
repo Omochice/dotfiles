@@ -47,5 +47,4 @@ cmd + shift - space : yabai --message window --toggle float; yabai --message win
 cmd - space : yabai --message window --toggle split
 
 # launch apps
-cmd - return : open --new -a "wezTerm"
 cmd - w : open --new -a "vivaldi"
