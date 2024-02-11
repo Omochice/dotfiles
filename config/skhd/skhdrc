@@ -45,6 +45,3 @@ cmd + shift - 0x1B : yabai --message space --balance
 cmd - f : yabai --message window --toggle zoom-fullscreen
 cmd + shift - space : yabai --message window --toggle float; yabai --message window --grid 12:12:1:1:10:10
 cmd - space : yabai --message window --toggle split
-
-# launch apps
-cmd - w : open --new -a "vivaldi"
