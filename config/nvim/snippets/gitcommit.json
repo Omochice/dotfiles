@@ -1,51 +1,9 @@
 {
-  "initial commit": {
-    "prefix": "init",
-    "body": [
-      ":tada: init repository"
-    ],
-    "description": "initialize"
-  },
-  "fix typo": {
-    "prefix": "fix",
-    "body": [
-      ":pencil2: fix typo"
-    ],
-    "description": "fix typo"
-  },
-  "update": {
-    "prefix": [
-      "update",
-      "refactor"
-    ],
-    "body": [
-      ":hammer: "
-    ],
-    "description": "update, refactor"
-  },
-  "remove": {
-    "prefix": "remove",
-    "body": [
-      ":fire: remove"
-    ],
-    "description": "remove"
-  },
-  "rename": {
-    "prefix": "rename",
-    "body": [
-      ":truck: rename"
-    ],
-    "description": "rename"
-  },
-  "document": {
-    "prefix": "document",
-    "body": [
-      ":memo: "
-    ],
-    "description": "document"
-  },
   "co-author": {
-    "prefix": "co-author",
+    "prefix": [
+      "co-author",
+      "co"
+    ],
     "body": [
       "Co-authored-by: ${1:NAME} <${2:ANOTHER-NAME@EXAMPLE.COM}>"
     ],
