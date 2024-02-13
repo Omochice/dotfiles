@@ -38,3 +38,4 @@ packages:
 - name: golang.org/x/tools/gopls@v0.14.2
 - name: orhun/git-cliff@v1.4.0
 - name: rhysd/vim-startuptime@v1.3.2
+- name: asciinema/agg@v1.4.3
