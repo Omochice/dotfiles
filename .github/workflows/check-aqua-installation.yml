@@ -14,6 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AQUA_GLOBAL_CONFIG: "${{ github.workspace }}/config/aqua/aqua.yaml"
+    strategy:
+      matrix:
+        goos:
+          - darwin
+          - linux
+        goarch:
+          - amd64
+          - arm64
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -22,3 +30,6 @@ jobs:
           aqua_version: v2.23.1
       - name: check tools can install
         run: aqua install --all
+        env:
+          AQUA_GOARCH: ${{ matrix.goarch }}
+          AQUA_GOOS: ${{ matrix.goos }}
