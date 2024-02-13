@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AQUA_GLOBAL_CONFIG: "${{ github.workspace }}/config/aqua/aqua.yaml"
+      MISE_GLOBAL_CONFIG_FILE: "${{ github.workspace }}/config/mise/config.toml"
     strategy:
       matrix:
         goos:
@@ -28,6 +29,7 @@ jobs:
       - uses: aquaproj/aqua-installer@v2.3.0
         with:
           aqua_version: v2.23.1
+      - uses: jdx/mise-action@v2
       - name: check tools can install
         run: aqua install --all
         env:
