@@ -82,4 +82,9 @@ defaults write com.apple.Spotlight orderedItems -array \
   "{ enabled = 0; name = CONTACT; }"
 ## }}}
 
+# finder {{{
+## show pathbar
+defaults write com.apple.finder ShowPathbar -bool true
+# }}}
+
 # vim:foldmethod=marker
