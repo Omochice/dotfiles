@@ -6,4 +6,6 @@ function fish_user_key_bindings
   bind \cr fzf_history
   bind \cg __lazygit
   bind \cT fzf-emoji
+  bind --erase \cv --preset
+  bind \cV fish_clipboard_paste
 end
