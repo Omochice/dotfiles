@@ -16,7 +16,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
       - name: Check Changed Files
-        uses: dorny/paths-filter@v2
+        uses: dorny/paths-filter@v3
         id: filter
         with:
           filters: |
