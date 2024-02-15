@@ -1,5 +1,5 @@
 -- lua_add {{{
-local function enableLspKeymaps()
+require("vimrc/lsp-helper").on_attach(nil, function()
   local opts = { buffer = true }
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
   vim.keymap.set("n", "<Space>f", vim.lsp.buf.format, opts)
@@ -14,14 +14,7 @@ local function enableLspKeymaps()
   vim.keymap.set("n", "]d", function()
     vim.diagnostic.goto_next({ float = false })
   end, opts)
-end
-local group = vim.api.nvim_create_augroup("vimrc#nvim-lsp", {
-  clear = true,
-})
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = enableLspKeymaps,
-  group = group,
-})
+end)
 
 vim.diagnostic.config({
   virtual_text = false,
@@ -48,6 +41,7 @@ require("mason-lspconfig").setup_handlers({
 lspconfig.denols.setup(require("vimrc/lsp/denols").config())
 lspconfig.gopls.setup({})
 lspconfig.nushell.setup({})
+lspconfig.sourcekit.setup({})
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(require("vimrc/traditional-behavior-lsp").on_hover, {})
 -- }}}

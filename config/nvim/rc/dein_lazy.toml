@@ -130,6 +130,11 @@ on_lua = "lspconfig"
 if = "has('nvim')"
 
 [[plugins]]
+repo = "https://github.com/SmiteshP/nvim-navic"
+on_source = "nvim-lspconfig"
+hooks_file = "$DEIN_RC_DIR/hooks/nvim-navic.lua"
+
+[[plugins]]
 repo = "williamboman/mason.nvim"
 on_lua = "mason"
 if = "has('nvim')"
@@ -328,6 +333,7 @@ require("treesitter-context").setup({
   mode = "cursor",
 })
 """
+if = false
 
 [[plugins]]
 repo = "Omochice/nvim-tree-docs"
