@@ -2,21 +2,34 @@ name: Check Deno type
 
 on:
   push:
-    paths:
-      - "scripts/**/*.ts"
-      - "config/nvim/rc/ts/*.ts"
-      - "config/skhd/queries/*.ts"
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  check:
+  check-deno:
     name: Check type
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v4
+      - name: Check Changed Files
+        uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            deno:
+              - "scripts/**/*.ts"
+              - "config/nvim/rc/ts/*.ts"
+              - "config/skhd/queries/*.ts"
       - name: setup deno
+        if: steps.filter.outputs.deno == 'true'
         uses: denoland/setup-deno@v1
       - name: type check
+        if: steps.filter.outputs.deno == 'true'
         run: deno check scripts/**/*.ts config/nvim/rc/ts/*.ts
       - name: linting
+        if: steps.filter.outputs.deno == 'true'
         run: deno lint scripts/**/*.ts config/nvim/rc/ts/*.ts
