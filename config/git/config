@@ -21,6 +21,7 @@
     issue = !"f() { local s=$1; shift; \
       while [ $# -gt 0 ]; do s=\"$s $1\"; shift; done;\
       gh issue $s; }; f"
+    root = !pwd
 
 [core]
     editor = "nvim"
