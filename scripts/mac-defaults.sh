@@ -9,6 +9,8 @@ defaults write com.apple.dock tilesize -int 48
 # defaults delete com.apple.dock magnification
 # Show it left side
 defaults write com.apple.dock orientation -string "left"
+# Disable minimize on click title bar
+defaults write "Apple Global Domain" AppleActionOnDoubleClick -string "None"
 ## }}}
 
 ## windowmanager {{{
@@ -82,7 +84,7 @@ defaults write com.apple.Spotlight orderedItems -array \
   "{ enabled = 0; name = CONTACT; }"
 ## }}}
 
-# finder {{{
+## finder {{{
 ## show pathbar
 defaults write com.apple.finder ShowPathbar -bool true
 # }}}
