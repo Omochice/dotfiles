@@ -4,7 +4,8 @@
     "github>Omochice/renovate-config",
     "github>Omochice/renovate-config:deno",
     "github>Omochice/personal-renovate-config:mise",
-    "github>aquaproj/aqua-renovate-config#2.2.0"
+    "github>aquaproj/aqua-renovate-config#2.2.0",
+    "gitlab>renovate-bot/renovate-runner"
   ],
   "github-actions": {
     "fileMatch": [
