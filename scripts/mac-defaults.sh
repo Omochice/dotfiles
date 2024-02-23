@@ -34,6 +34,10 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadMoment
 ## keyboard {{{
 defaults write "Apple Global Domain" KeyRepeat -int 2
 defaults write "Apple Global Domain" InitialKeyRepeat -int 25
+
+# Disable S-Space
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 60 "<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>262144</integer></array><key>type</key><string>standard</string></dict></dict>"
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 61 "<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>786432</integer></array><key>type</key><string>standard</string></dict></dict>"
 ## }}}
 
 ## menubar {{{
