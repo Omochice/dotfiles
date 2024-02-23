@@ -40,4 +40,4 @@ packages:
 - name: rhysd/vim-startuptime@v1.3.2
 - name: asciinema/agg@v1.4.3
 - name: rhysd/actionlint@v1.6.26
-- name: ast-grep/ast-grep@0.19.1
+- name: ast-grep/ast-grep@0.19.2
