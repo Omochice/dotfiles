@@ -11,7 +11,7 @@ export class Config extends BaseConfig {
         "TextChangedP",
       ],
       backspaceCompletion: true,
-      sources: ["lsp", "around", "buffer", "rg"],
+      sources: ["lsp", "around", "buffer", "rg", "copilot"],
       sourceOptions: {
         _: {
           matchers: ["matcher_fuzzy"],
@@ -54,6 +54,11 @@ export class Config extends BaseConfig {
         line: {
           mark: "[Lin]",
         },
+        copilot: {
+          mark: "[Cop]",
+          matchers: [],
+          minAutoCompleteLength: 0,
+        }
       },
       sourceParams: {
         lines: {

@@ -7,6 +7,7 @@ local sources = {
   external = { "rg" },
   file = { "file" },
   line = { "line" },
+  copilot = { "copilot" },
 }
 
 vimx.keymap.set(
