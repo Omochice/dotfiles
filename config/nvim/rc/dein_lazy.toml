@@ -618,7 +618,7 @@ hook_add = """
 let g:copilot_no_tab_map = v:true
 """
 hook_source = """
-imap <script><silent><nowait><expr> <Tab> copilot#Accept()
+imap <script><silent><nowait><expr> <C-i> copilot#Accept()
 """
 
 [[plugins]]
