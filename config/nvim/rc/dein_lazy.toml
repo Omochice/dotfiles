@@ -611,3 +611,32 @@ repo = "https://github.com/shellRaining/hlchunk.nvim"
 hooks_file = "$DEIN_RC_DIR/hooks/hlchunk.lua"
 on_event = ["BufRead", "BufNewFile"]
 if = "has('nvim')"
+
+[[plugins]]
+repo = "https://github.com/github/copilot.vim"
+hook_add = """
+let g:copilot_no_tab_map = v:true
+"""
+hook_source = """
+imap <script><silent><nowait><expr> <Tab> copilot#Accept()
+"""
+
+[[plugins]]
+repo = "CopilotC-Nvim/CopilotChat.nvim"
+lua_source = """
+require("CopilotChat"):setup({
+    show_help = "yes",
+    debug = false,
+    disable_extra_info = "no",
+    language = "English",
+})
+"""
+depends = "copilot.vim"
+on_cmd = [
+  "CopilotChat",
+  "CopilotChatBuffer",
+  "CopilotChatExplain",
+  "CopilotChatTests",
+  "CopilotChatVisual",
+  "CopilotChatInPlace",
+]
