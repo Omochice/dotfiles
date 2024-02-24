@@ -40,9 +40,9 @@ repo = "Shougo/ddc-source-line"
 on_source = "ddc.vim"
 
 [[plugins]]
-repo = "https://github.com/Shougo/ddc-source-copilot"
+repo = "https://github.com/Omochice/ddc-source-copilot"
 on_source = "ddc.vim"
-depends = "copilot.vim"
+depends = "copilot.lua"
 
 [[plugins]]
 repo = "Shougo/ddc-around"
