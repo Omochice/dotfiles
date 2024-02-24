@@ -58,7 +58,7 @@ export class Config extends BaseConfig {
           mark: "[Cop]",
           matchers: [],
           minAutoCompleteLength: 0,
-        }
+        },
       },
       sourceParams: {
         lines: {
@@ -70,6 +70,9 @@ export class Config extends BaseConfig {
           },
           enagbleResolveItem: true,
           enableAdditionalTextEdit: true,
+        },
+        copilot: {
+          copilot: "lua",
         },
       },
     });

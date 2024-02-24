@@ -613,12 +613,19 @@ on_event = ["BufRead", "BufNewFile"]
 if = "has('nvim')"
 
 [[plugins]]
-repo = "https://github.com/github/copilot.vim"
-hook_add = """
-let g:copilot_no_tab_map = v:true
-"""
-hook_source = """
-imap <script><silent><nowait><expr> <C-i> copilot#Accept()
+repo = "https://github.com/zbirenbaum/copilot.lua"
+lua_source = """
+require("copilot").setup({
+  panel = {
+    enabled = false,
+  },
+  suggestion = {
+    auto_trigger = true,
+    keymap = {
+      accept = "<C-i>",
+    },
+  },
+})
 """
 
 [[plugins]]
@@ -631,8 +638,9 @@ require("CopilotChat"):setup({
     language = "English",
 })
 """
-depends = "copilot.vim"
+depends = "copilot.lua"
 on_cmd = [
+  "UpdateRemotePlugins",
   "CopilotChat",
   "CopilotChatBuffer",
   "CopilotChatExplain",
