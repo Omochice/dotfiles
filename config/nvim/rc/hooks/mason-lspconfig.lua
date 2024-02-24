@@ -28,9 +28,6 @@ require("mason-lspconfig").setup()
 require("mason-lspconfig").setup_handlers({
   function(server_name)
     local opts = {}
-    if server_name == "lua_ls" then
-      opts = require("vimrc/lsp/lua_ls").config()
-    end
     if server_name == "yamlls" then
       opts = require("vimrc/lsp/yamlls").config()
     end
@@ -42,6 +39,7 @@ lspconfig.denols.setup(require("vimrc/lsp/denols").config())
 lspconfig.gopls.setup({})
 lspconfig.nushell.setup({})
 lspconfig.sourcekit.setup({})
+lspconfig.lua_ls.setup(require("vimrc/lsp/lua_ls").config())
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(require("vimrc/traditional-behavior-lsp").on_hover, {})
 -- }}}
