@@ -11,7 +11,13 @@ export class Config extends BaseConfig {
         "TextChangedP",
       ],
       backspaceCompletion: true,
-      sources: ["lsp", "around", "buffer", "rg", "copilot"],
+      sources: [
+        "lsp",
+        "around",
+        "buffer",
+        "rg",
+        Deno.env.get("COPILOT_ENABLE") === "1" ? "copilot" : "",
+      ].filter((e) => e !== ""),
       sourceOptions: {
         _: {
           matchers: ["matcher_fuzzy"],
