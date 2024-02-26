@@ -627,6 +627,7 @@ require("copilot").setup({
   },
 })
 """
+if = "$COPILOT_ENABLE"
 
 [[plugins]]
 repo = "CopilotC-Nvim/CopilotChat.nvim"
@@ -640,7 +641,6 @@ require("CopilotChat"):setup({
 """
 depends = "copilot.lua"
 on_cmd = [
-  "UpdateRemotePlugins",
   "CopilotChat",
   "CopilotChatBuffer",
   "CopilotChatExplain",
@@ -648,3 +648,4 @@ on_cmd = [
   "CopilotChatVisual",
   "CopilotChatInPlace",
 ]
+if = "$COPILOT_ENABLE"
