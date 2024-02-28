@@ -627,7 +627,7 @@ require("copilot").setup({
   },
 })
 """
-if = "$COPILOT_ENABLE"
+if = "!exists('$COPILOT_DISABLE')"
 
 [[plugins]]
 repo = "CopilotC-Nvim/CopilotChat.nvim"
@@ -648,4 +648,4 @@ on_cmd = [
   "CopilotChatVisual",
   "CopilotChatInPlace",
 ]
-if = "$COPILOT_ENABLE"
+if = "!exists('$COPILOT_DISABLE')"

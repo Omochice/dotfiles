@@ -3,7 +3,7 @@ import { ConfigArguments } from "https://deno.land/x/ddc_vim@v4.3.1/base/config.
 
 export class Config extends BaseConfig {
   override async config(args: ConfigArguments): Promise<void> {
-    args.contextBuilder.patchGlobal({
+    const globalPatch = {
       ui: "pum",
       autoCompleteEvents: [
         "InsertEnter",
@@ -16,7 +16,7 @@ export class Config extends BaseConfig {
         "around",
         "buffer",
         "rg",
-        Deno.env.get("COPILOT_ENABLE") === "1" ? "copilot" : "",
+        Deno.env.get("COPILOT_DISABLE") === undefined ? "copilot" : "",
       ].filter((e) => e !== ""),
       sourceOptions: {
         _: {
@@ -81,7 +81,9 @@ export class Config extends BaseConfig {
           copilot: "lua",
         },
       },
-    });
+    };
+
+    args.contextBuilder.patchGlobal(globalPatch);
 
     for (const ft of ["toml", "vim"]) {
       args.contextBuilder.patchFiletype(ft, {
