@@ -25,7 +25,7 @@ packages:
 - name: XAMPPRocky/tokei@v13.0.0-alpha.0
 - name: itchyny/mmv@v0.1.6
 - name: reviewdog/reviewdog@v0.17.1
-- name: direnv/direnv@v2.33.0
+- name: direnv/direnv@v2.34.0
 - name: dylanaraps/neofetch@7.1.0
 - name: sharkdp/bat@v0.24.0
 - name: jqlang/jq@jq-1.7.1
