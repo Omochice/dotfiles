@@ -1,11 +1,71 @@
 import { BaseConfig } from "https://deno.land/x/ddu_vim@v3.10.2/types.ts";
+import type { Denops } from "https://deno.land/x/ddu_vim@v3.10.2/deps.ts";
 import { ConfigArguments } from "https://deno.land/x/ddu_vim@v3.10.2/base/config.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.16.3/mod.ts";
+import { o } from "https://deno.land/x/denops_std@v6.2.0/variable/option.ts";
+import { group } from "https://deno.land/x/denops_std@v6.2.0/autocmd/mod.ts";
+import { register } from "https://deno.land/x/denops_std@v6.2.0/lambda/mod.ts";
 
 const border = ["┌", "─", "┐", "│", "┘", "─", "└", "│"] as const;
 
+type Size = {
+  lines: number;
+  columns: number;
+};
+
+const state: Size = {
+  lines: 0,
+  columns: 0,
+};
+
+type DduSize = {
+  winCol: number;
+  winRow: number;
+  winWidth: number;
+  winHeight: number;
+  previewCol: number;
+  previewRow: number;
+  previewWidth: number;
+  previewHeight: number;
+};
+
+const updateState = async (denops: Denops) => {
+  state.lines = await o.get(denops, "lines");
+  state.columns = await o.get(denops, "columns");
+};
+
+const calcSize = (size: Size): DduSize => {
+  const col = Math.floor(size.columns * 0.1);
+  const row = Math.floor(size.lines * 0.1);
+  const width = Math.floor(size.columns * 0.8);
+  const height = Math.floor(size.lines * 0.8);
+  // NOTE: character rect is not square
+  return width >= height * 2
+    ? {
+      winCol: col,
+      winRow: row,
+      winWidth: width,
+      winHeight: height,
+      previewRow: row,
+      previewCol: Math.floor(size.columns * 0.5),
+      previewWidth: Math.floor(width * 0.5),
+      previewHeight: height,
+    }
+    : {
+      winCol: col,
+      winRow: row,
+      winWidth: width,
+      winHeight: height,
+      previewRow: Math.floor(size.lines * 0.5),
+      previewCol: col,
+      previewWidth: Math.floor(width),
+      previewHeight: Math.floor(height * 0.5),
+    };
+};
+
 export class Config extends BaseConfig {
-  override config(args: ConfigArguments): Promise<void> {
+  override async config(args: ConfigArguments): Promise<void> {
+    await updateState(args.denops);
     args.contextBuilder.patchGlobal({
       ui: "ff",
       uiParams: {
@@ -20,6 +80,7 @@ export class Config extends BaseConfig {
           startFilter: false,
           floatingBorder: border,
           previewFloatingBorder: "single",
+          ...calcSize(state),
         },
         filer: {
           sort: "filename",
@@ -107,6 +168,19 @@ export class Config extends BaseConfig {
           command: "tabedit",
         },
       },
+    });
+    await group(args.denops, "vimrc#ddu", (helper) => {
+      const id = register(args.denops, async () => {
+        await updateState(args.denops);
+        args.contextBuilder.patchGlobal({
+          uiParams: { ff: calcSize(state) },
+        });
+      });
+      helper.define(
+        "WinResized",
+        "*",
+        `call denops#notify("${args.denops.name}", "${id}", [])`,
+      );
     });
     return Promise.resolve();
   }
