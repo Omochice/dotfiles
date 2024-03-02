@@ -13,5 +13,12 @@
       "(^|/)action\\.ya?ml$",
       "config/nvim/templates/yaml/base-github*"
     ]
-  }
+  },
+  "packageRules": [
+    {
+      "groupName": "gitlab.com/renovate-bot/renovate-runner",
+      "matchPackageNames": ["renovate-runner"],
+      "schedule": ["before 4am"]
+    }
+  ]
 }
