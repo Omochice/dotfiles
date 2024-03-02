@@ -81,6 +81,7 @@ setlocal shiftwidth=2
 
 json = """
 setlocal spell
+setlocal conceallevel=0
 """
 
 toml = """
