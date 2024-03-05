@@ -22,7 +22,7 @@ vimx.keymap.set(
     expr = true,
     callback = function()
       if not vimx.fn.pum.visible() then
-        return [[<C-n>]]
+        return ""
       end
       return [[<Cmd>call pum#map#insert_relative(1)<CR>]]
     end
