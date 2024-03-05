@@ -64,6 +64,7 @@ export class Config extends BaseConfig {
           mark: "[Cop]",
           matchers: [],
           minAutoCompleteLength: 0,
+          isVolatile: false,
         },
       },
       sourceParams: {
