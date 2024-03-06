@@ -3,7 +3,7 @@ import {
   swap,
   warp,
 } from "https://deno.land/x/deno_yabai@v0.1.3/window.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.16.3/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.17.0/mod.ts";
 
 if (import.meta.main) {
   const way = ensure(
