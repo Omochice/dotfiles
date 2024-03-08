@@ -168,7 +168,6 @@ if_executable = "ptipython"
 [[aliases]]
 from = "glab"
 to = "gl"
-if_executable = "glab"
 
 [[aliases]]
 from = "fzf-emoji"
@@ -227,6 +226,7 @@ shell = "fish"
 [[sources]]
 depends = ["brew"]
 path = "(brew --prefix asdf)/libexec/asdf.fish"
+if_executable = "asdf"
 shell = "fish"
 
 [[executes]]
@@ -290,4 +290,9 @@ shell = "fish"
 command = "zoxide init fish | source"
 if_executable = "zoxide"
 shell = "fish"
+depends = ["brew"]
+
+[[executes]]
+command = "mise activate | source"
+if_executable = "mise"
 depends = ["brew"]
