@@ -632,12 +632,7 @@ if = "!exists('$COPILOT_DISABLE')"
 [[plugins]]
 repo = "CopilotC-Nvim/CopilotChat.nvim"
 lua_source = """
-require("CopilotChat"):setup({
-    show_help = "yes",
-    debug = false,
-    disable_extra_info = "no",
-    language = "English",
-})
+require("CopilotChat").setup()
 """
 rev = "canary"
 depends = ["copilot.lua", "plenary.nvim"]
