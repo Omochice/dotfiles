@@ -639,7 +639,8 @@ require("CopilotChat"):setup({
     language = "English",
 })
 """
-depends = "copilot.lua"
+rev = "canary"
+depends = ["copilot.lua", "plenary.nvim"]
 on_cmd = [
   "CopilotChat",
   "CopilotChatBuffer",
@@ -649,3 +650,7 @@ on_cmd = [
   "CopilotChatInPlace",
 ]
 if = "!exists('$COPILOT_DISABLE')"
+
+[[plugins]]
+repo = "https://github.com/nvim-lua/plenary.nvim"
+
