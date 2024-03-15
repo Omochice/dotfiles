@@ -1,4 +1,4 @@
-import $ from "https://deno.land/x/dax@0.37.1/mod.ts";
+import $ from "https://deno.land/x/dax@0.39.2/mod.ts";
 import type { WalkEntry } from "https://deno.land/std@0.220.1/fs/mod.ts";
 import { join } from "https://deno.land/std@0.220.1/path/join.ts";
 import { basename } from "https://deno.land/std@0.220.1/path/basename.ts";
