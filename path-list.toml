@@ -32,6 +32,9 @@ if_exists = "~/.local/nvim"
 label = "aqua"
 path = "$(aqua root-dir)/bin"
 
+[[paths]]
+path = "~/Library/Android/sdk/platform-tools"
+
 [[aliases]]
 depends = ["local-bin", "nvim"]
 from = "nvim"
