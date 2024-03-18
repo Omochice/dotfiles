@@ -649,3 +649,6 @@ if = "!exists('$COPILOT_DISABLE')"
 [[plugins]]
 repo = "https://github.com/nvim-lua/plenary.nvim"
 
+[[plugins]]
+repo = "https://github.com/Shougo/cmdline.vim"
+on_func = "cmdline"
