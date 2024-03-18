@@ -42,4 +42,4 @@ packages:
 - name: rhysd/actionlint@v1.6.27
 - name: ast-grep/ast-grep@0.19.4
 - name: LuaLS/lua-language-server@3.7.4
-- name: mattn/efm-langserver@v0.0.50
+- name: mattn/efm-langserver@v0.0.53
