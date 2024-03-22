@@ -50,6 +50,13 @@ Run('komorebic.exe float-rule exe "keyviz.exe"', , "Hide")
 
 
 ;; KEY BINDS
+
+; kana to toggle ime
+vk1C::vkF3
+
+; Rwin+Tab to WindowSwitcher
+RWin & Tab::AltTab
+
 ; Move focus with Super + hjkl
 #h:: {
   if IsKomorebiRunning() {
