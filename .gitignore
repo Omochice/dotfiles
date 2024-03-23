@@ -72,3 +72,5 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/mise/config.toml
 !/config/aqua/aqua.yaml
 !/win-config/**
+!flake.nix
+!flake.lock
