@@ -1,5 +1,5 @@
 {
-  description = "Example Darwin system flake";
+  description = "Example Darwin system flake for Omochice";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -30,6 +30,19 @@
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
+      homebrew = {
+        enable = true;
+        casks = [
+          "wezterm"
+          "alt-tab"
+          "vivaldi"
+          "slack"
+          "scroll-reverser"
+          "gyazo"
+          "karabiner-elements"
+        ];
+      };
+
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
       system.stateVersion = 4;
@@ -49,6 +62,7 @@
           #TrackpadMomentumScroll = true;
         };
         dock = {
+          autohide = true;
           tilesize = 48;
           orientation = "left";
         };
