@@ -71,6 +71,10 @@
           tilesize = 48;
           orientation = "left";
         };
+        finder = {
+          ShowPathbar = true;
+          ShowStatusBar = true;
+        };
       };
     };
   in
