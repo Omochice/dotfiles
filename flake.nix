@@ -76,6 +76,19 @@
           ShowStatusBar = true;
         };
       };
+
+      # not supported yet by system.defaults
+      system.activationScripts.postActivation.text = ''
+        # Disable minimize on click title bar
+        defaults write "Apple Global Domain" AppleActionOnDoubleClick -string "None"
+
+        defaults write com.apple.WindowManager HideDesktop -int 0
+        defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -int 0
+
+        # Momentum scroll
+        defaults write com.apple.AppleMultitouchTrackpad TrackpadMomentumScroll -int 1
+        defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadMomentumScroll -int 1
+      '';
     };
   in
   {
