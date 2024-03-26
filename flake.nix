@@ -41,6 +41,11 @@
           "gyazo"
           "karabiner-elements"
         ];
+        taps = [
+          "felixkratz/formulae"
+          "koekeishiya/formulae"
+          "aquaproj/aqua"
+        ];
       };
 
       # Used for backwards compatibility, please read the changelog before changing.
