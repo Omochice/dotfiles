@@ -10,12 +10,7 @@ vimx.create_command("TFern", function()
   { bang = true }
 )
 vimx.keymap.set("ca", "tf", "TFern")
-vimx.create_command("Drawer", function()
-    vimx.cmd("Fern . -reveal=% -drawer")
-  end,
-  { bang = true }
-)
-vimx.keymap.set("ca", "drawer", "Drawer")
+vimx.keymap.set("n", ";;", "<Cmd>Fern . -reveal=% -drawer -toggle<CR>")
 -- }}}
 
 -- lua_fern {{{
@@ -40,7 +35,8 @@ vimx.keymap.set("n", "<Plug>(fern-action-open-or-expand:stay)",
 )
 vimx.keymap.set("n", "<CR>",
   function()
-    return vimx.fn.fern.smart.leaf("<Plug>(fern-action-open)", "<Plug>(fern-action-open-or-expand:stay)", "<Plug>(fern-action-collapse)")
+    return vimx.fn.fern.smart.leaf("<Plug>(fern-action-open)", "<Plug>(fern-action-open-or-expand:stay)",
+      "<Plug>(fern-action-collapse)")
   end,
   { buffer = true, expr = true }
 )
