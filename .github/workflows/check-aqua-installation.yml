@@ -36,7 +36,7 @@ jobs:
       - uses: aquaproj/aqua-installer@v2.3.2
         if: steps.filter.outputs.aqua == 'true'
         with:
-          aqua_version: v2.25.0
+          aqua_version: v2.25.2
       - uses: jdx/mise-action@v2
         if: steps.filter.outputs.aqua == 'true'
       - name: check tools can install
