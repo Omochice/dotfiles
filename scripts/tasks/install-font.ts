@@ -1,9 +1,9 @@
 import $ from "https://deno.land/x/dax@0.37.1/mod.ts";
-import type { WalkEntry } from "https://deno.land/std@0.220.1/fs/mod.ts";
-import { join } from "https://deno.land/std@0.220.1/path/join.ts";
-import { basename } from "https://deno.land/std@0.220.1/path/basename.ts";
-import { expandGlobSync } from "https://deno.land/std@0.220.1/fs/expand_glob.ts";
-import { move } from "https://deno.land/std@0.220.1/fs/move.ts";
+import type { WalkEntry } from "https://deno.land/std@0.221.0/fs/mod.ts";
+import { join } from "https://deno.land/std@0.221.0/path/join.ts";
+import { basename } from "https://deno.land/std@0.221.0/path/basename.ts";
+import { expandGlobSync } from "https://deno.land/std@0.221.0/fs/expand_glob.ts";
+import { move } from "https://deno.land/std@0.221.0/fs/move.ts";
 
 type FontType = "otf" | "ttf";
 type Destination = { [K in FontType]: string };
