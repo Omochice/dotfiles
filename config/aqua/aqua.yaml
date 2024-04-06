@@ -32,7 +32,7 @@ packages:
 - name: mvdan/sh@v3.8.0
 - name: sharkdp/pastel@v0.9.0
 - name: eza-community/eza@v0.18.9
-- name: gitlab.com/gitlab-org/cli@v1.37.0
+- name: gitlab.com/gitlab-org/cli@v1.38.0
 - name: x-motemen/ghq@v1.6.0
 - name: golang/tools/goimports@v0.20.0
 - name: golang.org/x/tools/gopls@v0.15.2
