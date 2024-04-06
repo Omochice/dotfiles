@@ -3,22 +3,28 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
   let
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-      # environment.systemPackages =
-      #   [ pkgs.vim
-      #   ];
+      home.packages = with pkgs; [
+        btop
+      ];
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
-      # nix.package = pkgs.nix;
+      nix.package = pkgs.nix;
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
@@ -45,6 +51,12 @@
           "felixkratz/formulae"
           "koekeishiya/formulae"
           "aquaproj/aqua"
+        ];
+        brews = [
+          "aquaproj/aqua/aqua"
+          "koekeishiya/formulae/skhd"
+          "koekeishiya/formulae/yabai"
+          "felixkratz/formulae/sketchybar"
         ];
       };
 
