@@ -40,6 +40,6 @@ packages:
 - name: rhysd/vim-startuptime@v1.3.2
 - name: asciinema/agg@v1.4.3
 - name: rhysd/actionlint@v1.6.27
-- name: ast-grep/ast-grep@0.20.2
+- name: ast-grep/ast-grep@0.20.3
 - name: LuaLS/lua-language-server@3.7.4
 - name: mattn/efm-langserver@v0.0.53
