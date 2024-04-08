@@ -160,6 +160,7 @@ repo = "uga-rosa/contextment.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/contextment.lua"
 depends = ["context_filetype.vim"]
 on_map = { nxo = "<Plug>" }
+if = "!has('nvim')"
 
 [[plugins]]
 repo = "markonm/traces.vim"
