@@ -5,6 +5,7 @@ install_to="${HOME}/.local/nvim"
 
 [ -d ${install_to} ] || mkdir -p ${install_to}
 
+git clean -fdx
 make clean
 make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX=$install_to install
 
