@@ -36,7 +36,7 @@ packages:
 - name: x-motemen/ghq@v1.6.1
 - name: golang/tools/goimports@v0.20.0
 - name: golang.org/x/tools/gopls@v0.15.2
-- name: orhun/git-cliff@v2.2.0
+- name: orhun/git-cliff@v2.2.1
 - name: rhysd/vim-startuptime@v1.3.2
 - name: asciinema/agg@v1.4.3
 - name: rhysd/actionlint@v1.6.27
