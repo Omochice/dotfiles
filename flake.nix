@@ -46,6 +46,7 @@
           "scroll-reverser"
           "gyazo"
           "karabiner-elements"
+          "orbstack"
         ];
         taps = [
           "felixkratz/formulae"
