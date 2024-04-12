@@ -1,7 +1,7 @@
 import $ from "https://deno.land/x/dax@0.37.1/mod.ts";
 import { err, ok, Result } from "npm:neverthrow@6.1.0";
-import { join } from "https://deno.land/std@0.221.0/path/join.ts";
-import { join as urlJoin } from "https://deno.land/std@0.221.0/url/join.ts"
+import { join } from "https://deno.land/std@0.222.1/path/join.ts";
+import { join as urlJoin } from "https://deno.land/std@0.222.1/url/join.ts"
 
 const repoName = "Homebrew/install";
 const ref = "HEAD";
