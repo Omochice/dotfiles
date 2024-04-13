@@ -1,7 +1,7 @@
 import { BaseConfig } from "https://deno.land/x/ddu_vim@v3.10.3/types.ts";
 import type { Denops } from "https://deno.land/x/ddu_vim@v3.10.3/deps.ts";
 import { ConfigArguments } from "https://deno.land/x/ddu_vim@v3.10.3/base/config.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.17.2/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.17.3/mod.ts";
 import { o } from "https://deno.land/x/denops_std@v6.4.0/variable/option.ts";
 import { group } from "https://deno.land/x/denops_std@v6.4.0/autocmd/mod.ts";
 import { register } from "https://deno.land/x/denops_std@v6.4.0/lambda/mod.ts";
