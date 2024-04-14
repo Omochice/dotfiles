@@ -56,6 +56,7 @@ end)
 local others = {
   exit_behavior = "Close",
   use_ime = true,
+  macos_forward_to_ime_modifier_mask = "SHIFT|CTRL",
 }
 
 if wezterm.target_triple:find("windows") then
