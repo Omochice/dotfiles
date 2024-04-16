@@ -1,0 +1,12 @@
+version: "3"
+# see: https://taskfile.dev/usage/
+
+tasks:
+  build:
+    cmds:
+      - go build -v -i main.go
+
+  from-working-directory:
+    dir: "{{.USER_WORKING_DIR}}"
+    cmds:
+      - pwd
