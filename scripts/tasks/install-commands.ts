@@ -1,7 +1,7 @@
 import $ from "https://deno.land/x/dax@0.37.1/mod.ts";
 import { ensureInstalled } from "./install-brew.ts";
 import { DOTDIR, ISWSL } from "./mod.ts";
-import { join } from "https://deno.land/std@0.222.1/path/join.ts";
+import { join } from "https://deno.land/std@0.223.0/path/join.ts";
 
 async function installCommands() {
   const supported = new Set(["darwin", "linux"]);
