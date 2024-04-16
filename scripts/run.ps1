@@ -9,6 +9,7 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 $DotDir = ([System.IO.FileInfo]$PSScriptRoot).Directory.FullName
 $UserProfile = $env:USERPROFILE
 $MyAppDir = (Join-Path -Path $HOME -ChildPath "apps")
+$Shell = New-Object -ComObject Shell.Application
 
 New-Item $MyAppDir -Type Directory -Force
 
@@ -81,24 +82,11 @@ reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\sy
 Write-Host "---Link powershell shetting---" -ForegoundColor Cyan
 New-Item -ItemType SymbolicLink -Path (Join-Path -Path $PSHOME -ChildPath "Profile.ps1") -Target (Join-Path -Path $DotDir -ChildPath "config" | Join-Path -ChildPath "powershell" | Join-Path -ChildPath "profile.ps1") -Force
 
-Write-Host -ForegoundColor Cyan "---install winget via github-release---"
-# {{{
-$hasPackageManager = Get-AppPackage -name "Microsoft.DesktopAppInstaller"
-
-if(!$hasPackageManager)
-{
-    $releases_url = "https://api.github.com/repos/microsoft/winget-cli/releases/latest"
-
-    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    $releases = Invoke-RestMethod -uri "$($releases_url)"
-    $latestRelease = $releases.assets | Where { $_.browser_download_url.EndsWith("msixbundle") } | Select -First 1
-
-    Add-AppxPackage -Path $latestRelease.browser_download_url
-}
-
-### replace winget by from msstore
-winget install --accept-package-agreements "App Installer" --source msstore
-
+Write-Host -ForegoundColor Cyan "---install scoop---"
+## install scoop {{{
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+scoop bucket add extras
 ## }}}
 
 Write-Host -ForegoundColor Cyan "---install font---"
@@ -113,7 +101,7 @@ $fontReleaseInfo.assets | ForEach {
     Remove-Item $outFile -Recurse
 }
 
-$destination = (New-Object -ComObject Shell.Application).Namespace(0x14)
+$destination = $Shell.Namespace(0x14)
 Get-ChildItem -Path $tempDir -Include "*.ttf" -Recurse | ForEach {
     if (-not(Test-Path (Join-Path $UserProfile -ChildPath "AppData" |`
                                      Join-Path -ChildPath "Local" |`
@@ -131,7 +119,7 @@ Remove-Item $tempDir -Recurse
 Write-Host "install wezterm" -ForegoundColor Cyan
 # wezterm
 if ($null -eq (Get-Command "wezterm.exe" -ErrorAction SilentlyContinue)) {
-    winget install --accept-package-agreements --exact --id Wez.WezTerm
+    scoop install wezterm
 }
 Get-ChildItem -Path (Join-Path -Path $DotDir -ChildPath "config/wezterm") | ForEach-Object {
     New-Item -ItemType SymbolicLink -Path (Join-Path -Path $env:ProgramW6432 -ChildPath "WezTerm" | Join-Path -ChildPath $_.Name) -Target $_.FullName -Force
@@ -142,71 +130,42 @@ Write-Host "install browsers"
 # {{{
 ## Vivaldi
 if ($null -eq (Get-Command (Join-Path -Path $UserProfile -ChildPath "AppData/Local/Vivaldi/application/vivaldi.exe") -ErrorAction SilentlyContinue)) {
-    winget install --accept-package-agreements --exact --id VivaldiTechnologies.Vivaldi
+    scoop install vivaldi
 }
 
 ## Chrome
 if ($null -eq (Get-Command (Join-Path -Path $env:ProgramW6432 -ChildPath "Google/Chrome/application/chrome.exe") -ErrorAction SilentlyContinue)) {
-    winget install --accept-package-agreements --exact --id Google.Chrome
+    scoop install googlechrome
 }
 
 ## Firefox
 if ($null -eq (Get-Command (Join-Path -Path $env:ProgramW6432 -ChildPath "Mozilla Firefox/firefox.exe") -ErrorAction SilentlyContinue)) {
-    winget install --accept-package-agreements --exact --id Mozilla.Firefox
+    scoop install firefox
 }
 ## }}}
 
 ## vscode
 if ($null -eq (Get-Command "code" -ErrorAction SilentlyContinue)) {
-    winget install --accept-package-agreements --exact --id Microsoft.VisutalStudioCode
+    scoop install vscode
 }
 
-## powertoys
-if ($null -eq (Get-Command (Join-Path -Path $env:ProgramW6432 -ChildPath "PowerToys" | Join-Path -ChildPath "PowerToys.exe") -ErrorAction SilentlyContinue)) {
-    winget install --accept-package-agreements --exact --id Microsoft.PowerToys
-}
-Get-ChildItem -Path (Join-Path -Path $DotDir -ChildPath "win-config/PowerToys") -Recurse -File | ForEach-Object {
-    New-Item `
-        -ItemType SymbolicLink `
-        -Path (`
-            Join-Path -Path $UserProfile -ChildPath (`
-                Join-Path -path "AppData/Local/Microsoft/PowerToys" -ChildPath (`
-                    Join-Path -Path $_.Directory.Name -ChildPath $_.Name `
-                )`
-            )`
-        )`
-        -Target $_.FullName `
-        -Force
-}
+## flow-launcher
+scoop install flow-launcher
+
+## autohotkey
+scoop install autohotkey
+
 
 ## nushell
 if ($null -eq (Get-Command "nu" -ErrorAction SilentlyContinue)) {
-    winget install --accept-package-agreements --exact --id Nushell.Nushell
+    scoop install nushell
 }
 
-## Google IME
-winget install --accept-package-agreements --exact --id Google.JapaneseIME
-
-## komorebi
-# {{{
-winget install --accept-package-agreements --exact --id LGUG2Z.komorebi
-# NOTE: komorebi add Path automatically
-
-# registor as auto-start
-Create-ShortCut -Source (Get-Command komorebic).Definition `
-                -Arguments "start --await-configuration" `
-                -Destination (Get-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders').StartUp `
-                -WindowStyle 7
-# }}}
-
 # glazewm {{{
-winget install --accept-package-agreements --exact --id lars-berger.GlazeWM
-## NOTE: alias only work when installed by administer
-## SEE: https://github.com/microsoft/winget-cli/issues/3437
-Create-ShortCut -Source (Get-Command glazewm).Definition `
-                -Arguments ("--config=" + (Join-Path $DotDir "config\glazewm\config.yaml")) `
-                -Destination (Get-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders').StartUp `
-                -WindowStyle 7
+scoop install glazewm
+Create-ShortCut -Source (Join-Path -Path $DotDir -ChildPath "config/autohotkey/mod.ahk") `
+                -Destination ($Shell.Namespace("shell:startup").Self.Path) `
+                -WindowStyle 0
 # }}}
 
 # Envs {{{
@@ -221,7 +180,6 @@ foreach ($p in $paths) {
     $orginalPath = $orginalPath + $p + ";"
 }
 [Environment]::SetEnvironmentVariable("PATH", $orginalPath, [EnvironmentVariableTarget]::Machine)
-[Environment]::SetEnvironmentVariable("KOMOREBI_CONFIG_HOME", (Join-Path -Path $DotDir -ChildPath "config/komorebi"), [EnvironmentVariableTarget]::Machine)
 # }}}
 
 # stop while user input
