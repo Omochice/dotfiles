@@ -2,7 +2,7 @@
 
 Home := EnvGet("USERPROFILE")
 
-Run(Format("glazewm.exe --config {1}/dotfiles/config/glazewm/config.yaml", Home))
+Run(Format("glazewm.exe --config {1}/dotfiles/config/glazewm/config.yaml", Home), , "Hide")
 
 ;; KEY BINDS
 

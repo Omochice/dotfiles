@@ -1,3 +1,8 @@
+general:
+  focus_follows_cursor: true
+  cursor_follow_focus: true
+  toggle_workspace_on_refocus: false
+
 gaps:
   inner_gap: 20
   outer_gap: 20
@@ -16,6 +21,8 @@ bar:
       focused_workspace_background: "#ffffff33"
       displayed_workspace_background: "#00000033"
       default_workspace_background: "transparent"
+  components_center:
+    - type: "window title"
   components_right:
     - type: "tiling direction"
       background: "#ffffff33"
@@ -26,7 +33,7 @@ bar:
       margin: "0 4px 0 0"
       padding: "0 8px"
     - type: "clock"
-      time_formatting: "hh:mm tt  ddd MMM d"
+      time_formatting: "HH:mm  MM-dd"
       margin: "0 0 0 10px"
 
 workspaces:
@@ -55,87 +62,69 @@ window_rules:
     match_process_name: "steam"
 
 keybindings:
+  - command: "close"
+    bindings: ["F24"]
+  - command: "toggle maximized"
+    bindings: ["F20"]
+  - command: "toggle floating"
+    bindings: ["RWin+Space"]
   # focus workspace {{{
   - command: "focus workspace 1"
-    binding: "LWin+1"
+    bindings: ["Ctrl+F11"]
   - command: "focus workspace 2"
-    binding: "LWin+2"
+    bindings: ["Ctrl+F12"]
   - command: "focus workspace 3"
-    binding: "LWin+3"
+    bindings: ["Ctrl+F13"]
   - command: "focus workspace 4"
-    binding: "LWin+4"
+    bindings: ["Ctrl+F14"]
   - command: "focus workspace 5"
-    binding: "LWin+5"
+    bindings: ["Ctrl+F15"]
   - command: "focus workspace 6"
-    binding: "LWin+6"
+    bindings: ["Ctrl+F16"]
   - command: "focus workspace 7"
-    binding: "LWin+7"
+    bindings: ["Ctrl+F17"]
   - command: "focus workspace 8"
-    binding: "LWin+8"
+    bindings: ["Ctrl+F18"]
   - command: "focus workspace 9"
-    binding: "LWin+9"
-  # }}}
+    bindings: ["Ctrl+F19"]
+#   # }}}
   # move workspace {{{
   - command: "move to workspace 1"
-    binding: "LWin+Shift+1"
+    bindings: ["Shift+F11"]
   - command: "move to workspace 2"
-    binding: "LWin+Shift+2"
+    bindings: ["Shift+F12"]
   - command: "move to workspace 3"
-    binding: "LWin+Shift+3"
+    bindings: ["Shift+F13"]
   - command: "move to workspace 4"
-    binding: "LWin+Shift+4"
+    bindings: ["Shift+F14"]
   - command: "move to workspace 5"
-    binding: "LWin+Shift+5"
+    bindings: ["Shift+F15"]
   - command: "move to workspace 6"
-    binding: "LWin+Shift+6"
+    bindings: ["Shift+F16"]
   - command: "move to workspace 7"
-    binding: "LWin+Shift+7"
+    bindings: ["Shift+F17"]
   - command: "move to workspace 8"
-    binding: "LWin+Shift+8"
+    bindings: ["Shift+F18"]
   - command: "move to workspace 9"
-    binding: "LWin+Shift+9"
+    bindings: ["Shift+F19"]
   # }}}
   # focus window {{{
   - command: "focus left"
-    binding: "LWin+H"
+    bindings: ["F13"]
   - command: "focus down"
-    binding: "LWin+J"
+    bindings: ["F14"]
   - command: "focus up"
-    binding: "LWin+K"
+    bindings: ["F15"]
   - command: "focus right"
-    binding: "LWin+L"
+    bindings: ["F16"]
   # }}}
   # move window {{{
   - command: "move left"
-    binding: "LWin+Shift+H"
+    bindings: ["Shift+F13"]
   - command: "move down"
-    binding: "LWin+Shift+J"
+    bindings: ["Shift+F14"]
   - command: "move up"
-    binding: "LWin+Shift+K"
+    bindings: ["Shift+F15"]
   - command: "move right"
-    binding: "LWin+Shift+L"
+    bindings: ["Shift+F16"]
   # }}}
-  # grow or shrink window size {{{
-  - command: "shrink width"
-    keybind: "LWin+Left"
-  - command: "grow width"
-    keybind: "LWin+Right"
-  - command: "shrink height"
-    keybind: "LWin+Up"
-  - command: "grow height"
-    keybind: "LWin+Down"
-  # }}}
-  # toggle vertical or horizontal {{{
-  - command: "layout vertical"
-    keybind: "LWin+V"
-  - command: "layout horizontal"
-    keybind: "LWin+Shift+V"
-  # }}}
-  - command: "kill window"
-    keybind: "LWin+Shift+Q"
-  - command: "reload config"
-    keybind: "LWin+Shift+C"
-  - command: "toggle maximized"
-    keybind: "LWin+F"
-  - command: "focus floating/tiling"
-    keybind: "LWin+Space"

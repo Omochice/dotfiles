@@ -71,7 +71,7 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/sketchybar/**
 !/config/glab-cli/aliases.yml
 !/config/gh/config.yml
-!/config/komorebi/komorebi.ahk
+!/config/autohotkey/mod.ahk
 !/config/glazewm/config.yaml
 !/config/mise/config.toml
 !/config/aqua/aqua.yaml
