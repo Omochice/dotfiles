@@ -122,7 +122,7 @@ if ($null -eq (Get-Command "wezterm.exe" -ErrorAction SilentlyContinue)) {
     scoop install wezterm
 }
 Get-ChildItem -Path (Join-Path -Path $DotDir -ChildPath "config/wezterm") | ForEach-Object {
-    New-Item -ItemType SymbolicLink -Path (Join-Path -Path $env:ProgramW6432 -ChildPath "WezTerm" | Join-Path -ChildPath $_.Name) -Target $_.FullName -Force
+    New-Item -ItemType SymbolicLink -Path (Join-Path -Path (scoop prefix wezterm) -ChildPath (Join-Path -ChildPath $_.Name)) -Target $_.FullName -Force
 }
 
 Write-Host "install browsers"
