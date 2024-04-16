@@ -63,6 +63,7 @@ config/fish/functions/fzf_key_bindings.fish
 !/src/*.md
 !/.zshrc
 !tool-list.toml
+!renovate.json5
 !/scripts/**
 !/config/skhd/skhdrc
 !/config/skhd/queries/*
