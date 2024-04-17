@@ -4,6 +4,7 @@
     "github>Omochice/renovate-config",
     "github>Omochice/renovate-config:deno",
     "github>Omochice/personal-renovate-config:mise",
+    "github>Omochice/personal-renovate-config:biomejs",
     "github>aquaproj/aqua-renovate-config#2.2.1",
     "gitlab>renovate-bot/renovate-runner",
   ],
