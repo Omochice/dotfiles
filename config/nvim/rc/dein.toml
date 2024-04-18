@@ -129,9 +129,13 @@ repo = "vim-scripts/fish.vim"
 # repo = "mityu/vim-applescript"
 
 [[plugins]]
+repo = "https://github.com/elkasztano/nushell-syntax-vim"
+
+[[plugins]]
 repo = "Shougo/shougo-s-github"
 if = 0
 
 [[plugins]]
 repo = "kuuote/dotvim"
 if = 0
+
