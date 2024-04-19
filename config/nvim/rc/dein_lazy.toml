@@ -653,3 +653,10 @@ repo = "https://github.com/nvim-lua/plenary.nvim"
 [[plugins]]
 repo = "https://github.com/Shougo/cmdline.vim"
 on_func = "cmdline"
+
+[[plugins]]
+repo = "https://github.com/stevearc/oil.nvim"
+on_cmd = ["Oil"]
+lua_source = """
+require("oil").setup()
+"""
