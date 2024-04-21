@@ -43,4 +43,4 @@ packages:
 - name: ast-grep/ast-grep@0.20.5
 - name: LuaLS/lua-language-server@3.7.4
 - name: mattn/efm-langserver@v0.0.53
-- name: ynqa/jnv@v0.2.1
+- name: ynqa/jnv@v0.2.2
