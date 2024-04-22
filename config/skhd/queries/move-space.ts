@@ -2,7 +2,7 @@ import { focus as focusSpace } from "https://deno.land/x/deno_yabai@v0.1.3/space
 import { relocate } from "https://deno.land/x/deno_yabai@v0.1.3/window.ts";
 import { getSpaces } from "https://deno.land/x/deno_yabai@v0.1.3/query.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.18.0/mod.ts";
-import { okAsync, ResultAsync } from "npm:neverthrow@6.2.0";
+import { okAsync, ResultAsync } from "npm:neverthrow@6.2.1";
 import { createSpaces } from "./create-spaces.ts";
 
 if (import.meta.main) {
