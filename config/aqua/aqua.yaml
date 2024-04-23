@@ -45,3 +45,4 @@ packages:
 - name: mattn/efm-langserver@v0.0.53
 - name: ynqa/jnv@v0.2.2
 - name: suzuki-shunsuke/pinact@v0.1.2
+- name: suzuki-shunsuke/ghalint@v0.2.9
