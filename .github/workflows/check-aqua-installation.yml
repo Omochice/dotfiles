@@ -25,20 +25,20 @@ jobs:
           - arm64
     steps:
       - name: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # v4.1.3
       - name: Check Changed Files
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
         id: filter
         with:
           filters: |
             aqua:
               - "config/aqua/aqua.yaml"
               - "config/mise/config.toml"
-      - uses: aquaproj/aqua-installer@v3.0.0
+      - uses: aquaproj/aqua-installer@4551ec64e21bf0f557c2525135ff0bd2cba40ec7 # v3.0.0
         if: steps.filter.outputs.aqua == 'true'
         with:
           aqua_version: v2.27.3
-      - uses: jdx/mise-action@v2
+      - uses: jdx/mise-action@0c39a522dfbced3ed83924152c45804a71ce216f # v2.0.4
         if: steps.filter.outputs.aqua == 'true'
       - name: check tools can install
         if: steps.filter.outputs.aqua == 'true'
