@@ -1,0 +1,31 @@
+name: Lint github actions
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  linting:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4.1.4
+      - name: Check Changed Files
+        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        id: filter
+        with:
+          filters: |
+            actions:
+              - .github/workflows/*
+              - aqua.yaml
+      - uses: aquaproj/aqua-installer@4551ec64e21bf0f557c2525135ff0bd2cba40ec7 # v3.0.0
+        if: steps.filter.outputs.actions == 'true'
+        with:
+          aqua_version: v2.27.3
+      - name: Lint github actions
+        if: steps.filter.outputs.actions == 'true'
+        run: |
+          actionlint -color
+          ghalint run
