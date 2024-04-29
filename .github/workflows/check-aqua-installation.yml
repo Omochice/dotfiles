@@ -33,6 +33,7 @@ jobs:
           filters: |
             aqua:
               - "config/aqua/aqua.yaml"
+              - "config/mise/config.toml"
       - uses: aquaproj/aqua-installer@v3.0.0
         if: steps.filter.outputs.aqua == 'true'
         with:
