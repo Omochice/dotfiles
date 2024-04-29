@@ -9,7 +9,7 @@ jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # v4.1.3
       - name: Check is main protected
         id: branchCheck
         run: |
@@ -18,11 +18,11 @@ jobs:
           PROTECTED=$(echo ${RESPONSE} | jq -r '.protected')
           echo "${PROTECTED}"
           echo "{isProtected}={${PROTECTED}}" >> $GITHUB_OUTPUT
-      - uses: Omochice/action-normalize-vim-plugin-name@v0.1.0
+      - uses: Omochice/action-normalize-vim-plugin-name@4c0461629dd9dfbce8a5e77ef962d8d719ca1885 # v0.1.0
         id: normalize
         with:
           trim-tail-dot-vim: true
-      - uses: Omochice/action-podeno@v0.1.0
+      - uses: Omochice/action-podeno@5545680f3c7e30f10aa025f2de63bffd90764623 # v0.1.0
         with:
           config: |
             [
@@ -32,14 +32,14 @@ jobs:
       - name: Remove deno.lock
         run: test -f deno.lock && rm deno.lock || true
       - name: Create auto commit
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@8621497c8c39c72f3e2a999a26b4ca1b5058a842 # v5.0.1
         if: ${{ steps.branchCheck.outputs.isProtected != true }}
         with:
           commit_message: "docs: update docs"
           branch: ${{ github.head_ref }}
       - name: Create Pull Request
         if: ${{ steps.branchCheck.outputs.isProtected == true }}
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@9153d834b60caba6d51c9b9510b087acf9f33f83 # v6.0.4
         with:
           title: "docs: update docs"
           body: |
