@@ -33,8 +33,6 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/nvim/*
 !/config/nvim/**/*
 !/config/i3/config
-!/config/bumblebee-status
-!/config/bumblebee-status/themes/*
 !/config/polybar/*
 !/config/polybar/scripts/*
 !/config/picom/picom.conf
@@ -44,14 +42,11 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/alacritty/alacritty.yml
 !/config/starship/config.toml
 !/config/lazygit/config.yml
-!/config/ranger/rc.conf
 !/config/wezterm/*.lua
 !/config/wezterm/keybinds/*.lua
 !/config/wezterm/colors/sonokai.toml
 !/config/powershell/profile.ps1
 !/config/stylua/stylua.toml
-!/zshell/*
-!/zshell/.zsh.d/*
 !/.gitconfig_shared
 !/profile
 !/.prettierrc.json
