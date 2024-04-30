@@ -5,3 +5,4 @@
 **/__pycache__
 **/momomo
 **/node_modules
+**/.mise.toml
