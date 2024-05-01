@@ -46,3 +46,4 @@ packages:
 - name: ynqa/jnv@v0.2.2
 - name: suzuki-shunsuke/pinact@v0.1.2
 - name: suzuki-shunsuke/ghalint@v0.2.9
+- name: terrastruct/d2@v0.6.5
