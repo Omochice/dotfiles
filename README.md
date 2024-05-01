@@ -23,7 +23,7 @@ I'm using several OSs.
 
 ## Apps
 
-- Editor: Neovim
+- Editor: Neovim and Vim
 - Terminal: [Wezterm](https://github.com/wez/wezterm)
 - Screenshot:
   - [Gyazo-for-Linux](https://github.com/gyazo/Gyazo-for-Linux)
