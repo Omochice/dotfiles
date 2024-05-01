@@ -12,7 +12,7 @@ I'm using several OSs.
     - WM: i3
     - Bar: [polybar](https://github.com/polybar/polybar)
 - Mac
-    - OS: Mac(Apple silicon)
+    - OS: Mac (Apple Silicon)
     - WM: [yabai](https://github.com/koekeishiya/yabai)
     - hotkeys: [skhd](https://github.com/koekeishiya/skhd), [karabiner-element](https://github.com/pqrs-org/Karabiner-Elements)
     - Bar: [SketchyBar](https://github.com/FelixKratz/SketchyBar)
