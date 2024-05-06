@@ -1,28 +1,29 @@
 # ☕ Dotfiles ☕
 
 ![desktop](https://i.gyazo.com/0394833c346a4f3430bc5d868d262974.png)
-![desktop-on-mac](https://i.gyazo.com/bcd3f2fe56835a93aab36d4180a42eb7.jpg)
+![desktop-on-mac](https://i.gyazo.com/6552101acbe6eac1515febe9e07108b4.jpg)
 
 ## Environment
 
-I'm using several OSs :( (because of my work...)
+I'm using several OSs.
 
-- Linux (my favorite environment)
+- Linux
     - OS: [Manjaro](https://manjaro.org/)
-    - WM: i3-gaps
-- Mac (Umm... I'm not good at bsd-line os...)
-    - OS: Mac(M1)
-    - WM: [yabai](https://github.com/koekeishiya/yabai), [SketchyBar](https://github.com/FelixKratz/SketchyBar)
+    - WM: i3
+    - Bar: [polybar](https://github.com/polybar/polybar)
+- Mac
+    - OS: Mac (Apple Silicon)
+    - WM: [yabai](https://github.com/koekeishiya/yabai)
     - hotkeys: [skhd](https://github.com/koekeishiya/skhd), [karabiner-element](https://github.com/pqrs-org/Karabiner-Elements)
-- Windows (Wht? Why?)
-    - OS: Windows10
-    - WM: [komorebi](https://github.com/LGUG2Z/komorebi)
-    - hotkeys: [autohotkey](https://github.com/LGUG2Z/komorebi)
+    - Bar: [SketchyBar](https://github.com/FelixKratz/SketchyBar)
+- Windows
+    - OS:( Windows10
+    - WM: [glazewm](https://github.com/glzr-io/glazewm)
+    - hotkeys: [autohotkey](https://github.com/AutoHotkey/AutoHotkey)
 
 ## Apps
 
-- Bar: [bumblebee-status](https://github.com/tobi-wan-kenobi/bumblebee-status)
-- Editor: Vim, Neovim
+- Editor: Neovim and Vim
 - Terminal: [Wezterm](https://github.com/wez/wezterm)
 - Screenshot:
   - [Gyazo-for-Linux](https://github.com/gyazo/Gyazo-for-Linux)
@@ -49,15 +50,6 @@ I'm using several OSs :( (because of my work...)
 - `Deno`
 - `Git`
 
-## Usage(outdated!)
+## Usage
 
-1. sync dotfiles
-   ```bash
-   $ deno run --allow-env --allow-read --allow-write scripts/sync.ts
-   ```
-2. sync tools
-   ```bash
-   $ deno run --allow-env --allow-net --allow-read --allow-run scripts/syncer.ts ./tool-list.toml
-   ```
-
-if exist original dotfiles, move their into `/tmp/??/` (auto-make by `Deno.makeTempDirSync`)
+TBD
