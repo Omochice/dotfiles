@@ -104,10 +104,10 @@ endif
 """
 
 [[plugins]]
-repo = "lambdalisue/nerdfont.vim"
+repo = "lambdalisue/vim-nerdfont"
 
 [[plugins]]
-repo = "lambdalisue/seethrough.vim"
+repo = "lambdalisue/vim-seethrough"
 hook_add = """
 let g:seethrough_disabled = has('gui_running')
 """

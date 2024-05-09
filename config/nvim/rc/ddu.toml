@@ -25,7 +25,7 @@ on_source = "ddu.vim"
 depends = ["mr.vim"]
 
 [[plugins]]
-repo = "lambdalisue/mr.vim"
+repo = "lambdalisue/vim-mr"
 on_func = ["mr#mru#list", "mr#mrr#list", "mr#mrw#list"]
 
 [[plugins]]
@@ -61,7 +61,7 @@ repo = "Shougo/ddu-kind-file"
 on_source = "ddu.vim"
 
 # [[plugins]]
-# repo = "lambdalisue/kensaku.vim"
+# repo = "lambdalisue/vim-kensaku"
 # depends = ["denops.vim"]
 # on_source = "denops.vim"
 

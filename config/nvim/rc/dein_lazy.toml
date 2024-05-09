@@ -280,7 +280,7 @@ command! -range ReadingVimrcCopy call <SID>reading_copy(<line1>, <line2>)
 """
 
 [[plugins]]
-repo = "lambdalisue/suda.vim"
+repo = "lambdalisue/vim-suda"
 hook_add = """
 let g:suda_smart_edit = v:true
 """
@@ -493,7 +493,7 @@ xmap <buffer> qe <Plug>(operator-partedit-codeblock)
 """
 
 [[plugins]]
-repo = "lambdalisue/fern.vim"
+repo = "lambdalisue/vim-fern"
 hooks_file = "$DEIN_RC_DIR/hooks/fern.lua"
 on_cmd = "Fern"
 
