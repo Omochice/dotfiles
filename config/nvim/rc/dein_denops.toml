@@ -34,7 +34,7 @@ on_cmd = "Codic"
 
 # # guise.vim not work well on lazy...?
 # [[plugins]]
-# repo = "lambdalisue/guise.vim"
+# repo = "lambdalisue/vim-guise"
 # on_event = "TermOpen"
 # depends = "denops.vim"
 # # # on_source = "denops.vim"
@@ -68,7 +68,7 @@ depends = "denops.vim"
 on_cmd = "GhostStart"
 
 [[plugins]]
-repo = "lambdalisue/gin.vim"
+repo = "lambdalisue/vim-gin"
 depends = "denops.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/gin.lua"
 on_cmd = ["Gin", "GinStatus"]
