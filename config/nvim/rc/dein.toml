@@ -88,7 +88,7 @@ augroup END
 [[plugins]]
 repo = "itchyny/lightline.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/lightline.lua"
-depends = ["nerdfont.vim", 'vim-gitbranch']
+depends = ["vim-nerdfont", 'vim-gitbranch']
 
 [[plugins]]
 repo = "itchyny/vim-gitbranch"
