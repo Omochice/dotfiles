@@ -58,12 +58,43 @@ local function ensure_window_is_opened(bufnr)
   return winid
 end
 
+--- Removes empty lines from the beginning and end.
+--- @param lines string[] lines  of lines to trim
+--- @return string[]
+local function trim_empty_lines(lines)
+  local start = 1
+  for i = 1, #lines do
+    if lines[i] ~= nil and #lines[i] > 0 then
+      start = i
+      break
+    end
+  end
+  local finish = 1
+  for i = #lines, 1, -1 do
+    if lines[i] ~= nil and #lines[i] > 0 then
+      finish = i
+      break
+    end
+  end
+
+  local result = {}
+  for i = start, finish do
+    result[#result + 1] = lines[i]
+  end
+  return result
+end
+
+--- Setup contents for view
+--- @params result Results for lsp hover
+--- @return string[]
 local function setup_contents(result)
-  local lines = vim.lsp.util.trim_empty_lines(
+  local lines = trim_empty_lines(
     vim.lsp.util.convert_input_to_markdown_lines(result.contents)
   )
   for index, line in ipairs(lines) do
-    lines[index] = string.gsub(line, "%s+$", "")
+    lines[index] = string
+        .gsub(line, "%s+$", "")
+        :gsub("&emsp;", "")
   end
   return lines
 end
@@ -109,7 +140,8 @@ M.on_hover = function(_, result, context)
 
   local winid = ensure_window_is_opened(bufnr)
   local height = vim.api.nvim_win_get_height(0)
-  vim.api.nvim_win_set_height(winid, math.min(#res.value, math.floor(height / 2)))
+  -- NOTE: +1 measn lsp-location window.
+  vim.api.nvim_win_set_height(winid, math.min(#res.value + 1, math.floor(height / 2)))
 end
 
 return M
