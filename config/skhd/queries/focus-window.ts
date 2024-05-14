@@ -1,6 +1,6 @@
 import { focus as focusWindow } from "https://deno.land/x/deno_yabai@v0.1.3/window.ts";
 import { focus as focusDisplay } from "https://deno.land/x/deno_yabai@v0.1.3/display.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.18.0/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.18.1/mod.ts";
 
 if (import.meta.main) {
   const way = ensure(
