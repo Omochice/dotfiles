@@ -657,6 +657,9 @@ on_func = "cmdline"
 [[plugins]]
 repo = "https://github.com/stevearc/oil.nvim"
 on_cmd = ["Oil"]
+hook_add = """
+nnoremap ;o <Cmd>Oil .<CR>
+"""
 lua_source = """
 require("oil").setup()
 """
