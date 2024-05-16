@@ -32,5 +32,6 @@ jobs:
       - name: Linting
         if: steps.filter.outputs.actions == 'true'
         run: |
+          shellcheck --version
           ghalint run
           actionlint -color
