@@ -38,4 +38,4 @@ jobs:
         if: steps.filter.outputs.actions == 'true'
         run: |
           ghalint run .github/workflows/*.y*ml config/nvim/templates/yaml/*-github-*
-          actionlint .github/workflows/*.y*ml config/nvim/templates/yaml/*-github-*
+          actionlint -color .github/workflows/*.y*ml config/nvim/templates/yaml/*-github-*

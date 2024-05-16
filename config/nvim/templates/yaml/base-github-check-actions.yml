@@ -33,4 +33,4 @@ jobs:
         if: steps.filter.outputs.actions == 'true'
         run: |
           ghalint run
-          actionlint
+          actionlint -color
