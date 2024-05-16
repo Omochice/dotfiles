@@ -1,0 +1,9 @@
+README.md
+Taskfile
+renovate.json5
+LISENCE
+cmd/{{_input_:tool-name}}/main.go
+.github/workflows/ci.yml
+.github/workflows/release.yml
+.github/workflows/enable-renovate-auto-merge.yml
+.github/workflows/check-actions.yml

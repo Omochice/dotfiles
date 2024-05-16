@@ -1,0 +1,13 @@
+README.pod
+README.md
+deno.jsonc
+renovate.json5
+LISENCE
+denops/{{_expr_:fnamemodify(bufname(), ':h:t:r')}}/main.ts
+autoload/{{_expr_:fnamemodify(bufname(), ':h:t')}}
+doc/{{_expr_:fnamemodify(bufname(), ':h:t:r')..'.txt'}}
+.github/workflows/ci.yml
+.github/workflows/release.yml
+.github/workflows/enable-renovate-auto-merge.yml
+.github/workflows/generate-docs.yml
+.github/workflows/check-actions.yml
