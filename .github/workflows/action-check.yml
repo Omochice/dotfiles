@@ -32,6 +32,8 @@ jobs:
         if: steps.filter.outputs.actions == 'true'
         with:
           aqua_version: v2.28.0
+        env:
+          AQUA_CONFIG: "${{ env.AQUA_GLOBAL_CONFIG }}"
       - name: Linting
         if: steps.filter.outputs.actions == 'true'
         run: |
