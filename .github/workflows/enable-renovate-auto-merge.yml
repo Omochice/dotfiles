@@ -1,13 +1,14 @@
-
 name: Enable auto merge
 
 on:
-  - push
+  - pull_request
 
 jobs:
   enable-auto-merge:
     runs-on: ubuntu-latest
-    permissions: {}
+    permissions:
+      contents: write
+      pull-requests: write
     if: |
       ! failure() && ! cancelled() && github.event.pull_request.user.login == 'renovate[bot]' && contains(github.event.pull_request.body, ' **Automerge**: Enabled.')
     steps:
