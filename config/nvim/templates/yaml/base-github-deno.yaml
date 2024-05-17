@@ -8,20 +8,20 @@ jobs:
   deno_fmt:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
       - uses: denoland/setup-deno@041b854f97b325bd60e53e9dc2de9cb9f9ac0cba # v1.1.4
       - run: deno task fmt:check
   deno_check:
     runs-on: ubuntu-latest
     needs: deno_fmt
     steps:
-      - uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
       - uses: denoland/setup-deno@041b854f97b325bd60e53e9dc2de9cb9f9ac0cba # v1.1.4
       - run: deno task check
   deno_lint:
     runs-on: ubuntu-latest
     needs: deno_fmt
     steps:
-      - uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
       - uses: denoland/setup-deno@041b854f97b325bd60e53e9dc2de9cb9f9ac0cba # v1.1.4
       - run: deno task lint
