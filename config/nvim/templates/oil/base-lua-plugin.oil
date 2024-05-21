@@ -1,0 +1,9 @@
+README.pod
+renovate.json5
+LICENSE
+lua/{{_expr_:fnamemodify(bufname(), ':h:t:r')}}/init.lua
+doc/{{_expr_:fnamemodify(bufname(), ':h:t:r')..'.txt'}}
+.github/workflows/ci.yml
+.github/workflows/release.yml
+.github/workflows/enable-renovate-auto-merge.yml
+.github/workflows/check-actions.yml
