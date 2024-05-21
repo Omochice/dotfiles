@@ -1,7 +1,7 @@
 README.md
 deno.jsonc
 renovate.json5
-LISENCE
+LICENSE
 mod.ts
 .github/workflows/ci.yml
 .github/workflows/release.yml

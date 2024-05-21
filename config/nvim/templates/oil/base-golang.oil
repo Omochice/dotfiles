@@ -1,7 +1,7 @@
 README.md
 Taskfile
 renovate.json5
-LISENCE
+LICENSE
 cmd/{{_input_:tool-name}}/main.go
 .github/workflows/ci.yml
 .github/workflows/release.yml

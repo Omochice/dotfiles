@@ -2,7 +2,7 @@ README.pod
 README.md
 deno.jsonc
 renovate.json5
-LISENCE
+LICENSE
 denops/{{_expr_:fnamemodify(bufname(), ':h:t:r')}}/main.ts
 autoload/{{_expr_:fnamemodify(bufname(), ':h:t')}}
 doc/{{_expr_:fnamemodify(bufname(), ':h:t:r')..'.txt'}}
