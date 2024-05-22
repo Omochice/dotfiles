@@ -9,8 +9,14 @@ end
 -- lua_source {{{
 require("oil").setup({
   use_default_keymaps = false,
+  view_options = {
+    show_hidden = true,
+  },
   keymaps = {
+    ["q"] = "actions.close",
     ["<CR>"] = "actions.select",
+    ["l"] = "actions.select",
+    ["h"] = "actions.parent",
   },
 })
 require("oil-nerdfont").setup()
