@@ -656,10 +656,10 @@ on_func = "cmdline"
 
 [[plugins]]
 repo = "https://github.com/stevearc/oil.nvim"
-on_cmd = ["Oil"]
-hook_add = """
-nnoremap ;o <Cmd>Oil .<CR>
-"""
-lua_source = """
-require("oil").setup()
-"""
+on_lua = ["oil"]
+hooks_file = "$DEIN_RC_DIR/hooks/oil.lua"
+
+[[plugins]]
+repo = "https://github.com/Omochice/oil-nerdfont"
+on_lua = "oil-nerdfont"
+depends = ["oil.nvim", "vim-nerdfont"]
