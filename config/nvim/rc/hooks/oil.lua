@@ -1,7 +1,7 @@
 -- lua_add {{{
 local vimx = require("artemis")
 vimx.keymap.set("n", ";o", function()
-  require("oil").open()
+  require("oil").open_float()
 end
 )
 -- }}}
