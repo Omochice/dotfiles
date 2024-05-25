@@ -10,6 +10,7 @@ jobs:
     outputs:
       actions: ${{steps.changes.outputs.actions}}
       deno: ${{steps.changes.outputs.deno}}
+      aqua: ${{steps.changes.outputs.aqua}}
     runs-on: ubuntu-latest
     permissions: {}
     steps:
@@ -41,7 +42,7 @@ jobs:
       contents: read
   check-deno:
     needs: path-filter
-    if: needs.path-filter.outputs.ts == 'true'
+    if: needs.path-filter.outputs.deno == 'true'
     uses: ./.github/workflows/_check-deno.yml
     permissions:
       contents: read
