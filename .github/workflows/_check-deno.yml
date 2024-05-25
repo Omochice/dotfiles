@@ -18,21 +18,9 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
-      - name: Check Changed Files
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
-        id: filter
-        with:
-          filters: |
-            deno:
-              - "scripts/**/*.ts"
-              - "config/nvim/rc/ts/*.ts"
-              - "config/skhd/queries/*.ts"
       - name: setup deno
-        if: steps.filter.outputs.deno == 'true'
         uses: denoland/setup-deno@041b854f97b325bd60e53e9dc2de9cb9f9ac0cba # v1.1.4
       - name: type check
-        if: steps.filter.outputs.deno == 'true'
         run: deno check scripts/**/*.ts config/nvim/rc/ts/*.ts
       - name: linting
-        if: steps.filter.outputs.deno == 'true'
         run: deno lint scripts/**/*.ts config/nvim/rc/ts/*.ts
