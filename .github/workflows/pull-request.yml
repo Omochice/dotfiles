@@ -1,0 +1,63 @@
+name: Checks for pull request
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  path-filter:
+    outputs:
+      actions: ${{steps.changes.outputs.actions}}
+      deno: ${{steps.changes.outputs.deno}}
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+      - uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
+        id: changes
+        with:
+          filters: |
+            actions:
+              - .github/workflows/*.yml
+              - .github/workflows/*.yaml
+              - aqua.yaml
+            deno:
+              - scripts/**/*.ts
+              - config/nvim/rc/ts/*.ts
+              - config/skhd/queries/*.ts
+              - .github/workflows/_check-deno.yml
+              - .github/workflows/pull-request.yml
+            aqua:
+              - config/aqua/aqua.yaml
+              - config/mise/config.toml
+              - .github/workflows/_check-aqua-installation.yml
+              - .github/workflows/pull-request.yml
+  check-actions:
+    needs: path-filter
+    if: needs.path-filter.outputs.actions == 'true'
+    uses: ./.github/workflows/_check-actions.yml
+    permissions:
+      contents: read
+  check-deno:
+    needs: path-filter
+    if: needs.path-filter.outputs.ts == 'true'
+    uses: ./.github/workflows/_check-deno.yml
+    permissions:
+      contents: read
+  check-aqua:
+    needs: path-filter
+    if: needs.path-filter.outputs.aqua == 'true'
+    uses: ./.github/workflows/_check-aqua-installation.yml
+    permissions:
+      contents: read
+  status-check:
+    runs-on: ubuntu-latest
+    needs:
+      - check-actions
+      - check-deno
+      - check-aqua
+    permissions: {}
+    if: failure()
+    steps:
+      - run: exit 1

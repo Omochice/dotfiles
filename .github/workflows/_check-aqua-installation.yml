@@ -29,22 +29,11 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
-      - name: Check Changed Files
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
-        id: filter
-        with:
-          filters: |
-            aqua:
-              - "config/aqua/aqua.yaml"
-              - "config/mise/config.toml"
       - uses: aquaproj/aqua-installer@6ce1f8848ec8e61f14d57bd5d7597057a6dd187c # v3.0.1
-        if: steps.filter.outputs.aqua == 'true'
         with:
           aqua_version: v2.28.1
       - uses: jdx/mise-action@0c39a522dfbced3ed83924152c45804a71ce216f # v2.0.4
-        if: steps.filter.outputs.aqua == 'true'
       - name: check tools can install
-        if: steps.filter.outputs.aqua == 'true'
         run: aqua install --all
         env:
           AQUA_GOARCH: ${{ matrix.goarch }}
