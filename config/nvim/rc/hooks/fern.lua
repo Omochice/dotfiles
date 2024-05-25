@@ -17,6 +17,8 @@ vimx.keymap.set("n", ";;", "<Cmd>Fern . -reveal=% -drawer -toggle<CR>")
 -- lua_fern {{{
 local vimx = require("artemis")
 vimx.keymap.set("n", "q", "<Cmd>bprevious<CR>", { buffer = true, nowait = true })
+vimx.keymap.set("n", "i", "<Plug>(fern-action-new-file)", { buffer = true })
+vimx.keymap.set("n", "o", "<Plug>(fern-action-new-dir)", { buffer = true })
 vimx.keymap.set("n", "r", "<Plug>(fern-action-rename)", { buffer = true })
 vimx.keymap.set("n", "dd", "<Plug>(fern-action-remove=)", { buffer = true })
 vimx.keymap.set("n", "yy", "<Plug>(fern-action-clipboard-copy)", { buffer = true })
@@ -46,5 +48,5 @@ vimx.keymap.set("n", "<Plug>(fern-action-open-here-in-oil)",
     vim.cmd [[ unlet g:_tmp_fern_oil ]]
   end
 )
-vimx.keymap.set("n", "i", "<Plug>(fern-action-open-here-in-oil)", { buffer = true })
+vimx.keymap.set("n", "I", "<Plug>(fern-action-open-here-in-oil)", { buffer = true })
 -- }}}
