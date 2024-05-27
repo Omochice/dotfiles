@@ -60,13 +60,13 @@ endif
 """
 
 [[plugins]]
-repo = "Shougo/dein.vim"
+repo = "https://github.com/Shougo/dein.vim"
 
 [[plugins]]
-repo = "tani/vim-artemis"
+repo = "https://github.com/tani/vim-artemis"
 
 [[plugins]]
-repo = "sainnhe/sonokai"
+repo = "https://github.com/sainnhe/sonokai"
 hook_add = """
 let g:sonokai_style = 'espresso'
 let g:sonokai_dim_inactive_windows = v:false
@@ -76,7 +76,7 @@ let g:sonokai_transparent_background = v:true
 """
 
 [[plugins]]
-repo = "catppuccin/vim"
+repo = "https://github.com/catppuccin/vim"
 name = "catpuccin"
 hook_add = """
 augroup erace-cursorline
@@ -86,15 +86,15 @@ augroup END
 """
 
 [[plugins]]
-repo = "itchyny/lightline.vim"
+repo = "https://github.com/itchyny/lightline.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/lightline.lua"
 depends = ["vim-nerdfont", 'vim-gitbranch']
 
 [[plugins]]
-repo = "itchyny/vim-gitbranch"
+repo = "https://github.com/itchyny/vim-gitbranch"
 
 [[plugins]]
-repo = "vim-jp/vimdoc-ja"
+repo = "https://github.com/vim-jp/vimdoc-ja"
 hook_add = """
 if has('nvim')
   set helplang=en " default
@@ -104,16 +104,16 @@ endif
 """
 
 [[plugins]]
-repo = "lambdalisue/vim-nerdfont"
+repo = "https://github.com/lambdalisue/vim-nerdfont"
 
 [[plugins]]
-repo = "lambdalisue/vim-seethrough"
+repo = "https://github.com/lambdalisue/vim-seethrough"
 hook_add = """
 let g:seethrough_disabled = has('gui_running')
 """
 
 [[plugins]]
-repo = "mattn/vim-findroot"
+repo = "https://github.com/mattn/vim-findroot"
 hook_add = """
 let g:findroot_not_for_subdir = v:false
 let g:findroot_patterns = ['.git/', 'settings.gradle']
@@ -123,7 +123,7 @@ let g:findroot_patterns = ['.git/', 'settings.gradle']
 # repo = "vim-jp/vim-streem"
 
 [[plugins]]
-repo = "vim-scripts/fish.vim"
+repo = "https://github.com/vim-scripts/fish.vim"
 
 # [[plugins]]
 # repo = "mityu/vim-applescript"
@@ -132,10 +132,10 @@ repo = "vim-scripts/fish.vim"
 repo = "https://github.com/elkasztano/nushell-syntax-vim"
 
 [[plugins]]
-repo = "Shougo/shougo-s-github"
+repo = "https://github.com/Shougo/shougo-s-github"
 if = 0
 
 [[plugins]]
-repo = "kuuote/dotvim"
+repo = "https://github.com/kuuote/dotvim"
 if = 0
 
