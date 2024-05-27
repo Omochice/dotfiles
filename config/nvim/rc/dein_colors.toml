@@ -1,9 +1,9 @@
 [[plugins]]
-repo = "EdenEast/nightfox.nvim"
+repo = "https://github.com/EdenEast/nightfox.nvim"
 on_func = "ChangeColor"
 
 [[plugins]]
-repo = "ayu-theme/ayu-vim"
+repo = "https://github.com/ayu-theme/ayu-vim"
 hook_add = """
 let g:ayucolor = 'dark'
 """
@@ -14,11 +14,11 @@ repo = 'Mangeshrex/uwu.vim'
 on_func = "ChangeColor"
 
 [[plugins]]
-repo = "yasukotelin/shirotelin"
+repo = "https://github.com/yasukotelin/shirotelin"
 on_func = "ChangeColor"
 
 [[plugins]]
-repo = "haishanh/night-owl.vim"
+repo = "https://github.com/haishanh/night-owl.vim"
 hook_add = """
 let g:colors_map['nightowl'] = 'night-owl'
 """

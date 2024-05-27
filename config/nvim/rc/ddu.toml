@@ -1,63 +1,63 @@
 [[plugins]]
-repo = "Shougo/ddu.vim"
+repo = "https://github.com/Shougo/ddu.vim"
 depends = "denops.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/ddu.lua"
 on_func = ["ddu#start"]
 on_map = { n = "<Plug>(ddu" }
 
 [[plugins]]
-repo = "Shougo/ddu-ui-ff"
+repo = "https://github.com/Shougo/ddu-ui-ff"
 on_source = "ddu.vim"
 # hooks_file = "$DEIN_RC_DIR/hooks/ddu-ui-ff.lua"
 hooks_file = "$DEIN_RC_DIR/hooks/ddu-ui-ff.vim"
 
 [[plugins]]
-repo = "Shougo/ddu-source-file_rec"
+repo = "https://github.com/Shougo/ddu-source-file_rec"
 on_source = "ddu.vim"
 
 [[plugins]]
-repo = "shun/ddu-source-rg"
+repo = "https://github.com/shun/ddu-source-rg"
 on_source = "ddu.vim"
 
 [[plugins]]
-repo = "kuuote/ddu-source-mr"
+repo = "https://github.com/kuuote/ddu-source-mr"
 on_source = "ddu.vim"
 depends = ["vim-mr"]
 
 [[plugins]]
-repo = "lambdalisue/vim-mr"
+repo = "https://github.com/lambdalisue/vim-mr"
 on_func = ["mr#mru#list", "mr#mrr#list", "mr#mrw#list"]
 
 [[plugins]]
-repo = "shun/ddu-source-buffer"
+repo = "https://github.com/shun/ddu-source-buffer"
 on_source = "ddu.vim"
 
 [[plugins]]
-repo = "liquidz/ddu-source-custom-list"
+repo = "https://github.com/liquidz/ddu-source-custom-list"
 on_source = "ddu.vim"
 
 [[plugins]]
-repo = "matsui54/ddu-source-file_external"
+repo = "https://github.com/matsui54/ddu-source-file_external"
 on_source = "ddu.vim"
 
 [[plugins]]
-repo = "uga-rosa/ddu-source-lsp"
+repo = "https://github.com/uga-rosa/ddu-source-lsp"
 on_source = "ddu.vim"
 
 [[plugins]]
-repo = "Shougo/ddu-filter-converter_display_word"
+repo = "https://github.com/Shougo/ddu-filter-converter_display_word"
 on_source = "ddu.vim"
 
 [[plugins]]
-repo = "Shougo/ddu-filter-matcher_substring"
+repo = "https://github.com/Shougo/ddu-filter-matcher_substring"
 on_source = "ddu.vim"
 
 [[plugins]]
-repo = "yuki-yano/ddu-filter-fzf"
+repo = "https://github.com/yuki-yano/ddu-filter-fzf"
 on_source = "ddu.vim"
 
 [[plugins]]
-repo = "Shougo/ddu-kind-file"
+repo = "https://github.com/Shougo/ddu-kind-file"
 on_source = "ddu.vim"
 
 # [[plugins]]
@@ -66,13 +66,13 @@ on_source = "ddu.vim"
 # on_source = "denops.vim"
 
 [[plugins]]
-repo = "Omochice/ddu-source-anyjump"
+repo = "https://github.com/Omochice/ddu-source-anyjump"
 on_source = "ddu.vim"
 
 [[plugins]]
-repo = "Omochice/ddu-source-redmine"
+repo = "https://github.com/Omochice/ddu-source-redmine"
 on_source = "ddu.vim"
 
 [[plugins]]
-repo = "Shougo/ddu-source-action"
+repo = "https://github.com/Shougo/ddu-source-action"
 on_source = "ddu.vim"

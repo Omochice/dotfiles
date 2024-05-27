@@ -1,5 +1,5 @@
 [[plugins]]
-repo = "vim-denops/denops.vim"
+repo = "https://github.com/vim-denops/denops.vim"
 hook_add = """
 command! DenopsRestart call denops#server#restart() " NOTE: not work?
 """
@@ -11,7 +11,7 @@ on_event = "CursorHold"
 # on_source = "denops.vim"
 #
 [[plugins]]
-repo = "Omochice/dps-paiza-io-vim"
+repo = "https://github.com/Omochice/dps-paiza-io-vim"
 # repo = "~/workspace/dps-paiza-io-vim"
 on_cmd = "PaizaIO"
 
@@ -21,7 +21,7 @@ on_cmd = "PaizaIO"
 # on_cmd = "CharCount"
 
 [[plugins]]
-repo = "Omochice/dps-codic-vim"
+repo = "https://github.com/Omochice/dps-codic-vim"
 # repo = "~/workspace/dps-codic-vim"
 on_cmd = "Codic"
 
@@ -48,7 +48,7 @@ on_cmd = "Codic"
 # # on_event = "BufRead"
 #
 [[plugins]]
-repo = "gamoutatsumi/dps-ghosttext.vim"
+repo = "https://github.com/gamoutatsumi/dps-ghosttext.vim"
 lua_add = """
 local vimx = require("artemis")
 vimx.g["dps_ghosttext#ftmap"] = {
@@ -68,13 +68,13 @@ depends = "denops.vim"
 on_cmd = "GhostStart"
 
 [[plugins]]
-repo = "lambdalisue/vim-gin"
+repo = "https://github.com/lambdalisue/vim-gin"
 depends = "denops.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/gin.lua"
 on_cmd = ["Gin", "GinStatus"]
 
 [[plugins]]
-repo = "Omochice/tataku.vim"
+repo = "https://github.com/Omochice/tataku.vim"
 # repo = "~/Toy/tataku.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/tataku.lua"
 depends = ["denops.vim", "vim-operator-user"]
@@ -83,50 +83,50 @@ on_map = { n = "<Plug>(operator-tataku", x = "<Plug>(operator-tataku" }
 
 [[plugins]]
 # repo = "~/Toy/tataku-collector-current_line"
-repo = "Omochice/tataku-collector-current_line"
+repo = "https://github.com/Omochice/tataku-collector-current_line"
 on_source = "tataku.vim"
 
 [[plugins]]
 # repo = "~/Toy/tataku-processor-google_translate"
-repo = "Omochice/tataku-processor-google_translate"
+repo = "https://github.com/Omochice/tataku-processor-google_translate"
 on_source = "tataku.vim"
 
 [[plugins]]
-repo = "Omochice/tataku-processor-intl_segmenter"
+repo = "https://github.com/Omochice/tataku-processor-intl_segmenter"
 # repo = "~/Toy/tataku-processor-intl_segmenter"
 on_source = "tataku.vim"
 
 [[plugins]]
-repo = "Omochice/tataku-emitter-nvim_floatwin"
+repo = "https://github.com/Omochice/tataku-emitter-nvim_floatwin"
 # repo = "~/Toy/tataku-emitter-nvim_floatwin"
 on_source = "tataku.vim"
 
 [[plugins]]
-repo = "Omochice/tataku-processor-split_by_displaywidth"
+repo = "https://github.com/Omochice/tataku-processor-split_by_displaywidth"
 on_source = "tataku.vim"
 
 [[plugins]]
-repo = "Omochice/tataku-processor-ollama"
+repo = "https://github.com/Omochice/tataku-processor-ollama"
 on_source = "tataku.vim"
 
 [[plugins]]
-repo = "Omochice/tataku-emitter-window"
+repo = "https://github.com/Omochice/tataku-emitter-window"
 on_source = "tataku.vim"
 
 [[plugins]]
-repo = "Omochice/tataku-emitter-echo"
+repo = "https://github.com/Omochice/tataku-emitter-echo"
 on_source = "tataku.vim"
 
 [[plugins]]
-repo = "Omochice/tataku-collector-buffer"
+repo = "https://github.com/Omochice/tataku-collector-buffer"
 on_source = "tataku.vim"
 
 [[plugins]]
-repo = "Omochice/tataku-processor-eta"
+repo = "https://github.com/Omochice/tataku-processor-eta"
 on_source = "tataku.vim"
 
 [[plugins]]
-repo = "4513ECHO/denops-gitter.vim"
+repo = "https://github.com/4513ECHO/denops-gitter.vim"
 hook_add = """
 let g:gitter#token = $GITTER_TOKEN
 command! ReadingVimrcGitter tabnew gitter://room/vim-jp/reading-vimrc

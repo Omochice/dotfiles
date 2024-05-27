@@ -1,8 +1,8 @@
 [[plugins]]
-repo = "kana/vim-textobj-user"
+repo = "https://github.com/kana/vim-textobj-user"
 
 [[plugins]]
-repo = "kana/vim-textobj-line"
+repo = "https://github.com/kana/vim-textobj-line"
 depends = "vim-textobj-user"
 lua_add = """
 local vimx = require("artemis")
@@ -12,7 +12,7 @@ vimx.keymap.set({ "x", "o" }, "il", "<Plug>(textobj-line-i)")
 on_map = { x = "<Plug>", o = "<Plug>" }
 
 [[plugins]]
-repo = "thinca/vim-textobj-between"
+repo = "https://github.com/thinca/vim-textobj-between"
 depends = ["vim-textobj-user"]
 lua_add = """
 local vimx = require("artemis")
@@ -22,7 +22,7 @@ vimx.keymap.set({ "x", "o" }, "if", "<Plug>(textobj-between-i)")
 on_map = { x = "<Plug>", o = "<Plug>" }
 
 [[plugins]]
-repo = "kana/vim-textobj-fold"
+repo = "https://github.com/kana/vim-textobj-fold"
 lua_add = """
 local vimx = require("artemis")
 vimx.keymap.set({ "x", "o" }, "az", "<Plug>(textobj-fold-a)")
@@ -32,7 +32,7 @@ depends = ["vim-textobj-user"]
 on_map = { x = "<Plug>", o = "<Plug>" }
 
 [[plugins]]
-repo = "Omochice/vim-textobj-codeblock"
+repo = "https://github.com/Omochice/vim-textobj-codeblock"
 depends = ["vim-textobj-user"]
 lua_add = '''
 local vimx = require("artemis")
@@ -43,7 +43,7 @@ vimx.keymap.set({ "x", "o" }, "ic", "<Plug>(textobj-codeblock-i)")
 on_map = { x = "<Plug>", o = "<Plug>" }
 
 [[plugins]]
-repo = "Omochice/vim-textobj-bettertag"
+repo = "https://github.com/Omochice/vim-textobj-bettertag"
 lua_add = """
 require("artemis").keymap.set({ "x", "o" }, "it", "<Plug>(textobj-bettertag-i)")
 """
@@ -51,7 +51,7 @@ on_map = { x = "<Plug>", o = "<Plug>" }
 depends = ["vim-textobj-user"]
 
 [[plugins]]
-repo = "kana/vim-textobj-indent"
+repo = "https://github.com/kana/vim-textobj-indent"
 depends = ["vim-textobj-user"]
 lua_add = """
 local vimx = require("artemis")
@@ -61,13 +61,13 @@ vimx.keymap.set({ "x", "o" }, "ii", "<Plug>(textobj-indent-i)")
 on_map = { x = "<Plug>", o = "<Plug>" }
 
 [[plugins]]
-repo = "kana/vim-operator-user"
+repo = "https://github.com/kana/vim-operator-user"
 
 [[plugins]]
-repo = "kana/vim-repeat"
+repo = "https://github.com/kana/vim-repeat"
 
 [[plugins]]
-repo = "easymotion/vim-easymotion"
+repo = "https://github.com/easymotion/vim-easymotion"
 hook_add = """
 nmap <Space>j <Plug>(easymotion-j)
 nmap <Space>k <Plug>(easymotion-k)
@@ -79,12 +79,12 @@ let g:EasyMotion_use_smartsign_jp = v:true
 on_map = { n = "<Plug>" }
 
 [[plugins]]
-repo = "hrsh7th/vim-searchx"
+repo = "https://github.com/hrsh7th/vim-searchx"
 hooks_file = "$DEIN_RC_DIR/hooks/searchx.lua"
 on_func = "searchx"
 
 [[plugins]]
-repo = "haya14busa/vim-asterisk"
+repo = "https://github.com/haya14busa/vim-asterisk"
 hook_add = """
 nmap * <Plug>(asterisk-z*)
 xmap * <Plug>(asterisk-z*)
@@ -92,14 +92,14 @@ xmap * <Plug>(asterisk-z*)
 on_map = { n = "<Plug>" }
 
 [[plugins]]
-repo = "hrsh7th/vim-vsnip"
+repo = "https://github.com/hrsh7th/vim-vsnip"
 hooks_file = "$DEIN_RC_DIR/hooks/vsnip.lua"
 on_map = { x = "<Plug>", i = "<Plug>" }
 depends = ["lexima.vim"] # Need this for control order to sourcing
 on_event = "InsertEnter"
 
 [[plugins]]
-repo = "cohama/lexima.vim"
+repo = "https://github.com/cohama/lexima.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/lexima.lua"
 on_event = "InsertEnter"
 
@@ -112,20 +112,20 @@ on_event = "InsertEnter"
 # """
 
 [[plugins]]
-repo = "prabirshrestha/vim-lsp"
+repo = "https://github.com/prabirshrestha/vim-lsp"
 hooks_file = ["$DEIN_RC_DIR/hooks/vim-lsp.lua", "$DEIN_RC_DIR/hooks/vim-lsp.vim"]
 on_event = ["BufRead", "BufNewFile"]
 if = "!has('nvim')"
 
 [[plugins]]
-repo = "mattn/vim-lsp-settings"
+repo = "https://github.com/mattn/vim-lsp-settings"
 hook_add = """
 let g:lsp_settings_enable_suggestions = v:false
 """
 on_source = "vim-lsp"
 
 [[plugins]]
-repo = "neovim/nvim-lspconfig"
+repo = "https://github.com/neovim/nvim-lspconfig"
 on_lua = "lspconfig"
 if = "has('nvim')"
 
@@ -135,18 +135,18 @@ on_source = "nvim-lspconfig"
 hooks_file = "$DEIN_RC_DIR/hooks/nvim-navic.lua"
 
 [[plugins]]
-repo = "williamboman/mason.nvim"
+repo = "https://github.com/williamboman/mason.nvim"
 on_lua = "mason"
 if = "has('nvim')"
 
 [[plugins]]
-repo = "williamboman/mason-lspconfig.nvim"
+repo = "https://github.com/williamboman/mason-lspconfig.nvim"
 on_event = ["BufRead", "BufNewFile"]
 hooks_file = "$DEIN_RC_DIR/hooks/mason-lspconfig.lua"
 if = "has('nvim')"
 
 [[plugins]]
-repo = "machakann/vim-sandwich"
+repo = "https://github.com/machakann/vim-sandwich"
 hooks_file = "$DEIN_RC_DIR/hooks/sandwich.lua"
 depends = "vim-textobj-user"
 [plugins.on_map]
@@ -155,7 +155,7 @@ x = ["<Plug>", "<Plug>(textobj-sandwich"]
 o = "<Plug>(textobj-sandwich"
 
 [[plugins]]
-repo = "uga-rosa/contextment.vim"
+repo = "https://github.com/uga-rosa/contextment.vim"
 # repo = "~/Toy/contextment.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/contextment.lua"
 depends = ["context_filetype.vim"]
@@ -163,11 +163,11 @@ on_map = { nxo = "<Plug>" }
 if = "!has('nvim')"
 
 [[plugins]]
-repo = "markonm/traces.vim"
+repo = "https://github.com/markonm/traces.vim"
 on_event = "CmdlineEnter"
 
 [[plugins]]
-repo = "liuchengxu/vista.vim"
+repo = "https://github.com/liuchengxu/vista.vim"
 depends = ["vim-lsp"]
 on_cmd = "Vista"
 hook_add = """
@@ -175,7 +175,7 @@ let g:vista_default_executive = has('nvim') ? 'nvim_lsp' : 'vim_lsp'
 """
 
 [[plugins]]
-repo = "simeji/winresizer"
+repo = "https://github.com/simeji/winresizer"
 hook_add = """
 function s:number_of_non_float() abort
   " on floating / popup window is return 'popup'.
@@ -197,14 +197,14 @@ let g:winresizer_vert_resize = 3
 on_cmd = ["WinResizerStartResize", "WinResizerStartFocus"]
 
 [[plugins]]
-repo = "thinca/vim-quickrun"
+repo = "https://github.com/thinca/vim-quickrun"
 depends = ["vim-quickrun-neovim-job"]
 hooks_file = "$DEIN_RC_DIR/hooks/quickrun.lua"
 on_map = { n = "<Plug>" }
 on_cmd = ["QuickRun"]
 
 [[plugins]]
-repo = "lambdalisue/vim-quickrun-neovim-job"
+repo = "https://github.com/lambdalisue/vim-quickrun-neovim-job"
 on_source = "vim-quickrun"
 
 # [[plugins]]
@@ -216,7 +216,7 @@ on_source = "vim-quickrun"
 # on_cmd = "TeXOutline"
 
 [[plugins]]
-repo = "ntpeters/vim-better-whitespace"
+repo = "https://github.com/ntpeters/vim-better-whitespace"
 hook_add = """
 let g:better_whitespace_enabled = !has('nvim')
 let g:strip_whitespace_on_save = v:false
@@ -224,7 +224,7 @@ let g:strip_whitespace_on_save = v:false
 on_cmd = ["StripWhitespace", "StripWhitespaceOnChangedLines"]
 
 [[plugins]]
-repo = "heavenshell/vim-pydocstring"
+repo = "https://github.com/heavenshell/vim-pydocstring"
 build = "make install"
 hook_add = """
 let g:pydocstring_formatter = 'google'
@@ -232,11 +232,11 @@ let g:pydocstring_formatter = 'google'
 on_cmd = ["Pydocstring", "PydocstringFormat"]
 
 [[plugins]]
-repo = "mattn/vim-maketable"
+repo = "https://github.com/mattn/vim-maketable"
 on_cmd = "MakeTable"
 
 [[plugins]]
-repo = "previm/previm"
+repo = "https://github.com/previm/previm"
 on_cmd = "PrevimOpen"
 hook_add = """
 let g:previm_wsl_mode = has('wsl')
@@ -245,25 +245,25 @@ let g:previm_show_header = v:false
 depends = ["open-browser.vim"]
 
 [[plugins]]
-repo = "tyru/open-browser.vim"
+repo = "https://github.com/tyru/open-browser.vim"
 hook_add = """
 nmap gx <Plug>(openbrowser-open)
 """
 on_map = { n = "<Plug>(openbrowser" }
 
 [[plugins]]
-repo = "ap/vim-css-color"
+repo = "https://github.com/ap/vim-css-color"
 on_ft = ["css", "scss", "vue"]
 
 [[plugins]]
-repo = "pechorin/any-jump.vim"
+repo = "https://github.com/pechorin/any-jump.vim"
 hook_add = """
 let g:any_jump_disable_default_keybindings = v:true
 """
 on_cmd = ["AnyJump", "AnyJumpVisual", "AnyJumpBack", "AnyJumpLastResults"]
 
 [[plugins]]
-repo = "y0za/vim-reading-vimrc"
+repo = "https://github.com/y0za/vim-reading-vimrc"
 on_cmd = ["ReadingVimrcNext", "ReadingVimrcList", "ReadingVimrcLoad", "ReadingVimrcCopy"]
 hook_source = """
 function! s:reading_copy(line1, line2) abort
@@ -280,14 +280,14 @@ command! -range ReadingVimrcCopy call <SID>reading_copy(<line1>, <line2>)
 """
 
 [[plugins]]
-repo = "lambdalisue/vim-suda"
+repo = "https://github.com/lambdalisue/vim-suda"
 hook_add = """
 let g:suda_smart_edit = v:true
 """
 on_event = "BufRead"
 
 [[plugins]]
-repo = "Shougo/context_filetype.vim"
+repo = "https://github.com/Shougo/context_filetype.vim"
 lua_source = """
 local vimx = require("artemis")
 vimx.g["context_filetype#ignore_patterns"] = {
@@ -296,23 +296,23 @@ vimx.g["context_filetype#ignore_patterns"] = {
 """
 
 [[plugins]]
-repo = "nvim-treesitter/nvim-treesitter"
+repo = "https://github.com/nvim-treesitter/nvim-treesitter"
 if = "has('nvim')"
 on_event = ["BufRead", "BufNewFile"]
 hook_post_update = "TSUpdate"
 hooks_file = "$DEIN_RC_DIR/hooks/treesitter.lua"
 
 [[plugins]]
-repo = "nvim-treesitter/playground"
+repo = "https://github.com/nvim-treesitter/playground"
 on_source = "nvim-treesitter"
 
 [[plugins]]
-repo = "nvim-treesitter/nvim-treesitter-textobjects"
+repo = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
 on_source = "nvim-treesitter"
 # Use upper case for treesitter, it prevent to confuse at Vim's one.
 
 [[plugins]]
-repo = "nvim-treesitter/nvim-treesitter-context"
+repo = "https://github.com/nvim-treesitter/nvim-treesitter-context"
 # TODO: i wait to show context on top-right position
 # TODO: show context like A>B>C
 on_source = "nvim-treesitter"
@@ -337,7 +337,7 @@ require("treesitter-context").setup({
 if = false
 
 [[plugins]]
-repo = "Omochice/nvim-tree-docs"
+repo = "https://github.com/Omochice/nvim-tree-docs"
 on_source = "nvim-treesitter"
 lua_source = """
 require("nvim-treesitter.configs").setup({
@@ -348,7 +348,7 @@ require("nvim-treesitter.configs").setup({
 """
 
 [[plugins]]
-repo = "yuki-yano/vim-operator-replace"
+repo = "https://github.com/yuki-yano/vim-operator-replace"
 depends = "vim-operator-user"
 on_map = { n = "<Plug>", x = "<Plug>" }
 hook_add = """
@@ -357,7 +357,7 @@ xmap R <Plug>(operator-replace)
 """
 
 [[plugins]]
-repo = "mattn/vim-treesitter"
+repo = "https://github.com/mattn/vim-treesitter"
 build = "cd server && go build"
 if = "!has('nvim')"
 
@@ -395,7 +395,7 @@ if = "!has('nvim')"
 # if = "has('wsl')"
 
 [[plugins]]
-repo = "machakann/vim-vimhelplint"
+repo = "https://github.com/machakann/vim-vimhelplint"
 on_cmd = ["VimhelpLint"]
 [plugins.ftplugin]
 help = """
@@ -403,7 +403,7 @@ nnoremap <silent><buffer><Space>d <Cmd>VimhelpLint!<CR>
 """
 
 [[plugins]]
-repo = "mattn/vim-sonictemplate"
+repo = "https://github.com/mattn/vim-sonictemplate"
 on_cmd = ["Template"]
 hook_add = """
 let g:sonictemplate_vim_template_dir = g:config_dir .. '/templates'
@@ -415,7 +415,7 @@ nnoremap <Plug>(fzf-p-prefix)t <Cmd>call fzf#sonictemplate#run()<CR>
 """
 
 [[plugins]]
-repo = "pappasam/vim-filetype-formatter"
+repo = "https://github.com/pappasam/vim-filetype-formatter"
 lua_add = """
 local vimx = require('artemis')
 vimx.g.vim_filetype_formatter_commands = {
@@ -451,7 +451,7 @@ elm = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
 dockerfile = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
 
 [[plugins]]
-repo = "voldikss/vim-floaterm"
+repo = "https://github.com/voldikss/vim-floaterm"
 hook_add = """
 command! Lazygit FloatermNew --autoclose=2 --autohide=0 --opener=tabe --height=1.0 --width=1.0 --title=lazygit lazygit
 command! Ranger FloatermNew --autoclose=2 --autohide=0 --opener=tabe --height=1.0 --width=1.0 --title=ranger ranger
@@ -468,18 +468,18 @@ on_cmd = ["FloatermNew"]
 floaterm = "tnoremap <buffer> <ESC> <ESC>"
 
 [[plugins]]
-repo = "vim-jp/vital.vim"
+repo = "https://github.com/vim-jp/vital.vim"
 on_cmd = ["Vitalize"]
 
 [[plugins]]
-repo = "thinca/vim-partedit"
+repo = "https://github.com/thinca/vim-partedit"
 hook_add = """
 let g:partedit#opener = 'vsplit'
 """
 on_func = ["partedit#start"]
 
 [[plugins]]
-repo = "Omochice/vim-operator-partedit"
+repo = "https://github.com/Omochice/vim-operator-partedit"
 depends = ["vim-operator-user", "vim-partedit"]
 hook_add = """
 nmap qe <Plug>(operator-partedit-start)
@@ -493,16 +493,16 @@ xmap <buffer> qe <Plug>(operator-partedit-codeblock)
 """
 
 [[plugins]]
-repo = "lambdalisue/vim-fern"
+repo = "https://github.com/lambdalisue/vim-fern"
 hooks_file = "$DEIN_RC_DIR/hooks/fern.lua"
 on_cmd = "Fern"
 
 [[plugins]]
-repo = "lambdalisue/fern-hijack.vim"
+repo = "https://github.com/lambdalisue/fern-hijack.vim"
 on_source = "fern.vim"
 
 [[plugins]]
-repo = "lambdalisue/fern-renderer-nerdfont.vim"
+repo = "https://github.com/lambdalisue/fern-renderer-nerdfont.vim"
 hook_add = """
 let g:fern#renderer = "nerdfont"
 let g:fern#renderer#nerdfont#indent_markers = 1
@@ -510,13 +510,13 @@ let g:fern#renderer#nerdfont#indent_markers = 1
 on_source = "fern.vim"
 
 [[plugins]]
-repo = "mattn/emmet-vim"
+repo = "https://github.com/mattn/emmet-vim"
 hooks_file = "$DEIN_RC_DIR/hooks/emmet.lua"
 on_map = { i = "<Plug>" }
 
 [[plugins]]
 # repo = "~/Toy/toy-postfix.vim"
-repo = "Omochice/toy-postfix.vim"
+repo = "https://github.com/Omochice/toy-postfix.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/toy-postfix.lua"
 on_func = ["toy_postfix#expandable", "toy_postfix#expand"]
 
@@ -537,7 +537,7 @@ inoremap <expr><C-j> "\<C-g>u" .. <SID>expand_snippets()
 """
 
 [[plugins]]
-repo = "Omochice/yank-remote-url.vim"
+repo = "https://github.com/Omochice/yank-remote-url.vim"
 # repo = "~/Toy/yank-remote-url.vim"
 hook_add = """
 let g:yank_remote_url#enable_cache = v:true
@@ -549,11 +549,11 @@ nnoremap <Space>gy <Cmd>YankRemoteURL<CR>
 on_cmd = "YankRemoteURL"
 
 [[plugins]]
-repo = "tweekmonster/helpful.vim"
+repo = "https://github.com/tweekmonster/helpful.vim"
 on_cmd = "HelpfulVersion"
 
 [[plugins]]
-repo = "rhysd/git-messenger.vim"
+repo = "https://github.com/rhysd/git-messenger.vim"
 lua_add = """
 local vimx = require('artemis')
 vimx.g.git_messenger_no_default_mappings = false
@@ -563,31 +563,31 @@ vimx.keymap.set('n', '<Space>gm', '<Plug>(git-messenger)')
 on_map = { n = "<Plug>" }
 
 [[plugins]]
-repo = "tyru/capture.vim"
+repo = "https://github.com/tyru/capture.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/capture.lua"
 on_cmd = "Capture"
 
 [[plugins]]
-repo = "lewis6991/gitsigns.nvim"
+repo = "https://github.com/lewis6991/gitsigns.nvim"
 hooks_file = "$DEIN_RC_DIR/hooks/gitsigns.lua"
 if = "has('nvim')"
 on_event = ["BufRead", "BufNewFile"]
 
 [[plugins]]
-repo = "thinca/vim-qfreplace"
+repo = "https://github.com/thinca/vim-qfreplace"
 on_cmd = "Qfreplace"
 
 [[plugins]]
-repo = "rcarriga/nvim-notify"
+repo = "https://github.com/rcarriga/nvim-notify"
 hooks_file = "$DEIN_RC_DIR/hooks/nvim-notify.lua"
 if = "has('nvim')"
 
 [[plugins]]
-repo = "MunifTanjim/nui.nvim"
+repo = "https://github.com/MunifTanjim/nui.nvim"
 if = "has('nvim')"
 
 [[plugins]]
-repo = "folke/noice.nvim"
+repo = "https://github.com/folke/noice.nvim"
 hooks_file = "$DEIN_RC_DIR/hooks/noice.lua"
 depends = ["nui.nvim", "nvim-notify"]
 if = "has('nvim')"
@@ -600,7 +600,7 @@ on_event = [
 on_lua = "notify"
 
 [[plugins]]
-repo = "uga-rosa/ccc.nvim"
+repo = "https://github.com/uga-rosa/ccc.nvim"
 hooks_file = "$DEIN_RC_DIR/hooks/ccc.lua"
 on_event = ["BufRead", "BufNewFile"]
 if = "has('nvim')"
@@ -629,7 +629,7 @@ require("copilot").setup({
 if = "!exists('$COPILOT_DISABLE')"
 
 [[plugins]]
-repo = "CopilotC-Nvim/CopilotChat.nvim"
+repo = "https://github.com/CopilotC-Nvim/CopilotChat.nvim"
 lua_source = """
 require("CopilotChat").setup({
   help = false,

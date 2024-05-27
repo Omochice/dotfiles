@@ -1,15 +1,15 @@
 [[plugins]]
-repo = "Shougo/ddc.vim"
+repo = "https://github.com/Shougo/ddc.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/ddc.lua"
 on_source = "denops.vim"
 on_event = "InsertEnter"
 
 [[plugins]]
-repo = "Shougo/pum.vim"
+repo = "https://github.com/Shougo/pum.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/pum.lua"
 
 [[plugins]]
-repo = "Shougo/ddc-ui-pum"
+repo = "https://github.com/Shougo/ddc-ui-pum"
 on_source = "ddc.vim"
 depends = ["pum.vim"]
 
@@ -19,24 +19,24 @@ depends = ["pum.vim"]
 # hook_source =
 
 [[plugins]]
-repo = "shun/ddc-vim-lsp"
+repo = "https://github.com/shun/ddc-vim-lsp"
 depends = ["vim-lsp"]
 on_source = "ddc.vim"
 if = "!has('nvim')"
 
 [[plugins]]
-repo = "Shougo/ddc-source-lsp"
+repo = "https://github.com/Shougo/ddc-source-lsp"
 on_source = "ddc.vim"
 depends = ["nvim-lspconfig", "mason.nvim", "mason-lspconfig.nvim"]
 if = "has('nvim')"
 
 [[plugins]]
-repo = "uga-rosa/ddc-source-vsnip"
+repo = "https://github.com/uga-rosa/ddc-source-vsnip"
 on_source = "ddc.vim"
 depends = ["vim-vsnip"]
 
 [[plugins]]
-repo = "Shougo/ddc-source-line"
+repo = "https://github.com/Shougo/ddc-source-line"
 on_source = "ddc.vim"
 
 [[plugins]]
@@ -46,7 +46,7 @@ depends = "copilot.lua"
 if = "!exists('$COPILOT_DISABLE')"
 
 [[plugins]]
-repo = "Shougo/ddc-around"
+repo = "https://github.com/Shougo/ddc-around"
 on_source = "ddc.vim"
 
 # [[plugins]]
@@ -69,39 +69,39 @@ on_source = "ddc.vim"
 # on_source = 'ddc.vim'
 
 [[plugins]]
-repo = "Shougo/neco-vim"
+repo = "https://github.com/Shougo/neco-vim"
 on_source = "ddc.vim"
 
 [[plugins]]
-repo = "matsui54/ddc-buffer"
+repo = "https://github.com/matsui54/ddc-buffer"
 on_source = "ddc.vim"
 
 [[plugins]]
-repo = "Shougo/ddc-converter_remove_overlap"
+repo = "https://github.com/Shougo/ddc-converter_remove_overlap"
 on_source = "ddc.vim"
 
 [[plugins]]
-repo = "Shougo/ddc-filter-converter_truncate_abbr"
+repo = "https://github.com/Shougo/ddc-filter-converter_truncate_abbr"
 on_source = "ddc.vim"
 
 [[plugins]]
-repo = "delphinus/ddc-tmux"
+repo = "https://github.com/delphinus/ddc-tmux"
 on_source = "ddc.vim"
 
 [[plugins]]
-repo = "tani/ddc-fuzzy"
+repo = "https://github.com/tani/ddc-fuzzy"
 on_source = "ddc.vim"
 
 [[plugins]]
-repo = "LumaKernel/ddc-file"
+repo = "https://github.com/LumaKernel/ddc-file"
 on_source = "ddc.vim"
 
 [[plugins]]
-repo = "Shougo/ddc-rg"
+repo = "https://github.com/Shougo/ddc-rg"
 on_source = "ddc.vim"
 
 [[plugins]]
-repo = "matsui54/denops-popup-preview.vim"
+repo = "https://github.com/matsui54/denops-popup-preview.vim"
 hook_source = """
 call popup_preview#enable()
 """
@@ -119,7 +119,7 @@ if = "!has('nvim')"
 # on_source = "ddc.vim"
 
 [[plugins]]
-repo = "uga-rosa/ddc-previewer-floating"
+repo = "https://github.com/uga-rosa/ddc-previewer-floating"
 on_source = "ddc.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/ddc-previewer-floating.lua"
 if = "has('nvim')"
