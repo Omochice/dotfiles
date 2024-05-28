@@ -39,7 +39,7 @@ packages:
 - name: orhun/git-cliff@v2.2.2
 - name: rhysd/vim-startuptime@v1.3.2
 - name: asciinema/agg@v1.4.3
-- name: rhysd/actionlint@v1.7.0
+- name: rhysd/actionlint@v1.7.1
 - name: ast-grep/ast-grep@0.22.4
 - name: LuaLS/lua-language-server@3.9.1
 - name: mattn/efm-langserver@v0.0.53
