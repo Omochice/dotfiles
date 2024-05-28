@@ -47,3 +47,4 @@ packages:
 - name: suzuki-shunsuke/pinact@v0.2.0
 - name: suzuki-shunsuke/ghalint@v0.2.9
 - name: terrastruct/d2@v0.6.5
+- name: librespeed/speedtest-cli@v1.0.10
