@@ -166,17 +166,17 @@ vimx.keymap.set(
   end
 )
 
+-- DONT MAP DEFAULTLY {{{
+vim.keymap.del("n", "grr")
+vim.keymap.del("n", "gra")
+vim.keymap.del("n", "grn")
+--- }}}
 vimx.create_autocmd(
   "LspAttach",
   {
     pattern = "*",
     group = vimx.create_augroup("vimrc#ddu#lsp", { clear = true }),
     callback = function()
-      -- DONT MAP DEFAULTLY {{{
-      vimx.keymap.del("n", "grr")
-      vimx.keymap.del("n", "gra")
-      vimx.keymap.del("n", "grn")
-      --- }}}
       vimx.keymap.set(
         "n",
         "gr",
