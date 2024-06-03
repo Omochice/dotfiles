@@ -1,5 +1,5 @@
 import $ from "https://deno.land/x/dax@0.37.1/mod.ts";
-import { err, ok, Result } from "npm:neverthrow@6.2.1";
+import { err, ok, Result } from "npm:neverthrow@6.2.2";
 import { join } from "https://deno.land/std@0.224.0/path/join.ts";
 import { join as urlJoin } from "https://deno.land/std@0.224.0/url/join.ts"
 
