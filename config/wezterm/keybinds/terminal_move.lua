@@ -67,6 +67,12 @@ if wezterm.target_triple:find("darwin") then
     key = "¥",
     action = act.SendString("\\"),
   })
+  -- ctrl-qが何かに吸われている
+  table.insert(M, {
+    key = "q",
+    mods = "CTRL",
+    action = act.SendKey({ key = "q", mods = "CTRL" }),
+  })
 else -- Linux / windows
   table.insert(M, {
     key = "\\",
