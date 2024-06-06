@@ -8,6 +8,7 @@ jobs:
       actions: ${{steps.changes.outputs.actions}}
       deno: ${{steps.changes.outputs.deno}}
       aqua: ${{steps.changes.outputs.aqua}}
+      karabiner: ${{steps.changes.outputs.karabiner}}
     runs-on: ubuntu-latest
     permissions: {}
     steps:
@@ -31,6 +32,10 @@ jobs:
               - config/mise/config.toml
               - .github/workflows/_check-aqua-installation.yml
               - .github/workflows/push.yml
+            karabiner:
+              - config/karabiner/mod.ts
+              - .github/workflows/_check-karabiner.yml
+              - .github/workflows/push.yml
   check-actions:
     needs: path-filter
     if: needs.path-filter.outputs.actions == 'true'
@@ -49,3 +54,8 @@ jobs:
     uses: ./.github/workflows/_check-aqua-installation.yml
     permissions:
       contents: read
+  check-karabiner:
+    needs: path-filter
+    if: needs.path-filter.outputs.karabiner == 'true'
+    uses: ./.github/workflows/_check-karabiner.yml
+    permissions: {}
