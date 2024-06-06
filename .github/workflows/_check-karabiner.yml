@@ -16,4 +16,11 @@ jobs:
       - run: |
           mkdir -p ~/.config/karabiner
           cp config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json
-      - run: deno run --allow-env=HOME --allow-read --allow-write config/karabiner/mod.ts
+      - run: |
+          deno run \
+            --allow-env=HOME \
+            --allow-read="${HOME}/.config/karabiner/karabiner.json" \
+            --allow-write="${HOME}/.config/karabiner/karabiner.json" \
+            config/karabiner/mod.ts
+      - run: |
+          diff ~/.config/karabiner/karabiner.json config/karabiner/karabiner.json
