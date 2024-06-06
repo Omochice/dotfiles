@@ -1,0 +1,26 @@
+name: Check karabiner
+
+on: workflow_call
+
+permissions: {}
+
+jobs:
+  _check-karabiner:
+    name: check karabiner
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+      - uses: denoland/setup-deno@041b854f97b325bd60e53e9dc2de9cb9f9ac0cba # v1.1.4
+      - run: |
+          mkdir -p ~/.config/karabiner
+          cp config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json
+      - run: |
+          deno run \
+            --allow-env=HOME \
+            --allow-read="${HOME}/.config/karabiner/karabiner.json" \
+            --allow-write="${HOME}/.config/karabiner/karabiner.json" \
+            config/karabiner/mod.ts
+      - run: |
+          diff ~/.config/karabiner/karabiner.json config/karabiner/karabiner.json

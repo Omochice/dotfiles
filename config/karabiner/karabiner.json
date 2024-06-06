@@ -46,7 +46,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open -n -a \"wezterm\".app"
+                    "shell_command": "open --new -a \"wezterm\".app"
                   }
                 ],
                 "conditions": [
