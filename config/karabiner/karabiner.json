@@ -25,7 +25,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open --new -a \"vivaldi\".app"
+                    "shell_command": "open -n -a \"vivaldi\".app"
                   }
                 ]
               }
@@ -46,7 +46,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open --new -a \"wezterm\".app"
+                    "shell_command": "open -n -a \"wezterm\".app"
                   }
                 ],
                 "conditions": [

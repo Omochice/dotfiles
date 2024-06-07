@@ -1,5 +1,9 @@
 import * as k from "https://deno.land/x/karabinerts@1.29.0/deno.ts";
 
+function newApp(name: string) {
+  return k.to$(`open -n -a "${name}".app`);
+}
+
 k.writeToProfile("Default profile", [
   k.rule("Launch vivaldi")
     .manipulators([
@@ -8,7 +12,7 @@ k.writeToProfile("Default profile", [
           key_code: "w",
           modifiers: { mandatory: ["command"] },
         })
-        .to([{ shell_command: 'open --new -a "vivaldi".app' }]),
+        .to(newApp("vivaldi")),
     ]),
   k.rule(
     "Launch wezterm without slack",
@@ -24,7 +28,7 @@ k.writeToProfile("Default profile", [
           key_code: "return_or_enter",
           modifiers: { mandatory: ["command"] },
         })
-        .to([{ shell_command: 'open --new -a "wezterm".app' }]),
+        .to(newApp("wezterm")),
     ]),
   k.rule("Left command to alt")
     .manipulators([
