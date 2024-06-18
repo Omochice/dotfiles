@@ -24,7 +24,7 @@ packages:
 - name: ajeetdsouza/zoxide@v0.9.4
 - name: XAMPPRocky/tokei@v13.0.0-alpha.0
 - name: itchyny/mmv@v0.1.6
-- name: reviewdog/reviewdog@v0.17.5
+- name: reviewdog/reviewdog@v0.18.0
 - name: direnv/direnv@v2.34.0
 - name: dylanaraps/neofetch@7.1.0
 - name: sharkdp/bat@v0.24.0
