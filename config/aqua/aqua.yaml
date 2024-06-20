@@ -35,7 +35,7 @@ packages:
 - name: gitlab.com/gitlab-org/cli@v1.42.0
 - name: x-motemen/ghq@v1.6.1
 - name: golang/tools/goimports@v0.21.0
-- name: golang.org/x/tools/gopls@v0.15.3
+- name: golang.org/x/tools/gopls@v0.16.0
 - name: orhun/git-cliff@v2.3.0
 - name: rhysd/vim-startuptime@v1.3.2
 - name: asciinema/agg@v1.4.3
