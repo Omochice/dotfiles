@@ -2,6 +2,8 @@ name: Checks for push
 
 on: push
 
+permissons: {}
+
 jobs:
   path-filter:
     outputs:
