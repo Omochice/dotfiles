@@ -2,7 +2,7 @@ name: Checks for push
 
 on: push
 
-permissons: {}
+permissions: {}
 
 jobs:
   path-filter:
