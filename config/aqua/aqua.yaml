@@ -48,4 +48,4 @@ packages:
 - name: suzuki-shunsuke/ghalint@v0.2.11
 - name: terrastruct/d2@v0.6.5
 - name: librespeed/speedtest-cli@v1.0.10
-- name: docker/buildx@v0.15.0
+- name: docker/buildx@v0.15.1
