@@ -44,7 +44,7 @@ packages:
 - name: LuaLS/lua-language-server@3.9.3
 - name: mattn/efm-langserver@v0.0.53
 - name: ynqa/jnv@v0.3.0
-- name: suzuki-shunsuke/pinact@v0.2.0
+- name: suzuki-shunsuke/pinact@v0.2.1
 - name: suzuki-shunsuke/ghalint@v0.2.11
 - name: terrastruct/d2@v0.6.5
 - name: librespeed/speedtest-cli@v1.0.10
