@@ -10,6 +10,9 @@ require("hlchunk").setup({
     enable = false
   },
   chunk = {
+    enable = true,
+    duration = 0,
+    delay = 0,
     chars = {
       horizontal_line = "─",
       vertical_line = "│",
