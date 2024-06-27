@@ -45,7 +45,7 @@ packages:
 - name: mattn/efm-langserver@v0.0.53
 - name: ynqa/jnv@v0.3.0
 - name: suzuki-shunsuke/pinact@v0.2.1
-- name: suzuki-shunsuke/ghalint@v0.2.11
+- name: suzuki-shunsuke/ghalint@v0.2.12
 - name: terrastruct/d2@v0.6.5
 - name: librespeed/speedtest-cli@v1.0.10
 - name: docker/buildx@v0.15.1
