@@ -6,6 +6,7 @@ permissions: {}
 
 jobs:
   _check-karabiner:
+    timeout-minutes: 30
     name: check karabiner
     runs-on: ubuntu-latest
     permissions: {}

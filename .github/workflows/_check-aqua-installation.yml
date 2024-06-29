@@ -6,6 +6,7 @@ permissions: {}
 
 jobs:
   check-aqua:
+    timeout-minutes: 30
     name: Run aqua
     runs-on: ubuntu-latest
     env:
