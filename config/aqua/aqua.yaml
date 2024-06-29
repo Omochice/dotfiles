@@ -49,3 +49,4 @@ packages:
 - name: terrastruct/d2@v0.6.5
 - name: librespeed/speedtest-cli@v1.0.10
 - name: docker/buildx@v0.15.1
+- name: suzuki-shunsuke/ghatm@v0.3.1
