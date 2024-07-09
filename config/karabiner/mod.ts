@@ -1,4 +1,4 @@
-import * as k from "https://deno.land/x/karabinerts@1.29.0/deno.ts";
+import * as k from "https://deno.land/x/karabinerts@1.30.0/deno.ts";
 
 function newApp(name: string) {
   return k.to$(`open -n -a "${name}".app`);
