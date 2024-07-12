@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
-      - uses: denoland/setup-deno@f99b7edee36540f7183c45aad62fbb93d6d41d9d # v1.2.0
+      - uses: denoland/setup-deno@5fae568d37c3b73449009674875529a984555dd1 # 1.3.0
       - run: |
           mkdir -p ~/.config/karabiner
           cp config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json
