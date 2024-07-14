@@ -66,6 +66,14 @@ export class Config extends BaseConfig {
           minAutoCompleteLength: 0,
           isVolatile: false,
         },
+        skkeleton: {
+          mark: "[SKK]",
+          matchers: [],
+          sorters: [],
+          converters: [],
+          isVolatile: true,
+          minAutoCompleteLength: 1,
+        },
       },
       sourceParams: {
         lines: {

@@ -139,3 +139,6 @@ if = 0
 repo = "https://github.com/kuuote/dotvim"
 if = 0
 
+[[plugins]]
+repo = "https://github.com/skk-dev/dict"
+if = 0

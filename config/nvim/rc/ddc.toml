@@ -49,13 +49,13 @@ if = "!exists('$COPILOT_DISABLE')"
 repo = "https://github.com/Shougo/ddc-around"
 on_source = "ddc.vim"
 
-# [[plugins]]
-# repo = "Shougo/ddc-matcher_head"
-# on_source = "ddc.vim"
+[[plugins]]
+repo = "Shougo/ddc-matcher_head"
+on_source = "ddc.vim"
 
-# [[plugins]]
-# repo = "Shougo/ddc-sorter_rank"
-# on_source = "ddc.vim"
+[[plugins]]
+repo = "Shougo/ddc-sorter_rank"
+on_source = "ddc.vim"
 
 # [[plugins]]
 # repo = 'Shougo/ddc-cmdline-history'

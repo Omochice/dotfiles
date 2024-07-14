@@ -133,3 +133,13 @@ command! ReadingVimrcGitter tabnew gitter://room/vim-jp/reading-vimrc
 """
 depends = ["denops.vim"]
 on_path = "gitter://*"
+
+[[plugins]]
+repo = "https://github.com/vim-skk/skkeleton"
+hooks_file = "$DEIN_RC_DIR/hooks/skkeleton.lua"
+on_map = { ic = "<Plug>" }
+depends = ["denops.vim"]
+
+[[plugins]]
+repo = "https://github.com/kei-s16/skkeleton-azik-kanatable"
+on_source = "skkeleton"
