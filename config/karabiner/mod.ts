@@ -42,37 +42,11 @@ k.writeToProfile("Default profile", [
         .map({ key_code: "japanese_eisuu" })
         .to([{ key_code: "escape" }]),
     ]),
-  k.rule("Send eisuu and <Esc> on escape")
-    .manipulators([
-      k
-        .map({ key_code: "escape" })
-        .to([
-          { key_code: "lang2" },
-          { key_code: "escape" },
-        ]),
-    ]),
   k.rule("Underscpre to backslash")
     .manipulators([
       k
         .map({ key_code: "international1" })
         .to([{ key_code: "international3" }]),
-    ]),
-  k.rule("Kana use to toggle IME")
-    .manipulators([
-      k
-        .map({ key_code: "japanese_kana", modifiers: { optional: ["any"] } })
-        .to([{ key_code: "japanese_eisuu" }])
-        .condition({
-          input_sources: [{ language: "ja" }],
-          type: "input_source_if",
-        }),
-      k
-        .map({ key_code: "japanese_kana", modifiers: { optional: ["any"] } })
-        .to([{ key_code: "japanese_kana" }])
-        .condition({
-          input_sources: [{ language: "en" }],
-          type: "input_source_if",
-        }),
     ]),
   k.rule("Option+<BS> to <Delete>")
     .manipulators([
