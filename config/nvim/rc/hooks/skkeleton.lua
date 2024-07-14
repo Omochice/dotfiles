@@ -43,6 +43,12 @@ vimx.create_autocmd("User", {
     vimx.b.ddc_dumped = vimx.fn.ddc.custom.get_buffer()
     vimx.fn.ddc.custom.patch_buffer({
       sources = { "skkeleton" },
+      sourceOptions = {
+        ["_"] = {
+          matchers = { "matcher_head" },
+          sorters = { "sorter_rank" },
+        }
+      }
     })
     vimx.fn.pum.set_buffer_option({ auto_select = false })
   end,
