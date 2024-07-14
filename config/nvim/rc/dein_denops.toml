@@ -137,7 +137,7 @@ on_path = "gitter://*"
 [[plugins]]
 repo = "https://github.com/vim-skk/skkeleton"
 hooks_file = "$DEIN_RC_DIR/hooks/skkeleton.lua"
-on_map = { ic = "<Plug>" }
+on_event = ["InsertEnter"]
 depends = ["denops.vim"]
 
 [[plugins]]
