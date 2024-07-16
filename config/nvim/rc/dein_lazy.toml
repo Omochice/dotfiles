@@ -533,7 +533,7 @@ function! s:expand_snippets() abort
     return "\<Plug>(emmet-expand-abbr-with-cmd)"
   endif
 endfunction
-" inoremap <expr><C-j> "\<C-g>u" .. <SID>expand_snippets()
+inoremap <expr><C-x><C-j> "\<C-g>u" .. <SID>expand_snippets()
 """
 
 [[plugins]]
