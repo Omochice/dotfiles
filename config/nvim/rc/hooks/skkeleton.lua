@@ -32,6 +32,16 @@ vimx.create_autocmd("User", {
       lyu = false,
       lyo = false,
       [":"] = "henkanPoint",
+      -- NOTE: from https://github.com/NI57721/dotfiles
+      xxa = { "ぁ" },
+      xxi = { "ぃ" },
+      xxu = { "ぅ" },
+      xxe = { "ぇ" },
+      xxo = { "ぉ" },
+      xxya = { "ゃ" },
+      xxyu = { "ゅ" },
+      xxyo = { "ょ" },
+      xxwa = { "ゎ" },
     })
   end,
   group = augroup,
