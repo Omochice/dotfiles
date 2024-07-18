@@ -1,6 +1,6 @@
 import $ from "https://deno.land/x/dax@0.37.1/mod.ts";
 import { getBrewPath } from "./install-brew.ts";
-import { err, ok, Result } from "npm:neverthrow@6.2.2";
+import { err, ok, Result } from "npm:neverthrow@7.0.0";
 
 function getFishPath(): Result<string, Error> {
   const result = getBrewPath();
