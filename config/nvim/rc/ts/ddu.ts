@@ -1,10 +1,12 @@
-import { BaseConfig } from "https://deno.land/x/ddu_vim@v4.2.0/types.ts";
-import type { Denops } from "https://deno.land/x/ddu_vim@v4.2.0/deps.ts";
-import { ConfigArguments } from "https://deno.land/x/ddu_vim@v4.2.0/base/config.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.18.1/mod.ts";
-import { o } from "https://deno.land/x/denops_std@v6.5.1/variable/option.ts";
-import { group } from "https://deno.land/x/denops_std@v6.5.1/autocmd/mod.ts";
-import { register } from "https://deno.land/x/denops_std@v6.5.1/lambda/mod.ts";
+import {
+  BaseConfig,
+  type ConfigArguments,
+} from "jsr:@shougo/ddu-vim@5.0.0-pre6/config";
+import type { Denops } from "jsr:@shougo/ddu-vim@5.0.0-pre6";
+import { ensure, is } from "jsr:@core/unknownutil@3.18.1";
+import { columns, lines } from "jsr:@denops/std@7.0.0-pre2/option";
+import { group } from "jsr:@denops/std@7.0.0-pre2/autocmd";
+import { register } from "jsr:@denops/std@7.0.0-pre2/lambda";
 
 const border = ["┌", "─", "┐", "│", "┘", "─", "└", "│"] as const;
 
@@ -30,8 +32,8 @@ type DduSize = {
 };
 
 const updateState = async (denops: Denops) => {
-  state.lines = await o.get(denops, "lines");
-  state.columns = await o.get(denops, "columns");
+  state.lines = await lines.get(denops);
+  state.columns = await columns.get(denops);
 };
 
 const calcSize = (size: Size): DduSize => {
