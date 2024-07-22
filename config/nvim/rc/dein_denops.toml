@@ -143,3 +143,10 @@ depends = ["denops.vim"]
 [[plugins]]
 repo = "https://github.com/kei-s16/skkeleton-azik-kanatable"
 on_source = "skkeleton"
+
+[[plugins]]
+repo = "https://github.com/yasunori0418/statusline_skk.vim"
+on_source = "skkeleton"
+hook_add = """
+let g:lightline_skk_announce = v:false
+"""

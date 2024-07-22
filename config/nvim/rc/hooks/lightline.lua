@@ -47,19 +47,20 @@ vimx.g.lightline = vimx.dict({
   colorscheme = "default",
   active = {
     left = {
-      { "mode", "paste", "recording" },
+      { "mode", "skk", "paste", "recording" },
       { "gitbranch", "readonly", "filename", "modified" },
     },
   },
   component_function = {
     gitbranch = "gitbranch#name",
+    skk = "statusline_skk#mode",
     -- Filetype = get_filetype,
     -- Fileformat = get_format,
     -- recording = get_recording,
   },
 })
 local group = vimx.create_augroup(
-  "vimrc#ligjtline-update-highlight",
+  "vimrc#lightline-update-highlight",
   { clear = true }
 )
 vimx.create_autocmd(
