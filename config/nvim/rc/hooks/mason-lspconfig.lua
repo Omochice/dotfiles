@@ -44,6 +44,7 @@ lspconfig.nushell.setup({})
 lspconfig.sourcekit.setup({})
 lspconfig.lua_ls.setup(require("vimrc/lsp/lua_ls").config())
 lspconfig.efm.setup(require("vimrc/lsp/efm").config())
+lspconfig.tinymist.setup({})
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(require("vimrc/traditional-behavior-lsp").on_hover, {})
 -- }}}

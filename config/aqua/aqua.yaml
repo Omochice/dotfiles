@@ -50,3 +50,4 @@ packages:
 - name: librespeed/speedtest-cli@v1.0.10
 - name: docker/buildx@v0.16.1
 - name: suzuki-shunsuke/ghatm@v0.3.1
+- name: Myriad-Dreamin/tinymist@v0.11.15
