@@ -1,4 +1,4 @@
-import $ from "https://deno.land/x/dax@0.37.1/mod.ts";
+import $ from "https://deno.land/x/dax@0.39.2/mod.ts";
 import { ensureInstalled } from "./install-brew.ts";
 import { DOTDIR, ISWSL } from "./mod.ts";
 import { join } from "https://deno.land/std@0.224.0/path/join.ts";
