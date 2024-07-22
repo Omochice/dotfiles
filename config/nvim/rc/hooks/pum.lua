@@ -3,44 +3,47 @@ local vimx = require("artemis")
 vimx.keymap.set(
   "i",
   [[<C-y>]],
-  "",
-  {
-    expr = true,
-    callback = function()
-      if not vimx.fn.pum.visible() then
-        return [[<C-y>]]
-      end
-      vimx.fn.pum.map.confirm()
+  function()
+    if not vimx.fn.pum.visible() then
+      vim.api.nvim_feedkeys(
+        vim.api.nvim_replace_termcodes("<C-y>", true, false, true),
+        "n",
+        false
+      )
+      return
     end
-  }
+    vimx.fn.pum.map.confirm()
+  end
 )
 vimx.keymap.set(
   "i",
   [[<C-n>]],
-  "",
-  {
-    expr = true,
-    callback = function()
-      if not vimx.fn.pum.visible() then
-        return ""
-      end
-      return [[<Cmd>call pum#map#insert_relative(1)<CR>]]
+  function()
+    if not vimx.fn.pum.visible() then
+      vim.api.nvim_feedkeys(
+        vim.api.nvim_replace_termcodes("<C-n>", true, false, true),
+        "n",
+        false
+      )
+      return
     end
-  }
+    vimx.fn.pum.map.insert_relative(1)
+  end
 )
 vimx.keymap.set(
   "i",
   [[<C-p>]],
-  "",
-  {
-    expr = true,
-    callback = function()
-      if not vimx.fn.pum.visible() then
-        return [[<C-p>]]
-      end
-      return [[<Cmd>call pum#map#insert_relative(-1)<CR>]]
+  function()
+    if not vimx.fn.pum.visible() then
+      vim.api.nvim_feedkeys(
+        vim.api.nvim_replace_termcodes("<C-p>", true, false, true),
+        "n",
+        false
+      )
+      return
     end
-  }
+    vimx.fn.pum.map.insert_relative(-1)
+  end
 )
 -- }}}
 
