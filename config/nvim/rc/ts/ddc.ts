@@ -4,6 +4,7 @@ import { ConfigArguments } from "https://deno.land/x/ddc_vim@v5.0.1/base/config.
 export class Config extends BaseConfig {
   override async config(args: ConfigArguments): Promise<void> {
     const globalPatch = {
+      specialBufferCompletion: true,
       ui: "pum",
       autoCompleteEvents: [
         "InsertEnter",
