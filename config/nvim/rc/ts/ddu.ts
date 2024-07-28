@@ -1,12 +1,12 @@
 import {
   BaseConfig,
   type ConfigArguments,
-} from "jsr:@shougo/ddu-vim@5.0.0-pre6/config";
-import type { Denops } from "jsr:@shougo/ddu-vim@5.0.0-pre6";
+} from "jsr:@shougo/ddu-vim@5.0.0/config";
+import type { Denops } from "jsr:@denops/std@7.0.0";
 import { ensure, is } from "jsr:@core/unknownutil@3.18.1";
-import { columns, lines } from "jsr:@denops/std@7.0.0-pre2/option";
-import { group } from "jsr:@denops/std@7.0.0-pre2/autocmd";
-import { register } from "jsr:@denops/std@7.0.0-pre2/lambda";
+import { columns, lines } from "jsr:@denops/std@7.0.0/option";
+import { group } from "jsr:@denops/std@7.0.0/autocmd";
+import { register } from "jsr:@denops/std@7.0.0/lambda";
 
 const border = ["┌", "─", "┐", "│", "┘", "─", "└", "│"] as const;
 
