@@ -1,5 +1,5 @@
-import { BaseConfig } from "https://deno.land/x/ddc_vim@v5.0.1/types.ts";
-import { ConfigArguments } from "https://deno.land/x/ddc_vim@v5.0.1/base/config.ts";
+import { BaseConfig, type ConfigArguments } from "jsr:@shougo/ddc-vim/config";
+import type { DdcOptions } from "jsr:@shougo/ddc-vim/types";
 
 export class Config extends BaseConfig {
   override async config(args: ConfigArguments): Promise<void> {
@@ -91,7 +91,7 @@ export class Config extends BaseConfig {
           copilot: "lua",
         },
       },
-    };
+    } satisfies Partial<DdcOptions>;
 
     args.contextBuilder.patchGlobal(globalPatch);
 
