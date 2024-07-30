@@ -19,7 +19,9 @@ vimx.create_autocmd("User", {
       kanaTable = "azik",
       globalDictionaries = {
         dictPath .. "/SKK-JISYO.L"
-      }
+      },
+      immediatelyCancel = false,
+      registerConvertResult = true,
     })
     vimx.fn.skkeleton.register_kanatable("azik", {
       l = "disable",
