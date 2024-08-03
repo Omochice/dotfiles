@@ -51,3 +51,4 @@ packages:
 - name: docker/buildx@v0.16.2
 - name: suzuki-shunsuke/ghatm@v0.3.1
 - name: Myriad-Dreamin/tinymist@v0.11.17
+- name: crate-ci/typos@v1.23.6
