@@ -141,7 +141,7 @@ on_event = ["InsertEnter"]
 depends = ["denops.vim"]
 
 [[plugins]]
-repo = "https://github.com/kei-s16/skkeleton-azik-kanatable"
+repo = "https://github.com/Omochice/skkeleton-azik-kanatable"
 on_source = "skkeleton"
 
 [[plugins]]
