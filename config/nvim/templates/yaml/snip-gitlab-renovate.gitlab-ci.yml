@@ -1,5 +1,5 @@
 include:
-  - remote: https://gitlab.com/renovate-bot/renovate-runner/-/raw/v18.1.8/templates/renovate.gitlab-ci.yml
+  - remote: https://gitlab.com/renovate-bot/renovate-runner/-/raw/v18.1.10/templates/renovate.gitlab-ci.yml
 
 renovate:
   stage: check
