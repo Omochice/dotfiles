@@ -71,4 +71,5 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/glazewm/config.yaml
 !/config/mise/config.toml
 !/config/aqua/aqua.yaml
+!/config/corvusskk/config.xml
 !/win-config/**
