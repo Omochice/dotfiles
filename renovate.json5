@@ -6,7 +6,6 @@
     "github>Omochice/personal-renovate-config:mise",
     "github>Omochice/personal-renovate-config:biomejs",
     "github>aquaproj/aqua-renovate-config#2.3.1",
-    "gitlab>renovate-bot/renovate-runner",
   ],
   "github-actions": {
     fileMatch: [
@@ -15,11 +14,4 @@
       "config/nvim/templates/yaml/base-github*",
     ],
   },
-  packageRules: [
-    {
-      groupName: "gitlab.com/renovate-bot/renovate-runner",
-      matchPackageNames: ["renovate-runner"],
-      schedule: ["before 4am"],
-    },
-  ],
 }
