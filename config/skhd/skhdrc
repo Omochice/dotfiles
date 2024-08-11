@@ -38,6 +38,9 @@ shift + cmd - 7 : deno run -A  ~/.config/skhd/queries/move-space.ts 7
 shift + cmd - 8 : deno run -A  ~/.config/skhd/queries/move-space.ts 8
 shift + cmd - 9 : deno run -A  ~/.config/skhd/queries/move-space.ts 9
 
+# focus next/prev space in current display
+cmd - right : deno run -A  ~/.config/skhd/queries/focus-in-display.ts next
+cmd - left : deno run -A  ~/.config/skhd/queries/focus-in-display.ts prev
 
 # super+"=" does as same as <C-w>= on vim
 cmd + shift - 0x1B : yabai --message space --balance
