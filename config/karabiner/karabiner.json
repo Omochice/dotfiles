@@ -128,6 +128,27 @@
                 ]
               }
             ]
+          },
+          {
+            "description": "Open misson control on Mod + up",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "up_arrow",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a \"Mission Control\".app"
+                  }
+                ]
+              }
+            ]
           }
         ],
         "parameters": {

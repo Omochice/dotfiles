@@ -57,4 +57,13 @@ k.writeToProfile("Default profile", [
         })
         .to([{ key_code: "delete_forward" }]),
     ]),
+  k.rule("Open misson control on Mod + up")
+    .manipulators([
+      k
+        .map({
+          key_code: "up_arrow",
+          modifiers: { mandatory: ["command"] },
+        })
+        .toApp("Mission Control"),
+    ]),
 ]);
