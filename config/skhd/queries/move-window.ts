@@ -1,14 +1,15 @@
-import {
-  relocate,
-  swap,
-  warp,
-} from "https://deno.land/x/deno_yabai@v0.1.3/window.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.18.1/mod.ts";
+import { ensure, is } from "jsr:@core/unknownutil@4.0.3";
+import { $ } from "jsr:@david/dax@0.41.0";
+import { ResultAsync } from "npm:neverthrow@7.0.0";
+
+const hasId = is.ObjectOf({
+  id: is.Number,
+});
 
 if (import.meta.main) {
   const way = ensure(
     Deno.args[0],
-    is.OneOf([
+    is.UnionOf([
       is.LiteralOf("west"),
       is.LiteralOf("east"),
       is.LiteralOf("north"),
@@ -16,9 +17,36 @@ if (import.meta.main) {
     ]),
   );
 
-  await swap({ target: way })
-    .orElse(() =>
-      relocate({ type: "display", query: way })
-        .andThen(() => warp({ target: way }))
+  await ResultAsync.fromPromise(
+    $`yabai --message query --windows --window`.json(),
+    (cause) => new Error("unexpected error", { cause }),
+  )
+    .andThen((window) => {
+      return ResultAsync.fromPromise(
+        Promise.resolve(ensure(window, hasId)),
+        (cause) => new Error("unexpected error", { cause }),
+      );
+    })
+    .andThen(({ id }) => {
+      return ResultAsync.fromPromise(
+        $`yabai --message window --swap ${way}`.quiet(),
+        (cause) => new Error("unexpected error", { cause }),
+      )
+        .orElse(() =>
+          ResultAsync.fromPromise(
+            $`yabai --message window --display ${way}`.quiet(),
+            (cause) => new Error("unexpected error", { cause }),
+          )
+            .andThen(() =>
+              ResultAsync.fromPromise(
+                $`yabai --message window ${id} --focus`.quiet(),
+                (cause) => new Error("unexpected error", { cause }),
+              )
+            )
+        );
+    })
+    .match(
+      () => {},
+      (e) => console.error(e),
     );
 }
