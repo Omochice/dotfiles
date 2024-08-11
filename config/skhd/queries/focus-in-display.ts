@@ -1,6 +1,6 @@
 import { $ } from "jsr:@david/dax@0.41.0";
 import { errAsync, okAsync, ResultAsync } from "npm:neverthrow@7.0.0";
-import { is } from "jsr:@core/unknownutil@3.18.1";
+import { is } from "jsr:@core/unknownutil@4.0.3";
 
 const hasDisplays = is.ObjectOf({
   spaces: is.ArrayOf(is.Number),
