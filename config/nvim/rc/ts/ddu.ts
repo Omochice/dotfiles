@@ -3,7 +3,7 @@ import {
   type ConfigArguments,
 } from "jsr:@shougo/ddu-vim@5.0.0/config";
 import type { Denops } from "jsr:@denops/std@7.0.3";
-import { ensure, is } from "jsr:@core/unknownutil@3.18.1";
+import { ensure, is } from "jsr:@core/unknownutil@4.0.3";
 import { columns, lines } from "jsr:@denops/std@7.0.3/option";
 import { group } from "jsr:@denops/std@7.0.3/autocmd";
 import { register } from "jsr:@denops/std@7.0.3/lambda";
