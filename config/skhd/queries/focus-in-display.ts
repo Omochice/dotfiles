@@ -1,6 +1,6 @@
 import { $ } from "jsr:@david/dax@0.41.0";
 import { errAsync, okAsync, ResultAsync } from "npm:neverthrow@7.0.0";
-import { ensure, is } from "jsr:@core/unknownutil@4.0.3";
+import { ensure, is } from "jsr:@core/unknownutil@4.2.0";
 
 const isSpaces = is.ArrayOf(is.ObjectOf({
   "has-focus": is.Boolean,
