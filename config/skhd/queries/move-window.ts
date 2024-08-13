@@ -1,4 +1,4 @@
-import { ensure, is } from "jsr:@core/unknownutil@4.0.3";
+import { ensure, is } from "jsr:@core/unknownutil@4.2.0";
 import { $ } from "jsr:@david/dax@0.41.0";
 import { ResultAsync } from "npm:neverthrow@7.0.0";
 
