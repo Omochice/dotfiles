@@ -33,7 +33,7 @@
     ],
     "description": "description"
   },
-  "inplementation": {
+  "implementation": {
     "prefix": [
       "implementation"
     ],
@@ -47,7 +47,7 @@
       "+ (<return-type>)<class-method-name> {;}",
       "@end"
     ],
-    "description": "classs implementation"
+    "description": "class implementation"
   },
   "define method": {
     "prefix": "method",

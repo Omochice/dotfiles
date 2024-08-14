@@ -41,11 +41,11 @@ function os.capture(cmd)
   local f = assert(io.popen(cmd, "r"))
   local s = assert(f:read("*a"))
   io.close(f)
-  local outputed = {}
+  local outputted = {}
   for line in string.gmatch(s, "([^\n]*)\n?") do
-    table.insert(outputed, line)
+    table.insert(outputted, line)
   end
-  return outputed
+  return outputted
 end
 
 return M

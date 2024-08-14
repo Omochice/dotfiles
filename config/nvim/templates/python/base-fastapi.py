@@ -21,5 +21,5 @@ async def read_item(item_id: int, q: str = None):  # like /items/2?q=foo
 
 
 @app.post("items/{item_id}")
-def post_item(item_id: int, item: Item):  # with responce body
+def post_item(item_id: int, item: Item):  # with response body
     return {"item_name": item.name, "item_id": item_id}

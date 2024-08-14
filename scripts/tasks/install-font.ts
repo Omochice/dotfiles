@@ -72,7 +72,7 @@ async function downloadFont(): Promise<void> {
 
   await $`unzip ${join(tmp, zipName)} -d ${unzipTo}`.stdout("null");
 
-  $.progress("Moveing font files...")
+  $.progress("Moving font files...")
     .with(async () => await moveFontFiles(unzipTo));
 }
 

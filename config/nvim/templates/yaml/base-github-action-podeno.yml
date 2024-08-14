@@ -45,6 +45,6 @@ jobs:
           title: "docs: update docs"
           body: |
             This PR is created by [create-pull-request](https://github.com/peter-evans/create-pull-request).
-            The docs are generated automaticaly.
+            The docs are generated automatically.
           author: "GitHub <noreply@github.com>"
           delete-branch: true

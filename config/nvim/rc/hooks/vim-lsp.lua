@@ -4,7 +4,7 @@ vimx.g.lsp_settings = {
   ["efm-langserver"] = { disabled = false },
   ["html-langserver"] = { allowlist = { "html", "htmldjango" } },
   ["taplo-lsp"] = {
-    workspace_cofig = {
+    workspace_config = {
       formatter = {
         reorderKeys = false,
         compactArray = false,

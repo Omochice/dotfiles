@@ -47,7 +47,7 @@ defaults write "Apple Global Domain" "_HIHideMenuBar" -int 1
 
 ## spotlight {{{
 # Show spotlight on Mod-r
-# NOTE: other shorcut is launched by karabiner | skhd
+# NOTE: other shortcut is launched by karabiner | skhd
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "
 <dict>
   <key>enabled</key>

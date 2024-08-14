@@ -53,7 +53,7 @@ case $chosen in
     $capture)
         if [ -x "$(command -v gyazo)" ]; then
             command gyazo
-            msg "share url is copyed in clipboard"
+            msg "share url is copied in clipboard"
         else
             msg "gyazo is not installed."
         fi
@@ -64,7 +64,7 @@ case $chosen in
             command gyazo >/tmp/gyazo.log
             # 単に`cat | sed | xsel`だと改行がついてくるので色々挟んでる
             command echo $(cat /tmp/gyazo.log) | sed -r -e "s@(gyazo\.com)@i\.\1@" -e "s@\$@\.png@" -z -e "s@\n@@" | xsel --clipboard --input
-            msg "share url is copyed in clipboard"
+            msg "share url is copied in clipboard"
         else
             msg "gyazo is not installed."
         fi

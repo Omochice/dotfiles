@@ -119,8 +119,8 @@ M.on_hover = function(_, result, context)
   end
 
   if context.bufnr ~= vim.api.nvim_get_current_buf() then
-    -- NOTE: changed buffer before responce reach
-    vim.notify("LSP mey be slow...", vim.log.levels.WARN)
+    -- NOTE: changed buffer before response reach
+    vim.notify("LSP may be slow...", vim.log.levels.WARN)
     return
   end
 

@@ -13,9 +13,9 @@ $Shell = New-Object -ComObject Shell.Application
 
 New-Item $MyAppDir -Type Directory -Force
 
-Write-Host -ForegoundColor Cyan "---setting by registry---"
+Write-Host -ForegroundColor Cyan "---setting by registry---"
 # {{{
-## show extention
+## show extension
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "HideFileExt" /t REG_DWORD /d "0" /f
 
 ## Disable sound by notification
@@ -61,14 +61,14 @@ $maps = $(
             "1d003a00" # caps to ctrl
             "5be07000" # kana to win
             "01007b00" # muhenkan to esc
-            "00000000" # terminater
+            "00000000" # terminator
         )
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout" /v "Scancode Map" /t REG_BINARY /d ($maps -join "") /f
 
 # disable whether news
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Feeds" /v "ShellFeedsTaskViewMode" /t REG_DWORD /d "2" /f
 
-# DONT EXECUTE UNEXPECTED SHOTCUTS
+# DONT EXECUTE UNEXPECTED SHORTCUTS
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "DisabledHotkeys" /t REG_SZ /d "ABCEFHIJKNOPQRSTUVXZ,.;+-:" /f
 
 # DISABLE BING
@@ -79,17 +79,17 @@ reg add "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Search" /v
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\system" /v "DisableLockWorkstation" /t REG_DWORD /d "1" /f
 # }}}
 
-Write-Host "---Link powershell shetting---" -ForegoundColor Cyan
+Write-Host "---Link powershell shetting---" -ForegroundColor Cyan
 New-Item -ItemType SymbolicLink -Path (Join-Path -Path $PSHOME -ChildPath "Profile.ps1") -Target (Join-Path -Path $DotDir -ChildPath "config" | Join-Path -ChildPath "powershell" | Join-Path -ChildPath "profile.ps1") -Force
 
-Write-Host -ForegoundColor Cyan "---install scoop---"
+Write-Host -ForegroundColor Cyan "---install scoop---"
 ## install scoop {{{
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 scoop bucket add extras
 ## }}}
 
-Write-Host -ForegoundColor Cyan "---install font---"
+Write-Host -ForegroundColor Cyan "---install font---"
 # {{{
 $tempDir = Join-Path -Path $env:SystemRoot -ChildPath "Windows" | Join-Path -ChildPath "Temp" | Join-Path -ChildPath "Fonts"
 New-Item $tempDir -Type Directory -Force
@@ -116,7 +116,7 @@ Get-ChildItem -Path $tempDir -Include "*.ttf" -Recurse | ForEach {
 Remove-Item $tempDir -Recurse
 # }}}
 
-Write-Host "install wezterm" -ForegoundColor Cyan
+Write-Host "install wezterm" -ForegroundColor Cyan
 # wezterm
 if ($null -eq (Get-Command "wezterm.exe" -ErrorAction SilentlyContinue)) {
     scoop install wezterm
@@ -172,14 +172,14 @@ Create-ShortCut -Source (Join-Path -Path $DotDir -ChildPath "config/autohotkey/m
 $paths = @(
     (Join-Path -Path $Env:ProgramW6432 -ChildPath "AutoHotKey")
     )
-$orginalPath = $Env:PATH
+$originalPath = $Env:PATH
 foreach ($p in $paths) {
     # if $p is include PATH already, remove it.
-    $orginalPath = $orginalPath.Replace($p + ";", "")
+    $originalPath = $originalPath.Replace($p + ";", "")
     # add it
-    $orginalPath = $orginalPath + $p + ";"
+    $originalPath = $originalPath + $p + ";"
 }
-[Environment]::SetEnvironmentVariable("PATH", $orginalPath, [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable("PATH", $originalPath, [EnvironmentVariableTarget]::Machine)
 # }}}
 
 # stop while user input

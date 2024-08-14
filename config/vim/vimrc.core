@@ -296,7 +296,7 @@ if !exists('g:config_dir')
     let l:pre = getline('.')[col('.') - 2]
     return l:pre ==# a:char
   endfunction
-  " NOTE: source this file directory liek `-u ...`
+  " NOTE: source this file directory like `-u ...`
   inoremap <expr> " <SID>is_pre('"') ? '"' : '""<C-o>h'
   inoremap <expr> ' <SID>is_pre("'") ? '"' : "''\<C-o>h"
   inoremap ( ()<C-o>h

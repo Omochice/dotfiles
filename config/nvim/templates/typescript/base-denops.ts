@@ -8,7 +8,7 @@ export async function main(denops: Denops): Promise<void> {
   await execute(
     denops,
     `
-  command! Sample call denops#notify(${denops.name}, 'Sanple', [])
+  command! Sample call denops#notify(${denops.name}, 'Sample', [])
   `,
   );
 }
