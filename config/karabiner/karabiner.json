@@ -53,7 +53,8 @@
                   {
                     "type": "frontmost_application_unless",
                     "bundle_identifiers": [
-                      "^com\\.tinyspeck\\.slackmacgap$"
+                      "^com\\.tinyspeck\\.slackmacgap$",
+                      "^com\\.microsoft\\.teams2$"
                     ]
                   }
                 ]
@@ -145,6 +146,38 @@
                 "to": [
                   {
                     "shell_command": "open -a \"Mission Control\".app"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Send message by mod+enter same as slack",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "return_or_enter",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "return_or_enter",
+                    "modifiers": [
+                      "control"
+                    ]
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "frontmost_application_if",
+                    "bundle_identifiers": [
+                      "^com\\.microsoft\\.teams2$"
+                    ]
                   }
                 ]
               }

@@ -18,7 +18,10 @@ k.writeToProfile("Default profile", [
     "Launch wezterm without slack",
     k
       .ifApp({
-        bundle_identifiers: ["^com\\.tinyspeck\\.slackmacgap$"],
+        bundle_identifiers: [
+          "^com\\.tinyspeck\\.slackmacgap$",
+          "^com\\.microsoft\\.teams2$",
+        ],
       })
       .unless(),
   )
@@ -65,5 +68,23 @@ k.writeToProfile("Default profile", [
           modifiers: { mandatory: ["command"] },
         })
         .toApp("Mission Control"),
+    ]),
+  k.rule(
+    "Send message by mod+enter same as slack",
+    k
+      .ifApp({
+        bundle_identifiers: ["^com\\.microsoft\\.teams2$"],
+      }),
+  )
+    .manipulators([
+      k
+        .map({
+          key_code: "return_or_enter",
+          modifiers: { mandatory: ["command"] },
+        })
+        .to([{
+          key_code: "return_or_enter",
+          modifiers: ["control"],
+        }]),
     ]),
 ]);
