@@ -1,19 +1,38 @@
-import { close, focus } from "https://deno.land/x/deno_yabai@v0.1.3/window.ts";
-import { getSpaces } from "https://deno.land/x/deno_yabai@v0.1.3/query.ts";
-import { errAsync, okAsync } from "npm:neverthrow@7.0.1";
+import { $ } from "jsr:@david/dax@0.41.0";
+import { errAsync, okAsync, ResultAsync } from "npm:neverthrow@7.0.1";
+import { is } from "jsr:@core/unknownutil@4.2.0";
+
+const isSpace = is.ObjectOf({
+  windows: is.ArrayOf(is.Number),
+});
 
 if (import.meta.main) {
-  await close()
-    .andThen(() => getSpaces())
-    .andThen(
-      (spaces) => {
-        const currentSpace = spaces
-          .map((space) => space["first-window"])
-          .at(0);
-        return currentSpace == null
-          ? errAsync(new Error("currentSpace is nully"))
-          : okAsync(currentSpace);
+  await ResultAsync.fromPromise(
+    $`yabai -m window --close`.quiet(),
+    (cause) => new Error("yabai failed", { cause }),
+  )
+    .andThen(() => {
+      return ResultAsync.fromPromise(
+        $`yabai -m query --spaces --space`.json(),
+        (cause) => new Error("yabai failed", { cause }),
+      );
+    })
+    .andThen((space) => {
+      if (isSpace(space) && space.windows.at(0) != null) {
+        return okAsync(space.windows.at(0)!);
+      }
+      return errAsync(new Error("Current space has not any window"));
+    })
+    .andThen((windowId) => {
+      return ResultAsync.fromPromise(
+        $`yabai -m window --focus ${windowId}`,
+        (cause) => new Error("yabai failed", { cause }),
+      );
+    })
+    .match(
+      () => {},
+      (e) => {
+        console.error(e);
       },
-    )
-    .andThen((target) => focus({ target }));
+    );
 }
