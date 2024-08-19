@@ -283,7 +283,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/skhd/queries/move-window.ts west"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/karabiner/queries/move-window.ts west"
                   }
                 ]
               }
@@ -305,7 +305,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/skhd/queries/move-window.ts south"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/karabiner/queries/move-window.ts south"
                   }
                 ]
               }
@@ -327,7 +327,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/skhd/queries/move-window.ts north"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/karabiner/queries/move-window.ts north"
                   }
                 ]
               }
@@ -349,7 +349,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/skhd/queries/move-window.ts east"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/karabiner/queries/move-window.ts east"
                   }
                 ]
               }
@@ -371,7 +371,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/skhd/queries/close-window.ts"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/karabiner/queries/close-window.ts"
                   }
                 ]
               }
@@ -392,7 +392,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-space.ts 1"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 1"
                   }
                 ]
               }
@@ -413,7 +413,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-space.ts 2"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 2"
                   }
                 ]
               }
@@ -434,7 +434,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-space.ts 3"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 3"
                   }
                 ]
               }
@@ -455,7 +455,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-space.ts 4"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 4"
                   }
                 ]
               }
@@ -476,7 +476,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-space.ts 5"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 5"
                   }
                 ]
               }
@@ -497,7 +497,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-space.ts 6"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 6"
                   }
                 ]
               }
@@ -518,7 +518,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-space.ts 7"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 7"
                   }
                 ]
               }
@@ -539,7 +539,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-space.ts 8"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 8"
                   }
                 ]
               }
@@ -560,7 +560,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-space.ts 9"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 9"
                   }
                 ]
               }
@@ -582,7 +582,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/move-space.ts 1"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 1"
                   }
                 ]
               }
@@ -604,7 +604,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/move-space.ts 2"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 2"
                   }
                 ]
               }
@@ -626,7 +626,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/move-space.ts 3"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 3"
                   }
                 ]
               }
@@ -648,7 +648,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/move-space.ts 4"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 4"
                   }
                 ]
               }
@@ -670,7 +670,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/move-space.ts 5"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 5"
                   }
                 ]
               }
@@ -692,7 +692,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/move-space.ts 6"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 6"
                   }
                 ]
               }
@@ -714,7 +714,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/move-space.ts 7"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 7"
                   }
                 ]
               }
@@ -736,7 +736,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/move-space.ts 8"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 8"
                   }
                 ]
               }
@@ -758,7 +758,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/move-space.ts 9"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 9"
                   }
                 ]
               }
@@ -779,7 +779,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-in-display.ts next"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-in-display.ts next"
                   }
                 ]
               }
@@ -800,7 +800,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-in-display.ts prev"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-in-display.ts prev"
                   }
                 ]
               }

@@ -41,7 +41,7 @@ rules.push(
             modifiers: { mandatory: ["command", "shift"] },
           })
           .to$(
-            $(`deno run -A ~/.config/skhd/queries/move-window.ts ${way}`),
+            $(`deno run -A ~/.config/karabiner/queries/move-window.ts ${way}`),
           ),
       ]);
   }),
@@ -56,7 +56,7 @@ rules.push(
           modifiers: { mandatory: ["command", "shift"] },
         })
         .to$(
-          $("deno run -A ~/.config/skhd/queries/close-window.ts"),
+          $("deno run -A ~/.config/karabiner/queries/close-window.ts"),
         ),
     ]),
 );
@@ -75,7 +75,7 @@ rules.push(
             modifiers: { mandatory: ["command"] },
           })
           .to$(
-            $(`deno run -A  ~/.config/skhd/queries/focus-space.ts ${num}`),
+            $(`deno run -A  ~/.config/karabiner/queries/focus-space.ts ${num}`),
           ),
       ])
   ),
@@ -93,7 +93,7 @@ rules.push(
             modifiers: { mandatory: ["command", "shift"] },
           })
           .to$(
-            $(`deno run -A  ~/.config/skhd/queries/move-space.ts ${num}`),
+            $(`deno run -A  ~/.config/karabiner/queries/move-space.ts ${num}`),
           ),
       ])
   ),
@@ -114,7 +114,7 @@ rules.push(
             modifiers: { mandatory: ["command"] },
           })
           .to$(
-            $(`deno run -A  ~/.config/skhd/queries/focus-in-display.ts ${way}`),
+            $(`deno run -A  ~/.config/karabiner/queries/focus-in-display.ts ${way}`),
           ),
       ])
   ),
