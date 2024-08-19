@@ -94,7 +94,7 @@
             ]
           },
           {
-            "description": "Underscpre to backslash",
+            "description": "Underscore to backslash",
             "manipulators": [
               {
                 "type": "basic",
@@ -178,6 +178,714 @@
                     "bundle_identifiers": [
                       "^com\\.microsoft\\.teams2$"
                     ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Change window focus west. if exists other display on the way, focus it",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --focus west || yabai -m display --focus west"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Change window focus south. if exists other display on the way, focus it",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "j",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --focus south || yabai -m display --focus south"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Change window focus north. if exists other display on the way, focus it",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "k",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --focus north || yabai -m display --focus north"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Change window focus east. if exists other display on the way, focus it",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --focus east || yabai -m display --focus east"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Move window to west. if exists window, move into it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "mandatory": [
+                      "command",
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/skhd/queries/move-window.ts west"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Move window to south. if exists window, move into it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "j",
+                  "modifiers": {
+                    "mandatory": [
+                      "command",
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/skhd/queries/move-window.ts south"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Move window to north. if exists window, move into it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "k",
+                  "modifiers": {
+                    "mandatory": [
+                      "command",
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/skhd/queries/move-window.ts north"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Move window to east. if exists window, move into it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                    "mandatory": [
+                      "command",
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/skhd/queries/move-window.ts east"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Close app and focus other remain app.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "q",
+                  "modifiers": {
+                    "mandatory": [
+                      "command",
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/skhd/queries/close-window.ts"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Focus space 1. if not exists it, create untile it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "1",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-space.ts 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Focus space 2. if not exists it, create untile it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "2",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-space.ts 2"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Focus space 3. if not exists it, create untile it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "3",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-space.ts 3"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Focus space 4. if not exists it, create untile it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "4",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-space.ts 4"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Focus space 5. if not exists it, create untile it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "5",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-space.ts 5"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Focus space 6. if not exists it, create untile it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "6",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-space.ts 6"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Focus space 7. if not exists it, create untile it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "7",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-space.ts 7"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Focus space 8. if not exists it, create untile it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "8",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-space.ts 8"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Focus space 9. if not exists it, create untile it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "9",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-space.ts 9"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Move window to space 1. if not exist, create untile it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "1",
+                  "modifiers": {
+                    "mandatory": [
+                      "command",
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/move-space.ts 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Move window to space 2. if not exist, create untile it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "2",
+                  "modifiers": {
+                    "mandatory": [
+                      "command",
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/move-space.ts 2"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Move window to space 3. if not exist, create untile it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "3",
+                  "modifiers": {
+                    "mandatory": [
+                      "command",
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/move-space.ts 3"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Move window to space 4. if not exist, create untile it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "4",
+                  "modifiers": {
+                    "mandatory": [
+                      "command",
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/move-space.ts 4"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Move window to space 5. if not exist, create untile it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "5",
+                  "modifiers": {
+                    "mandatory": [
+                      "command",
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/move-space.ts 5"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Move window to space 6. if not exist, create untile it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "6",
+                  "modifiers": {
+                    "mandatory": [
+                      "command",
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/move-space.ts 6"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Move window to space 7. if not exist, create untile it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "7",
+                  "modifiers": {
+                    "mandatory": [
+                      "command",
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/move-space.ts 7"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Move window to space 8. if not exist, create untile it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "8",
+                  "modifiers": {
+                    "mandatory": [
+                      "command",
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/move-space.ts 8"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Move window to space 9. if not exist, create untile it.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "9",
+                  "modifiers": {
+                    "mandatory": [
+                      "command",
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/move-space.ts 9"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Focus next space in current display",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "right_arrow",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-in-display.ts next"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Focus prev space in current display",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "left_arrow",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/skhd/queries/focus-in-display.ts prev"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Format display sizes in current space like vim's <C-w>=.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "equal_sign",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m space --balance"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Toggle fullscreen",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "f",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --toggle zoom-fullscreen"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Toggle current window to floating.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --toggle zoom-fullscreen"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Toggle split way.",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "mandatory": [
+                      "command",
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --toggle split"
                   }
                 ]
               }

@@ -30,6 +30,5 @@ cask "karabiner-elements"
 cask "aquaskk"
 cask "obs"
 cask "spacedrive"
-brew "koekeishiya/formulae/skhd" if OS.mac?
 brew "koekeishiya/formulae/yabai" if OS.mac?
 brew "felixkratz/formulae/sketchybar" if OS.mac?

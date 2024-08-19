@@ -1,4 +1,5 @@
 import * as k from "https://deno.land/x/karabinerts@1.30.0/deno.ts";
+import { rules } from "./yabai.ts";
 
 function newApp(name: string) {
   return k.to$(`open -n -a "${name}".app`);
@@ -45,7 +46,7 @@ k.writeToProfile("Default profile", [
         .map({ key_code: "japanese_eisuu" })
         .to([{ key_code: "escape" }]),
     ]),
-  k.rule("Underscpre to backslash")
+  k.rule("Underscore to backslash")
     .manipulators([
       k
         .map({ key_code: "international1" })
@@ -87,4 +88,5 @@ k.writeToProfile("Default profile", [
           modifiers: ["control"],
         }]),
     ]),
+  ...rules,
 ]);
