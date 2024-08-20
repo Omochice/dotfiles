@@ -154,7 +154,7 @@ rules.push(
           key_code: "spacebar",
           modifiers: { mandatory: ["command"] },
         })
-        .to$($("yabai -m window --toggle zoom-fullscreen")),
+        .to$($("yabai -m window --toggle split")),
     ]),
 );
 
@@ -166,6 +166,6 @@ rules.push(
           key_code: "spacebar",
           modifiers: { mandatory: ["command", "shift"] },
         })
-        .to$($("yabai -m window --toggle split")),
+        .to$($("yabai -m window --toggle float && yabai -m window --grid 12:12:1:1:10:10")),
     ]),
 );

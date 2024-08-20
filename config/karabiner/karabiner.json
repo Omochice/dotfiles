@@ -863,7 +863,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --toggle zoom-fullscreen"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --toggle split"
                   }
                 ]
               }
@@ -885,7 +885,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --toggle split"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --toggle float && yabai -m window --grid 12:12:1:1:10:10"
                   }
                 ]
               }
