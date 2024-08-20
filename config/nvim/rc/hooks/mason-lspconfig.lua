@@ -45,6 +45,16 @@ lspconfig.sourcekit.setup({})
 lspconfig.lua_ls.setup(require("vimrc/lsp/lua_ls").config())
 lspconfig.efm.setup(require("vimrc/lsp/efm").config())
 lspconfig.tinymist.setup({})
+lspconfig.taplo.setup({
+  workspace_config = {
+    formatter = {
+      reorderKeys = false,
+      compactArray = false,
+      arrayAutoCollapse = false,
+      alignEntries = true,
+    }
+  }
+})
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(require("vimrc/traditional-behavior-lsp").on_hover, {})
 -- }}}
