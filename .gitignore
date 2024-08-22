@@ -73,3 +73,5 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/aqua/aqua.yaml
 !/config/corvusskk/config.xml
 !/win-config/**
+!/flake.nix
+!/config/nix/**
