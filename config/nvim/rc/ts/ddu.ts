@@ -139,10 +139,10 @@ export class Config extends BaseConfig {
       },
       filterParams: {
         matcher_fzf: {
-          highlightMathced: "Search",
+          highlightMatched: "Search",
         },
         matcher_substring: {
-          highlightMathced: "Search",
+          highlightMatched: "Search",
         },
       },
       kindOptions: {
