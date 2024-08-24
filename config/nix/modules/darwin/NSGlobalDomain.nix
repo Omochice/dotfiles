@@ -11,5 +11,13 @@ with lib;
         Disable minimize on click title bar.
       '';
     };
+
+    system.defaults.NSGlobalDomain.AppleMiniaturizeOnDoubleClick = mkOption {
+      type = types.nullOr types.bool;
+      default = null;
+      description = ''
+        Disable minimize on click title bar.
+      '';
+    };
   };
 }
