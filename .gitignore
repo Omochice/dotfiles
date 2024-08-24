@@ -74,4 +74,5 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/corvusskk/config.xml
 !/win-config/**
 !/flake.nix
+!/flake.lock
 !/config/nix/**
