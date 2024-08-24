@@ -49,9 +49,15 @@
                 InitialKeyRepeat = 25;
                 KeyRepeat = 2;
                 _HIHideMenuBar = true;
+                AppleActionOnDoubleClick = "None";
+                AppleMiniaturizeOnDoubleClick = false;
               };
               trackpad = {
                 Clicking = true;
+                TrackpadMomentumScroll = true;
+              };
+              trackpadBluetooth = {
+                TrackpadMomentumScroll = true;
               };
               dock = {
                 autohide = true;
@@ -62,21 +68,9 @@
                 ShowPathbar = true;
                 ShowStatusBar = true;
               };
-              CustomUserPreferences = {
-                NSGlobalDomain = {
-                  AppleActionOnDoubleClick = "None";
-                  AppleMiniaturizeOnDoubleClick = false;
-                };
-                "com.apple.AppleMultitouchTrackpad" = {
-                  TrackpadMomentumScroll = true;
-                };
-                "com.apple.driver.AppleBluetoothMultitouch.trackpad" = {
-                  TrackpadMomentumScroll = true;
-                };
-                "com.apple.WindowManager" = {
-                  HideDesktop = false;
-                  EnableStandardClickToShowDesktop = false;
-                };
+              WindowManager = {
+                HideDesktop = false;
+                EnableStandardClickToShowDesktop = false;
               };
             };
           };
