@@ -8,12 +8,12 @@ if (import.meta.main) {
 
   await ResultAsync.fromPromise(
     $`yabai -m query --spaces`.json(),
-    (cause) => new Error("yabai failed", { cause }),
+    (cause) => new Error("Failed to exec 'yabai -m query --spaces'", { cause }),
   )
     .andThen((spaces) => {
       return ResultAsync.fromPromise(
         Promise.resolve(ensure(spaces, is.Array)),
-        (cause) => new Error("Ensure is failed", { cause }),
+        (cause) => new Error("Failed to ensure is array", { cause }),
       );
     })
     .andThen((spaces) => {
@@ -24,7 +24,7 @@ if (import.meta.main) {
       return numberOfNeedToCreate > 0
         ? ResultAsync.fromPromise(
           createSpaces(numberOfNeedToCreate),
-          (cause) => new Error("failed to create space", { cause }),
+          (cause) => new Error("Failed to create space", { cause }),
         )
         // NOTE: not need to create new spaces
         : okAsync(undefined);
@@ -32,13 +32,19 @@ if (import.meta.main) {
     .andThen(() => {
       return ResultAsync.fromPromise(
         $`yabai -m window --space ${spaceId}`,
-        (cause) => new Error("yabai failed", { cause }),
+        (cause) =>
+          new Error(`Failed to exec 'yabai -m window --space ${spaceId}'`, {
+            cause,
+          }),
       );
     })
     .andThen(() => {
       return ResultAsync.fromPromise(
         $`yabai -m space --space ${spaceId}`,
-        (cause) => new Error("yabai failed", { cause }),
+        (cause) =>
+          new Error(`Failed to exec 'yabai -m space --space ${spaceId}'`, {
+            cause,
+          }),
       );
     })
     .match(

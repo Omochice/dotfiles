@@ -9,12 +9,15 @@ const isSpace = is.ObjectOf({
 if (import.meta.main) {
   await ResultAsync.fromPromise(
     $`yabai -m window --close`.quiet(),
-    (cause) => new Error("yabai failed", { cause }),
+    (cause) => new Error("Failed to exec 'yabai -m window --close'", { cause }),
   )
     .andThen(() => {
       return ResultAsync.fromPromise(
         $`yabai -m query --spaces --space`.json(),
-        (cause) => new Error("yabai failed", { cause }),
+        (cause) =>
+          new Error("Failed to exec 'yabai -m query --spaces --space'", {
+            cause,
+          }),
       );
     })
     .andThen((space) => {
@@ -26,7 +29,10 @@ if (import.meta.main) {
     .andThen((windowId) => {
       return ResultAsync.fromPromise(
         $`yabai -m window --focus ${windowId}`,
-        (cause) => new Error("yabai failed", { cause }),
+        (cause) =>
+          new Error(`Failed to exec 'yabai -m window --focus ${windowId}'`, {
+            cause,
+          }),
       );
     })
     .match(

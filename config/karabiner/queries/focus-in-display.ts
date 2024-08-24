@@ -12,12 +12,15 @@ if (import.meta.main) {
   const way = ensure(Deno.args[0], isWay);
   await ResultAsync.fromPromise(
     $`yabai -m query --spaces --display`.json(),
-    (cause) => new Error("uexpected error", { cause }),
+    (cause) =>
+      new Error("Failed to exec 'yabai -m query --spaces --display'", {
+        cause,
+      }),
   )
     .andThen((r) => {
       return ResultAsync.fromPromise(
         Promise.resolve(ensure(r, isSpaces)),
-        (cause) => new Error("uexpected error", { cause }),
+        (cause) => new Error("Failed to ensure is space", { cause }),
       );
     })
     .andThen((spaces) => {
@@ -34,7 +37,10 @@ if (import.meta.main) {
       }
       return ResultAsync.fromPromise(
         $`yabai -m space --focus ${way}`.quiet(),
-        (cause) => new Error("uexpected error", { cause }),
+        (cause) =>
+          new Error(`Failed to exec 'yabai -m space --focus ${way}'`, {
+            cause,
+          }),
       );
     })
     .match(

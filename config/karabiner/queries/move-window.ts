@@ -19,28 +19,42 @@ if (import.meta.main) {
 
   await ResultAsync.fromPromise(
     $`yabai --message query --windows --window`.json(),
-    (cause) => new Error("unexpected error", { cause }),
+    (cause) =>
+      new Error("Failed to exec 'yabai --message query --windows --window'", {
+        cause,
+      }),
   )
     .andThen((window) => {
       return ResultAsync.fromPromise(
         Promise.resolve(ensure(window, hasId)),
-        (cause) => new Error("unexpected error", { cause }),
+        (cause) => new Error("Failed to ensure hasId", { cause }),
       );
     })
     .andThen(({ id }) => {
       return ResultAsync.fromPromise(
         $`yabai --message window --swap ${way}`.quiet(),
-        (cause) => new Error("unexpected error", { cause }),
+        (cause) =>
+          new Error(`Failed to exec 'yabai --message window --swap ${way}'`, {
+            cause,
+          }),
       )
         .orElse(() =>
           ResultAsync.fromPromise(
             $`yabai --message window --display ${way}`.quiet(),
-            (cause) => new Error("unexpected error", { cause }),
+            (cause) =>
+              new Error(
+                `Failed to exec 'yabai --message window --display ${way}'`,
+                { cause },
+              ),
           )
             .andThen(() =>
               ResultAsync.fromPromise(
                 $`yabai --message window ${id} --focus`.quiet(),
-                (cause) => new Error("unexpected error", { cause }),
+                (cause) =>
+                  new Error(
+                    `Failed to exec 'yabai --message window ${id} --focus'`,
+                    { cause },
+                  ),
               )
             )
         );

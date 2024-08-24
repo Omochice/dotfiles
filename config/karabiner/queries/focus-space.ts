@@ -13,64 +13,77 @@ const isWindow = is.ObjectOf({
 
 if (import.meta.main) {
   const spaceId = ensure(Number(Deno.args[0]), is.Number);
-  const r = await ResultAsync.fromPromise(
+  await ResultAsync.fromPromise(
     $`yabai -m space --focus ${spaceId}`,
-    (cause) => new Error("yabai failed", { cause }),
-  );
-
-  const a = r.isOk()
-    ? ResultAsync.fromPromise(
-      $`yabai -m query --windows`.json(),
-      (cause) => new Error("yabai failed", { cause }),
-    )
-      .andThen((windows) => {
-        return ResultAsync.fromPromise(
-          Promise.resolve(ensure(windows, is.ArrayOf(isWindow))),
-          (cause) => new Error("Ensure is failed", { cause }),
-        );
-      })
-      .andThen((windows) => {
-        const firstWindow = windows
-          .filter((w) => w.space === spaceId)
-          .filter((w) =>
-            !w["is-hidden"] && !w["is-minimized"] && !w["is-sticky"]
-          )
-          .at(0);
-        return firstWindow == null
-          ? errAsync(new Error(`${spaceId} has no focusable window`))
-          : okAsync(firstWindow.id);
-      })
-      .andThen((id) => {
-        return ResultAsync.fromPromise(
-          $`yabai -m window --focus ${id}`,
-          (cause) => new Error("yabai failed", { cause }),
-        );
-      })
-    : ResultAsync.fromPromise(
-      $`yabai -m query --spaces`.json(),
-      (cause) => new Error("yabai failed", { cause }),
-    )
-      .andThen((spaces) => {
-        return is.Array(spaces)
-          ? okAsync(spaces.length)
-          : errAsync("yabai -m query --spaces returns non array");
-      })
-      .andThen((numSpaces) => {
-        return ResultAsync.fromPromise(
-          createSpaces(spaceId - numSpaces),
-          (cause) => new Error("unexpected error", { cause }),
-        );
-      })
-      .andThen(() => {
-        return ResultAsync.fromPromise(
-          $`yabai -m space --focus ${spaceId}`,
-          (cause) => new Error("yabai failed", { cause }),
-        );
-      });
-  a.match(
-    () => {},
-    (e) => {
-      console.error(e);
-    },
-  );
+    (cause) =>
+      new Error(`Failed to exec 'yabai -m space --focus ${spaceId}'`, {
+        cause,
+      }),
+  )
+    .then((r) => {
+      const a = r.isOk()
+        ? ResultAsync.fromPromise(
+          $`yabai -m query --windows`.json(),
+          (cause) =>
+            new Error("Failed to exec 'yabai -m query --windows'", { cause }),
+        )
+          .andThen((windows) => {
+            return ResultAsync.fromPromise(
+              Promise.resolve(ensure(windows, is.ArrayOf(isWindow))),
+              (cause) => new Error("Failed to ensure is window", { cause }),
+            );
+          })
+          .andThen((windows) => {
+            const firstWindow = windows
+              .filter((w) => w.space === spaceId)
+              .filter((w) =>
+                !w["is-hidden"] && !w["is-minimized"] && !w["is-sticky"]
+              )
+              .at(0);
+            return firstWindow == null
+              ? errAsync(new Error(`${spaceId} has no focusable window`))
+              : okAsync(firstWindow.id);
+          })
+          .andThen((id) => {
+            return ResultAsync.fromPromise(
+              $`yabai -m window --focus ${id}`,
+              (cause) =>
+                new Error(`Failed to exec 'yabai -m window --focus ${id}'`, {
+                  cause,
+                }),
+            );
+          })
+        : ResultAsync.fromPromise(
+          $`yabai -m query --spaces`.json(),
+          (cause) =>
+            new Error("Failed to exec 'yabai -m query --spaces'", { cause }),
+        )
+          .andThen((spaces) => {
+            return is.Array(spaces)
+              ? okAsync(spaces.length)
+              : errAsync("'yabai -m query --spaces' returns non array");
+          })
+          .andThen((numSpaces) => {
+            return ResultAsync.fromPromise(
+              createSpaces(spaceId - numSpaces),
+              (cause) => new Error("Failed to create new spaces", { cause }),
+            );
+          })
+          .andThen(() => {
+            return ResultAsync.fromPromise(
+              $`yabai -m space --focus ${spaceId}`,
+              (cause) =>
+                new Error(
+                  `Failed to exec 'yabai -m space --focus ${spaceId}'`,
+                  { cause },
+                ),
+            );
+          });
+      a.match(
+        () => {},
+        (e) => {
+          console.error(e);
+        },
+      );
+    });
 }
