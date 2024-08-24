@@ -11,13 +11,5 @@ with lib;
         Whether to hide the desktop icons.
       '';
     };
-
-    system.defaults.WindowManager.EnableStandardClickToShowDesktop = mkOption {
-      type = types.nullOr types.bool;
-      default = null;
-      description = lib.mkDoc ''
-        Whether to enable standard click to show desktop.
-      '';
-    };
   };
 }
