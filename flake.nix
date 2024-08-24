@@ -21,8 +21,6 @@
           pkgs,
           services,
           system,
-          nix,
-          formatter,
           ...
         }:
         {
