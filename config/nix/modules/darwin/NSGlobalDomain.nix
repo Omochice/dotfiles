@@ -5,10 +5,16 @@ with lib;
 {
   options = {
     system.defaults.NSGlobalDomain.AppleActionOnDoubleClick = mkOption {
-      type = types.nullOr types.string;
+      type = types.nullOr (
+        types.enum [
+          "Maximize"
+          "Minimize"
+          "None"
+        ]
+      );
       default = null;
       description = ''
-        Disable minimize on click title bar.
+        Action on double click title bar.
       '';
     };
 
