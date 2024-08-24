@@ -1,9 +1,9 @@
-{ config, lib, ... };
+{ config, lib, ... }:
 
 with lib;
 
 {
-  options. = {
+  options = {
     system.defaults.NSGlobalDomain.AppleActionOnDoubleClick = mkOption {
       type = types.nullOr types.string;
       default = null;
