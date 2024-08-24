@@ -1,0 +1,95 @@
+{
+  description = "Omochice dotfiles";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nix-darwin,
+    }:
+    let
+      configuration =
+        {
+          pkgs,
+          services,
+          system,
+          nix,
+          formatter,
+          ...
+        }:
+        {
+          # imports = [ ./config/nix/modules/darwin/default.nix ];
+          nix = {
+            package = pkgs.nix;
+            optimise.automatic = true;
+            settings = {
+              experimental-features = "nix-command flakes";
+              max-jobs = 8;
+            };
+          };
+          # The platform the configuration will be used on.
+          nixpkgs.hostPlatform = "aarch64-darwin";
+          # Auto upgrade nix package and the daemon service.
+          services.nix-daemon.enable = true;
+          system = {
+            # Used for backwards compatibility, please read the changelog before changing.
+            # $ darwin-rebuild changelog
+            stateVersion = 4;
+            # Set Git commit hash for darwin-version.
+            configurationRevision = self.rev or self.dirtyRev or null;
+            defaults = {
+              NSGlobalDomain = {
+                "com.apple.sound.beep.volume" = 0.0;
+                InitialKeyRepeat = 25;
+                KeyRepeat = 2;
+                _HIHideMenuBar = true;
+              };
+              trackpad = {
+                Clicking = true;
+              };
+              dock = {
+                autohide = true;
+                tilesize = 48;
+                orientation = "left";
+              };
+              finder = {
+                ShowPathbar = true;
+                ShowStatusBar = true;
+              };
+              CustomUserPreferences = {
+                NSGlobalDomain = {
+                  AppleActionOnDoubleClick = "None";
+                  AppleMiniaturizeOnDoubleClick = false;
+                };
+                "com.apple.AppleMultitouchTrackpad" = {
+                  TrackpadMomentumScroll = true;
+                };
+                "com.apple.driver.AppleBluetoothMultitouch.trackpad" = {
+                  TrackpadMomentumScroll = true;
+                };
+                "com.apple.WindowManager" = {
+                  HideDesktop = false;
+                  EnableStandardClickToShowDesktop = false;
+                };
+              };
+            };
+          };
+        };
+    in
+    {
+      formatter = {
+        aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixfmt-rfc-style;
+      };
+      darwinConfigurations = {
+        omochice = nix-darwin.lib.darwinSystem { modules = [ configuration ]; };
+      };
+    };
+}
