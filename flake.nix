@@ -24,7 +24,7 @@
           ...
         }:
         {
-          # imports = [ ./config/nix/modules/darwin/default.nix ];
+          imports = [ ./config/nix/modules/darwin/default.nix ];
           nix = {
             package = pkgs.nix;
             optimise.automatic = true;
