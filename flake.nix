@@ -51,6 +51,7 @@
                 _HIHideMenuBar = true;
                 AppleActionOnDoubleClick = "None";
                 AppleMiniaturizeOnDoubleClick = false;
+                AppleMenuBarVisibleInFullscreen = false;
               };
               trackpad = {
                 Clicking = true;

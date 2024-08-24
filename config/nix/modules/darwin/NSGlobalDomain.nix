@@ -19,5 +19,13 @@ with lib;
         Disable minimize on click title bar.
       '';
     };
+
+    system.defaults.NSGlobalDomain.AppleMenuBarVisibleInFullscreen = mkOption {
+      type = types.nullOr types.bool;
+      default = null;
+      description = ''
+        Show menu bar in full screen.
+      '';
+    };
   };
 }
