@@ -2,50 +2,11 @@
 
 set -ue
 
-## dock {{{
-# Set dock size
-defaults write com.apple.dock tilesize -int 48
-# Disable scaling
-# defaults delete com.apple.dock magnification
-# Show it left side
-defaults write com.apple.dock orientation -string "left"
-# Disable minimize on click title bar
-defaults write "Apple Global Domain" AppleActionOnDoubleClick -string "None"
-## }}}
-
-## windowmanager {{{
-defaults write com.apple.WindowManager HideDesktop -int 0
-defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -int 0
-## }}}
-
-## Audio {{{
-# Dont beep
-defaults write "Apple Global Domain" com.apple.sound.beep.volume -int 0
-## }}}
-
-## trackpad {{{
-# Tap to click
-defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1
-# Momentum scroll
-defaults write com.apple.AppleMultitouchTrackpad TrackpadMomentumScroll -int 1
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadMomentumScroll -int 1
-## }}}
-
-## keyboard {{{
-defaults write "Apple Global Domain" KeyRepeat -int 2
-defaults write "Apple Global Domain" InitialKeyRepeat -int 25
-
 # Disable S-Space
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 60 "<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>262144</integer></array><key>type</key><string>standard</string></dict></dict>"
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 61 "<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>786432</integer></array><key>type</key><string>standard</string></dict></dict>"
-## }}}
 
-## menubar {{{
-defaults write "Apple Global Domain" AppleMenuBarVisibleInFullscreen -int 0
-defaults write "Apple Global Domain" "_HIHideMenuBar" -int 1
-## }}}
 
-## spotlight {{{
 # Show spotlight on Mod-r
 # NOTE: other shortcut is launched by karabiner | skhd
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "
@@ -87,10 +48,5 @@ defaults write com.apple.Spotlight orderedItems -array \
   "{ enabled = 0; name = 'MENU_CONVERSION'; }" \
   "{ enabled = 0; name = CONTACT; }"
 ## }}}
-
-## finder {{{
-## show pathbar
-defaults write com.apple.finder ShowPathbar -bool true
-# }}}
 
 # vim:foldmethod=marker
