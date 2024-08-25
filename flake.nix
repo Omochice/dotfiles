@@ -19,7 +19,11 @@
       configuration =
         { pkgs, ... }:
         {
-          imports = [ ./config/nix/modules/darwin/default.nix ];
+          imports = [
+            ./config/nix/modules/darwin/default.nix
+            ./config/nix/applications/spotlight.nix
+          ];
+
           nix = {
             package = pkgs.nix;
             optimise.automatic = true;
@@ -69,7 +73,6 @@
                 EnableStandardClickToShowDesktop = false;
               };
               CustomUserPreferences = {
-                "com.apple.Spotlight" = import ./config/nix/applications/spotlight.nix;
                 symbolichotkeys = {
                   AppleSymbolicHotKeys = import ./config/nix/system/darwin/symbolic-hotkeys.nix;
                 };
