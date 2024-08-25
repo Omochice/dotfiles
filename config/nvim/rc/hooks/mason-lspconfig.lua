@@ -55,6 +55,7 @@ lspconfig.taplo.setup({
     }
   }
 })
+lspconfig.nixd.setup({})
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(require("vimrc/traditional-behavior-lsp").on_hover, {})
 -- }}}
