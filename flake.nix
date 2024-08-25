@@ -17,12 +17,7 @@
     }:
     let
       configuration =
-        {
-          pkgs,
-          services,
-          system,
-          ...
-        }:
+        { pkgs, ... }:
         {
           imports = [ ./config/nix/modules/darwin/default.nix ];
           nix = {
