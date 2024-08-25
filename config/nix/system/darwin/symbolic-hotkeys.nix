@@ -1,4 +1,3 @@
-{ ... }:
 {
   # Disable S-Space
   "60" = {

@@ -74,9 +74,9 @@
                 EnableStandardClickToShowDesktop = false;
               };
               CustomUserPreferences = {
-                "com.apple.Spotlight" = import ./config/nix/applications/spotlight.nix { };
+                "com.apple.Spotlight" = import ./config/nix/applications/spotlight.nix;
                 symbolichotkeys = {
-                  AppleSymbolicHotKeys = import ./config/nix/system/darwin/symbolic-hotkeys.nix { };
+                  AppleSymbolicHotKeys = import ./config/nix/system/darwin/symbolic-hotkeys.nix;
                 };
               };
             };
