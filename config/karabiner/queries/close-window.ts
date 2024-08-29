@@ -1,5 +1,5 @@
 import { $ } from "jsr:@david/dax@0.41.0";
-import { errAsync, okAsync, ResultAsync } from "npm:neverthrow@7.0.1";
+import { errAsync, okAsync, ResultAsync } from "npm:neverthrow@7.1.0";
 import { is } from "jsr:@core/unknownutil@4.3.0";
 
 const isSpace = is.ObjectOf({
