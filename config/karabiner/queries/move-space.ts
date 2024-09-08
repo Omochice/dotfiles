@@ -1,6 +1,6 @@
 import { ensure, is } from "jsr:@core/unknownutil@4.3.0";
 import { $ } from "jsr:@david/dax@0.41.0";
-import { okAsync, ResultAsync } from "npm:neverthrow@7.2.0";
+import { okAsync, ResultAsync } from "npm:neverthrow@8.0.0";
 import { createSpaces } from "./create-spaces.ts";
 
 if (import.meta.main) {
