@@ -16,7 +16,7 @@ packages:
 - name: dandavison/delta@0.18.1
 - name: charmbracelet/glow@v2.0.0
 - name: sharkdp/hyperfine@v1.18.0
-- name: jesseduffield/lazygit@v0.43.1
+- name: jesseduffield/lazygit@v0.44.0
 - name: ollama/ollama@v0.3.9
 - name: BurntSushi/ripgrep@14.1.0
 - name: chmln/sd@v1.0.0
