@@ -18,7 +18,7 @@ packages:
 - name: sharkdp/hyperfine@v1.18.0
 - name: jesseduffield/lazygit@v0.44.0
 - name: ollama/ollama@v0.3.9
-- name: BurntSushi/ripgrep@14.1.0
+- name: BurntSushi/ripgrep@14.1.1
 - name: chmln/sd@v1.0.0
 - name: koalaman/shellcheck@v0.10.0
 - name: ajeetdsouza/zoxide@v0.9.4
