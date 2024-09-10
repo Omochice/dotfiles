@@ -22,7 +22,6 @@
           imports = [
             ./config/nix/modules/darwin/default.nix
             ./config/nix/applications/spotlight.nix
-            ./config/nix/applications/yabai.nix
           ];
 
           nix = {
@@ -78,11 +77,6 @@
                   AppleSymbolicHotKeys = import ./config/nix/system/darwin/symbolic-hotkeys.nix;
                 };
               };
-            };
-            activationScripts = {
-              postActivation.text = ''
-                ${pkgs.deno}/bin/deno run -A /Users/omochice/.config/karabiner/mod.ts ${pkgs.yabai}/bin /Users/omochice/.config/karabiner/karabiner.json
-              '';
             };
           };
         };
