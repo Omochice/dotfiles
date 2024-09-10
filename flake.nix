@@ -22,6 +22,7 @@
           imports = [
             ./config/nix/modules/darwin/default.nix
             ./config/nix/applications/spotlight.nix
+            ./config/nix/applications/homebrew.nix
           ];
 
           nix = {
