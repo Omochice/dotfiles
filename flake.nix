@@ -7,6 +7,10 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -14,8 +18,10 @@
       self,
       nixpkgs,
       nix-darwin,
-    }:
+      home-manager,
+    }@inputs:
     let
+      system = "aarch64-darwin";
       configuration =
         { pkgs, ... }:
         {
@@ -81,6 +87,7 @@
             };
           };
         };
+      pkgs = import nixpkgs { inherit system; };
     in
     {
       formatter = {
@@ -88,6 +95,34 @@
       };
       darwinConfigurations = {
         omochice = nix-darwin.lib.darwinSystem { modules = [ configuration ]; };
+      };
+      homeConfigurations = {
+        myHomeConfig = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            system = system;
+          };
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            ./config/nix/home-manager/home.nix
+          ];
+        };
+      };
+      apps.${system}.update = {
+        type = "app";
+        program = toString (
+          pkgs.writeShellScript "update-script" ''
+            set -e
+            echo "Updating flake..."
+            nix flake update
+            echo "Updating home-manager..."
+            nix run home-manager -- switch --flake .#myHomeConfig --impure
+            echo "Updating nix-darwin..."
+            nix run nix-darwin -- switch --flake .#omochice
+            echo "Update complete!"
+          ''
+        );
       };
     };
 }

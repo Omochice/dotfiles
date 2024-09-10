@@ -12,7 +12,6 @@
     ];
     brews = [
       "aquaproj/aqua/aqua"
-      "btop"
       "cmake"
       "curl"
       "fish"
@@ -22,11 +21,9 @@
       "ninja"
       "pkg-config"
       "starship"
-      "tldr"
       "pnpm"
       "make"
       "nushell"
-      "pandoc"
       "koekeishiya/formulae/yabai"
       "felixkratz/formulae/sketchybar"
     ];
