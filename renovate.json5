@@ -9,6 +9,10 @@
   ],
   nix: {
     enabled: true,
+    fileMatch: [
+      "(^|/)flake\\.nix$",
+      "config/nix/.+\\.nix$",
+    ],
   },
   "github-actions": {
     fileMatch: [
