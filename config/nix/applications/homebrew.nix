@@ -13,17 +13,10 @@
     brews = [
       "aquaproj/aqua/aqua"
       "cmake"
-      "curl"
-      "fish"
       "gettext"
       "libtool"
-      "mise"
       "ninja"
       "pkg-config"
-      "starship"
-      "pnpm"
-      "make"
-      "nushell"
       "koekeishiya/formulae/yabai"
       "felixkratz/formulae/sketchybar"
     ];

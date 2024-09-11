@@ -24,6 +24,14 @@ in
       btop
       tldr
       pandoc
+      cargo
+      starship
+      curl
+      nushell
+      fish
+      gnumake
+      mise
+      pnpm
     ];
   };
 
