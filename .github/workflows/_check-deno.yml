@@ -14,7 +14,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       - name: setup deno
-        uses: denoland/setup-deno@fa660b328d065f7683e7303976bd81e2d58e98ae # v1.4.1
+        uses: denoland/setup-deno@5e01c016a857a4dbb5afe9d0f9733cd472cba985 # v1.5.1
       - name: type check
         run: deno check scripts/**/*.ts config/nvim/rc/ts/*.ts
       - name: linting
