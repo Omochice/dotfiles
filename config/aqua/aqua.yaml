@@ -54,3 +54,4 @@ packages:
 - name: crate-ci/typos@v1.24.6
 - name: hadolint/hadolint@v2.12.0
 - name: tamasfe/taplo/full@0.9.3
+- name: protocolbuffers/protobuf/protoc@v28.1
