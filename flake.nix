@@ -52,6 +52,7 @@
             defaults = {
               NSGlobalDomain = {
                 "com.apple.sound.beep.volume" = 0.0;
+                "com.apple.keyboard.fnState" = true;
                 InitialKeyRepeat = 25;
                 KeyRepeat = 2;
                 _HIHideMenuBar = true;
