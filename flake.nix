@@ -71,6 +71,7 @@
                 autohide = true;
                 tilesize = 48;
                 orientation = "left";
+                no-bouncing = true;
               };
               finder = {
                 ShowPathbar = true;
