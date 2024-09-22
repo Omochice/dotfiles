@@ -31,7 +31,7 @@ require("mason-lspconfig").setup_handlers({
     if server_name == "yamlls" then
       opts = require("vimrc/lsp/yamlls").config()
     end
-    if server_name == "tsserver" then
+    if server_name == "tsserver" or server_name == "ts_ls" then
       opts = require("vimrc/lsp/tsserver").config()
     end
     lspconfig[server_name].setup(opts)
