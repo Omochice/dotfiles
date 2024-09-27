@@ -664,3 +664,8 @@ hooks_file = "$DEIN_RC_DIR/hooks/oil.lua"
 repo = "https://github.com/Omochice/oil-nerdfont"
 on_lua = "oil-nerdfont"
 depends = ["oil.nvim", "vim-nerdfont"]
+
+[[plugins]]
+repo = "https://github.com/folke/zen-mode.nvim"
+on_lua = "zen-mode"
+on_cmd = "ZenMode"
