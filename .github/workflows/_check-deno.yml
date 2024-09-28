@@ -15,7 +15,11 @@ jobs:
         uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
       - name: setup deno
         uses: denoland/setup-deno@5e01c016a857a4dbb5afe9d0f9733cd472cba985 # v1.5.1
+        with:
+          deno-version: rc
       - name: type check
-        run: deno check scripts/**/*.ts config/nvim/rc/ts/*.ts
+        run: deno check scripts/**/*.ts config/nvim/rc/ts/*.ts config/nvim-dark/**.ts
       - name: linting
-        run: deno lint scripts/**/*.ts config/nvim/rc/ts/*.ts
+        run: deno lint scripts/**/*.ts config/nvim/rc/ts/*.ts config/nvim-dark/**.ts
+      - name: testing
+        run: deno test --doc config/nvim-dark/**.ts
