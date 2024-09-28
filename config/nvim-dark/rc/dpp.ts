@@ -32,7 +32,7 @@ import { mergeFtplugins } from "jsr:@shougo/dpp-vim@3.0.0/utils";
 import type { Denops } from "jsr:@denops/std@7.1.0";
 import * as fn from "jsr:@denops/std@~7.1.0/function";
 
-import { expandGlob } from "jsr:@std/fs@~1.0.0/expand-glob";
+import { expandGlob } from "jsr:@std/fs@~1.0.4/expand-glob";
 
 type ConfigArgument = {
   denops: Denops;
