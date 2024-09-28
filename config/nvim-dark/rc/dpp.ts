@@ -1,38 +1,24 @@
-import {
-  type ContextBuilder,
-  type ExtOptions,
-  type Plugin,
+import type {
+  ContextBuilder,
+  ExtOptions,
+  Plugin,
 } from "jsr:@shougo/dpp-vim@3.0.0/types";
 import {
   BaseConfig,
   type ConfigReturn,
   type MultipleHook,
 } from "jsr:@shougo/dpp-vim@3.0.0/config";
-import { Protocol } from "jsr:@shougo/dpp-vim@3.0.0/protocol";
-
+import type { Protocol } from "jsr:@shougo/dpp-vim@3.0.0/protocol";
 import type {
   Ext as LazyExt,
-  LazyMakeStateResult,
   Params as LazyParams,
 } from "jsr:@shougo/dpp-ext-lazy@1.5.0";
 import type {
-  Ext as LocalExt,
-  Params as LocalParams,
-} from "jsr:@shougo/dpp-ext-local@1.3.0";
-import type {
-  Ext as PackspecExt,
-  Params as PackspecParams,
-} from "jsr:@shougo/dpp-ext-packspec@1.3.0";
-import type {
   Ext as TomlExt,
   Params as TomlParams,
+  Toml as DppToml,
 } from "jsr:@shougo/dpp-ext-toml@1.3.0";
-import { mergeFtplugins } from "jsr:@shougo/dpp-vim@3.0.0/utils";
-
 import type { Denops } from "jsr:@denops/std@7.1.0";
-import * as fn from "jsr:@denops/std@~7.1.0/function";
-
-import { expandGlob } from "jsr:@std/fs@~1.0.4/expand-glob";
 
 type ConfigArgument = {
   denops: Denops;
@@ -40,32 +26,89 @@ type ConfigArgument = {
   basePath: string;
 };
 
+/**
+ * The object to represent Toml config.
+ */
 type Toml = {
+  /** The path to the toml file */
   path: string;
+  /** Whether the toml file should be loading laziely */
   lazy: boolean;
 };
 
+/**
+ * The expected dpp extension object.
+ */
 type Extension = {
+  /** dpp-ext-toml */
   toml: [TomlExt, ExtOptions, TomlParams];
+  /** dpp-ext-lazy */
   lazy: [LazyExt, ExtOptions, LazyParams];
 };
+
+/**
+ * The object to represent filetype plugin.
+ */
+type FiletypePlugin = {
+  /** target filetype */
+  filetype: string;
+  /** execuable Vim script */
+  ftplugin: string;
+};
+
+/**
+ * Normalize ftplugin code into Vim script.
+ *
+ * @param plugin ftplugins object
+ * @returns Normalized ftplugins objects
+ * @example
+ * ```typescript
+ * import { expect } from "jsr:@std/expect@1.0.4";
+ *
+ * expect(normalizeFtp({ "lua_lua": "print('foo')" }))
+ *   .toEqual([{ filetype: "lua", ftplugin: "lua <<EOF\nprint('foo')\nEOF\n" }])
+ *
+ * expect(normalizeFtp({ "lua": "echomsg 'foo'" }))
+ *   .toEqual([{ filetype: "lua", ftplugin: "echomsg 'foo'" }])
+ *
+ * expect(normalizeFtp({
+ *   "lua": "echomsg 'foo'",
+ *   "lua_lua": "print('foo')"
+ * }))
+ *   .toEqual([
+ *     { filetype: "lua", ftplugin: "echomsg 'foo'" },
+ *     { filetype: "lua", ftplugin: "lua <<EOF\nprint('foo')\nEOF\n" },
+ *   ])
+ * ```
+ */
+export function normalizeFtp(plugin: DppToml["ftplugins"]): FiletypePlugin[] {
+  if (plugin == null) return [];
+  return Object.entries(plugin)
+    .map<FiletypePlugin>(([ft, ftp]) => {
+      return {
+        filetype: ft.replace(/^lua_/, ""),
+        ftplugin: ft.startsWith("lua_") ? `lua <<EOF\n${ftp}\nEOF\n` : ftp,
+      };
+    });
+}
 
 /**
  * The wrapper function to get extension by `denops.dispatcher.getExt`.
  *
  * @param denops Denops instance
  * @param name The extension name
- * @returns The extension instances, if not found, throw an error
+ * @returns The extension instances
+ * @throws Error if the extension is not found
  */
 async function getExtension<T extends keyof Extension>(
   denops: Denops,
   name: T,
 ): Promise<Extension[T]> {
-  const [e, ...rest] = await denops.dispatcher.getExt(name) as Extension[T];
-  if (e == null) {
+  const ext = await denops.dispatcher.getExt(name) as Extension[T];
+  if (ext.at(0) == null) {
     throw new Error("Extension is not found");
   }
-  return [e, ...rest] as Extension[T];
+  return ext as Extension[T];
 }
 
 const inlineVimrcs = [
@@ -74,7 +117,7 @@ const inlineVimrcs = [
 
 const tomlBaseDir = "~/.config/nvim/rc";
 
-const tomls: Toml[] = [
+const tomlFiles: Toml[] = [
   { path: `${tomlBaseDir}/dein.toml`, lazy: false },
   { path: `${tomlBaseDir}/deinft.toml`, lazy: false },
   { path: `${tomlBaseDir}/dein_lazy.toml`, lazy: true },
@@ -99,22 +142,13 @@ export class Config extends BaseConfig {
       Protocol
     >;
 
-    console.log(protocols);
-
-    const recordPlugins: Record<string, Plugin> = {};
-    const ftplugins: Record<string, string> = {};
-    const hooksFiles: string[] = [];
-    let multipleHooks: MultipleHook[] = [];
-
     const [tomlExt, tomlOptions, tomlParams] = await getExtension(
       denops,
       "toml",
     );
-    const action = tomlExt.actions.load;
-
-    const t = await Promise.all(
-      tomls.map(({ path, lazy }) =>
-        action.callback({
+    const tomls = await Promise.all(
+      tomlFiles.map(({ path, lazy }) =>
+        tomlExt.actions.load.callback({
           denops,
           context,
           options,
@@ -130,41 +164,34 @@ export class Config extends BaseConfig {
         })
       ),
     );
-    // t.flatMap((x) => x.plugins ?? [])
-    //   .forEach((x) => {
-    //     x
-    //   });
 
-    // / Merge toml results
-    for (const toml of t) {
-      for (const plugin of toml.plugins ?? []) {
-        recordPlugins[plugin.name] = plugin;
-      }
+    const recordPlugins = new Map<string, Plugin>(
+      tomls
+        .flatMap((toml) => toml.plugins ?? [])
+        .map((plugin) => [plugin.name, plugin]),
+    );
+    const ftpluginMap = tomls
+      .flatMap((toml) => normalizeFtp(toml.ftplugins))
+      .reduce((m, { filetype, ftplugin }) => {
+        return m.set(
+          filetype,
+          [...(m.get(filetype) ?? []), ftplugin],
+        );
+      }, new Map<string, string[]>());
 
-      if (toml.ftplugins) {
-        mergeFtplugins(ftplugins, toml.ftplugins);
-      }
+    const multipleHooks: MultipleHook[] = tomls.reduce(
+      (acc, toml) => acc.concat(toml.multiple_hooks ?? []),
+      [] as MultipleHook[],
+    );
+    const hooksFiles = tomls
+      .map((toml) => toml.hooks_file)
+      .filter((x) => x != null);
 
-      if (toml.multiple_hooks) {
-        multipleHooks = multipleHooks.concat(toml.multiple_hooks);
-      }
-
-      if (toml.hooks_file) {
-        hooksFiles.push(toml.hooks_file);
-      }
-    }
-
-    // console.log(JSON.stringify(recordPlugins, null, 2));
-    // console.log(JSON.stringify(hooksFiles, null, 2));
-    // console.log(JSON.stringify(ftplugins, null, 2));
-    //     }}}
     const [lazyExt, lazyOptions, lazyParams] = await getExtension(
       denops,
       "lazy",
     );
-    const aaction = lazyExt.actions.makeState;
-
-    const lazyResult = await aaction.callback({
+    const { plugins, stateLines } = await lazyExt.actions.makeState.callback({
       denops,
       context,
       options,
@@ -172,23 +199,20 @@ export class Config extends BaseConfig {
       extOptions: lazyOptions,
       extParams: lazyParams,
       actionParams: {
-        plugins: Object.values(recordPlugins),
+        plugins: recordPlugins.values().toArray(),
       },
     });
 
-    // const checkFiles = Promise.all([
-    //
-    // ])
-    // for await (const file of expandGlob(`${Deno.env.get("BASE_DIR")}/*`)) {
-    //   checkFiles.push(file.path);
-    // }
-
     return {
-      ftplugins,
+      ftplugins: Object.fromEntries(
+        ftpluginMap
+          .entries()
+          .map(([k, v]) => [k, v.join("\n")]),
+      ),
       hooksFiles,
       multipleHooks,
-      plugins: lazyResult?.plugins ?? [],
-      stateLines: lazyResult?.stateLines ?? [],
+      plugins,
+      stateLines,
     };
   }
 }
