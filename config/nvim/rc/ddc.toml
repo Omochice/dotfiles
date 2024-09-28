@@ -1,7 +1,7 @@
 [[plugins]]
 repo = "https://github.com/Shougo/ddc.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/ddc.lua"
-on_source = "denops.vim"
+depends = "denops.vim"
 on_event = "InsertEnter"
 
 [[plugins]]
