@@ -1,64 +1,3 @@
-hook_add = """
-function s:disable_bgcolor() abort
-  highlight FloatBorder ctermbg=NONE guibg=NONE
-  highlight NormalFloat ctermbg=NONE guibg=NONE
-  highlight Special ctermbg=NONE guibg=NONE
-  highlight link TreesitterContext Pmenu
-  highlight WinBar ctermbg=NONE guibg=NONE
-endfunction
-
-augroup vimrc#colorsetting
-  autocmd!
-  autocmd ColorScheme * call timer_start(0, { -> s:disable_bgcolor() })
-  autocmd VimEnter * nested colorscheme sonokai
-augroup END
-
-if has('mac')
-  let g:clipboard = #{
-    \\   name: 'pbcopy',
-    \\   copy: {
-    \\     '+': ['pbcopy'],
-    \\     '*': ['pbcopy'],
-    \\   },
-    \\   paste: {
-    \\     '+': ['pbpaste'],
-    \\     '*': ['pbpaste'],
-    \\   },
-    \\   cache_enabled: v:false,
-    \\ }
-endif
-
-if has('linux') && has('wsl')
-  let g:clipboard = #{
-    \\   name: 'win32yank',
-    \\   copy: {
-    \\     '+': ['win32yank.exe', '-i', '--crlf'],
-    \\     '*': ['win32yank.exe', '-i', '--crlf'],
-    \\   },
-    \\   paste: {
-    \\     '+': ['win32yank.exe', '-o', '--lf'],
-    \\     '*': ['win32yank.exe', '-o', '--lf'],
-    \\   },
-    \\   cache_enabled: v:false,
-    \\ }
-endif
-
-if has('linux') && !has('wsl')
-  let g:clipboard = #{
-    \\   name: 'xsel',
-    \\   copy: {
-    \\     '+': ['xsel', '--nodetach', '--input', '--clipboard'],
-    \\     '*': ['xsel', '--nodetach', '--input', '--primary'],
-    \\   },
-    \\   paste: {
-    \\     '+': ['xsel', '--output', '--clipboard'],
-    \\     '*': ['xsel', '--output', '--primary'],
-    \\   },
-    \\   cache_enabled: v:true,
-    \\ }
-endif
-"""
-
 [[plugins]]
 repo = "https://github.com/Shougo/dein.vim"
 
@@ -73,6 +12,20 @@ let g:sonokai_dim_inactive_windows = v:false
 let g:sonokai_enable_italic = v:false
 let g:sonokai_disable_italic_comment = v:true
 let g:sonokai_transparent_background = v:true
+
+function s:disable_bgcolor() abort
+  highlight FloatBorder ctermbg=NONE guibg=NONE
+  highlight NormalFloat ctermbg=NONE guibg=NONE
+  highlight Special ctermbg=NONE guibg=NONE
+  highlight link TreesitterContext Pmenu
+  highlight WinBar ctermbg=NONE guibg=NONE
+endfunction
+
+augroup vimrc#colorsetting
+  autocmd!
+  autocmd ColorScheme * call timer_start(0, { -> s:disable_bgcolor() })
+  autocmd VimEnter * nested colorscheme sonokai
+augroup END
 """
 
 [[plugins]]
