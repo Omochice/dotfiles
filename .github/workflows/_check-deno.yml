@@ -18,8 +18,8 @@ jobs:
         with:
           deno-version: rc
       - name: type check
-        run: deno check scripts/**/*.ts config/nvim/rc/ts/*.ts config/nvim-dark/**.ts
+        run: deno check scripts/**/*.ts config/nvim/rc/ts/*.ts config/nvim-dark/**/*.ts
       - name: linting
-        run: deno lint scripts/**/*.ts config/nvim/rc/ts/*.ts config/nvim-dark/**.ts
+        run: deno lint scripts/**/*.ts config/nvim/rc/ts/*.ts config/nvim-dark/**/*.ts
       - name: testing
-        run: deno test --doc config/nvim-dark/**.ts
+        run: deno test --doc config/nvim-dark/**/*.ts
