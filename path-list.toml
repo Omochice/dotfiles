@@ -50,8 +50,9 @@ to = "tree"
 if_executable = "lsd"
 
 [[aliases]]
-from = "lsd -al"
+from = "nu -c 'ls -a'"
 to = "la"
+if_executable = "nu"
 
 [[environments]]
 depends = ["local-bin", "nvim"]
@@ -155,9 +156,9 @@ to = "cat"
 if_executable = "batcat"
 
 [[aliases]]
-from = "lsd"
+from = "nu -c 'ls'"
 to = "ls"
-if_executable = "lsd"
+if_executable = "nu"
 
 [[aliases]]
 from = "ptpython --vi"
