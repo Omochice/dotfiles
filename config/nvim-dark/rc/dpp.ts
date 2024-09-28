@@ -130,7 +130,6 @@ export class Config extends BaseConfig {
   override async config(
     { denops, contextBuilder }: ConfigArgument,
   ): Promise<ConfigReturn> {
-    const hasNvim = denops.meta.host === "nvim";
     contextBuilder.setGlobal({
       inlineVimrcs,
       protocols: ["git"],
