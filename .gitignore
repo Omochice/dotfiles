@@ -72,6 +72,7 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/mise/config.toml
 !/config/aqua/aqua.yaml
 !/config/corvusskk/config.xml
+!/config/nvim-dark/**
 !/win-config/**
 !/flake.nix
 !/flake.lock
