@@ -588,7 +588,6 @@ if = "has('nvim')"
 
 [[plugins]]
 repo = "https://github.com/folke/noice.nvim"
-rev = "v4.4.7"
 hooks_file = "$DEIN_RC_DIR/hooks/noice.lua"
 depends = ["nui.nvim", "nvim-notify"]
 if = "has('nvim')"
