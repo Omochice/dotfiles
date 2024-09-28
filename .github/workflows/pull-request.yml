@@ -29,6 +29,7 @@ jobs:
             deno:
               - scripts/**/*.ts
               - config/nvim/rc/ts/*.ts
+              - config/nvim-dark/**/*.ts
               - config/skhd/queries/*.ts
               - .github/workflows/_check-deno.yml
               - .github/workflows/pull-request.yml
