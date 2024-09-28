@@ -180,18 +180,18 @@ hook_add = """
 function s:number_of_non_float() abort
   " on floating / popup window is return 'popup'.
   return tabpagebuflist()
-        \ ->map({ _, nr -> win_findbuf(nr) })
-        \ ->flatten()
-        \ ->sort()
-        \ ->uniq()
-        \ ->filter({ _, nr -> win_gettype(nr) != 'popup' })
-        \ ->len()
+        \\ ->map({ _, nr -> win_findbuf(nr) })
+        \\ ->flatten()
+        \\ ->sort()
+        \\ ->uniq()
+        \\ ->filter({ _, nr -> win_gettype(nr) != 'popup' })
+        \\ ->len()
 endfunction
 
 nnoremap <C-e> <Cmd>WinResizerStartResize<CR>
 nnoremap <expr><C-w><C-w> <SID>number_of_non_float() > 2
-    \ ? '<cmd>WinResizerStartFocus<CR>'
-    \ : '<C-w><C-w>'
+    \\ ? '<cmd>WinResizerStartFocus<CR>'
+    \\ : '<C-w><C-w>'
 let g:winresizer_vert_resize = 3
 """
 on_cmd = ["WinResizerStartResize", "WinResizerStartFocus"]
@@ -291,7 +291,7 @@ repo = "https://github.com/Shougo/context_filetype.vim"
 lua_source = """
 local vimx = require("artemis")
 vimx.g["context_filetype#ignore_patterns"] = {
-  toml = [[^\s*#\s*]],
+  toml = [[^\\s*#\\s*]],
 }
 """
 
@@ -526,14 +526,14 @@ hook_add = """
 function! s:expand_snippets() abort
   silent! doautocmd <nomodeline> User myvimrc#close_pum
   if toy_postfix#expandable()
-    return "\<Cmd>call toy_postfix#expand()\<CR>"
+    return "\\<Cmd>call toy_postfix#expand()\\<CR>"
   elseif vsnip#expandable()
-    return "\<Plug>(vsnip-expand)"
+    return "\\<Plug>(vsnip-expand)"
   else
-    return "\<Plug>(emmet-expand-abbr-with-cmd)"
+    return "\\<Plug>(emmet-expand-abbr-with-cmd)"
   endif
 endfunction
-inoremap <expr><C-x><C-j> "\<C-g>u" .. <SID>expand_snippets()
+inoremap <expr><C-x><C-j> "\\<C-g>u" .. <SID>expand_snippets()
 """
 
 [[plugins]]

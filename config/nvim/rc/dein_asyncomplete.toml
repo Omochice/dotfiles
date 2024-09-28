@@ -12,24 +12,24 @@ let g:asyncomplete_auto_popup = v:true
 let g:asyncomplete_auto_completeopt = v:false
 
 call asyncomplete#register_source(
-      \ asyncomplete#sources#buffer#get_source_options({
-      \   "name": "Buffer",
-      \   "allowlist": ["*"],
-      \   "completor": function("asyncomplete#sources#buffer#completor"),
-      \   "config": {
-      \     "max_buffer_size": 5000000,
-      \   },
-      \   })
-      \ )
+      \\ asyncomplete#sources#buffer#get_source_options({
+      \\   "name": "Buffer",
+      \\   "allowlist": ["*"],
+      \\   "completor": function("asyncomplete#sources#buffer#completor"),
+      \\   "config": {
+      \\     "max_buffer_size": 5000000,
+      \\   },
+      \\   })
+      \\ )
 
 call asyncomplete#register_source(
-      \ asyncomplete#sources#file#get_source_options({
-      \   'name': 'File',
-      \   'allowlist': ['*'],
-      \   'priority': 10,
-      \   'completor': function('asyncomplete#sources#file#completor')
-      \   })
-      \ )
+      \\ asyncomplete#sources#file#get_source_options({
+      \\   'name': 'File',
+      \\   'allowlist': ['*'],
+      \\   'priority': 10,
+      \\   'completor': function('asyncomplete#sources#file#completor')
+      \\   })
+      \\ )
 """
 on_event = "InsertEnter"
 

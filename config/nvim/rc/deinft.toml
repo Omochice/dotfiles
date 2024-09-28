@@ -60,7 +60,7 @@ setlocal shiftwidth=2
 """
 
 typescript = """
-setlocal commentstring=//\ %s
+setlocal commentstring=//\\ %s
 setlocal tabstop=2
 setlocal softtabstop=2
 setlocal shiftwidth=2
@@ -135,18 +135,18 @@ inoreabbrev <buffer> ;; ->
 
 gitcommit_markdown = """
 function! s:is_checkbox() abort
-  return getline(line('.')) =~# '^\s*\(- \)\?\[[x ]\]'
+  return getline(line('.')) =~# '^\\s*\\(- \\)\\?\\[[x ]\\]'
 endfunction
 
 function! s:toggle_checkbox() abort
   let l:lnum = line('.')
   let l:line = getline(l:lnum)
-  if l:line =~# '\[x\]'
-    let l:line = substitute(l:line, '\[x\]', '[ ]', '')
+  if l:line =~# '\\[x\\]'
+    let l:line = substitute(l:line, '\\[x\\]', '[ ]', '')
     call setline(l:lnum, l:line)
     return
-  elseif l:line =~# '\[ \]'
-    let l:line = substitute(l:line, '\[ \]', '[x]', '')
+  elseif l:line =~# '\\[ \\]'
+    let l:line = substitute(l:line, '\\[ \\]', '[x]', '')
     call setline(l:lnum, l:line)
     return
   endif
@@ -155,12 +155,12 @@ endfunction
 function! s:toggle_listitem(marker) abort
   let l:lnum = line('.')
   let l:line = getline(l:lnum)
-  if l:line =~# '^\s*' .. a:marker
+  if l:line =~# '^\\s*' .. a:marker
     " `- text` => `text`
-    let l:line = substitute(l:line, a:marker .. '\s*', '', '')
+    let l:line = substitute(l:line, a:marker .. '\\s*', '', '')
     call setline(l:lnum, l:line)
   else
-    let l:line = substitute(l:line, '\(\S\)', a:marker .. ' ' .. '\1', '')
+    let l:line = substitute(l:line, '\\(\\S\\)', a:marker .. ' ' .. '\\1', '')
     call setline(l:lnum, l:line)
   endif
 endfunction
