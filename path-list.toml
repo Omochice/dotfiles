@@ -45,13 +45,12 @@ to = "vim"
 if_executable = "nvim"
 
 [[aliases]]
-depends = ["brew"]
-from = "eza -T"
+from = "lsd --tree"
 to = "tree"
-if_executable = "eza"
+if_executable = "lsd"
 
 [[aliases]]
-from = "ls -al"
+from = "lsd -al"
 to = "la"
 
 [[environments]]
@@ -156,10 +155,9 @@ to = "cat"
 if_executable = "batcat"
 
 [[aliases]]
-depends = ["brew"]
-from = "eza --icons -g --time-style=long-iso"
+from = "lsd"
 to = "ls"
-if_executable = "eza"
+if_executable = "lsd"
 
 [[aliases]]
 from = "ptpython --vi"
