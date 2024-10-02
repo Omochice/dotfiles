@@ -55,3 +55,4 @@ packages:
 - name: tamasfe/taplo/full@0.9.3
 - name: protocolbuffers/protobuf/protoc@v28.2
 - name: lsd-rs/lsd@v1.1.5
+- name: editorconfig-checker/editorconfig-checker@v3.0.3
