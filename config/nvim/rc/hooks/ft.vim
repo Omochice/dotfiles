@@ -16,7 +16,8 @@ inoreabbrev <buffer> improt import
 inoreabbrev <buffer> ;; ->
 " }}}
 
-" javascript {{{
+" javascript_typescript {{{
+setlocal commentstring=//\ %s
 setlocal tabstop=2
 setlocal softtabstop=2
 setlocal shiftwidth=2
@@ -30,13 +31,6 @@ setlocal spell
 " }}}
 
 " vue {{{
-setlocal tabstop=2
-setlocal softtabstop=2
-setlocal shiftwidth=2
-" }}}
-
-" typescript {{{
-setlocal commentstring=//\ %s
 setlocal tabstop=2
 setlocal softtabstop=2
 setlocal shiftwidth=2
@@ -110,13 +104,7 @@ endif
 inoreabbrev <buffer> ;; ->
 " }}}
 
-" gitcommit {{{
-nnoremap <buffer><expr> <C-x> omochice#checkbox#is_checkbox() ? '<CMD>call omochice#checkbox#toggle_checkbox()<CR>' : '<C-x>'
-nnoremap <buffer>- <Cmd>call omochice#listitem#toggle_listitem('-')<CR>
-inoreabbrev <buffer> ;; ->
-" }}}
-
-" markdown {{{
+" gitcommit_markdown {{{
 nnoremap <buffer><expr> <C-x> omochice#checkbox#is_checkbox() ? '<CMD>call omochice#checkbox#toggle_checkbox()<CR>' : '<C-x>'
 nnoremap <buffer>- <Cmd>call omochice#listitem#toggle_listitem('-')<CR>
 inoreabbrev <buffer> ;; ->
