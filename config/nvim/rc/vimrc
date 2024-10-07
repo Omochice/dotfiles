@@ -1,136 +1,73 @@
-let s:rc_dir = fnamemodify(expand('<sfile>'), ':p:h')
-let g:config_dir = fnamemodify(s:rc_dir, ':h')
+set nocompatible
+
+augroup omochice#vimrc
+  autocmd!
+augroup END
+
+const s:dpp_base = expand('~/.cache/dpp')
+const s:rc_dir = fnamemodify(expand('<sfile>'), ':p:h')
+const g:config_dir = fnamemodify(s:rc_dir, ':h')
 let $DEIN_RC_DIR = s:rc_dir
 
-" dein installation check {{{
-let $CACHE = expand('~/.cache')
-if !isdirectory($CACHE)
-  call mkdir($CACHE, 'p')
-endif
-
-let s:dein_dir = $CACHE .. '/dein/' .. (has('nvim') ? 'nvim' : 'vim')
-
-if &runtimepath !~# '/dein.vim'
-  let s:dein_repo_dir = s:dein_dir .. '/repos/github.com/Shougo/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+function s:init_plugin(repo) abort
+  if &runtimepath =~# $'/{a:repo}'
+    return
   endif
-  execute 'set runtimepath^=' .. s:dein_repo_dir
-endif
-" }}}
-
-" artemis bootstrap {{{
-if &runtimepath !~# '/vim-artemis'
-  let s:artemis = s:dein_dir .. '/repos/github.com/tani/vim-artemis'
-  if !isdirectory(s:artemis)
-    execute '!git clone https://github.com/tani/vim-artemis' s:artemis
+  const l:dst = expand($'{s:dpp_base}/repos/github.com/{a:repo}')
+  execute $'set runtimepath^={l:dst}'
+  if isdirectory(l:dst)
+    return
   endif
-  execute 'set runtimepath^=' .. s:artemis
+  execute $'!git clone https://github.com/{a:repo} {l:dst}'
+endfunction
+
+const s:prepends = [
+      \ 'Shougo/dpp.vim',
+      \ 'vim-denops/denops.vim',
+      \ 'tani/vim-artemis',
+      \ 'Shougo/dpp-protocol-git',
+      \ 'Shougo/dpp-ext-lazy',
+      \ 'Shougo/dpp-ext-toml',
+      \ 'Shougo/dpp-ext-installer',
+      \ ]
+
+for s:repo in s:prepends
+  call s:init_plugin(s:repo)
+endfor
+
+if s:dpp_base->dpp#min#load_state()
+  " NOTE: when fail to load state, create new state
+  autocmd User DenopsReady
+  \ : echohl WarningMsg
+  \ | echomsg 'dpp load_state() is failed'
+  \ | echohl NONE
+  \ | call dpp#make_state(s:dpp_base, '~/.config/nvim/rc/ts/dpp.ts')
+else
+  autocmd omochice#vimrc BufWritePost *.lua,*.vim,*.toml,*.ts,vimrc,.vimrc
+        \ call dpp#check_files()
+
+  " Check new plugins
+  autocmd omochice#vimrc BufWritePost *.toml
+        \ : if !dpp#sync_ext_action('installer', 'getNotInstalled')->empty()
+        \ |  call dpp#async_ext_action('installer', 'install')
+        \ | endif
 endif
-" }}}
 
-" options {{{
-let g:dein#auto_recache = !has('win32')
-let g:dein#lazy_rplugins = v:true
-" }}}
+command! DppCache call dpp#make_state(s:dpp_base, '~/.config/nvim/rc/ts/dpp.ts')
 
-" begin settings {{{
-if dein#min#load_state(s:dein_dir)
-  let g:dein#inline_vimrcs = [
-       \ expand('~/.config/vim/vimrc.core'),
-       \ ]
+autocmd User Dpp:makeStatePost
+      \ : echohl WarningMsg
+      \ | echomsg 'dpp make_state() is done'
+      \ | echohl NONE
 
-  " .toml file
+filetype indent plugin on
 
-  let s:toml = s:rc_dir .. '/dein.toml'
-  let s:lazy_toml = s:rc_dir .. '/dein_lazy.toml'
-  let s:denops_toml = s:rc_dir .. '/dein_denops.toml'
-  let s:ddc = s:rc_dir .. '/ddc.toml'
-  let s:ddu = s:rc_dir .. '/ddu.toml'
-  let s:ft_toml = s:rc_dir .. '/deinft.toml'
-
-  call dein#begin(s:dein_dir, expand('<sfile>'))
-  " read toml and cache
-  call dein#load_toml(s:toml, #{lazy: v:false})
-  call dein#load_toml(s:lazy_toml, #{lazy: v:true})
-  call dein#load_toml(s:denops_toml, #{lazy: v:true})
-  call dein#load_toml(s:ddc, #{lazy: v:true})
-  call dein#load_toml(s:ddu, #{lazy: v:true})
-  call dein#load_toml(s:ft_toml, #{lazy: v:false})
-  " end settings
-  call dein#end()
-  call dein#save_state()
+if has('syntax')
+  syntax on
 endif
-" }}}
-
-" plugin installation check {{{
-if dein#check_install()
-  if $DEIN_GITHUB_TOKEN !=# ''
-    let g:dein#install_github_api_token = $DEIN_GITHUB_TOKEN
-    call dein#check_update(v:true)
-  else
-    call dein#install()
-  endif
-endif
-" }}}
-
-" plugin remove check {{{
-let s:removed_plugins = dein#check_clean()
-if !(s:removed_plugins->empty())
-  call map(s:removed_plugins, {_, val -> delete(val, 'rf')})
-  call dein#recache_runtimepath()
-endif
-" }}}
 
 if has('wsl')
   call myvimrc#zenhan#enable()
 elseif !has('mac')
   call myvimrc#fcitx#enable()
 endif
-
-" clipboard {{{
-if has('mac')
-  let g:clipboard = #{
-    \   name: 'pbcopy',
-    \   copy: {
-    \     '+': ['pbcopy'],
-    \     '*': ['pbcopy'],
-    \   },
-    \   paste: {
-    \     '+': ['pbpaste'],
-    \     '*': ['pbpaste'],
-    \   },
-    \   cache_enabled: v:false,
-    \ }
-endif
-
-if has('linux') && has('wsl')
-  let g:clipboard = #{
-    \   name: 'win32yank',
-    \   copy: {
-    \     '+': ['win32yank.exe', '-i', '--crlf'],
-    \     '*': ['win32yank.exe', '-i', '--crlf'],
-    \   },
-    \   paste: {
-    \     '+': ['win32yank.exe', '-o', '--lf'],
-    \     '*': ['win32yank.exe', '-o', '--lf'],
-    \   },
-    \   cache_enabled: v:false,
-    \ }
-endif
-
-if has('linux') && !has('wsl')
-  let g:clipboard = #{
-    \   name: 'xsel',
-    \   copy: {
-    \     '+': ['xsel', '--nodetach', '--input', '--clipboard'],
-    \     '*': ['xsel', '--nodetach', '--input', '--primary'],
-    \   },
-    \   paste: {
-    \     '+': ['xsel', '--output', '--clipboard'],
-    \     '*': ['xsel', '--output', '--primary'],
-    \   },
-    \   cache_enabled: v:true,
-    \ }
-endif
-" }}}

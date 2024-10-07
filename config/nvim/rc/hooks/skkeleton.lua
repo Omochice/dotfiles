@@ -13,7 +13,7 @@ local augroup = vimx.create_augroup("vimrc#skkeleton", {
 vimx.create_autocmd("User", {
   pattern = "skkeleton-initialize-pre",
   callback = function()
-    local dictPath = vimx.fn.dein.get("dict").path
+    local dictPath = vimx.fn.dpp.get("dict").path
     vimx.fn.skkeleton.azik.add_table("jis")
     vimx.fn.skkeleton.config({
       kanaTable = "azik",
