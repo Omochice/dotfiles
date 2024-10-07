@@ -2,7 +2,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! omochice#listitem#toggle_listitem(marker) abort
-  let l:lnum = line('.')
+  const l:lnum = line('.')
   let l:line = getline(l:lnum)
   if l:line =~# $'^\s*{a:marker}'
     " `- text` => `text`

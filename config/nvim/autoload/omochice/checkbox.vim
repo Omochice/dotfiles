@@ -8,7 +8,7 @@ endfunction
 
 " Toggle current line checkbox
 function! omochice#checkbox#toggle_checkbox() abort
-  let l:lnum = line('.')
+  const l:lnum = line('.')
   let l:line = getline(l:lnum)
   if l:line =~# '\[x\]'
     let l:line = substitute(l:line, '\[x\]', '[ ]', '')
