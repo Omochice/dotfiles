@@ -1,5 +1,0 @@
-[[plugins]]
-repo = "https://github.com/Shougo/dein.vim"
-
-[[plugins]]
-repo = "https://github.com/tani/vim-artemis"
