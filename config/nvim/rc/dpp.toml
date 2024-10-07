@@ -1,0 +1,24 @@
+[[plugins]]
+repo = "https://github.com/Shougo/dpp.vim"
+hook_add = """
+command! DppCache call dpp#make_state(s:dpp_base, '~/.config/nvim/rc/ts/dpp.ts')
+"""
+
+[[plugins]]
+repo = "https://github.com/vim-denops/denops.vim"
+
+[[plugins]]
+repo = "https://tani/vim-artemis"
+
+[[plugins]]
+repo = "https://Shougo/dpp-protocol-git"
+
+[[plugins]]
+repo = "https://Shougo/dpp-ext-lazy"
+
+[[plugins]]
+repo = "https://Shougo/dpp-ext-toml"
+
+[[plugins]]
+repo = "https://Shougo/dpp-ext-installer"
+
