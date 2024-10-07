@@ -1,3 +1,5 @@
+hooks_file = "$DEIN_RC_DIR/hooks/ft.vim"
+
 [[plugins]]
 repo = "https://github.com/sainnhe/sonokai"
 hook_add = """

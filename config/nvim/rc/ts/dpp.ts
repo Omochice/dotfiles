@@ -112,18 +112,18 @@ async function getExtension<T extends keyof Extension>(
 }
 
 const inlineVimrcs = [
-  "~/.config/vim/vimrc.core",
+  "~/.config/nvim/vimrc.core",
+  "~/.config/nvim/rc/disable_plugin.vim",
 ] as const satisfies string[];
 
-const tomlBaseDir = "~/.config/nvim/rc";
-
 const tomlFiles: Toml[] = [
-  { path: `${tomlBaseDir}/dein.toml`, lazy: false },
-  { path: `${tomlBaseDir}/deinft.toml`, lazy: false },
-  { path: `${tomlBaseDir}/dein_lazy.toml`, lazy: true },
-  { path: `${tomlBaseDir}/dein_denops.toml`, lazy: true },
-  { path: `${tomlBaseDir}/ddc.toml`, lazy: true },
-  { path: `${tomlBaseDir}/ddu.toml`, lazy: true },
+  // { path: "~/.config/nvim/rc/dein.toml", lazy: false },
+  { path: "~/.config/nvim/rc/dpp.toml", lazy: false },
+  { path: "~/.config/nvim/rc/non-lazy.toml", lazy: false },
+  { path: "~/.config/nvim/rc/lazy.toml", lazy: true },
+  { path: "~/.config/nvim/rc/denops.toml", lazy: true },
+  { path: "~/.config/nvim/rc/ddc.toml", lazy: true },
+  { path: "~/.config/nvim/rc/ddu.toml", lazy: true },
 ] as const;
 
 export class Config extends BaseConfig {
