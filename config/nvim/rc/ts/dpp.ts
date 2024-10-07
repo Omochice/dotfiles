@@ -120,6 +120,7 @@ const tomlFiles: Toml[] = [
   // { path: "~/.config/nvim/rc/dein.toml", lazy: false },
   { path: "~/.config/nvim/rc/dpp.toml", lazy: false },
   { path: "~/.config/nvim/rc/non-lazy.toml", lazy: false },
+  { path: "~/.config/nvim/rc/colorscheme.toml", lazy: false },
   { path: "~/.config/nvim/rc/lazy.toml", lazy: true },
   { path: "~/.config/nvim/rc/denops.toml", lazy: true },
   { path: "~/.config/nvim/rc/ddc.toml", lazy: true },
