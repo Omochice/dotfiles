@@ -125,9 +125,6 @@ noremap! <Left> <nop>
 noremap! <Down> <nop>
 noremap! <Up> <nop>
 noremap! <Right> <nop>
-" to use indent/dedent
-inoremap <Left> <C-d>
-inoremap <Right> <C-t>
 
 nnoremap J gj
 nnoremap gj J
