@@ -1,10 +1,16 @@
 local M = {}
 
+---@class Ok<T> { value: T, error: nil, is_err: false }
+---@class Err<T> { value: nil, error: T, is_err: true }
+
+---@class Result<T, U>
+---| Ok<T>
+---| Err<U>
+
 ---Return ok result
 ---@generic T
----@alias ok { value: T, error: nil, is_err: false }
 ---@param value T
----@return ok
+---@return Ok<T>
 M.ok = function(value)
   return {
     value = value,
@@ -15,9 +21,8 @@ end
 
 ---Return error result
 ---@generic T
----@alias err { value: nil, error: T, is_err: true }
 ---@param error T
----@return err
+---@return Err<T>
 M.err = function(error)
   return {
     value = nil,
@@ -27,7 +32,3 @@ M.err = function(error)
 end
 
 return M
-
----@alias result
----| ok
----| err
