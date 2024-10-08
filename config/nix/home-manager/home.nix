@@ -11,6 +11,9 @@ let
   homeDirectory = builtins.getEnv "HOME";
 in
 {
+  imports = [
+    ../../git/default.nix
+  ];
   nixpkgs = {
     config = {
       allowUnfree = true;
