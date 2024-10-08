@@ -41,6 +41,7 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/rofi/*
 !/config/yapf/style
 !/config/alacritty/alacritty.yml
+!/config/starship/default.nix
 !/config/starship/config.toml
 !/config/lazygit/config.yml
 !/config/wezterm/*.lua

@@ -66,10 +66,6 @@ to = "SHELL"
 if_executable = "fish"
 
 [[environments]]
-from = "~/.config/starship/config.toml"
-to = "STARSHIP_CONFIG"
-
-[[environments]]
 from = "vivaldi-stable"
 to = "BROWSER"
 if_executable = "vivaldi-stable"

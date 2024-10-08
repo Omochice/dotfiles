@@ -13,6 +13,7 @@ in
 {
   imports = [
     ../../git/default.nix
+    ../../starship/default.nix
   ];
   nixpkgs = {
     config = {
