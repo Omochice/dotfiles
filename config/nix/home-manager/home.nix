@@ -14,6 +14,7 @@ in
   imports = [
     ../../git/default.nix
     ../../starship/default.nix
+    ../../lazygit/default.nix
   ];
   nixpkgs = {
     config = {
@@ -38,6 +39,6 @@ in
       pnpm
     ];
   };
-
   programs.home-manager.enable = true;
+  xdg.enable = true;
 }

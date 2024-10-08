@@ -43,7 +43,8 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/alacritty/alacritty.yml
 !/config/starship/default.nix
 !/config/starship/config.toml
-!/config/lazygit/config.yml
+!/config/lazygit/default.nix
+!/config/lazygit/config.toml
 !/config/wezterm/*.lua
 !/config/wezterm/keybinds/*.lua
 !/config/wezterm/colors/sonokai.toml
