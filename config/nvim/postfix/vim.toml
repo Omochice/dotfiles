@@ -1,7 +1,11 @@
 [[rules]]
-regex = "\(\S\+\)\.if"
+regex = "\\(\\S\\+\\)\\.if"
 template = """
 if {{__$1__}}
   {{__cursor__}}
 endif
 """
+
+[[rules]]
+regex = "\\(\\S\\+\\)\\.echo"
+template = "echom {{__$1__}}"

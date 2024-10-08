@@ -1,17 +1,17 @@
 [[rules]]
-regex = "from:\(\S\+\)"
+regex = "from:\\(\\S\\+\\)"
 template = "import {{__cursor__}} from \"{{__$1__}}\";"
 
 [[rules]]
-regex = "\(\S\+\)\.echo"
+regex = "\\(\\S\\+\\)\\.echo"
 template = "console.log({{__$1__}}){{__cursor__}}"
 
 [[rules]]
-regex = "\(\S\+\)\.warn"
+regex = "\\(\\S\\+\\)\\.warn"
 template = "console.warn({{__$1__}}){{__cursor__}}"
 
 [[rules]]
-regex = "\(\S\+\)\.if"
+regex = "\\(\\S\\+\\)\\.if"
 template = """
 if ({{__$1__}}) {
   {{__cursor__}}
@@ -19,7 +19,7 @@ if ({{__$1__}}) {
 """
 
 [[rules]]
-regex = "\(\S\+\)\.times"
+regex = "\\(\\S\\+\\)\\.times"
 template = """
 for (let i = 0; i < {{__$1__}} ; i++) {
   {{__cursor__}}
@@ -27,14 +27,14 @@ for (let i = 0; i < {{__$1__}} ; i++) {
 """
 
 [[rules]]
-regex = "\(\S\+\)\.each"
+regex = "\\(\\S\\+\\)\\.each"
 template = """
 for (const {{__cursor__}} of {{__$1__}}) {
 }
 """
 
 [[rules]]
-regex = "\(\S\+\)\.func"
+regex = "\\(\\S\\+\\)\\.func"
 template = """
 {{__$1__}}() {
   {{__cursor__}}

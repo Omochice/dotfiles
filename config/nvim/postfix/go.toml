@@ -1,9 +1,9 @@
 [[rules]]
-regex = "\(\S\+\)\.echo"
+regex = "\\(\\S\\+\\)\\.echo"
 template = "fmt.Println({{__$1__}})"
 
 [[rules]]
-regex = "\(\S\+\)\.each"
+regex = "\\(\\S\\+\\)\\.each"
 template = """
 for _, {{__cursor__}} := range {{__$1__}} {
 }
