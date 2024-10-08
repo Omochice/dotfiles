@@ -561,6 +561,7 @@ vimx.g.git_messenger_floating_win_opts = { border = 'single' }
 vimx.keymap.set('n', '<Space>gm', '<Plug>(git-messenger)')
 """
 on_map = { n = "<Plug>" }
+if = "!has('nvim')"
 
 [[plugins]]
 repo = "https://github.com/tyru/capture.vim"
