@@ -40,12 +40,8 @@ augroup vimrc#autocmd
   autocmd!
 augroup END
 
-let g:file_color_max_size = 1024 * 1000
-function s:on_buf_read_pre() abort
-  if getfsize(@%) > g:file_color_max_size
-    syntax off
-  endif
-endfunction
+" ref: https://zenn.dev/hokorobi/articles/98f79339d7d114
+autocmd vimrc#autocmd BufEnter * if getfsize(@%) > 1024 * 1000 | setlocal syntax=OFF | call interrupt() | endif
 
 if has('nvim')
   set wildmode=full
