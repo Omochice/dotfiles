@@ -46,3 +46,5 @@
 
 [user]
     useConfigOnly = true
+
+; vim:set filetype=gitconfig:
