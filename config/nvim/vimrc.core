@@ -305,6 +305,7 @@ if !exists('g:config_dir')
   inoremap ( ()<C-o>h
   inoremap [ []<C-o>h
   inoremap { {}<C-o>h
+  silent! colorscheme habamax
 endif
 
 nnoremap gt gt<Plug>(vimrc-gt)
