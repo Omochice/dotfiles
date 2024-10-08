@@ -99,6 +99,10 @@ local function setup_contents(result)
   return lines
 end
 
+--- Ensure contents is acceptable
+--- @params result string
+--- @params context
+--- @return Result<string[], string>
 local function ensure_contents(result, context)
   local contents = setup_contents(result)
   if vim.tbl_isempty(contents) then
