@@ -520,7 +520,7 @@ repo = "https://github.com/Omochice/toy-postfix.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/toy-postfix.lua"
 on_func = ["toy_postfix#expandable", "toy_postfix#expand"]
 
-[[multiple_plugins]]
+[[multiple_hooks]]
 plugins = ["vim-vsnip", "emmet-vim", "toy-postfix.vim"]
 hook_add = """
 function! s:expand_snippets() abort
