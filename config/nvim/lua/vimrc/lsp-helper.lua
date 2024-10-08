@@ -3,7 +3,7 @@ local M = {}
 local group = vim.api.nvim_create_augroup("lsp-helper", { clear = true })
 
 ---@param name string|nil LSP name
----@param callback fun(client: lsp.Client, bufnr: integer)
+---@param callback fun(client: vim.lsp.Client, bufnr: integer)
 function M.on_attach(name, callback)
   vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
