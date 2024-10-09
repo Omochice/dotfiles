@@ -2,9 +2,9 @@
 
 add_newline = true
 format = """
-╭───────────────────→ $git_branch $git_status $env_var
-├ $username at $hostname in $directory
-╰─→ $character 
+[╭───────────────────→](white) $git_branch $git_status
+[├](white) $username at $hostname in $directory
+[╰─→](white) $character 
 """
 
 [character]
@@ -48,8 +48,3 @@ modified = "[M:+$count](green) "
 staged = "[S:+$count](green) "
 renamed = "👅 "
 deleted = "🗑 "
-
-[env_var]
-format = "[VENV]($style) "
-variable = "VIRTUAL_ENV"
-style = "yellow"
