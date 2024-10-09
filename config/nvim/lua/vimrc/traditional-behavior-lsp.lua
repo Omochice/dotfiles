@@ -3,6 +3,7 @@ local M = {}
 local r = require("vimrc.result-type")
 local help_bufnr = nil
 
+---set window local options for preview
 ---@param winid integer
 local function set_window_options(winid)
   vim.wo[winid].previewwindow = true
