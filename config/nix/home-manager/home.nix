@@ -15,6 +15,7 @@ in
     ../../git/default.nix
     ../../starship/default.nix
     ../../lazygit/default.nix
+    ../../nushell/default.nix
   ];
   nixpkgs = {
     config = {
