@@ -37,6 +37,7 @@ in
       gnumake
       mise
       pnpm
+      nixd
     ];
   };
   programs.home-manager.enable = true;
