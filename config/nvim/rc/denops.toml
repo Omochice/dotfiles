@@ -5,48 +5,6 @@ command! DenopsRestart call denops#server#restart() " NOTE: not work?
 """
 on_event = "CursorHold"
 
-# [[plugins]]
-# repo = "Omochice/dps-popup-test"
-# # repo = "~/workspace/dps-popup-test"
-# on_source = "denops.vim"
-#
-[[plugins]]
-repo = "https://github.com/Omochice/dps-paiza-io-vim"
-# repo = "~/workspace/dps-paiza-io-vim"
-on_cmd = "PaizaIO"
-
-# [[plugins]]
-# repo = "Omochice/dps-charcounter-vim"
-# # repo = "~/workspace/dps-charcounter-vim"
-# on_cmd = "CharCount"
-
-[[plugins]]
-repo = "https://github.com/Omochice/dps-codic-vim"
-# repo = "~/workspace/dps-codic-vim"
-on_cmd = "Codic"
-
-# [[plugins]]
-# repo = "yuki-yano/dps-slack-status.vim"
-# hook_add = """
-# let g:slack_status_emoji = ":dadparrot:"
-# """
-# on_source = "denops.vim"
-
-# # guise.vim not work well on lazy...?
-# [[plugins]]
-# repo = "lambdalisue/vim-guise"
-# on_event = "TermOpen"
-# depends = "denops.vim"
-# # # on_source = "denops.vim"
-
-# # [[plugins]]
-# # repo = "supporterz-vol5-1/breakTimer-vim"
-# # hook_add = """
-# # let g:break_timer_username = "Omochice"
-# # """
-# # depends = ["denops.vim"]
-# # on_event = "BufRead"
-#
 [[plugins]]
 repo = "https://github.com/gamoutatsumi/dps-ghosttext.vim"
 lua_add = """
@@ -75,30 +33,25 @@ on_cmd = ["Gin", "GinStatus"]
 
 [[plugins]]
 repo = "https://github.com/Omochice/tataku.vim"
-# repo = "~/Toy/tataku.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/tataku.lua"
 depends = ["denops.vim", "vim-operator-user"]
 on_func = "tataku#call_recipe"
 on_map = { n = "<Plug>(operator-tataku", x = "<Plug>(operator-tataku" }
 
 [[plugins]]
-# repo = "~/Toy/tataku-collector-current_line"
 repo = "https://github.com/Omochice/tataku-collector-current_line"
 on_source = "tataku.vim"
 
 [[plugins]]
-# repo = "~/Toy/tataku-processor-google_translate"
 repo = "https://github.com/Omochice/tataku-processor-google_translate"
 on_source = "tataku.vim"
 
 [[plugins]]
 repo = "https://github.com/Omochice/tataku-processor-intl_segmenter"
-# repo = "~/Toy/tataku-processor-intl_segmenter"
 on_source = "tataku.vim"
 
 [[plugins]]
 repo = "https://github.com/Omochice/tataku-emitter-nvim_floatwin"
-# repo = "~/Toy/tataku-emitter-nvim_floatwin"
 on_source = "tataku.vim"
 
 [[plugins]]
