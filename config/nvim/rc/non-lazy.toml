@@ -3,11 +3,11 @@ hooks_file = "$DEIN_RC_DIR/hooks/ft.vim"
 [[plugins]]
 repo = "https://github.com/sainnhe/sonokai"
 hook_add = """
-let g:sonokai_style = 'espresso'
-let g:sonokai_dim_inactive_windows = v:false
-let g:sonokai_enable_italic = v:false
-let g:sonokai_disable_italic_comment = v:true
-let g:sonokai_transparent_background = v:true
+const g:sonokai_style = 'espresso'
+const g:sonokai_dim_inactive_windows = v:false
+const g:sonokai_enable_italic = v:false
+const g:sonokai_disable_italic_comment = v:true
+const g:sonokai_transparent_background = v:true
 
 function s:disable_bgcolor() abort
   highlight FloatBorder ctermbg=NONE guibg=NONE
@@ -46,7 +46,7 @@ repo = "https://github.com/itchyny/vim-gitbranch"
 repo = "https://github.com/vim-jp/vimdoc-ja"
 hook_add = """
 if has('nvim')
-  set helplang=en " default
+  set helplang=en
 else
   set helplang=ja
 endif
@@ -68,14 +68,9 @@ let g:findroot_not_for_subdir = v:false
 let g:findroot_patterns = ['.git/', 'settings.gradle']
 """
 
-# [[plugins]]
-# repo = "vim-jp/vim-streem"
-
 [[plugins]]
 repo = "https://github.com/vim-scripts/fish.vim"
-
-# [[plugins]]
-# repo = "mityu/vim-applescript"
+if = "!has('nvim')"
 
 [[plugins]]
 repo = "https://github.com/elkasztano/nushell-syntax-vim"
