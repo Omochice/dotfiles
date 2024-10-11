@@ -13,11 +13,6 @@ repo = "https://github.com/Shougo/ddc-ui-pum"
 on_source = "ddc.vim"
 depends = ["pum.vim"]
 
-# [[multiple_plugins]]
-# plugins = ["pum.vim", "lexima.vim"]
-# hook_source in multiple_plugins is not provided
-# hook_source =
-
 [[plugins]]
 repo = "https://github.com/shun/ddc-vim-lsp"
 depends = ["vim-lsp"]
