@@ -41,7 +41,7 @@ augroup vimrc#autocmd
 augroup END
 
 " ref: https://zenn.dev/hokorobi/articles/98f79339d7d114
-autocmd vimrc#autocmd BufEnter * if getfsize(@%) > 1024 * 1000 | setlocal syntax=OFF | call interrupt() | endif
+autocmd vimrc#autocmd BufEnter * if getfsize(@%) > 1024 * 1000 | setlocal syntax=OFF | endif
 
 if has('nvim')
   set wildmode=full
