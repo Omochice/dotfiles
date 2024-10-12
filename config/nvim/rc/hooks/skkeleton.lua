@@ -59,8 +59,9 @@ vimx.create_autocmd("User", {
       sources = { "skkeleton" },
       sourceOptions = {
         ["_"] = {
-          matchers = { "matcher_head" },
-          sorters = { "sorter_rank" },
+          matchers = {},
+          sorters = {},
+          isVolatile = true,
         }
       }
     })
