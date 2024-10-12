@@ -1,7 +1,3 @@
-if &compatible
-  set nocompatible
-endif
-
 " user settings
 syntax on
 filetype plugin indent on
