@@ -6,6 +6,27 @@ install_to="${HOME}/.local/nvim"
 [ -d ${install_to} ] || mkdir -p ${install_to}
 
 git clean -fdx
+
+# patches {{{
+cat <<EOF | git apply
+diff --git a/runtime/lua/vim/_defaults.lua b/runtime/lua/vim/_defaults.lua
+index 8e850f4cd3..c6e714b879 100644
+--- a/runtime/lua/vim/_defaults.lua
++++ b/runtime/lua/vim/_defaults.lua
+@@ -797,10 +797,4 @@ end
+ 
+ --- Default options
+ do
+-  --- Default 'grepprg' to ripgrep if available.
+-  if vim.fn.executable('rg') == 1 then
+-    -- Use -uu to make ripgrep not check ignore files/skip dot-files
+-    vim.o.grepprg = 'rg --vimgrep -uu '
+-    vim.o.grepformat = '%f:%l:%c:%m'
+-  end
+ end
+EOF
+# }}}
+
 make clean
 make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX=$install_to install
 
