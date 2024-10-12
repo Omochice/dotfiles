@@ -2,6 +2,7 @@
 repo = "https://github.com/Shougo/ddu.vim"
 depends = "denops.vim"
 hooks_file = "$DEIN_RC_DIR/hooks/ddu.lua"
+on_event = "CursorHold"
 on_func = ["ddu#start"]
 on_map = { n = "<Plug>(ddu" }
 
