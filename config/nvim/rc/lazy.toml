@@ -352,8 +352,8 @@ repo = "https://github.com/yuki-yano/vim-operator-replace"
 depends = "vim-operator-user"
 on_map = { n = "<Plug>", x = "<Plug>" }
 hook_add = """
-nmap R <Plug>(operator-replace)
-xmap R <Plug>(operator-replace)
+nnoremap R <Plug>(operator-replace)
+xnoremap R <Plug>(operator-replace)
 """
 
 [[plugins]]
