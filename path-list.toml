@@ -44,16 +44,6 @@ from = "nvim"
 to = "vim"
 if_executable = "nvim"
 
-[[aliases]]
-from = "lsd --tree"
-to = "tree"
-if_executable = "lsd"
-
-[[aliases]]
-from = "nu -c 'ls -a'"
-to = "la"
-if_executable = "nu"
-
 [[environments]]
 depends = ["local-bin", "nvim"]
 from = "nvim"
@@ -93,6 +83,25 @@ if_exists = "~/.local/share/pnpm"
 [[environments]]
 from = "~/.config/aqua/aqua.yaml"
 to = "AQUA_GLOBAL_CONFIG"
+
+[[aliases]]
+from = "exit"
+to = ":q"
+
+[[aliases]]
+from = "open"
+to = "nu-open"
+shell = "fish"
+
+[[aliases]]
+from = "^open"
+to = "open"
+shell = "nu"
+
+[[aliases]]
+from = "lsd --tree"
+to = "tree"
+if_executable = "lsd"
 
 [[aliases]]
 from = "sudo shutdown -h now"
@@ -152,11 +161,6 @@ to = "cat"
 if_executable = "batcat"
 
 [[aliases]]
-from = "nu -c 'ls'"
-to = "ls"
-if_executable = "nu"
-
-[[aliases]]
 from = "ptpython --vi"
 to = "ptpython"
 if_executable = "ptpython"
@@ -178,18 +182,21 @@ shell = "fish"
 [[aliases]]
 from = "date '+%Y-%m-%d'"
 to = "today"
+shell = "fish"
 
 [[aliases]]
 from = "date '+%Y-%m-%d' --date '+1 day'"
 to = "tomorrow"
+shell = "fish"
 
 [[aliases]]
-from = "$EDITOR -R"
+from = "nvim -R"
 to = "view"
 
 [[aliases]]
 from = "paru"
 to = "yay"
+os = "linux"
 if_executable = "paru"
 
 [[sources]]

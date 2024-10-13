@@ -16,6 +16,7 @@ in
     ../../starship/default.nix
     ../../lazygit/default.nix
     ../../nushell/default.nix
+    ../../zoxide/default.nix
   ];
   nixpkgs = {
     config = {

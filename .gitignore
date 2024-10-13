@@ -30,7 +30,7 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/git/ignore
 !/config/git/gitmessage
 !/config/vim/vimrc.core
-!/config/nushell/default.nix
+!/config/nushell/*
 !/config/nvim
 !/config/nvim/*
 !/config/nvim/**/*
@@ -51,6 +51,7 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/wezterm/colors/sonokai.toml
 !/config/powershell/profile.ps1
 !/config/stylua/stylua.toml
+!/config/zoxide/default.nix
 !/.gitconfig_shared
 !/profile
 !/.prettierrc.json
