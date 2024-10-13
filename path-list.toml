@@ -91,7 +91,7 @@ to = ":q"
 [[aliases]]
 from = "open"
 to = "nu-open"
-shell = "fish"
+shell = "nu"
 
 [[aliases]]
 from = "^open"
