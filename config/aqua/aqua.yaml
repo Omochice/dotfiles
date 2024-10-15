@@ -56,3 +56,4 @@ packages:
 - name: protocolbuffers/protobuf/protoc@v28.2
 - name: lsd-rs/lsd@v1.1.5
 - name: editorconfig-checker/editorconfig-checker@v3.0.3
+- name: k1LoW/octocov@v0.62.1
