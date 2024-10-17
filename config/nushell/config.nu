@@ -13,6 +13,29 @@ $env.config = {
       keycode: char_e
       mode: [emacs, vi_normal, vi_insert]
       event: { send: OpenEditor }
+    },
+    {
+      name: lazygit
+      modifier: control
+      keycode: char_g
+      mode: [emacs, vi_normal, vi_insert]
+      event: { send: ExecuteHostCommand, cmd: "lazygit" }
+    },
+    {
+      name: file_search
+      modifier: control
+      keycode: char_q
+      mode: [emacs, vi_normal, vi_insert]
+      event: {
+        send: ExecuteHostCommand,
+        cmd: "commandline edit (
+          fd --exclude '.git' --type file
+            | fzf --no-sort --preview='bat {}' --height=30%
+            | complete
+            | $in.stdout
+            | str trim
+          )"
+      }
     }
   ]
 }
