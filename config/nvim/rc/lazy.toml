@@ -410,8 +410,6 @@ let g:sonictemplate_vim_template_dir = $'{g:config_dir}/templates'
 let g:sonictemplate_key = ''
 let g:sonictemplate_intelligent_key = ''
 let g:sonictemplate_postfix_key = ''
-nnoremap <Plug>(fzf-p-prefix)<C-t> <Cmd>call fzf#sonictemplate#run()<CR>
-nnoremap <Plug>(fzf-p-prefix)t <Cmd>call fzf#sonictemplate#run()<CR>
 """
 
 [[plugins]]
