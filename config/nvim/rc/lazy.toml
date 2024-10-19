@@ -406,7 +406,7 @@ nnoremap <silent><buffer><Space>d <Cmd>VimhelpLint!<CR>
 repo = "https://github.com/mattn/vim-sonictemplate"
 on_cmd = ["Template"]
 hook_add = """
-let g:sonictemplate_vim_template_dir = g:config_dir .. '/templates'
+let g:sonictemplate_vim_template_dir = $'{g:config_dir}/templates'
 let g:sonictemplate_key = ''
 let g:sonictemplate_intelligent_key = ''
 let g:sonictemplate_postfix_key = ''
