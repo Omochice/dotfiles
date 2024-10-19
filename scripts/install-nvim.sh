@@ -56,3 +56,5 @@ fi
 if [ -f /usr/share/nvim/archlinux.vim ]; then
     rm /usr/share/nvim/archlinux.vim
 fi
+
+git reset --hard HEAD
