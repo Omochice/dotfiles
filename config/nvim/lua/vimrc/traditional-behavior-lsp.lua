@@ -93,8 +93,8 @@ local function setup_contents(result)
     vim.lsp.util.convert_input_to_markdown_lines(result.contents)
   )
   for index, line in ipairs(lines) do
-    lines[index] = string
-        .gsub(line, "%s+$", "")
+    lines[index] = line
+        :gsub("%s+$", "")
         :gsub("&emsp;", "")
   end
   return lines
