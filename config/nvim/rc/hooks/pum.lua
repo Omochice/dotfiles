@@ -6,7 +6,7 @@ vimx.keymap.set(
   function()
     if not vimx.fn.pum.visible() then
       vim.api.nvim_feedkeys(
-        vim.api.nvim_replace_termcodes("<C-y>", true, false, true),
+        vim.keycode("<C-y>"),
         "n",
         false
       )
@@ -21,7 +21,7 @@ vimx.keymap.set(
   function()
     if not vimx.fn.pum.visible() then
       vim.api.nvim_feedkeys(
-        vim.api.nvim_replace_termcodes("<C-n>", true, false, true),
+        vim.keycode("<C-n>"),
         "n",
         false
       )
@@ -36,7 +36,7 @@ vimx.keymap.set(
   function()
     if not vimx.fn.pum.visible() then
       vim.api.nvim_feedkeys(
-        vim.api.nvim_replace_termcodes("<C-p>", true, false, true),
+        vim.keycode("<C-p>"),
         "n",
         false
       )
