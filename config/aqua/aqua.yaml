@@ -53,7 +53,7 @@ packages:
 - name: crate-ci/typos@v1.26.0
 - name: hadolint/hadolint@v2.12.0
 - name: tamasfe/taplo/full@0.9.3
-- name: protocolbuffers/protobuf/protoc@v28.2
+- name: protocolbuffers/protobuf/protoc@v28.3
 - name: lsd-rs/lsd@v1.1.5
 - name: editorconfig-checker/editorconfig-checker@v3.0.3
 - name: k1LoW/octocov@v0.62.1
