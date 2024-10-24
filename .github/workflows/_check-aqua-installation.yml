@@ -27,7 +27,7 @@ jobs:
       - uses: aquaproj/aqua-installer@6ce1f8848ec8e61f14d57bd5d7597057a6dd187c # v3.0.1
         with:
           aqua_version: v2.36.1
-      - uses: jdx/mise-action@f8dfbcc150159126838e44b882bf34bd98fd90f3 # v2.1.0
+      - uses: jdx/mise-action@c1606014a9b1b7cd3e7c7f5fc607a25351fdffec # v2.1.1
       - name: check tools can install
         run: aqua install --all
         env:
