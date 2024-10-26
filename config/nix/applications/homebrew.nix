@@ -31,6 +31,8 @@
       "slack"
       "vivaldi"
       "wezterm"
+      "utm"
+      "crystalfetch"
     ];
   };
 }
