@@ -40,6 +40,7 @@ in
       mise
       pnpm
       nixd
+      devbox
     ];
   };
   programs.home-manager.enable = true;
