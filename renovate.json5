@@ -7,6 +7,10 @@
     "github>Omochice/personal-renovate-config:biomejs",
     "github>aquaproj/aqua-renovate-config#2.3.1",
   ],
+	lockFileMaintenance: {
+		enabled: true,
+		schedule: ["before 3:00am"],
+	},
   nix: {
     enabled: true,
     fileMatch: [
