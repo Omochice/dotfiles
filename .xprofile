@@ -1,7 +1,0 @@
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-command -v fcitx5 2>&1 && fcitx5 &
-command -v vivaldi-stable 2>&1 && export BROWSER=vivaldi-stable
-command -v wezterm 2>&1 && export TERMINAL=wezterm
-set -b
