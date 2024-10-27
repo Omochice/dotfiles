@@ -86,3 +86,10 @@ if = 0
 [[plugins]]
 repo = "https://github.com/skk-dev/dict"
 if = 0
+
+[[plugins]]
+repo = "https://github.com/tani/dmacro.vim"
+hook_add = """
+inoremap <C-;> <Plug>(dmacro-play-macro)
+nnoremap <C-;> <Plug>(dmacro-play-macro)
+"""
