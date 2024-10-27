@@ -99,8 +99,15 @@ to = "open"
 shell = "nu"
 
 [[aliases]]
+depends = "aqua"
 from = "lsd --tree"
 to = "tree"
+if_executable = "lsd"
+
+[[aliases]]
+depends = "aqua"
+from = "lsd"
+to = "ls"
 if_executable = "lsd"
 
 [[aliases]]
