@@ -71,6 +71,7 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/karabiner/**
 !/config/sketchybar/**
 !/config/glab-cli/aliases.yml
+!/config/glab-cli/default.nix
 !/config/gh/config.yml
 !/config/autohotkey/mod.ahk
 !/config/glazewm/config.yaml
@@ -82,3 +83,4 @@ config/fish/functions/fzf_key_bindings.fish
 !/flake.nix
 !/flake.lock
 !/config/nix/**
+!config/*/default.nix

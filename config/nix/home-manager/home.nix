@@ -17,6 +17,10 @@ in
     ../../lazygit/default.nix
     ../../nushell/default.nix
     ../../zoxide/default.nix
+    ../../glab-cli/default.nix
+    ../../gh/default.nix
+    ../../aqua/default.nix
+    ../../yabai/default.nix
   ];
   nixpkgs = {
     config = {
