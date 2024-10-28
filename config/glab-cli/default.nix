@@ -1,6 +1,6 @@
 { ... }:
 {
   xdg.configFile = {
-    "glab/aliases.yml".text = builtins.readFile ./aliases.yml;
+    "glab-cli/aliases.yml".text = builtins.readFile ./aliases.yml;
   };
 }
