@@ -21,6 +21,7 @@ in
     ../../gh/default.nix
     ../../aqua/default.nix
     ../../yabai/default.nix
+    ../../wezterm/default.nix
   ];
   nixpkgs = {
     config = {
