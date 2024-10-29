@@ -22,6 +22,7 @@ vimx.create_autocmd("User", {
       },
       immediatelyCancel = false,
       registerConvertResult = true,
+      lowercaseMap = { ["+"] = ";" },
     })
     vimx.fn.skkeleton.register_kanatable("azik", {
       l = "disable",
