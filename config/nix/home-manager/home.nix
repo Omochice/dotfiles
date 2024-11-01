@@ -49,6 +49,7 @@ in
       imagemagick
       clang-tools
       nkf
+      neofetch
     ];
   };
   programs.home-manager.enable = true;
