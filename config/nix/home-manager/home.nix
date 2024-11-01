@@ -47,6 +47,7 @@ in
       nixd
       devbox
       imagemagick
+      clang-tools
     ];
   };
   programs.home-manager.enable = true;
