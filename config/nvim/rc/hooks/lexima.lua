@@ -25,6 +25,7 @@ local ft = {
   java = "java",
   pod = "pod",
   vim = "vim",
+  nix = "nix",
 }
 
 local char = {
@@ -159,6 +160,14 @@ local rules = {
     input = char.cr,
     input_after = [[<CR>=end{\1}]],
     with_submatch = true,
+  },
+  -- nix
+  {
+    filetype = ft.nix,
+    char = char.sp,
+    at = [[\s\+=\%#\($\|\s*[^;]\)]],
+    input = char.sp,
+    input_after = ";",
   },
 }
 
