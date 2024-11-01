@@ -48,6 +48,7 @@ in
       devbox
       imagemagick
       clang-tools
+      nkf
     ];
   };
   programs.home-manager.enable = true;
