@@ -50,6 +50,7 @@ in
       clang-tools
       nkf
       neofetch
+      tldr
     ];
   };
   programs.home-manager.enable = true;
