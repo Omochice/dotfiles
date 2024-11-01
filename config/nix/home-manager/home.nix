@@ -46,6 +46,7 @@ in
       pnpm
       nixd
       devbox
+      imagemagick
     ];
   };
   programs.home-manager.enable = true;
