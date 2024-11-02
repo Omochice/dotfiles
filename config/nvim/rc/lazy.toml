@@ -267,7 +267,8 @@ repo = "https://github.com/y0za/vim-reading-vimrc"
 on_cmd = ["ReadingVimrcNext", "ReadingVimrcList", "ReadingVimrcLoad", "ReadingVimrcCopy"]
 hook_source = """
 function! s:reading_copy(line1, line2) abort
-  let l:file = expand('%:t')
+  " NOTE: 4 is ['next', {owner}, {repo}, {branch}]
+  let l:file = expand('%')->substitute('readingvimrc://\\([^/]\\{1,\\}/\\)\\{4\\}', '', '')
   if a:line1 == a:line2
     let l:line = printf('L%d', a:line1)
   else
