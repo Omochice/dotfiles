@@ -1,6 +1,6 @@
 { ... }:
 {
   xdg.configFile = {
-    "yabai/yabairc".text = builtins.readFile ./yabairc;
+    "yabai/yabairc".source = ./yabairc;
   };
 }
