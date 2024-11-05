@@ -86,6 +86,9 @@
                   AppleSymbolicHotKeys = import ./config/nix/system/darwin/symbolic-hotkeys.nix;
                 };
               };
+              PowerChime = {
+                ChimeOnAllHardware = false;
+              };
             };
           };
         };
