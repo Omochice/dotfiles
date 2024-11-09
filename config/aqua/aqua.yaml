@@ -32,7 +32,7 @@ packages:
 - name: mvdan/sh@v3.10.0
 - name: sharkdp/pastel@v0.10.0
 - name: gitlab.com/gitlab-org/cli@v1.48.0
-- name: x-motemen/ghq@v1.7.0
+- name: x-motemen/ghq@v1.7.1
 - name: golang/tools/goimports@v0.21.0
 - name: golang.org/x/tools/gopls@v0.16.2
 - name: orhun/git-cliff@v2.6.1
