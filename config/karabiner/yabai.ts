@@ -1,4 +1,4 @@
-import * as k from "https://deno.land/x/karabinerts@1.30.0/deno.ts";
+import * as k from "https://deno.land/x/karabinerts@1.30.1/deno.ts";
 
 export const rules: Array<k.Rule | k.RuleBuilder> = [];
 
