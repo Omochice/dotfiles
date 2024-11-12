@@ -30,6 +30,7 @@
       "scroll-reverser"
       "slack"
       "vivaldi"
+      "google-chrome@canary"
       "wezterm"
       "utm"
       "crystalfetch"
