@@ -63,7 +63,7 @@ type FiletypePlugin = {
  * @returns Normalized ftplugins objects
  * @example
  * ```typescript
- * import { expect } from "jsr:@std/expect@1.0.7";
+ * import { expect } from "jsr:@std/expect@1.0.8";
  *
  * expect(normalizeFtp({ "lua_lua": "print('foo')" }))
  *   .toEqual([{ filetype: "lua", ftplugin: "lua <<EOF\nprint('foo')\nEOF\n" }])
