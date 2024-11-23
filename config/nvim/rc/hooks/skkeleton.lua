@@ -47,6 +47,8 @@ vimx.create_autocmd("User", {
       xxwa = { "ゎ" },
       -- NOTE: override azik table
       rr = { "れる" },
+      -- NOTE: my extend table
+      nn = { "なん" },
     })
   end,
   group = augroup,
