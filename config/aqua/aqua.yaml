@@ -49,7 +49,7 @@ packages:
 - name: librespeed/speedtest-cli@v1.0.11
 - name: docker/buildx@v0.18.0
 - name: suzuki-shunsuke/ghatm@v0.3.3
-- name: Myriad-Dreamin/tinymist@v0.12.2
+- name: Myriad-Dreamin/tinymist@v0.12.4
 - name: crate-ci/typos@v1.27.3
 - name: hadolint/hadolint@v2.12.0
 - name: tamasfe/taplo/full@0.9.3
