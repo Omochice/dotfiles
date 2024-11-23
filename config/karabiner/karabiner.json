@@ -32,36 +32,6 @@
             ]
           },
           {
-            "description": "Launch wezterm without slack",
-            "manipulators": [
-              {
-                "type": "basic",
-                "from": {
-                  "key_code": "return_or_enter",
-                  "modifiers": {
-                    "mandatory": [
-                      "command"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "shell_command": "open -n -a \"wezterm\".app"
-                  }
-                ],
-                "conditions": [
-                  {
-                    "type": "frontmost_application_unless",
-                    "bundle_identifiers": [
-                      "^com\\.tinyspeck\\.slackmacgap$",
-                      "^com\\.microsoft\\.teams2$"
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
             "description": "Left command to alt",
             "manipulators": [
               {

@@ -15,25 +15,6 @@ k.writeToProfile("Default profile", [
         })
         .to(newApp("vivaldi")),
     ]),
-  k.rule(
-    "Launch wezterm without slack",
-    k
-      .ifApp({
-        bundle_identifiers: [
-          "^com\\.tinyspeck\\.slackmacgap$",
-          "^com\\.microsoft\\.teams2$",
-        ],
-      })
-      .unless(),
-  )
-    .manipulators([
-      k
-        .map({
-          key_code: "return_or_enter",
-          modifiers: { mandatory: ["command"] },
-        })
-        .to(newApp("wezterm")),
-    ]),
   k.rule("Left command to alt")
     .manipulators([
       k
