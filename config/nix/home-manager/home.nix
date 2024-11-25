@@ -34,22 +34,21 @@ in
     stateVersion = "24.05";
     packages = with pkgs; [
       btop
-      tldr
-      pandoc
       cargo
-      starship
+      clang-tools
       curl
-      nushell
+      devbox
       fish
       gnumake
-      mise
-      pnpm
-      nixd
-      devbox
       imagemagick
-      clang-tools
-      nkf
+      mise
       neofetch
+      nixd
+      nkf
+      nushell
+      pandoc
+      pnpm
+      starship
       tldr
     ];
   };
