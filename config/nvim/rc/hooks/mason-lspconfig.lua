@@ -1,7 +1,9 @@
 -- lua_add {{{
 require("vimrc/lsp-helper").on_attach(nil, function()
   local opts = { buffer = true }
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+  vim.keymap.set("n", "K", function ()
+    vim.lsp.buf.hover({ border = "single" })
+  end, opts)
   vim.keymap.set("n", "<Space>f", vim.lsp.buf.format, opts)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
