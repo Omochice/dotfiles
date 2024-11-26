@@ -7,7 +7,7 @@ local help_bufnr = nil
 ---@param winid integer
 local function set_window_options(winid)
   vim.wo[winid].previewwindow = true
-  vim.wo[winid].conceallevel = 2
+  vim.wo[winid].conceallevel = 0
   vim.wo[winid].wrap = true
 end
 
@@ -116,7 +116,7 @@ local function ensure_contents(result, context)
   return r.ok(contents)
 end
 
-M.on_hover = function(_, result, context)
+local function on_hover(_, result, context)
   -- NOTE: hevily based on vim-lsp: under_cursor.vim
   if context == nil then
     vim.notify("Context is nil...", vim.log.levels.WARN)
@@ -147,6 +147,12 @@ M.on_hover = function(_, result, context)
   local height = vim.api.nvim_win_get_height(0)
   -- NOTE: +1 measn lsp-location window.
   vim.api.nvim_win_set_height(winid, math.min(#res.value + 1, math.floor(height / 2)))
+end
+
+M.hover = function()
+  ---@diagnostic disable-next-line: missing-parameter
+  local params = vim.lsp.util.make_position_params()
+  vim.lsp.buf_request(0, "textDocument/hover", params, on_hover)
 end
 
 return M
