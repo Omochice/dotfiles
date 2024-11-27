@@ -34,3 +34,8 @@ require("nvim-treesitter.configs").setup({
   tree_docs = { enable = true, keymap = false },
 })
 -- }}}
+
+-- lua_markdown {{{
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- }}}
