@@ -278,7 +278,9 @@ function s:auto_mkdir(dir, force) abort
   endif
   const l:mes = $'"{a:dir}" does not exist. Create?'
   if (a:force || confirm(l:mes, "&Yes\n&No", 1) ==# 1)
-    call mkdir(a:dir, 'p')
+    " NOTE: original idea from: https://github.com/kat0h/dotfiles/blob/7c371cd16f39e66f0960d3c847085ff64d19881d/dot_vim%2Futils.vim#L8
+    let l:dir = has('iconv') ? iconv(a:dir, &encoding, &termencoding) : a:dir
+    call mkdir(l:dir, 'p')
   endif
 endfunction
 
