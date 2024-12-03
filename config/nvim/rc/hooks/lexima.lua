@@ -169,6 +169,13 @@ local rules = {
     input = char.sp,
     input_after = ";",
   },
+  {
+    filetype = ft.nix,
+    char = "'",
+    at = [['\%#'\($\|;\)]],
+    input = [['<CR><Tab>]], -- NOTE: need ' to escape into quoted
+    input_after = [[<CR>']],
+  }
 }
 
 for _, rule in ipairs(rules) do
