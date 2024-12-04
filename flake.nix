@@ -11,6 +11,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils.url = "github:numtide/flake-utils";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
   outputs =
@@ -19,6 +21,8 @@
       nixpkgs,
       nix-darwin,
       home-manager,
+      treefmt-nix,
+      flake-utils,
     }@inputs:
     let
       system = "aarch64-darwin";
@@ -93,10 +97,30 @@
           };
         };
       pkgs = import nixpkgs { inherit system; };
+      treefmt = treefmt-nix.lib.evalModule nixpkgs.legacyPackages.${system} (
+        { ... }:
+        {
+          programs = {
+            nixfmt.enable = true;
+            deno = {
+              enable = true;
+              includes = [
+                "*.ts"
+                "*.js"
+              ];
+            };
+            stylua = {
+              enable = true;
+              settings = builtins.fromTOML (builtins.readFile ./config/stylua/stylua.toml);
+            };
+            shfmt.enable = true;
+          };
+        }
+      );
     in
     {
       formatter = {
-        aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixfmt-rfc-style;
+        "${system}" = treefmt.config.build.wrapper;
       };
       darwinConfigurations = {
         omochice = nix-darwin.lib.darwinSystem { modules = [ configuration ]; };
