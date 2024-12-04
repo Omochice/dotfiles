@@ -57,3 +57,4 @@ packages:
 - name: lsd-rs/lsd@v1.1.5
 - name: editorconfig-checker/editorconfig-checker@v3.0.3
 - name: k1LoW/octocov@v0.62.2
+- name: skanehira/slack-reminder@v0.1.1
