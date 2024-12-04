@@ -5,6 +5,6 @@ gitsign.setup({
     vim.keymap.set("n", "<C-g><C-p>", gitsign.prev_hunk, { buffer = true })
     vim.keymap.set("n", "<C-g><C-n>", gitsign.next_hunk, { buffer = true })
     vim.keymap.set("n", "<Space>gm", gitsign.blame_line, { buffer = true })
-  end
+  end,
 })
 -- }}}

@@ -166,6 +166,8 @@ rules.push(
           key_code: "spacebar",
           modifiers: { mandatory: ["command", "shift"] },
         })
-        .to$($("yabai -m window --toggle float && yabai -m window --grid 12:12:1:1:10:10")),
+        .to$(
+          $("yabai -m window --toggle float && yabai -m window --grid 12:12:1:1:10:10"),
+        ),
     ]),
 );

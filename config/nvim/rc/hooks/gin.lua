@@ -8,7 +8,7 @@ vimx.keymap.set("n", prefix .. "<C-l>", "<Cmd>GinLog<CR>")
 vimx.create_autocmd("BufWinLeave", {
   pattern = "ginstatus://*",
   group = vimx.create_augroup("myvimrc#gin", {
-    clear = true
+    clear = true,
   }),
   callback = function()
     local winids = vimx.fn.tabpagebuflist()
@@ -19,7 +19,7 @@ vimx.create_autocmd("BufWinLeave", {
         vimx.cmd(string.format("%dclose", winnr))
       end
     end
-  end
+  end,
 })
 -- }}}
 

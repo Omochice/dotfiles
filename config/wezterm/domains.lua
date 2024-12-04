@@ -7,12 +7,12 @@ if wezterm.target_triple:find("windows") then
       name = "WSL:main",
       distribution = "Ubuntu",
       default_cwd = "~",
-    }, },
+    } },
     default_gui_startup_args = { "connect", "WSL:main" },
   }
 else
   M = {
-    unix_domains = { { name = "unix" }, },
+    unix_domains = { { name = "unix" } },
     default_gui_startup_args = { "connect", "unix" },
   }
 end

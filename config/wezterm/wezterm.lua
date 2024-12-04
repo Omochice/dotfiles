@@ -1,7 +1,6 @@
-local wezterm = require("wezterm");
+local wezterm = require("wezterm")
 local io = require("io")
 local utils = require("utils")
-
 
 local fonts = {
   font = wezterm.font_with_fallback({
@@ -10,7 +9,6 @@ local fonts = {
   }),
   font_size = 20,
 }
-
 
 local bars = {
   use_fancy_tab_bar = false,
@@ -24,9 +22,9 @@ local bars = {
         underline = "None",
         italic = false,
         strikethrough = false,
-      }
+      },
     },
-  }
+  },
 }
 
 local colors = {
@@ -45,7 +43,6 @@ local windows = {
   window_close_confirmation = "NeverPrompt",
 }
 
-
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
   local title = wezterm.truncate_right(utils.get_process_name(tab.active_pane.title), max_width)
   return {
@@ -63,14 +60,12 @@ if wezterm.target_triple:find("windows") then
   fonts.font_size = 14
 end
 
-return utils.merged(
-  {
-    require("keybinds"),
-    require("domains"),
-    fonts,
-    bars,
-    windows,
-    colors,
-    others,
-  }
-)
+return utils.merged({
+  require("keybinds"),
+  require("domains"),
+  fonts,
+  bars,
+  windows,
+  colors,
+  others,
+})

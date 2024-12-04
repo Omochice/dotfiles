@@ -13,7 +13,7 @@ function M.on_attach(name, callback)
         callback(client, bufnr)
       end
     end,
-    group = group
+    group = group,
   })
 end
 

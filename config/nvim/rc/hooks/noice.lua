@@ -27,6 +27,6 @@ require("noice").setup({
     signature = {
       enabled = false,
     },
-  }
+  },
 })
 -- }}}

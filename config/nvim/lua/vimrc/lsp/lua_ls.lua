@@ -23,7 +23,7 @@ function M.config()
         },
         telemetry = { enable = false },
       },
-    }
+    },
   }
 end
 

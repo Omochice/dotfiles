@@ -175,7 +175,7 @@ local rules = {
     at = [['\%#'\($\|;\)]],
     input = [['<CR><Tab>]], -- NOTE: need ' to escape into quoted
     input_after = [[<CR>']],
-  }
+  },
 }
 
 for _, rule in ipairs(rules) do

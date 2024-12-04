@@ -1,7 +1,7 @@
 -- lua_add {{{
 require("vimrc/lsp-helper").on_attach(nil, function()
   local opts = { buffer = true }
-  vim.keymap.set("n", "K", function ()
+  vim.keymap.set("n", "K", function()
     vim.lsp.buf.hover({ border = "single" })
   end, opts)
   vim.keymap.set("n", "<Space>f", vim.lsp.buf.format, opts)
@@ -54,8 +54,8 @@ lspconfig.taplo.setup({
       compactArray = false,
       arrayAutoCollapse = false,
       alignEntries = true,
-    }
-  }
+    },
+  },
 })
 lspconfig.nixd.setup({})
 -- }}}

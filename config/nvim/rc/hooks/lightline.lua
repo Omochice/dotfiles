@@ -3,7 +3,6 @@ local vimx = require("artemis")
 
 vimx.go.showmode = false
 
-
 local function get_filetype()
   if vimx.fn.winwidth(0) <= 70 then
     return ""
@@ -31,7 +30,7 @@ local function get_recording()
 end
 
 function get_branch()
-	return vimx.fn.gitbranch.name()
+  return vimx.fn.gitbranch.name()
 end
 
 -- vimx.g.GetBranch = get_branch
@@ -59,22 +58,16 @@ vimx.g.lightline = vimx.dict({
     -- recording = get_recording,
   },
 })
-local group = vimx.create_augroup(
-  "vimrc#lightline-update-highlight",
-  { clear = true }
-)
-vimx.create_autocmd(
-  "ColorScheme",
-  {
-    pattern = "*",
-    group = group,
-    callback = function()
-      -- タイミングかなんかの問題かluaだとうまくいかんので
-      vimx.cmd("let g:lightline.colorscheme = g:colors_name")
-      -- vimx.g.lightline.colorscheme = vimx.g.colors_name
-      vimx.fn.lightline.disable()
-      vimx.fn.lightline.enable()
-    end
-  }
-)
+local group = vimx.create_augroup("vimrc#lightline-update-highlight", { clear = true })
+vimx.create_autocmd("ColorScheme", {
+  pattern = "*",
+  group = group,
+  callback = function()
+    -- タイミングかなんかの問題かluaだとうまくいかんので
+    vimx.cmd("let g:lightline.colorscheme = g:colors_name")
+    -- vimx.g.lightline.colorscheme = vimx.g.colors_name
+    vimx.fn.lightline.disable()
+    vimx.fn.lightline.enable()
+  end,
+})
 -- }}}

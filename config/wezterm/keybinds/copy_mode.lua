@@ -69,7 +69,6 @@ local move_start_end = {
   { key = "a", mods = "CTRL", action = act.CopyMode("MoveToStartOfLineContent") },
 }
 
-
 local select = {
   { key = " ", mods = "NONE", action = act.CopyMode({ SetSelectionMode = "Cell" }) },
   { key = "v", mods = "NONE", action = act.CopyMode({ SetSelectionMode = "Cell" }) },
@@ -157,16 +156,6 @@ local scroll = {
   { key = "d", mods = "CTRL", action = act.CopyMode({ MoveByPage = 0.5 }) },
 }
 
-
-local M = merge_lists(
-  generic,
-  move_one_char,
-  move_one_word,
-  move_start_end,
-  select,
-  search,
-  copy,
-  scroll
-)
+local M = merge_lists(generic, move_one_char, move_one_word, move_start_end, select, search, copy, scroll)
 
 return M

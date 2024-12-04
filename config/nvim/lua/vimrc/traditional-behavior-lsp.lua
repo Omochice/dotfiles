@@ -89,13 +89,9 @@ end
 --- @params result Results for lsp hover
 --- @return string[]
 local function setup_contents(result)
-  local lines = trim_empty_lines(
-    vim.lsp.util.convert_input_to_markdown_lines(result.contents)
-  )
+  local lines = trim_empty_lines(vim.lsp.util.convert_input_to_markdown_lines(result.contents))
   for index, line in ipairs(lines) do
-    lines[index] = line
-        :gsub("%s+$", "")
-        :gsub("&emsp;", "")
+    lines[index] = line:gsub("%s+$", ""):gsub("&emsp;", "")
   end
   return lines
 end

@@ -1,13 +1,13 @@
 --- lua_source {{{
 require("hlchunk").setup({
   indent = {
-    enable = false
+    enable = false,
   },
   line_num = {
-    enable = false
+    enable = false,
   },
   blank = {
-    enable = false
+    enable = false,
   },
   chunk = {
     enable = true,
@@ -20,6 +20,6 @@ require("hlchunk").setup({
       left_bottom = "╰",
       right_arrow = "→",
     },
-  }
+  },
 })
 --- }}}

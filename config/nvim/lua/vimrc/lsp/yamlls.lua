@@ -6,7 +6,7 @@ function M.config()
       yaml = {
         keyOrdering = false,
       },
-    }
+    },
   }
 end
 

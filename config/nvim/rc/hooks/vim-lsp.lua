@@ -10,8 +10,8 @@ vimx.g.lsp_settings = {
         compactArray = false,
         arrayAutoCollapse = false,
         alignEntries = true,
-      }
-    }
-  }
+      },
+    },
+  },
 }
 -- }}}

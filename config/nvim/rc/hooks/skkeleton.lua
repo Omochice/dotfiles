@@ -18,7 +18,7 @@ vimx.create_autocmd("User", {
     vimx.fn.skkeleton.config({
       kanaTable = "azik",
       globalDictionaries = {
-        dictPath .. "/SKK-JISYO.L"
+        dictPath .. "/SKK-JISYO.L",
       },
       immediatelyCancel = false,
       registerConvertResult = true,
@@ -65,8 +65,8 @@ vimx.create_autocmd("User", {
           matchers = {},
           sorters = {},
           isVolatile = true,
-        }
-      }
+        },
+      },
     })
     vimx.fn.pum.set_buffer_option({ auto_select = false })
   end,

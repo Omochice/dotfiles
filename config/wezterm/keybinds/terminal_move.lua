@@ -39,7 +39,7 @@ local M = {
         one_shot = false,
         timeout_milliseconds = 3000,
         replace_current = false,
-      }
+      },
     }),
   },
 }
@@ -49,8 +49,10 @@ if wezterm.target_triple:find("windows") then
     key = "c",
     mods = "ALT|SHIFT",
     action = act.SpawnCommandInNewTab({
-      args = { "nu.exe" }, cwd = "~", domain = { DomainName = "local" }
-    })
+      args = { "nu.exe" },
+      cwd = "~",
+      domain = { DomainName = "local" },
+    }),
   })
 end
 
@@ -60,7 +62,7 @@ if wezterm.target_triple:find("darwin") then
     mods = "ALT",
     action = act.SplitHorizontal({
       domain = "CurrentPaneDomain",
-    })
+    }),
   })
   -- なぜかweztermだけyenとbackslashが反転するっぽい
   table.insert(M, {
@@ -79,7 +81,7 @@ else -- Linux / windows
     mods = "ALT",
     action = act.SplitHorizontal({
       domain = "CurrentPaneDomain",
-    })
+    }),
   })
 end
 

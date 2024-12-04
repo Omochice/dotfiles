@@ -10,66 +10,37 @@ local sources = {
   copilot = { "copilot" },
 }
 
-vimx.keymap.set(
-  "i",
-  "<C-x>",
-  "<Nop>"
-)
+vimx.keymap.set("i", "<C-x>", "<Nop>")
 
-vimx.keymap.set(
-  "i",
-  "<C-Space>",
-  function()
-    vimx.fn.ddc.map.manual_complete()
-  end
-)
+vimx.keymap.set("i", "<C-Space>", function()
+  vimx.fn.ddc.map.manual_complete()
+end)
 
-vimx.keymap.set(
-  "i",
-  "<C-x><C-f>",
-  function()
-    vimx.fn.ddc.map.manual_complete({ sources = sources.file })
-  end
-)
+vimx.keymap.set("i", "<C-x><C-f>", function()
+  vimx.fn.ddc.map.manual_complete({ sources = sources.file })
+end)
 
-vimx.keymap.set(
-  "i",
-  "<C-x><C-n>",
-  function()
-    vimx.fn.ddc.map.manual_complete({ sources = sources.internal })
-  end
-)
+vimx.keymap.set("i", "<C-x><C-n>", function()
+  vimx.fn.ddc.map.manual_complete({ sources = sources.internal })
+end)
 
-vimx.keymap.set(
-  "i",
-  "<C-x><C-s>",
-  function()
-    vimx.fn.ddc.map.manual_complete({ sources = sources.snippet })
-  end
-)
+vimx.keymap.set("i", "<C-x><C-s>", function()
+  vimx.fn.ddc.map.manual_complete({ sources = sources.snippet })
+end)
 
-vimx.keymap.set(
-  "i",
-  "<C-x><C-l>",
-  function()
-    vimx.fn.ddc.map.manual_complete({ sources = sources.line })
-  end
-)
+vimx.keymap.set("i", "<C-x><C-l>", function()
+  vimx.fn.ddc.map.manual_complete({ sources = sources.line })
+end)
 
 vimx.create_autocmd("LspAttach", {
   callback = function()
-    vimx.keymap.set(
-      "i",
-      "<C-x><C-o>",
-      function()
-        vimx.fn.ddc.map.manual_complete({ sources = sources.lsp })
-      end,
-      { buffer = true }
-    )
+    vimx.keymap.set("i", "<C-x><C-o>", function()
+      vimx.fn.ddc.map.manual_complete({ sources = sources.lsp })
+    end, { buffer = true })
   end,
   group = vimx.create_augroup("vimrc#ddc-omni", {
-    clear = true
-  })
+    clear = true,
+  }),
 })
 -- }}}
 

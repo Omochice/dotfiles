@@ -9,7 +9,7 @@ local eslint = {
   lintIgnoreExitCode = true,
   rootMarkers = {
     "eslint.config.js",
-  }
+  },
 }
 
 function M.config()
@@ -19,9 +19,9 @@ function M.config()
       documentRangeFormatting = true,
       codeAction = true,
     },
-    filetypes = { "typescript", },
+    filetypes = { "typescript" },
     settings = {
-      typescript = { eslint, }
+      typescript = { eslint },
     },
   }
 end

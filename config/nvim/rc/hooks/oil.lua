@@ -2,8 +2,7 @@
 local vimx = require("artemis")
 vimx.keymap.set("n", ";o", function()
   require("oil").open_float()
-end
-)
+end)
 -- }}}
 
 -- lua_source {{{
