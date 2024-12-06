@@ -87,7 +87,7 @@ keybindings:
     bindings: ["Ctrl+F18"]
   - command: "focus workspace 9"
     bindings: ["Ctrl+F19"]
-#   # }}}
+    #   # }}}
   # move workspace {{{
   - command: "move to workspace 1"
     bindings: ["Shift+F11"]
@@ -127,4 +127,4 @@ keybindings:
     bindings: ["Shift+F15"]
   - command: "move right"
     bindings: ["Shift+F16"]
-  # }}}
+# }}}
