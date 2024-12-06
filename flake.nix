@@ -100,6 +100,9 @@
       treefmt = treefmt-nix.lib.evalModule nixpkgs.legacyPackages.${system} (
         { ... }:
         {
+          settings.global.excludes = [
+            "**/aqua.yaml"
+          ];
           programs = {
             nixfmt.enable = true;
             deno = {
@@ -114,6 +117,15 @@
               settings = builtins.fromTOML (builtins.readFile ./config/stylua/stylua.toml);
             };
             shfmt.enable = true;
+            yamlfmt = {
+              enable = true;
+              settings = {
+                formatter = {
+                  type = "basic";
+                  retain_line_breaks_single = true;
+                };
+              };
+            };
           };
         }
       );
