@@ -158,7 +158,7 @@
             echo "Updating flake..."
             nix flake update
             echo "Updating home-manager..."
-            nix run home-manager -- switch --flake .#myHomeConfig --impure
+            nix run home-manager -- switch --flake .#myHomeConfig --impure |& ${pkgs.nix-output-monitor}/bin/nom
             echo "Updating nix-darwin..."
             nix run nix-darwin -- switch --flake .#omochice
             echo "Update complete!"
