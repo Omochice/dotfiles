@@ -19,6 +19,7 @@ require("vimrc/lsp-helper").on_attach(nil, function()
 end)
 
 vim.diagnostic.config({
+  severity_sort = true,
   virtual_text = false,
 })
 -- }}}
