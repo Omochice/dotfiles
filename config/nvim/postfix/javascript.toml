@@ -40,4 +40,3 @@ template = """
   {{__cursor__}}
 }
 """
-

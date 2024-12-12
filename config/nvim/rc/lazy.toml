@@ -95,7 +95,7 @@ on_map = { n = "<Plug>" }
 repo = "https://github.com/hrsh7th/vim-vsnip"
 hooks_file = "$DEIN_RC_DIR/hooks/vsnip.lua"
 on_map = { x = "<Plug>", i = "<Plug>" }
-depends = ["lexima.vim"] # Need this for control order to sourcing
+depends = ["lexima.vim"]                      # Need this for control order to sourcing
 on_event = "InsertEnter"
 
 [[plugins]]
@@ -113,7 +113,10 @@ on_event = "InsertEnter"
 
 [[plugins]]
 repo = "https://github.com/prabirshrestha/vim-lsp"
-hooks_file = ["$DEIN_RC_DIR/hooks/vim-lsp.lua", "$DEIN_RC_DIR/hooks/vim-lsp.vim"]
+hooks_file = [
+  "$DEIN_RC_DIR/hooks/vim-lsp.lua",
+  "$DEIN_RC_DIR/hooks/vim-lsp.vim",
+]
 on_event = ["BufRead", "BufNewFile"]
 if = "!has('nvim')"
 
@@ -264,7 +267,12 @@ on_cmd = ["AnyJump", "AnyJumpVisual", "AnyJumpBack", "AnyJumpLastResults"]
 
 [[plugins]]
 repo = "https://github.com/y0za/vim-reading-vimrc"
-on_cmd = ["ReadingVimrcNext", "ReadingVimrcList", "ReadingVimrcLoad", "ReadingVimrcCopy"]
+on_cmd = [
+  "ReadingVimrcNext",
+  "ReadingVimrcList",
+  "ReadingVimrcLoad",
+  "ReadingVimrcCopy",
+]
 hook_source = """
 function! s:reading_copy(line1, line2) abort
   " NOTE: 4 is ['next', {owner}, {repo}, {branch}]
@@ -591,12 +599,7 @@ repo = "https://github.com/folke/noice.nvim"
 hooks_file = "$DEIN_RC_DIR/hooks/noice.lua"
 depends = ["nui.nvim", "nvim-notify"]
 if = "has('nvim')"
-on_event = [
-  "BufRead",
-  "BufNewFile",
-  "InsertEnter",
-  "CmdlineEnter",
-]
+on_event = ["BufRead", "BufNewFile", "InsertEnter", "CmdlineEnter"]
 on_lua = "notify"
 
 [[plugins]]
