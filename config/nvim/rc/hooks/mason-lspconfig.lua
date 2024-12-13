@@ -59,4 +59,5 @@ lspconfig.taplo.setup({
   },
 })
 lspconfig.nixd.setup({})
+lspconfig.rust_analyzer.setup({})
 -- }}}
