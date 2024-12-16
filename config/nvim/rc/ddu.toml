@@ -78,3 +78,7 @@ rev = "project"
 [[plugins]]
 repo = "https://github.com/Shougo/ddu-source-action"
 on_source = "ddu.vim"
+
+[[plugins]]
+repo = "https://github.com/kuuote/ddu-source-git_diff"
+on_source = "ddu.vim"

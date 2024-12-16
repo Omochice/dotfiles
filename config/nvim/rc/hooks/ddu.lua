@@ -70,6 +70,22 @@ vimx.keymap.set("n", prefix .. "<C-t>", function()
   })
 end)
 
+vimx.keymap.set("n", prefix .. "<C-d>", function()
+  vimx.fn.ddu.start({
+    sources = {
+      {
+        name = "git_diff",
+        uiParams = {
+          ff = { ignoreEmpty = false },
+        },
+        options = {
+          path = vimx.fn.expand("%:p"),
+        },
+      },
+    },
+  })
+end)
+
 local function grepWrapper(word)
   if word == "" then
     return

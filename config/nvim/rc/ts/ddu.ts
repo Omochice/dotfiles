@@ -136,6 +136,7 @@ export class Config extends BaseConfig {
             onlyAsignedTo: "me",
           }
           : {},
+        git_diff: {},
       },
       filterParams: {
         matcher_fzf: {
