@@ -135,6 +135,26 @@ vimx.keymap.set("n", "gr", function()
   })
 end)
 
+local function DduHelp()
+  vimx.fn.ddu.start({
+    ui = "ff",
+    sources = { {
+      name = "help",
+    } },
+    sourceOptions = {
+      rg = {
+        matchers = {
+          "matcher_fzf",
+        },
+      },
+    },
+  })
+end
+
+vimx.create_command("Dhelp", DduHelp, { nargs = 0 })
+
+vimx.keymap.set("ca", "dhelp", "Dhelp")
+
 -- DONT MAP DEFAULTLY {{{
 vim.keymap.del("n", "grr")
 vim.keymap.del("n", "gra")

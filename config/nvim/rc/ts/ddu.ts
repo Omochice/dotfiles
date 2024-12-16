@@ -165,6 +165,9 @@ export class Config extends BaseConfig {
         action: {
           defaultAction: "do",
         },
+        help: {
+          defaultAction: "open",
+        },
       },
       kindParams: {
         redmine_issue: {
