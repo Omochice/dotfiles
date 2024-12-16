@@ -31,7 +31,7 @@
       "slack"
       "vivaldi"
       "google-chrome@canary"
-      "wezterm"
+      "wezterm@nightly"
       "utm"
       "crystalfetch"
     ];
