@@ -70,7 +70,7 @@ vimx.keymap.set("n", prefix .. "<C-t>", function()
   })
 end)
 
-function grepWrapper(word)
+local function grepWrapper(word)
   if word == "" then
     return
   end
