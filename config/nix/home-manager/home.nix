@@ -23,7 +23,7 @@ in
     ../../yabai/default.nix
     ../../wezterm/default.nix
     ../../nvim/default.nix
-    ../../macskk/default.nix
+    # ../../macskk/default.nix
   ];
   nixpkgs = {
     config = {
