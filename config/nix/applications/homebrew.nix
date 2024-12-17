@@ -23,7 +23,7 @@
     casks = [
       "alt-tab"
       "android-studio"
-      "aquaskk"
+      "mtgto/macskk/macskk"
       "discord"
       "gyazo"
       "karabiner-elements"
