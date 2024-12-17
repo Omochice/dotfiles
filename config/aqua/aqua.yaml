@@ -45,7 +45,7 @@ packages:
 - name: ynqa/jnv@v0.4.1
 - name: suzuki-shunsuke/pinact@v1.0.0
 - name: suzuki-shunsuke/ghalint@v1.0.0
-- name: terrastruct/d2@v0.6.7
+- name: terrastruct/d2@v0.6.8
 - name: librespeed/speedtest-cli@v1.0.11
 - name: docker/buildx@v0.19.2
 - name: suzuki-shunsuke/ghatm@v0.3.3
