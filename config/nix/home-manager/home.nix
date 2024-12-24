@@ -52,6 +52,7 @@ in
       pnpm
       starship
       tldr
+      nix-output-monitor
     ];
   };
   programs.home-manager.enable = true;
