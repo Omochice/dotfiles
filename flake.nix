@@ -1,3 +1,5 @@
+# https://github.com/renovatebot/renovate/issues/29721
+# Trick renovate into working: "github:NixOS/nixpkgs/nixpkgs-unstable"
 {
   description = "Omochice dotfiles";
 
