@@ -80,6 +80,7 @@ config/fish/functions/fzf_key_bindings.fish
 !/config/corvusskk/config.xml
 !/config/nvim-dark/**
 !/config/macskk/**
+!/config/colima/**
 !/win-config/**
 !/flake.nix
 !/flake.lock
