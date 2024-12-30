@@ -25,7 +25,7 @@ jobs:
         id: normalize
         with:
           trim-tail-dot-vim: true
-      - uses: Omochice/action-podeno@5545680f3c7e30f10aa025f2de63bffd90764623 # v0.1.0
+      - uses: Omochice/action-podeno@dada699f16466ed7890f9714334fd3a38f2447b8 # v0.1.1
         with:
           config: |
             [
