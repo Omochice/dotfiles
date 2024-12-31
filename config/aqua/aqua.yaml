@@ -58,3 +58,4 @@ packages:
 - name: editorconfig-checker/editorconfig-checker@v3.0.3
 - name: k1LoW/octocov@v0.62.4
 - name: skanehira/slack-reminder@v0.1.1
+- name: suzuki-shunsuke/disable-checkout-persist-credentials@v0.1.2
