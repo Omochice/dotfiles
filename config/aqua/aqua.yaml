@@ -42,7 +42,7 @@ packages:
 - name: ast-grep/ast-grep@0.32.3
 - name: LuaLS/lua-language-server@3.13.5
 - name: mattn/efm-langserver@v0.0.54
-- name: ynqa/jnv@v0.4.2
+- name: ynqa/jnv@v0.5.0
 - name: suzuki-shunsuke/pinact@v1.1.2
 - name: suzuki-shunsuke/ghalint@v1.2.1
 - name: terrastruct/d2@v0.6.8
