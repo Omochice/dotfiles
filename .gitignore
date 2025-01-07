@@ -86,3 +86,4 @@ config/fish/functions/fzf_key_bindings.fish
 !/flake.lock
 !/config/nix/**
 !config/*/default.nix
+!config/font/**
