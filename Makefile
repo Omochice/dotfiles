@@ -1,6 +1,6 @@
 BASE_DIR:=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
-all: link install-brew nvim chsh font
+all: link install-brew nvim chsh
 
 ~/.deno:
 	command -v deno 2>&1 && deno upgrade || bash -c "$$(curl -fsSL https://deno.land/x/install/install.sh)"
@@ -26,7 +26,3 @@ fish: install ~/.deno link
 chsh: fish
 	~/.deno/bin/deno run -A scripts/tasks/show-fishpath.ts | sudo tee --append /etc/shells
 	~/.deno/bin/deno run -A scripts/tasks/chsh-to-fish.ts
-
-.PHONY: font
-font: ~/.deno
-	~/.deno/bin/deno run -A scripts/tasks/install-font.ts
