@@ -54,8 +54,8 @@ in
       starship
       tldr
       nix-output-monitor
-      (callPackage ../../font/firge-nerd/package.nix {  })
-      (callPackage ../../font/firge/package.nix {  })
+      (callPackage ../../font/firge-nerd/package.nix { })
+      (callPackage ../../font/firge/package.nix { })
     ];
   };
   programs.home-manager.enable = true;
