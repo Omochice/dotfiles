@@ -16,7 +16,7 @@ jobs:
         with:
           persist-credentials: false
       - name: setup deno
-        uses: denoland/setup-deno@01524fade784327df1a5ad1ead94235d392cd443 # v2.0.1
+        uses: denoland/setup-deno@909cc5acb0fdd60627fb858598759246509fa755 # v2.0.2
         with:
           deno-version: rc
       - name: type check
