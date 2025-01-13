@@ -29,7 +29,7 @@
 
           installPhase = ''
             runHook preInstall
-            install -Dm644 *.ttf -t $out/share/fonts/Firge
+            install -Dm644 *.ttf -t $out/share/fonts/FirgeNerd
             runHook postInstall
           '';
 
