@@ -59,3 +59,4 @@ packages:
 - name: k1LoW/octocov@v0.62.5
 - name: skanehira/slack-reminder@v0.1.1
 - name: suzuki-shunsuke/disable-checkout-persist-credentials@v0.1.2
+- name: FiloSottile/mkcert@v1.4.4
