@@ -157,7 +157,7 @@ ram=(
 )
 
 speedtest=(
-	icon=""
+	icon="󱚻"
 	icon.drawing=on
 	label="?"
 	label.drawing=on
@@ -185,7 +185,7 @@ sketchybar --message \
 # - bluetooth
 # NOTE: Appending is right to left
 clock=(
-	icon=""
+	icon=""
 	icon.drawing=on
 	label.drawing=on
 	background.color="${BLUE}"
@@ -194,7 +194,7 @@ clock=(
 )
 
 brightness=(
-	icon=""
+	icon="󰃟"
 	icon.drawing=on
 	label="?%"
 	label.drawing=on
@@ -213,7 +213,7 @@ volume=(
 )
 
 battery=(
-	icon=""
+	icon="󱈏"
 	icon.drawing=on
 	label="?%"
 	label.drawing=on
