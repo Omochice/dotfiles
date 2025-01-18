@@ -672,3 +672,33 @@ depends = ["oil.nvim", "vim-nerdfont"]
 repo = "https://github.com/folke/zen-mode.nvim"
 on_lua = "zen-mode"
 on_cmd = "ZenMode"
+
+[[plugins]]
+repo = "https://github.com/frankroeder/parrot.nvim"
+depends = ["plenary.nvim"]
+on_cmd = [
+  "PrtChatNew",
+  "PrtChatToggle",
+  "PrtChatPaste",
+  "PrtInfo",
+  "PrtContext",
+  "PrtChatFinder",
+  "PrtChatDelete",
+  "PrtChatRespond",
+  "PrtStop",
+  "PrtProvider",
+  "PrtModel",
+  "PrtStatus",
+  "PrtRewrite",
+  "PrtEdit",
+  "PrtAppend",
+  "PrtPrepend",
+  "PrtNew",
+  "PrtEnew",
+  "PrtVnew",
+  "PrtTabnew",
+  "PrtRetry",
+  "PrtImplement",
+  "PrtAsk",
+]
+hooks_file = "$DEIN_RC_DIR/hooks/parrot.lua"
