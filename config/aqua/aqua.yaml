@@ -17,7 +17,7 @@ packages:
 - name: charmbracelet/glow@v2.0.0
 - name: sharkdp/hyperfine@v1.19.0
 - name: jesseduffield/lazygit@v0.45.2
-- name: ollama/ollama@v0.5.4
+- name: ollama/ollama@v0.5.7
 - name: BurntSushi/ripgrep@14.1.1
 - name: chmln/sd@v1.0.0
 - name: koalaman/shellcheck@v0.10.0
