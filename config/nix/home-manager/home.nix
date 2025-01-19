@@ -6,12 +6,9 @@
   ...
 }:
 let
-  loadFlake = flakePath: (builtins.getFlake (toString flakePath)).packages.${pkgs.system}.default;
   # FIXME: I dont want to write user name here, but it doesn't work without "--impure"
   username = builtins.getEnv "USER";
   homeDirectory = builtins.getEnv "HOME";
-  firgeFont = loadFlake ../../font/firge;
-  firgeNerdFont = loadFlake ../../font/firge-nerd;
 in
 {
   imports = [
@@ -57,8 +54,8 @@ in
       starship
       tldr
       nix-output-monitor
-      firgeFont
-      firgeNerdFont
+      (callPackage ../../font/firge-nerd/package.nix { })
+      (callPackage ../../font/firge/package.nix { })
     ];
   };
   programs.home-manager.enable = true;
