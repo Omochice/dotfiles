@@ -9,6 +9,7 @@
   ],
   lockFileMaintenance: {
     enabled: true,
+    automerge: true,
     schedule: ["before 3:00am"],
   },
   nix: {
