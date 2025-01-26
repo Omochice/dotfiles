@@ -8,7 +8,7 @@
 #   - all
 registries:
 - type: standard
-  ref: v4.300.1 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.300.2 # renovate: depName=aquaproj/aqua-registry
 packages:
 - name: cli/cli@v2.65.0
 - name: junegunn/fzf@v0.58.0
