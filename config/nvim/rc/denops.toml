@@ -79,6 +79,10 @@ repo = "https://github.com/Omochice/tataku-processor-eta"
 on_source = "tataku.vim"
 
 [[plugins]]
+repo = "https://github.com/Omochice/tataku-processor-bedrock"
+on_source = "tataku.vim"
+
+[[plugins]]
 repo = "https://github.com/4513ECHO/denops-gitter.vim"
 hook_add = """
 let g:gitter#token = $GITTER_TOKEN
