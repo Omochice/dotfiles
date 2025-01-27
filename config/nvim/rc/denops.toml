@@ -32,57 +32,6 @@ hooks_file = "$DEIN_RC_DIR/hooks/gin.lua"
 on_cmd = ["Gin", "GinStatus"]
 
 [[plugins]]
-repo = "https://github.com/Omochice/tataku.vim"
-hooks_file = "$DEIN_RC_DIR/hooks/tataku.lua"
-depends = ["denops.vim", "vim-operator-user"]
-on_func = "tataku#call_recipe"
-on_map = { n = "<Plug>(operator-tataku", x = "<Plug>(operator-tataku" }
-
-[[plugins]]
-repo = "https://github.com/Omochice/tataku-collector-current_line"
-on_source = "tataku.vim"
-
-[[plugins]]
-repo = "https://github.com/Omochice/tataku-processor-google_translate"
-on_source = "tataku.vim"
-
-[[plugins]]
-repo = "https://github.com/Omochice/tataku-processor-intl_segmenter"
-on_source = "tataku.vim"
-
-[[plugins]]
-repo = "https://github.com/Omochice/tataku-emitter-nvim_floatwin"
-on_source = "tataku.vim"
-
-[[plugins]]
-repo = "https://github.com/Omochice/tataku-processor-split_by_displaywidth"
-on_source = "tataku.vim"
-
-[[plugins]]
-repo = "https://github.com/Omochice/tataku-processor-ollama"
-on_source = "tataku.vim"
-
-[[plugins]]
-repo = "https://github.com/Omochice/tataku-emitter-window"
-on_source = "tataku.vim"
-
-[[plugins]]
-repo = "https://github.com/Omochice/tataku-emitter-echo"
-on_source = "tataku.vim"
-
-[[plugins]]
-repo = "https://github.com/Omochice/tataku-collector-buffer"
-on_source = "tataku.vim"
-
-[[plugins]]
-repo = "https://github.com/Omochice/tataku-processor-eta"
-on_source = "tataku.vim"
-
-[[plugins]]
-repo = "https://github.com/Omochice/tataku-processor-bedrock"
-on_source = "tataku.vim"
-
-[[plugins]]
 repo = "https://github.com/4513ECHO/denops-gitter.vim"
 hook_add = """
 let g:gitter#token = $GITTER_TOKEN
