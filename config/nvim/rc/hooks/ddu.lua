@@ -111,7 +111,7 @@ vimx.create_command("DduGrep", function(opts)
   grepWrapper(opts.args)
 end, { nargs = 1 })
 
-vimx.keymap.set("n", prefix .. "<C-g>", ":<C-u>DduGrep ")
+vimx.keymap.set("n", prefix .. "<C-g>", ":<C-u>DduGrep<Space>")
 
 vimx.keymap.set("n", prefix .. "g", function()
   grepWrapper(vimx.fn.expand("<cword>"))
