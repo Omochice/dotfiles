@@ -58,6 +58,9 @@ local others = {
 
 if wezterm.target_triple:find("windows") then
   fonts.font_size = 14
+  -- NOTE: avoid to flick on windows
+  -- ref: https://github.com/wez/wezterm/issues/5138
+  others.webgpu_power_preference = "HighPerformance"
 end
 
 return utils.merged({
