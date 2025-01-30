@@ -1,8 +1,8 @@
 [[plugins]]
 repo = "https://github.com/Omochice/tataku.vim"
-hooks_file = "$DEIN_RC_DIR/hooks/tataku.lua"
+hooks_file = ["$DEIN_RC_DIR/hooks/tataku.lua", "$DEIN_RC_DIR/hooks/tataku.vim"]
 depends = ["denops.vim", "vim-operator-user"]
-on_func = "tataku#call_recipe"
+on_func = ["tataku#call_recipe", "tataku#call_oneshot"]
 on_map = { n = "<Plug>(operator-tataku", x = "<Plug>(operator-tataku" }
 
 [[plugins]]
@@ -38,6 +38,14 @@ repo = "https://github.com/Omochice/tataku-processor-eta"
 on_source = "tataku.vim"
 
 [[plugins]]
+repo = "https://github.com/Omochice/tataku-processor-markdown_section"
+on_source = "tataku.vim"
+
+[[plugins]]
+repo = "https://github.com/Omochice/tataku-processor-padding"
+on_source = "tataku.vim"
+
+[[plugins]]
 repo = "https://github.com/Omochice/tataku-emitter-nvim_floatwin"
 on_source = "tataku.vim"
 
@@ -49,4 +57,6 @@ on_source = "tataku.vim"
 repo = "https://github.com/Omochice/tataku-emitter-echo"
 on_source = "tataku.vim"
 
-
+[[plugins]]
+repo = "https://github.com/Omochice/tataku-emitter-buffer"
+on_source = "tataku.vim"
