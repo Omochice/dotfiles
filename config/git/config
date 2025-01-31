@@ -46,4 +46,8 @@
 [user]
     useConfigOnly = true
 
+[ghq]
+  root = "~/.cache/dpp/repos"
+  root = "~/ghq"
+
 ; vim:set filetype=gitconfig:
