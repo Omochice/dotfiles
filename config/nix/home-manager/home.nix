@@ -54,6 +54,7 @@ in
       starship
       tldr
       nix-output-monitor
+      silicon
       (callPackage ../../font/firge-nerd/package.nix { })
       (callPackage ../../font/firge/package.nix { })
     ];
