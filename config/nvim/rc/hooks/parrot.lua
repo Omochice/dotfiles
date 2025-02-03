@@ -13,6 +13,6 @@ if perplexty_api_key ~= nil and perplexty_api_key ~= "" then
   }
 end
 require("parrot").setup({
-  providers = providers
+  providers = providers,
 })
 -- }}}
