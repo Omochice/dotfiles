@@ -5,7 +5,7 @@
     "github>Omochice/renovate-config:deno",
     "github>Omochice/personal-renovate-config:mise",
     "github>Omochice/personal-renovate-config:biomejs",
-    "github>aquaproj/aqua-renovate-config#2.6.0",
+    "github>aquaproj/aqua-renovate-config#2.7.0",
   ],
   lockFileMaintenance: {
     enabled: true,
