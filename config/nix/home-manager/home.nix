@@ -57,6 +57,7 @@ in
       tldr
       nix-output-monitor
       silicon
+      cachix
       nur.firge
       nur.firge-nerd
     ];
