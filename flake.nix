@@ -15,6 +15,10 @@
     };
     flake-utils.url = "github:numtide/flake-utils";
     treefmt-nix.url = "github:numtide/treefmt-nix";
+    nur-packages = {
+      url = "github:Omochice/nur-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -25,10 +29,13 @@
       home-manager,
       treefmt-nix,
       flake-utils,
+      nur-packages,
     }@inputs:
     let
       system = "aarch64-darwin";
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = import nixpkgs {
+        inherit system;
+      };
       treefmt = treefmt-nix.lib.evalModule nixpkgs.legacyPackages.${system} (
         { ... }:
         {
@@ -74,11 +81,10 @@
       };
       homeConfigurations = {
         myHomeConfig = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs {
-            system = system;
-          };
+          pkgs = pkgs;
           extraSpecialArgs = {
             inherit inputs;
+            inherit nur-packages;
           };
           modules = [
             ./config/nix/home-manager/home.nix

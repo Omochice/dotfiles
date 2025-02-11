@@ -3,12 +3,14 @@
   lib,
   config,
   pkgs,
+  nur-packages,
   ...
 }:
 let
   # FIXME: I dont want to write user name here, but it doesn't work without "--impure"
   username = builtins.getEnv "USER";
   homeDirectory = builtins.getEnv "HOME";
+  nur = nur-packages.packages.${pkgs.system};
 in
 {
   imports = [
@@ -55,8 +57,8 @@ in
       tldr
       nix-output-monitor
       silicon
-      (callPackage ../../font/firge-nerd/package.nix { })
-      (callPackage ../../font/firge/package.nix { })
+      nur.firge
+      nur.firge-nerd
     ];
   };
   programs.home-manager.enable = true;
