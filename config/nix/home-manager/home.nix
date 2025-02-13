@@ -60,6 +60,7 @@ in
       cachix
       nur.firge
       nur.firge-nerd
+      nur.pinact
     ];
   };
   programs.home-manager.enable = true;
