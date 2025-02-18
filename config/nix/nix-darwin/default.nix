@@ -6,6 +6,8 @@
     ../applications/homebrew.nix
   ];
   nix = {
+    # Auto upgrade nix package and the daemon service.
+    enable = true;
     package = pkgs.nix;
     optimise.automatic = true;
     settings = {
@@ -15,8 +17,6 @@
   };
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
   system = {
     # Used for backwards compatibility, please read the changelog before changing.
     # $ darwin-rebuild changelog
