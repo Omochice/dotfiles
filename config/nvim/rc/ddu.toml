@@ -73,7 +73,6 @@ on_source = "ddu.vim"
 [[plugins]]
 repo = "https://github.com/Omochice/ddu-source-redmine"
 on_source = "ddu.vim"
-rev = "project"
 
 [[plugins]]
 repo = "https://github.com/Shougo/ddu-source-action"
