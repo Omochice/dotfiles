@@ -12,7 +12,7 @@ vimx.g.quickrun_config = {
   },
   typescript = {
     command = "deno",
-    cmdopt = "run --allow-all --unstable",
+    cmdopt = "run --allow-all",
     exec = "NO_COLOR=1 %c %o %s",
   },
   elm = {
