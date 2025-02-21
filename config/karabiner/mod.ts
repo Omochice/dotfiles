@@ -1,4 +1,4 @@
-import * as k from "https://deno.land/x/karabinerts@1.30.3/deno.ts";
+import * as k from "https://deno.land/x/karabinerts@1.31.0/deno.ts";
 import { rules } from "./yabai.ts";
 
 function newApp(name: string) {
