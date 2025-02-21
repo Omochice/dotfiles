@@ -174,7 +174,7 @@ sketchybar --message \
 	--add item apple.sleep popup.apple --set apple.sleep "${apple_popup[@]}" "${sleep[@]}" \
 	--add item cpu left --set cpu "${cpu[@]}" \
 	--add item ram left --set ram "${ram[@]}" \
-	--add item speedtest left --set speedtest "${speedtest[@]}"
+	# --add item speedtest left --set speedtest "${speedtest[@]}"
 # }}}
 
 # right items {{{
