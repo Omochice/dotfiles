@@ -1,6 +1,6 @@
 import { ensure, is } from "jsr:@core/unknownutil@4.3.0";
 import { $ } from "jsr:@david/dax@0.41.0";
-import { ResultAsync } from "npm:neverthrow@8.1.1";
+import { ResultAsync } from "npm:neverthrow@8.2.0";
 
 const hasId = is.ObjectOf({
   id: is.Number,

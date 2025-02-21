@@ -1,5 +1,5 @@
 import { ensure, is } from "jsr:@core/unknownutil@4.3.0";
-import { errAsync, okAsync, ResultAsync } from "npm:neverthrow@8.1.1";
+import { errAsync, okAsync, ResultAsync } from "npm:neverthrow@8.2.0";
 import { createSpaces } from "./create-spaces.ts";
 import { $ } from "jsr:@david/dax@0.41.0";
 
