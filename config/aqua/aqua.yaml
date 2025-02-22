@@ -55,7 +55,7 @@ packages:
 - name: protocolbuffers/protobuf/protoc@v29.3
 - name: lsd-rs/lsd@v1.1.5
 - name: editorconfig-checker/editorconfig-checker@v3.2.0
-- name: k1LoW/octocov@v0.62.6
+- name: k1LoW/octocov@v0.63.0
 - name: skanehira/slack-reminder@v0.1.1
 - name: suzuki-shunsuke/disable-checkout-persist-credentials@v0.1.2
 - name: FiloSottile/mkcert@v1.4.4
