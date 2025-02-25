@@ -60,6 +60,7 @@
       };
       PowerChime = {
         ChimeOnAllHardware = false;
+        ChimeOnNoHardware = true;
       };
     };
   };
