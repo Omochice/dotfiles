@@ -6,34 +6,40 @@
       autoUpdate = true;
     };
     taps = [
+      # keep-sorted start
+      "aquaproj/aqua"
       "felixkratz/formulae"
       "koekeishiya/formulae"
-      "aquaproj/aqua"
+      # keep-sorted end
     ];
     brews = [
+      # keep-sorted start
       "aquaproj/aqua/aqua"
       "cmake"
+      "felixkratz/formulae/sketchybar"
       "gettext"
+      "koekeishiya/formulae/yabai"
       "libtool"
       "ninja"
       "pkg-config"
-      "koekeishiya/formulae/yabai"
-      "felixkratz/formulae/sketchybar"
+      # keep-sorted end
     ];
     casks = [
+      # keep-sorted start
       "alt-tab"
       "android-studio"
-      "mtgto/macskk/macskk"
+      "crystalfetch"
       "discord"
+      "google-chrome@canary"
       "gyazo"
       "karabiner-elements"
+      "mtgto/macskk/macskk"
       "scroll-reverser"
       "slack"
-      "vivaldi"
-      "google-chrome@canary"
-      "wezterm@nightly"
       "utm"
-      "crystalfetch"
+      "vivaldi"
+      "wezterm@nightly"
+      # keep-sorted end
     ];
   };
 }

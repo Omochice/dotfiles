@@ -46,7 +46,7 @@
             "**/aqua.yaml"
           ];
           programs = {
-            nixfmt.enable = true;
+            # keep-sorted start block=yes
             deno = {
               enable = true;
               includes = [
@@ -54,11 +54,16 @@
                 "*.js"
               ];
             };
+            keep-sorted.enable = true;
+            nixfmt.enable = true;
+            shfmt.enable = true;
             stylua = {
               enable = true;
               settings = builtins.fromTOML (builtins.readFile ./config/stylua/stylua.toml);
             };
-            shfmt.enable = true;
+            taplo = {
+              enable = true;
+            };
             yamlfmt = {
               enable = true;
               settings = {
@@ -68,9 +73,7 @@
                 };
               };
             };
-            taplo = {
-              enable = true;
-            };
+            # keep-sorted end
           };
         }
       );
