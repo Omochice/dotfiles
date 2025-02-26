@@ -56,6 +56,7 @@
             };
             keep-sorted.enable = true;
             nixfmt.enable = true;
+            pinact.enable = true;
             shfmt.enable = true;
             stylua = {
               enable = true;
