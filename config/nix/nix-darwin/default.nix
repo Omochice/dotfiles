@@ -60,6 +60,7 @@
         ChimeOnNoHardware = true;
         # keep-sorted end
       };
+      spaces.spans-displays = false;
       trackpad = {
         # keep-sorted start
         Clicking = true;
