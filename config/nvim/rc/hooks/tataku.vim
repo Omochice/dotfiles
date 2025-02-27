@@ -9,7 +9,7 @@ const s:providers = #{
       \ bedrock: #{
       \   name: 'bedrock',
       \   options: #{
-      \     model: 'us.amazon.nova-pro-v1:0',
+      \     model: 'us.anthropic.claude-3-7-sonnet-20250219-v1:0',
       \     region: 'us-east-1',
       \     profile: 'bedrock',
       \   },
