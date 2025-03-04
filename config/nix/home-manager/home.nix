@@ -47,6 +47,7 @@ in
       devbox
       fish
       gnumake
+      goose-cli
       imagemagick
       mise
       neofetch
