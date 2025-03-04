@@ -38,7 +38,9 @@ in
     homeDirectory = homeDirectory;
     stateVersion = "24.05";
     packages = with pkgs; [
+      # keep-sorted start
       btop
+      cachix
       cargo
       clang-tools
       curl
@@ -48,19 +50,21 @@ in
       imagemagick
       mise
       neofetch
+      nix-output-monitor
       nixd
       nkf
       nushell
       pandoc
       pnpm
+      silicon
       starship
       tldr
-      nix-output-monitor
-      silicon
-      cachix
+      # keep-sorted end
+      # keep-sorted start
       nur.firge
       nur.firge-nerd
       nur.pinact
+      # keep-sorted end
     ];
   };
   programs.home-manager.enable = true;
