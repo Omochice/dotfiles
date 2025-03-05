@@ -62,8 +62,13 @@ in
       tldr
       # keep-sorted end
       # keep-sorted start
+      nur.disable-checkout-persist-credentials
+      nur.duckgo
       nur.firge
       nur.firge-nerd
+      nur.ghalint
+      nur.ghatm
+      nur.gitlab-ci-verify
       nur.pinact
       # keep-sorted end
     ];
