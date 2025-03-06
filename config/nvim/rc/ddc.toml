@@ -35,7 +35,7 @@ repo = "https://github.com/Shougo/ddc-source-line"
 on_source = "ddc.vim"
 
 [[plugins]]
-repo = "https://github.com/Omochice/ddc-source-copilot"
+repo = "https://github.com/Shougo/ddc-source-copilot"
 on_source = "ddc.vim"
 depends = "copilot.lua"
 if = "!exists('$COPILOT_DISABLE')"
