@@ -5,9 +5,9 @@
     includes = [
       { path = ./config; }
     ];
-    ignores = lib.splitString "\n" (builtins.readFile ./ignore);
+    ignores = ./ignore |> builtins.readFile |> lib.splitString "\n";
     extraConfig = {
-      commit.template = toString ./gitmessage;
+      commit.template = ./gitmessage |> toString;
     };
   };
 }
