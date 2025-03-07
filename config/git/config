@@ -50,4 +50,7 @@
   root = "~/.cache/dpp/repos"
   root = "~/ghq"
 
+[log]
+  date = "format:%F %T%z"
+
 ; vim:set filetype=gitconfig:
