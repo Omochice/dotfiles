@@ -2,7 +2,7 @@
 {
   programs.starship = {
     enable = true;
-    settings = builtins.fromTOML (builtins.readFile ./config.toml);
+    settings = ./config.toml |> builtins.readFile |> builtins.fromTOML;
     enableNushellIntegration = true;
   };
 }

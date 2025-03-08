@@ -60,7 +60,7 @@
             shfmt.enable = true;
             stylua = {
               enable = true;
-              settings = builtins.fromTOML (builtins.readFile ./config/stylua/stylua.toml);
+              settings = ./config/stylua/stylua.toml |> builtins.readFile |> builtins.fromTOML;
             };
             taplo = {
               enable = true;
@@ -100,8 +100,8 @@
       };
       apps.${system}.update = {
         type = "app";
-        program = toString (
-          pkgs.writeShellScript "update-script" ''
+        program =
+          ''
             set -e
             echo "Updating home-manager..."
             nix run home-manager -- switch --flake .#myHomeConfig --impure |& ${pkgs.nix-output-monitor}/bin/nom
@@ -109,7 +109,8 @@
             nix run nix-darwin -- switch --flake .#omochice
             echo "Update complete!"
           ''
-        );
+          |> pkgs.writeShellScript "update-script"
+          |> toString;
       };
     };
 }

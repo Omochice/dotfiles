@@ -2,7 +2,7 @@
 {
   xdg.configFile = {
     "aqua/dummy" = {
-      text = builtins.readFile ./aqua.yaml;
+      text = ./aqua.yaml |> builtins.readFile;
       onChange = ''
         ln -snf ${config.home.homeDirectory}/dotfiles/config/aqua/aqua.yaml ${config.xdg.configHome}/aqua/aqua.yaml
       '';
