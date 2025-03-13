@@ -43,18 +43,9 @@ lspconfig.nixd.setup({})
 lspconfig.nushell.setup({})
 lspconfig.rust_analyzer.setup({})
 lspconfig.sourcekit.setup({})
-lspconfig.taplo.setup({
-  workspace_config = {
-    formatter = {
-      reorderKeys = false,
-      compactArray = false,
-      arrayAutoCollapse = false,
-      alignEntries = true,
-    },
-  },
-})
+lspconfig.taplo.setup(require("vimrc/lsp/taplo").config())
 lspconfig.tinymist.setup({})
-lspconfig.ts_ls.setup("vimrc/lsp/tsserver")
+lspconfig.ts_ls.setup(require("vimrc/lsp/tsserver").config())
 lspconfig.yamlls.setup(require("vimrc/lsp/yamlls").config())
 -- keep-sorted end
 -- }}}
