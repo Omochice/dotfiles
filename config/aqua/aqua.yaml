@@ -50,7 +50,7 @@ packages:
 - name: crate-ci/typos@v1.30.2
 - name: hadolint/hadolint@v2.12.0
 - name: tamasfe/taplo/full@0.9.3
-- name: protocolbuffers/protobuf/protoc@v30.0
+- name: protocolbuffers/protobuf/protoc@v30.1
 - name: lsd-rs/lsd@v1.1.5
 - name: editorconfig-checker/editorconfig-checker@v3.2.0
 - name: k1LoW/octocov@v0.64.0
