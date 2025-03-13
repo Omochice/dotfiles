@@ -54,6 +54,10 @@
                 "*.js"
               ];
             };
+            formatjson5 = {
+              enable = true;
+              indent = 2;
+            };
             keep-sorted.enable = true;
             nixfmt.enable = true;
             pinact.enable = true;
