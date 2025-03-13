@@ -52,7 +52,6 @@ in
       mise
       neofetch
       nix-output-monitor
-      nixd
       nkf
       nushell
       pandoc
@@ -60,6 +59,16 @@ in
       silicon
       starship
       tldr
+      # keep-sorted end
+      # keep-sorted start
+      astro-language-server
+      lua-language-server
+      nixd
+      pyright
+      svelte-language-server
+      typescript-language-server
+      vue-language-server
+      yaml-language-server
       # keep-sorted end
       # keep-sorted start
       nur.disable-checkout-persist-credentials

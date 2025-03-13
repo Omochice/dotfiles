@@ -30,24 +30,19 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 require("mason-lspconfig").setup_handlers({
   function(server_name)
-    local opts = {}
-    if server_name == "yamlls" then
-      opts = require("vimrc/lsp/yamlls").config()
-    end
-    if server_name == "tsserver" or server_name == "ts_ls" then
-      opts = require("vimrc/lsp/tsserver").config()
-    end
-    lspconfig[server_name].setup(opts)
+    lspconfig[server_name].setup({})
   end,
 })
 
+-- keep-sorted start block=yes
 lspconfig.denols.setup(require("vimrc/lsp/denols").config())
-lspconfig.gopls.setup({})
-lspconfig.nushell.setup({})
-lspconfig.sourcekit.setup({})
-lspconfig.lua_ls.setup(require("vimrc/lsp/lua_ls").config())
 lspconfig.efm.setup(require("vimrc/lsp/efm").config())
-lspconfig.tinymist.setup({})
+lspconfig.gopls.setup({})
+lspconfig.lua_ls.setup(require("vimrc/lsp/lua_ls").config())
+lspconfig.nixd.setup({})
+lspconfig.nushell.setup({})
+lspconfig.rust_analyzer.setup({})
+lspconfig.sourcekit.setup({})
 lspconfig.taplo.setup({
   workspace_config = {
     formatter = {
@@ -58,6 +53,8 @@ lspconfig.taplo.setup({
     },
   },
 })
-lspconfig.nixd.setup({})
-lspconfig.rust_analyzer.setup({})
+lspconfig.tinymist.setup({})
+lspconfig.ts_ls.setup("vimrc/lsp/tsserver")
+lspconfig.yamlls.setup(require("vimrc/lsp/yamlls").config())
+-- keep-sorted end
 -- }}}
