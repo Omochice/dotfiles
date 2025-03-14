@@ -48,6 +48,7 @@ local rules = {
   { filetype = ft.js, char = "*", at = [[^\s*/\%#]], input = [[*<Space>]], input_after = [[<Space>*/]] },
   { filetype = ft.js, char = "*", at = [[/\*\s\%#]], input = [[<BS>*<Space>]] },
   { filetype = ft.js, char = char.bs, at = [[/\*\*\s\%#\s\*/]], input = [[<BS><BS><Space>]] },
+  { filetype = ft.js, char = "<", at = [[Promise\%#]], input = "<", input_after = ">" },
   -- java
   { filetype = ft.java, char = "*", at = [[^\s*/\%#]], input = [[*<Space>]], input_after = [[<Space>*/]] },
   { filetype = ft.java, char = "*", at = [[/\*\s\%#]], input = [[<BS>*<Space>]] },
