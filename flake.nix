@@ -113,6 +113,7 @@
             default = pkgs.mkShell {
               packages = [
                 nixpkgs.legacyPackages.x86_64-linux.actionlint
+                nur-packages.packages.x86_64-linux.ghalint
               ];
             };
           };

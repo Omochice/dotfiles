@@ -28,4 +28,8 @@ jobs:
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
           extraPullNames: omochice
       - name: check actions
-        run: nix develop -c actionlint
+        run: |
+          nix develop -c actionlint --version
+          nix develop -c actionlint
+          nix develop -c ghalint --version
+          nix develop -c ghalint
