@@ -102,19 +102,45 @@
           ];
         };
       };
-      apps.${system}.update = {
-        type = "app";
-        program =
-          ''
-            set -e
-            echo "Updating home-manager..."
-            nix run home-manager -- switch --flake .#myHomeConfig --impure |& ${pkgs.nix-output-monitor}/bin/nom
-            echo "Updating nix-darwin..."
-            nix run nix-darwin -- switch --flake .#omochice
-            echo "Update complete!"
-          ''
-          |> pkgs.writeShellScript "update-script"
-          |> toString;
-      };
+      apps =
+        let
+          check-action-for = (
+            system: {
+              type = "app";
+              program =
+                ''
+                  set -e
+                  ${nixpkgs.legacyPackages.${system}.actionlint}/bin/actionlint --version
+                  ${nixpkgs.legacyPackages.${system}.actionlint}/bin/actionlint
+                  ${nur-packages.packages.${system}.ghalint}/bin/ghalint --version
+                  ${nur-packages.packages.${system}.ghalint}/bin/ghalint run
+                ''
+                |> nixpkgs.writeShellScript "check-action-script"
+                |> toString;
+            }
+          );
+        in
+        {
+          "x86_64-linux" = {
+            check-action = check-action-for "x86_64-linux";
+          };
+          "aarch64-darwin" = {
+            update = {
+              type = "app";
+              program =
+                ''
+                  set -e
+                  echo "Updating home-manager..."
+                  nix run home-manager -- switch --flake .#myHomeConfig --impure |& ${pkgs.nix-output-monitor}/bin/nom
+                  echo "Updating nix-darwin..."
+                  nix run nix-darwin -- switch --flake .#omochice
+                  echo "Update complete!"
+                ''
+                |> pkgs.writeShellScript "update-script"
+                |> toString;
+            };
+            check-action = check-action-for "aarch64-darwin";
+          };
+        };
     };
 }
