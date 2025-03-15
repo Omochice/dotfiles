@@ -102,6 +102,21 @@
           ];
         };
       };
+      devShells =
+        let
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+          };
+        in
+        {
+          "x86_64-linux" = {
+            default = pkgs.mkShell {
+              packages = [
+                nixpkgs.legacyPackages.x86_64-linux.actionlint
+              ];
+            };
+          };
+        };
       apps =
         let
           pkgs = import nixpkgs {
