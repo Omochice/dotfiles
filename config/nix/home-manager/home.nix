@@ -66,6 +66,7 @@ in
       nixd
       pyright
       svelte-language-server
+      tinymist
       typescript-language-server
       vue-language-server
       yaml-language-server
