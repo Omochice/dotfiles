@@ -104,6 +104,9 @@
       };
       apps =
         let
+          pkgs = import nixpkgs {
+            inherit system;
+          };
           check-action-for = (
             system: {
               type = "app";
@@ -115,7 +118,7 @@
                   ${nur-packages.packages.${system}.ghalint}/bin/ghalint --version
                   ${nur-packages.packages.${system}.ghalint}/bin/ghalint run
                 ''
-                |> nixpkgs.writeShellScript "check-action-script"
+                |> pkgs.writeShellScript "check-action-script"
                 |> toString;
             }
           );
