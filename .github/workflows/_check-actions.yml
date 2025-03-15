@@ -32,4 +32,4 @@ jobs:
           nix develop -c actionlint --version
           nix develop -c actionlint
           nix develop -c ghalint --version
-          nix develop -c ghalint
+          nix develop -c ghalint run
