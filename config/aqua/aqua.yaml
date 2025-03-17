@@ -55,3 +55,4 @@ packages:
 - name: k1LoW/octocov@v0.64.0
 - name: skanehira/slack-reminder@v0.1.1
 - name: FiloSottile/mkcert@v1.4.4
+- name: jesseduffield/lazydocker@v0.24.1
