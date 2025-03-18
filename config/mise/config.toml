@@ -4,5 +4,5 @@
 node = "22"       # renovate: mise
 python = "3.13.2" # renovate: mise
 ruby = "3.4.2"    # renovate: mise
-rust = "1.85.0"   # renovate: mise
+rust = "1.85.1"   # renovate: mise
 go = "1.24.1"     # renovate: mise
