@@ -131,6 +131,8 @@
                   set -e
                   ${nixpkgs.legacyPackages.${system}.actionlint}/bin/actionlint --version
                   ${nixpkgs.legacyPackages.${system}.actionlint}/bin/actionlint
+                  ${nur-packages.packages.${system}.ghalint}/bin/ghalint --version
+                  ${nur-packages.packages.${system}.ghalint}/bin/ghalint run
                 ''
                 |> pkgs.writeShellScript "check-action-script"
                 |> toString;
