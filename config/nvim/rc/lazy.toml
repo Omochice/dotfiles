@@ -638,7 +638,6 @@ require("CopilotChat").setup({
   help = false,
 })
 """
-rev = "canary"
 depends = ["copilot.lua", "plenary.nvim"]
 on_cmd = [
   "CopilotChat",
