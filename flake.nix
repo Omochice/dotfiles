@@ -60,7 +60,10 @@
             };
             keep-sorted.enable = true;
             nixfmt.enable = true;
-            pinact.enable = true;
+            pinact = {
+              enable = true;
+              update = false;
+            };
             shfmt.enable = true;
             stylua = {
               enable = true;
