@@ -222,7 +222,7 @@ set shortmess=asTIcF
 
 " filetype settings
 " if nvim then use lua filetype module
-let g:did_load_filetyps = has('nvim')
+let g:did_load_filetypes = has('nvim')
 
 const g:filetype_m = 'mma'
 
