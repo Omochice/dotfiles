@@ -14,19 +14,21 @@ let
 in
 {
   imports = [
+    # keep-sorted start
+    ../../aqua/default.nix
+    ../../colima/default.nix
+    ../../gh/default.nix
     ../../git/default.nix
-    ../../starship/default.nix
+    ../../glab-cli/default.nix
     ../../lazygit/default.nix
     ../../nushell/default.nix
-    ../../zoxide/default.nix
-    ../../glab-cli/default.nix
-    ../../gh/default.nix
-    ../../aqua/default.nix
-    ../../yabai/default.nix
-    ../../wezterm/default.nix
     ../../nvim/default.nix
-    ../../colima/default.nix
     ../../sketchybar/default.nix
+    ../../starship/default.nix
+    ../../wezterm/default.nix
+    ../../yabai/default.nix
+    ../../zoxide/default.nix
+    # keep-sorted end
     # ../../macskk/default.nix
   ];
   nixpkgs = {
