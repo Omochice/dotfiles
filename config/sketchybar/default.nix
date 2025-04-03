@@ -1,9 +1,9 @@
-{  ... }:
+{ ... }:
 {
   xdg.configFile = {
     sketchybar = {
-source = ./.;
-recursive = true;
+      source = ./.;
+      recursive = true;
     };
-  } ;
+  };
 }
