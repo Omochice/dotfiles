@@ -26,6 +26,7 @@ in
     ../../wezterm/default.nix
     ../../nvim/default.nix
     ../../colima/default.nix
+    ../../sketchybar/default.nix
     # ../../macskk/default.nix
   ];
   nixpkgs = {
