@@ -4,7 +4,7 @@
     "vim/vimrc" = {
       source = ./vimrc.core;
     };
-    "nvim".source =
+    nvim.source =
       "${config.home.homeDirectory}/dotfiles/config/nvim" |> config.lib.file.mkOutOfStoreSymlink;
   };
 }
