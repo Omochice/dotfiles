@@ -1,12 +1,12 @@
 [[plugins]]
 repo = "https://github.com/Shougo/ddc.vim"
-hooks_file = "$DEIN_RC_DIR/hooks/ddc.lua"
+hooks_file = "$VIMRC_RC_DIR/hooks/ddc.lua"
 depends = "denops.vim"
 on_event = "InsertEnter"
 
 [[plugins]]
 repo = "https://github.com/Shougo/pum.vim"
-hooks_file = "$DEIN_RC_DIR/hooks/pum.lua"
+hooks_file = "$VIMRC_RC_DIR/hooks/pum.lua"
 
 [[plugins]]
 repo = "https://github.com/Shougo/ddc-ui-pum"
@@ -116,5 +116,5 @@ if = "!has('nvim')"
 [[plugins]]
 repo = "https://github.com/uga-rosa/ddc-previewer-floating"
 on_source = "ddc.vim"
-hooks_file = "$DEIN_RC_DIR/hooks/ddc-previewer-floating.lua"
+hooks_file = "$VIMRC_RC_DIR/hooks/ddc-previewer-floating.lua"
 if = "has('nvim')"

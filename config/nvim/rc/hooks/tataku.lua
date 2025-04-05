@@ -80,7 +80,7 @@ local function reset()
           name = "eta",
           options = {
             type = "file",
-            templateDirectory = vimx.fn.expand("$DEIN_RC_DIR") .. "/eta",
+            templateDirectory = vimx.fn.expand("$VIMRC_RC_DIR") .. "/eta",
             templateFileName = "review.eta",
           },
         },

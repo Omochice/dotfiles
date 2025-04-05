@@ -1,7 +1,7 @@
 [[plugins]]
 repo = "https://github.com/Shougo/ddu.vim"
 depends = "denops.vim"
-hooks_file = "$DEIN_RC_DIR/hooks/ddu.lua"
+hooks_file = "$VIMRC_RC_DIR/hooks/ddu.lua"
 on_event = "CursorHold"
 on_func = ["ddu#start"]
 on_map = { n = "<Plug>(ddu" }
@@ -9,8 +9,8 @@ on_map = { n = "<Plug>(ddu" }
 [[plugins]]
 repo = "https://github.com/Shougo/ddu-ui-ff"
 on_source = "ddu.vim"
-# hooks_file = "$DEIN_RC_DIR/hooks/ddu-ui-ff.lua"
-hooks_file = "$DEIN_RC_DIR/hooks/ddu-ui-ff.vim"
+# hooks_file = "$VIMRC_RC_DIR/hooks/ddu-ui-ff.lua"
+hooks_file = "$VIMRC_RC_DIR/hooks/ddu-ui-ff.vim"
 
 [[plugins]]
 repo = "https://github.com/Shougo/ddu-source-file_rec"

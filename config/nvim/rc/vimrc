@@ -7,7 +7,7 @@ augroup END
 const s:dpp_base = expand('~/.cache/dpp')
 const s:rc_dir = fnamemodify(expand('<sfile>'), ':p:h')
 const g:config_dir = fnamemodify(s:rc_dir, ':h')
-let $DEIN_RC_DIR = s:rc_dir
+let $VIMRC_RC_DIR = s:rc_dir
 
 function s:init_plugin(repo) abort
   if &runtimepath =~# $'/{a:repo}'

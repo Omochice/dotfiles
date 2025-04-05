@@ -46,6 +46,6 @@ vimx.create_autocmd("LspAttach", {
 
 -- lua_source {{{
 local vimx = require("artemis")
-vimx.fn.ddc.custom.load_config(vimx.fn.expand("$DEIN_RC_DIR/ts/ddc.ts"))
+vimx.fn.ddc.custom.load_config(vimx.fn.expand("$VIMRC_RC_DIR/ts/ddc.ts"))
 vimx.fn.ddc.enable()
 -- }}}

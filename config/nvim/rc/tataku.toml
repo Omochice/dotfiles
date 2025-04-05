@@ -1,6 +1,6 @@
 [[plugins]]
 repo = "https://github.com/Omochice/tataku.vim"
-hooks_file = ["$DEIN_RC_DIR/hooks/tataku.lua", "$DEIN_RC_DIR/hooks/tataku.vim"]
+hooks_file = ["$VIMRC_RC_DIR/hooks/tataku.lua", "$VIMRC_RC_DIR/hooks/tataku.vim"]
 depends = ["denops.vim", "vim-operator-user"]
 on_func = ["tataku#call_recipe", "tataku#call_oneshot"]
 on_map = { n = "<Plug>(operator-tataku", x = "<Plug>(operator-tataku" }

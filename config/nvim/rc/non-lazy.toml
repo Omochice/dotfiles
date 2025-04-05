@@ -1,4 +1,4 @@
-hooks_file = "$DEIN_RC_DIR/hooks/ft.vim"
+hooks_file = "$VIMRC_RC_DIR/hooks/ft.vim"
 
 [[plugins]]
 repo = "https://github.com/sainnhe/sonokai"
@@ -36,7 +36,7 @@ augroup END
 
 [[plugins]]
 repo = "https://github.com/itchyny/lightline.vim"
-hooks_file = "$DEIN_RC_DIR/hooks/lightline.lua"
+hooks_file = "$VIMRC_RC_DIR/hooks/lightline.lua"
 depends = ["vim-nerdfont", 'vim-gitbranch']
 
 [[plugins]]
