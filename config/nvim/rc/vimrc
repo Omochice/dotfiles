@@ -10,7 +10,7 @@ const g:config_dir = fnamemodify(s:rc_dir, ':h')
 let $VIMRC_RC_DIR = s:rc_dir
 
 function s:init_plugin(repo) abort
-  if &runtimepath =~# $'/{a:repo}'
+  if stridx(&runtimepath, a:repo) !=# -1
     return
   endif
   const l:dst = expand($'{s:dpp_base}/repos/github.com/{a:repo}')
