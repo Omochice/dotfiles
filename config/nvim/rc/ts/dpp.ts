@@ -116,7 +116,7 @@ const inlineVimrcs = [
   "~/.config/nvim/rc/disable_plugin.vim",
 ] as const satisfies string[];
 
-const tomlFiles: Toml[] = [
+const tomlFiles = [
   { path: "~/.config/nvim/rc/dpp.toml", lazy: false },
   { path: "~/.config/nvim/rc/non-lazy.toml", lazy: false },
   { path: "~/.config/nvim/rc/colorscheme.toml", lazy: false },
@@ -125,7 +125,7 @@ const tomlFiles: Toml[] = [
   { path: "~/.config/nvim/rc/ddc.toml", lazy: true },
   { path: "~/.config/nvim/rc/ddu.toml", lazy: true },
   { path: "~/.config/nvim/rc/tataku.toml", lazy: true },
-] as const;
+] as const satisfies Toml[];
 
 export class Config extends BaseConfig {
   override async config(
