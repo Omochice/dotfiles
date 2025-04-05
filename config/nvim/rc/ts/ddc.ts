@@ -2,7 +2,9 @@ import { BaseConfig, type ConfigArguments } from "jsr:@shougo/ddc-vim/config";
 import type { DdcOptions } from "jsr:@shougo/ddc-vim/types";
 
 export class Config extends BaseConfig {
-  override async config(args: ConfigArguments): Promise<void> {
+  override async config(
+    { denops, contextBuilder }: ConfigArguments,
+  ): Promise<void> {
     const globalPatch = {
       specialBufferCompletion: true,
       ui: "pum",
@@ -82,7 +84,7 @@ export class Config extends BaseConfig {
         },
         lsp: {
           snippetEngine: async (body: string) => {
-            await args.denops.call("vsnip#anonymous", body);
+            await denops.call("vsnip#anonymous", body);
           },
           enagbleResolveItem: true,
           enableAdditionalTextEdit: true,
@@ -93,15 +95,15 @@ export class Config extends BaseConfig {
       },
     } satisfies Partial<DdcOptions>;
 
-    args.contextBuilder.patchGlobal(globalPatch);
+    contextBuilder.patchGlobal(globalPatch);
 
     for (const ft of ["toml", "vim"]) {
-      args.contextBuilder.patchFiletype(ft, {
+      contextBuilder.patchFiletype(ft, {
         sources: ["necovim", "lsp", "around", "buffer", "rg"],
       });
     }
     for (const ft of ["markdown"]) {
-      args.contextBuilder.patchFiletype(ft, {
+      contextBuilder.patchFiletype(ft, {
         sources: ["file", "around", "buffer", "rg"],
       });
     }

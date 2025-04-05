@@ -66,9 +66,11 @@ const calcSize = (size: Size): DduSize => {
 };
 
 export class Config extends BaseConfig {
-  override async config(args: ConfigArguments): Promise<void> {
-    await updateState(args.denops);
-    args.contextBuilder.patchGlobal({
+  override async config(
+    { denops, contextBuilder }: ConfigArguments,
+  ): Promise<void> {
+    await updateState(denops);
+    contextBuilder.patchGlobal({
       ui: "ff",
       uiParams: {
         ff: {
@@ -175,17 +177,17 @@ export class Config extends BaseConfig {
         },
       },
     });
-    await group(args.denops, "vimrc#ddu", (helper) => {
-      const id = register(args.denops, async () => {
-        await updateState(args.denops);
-        args.contextBuilder.patchGlobal({
+    await group(denops, "vimrc#ddu", (helper) => {
+      const id = register(denops, async () => {
+        await updateState(denops);
+        contextBuilder.patchGlobal({
           uiParams: { ff: calcSize(state) },
         });
       });
       helper.define(
         "WinResized",
         "*",
-        `call denops#notify("${args.denops.name}", "${id}", [])`,
+        `call denops#notify("${denops.name}", "${id}", [])`,
       );
     });
     return Promise.resolve();
