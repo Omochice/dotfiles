@@ -26,14 +26,6 @@ vim.diagnostic.config({
 
 -- lua_source {{{
 local lspconfig = require("lspconfig")
-require("mason").setup()
-require("mason-lspconfig").setup()
-require("mason-lspconfig").setup_handlers({
-  function(server_name)
-    lspconfig[server_name].setup({})
-  end,
-})
-
 -- keep-sorted start block=yes
 lspconfig.denols.setup(require("vimrc/lsp/denols").config())
 lspconfig.efm.setup(require("vimrc/lsp/efm").config())

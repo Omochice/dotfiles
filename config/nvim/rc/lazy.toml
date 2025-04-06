@@ -130,23 +130,13 @@ on_source = "vim-lsp"
 [[plugins]]
 repo = "https://github.com/neovim/nvim-lspconfig"
 on_lua = "lspconfig"
+hooks_file = "$VIMRC_RC_DIR/hooks/lspconfig.lua"
 if = "has('nvim')"
 
 [[plugins]]
 repo = "https://github.com/SmiteshP/nvim-navic"
 on_source = "nvim-lspconfig"
 hooks_file = "$VIMRC_RC_DIR/hooks/nvim-navic.lua"
-
-[[plugins]]
-repo = "https://github.com/williamboman/mason.nvim"
-on_lua = "mason"
-if = "has('nvim')"
-
-[[plugins]]
-repo = "https://github.com/williamboman/mason-lspconfig.nvim"
-on_event = ["BufRead", "BufNewFile"]
-hooks_file = "$VIMRC_RC_DIR/hooks/mason-lspconfig.lua"
-if = "has('nvim')"
 
 [[plugins]]
 repo = "https://github.com/machakann/vim-sandwich"
