@@ -154,6 +154,38 @@
             ]
           },
           {
+            "description": "Focus URL bar on chrome same as other browser or os",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                    "mandatory": [
+                      "control"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "l",
+                    "modifiers": [
+                      "command"
+                    ]
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "frontmost_application_if",
+                    "bundle_identifiers": [
+                      "^com\\.google\\.Chrome"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "description": "Change window focus west. if exists other display on the way, focus it",
             "manipulators": [
               {

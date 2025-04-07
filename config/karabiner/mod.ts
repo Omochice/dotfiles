@@ -69,5 +69,23 @@ k.writeToProfile("Default profile", [
           modifiers: ["control"],
         }]),
     ]),
+  k.rule(
+    "Focus URL bar on chrome same as other browser or os",
+    k
+      .ifApp({
+        bundle_identifiers: ["^com\\.google\\.Chrome"],
+      }),
+  )
+    .manipulators([
+      k
+        .map({
+          key_code: "l",
+          modifiers: { mandatory: ["control"] },
+        })
+        .to([{
+          key_code: "l",
+          modifiers: ["command"],
+        }]),
+    ]),
   ...rules,
 ]);
