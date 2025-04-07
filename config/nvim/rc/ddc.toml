@@ -22,7 +22,7 @@ if = "!has('nvim')"
 [[plugins]]
 repo = "https://github.com/Shougo/ddc-source-lsp"
 on_source = "ddc.vim"
-depends = ["nvim-lspconfig", "mason.nvim", "mason-lspconfig.nvim"]
+depends = ["nvim-lspconfig"]
 if = "has('nvim')"
 
 [[plugins]]
