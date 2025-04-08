@@ -97,8 +97,7 @@
         myHomeConfig = home-manager.lib.homeManagerConfiguration {
           pkgs = pkgs;
           extraSpecialArgs = {
-            inherit inputs;
-            inherit nur-packages;
+            inherit inputs nur-packages;
           };
           modules = [
             ./config/nix/home-manager/home.nix
