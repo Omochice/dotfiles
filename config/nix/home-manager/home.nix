@@ -65,6 +65,7 @@ in
       # keep-sorted end
       # keep-sorted start
       astro-language-server
+      gopls
       lua-language-server
       nixd
       pyright
