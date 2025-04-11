@@ -48,6 +48,7 @@ in
       clang-tools
       curl
       devbox
+      emacs
       fish
       gnumake
       goose-cli
