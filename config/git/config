@@ -22,6 +22,7 @@
       while [ $# -gt 0 ]; do s=\"$s $1\"; shift; done;\
       gh issue $s; }; f"
     root = !pwd
+    pull = pull --prune
 
 [core]
     editor = "nvim"
