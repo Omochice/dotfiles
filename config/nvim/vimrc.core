@@ -59,9 +59,7 @@ if has('termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
-if has('nvim')
-  let $NVIM_TUI_ENABLE_TRUE_COLOR = v:true
-else
+if !has('nvim')
   set iminsert=2
   let &t_ti ..= "\e[1 q"
   let &t_SI ..= "\e[5 q"
