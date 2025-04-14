@@ -141,6 +141,7 @@ nnoremap <expr> i len(getline('.')) !=# 0 ? 'i' : '"_cc'
 nnoremap <expr> A len(getline('.')) !=# 0 ? 'A' : '"_cc'
 
 if has('nvim')
+  set guicursor+=t:blinkon0
   " neovim terminal settings
   " tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
   tnoremap <ESC> <C-\><C-n>
