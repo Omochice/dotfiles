@@ -52,6 +52,7 @@ in
       fish
       gnumake
       goose-cli
+      git-lfs
       imagemagick
       mise
       neofetch
