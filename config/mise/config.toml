@@ -3,6 +3,6 @@
 [tools]
 node = "22"       # renovate: mise
 python = "3.13.3" # renovate: mise
-ruby = "3.4.2"    # renovate: mise
+ruby = "3.4.3"    # renovate: mise
 rust = "1.86.0"   # renovate: mise
 go = "1.24.2"     # renovate: mise
