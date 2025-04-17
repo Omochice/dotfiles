@@ -50,9 +50,9 @@ in
       devbox
       emacs
       fish
+      git-lfs
       gnumake
       goose-cli
-      git-lfs
       imagemagick
       mise
       neofetch
