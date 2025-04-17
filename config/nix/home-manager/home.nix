@@ -85,6 +85,7 @@ in
       nur.ghalint
       nur.ghatm
       nur.gitlab-ci-verify
+      nur.octocov
       nur.pinact
       # keep-sorted end
     ];
