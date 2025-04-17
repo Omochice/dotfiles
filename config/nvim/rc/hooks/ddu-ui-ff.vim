@@ -10,7 +10,8 @@ nnoremap <buffer><nowait> V <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'o
 nnoremap <buffer><nowait> S <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'open', params: #{ command: 'split' } })<CR>
 nnoremap <buffer><nowait> Q <Cmd>call ddu#ui#do_action('itemAction', #{ name: 'quickfix' })<CR>
 nnoremap <buffer><nowait> A <Cmd>call ddu#ui#do_action('chooseAction')<CR>
-nnoremap <buffer><nowait> <C-Space> <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
+nnoremap <buffer><nowait> <S-Tab> <Cmd>call ddu#ui#do_action('toggleAllItems')<CR>
+nnoremap <buffer><nowait> <Tab> <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
 nnoremap <buffer><nowait> p <Cmd>call ddu#ui#do_action('togglePreview')<CR>
 nnoremap <buffer><nowait> q <Cmd>call ddu#ui#do_action('quit')<CR>
 " }}}
