@@ -30,6 +30,8 @@
       "android-studio"
       "crystalfetch"
       "discord"
+      "google-chrome"
+      "google-chrome@beta"
       "google-chrome@canary"
       "gyazo"
       "karabiner-elements"
