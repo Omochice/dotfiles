@@ -17,6 +17,7 @@ in
     # keep-sorted start
     ../../aqua/default.nix
     ../../colima/default.nix
+    ../../fish/default.nix
     ../../gh/default.nix
     ../../git/default.nix
     ../../glab-cli/default.nix

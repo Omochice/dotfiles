@@ -1,0 +1,170 @@
+{
+    "fish-autols": {
+        "cargoLocks": null,
+        "date": "2018-10-09",
+        "extract": null,
+        "name": "fish-autols",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "rstacruz",
+            "repo": "fish-autols",
+            "rev": "6d704c0e33522335539bf6844ce9f7009b2ee6a2",
+            "sha256": "sha256-tqAsc9J8xv0DMt5fTYaBO7tUQAG7Fnct/Rlq/Jx+/yU=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "6d704c0e33522335539bf6844ce9f7009b2ee6a2"
+    },
+    "fish-balias": {
+        "cargoLocks": null,
+        "date": "2015-11-12",
+        "extract": null,
+        "name": "fish-balias",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "oh-my-fish",
+            "repo": "plugin-balias",
+            "rev": "9fb134c097c0aaec15a5f5c79bca8aa6879b1473",
+            "sha256": "sha256-v9nP3IfsgxH1D6S76lWOaGgelB6IO+z8EZ/2IIYoLR4=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "9fb134c097c0aaec15a5f5c79bca8aa6879b1473"
+    },
+    "fish-catputtin": {
+        "cargoLocks": null,
+        "date": "2025-03-01",
+        "extract": null,
+        "name": "fish-catputtin",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "catppuccin",
+            "repo": "fish",
+            "rev": "6a85af2ff722ad0f9fbc8424ea0a5c454661dfed",
+            "sha256": "sha256-Oc0emnIUI4LV7QJLs4B2/FQtCFewRFVp7EDv8GawFsA=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "6a85af2ff722ad0f9fbc8424ea0a5c454661dfed"
+    },
+    "fish-direnv": {
+        "cargoLocks": null,
+        "date": "2021-01-20",
+        "extract": null,
+        "name": "fish-direnv",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "usami-k",
+            "repo": "fish-direnv",
+            "rev": "8e0be51e1ea2e057643b756a9c633d0d057ad9b5",
+            "sha256": "sha256-Y/tE3xRafOoQxlofSnXA1V7oWOSaO3DCVde9/0O5Esc=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "8e0be51e1ea2e057643b756a9c633d0d057ad9b5"
+    },
+    "fish-emptyls": {
+        "cargoLocks": null,
+        "date": "2021-05-29",
+        "extract": null,
+        "name": "fish-emptyls",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "Omochice",
+            "repo": "emptyls-fish",
+            "rev": "6b97fc65c7da2a3bcb3ea07075d0fcb5cd444fc1",
+            "sha256": "sha256-czDK4bztyF3tnr1G2yLAf6Ve3HX50rJ4WL7vFj315h0=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "6b97fc65c7da2a3bcb3ea07075d0fcb5cd444fc1"
+    },
+    "fish-extract": {
+        "cargoLocks": null,
+        "date": "2016-03-11",
+        "extract": null,
+        "name": "fish-extract",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "oh-my-fish",
+            "repo": "plugin-extract",
+            "rev": "5d05f9f15d3be8437880078171d1e32025b9ad9f",
+            "sha256": "sha256-hFM8uDHDfKBVn4CgRdfRaD0SzmVzOPjfMxU9X6yATzE=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "5d05f9f15d3be8437880078171d1e32025b9ad9f"
+    },
+    "fish-fzf-emoji": {
+        "cargoLocks": null,
+        "date": "2022-12-28",
+        "extract": null,
+        "name": "fish-fzf-emoji",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "Omochice",
+            "repo": "fzf-emoji.fish",
+            "rev": "7763624950ddf0ae1f1f9559be367f5861183fcc",
+            "sha256": "sha256-H4Mk2T6RnrxWcG4mKUdaGk/Te0rbbql4Go8uo+aP8UI=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "7763624950ddf0ae1f1f9559be367f5861183fcc"
+    },
+    "fish-lazyasdf": {
+        "cargoLocks": null,
+        "date": "2023-03-16",
+        "extract": null,
+        "name": "fish-lazyasdf",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "Omochice",
+            "repo": "lazyasdf.fish",
+            "rev": "68d9bf4f4bd4286fccb2d97c81a6493fd04767a9",
+            "sha256": "sha256-1c+RNRpM1RLqxHbVs1Amt4vp66hUnR0R0+0VoP0zSlM=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "68d9bf4f4bd4286fccb2d97c81a6493fd04767a9"
+    }
+}
