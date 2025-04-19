@@ -235,10 +235,6 @@ if_exists = "/opt/homebrew/bin/brew"
 shell = "fish"
 
 [[sources]]
-path = "~/.config/fish/abbr.fish"
-shell = "fish"
-
-[[sources]]
 depends = ["brew"]
 path = "(brew --prefix asdf)/libexec/asdf.fish"
 if_executable = "asdf"
