@@ -21,6 +21,7 @@ in
     ../../gh/default.nix
     ../../git/default.nix
     ../../glab-cli/default.nix
+    ../../karabiner/default.nix
     ../../lazygit/default.nix
     ../../nushell/default.nix
     ../../nvim/default.nix
