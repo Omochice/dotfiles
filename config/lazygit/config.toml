@@ -1,4 +1,4 @@
-"$schema" = "https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json"
+#:schema  https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
 
 [gui]
 mouseEvents = false
