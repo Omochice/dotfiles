@@ -44,6 +44,7 @@
         {
           settings.global.excludes = [
             "**/aqua.yaml"
+            "_sources/**"
           ];
           programs = {
             # keep-sorted start block=yes
