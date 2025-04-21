@@ -76,6 +76,7 @@ in
       svelte-language-server
       tinymist
       typescript-language-server
+      vscode-langservers-extracted
       vue-language-server
       yaml-language-server
       # keep-sorted end
