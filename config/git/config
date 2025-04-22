@@ -54,4 +54,7 @@
 [log]
   date = "format:%F %T%z"
 
+[rebase]
+  autostash = true
+
 ; vim:set filetype=gitconfig:
