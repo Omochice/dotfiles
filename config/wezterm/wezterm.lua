@@ -65,7 +65,6 @@ end
 
 return utils.merged({
   require("keybinds"),
-  require("domains"),
   fonts,
   bars,
   windows,
