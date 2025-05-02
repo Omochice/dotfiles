@@ -44,7 +44,7 @@ packages:
 - name: terrastruct/d2@v0.6.9
 - name: librespeed/speedtest-cli@v1.0.11
 - name: docker/buildx@v0.23.0
-- name: crate-ci/typos@v1.31.2
+- name: crate-ci/typos@v1.32.0
 - name: hadolint/hadolint@v2.12.0
 - name: tamasfe/taplo/full@0.9.3
 - name: protocolbuffers/protobuf/protoc@v30.2
