@@ -3,7 +3,7 @@ const s:providers = #{
       \ ollama: #{
       \   name: "ollama",
       \   options : #{
-      \     model : "codellama",
+      \     model : "qwen3:32b",
       \   },
       \ },
       \ bedrock: #{
