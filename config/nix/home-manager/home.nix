@@ -3,14 +3,12 @@
   lib,
   config,
   pkgs,
-  nur-packages,
   ...
 }:
 let
   # FIXME: I dont want to write user name here, but it doesn't work without "--impure"
   username = builtins.getEnv "USER";
   homeDirectory = builtins.getEnv "HOME";
-  nur = nur-packages.packages.${pkgs.system};
 in
 {
   imports = [
@@ -81,15 +79,15 @@ in
       yaml-language-server
       # keep-sorted end
       # keep-sorted start
-      nur.disable-checkout-persist-credentials
-      nur.duckgo
-      nur.firge
-      nur.firge-nerd
-      nur.ghalint
-      nur.ghatm
-      nur.gitlab-ci-verify
-      nur.octocov
-      nur.pinact
+      disable-checkout-persist-credentials
+      duckgo
+      firge
+      firge-nerd
+      ghalint
+      ghatm
+      gitlab-ci-verify
+      octocov
+      pinact
       # keep-sorted end
     ];
   };

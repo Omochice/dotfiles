@@ -38,8 +38,9 @@
       system = "aarch64-darwin";
       pkgs = import nixpkgs {
         inherit system;
+        overlays = [ nur-packages.overlays.default ];
       };
-      treefmt = treefmt-nix.lib.evalModule nixpkgs.legacyPackages.${system} (
+      treefmt = treefmt-nix.lib.evalModule pkgs (
         { ... }:
         {
           settings.global.excludes = [
@@ -98,7 +99,7 @@
         myHomeConfig = home-manager.lib.homeManagerConfiguration {
           pkgs = pkgs;
           extraSpecialArgs = {
-            inherit inputs nur-packages;
+            inherit inputs;
           };
           modules = [
             ./config/nix/home-manager/home.nix
@@ -109,14 +110,15 @@
         let
           pkgs = import nixpkgs {
             system = "x86_64-linux";
+            overlays = [ nur-packages.overlays.default ];
           };
         in
         {
           "x86_64-linux" = {
             default = pkgs.mkShell {
               packages = [
-                nixpkgs.legacyPackages.x86_64-linux.actionlint
-                nur-packages.packages.x86_64-linux.ghalint
+                pkgs.actionlint
+                pkgs.ghalint
               ];
             };
           };
@@ -125,6 +127,7 @@
         let
           pkgs = import nixpkgs {
             inherit system;
+            overlays = [ nur-packages.overlays.default ];
           };
           check-action-for = (
             system: {
@@ -132,10 +135,10 @@
               program =
                 ''
                   set -e
-                  ${nixpkgs.legacyPackages.${system}.actionlint}/bin/actionlint --version
-                  ${nixpkgs.legacyPackages.${system}.actionlint}/bin/actionlint
-                  ${nur-packages.packages.${system}.ghalint}/bin/ghalint --version
-                  ${nur-packages.packages.${system}.ghalint}/bin/ghalint run
+                  ${pkgs.actionlint}/bin/actionlint --version
+                  ${pkgs.actionlint}/bin/actionlint
+                  ${pkgs.ghalint}/bin/ghalint --version
+                  ${pkgs.ghalint}/bin/ghalint run
                 ''
                 |> pkgs.writeShellScript "check-action-script"
                 |> toString;
