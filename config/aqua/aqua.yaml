@@ -49,7 +49,7 @@ packages:
 - name: tamasfe/taplo/full@0.9.3
 - name: protocolbuffers/protobuf/protoc@v30.2
 - name: lsd-rs/lsd@v1.1.5
-- name: editorconfig-checker/editorconfig-checker@v3.2.1
+- name: editorconfig-checker/editorconfig-checker@v3.3.0
 - name: skanehira/slack-reminder@v0.1.1
 - name: FiloSottile/mkcert@v1.4.4
 - name: jesseduffield/lazydocker@v0.24.1
