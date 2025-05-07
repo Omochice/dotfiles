@@ -42,13 +42,14 @@ in
     stateVersion = "24.05";
     packages = with pkgs; [
       # keep-sorted start
+      awscli2
       btop
       cachix
       cargo
       clang-tools
       curl
       devbox
-      emacs
+      #emacs
       fish
       git-lfs
       gnumake
