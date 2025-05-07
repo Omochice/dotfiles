@@ -16,6 +16,7 @@
       # keep-sorted start
       "aquaproj/aqua/aqua"
       "cmake"
+      "colima"
       "felixkratz/formulae/sketchybar"
       "gettext"
       "koekeishiya/formulae/yabai"
