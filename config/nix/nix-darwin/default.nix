@@ -64,6 +64,7 @@
       trackpad = {
         # keep-sorted start
         Clicking = true;
+        ForceClick = false;
         TrackpadMomentumScroll = true;
         # keep-sorted end
       };
