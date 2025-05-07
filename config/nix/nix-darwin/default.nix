@@ -20,7 +20,7 @@
   system = {
     # Used for backwards compatibility, please read the changelog before changing.
     # $ darwin-rebuild changelog
-    stateVersion = 4;
+    stateVersion = 5;
     defaults = {
       # keep-sorted start block=yes case=no
       CustomUserPreferences = {
