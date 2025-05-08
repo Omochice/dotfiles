@@ -1,28 +1,20 @@
 BASE_DIR:=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
-all: link install-brew nvim chsh
+.PHONY: mac enable-service install-deno enable-catppuccin-theme
 
-~/.deno:
-	command -v deno 2>&1 && deno upgrade || bash -c "$$(curl -fsSL https://deno.land/x/install/install.sh)"
+mac: /nix
 
-.PHONY: install-brew
-install-brew: ~/.deno
-	~/.deno/bin/deno run -A $(BASE_DIR)/scripts/tasks/install-brew.ts
+enable-service:
+	brew services start sketchybar
 
-install: install-brew
-	~/.deno/bin/deno run -A $(BASE_DIR)/scripts/tasks/install-commands.ts
+macskk:
+	cp $(BASE_DIR)/config/macskk/kana-rule.conf ~/Library/Containers/net.mtgto.inputmethod.macSKK/Data/Documents/Settings/
 
-link: ~/.deno
-	~/.deno/bin/deno run -A $(BASE_DIR)/scripts/tasks/link-files.ts
+install-deno:
+	curl -fsSL https://deno.land/install.sh | sh
 
-.PHONY: ~/.deno
-nvim:
-	~/.deno/bin/deno run --allow-env --allow-net --allow-write --allow-read --allow-run https://pax.deno.dev/Omochice/deno-nvim-install-wrapper/cli.ts --pull-to ~/tools/nvim --install-to ~/.local/nvim --force
+enable-catppuccin-theme:
+	fish -c 'fish_config theme save "Catppuccin Mocha"'
 
-fish: install ~/.deno link
-	~/.deno/bin/deno run -A https://pax.deno.dev/Omochice/deno-shellrc-generator/cli.ts $(BASE_DIR)/path-list* --shell fish > $(BASE_DIR)/config/fish/config.fish
-
-.PHONY: chsh
-chsh: fish
-	~/.deno/bin/deno run -A scripts/tasks/show-fishpath.ts | sudo tee --append /etc/shells
-	~/.deno/bin/deno run -A scripts/tasks/chsh-to-fish.ts
+/nix:
+	sh <(curl -L https://nixos.org/nix/install)
