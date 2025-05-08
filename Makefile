@@ -5,8 +5,8 @@ BASE_DIR:=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 mac: enable-service macskk deno
 
 enable-service: nix-environment
-	brew services start sketchybar
-	yabai --start-service
+	/opt/homebrew/bin/brew services start sketchybar
+	/opt/homebrew/bin/yabai --start-service
 
 macskk:
 	cp $(BASE_DIR)/config/macskk/kana-rule.conf ~/Library/Containers/net.mtgto.inputmethod.macSKK/Data/Documents/Settings/
@@ -21,5 +21,12 @@ enable-catppuccin-theme:
 	mkdir -p ~/.config/nix
 	ln -snf $(BASE_DIR)/config/nix/nix.conf ~/.config/nix/nix.conf
 
-nix-environment: ~/.config/nix/nix.conf
-	nix run .#update
+nix-environment: nix-darwin
+
+home-manager: ~/.config/nix/nix.conf
+	nix run github:nix-community/home-manager -- switch --flake .#myHomeConfig --impure
+
+nix-darwin: home-manager
+	sudo mv /etc/bashrc /etc/bashrc.before-nix-darwin
+	sudo mv /etc/zshrc /etc/zshrc.before-nix-darwin
+	nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice
