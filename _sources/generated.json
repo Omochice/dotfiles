@@ -85,7 +85,7 @@
     },
     "fish-docker-abbreviations": {
         "cargoLocks": null,
-        "date": "2025-04-20",
+        "date": "2025-04-30",
         "extract": null,
         "name": "fish-docker-abbreviations",
         "passthru": null,
@@ -97,12 +97,12 @@
             "name": null,
             "owner": "Omochice",
             "repo": "docker-abbreviations.fish",
-            "rev": "a7cdc2b72feb9cdcbecc5bf8f1cca6ccd790d916",
-            "sha256": "sha256-zFVO7CA63TZwfB/dJsTRTew8M6BSN/UJ16MKKzmekJA=",
+            "rev": "1d411527a460203eb41f0745f1756ce3c85d1ac3",
+            "sha256": "sha256-lnXDYW9my6fxmdEatSCiZK6U2BouQM9llJ5M/Ltr2iE=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "a7cdc2b72feb9cdcbecc5bf8f1cca6ccd790d916"
+        "version": "1d411527a460203eb41f0745f1756ce3c85d1ac3"
     },
     "fish-emptyls": {
         "cargoLocks": null,
