@@ -1,4 +1,25 @@
 {
+    "bat-theme-catppuccin": {
+        "cargoLocks": null,
+        "date": "2024-12-23",
+        "extract": null,
+        "name": "bat-theme-catppuccin",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "catppuccin",
+            "repo": "bat",
+            "rev": "699f60fc8ec434574ca7451b444b880430319941",
+            "sha256": "sha256-6fWoCH90IGumAMc4buLRWL0N61op+AuMNN9CAR9/OdI=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "699f60fc8ec434574ca7451b444b880430319941"
+    },
     "fish-autols": {
         "cargoLocks": null,
         "date": "2018-10-09",
@@ -187,5 +208,26 @@
             "type": "github"
         },
         "version": "68d9bf4f4bd4286fccb2d97c81a6493fd04767a9"
+    },
+    "yazi-theme-catppuccin": {
+        "cargoLocks": null,
+        "date": "2025-04-19",
+        "extract": null,
+        "name": "yazi-theme-catppuccin",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "catppuccin",
+            "repo": "yazi",
+            "rev": "fca8e93e0a408671fa54cc0cb103e76b85e8c011",
+            "sha256": "sha256-ILaPj84ZlNc6MBwrpwBDNhGhXge9mPse4FYdSMU4eO8=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "fca8e93e0a408671fa54cc0cb103e76b85e8c011"
     }
 }

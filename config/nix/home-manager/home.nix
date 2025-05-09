@@ -28,6 +28,7 @@ in
     ../../starship/default.nix
     ../../wezterm/default.nix
     ../../yabai/default.nix
+    ../../yazi/default.nix
     ../../zoxide/default.nix
     # keep-sorted end
     # ../../macskk/default.nix
