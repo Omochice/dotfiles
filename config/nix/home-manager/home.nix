@@ -66,6 +66,7 @@ in
       silicon
       starship
       tldr
+      yazi
       # keep-sorted end
       # keep-sorted start
       astro-language-server
