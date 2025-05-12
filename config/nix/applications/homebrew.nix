@@ -36,10 +36,13 @@
       "google-chrome@canary"
       "gyazo"
       "karabiner-elements"
+      "microsoft-remote-desktop"
       "mtgto/macskk/macskk"
+      "obs"
       "scroll-reverser"
       "slack"
       "utm"
+      "visual-studio-code"
       "vivaldi"
       "wezterm@nightly"
       # keep-sorted end
