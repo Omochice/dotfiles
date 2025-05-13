@@ -93,7 +93,12 @@
         "${system}" = treefmt.config.build.wrapper;
       };
       darwinConfigurations = {
-        omochice = nix-darwin.lib.darwinSystem { modules = [ ./config/nix/nix-darwin/default.nix ]; };
+        omochice = nix-darwin.lib.darwinSystem {
+          modules = [ ./config/nix/nix-darwin/default.nix ];
+          specialArgs = {
+            username = "Omochice";
+          };
+        };
       };
       homeConfigurations = {
         myHomeConfig = home-manager.lib.homeManagerConfiguration {

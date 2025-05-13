@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, specialArgs, ... }:
+let
+  username = pkgs.lib.toLower specialArgs.username;
+in
 {
   imports = [
     ../modules/darwin/default.nix
@@ -18,6 +21,15 @@
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
   security.pam.services.sudo_local.touchIdAuth = true;
+  users = {
+    users.${username} = {
+      home = "/Users/${username}";
+      uid = pkgs.lib.mkDefault 501;
+      shell = pkgs.fish;
+    };
+    knownUsers = [ username ];
+  };
+  programs.fish.enable = true;
   system = {
     # Used for backwards compatibility, please read the changelog before changing.
     # $ darwin-rebuild changelog
