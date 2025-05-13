@@ -36,7 +36,6 @@
       "google-chrome@canary"
       "gyazo"
       "karabiner-elements"
-      "microsoft-remote-desktop"
       "mtgto/macskk/macskk"
       "obs"
       "scroll-reverser"
@@ -45,6 +44,7 @@
       "visual-studio-code"
       "vivaldi"
       "wezterm@nightly"
+      "windows-app"
       # keep-sorted end
     ];
   };
