@@ -36,10 +36,13 @@
     }@inputs:
     let
       system = "aarch64-darwin";
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [ nur-packages.overlays.default ];
-      };
+      pkgs-for =
+        system:
+        import nixpkgs {
+          inherit system;
+          overlays = [ nur-packages.overlays.default ];
+        };
+      pkgs = pkgs-for system;
       treefmt = treefmt-nix.lib.evalModule pkgs (
         { ... }:
         {
@@ -113,10 +116,7 @@
       };
       devShells =
         let
-          pkgs = import nixpkgs {
-            system = "x86_64-linux";
-            overlays = [ nur-packages.overlays.default ];
-          };
+          pkgs = pkgs-for "x86_64-linux";
         in
         {
           "x86_64-linux" = {
@@ -131,12 +131,13 @@
         };
       apps =
         let
-          pkgs = import nixpkgs {
-            inherit system;
-            overlays = [ nur-packages.overlays.default ];
-          };
+          pkgs = pkgs-for system;
           check-action-for = (
-            system: {
+            system:
+            let
+              pkgs = pkgs-for system;
+            in
+            {
               type = "app";
               program =
                 ''
