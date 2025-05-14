@@ -124,6 +124,7 @@
               packages = [
                 pkgs.actionlint
                 pkgs.ghalint
+                pkgs.zizmor
               ];
             };
           };
@@ -144,6 +145,8 @@
                   ${pkgs.actionlint}/bin/actionlint
                   ${pkgs.ghalint}/bin/ghalint --version
                   ${pkgs.ghalint}/bin/ghalint run
+                  ${pkgs.zizmor}/bin/zizmor --version
+                  ${pkgs.zizmor}/bin/zizmor .github/workflows/*.yml
                 ''
                 |> pkgs.writeShellScript "check-action-script"
                 |> toString;
