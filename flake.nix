@@ -43,58 +43,68 @@
           overlays = [ nur-packages.overlays.default ];
         };
       pkgs = pkgs-for system;
-      treefmt = treefmt-nix.lib.evalModule pkgs (
-        { ... }:
-        {
-          settings.global.excludes = [
-            "**/aqua.yaml"
-            "_sources/**"
-          ];
-          programs = {
-            # keep-sorted start block=yes
-            deno = {
-              enable = true;
-              includes = [
-                "*.ts"
-                "*.js"
-              ];
-            };
-            formatjson5 = {
-              enable = true;
-              indent = 2;
-            };
-            keep-sorted.enable = true;
-            nixfmt.enable = true;
-            pinact = {
-              enable = true;
-              update = false;
-            };
-            shfmt.enable = true;
-            stylua = {
-              enable = true;
-              settings = ./config/stylua/stylua.toml |> builtins.readFile |> builtins.fromTOML;
-            };
-            taplo = {
-              enable = true;
-            };
-            yamlfmt = {
-              enable = true;
-              settings = {
-                formatter = {
-                  type = "basic";
-                  retain_line_breaks_single = true;
+      treefmt =
+        system:
+        treefmt-nix.lib.evalModule (pkgs-for system) (
+          { ... }:
+          {
+            settings.global.excludes = [
+              "**/aqua.yaml"
+              "_sources/**"
+            ];
+            programs = {
+              # keep-sorted start block=yes
+              deno = {
+                enable = true;
+                includes = [
+                  "*.ts"
+                  "*.js"
+                ];
+              };
+              formatjson5 = {
+                enable = true;
+                indent = 2;
+              };
+              keep-sorted.enable = true;
+              nixfmt.enable = true;
+              pinact = {
+                enable = true;
+                update = false;
+              };
+              shfmt.enable = true;
+              stylua = {
+                enable = true;
+                settings = ./config/stylua/stylua.toml |> builtins.readFile |> builtins.fromTOML;
+              };
+              taplo = {
+                enable = true;
+              };
+              yamlfmt = {
+                enable = true;
+                settings = {
+                  formatter = {
+                    type = "basic";
+                    retain_line_breaks_single = true;
+                  };
                 };
               };
+              # keep-sorted end
             };
-            # keep-sorted end
-          };
-        }
-      );
+          }
+        );
+      merge-attrs = nixpkgs.lib.foldr (a: b: nixpkgs.lib.attrsets.recursiveUpdate a b) { };
+      run-as = name: script: {
+        type = "app";
+        program = script |> pkgs.writeShellScript name |> toString;
+      };
     in
     {
-      formatter = {
-        "${system}" = treefmt.config.build.wrapper;
-      };
+      formatter =
+        (system: (treefmt system).config.build.wrapper)
+        |> nixpkgs.lib.genAttrs [
+          flake-utils.lib.system.x86_64-linux
+          flake-utils.lib.system.aarch64-darwin
+        ];
       darwinConfigurations = {
         omochice = nix-darwin.lib.darwinSystem {
           modules = [ ./config/nix/nix-darwin/default.nix ];
@@ -109,73 +119,65 @@
           inherit pkgs;
           extraSpecialArgs = {
             inherit inputs;
+            username = builtins.getEnv "USER";
+            homeDirectory = builtins.getEnv "HOME";
           };
           modules = [
             ./config/nix/home-manager/home.nix
           ];
         };
       };
-      devShells =
-        let
-          pkgs = pkgs-for "x86_64-linux";
-        in
-        {
-          "x86_64-linux" = {
-            default = pkgs.mkShell {
-              packages = [
-                pkgs.actionlint
-                pkgs.ghalint
-                pkgs.zizmor
-              ];
-            };
-          };
-        };
       apps =
-        let
-          pkgs = pkgs-for system;
-          check-action-for = (
-            system:
-            let
-              pkgs = pkgs-for system;
-            in
-            {
-              type = "app";
-              program =
-                ''
-                  set -e
-                  ${pkgs.actionlint}/bin/actionlint --version
-                  ${pkgs.actionlint}/bin/actionlint
-                  ${pkgs.ghalint}/bin/ghalint --version
-                  ${pkgs.ghalint}/bin/ghalint run
-                  ${pkgs.zizmor}/bin/zizmor --version
-                  ${pkgs.zizmor}/bin/zizmor .github/workflows/*.yml
-                ''
-                |> pkgs.writeShellScript "check-action-script"
-                |> toString;
-            }
-          );
-        in
-        {
-          "x86_64-linux" = {
-            check-action = check-action-for "x86_64-linux";
-          };
-          "aarch64-darwin" = {
-            update = {
-              type = "app";
-              program =
-                ''
-                  set -e
-                  echo "Updating home-manager..."
-                  nix run github:nix-community/home-manager -- switch --flake .#omochice --impure |& ${pkgs.nix-output-monitor}/bin/nom
-                  echo "Updating nix-darwin..."
-                  nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice --impure
-                  echo "Update complete!"
-                ''
-                |> pkgs.writeShellScript "update-script"
-                |> toString;
-            };
-            check-action = check-action-for "aarch64-darwin";
-          };
-        };
+        [
+          (
+            (
+              system:
+              let
+                pkgs = pkgs-for system;
+              in
+              {
+                check-action =
+                  ''
+                    set -e
+                    ${pkgs.actionlint}/bin/actionlint --version
+                    ${pkgs.actionlint}/bin/actionlint
+                    ${pkgs.ghalint}/bin/ghalint --version
+                    ${pkgs.ghalint}/bin/ghalint run
+                    ${pkgs.zizmor}/bin/zizmor --version
+                    ${pkgs.zizmor}/bin/zizmor .github/workflows/*.yml
+                  ''
+                  |> run-as "check-action";
+              }
+            )
+            |> nixpkgs.lib.genAttrs [
+              flake-utils.lib.system.x86_64-linux
+              flake-utils.lib.system.aarch64-darwin
+            ]
+          )
+          (
+            (
+              system:
+              let
+                pkgs = pkgs-for system;
+              in
+              {
+                update =
+                  ''
+                    set -e
+                    echo "Updating home-manager..."
+                    nix run github:nix-community/home-manager -- switch --flake .#omochice --impure |& ${pkgs.nix-output-monitor}/bin/nom
+                    echo "Updating nix-darwin..."
+                    nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice --impure
+                    echo "Update complete!"
+                  ''
+                  |> run-as "update-script";
+              }
+            )
+            |> nixpkgs.lib.genAttrs [
+              flake-utils.lib.system.aarch64-darwin
+            ]
+          )
+        ]
+        |> merge-attrs;
     };
 }
