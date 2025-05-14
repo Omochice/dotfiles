@@ -93,10 +93,15 @@
           }
         );
       merge-attrs = nixpkgs.lib.foldr (a: b: nixpkgs.lib.attrsets.recursiveUpdate a b) { };
-      run-as = name: script: {
-        type = "app";
-        program = script |> pkgs.writeShellScript name |> toString;
-      };
+      run-as-on =
+        system:
+        let
+          pkgs = pkgs-for system;
+        in
+        name: script: {
+          type = "app";
+          program = script |> pkgs.writeShellScript name |> toString;
+        };
     in
     {
       formatter =
@@ -134,6 +139,7 @@
               system:
               let
                 pkgs = pkgs-for system;
+                run-as = run-as-on system;
               in
               {
                 check-action =
@@ -159,6 +165,7 @@
               system:
               let
                 pkgs = pkgs-for system;
+                run-as = run-as-on system;
               in
               {
                 update =
