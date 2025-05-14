@@ -4,6 +4,7 @@
     enable = true;
     onActivation = {
       autoUpdate = true;
+      upgrade = true;
     };
     taps = [
       # keep-sorted start
