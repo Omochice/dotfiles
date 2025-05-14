@@ -99,13 +99,14 @@
         omochice = nix-darwin.lib.darwinSystem {
           modules = [ ./config/nix/nix-darwin/default.nix ];
           specialArgs = {
-            username = "Omochice";
+            username = builtins.getEnv "USER";
+            homeDirectory = builtins.getEnv "HOME";
           };
         };
       };
       homeConfigurations = {
-        myHomeConfig = home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgs;
+        omochice = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
           extraSpecialArgs = {
             inherit inputs;
           };
@@ -165,9 +166,9 @@
                 ''
                   set -e
                   echo "Updating home-manager..."
-                  nix run home-manager -- switch --flake .#myHomeConfig --impure |& ${pkgs.nix-output-monitor}/bin/nom
+                  nix run github:nix-community/home-manager -- switch --flake .#omochice --impure |& ${pkgs.nix-output-monitor}/bin/nom
                   echo "Updating nix-darwin..."
-                  nix run nix-darwin -- switch --flake .#omochice
+                  nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice --impure
                   echo "Update complete!"
                 ''
                 |> pkgs.writeShellScript "update-script"

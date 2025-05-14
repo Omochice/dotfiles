@@ -24,9 +24,9 @@ enable-catppuccin-theme:
 nix-environment: nix-darwin
 
 home-manager: ~/.config/nix/nix.conf
-	nix run github:nix-community/home-manager -- switch --flake .#myHomeConfig --impure
+	nix run github:nix-community/home-manager -- switch --flake .#omochice --impure
 
 nix-darwin: home-manager
 	sudo mv /etc/bashrc /etc/bashrc.before-nix-darwin
 	sudo mv /etc/zshrc /etc/zshrc.before-nix-darwin
-	nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice
+	nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice --impure

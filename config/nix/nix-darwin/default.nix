@@ -1,6 +1,6 @@
 { pkgs, specialArgs, ... }:
 let
-  username = pkgs.lib.toLower specialArgs.username;
+  inherit (specialArgs) username homeDirectory;
 in
 {
   imports = [
@@ -23,7 +23,7 @@ in
   security.pam.services.sudo_local.touchIdAuth = true;
   users = {
     users.${username} = {
-      home = "/Users/${username}";
+      home = homeDirectory;
       uid = pkgs.lib.mkDefault 501;
       shell = pkgs.fish;
     };
