@@ -85,7 +85,7 @@ in
       trackpadBluetooth = {
         TrackpadMomentumScroll = true;
       };
-      universalaccess.reduceMotion = true;
+      universalaccess.reduceMotion = false;
       WindowManager = {
         # keep-sorted start
         EnableStandardClickToShowDesktop = false;
