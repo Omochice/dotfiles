@@ -44,6 +44,7 @@ in
       dock = {
         # keep-sorted start
         autohide = true;
+        mineffect = "scale";
         no-bouncing = true;
         orientation = "left";
         tilesize = 48;
@@ -84,6 +85,7 @@ in
       trackpadBluetooth = {
         TrackpadMomentumScroll = true;
       };
+      universalaccess.reduceMotion = true;
       WindowManager = {
         # keep-sorted start
         EnableStandardClickToShowDesktop = false;
