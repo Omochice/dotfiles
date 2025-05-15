@@ -171,9 +171,11 @@
                 update =
                   ''
                     set -e
-                    echo "Updating home-manager..."
+                    echo "Updating nvfetcher"
+                    ${pkgs.nvfetcher}/bin/nvfetcher
+                    echo "Updating home-manager"
                     nix run github:nix-community/home-manager -- switch --flake .#omochice --impure |& ${pkgs.nix-output-monitor}/bin/nom
-                    echo "Updating nix-darwin..."
+                    echo "Updating nix-darwin"
                     nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice --impure
                     echo "Update complete!"
                   ''
