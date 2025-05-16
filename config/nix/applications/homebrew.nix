@@ -21,6 +21,7 @@
       "felixkratz/formulae/sketchybar"
       "gettext"
       "koekeishiya/formulae/yabai"
+      "git-svn"
       "libtool"
       "ninja"
       "pkg-config"
