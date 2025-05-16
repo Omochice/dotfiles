@@ -1,11 +1,4 @@
 {
-  "global": {
-    "ask_for_confirmation_before_quitting": true,
-    "check_for_updates_on_startup": true,
-    "show_in_menu_bar": true,
-    "show_profile_name_in_menu_bar": false,
-    "unsafe_ui": false
-  },
   "profiles": [
     {
       "complex_modifications": {
@@ -14,7 +7,6 @@
             "description": "Launch vivaldi",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "w",
                   "modifiers": {
@@ -27,7 +19,8 @@
                   {
                     "shell_command": "open -n -a \"vivaldi\".app"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -35,7 +28,6 @@
             "description": "Left command to alt",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "left_command"
                 },
@@ -43,7 +35,8 @@
                   {
                     "key_code": "left_option"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -51,7 +44,6 @@
             "description": "Eisu to escape",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "japanese_eisuu"
                 },
@@ -59,7 +51,8 @@
                   {
                     "key_code": "escape"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -67,7 +60,6 @@
             "description": "Underscore to backslash",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "international1"
                 },
@@ -75,7 +67,8 @@
                   {
                     "key_code": "international3"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -83,7 +76,6 @@
             "description": "Option+<BS> to <Delete>",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "delete_or_backspace",
                   "modifiers": {
@@ -96,7 +88,8 @@
                   {
                     "key_code": "delete_forward"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -104,7 +97,6 @@
             "description": "Open misson control on Mod + up",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "up_arrow",
                   "modifiers": {
@@ -117,7 +109,8 @@
                   {
                     "shell_command": "open -a \"Mission Control\".app"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -125,7 +118,14 @@
             "description": "Send message by mod+enter same as slack",
             "manipulators": [
               {
-                "type": "basic",
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.microsoft\\.teams2$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
                 "from": {
                   "key_code": "return_or_enter",
                   "modifiers": {
@@ -142,14 +142,7 @@
                     ]
                   }
                 ],
-                "conditions": [
-                  {
-                    "type": "frontmost_application_if",
-                    "bundle_identifiers": [
-                      "^com\\.microsoft\\.teams2$"
-                    ]
-                  }
-                ]
+                "type": "basic"
               }
             ]
           },
@@ -157,7 +150,14 @@
             "description": "Focus URL bar on chrome same as other browser or os",
             "manipulators": [
               {
-                "type": "basic",
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.google\\.Chrome"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
                 "from": {
                   "key_code": "l",
                   "modifiers": {
@@ -174,14 +174,7 @@
                     ]
                   }
                 ],
-                "conditions": [
-                  {
-                    "type": "frontmost_application_if",
-                    "bundle_identifiers": [
-                      "^com\\.google\\.Chrome"
-                    ]
-                  }
-                ]
+                "type": "basic"
               }
             ]
           },
@@ -189,7 +182,6 @@
             "description": "Change window focus west. if exists other display on the way, focus it",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "h",
                   "modifiers": {
@@ -202,7 +194,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --focus west || yabai -m display --focus west"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -210,7 +203,6 @@
             "description": "Change window focus south. if exists other display on the way, focus it",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "j",
                   "modifiers": {
@@ -223,7 +215,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --focus south || yabai -m display --focus south"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -231,7 +224,6 @@
             "description": "Change window focus north. if exists other display on the way, focus it",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "k",
                   "modifiers": {
@@ -244,7 +236,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --focus north || yabai -m display --focus north"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -252,7 +245,6 @@
             "description": "Change window focus east. if exists other display on the way, focus it",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "l",
                   "modifiers": {
@@ -265,7 +257,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --focus east || yabai -m display --focus east"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -273,7 +266,6 @@
             "description": "Move window to west. if exists window, move into it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "h",
                   "modifiers": {
@@ -287,7 +279,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/karabiner/queries/move-window.ts west"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -295,7 +288,6 @@
             "description": "Move window to south. if exists window, move into it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "j",
                   "modifiers": {
@@ -309,7 +301,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/karabiner/queries/move-window.ts south"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -317,7 +310,6 @@
             "description": "Move window to north. if exists window, move into it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "k",
                   "modifiers": {
@@ -331,7 +323,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/karabiner/queries/move-window.ts north"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -339,7 +332,6 @@
             "description": "Move window to east. if exists window, move into it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "l",
                   "modifiers": {
@@ -353,7 +345,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/karabiner/queries/move-window.ts east"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -361,7 +354,6 @@
             "description": "Close app and focus other remain app.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "q",
                   "modifiers": {
@@ -375,7 +367,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/karabiner/queries/close-window.ts"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -383,7 +376,6 @@
             "description": "Focus space 1. if not exists it, create untile it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "1",
                   "modifiers": {
@@ -396,7 +388,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 1"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -404,7 +397,6 @@
             "description": "Focus space 2. if not exists it, create untile it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "2",
                   "modifiers": {
@@ -417,7 +409,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 2"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -425,7 +418,6 @@
             "description": "Focus space 3. if not exists it, create untile it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "3",
                   "modifiers": {
@@ -438,7 +430,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 3"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -446,7 +439,6 @@
             "description": "Focus space 4. if not exists it, create untile it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "4",
                   "modifiers": {
@@ -459,7 +451,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 4"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -467,7 +460,6 @@
             "description": "Focus space 5. if not exists it, create untile it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "5",
                   "modifiers": {
@@ -480,7 +472,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 5"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -488,7 +481,6 @@
             "description": "Focus space 6. if not exists it, create untile it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "6",
                   "modifiers": {
@@ -501,7 +493,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 6"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -509,7 +502,6 @@
             "description": "Focus space 7. if not exists it, create untile it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "7",
                   "modifiers": {
@@ -522,7 +514,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 7"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -530,7 +523,6 @@
             "description": "Focus space 8. if not exists it, create untile it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "8",
                   "modifiers": {
@@ -543,7 +535,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 8"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -551,7 +544,6 @@
             "description": "Focus space 9. if not exists it, create untile it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "9",
                   "modifiers": {
@@ -564,7 +556,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 9"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -572,7 +565,6 @@
             "description": "Move window to space 1. if not exist, create untile it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "1",
                   "modifiers": {
@@ -586,7 +578,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 1"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -594,7 +587,6 @@
             "description": "Move window to space 2. if not exist, create untile it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "2",
                   "modifiers": {
@@ -608,7 +600,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 2"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -616,7 +609,6 @@
             "description": "Move window to space 3. if not exist, create untile it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "3",
                   "modifiers": {
@@ -630,7 +622,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 3"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -638,7 +631,6 @@
             "description": "Move window to space 4. if not exist, create untile it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "4",
                   "modifiers": {
@@ -652,7 +644,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 4"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -660,7 +653,6 @@
             "description": "Move window to space 5. if not exist, create untile it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "5",
                   "modifiers": {
@@ -674,7 +666,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 5"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -682,7 +675,6 @@
             "description": "Move window to space 6. if not exist, create untile it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "6",
                   "modifiers": {
@@ -696,7 +688,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 6"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -704,7 +697,6 @@
             "description": "Move window to space 7. if not exist, create untile it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "7",
                   "modifiers": {
@@ -718,7 +710,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 7"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -726,7 +719,6 @@
             "description": "Move window to space 8. if not exist, create untile it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "8",
                   "modifiers": {
@@ -740,7 +732,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 8"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -748,7 +741,6 @@
             "description": "Move window to space 9. if not exist, create untile it.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "9",
                   "modifiers": {
@@ -762,7 +754,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 9"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -770,7 +763,6 @@
             "description": "Focus next space in current display",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "right_arrow",
                   "modifiers": {
@@ -783,7 +775,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-in-display.ts next"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -791,7 +784,6 @@
             "description": "Focus prev space in current display",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "left_arrow",
                   "modifiers": {
@@ -804,7 +796,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-in-display.ts prev"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -812,7 +805,6 @@
             "description": "Format display sizes in current space like vim's <C-w>=.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "equal_sign",
                   "modifiers": {
@@ -825,7 +817,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m space --balance"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -833,7 +826,6 @@
             "description": "Toggle fullscreen",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "f",
                   "modifiers": {
@@ -846,7 +838,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --toggle zoom-fullscreen"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -854,7 +847,6 @@
             "description": "Toggle current window to floating.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "spacebar",
                   "modifiers": {
@@ -867,7 +859,8 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --toggle split"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           },
@@ -875,7 +868,6 @@
             "description": "Toggle split way.",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "spacebar",
                   "modifiers": {
@@ -889,39 +881,20 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --toggle float && yabai -m window --grid 12:12:1:1:10:10"
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           }
-        ],
-        "parameters": {
-          "basic.to_if_alone_timeout_milliseconds": 1000,
-          "basic.to_if_held_down_threshold_milliseconds": 500,
-          "basic.to_delayed_action_delay_milliseconds": 500,
-          "basic.simultaneous_threshold_milliseconds": 50,
-          "mouse_motion_to_scroll.speed": 100
-        }
+        ]
       },
       "devices": [
         {
-          "disable_built_in_keyboard_if_exists": false,
-          "fn_function_keys": [],
-          "game_pad_swap_sticks": false,
           "identifiers": {
-            "is_game_pad": false,
             "is_keyboard": true,
-            "is_pointing_device": false,
             "product_id": 834,
             "vendor_id": 1452
           },
-          "ignore": false,
-          "manipulate_caps_lock_led": true,
-          "mouse_flip_horizontal_wheel": false,
-          "mouse_flip_vertical_wheel": false,
-          "mouse_flip_x": false,
-          "mouse_flip_y": false,
-          "mouse_swap_wheels": false,
-          "mouse_swap_xy": false,
           "simple_modifications": [
             {
               "from": {
@@ -953,28 +926,14 @@
                 }
               ]
             }
-          ],
-          "treat_as_built_in_keyboard": false
+          ]
         },
         {
-          "disable_built_in_keyboard_if_exists": false,
-          "fn_function_keys": [],
-          "game_pad_swap_sticks": false,
           "identifiers": {
-            "is_game_pad": false,
             "is_keyboard": true,
-            "is_pointing_device": false,
             "product_id": 34,
             "vendor_id": 1278
           },
-          "ignore": false,
-          "manipulate_caps_lock_led": true,
-          "mouse_flip_horizontal_wheel": false,
-          "mouse_flip_vertical_wheel": false,
-          "mouse_flip_x": false,
-          "mouse_flip_y": false,
-          "mouse_swap_wheels": false,
-          "mouse_swap_xy": false,
           "simple_modifications": [
             {
               "from": {
@@ -986,274 +945,14 @@
                 }
               ]
             }
-          ],
-          "treat_as_built_in_keyboard": false
-        },
-        {
-          "disable_built_in_keyboard_if_exists": false,
-          "fn_function_keys": [],
-          "game_pad_swap_sticks": false,
-          "identifiers": {
-            "is_game_pad": false,
-            "is_keyboard": false,
-            "is_pointing_device": true,
-            "product_id": 834,
-            "vendor_id": 1452
-          },
-          "ignore": true,
-          "manipulate_caps_lock_led": false,
-          "mouse_flip_horizontal_wheel": false,
-          "mouse_flip_vertical_wheel": false,
-          "mouse_flip_x": false,
-          "mouse_flip_y": false,
-          "mouse_swap_wheels": false,
-          "mouse_swap_xy": false,
-          "simple_modifications": [],
-          "treat_as_built_in_keyboard": false
-        },
-        {
-          "disable_built_in_keyboard_if_exists": false,
-          "fn_function_keys": [],
-          "game_pad_swap_sticks": false,
-          "identifiers": {
-            "is_game_pad": false,
-            "is_keyboard": true,
-            "is_pointing_device": false,
-            "product_id": 50475,
-            "vendor_id": 1133
-          },
-          "ignore": false,
-          "manipulate_caps_lock_led": true,
-          "mouse_flip_horizontal_wheel": false,
-          "mouse_flip_vertical_wheel": false,
-          "mouse_flip_x": false,
-          "mouse_flip_y": false,
-          "mouse_swap_wheels": false,
-          "mouse_swap_xy": false,
-          "simple_modifications": [],
-          "treat_as_built_in_keyboard": false
-        },
-        {
-          "disable_built_in_keyboard_if_exists": false,
-          "fn_function_keys": [],
-          "game_pad_swap_sticks": false,
-          "identifiers": {
-            "is_game_pad": false,
-            "is_keyboard": false,
-            "is_pointing_device": true,
-            "product_id": 50475,
-            "vendor_id": 1133
-          },
-          "ignore": true,
-          "manipulate_caps_lock_led": false,
-          "mouse_flip_horizontal_wheel": false,
-          "mouse_flip_vertical_wheel": false,
-          "mouse_flip_x": false,
-          "mouse_flip_y": false,
-          "mouse_swap_wheels": false,
-          "mouse_swap_xy": false,
-          "simple_modifications": [],
-          "treat_as_built_in_keyboard": false
-        },
-        {
-          "disable_built_in_keyboard_if_exists": false,
-          "fn_function_keys": [],
-          "game_pad_swap_sticks": false,
-          "identifiers": {
-            "is_game_pad": false,
-            "is_keyboard": true,
-            "is_pointing_device": false,
-            "product_id": 0,
-            "vendor_id": 0
-          },
-          "ignore": false,
-          "manipulate_caps_lock_led": true,
-          "mouse_flip_horizontal_wheel": false,
-          "mouse_flip_vertical_wheel": false,
-          "mouse_flip_x": false,
-          "mouse_flip_y": false,
-          "mouse_swap_wheels": false,
-          "mouse_swap_xy": false,
-          "simple_modifications": [],
-          "treat_as_built_in_keyboard": false
-        },
-        {
-          "disable_built_in_keyboard_if_exists": false,
-          "fn_function_keys": [],
-          "game_pad_swap_sticks": false,
-          "identifiers": {
-            "is_game_pad": false,
-            "is_keyboard": false,
-            "is_pointing_device": true,
-            "product_id": 0,
-            "vendor_id": 0
-          },
-          "ignore": true,
-          "manipulate_caps_lock_led": false,
-          "mouse_flip_horizontal_wheel": false,
-          "mouse_flip_vertical_wheel": false,
-          "mouse_flip_x": false,
-          "mouse_flip_y": false,
-          "mouse_swap_wheels": false,
-          "mouse_swap_xy": false,
-          "simple_modifications": [],
-          "treat_as_built_in_keyboard": false
-        },
-        {
-          "disable_built_in_keyboard_if_exists": false,
-          "fn_function_keys": [],
-          "game_pad_swap_sticks": false,
-          "identifiers": {
-            "is_game_pad": false,
-            "is_keyboard": false,
-            "is_pointing_device": true,
-            "product_id": 45095,
-            "vendor_id": 1133
-          },
-          "ignore": true,
-          "manipulate_caps_lock_led": false,
-          "mouse_flip_horizontal_wheel": false,
-          "mouse_flip_vertical_wheel": false,
-          "mouse_flip_x": false,
-          "mouse_flip_y": false,
-          "mouse_swap_wheels": false,
-          "mouse_swap_xy": false,
-          "simple_modifications": [],
-          "treat_as_built_in_keyboard": false
-        }
-      ],
-      "fn_function_keys": [
-        {
-          "from": {
-            "key_code": "f1"
-          },
-          "to": [
-            {
-              "consumer_key_code": "display_brightness_decrement"
-            }
-          ]
-        },
-        {
-          "from": {
-            "key_code": "f2"
-          },
-          "to": [
-            {
-              "consumer_key_code": "display_brightness_increment"
-            }
-          ]
-        },
-        {
-          "from": {
-            "key_code": "f3"
-          },
-          "to": [
-            {
-              "apple_vendor_keyboard_key_code": "mission_control"
-            }
-          ]
-        },
-        {
-          "from": {
-            "key_code": "f4"
-          },
-          "to": [
-            {
-              "apple_vendor_keyboard_key_code": "spotlight"
-            }
-          ]
-        },
-        {
-          "from": {
-            "key_code": "f5"
-          },
-          "to": [
-            {
-              "consumer_key_code": "dictation"
-            }
-          ]
-        },
-        {
-          "from": {
-            "key_code": "f6"
-          },
-          "to": [
-            {
-              "key_code": "f6"
-            }
-          ]
-        },
-        {
-          "from": {
-            "key_code": "f7"
-          },
-          "to": [
-            {
-              "consumer_key_code": "rewind"
-            }
-          ]
-        },
-        {
-          "from": {
-            "key_code": "f8"
-          },
-          "to": [
-            {
-              "consumer_key_code": "play_or_pause"
-            }
-          ]
-        },
-        {
-          "from": {
-            "key_code": "f9"
-          },
-          "to": [
-            {
-              "consumer_key_code": "fast_forward"
-            }
-          ]
-        },
-        {
-          "from": {
-            "key_code": "f10"
-          },
-          "to": [
-            {
-              "consumer_key_code": "mute"
-            }
-          ]
-        },
-        {
-          "from": {
-            "key_code": "f11"
-          },
-          "to": [
-            {
-              "consumer_key_code": "volume_decrement"
-            }
-          ]
-        },
-        {
-          "from": {
-            "key_code": "f12"
-          },
-          "to": [
-            {
-              "consumer_key_code": "volume_increment"
-            }
           ]
         }
       ],
       "name": "Default profile",
-      "parameters": {
-        "delay_milliseconds_before_open_device": 1000
-      },
       "selected": true,
-      "simple_modifications": [],
       "virtual_hid_keyboard": {
         "country_code": 0,
-        "indicate_sticky_modifier_keys_state": true,
-        "mouse_key_xy_scale": 100
+        "keyboard_type_v2": "jis"
       }
     }
   ]
