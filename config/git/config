@@ -1,3 +1,4 @@
+# keep-sorted start newline_separated=yes
 [alias]
     st = status
     co = switch -c
@@ -24,6 +25,9 @@
     root = !pwd
     pull = pull --prune
 
+[commit]
+    verbose = true
+
 [core]
     editor = "nvim"
     pager = "delta"
@@ -35,21 +39,19 @@
     syntax-theme = Monokai Extended
     line-numbers = true
 
-[interactive]
-    diffFilter = delta --color-only
-
-[init]
-    defaultBranch = main
-
-[commit]
-    verbose = true
-
-[user]
-    useConfigOnly = true
+[fetch]
+  prune = true
+  pruneTags = true
 
 [ghq]
   root = "~/.cache/dpp/repos"
   root = "~/ghq"
+
+[init]
+    defaultBranch = main
+
+[interactive]
+    diffFilter = delta --color-only
 
 [log]
   date = "format:%F %T%z"
@@ -57,8 +59,8 @@
 [rebase]
   autostash = true
 
-[fetch]
-  prune = true
-  pruneTags = true
+[user]
+    useConfigOnly = true
 
+# keep-sorted end
 ; vim:set filetype=gitconfig:
