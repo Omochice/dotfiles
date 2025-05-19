@@ -176,7 +176,7 @@
                     echo "Updating home-manager"
                     nix run github:nix-community/home-manager -- switch --flake .#omochice --impure |& ${pkgs.nix-output-monitor}/bin/nom
                     echo "Updating nix-darwin"
-                    nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice --impure
+                    sudo nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice --impure |& ${pkgs.nix-output-monitor}/bin/nom
                     echo "Update complete!"
                   ''
                   |> run-as "update-script";

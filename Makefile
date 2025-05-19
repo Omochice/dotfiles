@@ -29,4 +29,4 @@ home-manager: ~/.config/nix/nix.conf
 nix-darwin: home-manager
 	sudo mv /etc/bashrc /etc/bashrc.before-nix-darwin
 	sudo mv /etc/zshrc /etc/zshrc.before-nix-darwin
-	nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice --impure
+	sudo nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice --impure

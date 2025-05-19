@@ -34,6 +34,7 @@ in
     # Used for backwards compatibility, please read the changelog before changing.
     # $ darwin-rebuild changelog
     stateVersion = 5;
+    primaryUser = username;
     defaults = {
       # keep-sorted start block=yes case=no
       CustomUserPreferences = {
