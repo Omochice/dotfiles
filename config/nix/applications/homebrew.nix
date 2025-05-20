@@ -45,6 +45,7 @@
       "utm"
       "visual-studio-code"
       "vivaldi"
+      "vysor"
       "wezterm@nightly"
       "windows-app"
       # keep-sorted end
