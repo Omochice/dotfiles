@@ -1,7 +1,7 @@
 {
   pkgs,
-  username,
-  homeDirectory,
+  user,
+  home,
   ...
 }:
 {
@@ -33,8 +33,8 @@
     };
   };
   home = {
-    username = username;
-    homeDirectory = homeDirectory;
+    username = user;
+    homeDirectory = home;
     stateVersion = "24.05";
     packages = with pkgs; [
       # keep-sorted start

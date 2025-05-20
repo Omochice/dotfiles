@@ -102,6 +102,7 @@
           type = "app";
           program = script |> pkgs.writeShellScript name |> toString;
         };
+      host = ./host.json |> builtins.readFile |> builtins.fromJSON;
     in
     {
       formatter =
@@ -114,8 +115,7 @@
         omochice = nix-darwin.lib.darwinSystem {
           modules = [ ./config/nix/nix-darwin/default.nix ];
           specialArgs = {
-            username = builtins.getEnv "USER";
-            homeDirectory = builtins.getEnv "HOME";
+            inherit (host) user home;
           };
         };
       };
@@ -124,8 +124,7 @@
           inherit pkgs;
           extraSpecialArgs = {
             inherit inputs;
-            username = builtins.getEnv "USER";
-            homeDirectory = builtins.getEnv "HOME";
+            inherit (host) user home;
           };
           modules = [
             ./config/nix/home-manager/home.nix
@@ -171,13 +170,16 @@
                 update =
                   ''
                     set -e
+                    ${pkgs.jq}/bin/jq -n --arg home "$HOME" --arg user "$USER" '{home: $home, user: $user}' > host.json
+                    ${pkgs.git}/bin/git add host.json --force
                     echo "Updating nvfetcher"
                     ${pkgs.nvfetcher}/bin/nvfetcher
                     echo "Updating home-manager"
-                    nix run github:nix-community/home-manager -- switch --flake .#omochice --impure |& ${pkgs.nix-output-monitor}/bin/nom
+                    nix run github:nix-community/home-manager -- switch --flake .#omochice |& ${pkgs.nix-output-monitor}/bin/nom
                     echo "Updating nix-darwin"
-                    sudo nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice --impure |& ${pkgs.nix-output-monitor}/bin/nom
+                    sudo nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice |& ${pkgs.nix-output-monitor}/bin/nom
                     echo "Update complete!"
+                    ${pkgs.git}/bin/git reset -- host.json
                   ''
                   |> run-as "update-script";
               }

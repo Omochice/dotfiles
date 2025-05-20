@@ -1,6 +1,6 @@
 { pkgs, specialArgs, ... }:
 let
-  inherit (specialArgs) username homeDirectory;
+  inherit (specialArgs) user home;
 in
 {
   imports = [
@@ -22,19 +22,19 @@ in
   nixpkgs.hostPlatform = "aarch64-darwin";
   security.pam.services.sudo_local.touchIdAuth = true;
   users = {
-    users.${username} = {
-      home = homeDirectory;
+    users.${user} = {
+      inherit home;
       uid = pkgs.lib.mkDefault 501;
       shell = pkgs.fish;
     };
-    knownUsers = [ username ];
+    knownUsers = [ user ];
   };
   programs.fish.enable = true;
   system = {
     # Used for backwards compatibility, please read the changelog before changing.
     # $ darwin-rebuild changelog
     stateVersion = 5;
-    primaryUser = username;
+    primaryUser = user;
     defaults = {
       # keep-sorted start block=yes case=no
       CustomUserPreferences = {

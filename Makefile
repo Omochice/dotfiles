@@ -23,10 +23,13 @@ enable-catppuccin-theme:
 
 nix-environment: nix-darwin
 
-home-manager: ~/.config/nix/nix.conf
-	nix run github:nix-community/home-manager -- switch --flake .#omochice --impure
+host.json:
+	echo '{"home": "${HOME}", "user": "${USER}"}' > host.json
 
-nix-darwin: home-manager
+home-manager: ~/.config/nix/nix.conf host.json
+	nix run github:nix-community/home-manager -- switch --flake .#omochice
+
+nix-darwin: home-manager host.json
 	sudo mv /etc/bashrc /etc/bashrc.before-nix-darwin
 	sudo mv /etc/zshrc /etc/zshrc.before-nix-darwin
-	sudo nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice --impure
+	sudo nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice
