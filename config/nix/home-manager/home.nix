@@ -86,6 +86,7 @@
       gitlab-ci-verify
       octocov
       pinact
+      slack-reminder
       # keep-sorted end
     ];
   };
