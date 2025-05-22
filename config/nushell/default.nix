@@ -1,6 +1,6 @@
-{ ... }:
+{ pkgs, ... }:
 let
-  osName = if builtins.match ".*darwin" builtins.currentSystem == null then "linux" else "darwin";
+  osName = if pkgs.stdenv.isDarwin then "darwin" else "linux";
   isTargetNushell = item: if builtins.hasAttr "shell" item then item.shell == "nu" else true;
   isMatchOs = item: if builtins.hasAttr "os" item then item.os == osName else true;
 in
