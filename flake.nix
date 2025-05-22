@@ -111,6 +111,12 @@
           flake-utils.lib.system.x86_64-linux
           flake-utils.lib.system.aarch64-darwin
         ];
+      checks =
+        (system: { formatting = (treefmt system).config.build.check self; })
+        |> nixpkgs.lib.genAttrs [
+          flake-utils.lib.system.x86_64-linux
+          flake-utils.lib.system.aarch64-darwin
+        ];
       darwinConfigurations = {
         omochice = nix-darwin.lib.darwinSystem {
           modules = [ ./config/nix/nix-darwin/default.nix ];
