@@ -27,6 +27,7 @@ vim.diagnostic.config({
 -- lua_source {{{
 local lspconfig = require("lspconfig")
 -- keep-sorted start block=yes
+lspconfig.astro.setup({})
 lspconfig.denols.setup(require("vimrc/lsp/denols").config())
 lspconfig.efm.setup(require("vimrc/lsp/efm").config())
 lspconfig.gopls.setup({})
@@ -34,6 +35,7 @@ lspconfig.jsonls.setup({})
 lspconfig.lua_ls.setup(require("vimrc/lsp/lua_ls").config())
 lspconfig.nixd.setup({})
 lspconfig.nushell.setup({})
+lspconfig.pyright.setup({})
 lspconfig.rust_analyzer.setup({})
 lspconfig.sourcekit.setup({})
 lspconfig.svelte.setup({})
