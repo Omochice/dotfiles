@@ -104,27 +104,6 @@
         },
         "version": "8e0be51e1ea2e057643b756a9c633d0d057ad9b5"
     },
-    "fish-docker-abbreviations": {
-        "cargoLocks": null,
-        "date": "2025-04-30",
-        "extract": null,
-        "name": "fish-docker-abbreviations",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "Omochice",
-            "repo": "docker-abbreviations.fish",
-            "rev": "1d411527a460203eb41f0745f1756ce3c85d1ac3",
-            "sha256": "sha256-lnXDYW9my6fxmdEatSCiZK6U2BouQM9llJ5M/Ltr2iE=",
-            "sparseCheckout": [],
-            "type": "github"
-        },
-        "version": "1d411527a460203eb41f0745f1756ce3c85d1ac3"
-    },
     "fish-emptyls": {
         "cargoLocks": null,
         "date": "2021-05-29",

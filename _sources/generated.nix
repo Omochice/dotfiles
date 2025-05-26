@@ -61,18 +61,6 @@
     };
     date = "2021-01-20";
   };
-  fish-docker-abbreviations = {
-    pname = "fish-docker-abbreviations";
-    version = "1d411527a460203eb41f0745f1756ce3c85d1ac3";
-    src = fetchFromGitHub {
-      owner = "Omochice";
-      repo = "docker-abbreviations.fish";
-      rev = "1d411527a460203eb41f0745f1756ce3c85d1ac3";
-      fetchSubmodules = false;
-      sha256 = "sha256-lnXDYW9my6fxmdEatSCiZK6U2BouQM9llJ5M/Ltr2iE=";
-    };
-    date = "2025-04-30";
-  };
   fish-emptyls = {
     pname = "fish-emptyls";
     version = "6b97fc65c7da2a3bcb3ea07075d0fcb5cd444fc1";

@@ -30,10 +30,6 @@ fetch.github = "usami-k/fish-direnv"
 src.git = "https://github.com/catppuccin/fish"
 fetch.github = "catppuccin/fish"
 
-[fish-docker-abbreviations]
-src.git = "https://github.com/Omochice/docker-abbreviations.fish"
-fetch.github = "Omochice/docker-abbreviations.fish"
-
 [yazi-theme-catppuccin]
 src.git = "https://github.com/catppuccin/yazi"
 fetch.github = "catppuccin/yazi"
