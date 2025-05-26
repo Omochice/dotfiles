@@ -45,6 +45,7 @@
       clang-tools
       curl
       devbox
+      docker
       #emacs
       fish
       git-lfs
