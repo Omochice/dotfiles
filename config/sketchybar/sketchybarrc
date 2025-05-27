@@ -135,7 +135,7 @@ sleep=(
 )
 
 cpu=(
-	icon=""
+	icon=""
 	icon.drawing=on
 	icon.y_offset=1
 	label="?%"

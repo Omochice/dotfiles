@@ -4,7 +4,7 @@ VOLUME=$(osascript -e "get volume settings" | cut -d " " -d ":" -f2 | cut -d ","
 MUTED=$(osascript -e "get volume settings" | grep "muted:true")
 
 if [[ $MUTED != "" ]]; then
-  ICON="ﱝ"
+  ICON=""
 else
   case ${VOLUME} in
   100) ICON="" ;;
