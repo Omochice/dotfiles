@@ -19,7 +19,12 @@ in
     };
   };
   # The platform the configuration will be used on.
-  nixpkgs.hostPlatform = "aarch64-darwin";
+  nixpkgs = {
+    hostPlatform = "aarch64-darwin";
+    config = {
+      allowUnfree = true;
+    };
+  };
   security.pam.services.sudo_local.touchIdAuth = true;
   users = {
     users.${user} = {
