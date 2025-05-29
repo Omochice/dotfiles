@@ -52,6 +52,7 @@
       gnumake
       goose-cli
       imagemagick
+      lazygit
       mise
       neofetch
       nix-output-monitor
