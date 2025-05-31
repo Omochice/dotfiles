@@ -20,7 +20,7 @@ packages:
 - name: BurntSushi/ripgrep@14.1.1
 - name: chmln/sd@v1.0.0
 - name: koalaman/shellcheck@v0.10.0
-- name: ajeetdsouza/zoxide@v0.9.7
+- name: ajeetdsouza/zoxide@v0.9.8
 - name: XAMPPRocky/tokei@v13.0.0-alpha.0
 - name: itchyny/mmv@v0.1.6
 - name: reviewdog/reviewdog@v0.20.3
