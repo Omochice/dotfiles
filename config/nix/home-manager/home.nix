@@ -43,6 +43,7 @@
       cachix
       cargo
       clang-tools
+      claude-code
       curl
       devbox
       docker
