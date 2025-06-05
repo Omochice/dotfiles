@@ -1,6 +1,26 @@
 import { BaseConfig, type ConfigArguments } from "jsr:@shougo/ddc-vim/config";
 import type { DdcOptions } from "jsr:@shougo/ddc-vim/types";
 
+type FiletypePatch = [string[], Partial<DdcOptions>];
+
+const filetypePatchs = [
+  [["vim", "toml"], {
+    sources: ["necovim", "lsp", "around", "buffer", "rg"],
+  }],
+  [["markdown"], {
+    sources: ["file", "around", "buffer", "rg"],
+  }],
+  [["gitcommit"], {
+    sources: ["file", "around", "buffer", "rg"],
+    sourceOptions: {
+      _: {
+        // NOTE: include `-` like `Co-authored-by`
+        keywordPattern: "[a-zA-Z_-]+",
+      },
+    },
+  }],
+] as const satisfies FiletypePatch[];
+
 export class Config extends BaseConfig {
   override async config(
     { denops, contextBuilder }: ConfigArguments,
@@ -93,30 +113,13 @@ export class Config extends BaseConfig {
           copilot: "lua",
         },
       },
-    } satisfies Partial<DdcOptions>;
+    } as const satisfies Partial<DdcOptions>;
 
     contextBuilder.patchGlobal(globalPatch);
-
-    for (const ft of ["toml", "vim"]) {
-      contextBuilder.patchFiletype(ft, {
-        sources: ["necovim", "lsp", "around", "buffer", "rg"],
-      });
-    }
-    for (const ft of ["markdown"]) {
-      contextBuilder.patchFiletype(ft, {
-        sources: ["file", "around", "buffer", "rg"],
-      });
-    }
-    for (const ft of ["gitcommit"]) {
-      contextBuilder.patchFiletype(ft, {
-        sources: ["file", "around", "buffer", "rg"],
-        sourceOptions: {
-          _: {
-            // NOTE: include `-` like `Co-authored-by`
-            keywordPattern: "[a-zA-Z_-]+",
-          },
-        },
-      });
+    for (const [fts, option] of filetypePatchs) {
+      for (const ft of fts) {
+        contextBuilder.patchFiletype(ft, option);
+      }
     }
     return await Promise.resolve();
   }
