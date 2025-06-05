@@ -2,7 +2,7 @@
 
 [tools]
 node = "22"       # renovate: mise
-python = "3.13.3" # renovate: mise
+python = "3.13.4" # renovate: mise
 ruby = "3.4.4"    # renovate: mise
 rust = "1.87.0"   # renovate: mise
 go = "1.24.3"     # renovate: mise
