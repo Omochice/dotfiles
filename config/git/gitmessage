@@ -1,5 +1,17 @@
 
 
+# Well known trailers
+#
+# - Acked-by:
+# - Changelog:
+# - Closes:
+# - Co-authored-by:
+# - Reference-to:
+# - Reported-by:
+# - See-alse:
+# - Signed-off-by:
+# - Tested-by:
+
 # Conventional commit (ref: https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional)
 #
 # allow below:

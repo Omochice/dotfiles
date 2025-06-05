@@ -107,6 +107,17 @@ export class Config extends BaseConfig {
         sources: ["file", "around", "buffer", "rg"],
       });
     }
+    for (const ft of ["gitcommit"]) {
+      contextBuilder.patchFiletype(ft, {
+        sources: ["file", "around", "buffer", "rg"],
+        sourceOptions: {
+          _: {
+            // NOTE: include `-` like `Co-authored-by`
+            keywordPattern: "[a-zA-Z_-]+",
+          },
+        },
+      });
+    }
     return await Promise.resolve();
   }
 }
