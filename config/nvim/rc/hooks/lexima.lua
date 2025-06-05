@@ -58,6 +58,7 @@ local rules = {
   { filetype = ft.ruby, char = char.bs, at = [[|\%#|]], input = char.bs, delete = 1 },
   -- markdown
   { filetype = ft.md, char = char.cr, at = [[```\w*\%#```]], input = char.cr, input_after = char.cr },
+  { filetype = ft.md, char = [[`]], at = [[```\%#```]], input = [[`]], input_after = [[`]] },
   { filetype = ft.md, char = "#", at = [[^\%#]], input = [[#<Space>]] },
   { filetype = ft.md, char = "#", at = [[^#\+\s\%#]], input = [[<BS>#<Space>]] },
   { filetype = ft.md, char = char.bs, at = [[^#\s\%#[^#]\?]], input = [[<BS><BS>]] },
