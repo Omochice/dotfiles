@@ -27,7 +27,7 @@ packages:
 - name: direnv/direnv@v2.36.0
 - name: dylanaraps/neofetch@7.1.0
 - name: sharkdp/bat@v0.25.0
-- name: jqlang/jq@jq-1.7.1
+- name: jqlang/jq@jq-1.8.0
 - name: mvdan/sh@v3.11.0
 - name: sharkdp/pastel@v0.10.0
 - name: gitlab.com/gitlab-org/cli@v1.59.2
