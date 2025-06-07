@@ -111,14 +111,14 @@
   };
   yazi-theme-catppuccin = {
     pname = "yazi-theme-catppuccin";
-    version = "fca8e93e0a408671fa54cc0cb103e76b85e8c011";
+    version = "1a8c939e47131f2c4bd07a2daea7773c29e2a774";
     src = fetchFromGitHub {
       owner = "catppuccin";
       repo = "yazi";
-      rev = "fca8e93e0a408671fa54cc0cb103e76b85e8c011";
+      rev = "1a8c939e47131f2c4bd07a2daea7773c29e2a774";
       fetchSubmodules = false;
-      sha256 = "sha256-ILaPj84ZlNc6MBwrpwBDNhGhXge9mPse4FYdSMU4eO8=";
+      sha256 = "sha256-hjqmNxIr/KCN9k5ZT7O994BeWdp56NP7aS34+nZ/fQQ=";
     };
-    date = "2025-04-19";
+    date = "2025-06-06";
   };
 }
