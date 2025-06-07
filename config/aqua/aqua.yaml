@@ -33,7 +33,7 @@ packages:
 - name: gitlab.com/gitlab-org/cli@v1.59.2
 - name: x-motemen/ghq@v1.8.0
 - name: golang/tools/goimports@v0.21.0
-- name: orhun/git-cliff@v2.8.0
+- name: orhun/git-cliff@v2.9.1
 - name: rhysd/vim-startuptime@v1.3.2
 - name: asciinema/agg@v1.5.0
 - name: rhysd/actionlint@v1.7.7
