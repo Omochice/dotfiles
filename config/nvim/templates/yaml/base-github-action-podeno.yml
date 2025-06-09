@@ -21,7 +21,7 @@ jobs:
           PROTECTED=$(echo "${RESPONSE}" | jq -r '.protected')
           echo "${PROTECTED}"
           echo "{isProtected}={${PROTECTED}}" >> "${GITHUB_OUTPUT}"
-      - uses: Omochice/action-normalize-vim-plugin-name@4c0461629dd9dfbce8a5e77ef962d8d719ca1885 # v0.1.0
+      - uses: Omochice/action-normalize-vim-plugin-name@814df9f00a03351945b1aeb6cac153b4bb975256 # v0.2.0
         id: normalize
         with:
           trim-tail-dot-vim: true
