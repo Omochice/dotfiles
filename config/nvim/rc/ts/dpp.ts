@@ -52,7 +52,7 @@ type Extension = {
 type FiletypePlugin = {
   /** target filetype */
   filetype: string;
-  /** execuable Vim script */
+  /** executable Vim script */
   ftplugin: string;
 };
 

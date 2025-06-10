@@ -3,7 +3,7 @@ import type { DdcOptions } from "jsr:@shougo/ddc-vim/types";
 
 type FiletypePatch = [string[], Partial<DdcOptions>];
 
-const filetypePatchs = [
+const filetypePatches = [
   [["vim", "toml"], {
     sources: ["necovim", "lsp", "around", "buffer", "rg"],
   }],
@@ -116,7 +116,7 @@ export class Config extends BaseConfig {
     } as const satisfies Partial<DdcOptions>;
 
     contextBuilder.patchGlobal(globalPatch);
-    for (const [fts, option] of filetypePatchs) {
+    for (const [fts, option] of filetypePatches) {
       for (const ft of fts) {
         contextBuilder.patchFiletype(ft, option);
       }
