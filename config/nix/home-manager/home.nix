@@ -68,6 +68,7 @@
       # keep-sorted end
       # keep-sorted start
       astro-language-server
+      gitlab-ci-ls
       gopls
       lua-language-server
       nixd
