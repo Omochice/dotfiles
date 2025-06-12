@@ -48,6 +48,7 @@
       "vysor"
       "wezterm@nightly"
       "windows-app"
+      "zoom"
       # keep-sorted end
     ];
   };
