@@ -61,6 +61,7 @@
                   "*.js"
                 ];
               };
+              fish_indent.enable = true;
               formatjson5 = {
                 enable = true;
                 indent = 2;

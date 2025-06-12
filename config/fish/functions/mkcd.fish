@@ -4,4 +4,3 @@ function mkcd
     mkdir -p $p
     cd $p
 end
-
