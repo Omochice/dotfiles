@@ -5,10 +5,9 @@
     "@tsconfig/strictest/tsconfig.json"
   ],
   "include": [
-    "src/**/*"
+    "src"
   ],
   "compilerOptions": {
-    "outDir": "dist",
-    "moduleResolution": "bundler"
+    "outDir": "dist"
   }
 }
