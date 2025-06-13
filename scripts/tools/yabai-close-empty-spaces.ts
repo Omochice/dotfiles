@@ -1,5 +1,5 @@
-import { Command } from "https://deno.land/x/cliffy@v1.0.0-rc.4/command/mod.ts";
-import $ from "https://deno.land/x/dax@0.39.2/mod.ts";
+import { Command } from "jsr:@cliffy/command@1.0.0-rc.7";
+import { $ } from "jsr:@david/dax@0.43.2";
 import {
   $array,
   $boolean,
