@@ -57,6 +57,7 @@
       mise
       neofetch
       nix-output-monitor
+      nixfmt-rfc-style
       nkf
       nushell
       pandoc
