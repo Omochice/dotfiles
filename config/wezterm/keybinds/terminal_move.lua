@@ -30,7 +30,6 @@ local M = {
   { key = "Enter", mods = "ALT", action = act.QuickSelect },
   { key = "/", mods = "ALT", action = act.Search("CurrentSelectionOrEmptyString") },
   { key = "v", mods = "ALT", action = act.PasteFrom("Clipboard") },
-  { key = "v", mods = "CTRL", action = act.SendKey({ key = "v" }) },
   {
     key = "r",
     mods = "ALT",
