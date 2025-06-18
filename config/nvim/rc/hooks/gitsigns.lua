@@ -9,5 +9,8 @@ gitsign.setup({
     end
     vim.keymap.set("n", "<Space>gm", gitsign.blame_line, { buffer = bufnr })
   end,
+  preview_config = {
+    border = "single",
+  },
 })
 -- }}}
