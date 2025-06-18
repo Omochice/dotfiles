@@ -58,6 +58,8 @@ in
       };
       finder = {
         # keep-sorted start
+        AppleShowAllExtensions = true;
+        AppleShowAllFiles = true;
         ShowPathbar = true;
         ShowStatusBar = true;
         # keep-sorted end
@@ -69,6 +71,8 @@ in
         AppleActionOnDoubleClick = "None";
         AppleMenuBarVisibleInFullscreen = false;
         AppleMiniaturizeOnDoubleClick = false;
+        AppleShowAllExtensions = true;
+        AppleShowAllFiles = true;
         InitialKeyRepeat = 25;
         KeyRepeat = 2;
         _HIHideMenuBar = true;
