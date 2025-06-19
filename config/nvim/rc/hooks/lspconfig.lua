@@ -29,6 +29,7 @@ local lspconfig = require("lspconfig")
 -- keep-sorted start block=yes
 lspconfig.astro.setup({})
 lspconfig.denols.setup(require("vimrc/lsp/denols").config())
+lspconfig.elmls.setup({})
 lspconfig.efm.setup(require("vimrc/lsp/efm").config())
 lspconfig.gitlab_ci_ls.setup({})
 lspconfig.gopls.setup({})

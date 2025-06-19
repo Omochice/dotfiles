@@ -71,6 +71,7 @@
       # keep-sorted start
       astro-language-server
       gitlab-ci-ls
+      elm-language-server
       gopls
       lua-language-server
       nixd
