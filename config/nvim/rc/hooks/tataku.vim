@@ -18,9 +18,19 @@ const s:providers = #{
 function s:list_providers(...) abort
   return s:providers->keys()
 endfunction
-function s:start_chat(...) abort
-  const provider = s:providers[get(a:000, 0, 'ollama')]
+function s:start_chat(line1, line2, ...) abort
+  const original_bufnr = bufnr()
+  const original_filetype = getbufvar(original_bufnr, '&filetype')
+  const provider = s:providers[get(a:000, 2, 'ollama')]
   const reltime = reltime()->reltimestr()
+  const lines = a:line1 ==# a:line2
+        \ ? []
+        \ : [
+        \   '',
+        \   $'```{original_filetype->empty() ? 'txt' : original_filetype}',
+        \   getbufline(original_bufnr, a:line1, a:line2),
+        \   '```',
+        \ ]->flatten()
   const bufname = $'chat://{provider.name}#{reltime}'
   const bufnr = bufadd(bufname)
   call bufload(bufnr)
@@ -28,6 +38,7 @@ function s:start_chat(...) abort
   call setbufvar(bufnr, '&filetype', 'markdown.chat')
   call setbufvar(bufnr, '&wrap', v:true)
   call deletebufline(bufnr, 1, '$')
+  call setbufline(bufnr, 1, lines)
   execute $'tabedit +buffer{bufnr}'
   call setbufvar(bufnr, 'tataku_chat_recipe', #{
         \   collector: #{
@@ -45,7 +56,7 @@ function s:start_chat(...) abort
         \   },
         \ })
 endfunction
-command! -nargs=? -complete=customlist,<SID>list_providers Hey call <SID>start_chat(<f-args>)
+command! -range -nargs=? -complete=customlist,<SID>list_providers Hey call <SID>start_chat(<line1>, <line2>, <f-args>)
 cnoreabbrev hey Hey
 augroup tataku_chat
   autocmd!
