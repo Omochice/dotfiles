@@ -37,7 +37,7 @@ function s:start_chat(line1, line2, ...) abort
   call setbufvar(bufnr, '&buftype', 'nofile')
   call setbufvar(bufnr, '&filetype', 'markdown.chat')
   call setbufvar(bufnr, '&wrap', v:true)
-  call deletebufline(bufnr, 1, '$')
+  silent! call deletebufline(bufnr, 1, '$')
   call setbufline(bufnr, 1, lines)
   execute $'tabedit +buffer{bufnr}'
   call setbufvar(bufnr, 'tataku_chat_recipe', #{
