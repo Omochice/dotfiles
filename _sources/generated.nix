@@ -121,4 +121,16 @@
     };
     date = "2025-06-06";
   };
+  zathura-catputtin = {
+    pname = "zathura-catputtin";
+    version = "0adc53028d81bf047461bc61c43a484d11b15220";
+    src = fetchFromGitHub {
+      owner = "catppuccin";
+      repo = "zathura";
+      rev = "0adc53028d81bf047461bc61c43a484d11b15220";
+      fetchSubmodules = false;
+      sha256 = "sha256-/vD/hOi6KcaGyAp6Az7jL5/tQSGRzIrf0oHjAJf4QbI=";
+    };
+    date = "2024-04-04";
+  };
 }

@@ -37,3 +37,7 @@ fetch.github = "catppuccin/yazi"
 [bat-theme-catppuccin]
 src.git = "https://github.com/catppuccin/bat"
 fetch.github = "catppuccin/bat"
+
+[zathura-catputtin]
+src.git = "https://github.com/catppuccin/zathura"
+fetch.github = "catppuccin/zathura"

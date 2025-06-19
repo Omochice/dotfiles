@@ -208,5 +208,26 @@
             "type": "github"
         },
         "version": "1a8c939e47131f2c4bd07a2daea7773c29e2a774"
+    },
+    "zathura-catputtin": {
+        "cargoLocks": null,
+        "date": "2024-04-04",
+        "extract": null,
+        "name": "zathura-catputtin",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "catppuccin",
+            "repo": "zathura",
+            "rev": "0adc53028d81bf047461bc61c43a484d11b15220",
+            "sha256": "sha256-/vD/hOi6KcaGyAp6Az7jL5/tQSGRzIrf0oHjAJf4QbI=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "0adc53028d81bf047461bc61c43a484d11b15220"
     }
 }
