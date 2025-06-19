@@ -15,13 +15,14 @@ const s:providers = #{
       \   },
       \ }
       \ }
+const s:default_provider = 'ollama'
 function s:list_providers(...) abort
   return s:providers->keys()
 endfunction
 function s:start_chat(line1, line2, ...) abort
   const original_bufnr = bufnr()
   const original_filetype = getbufvar(original_bufnr, '&filetype')
-  const provider = s:providers[get(a:000, 2, 'ollama')]
+  const provider = s:providers[get(a:000, 0, s:default_provider)]
   const reltime = reltime()->reltimestr()
   const lines = a:line1 ==# a:line2
         \ ? []
