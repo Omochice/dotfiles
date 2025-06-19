@@ -23,6 +23,7 @@
     ../../wezterm/default.nix
     ../../yabai/default.nix
     ../../yazi/default.nix
+    ../../zathura/default.nix
     ../../zoxide/default.nix
     # keep-sorted end
     # ../../macskk/default.nix
