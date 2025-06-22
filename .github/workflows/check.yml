@@ -53,7 +53,7 @@ jobs:
   check-format:
     timeout-minutes: 5
     name: Check code format
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     permissions: {}
     steps:
       - name: checkout
