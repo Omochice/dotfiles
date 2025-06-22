@@ -95,14 +95,17 @@
           }
         );
       merge-attrs = nixpkgs.lib.foldr (a: b: nixpkgs.lib.attrsets.recursiveUpdate a b) { };
-      run-as-on =
-        system:
+      runAsOn =
+        system: name: runtimeInputs: text:
         let
           pkgs = pkgs-for system;
+          program = pkgs.writeShellApplication {
+            inherit name runtimeInputs text;
+          };
         in
-        name: script: {
+        {
           type = "app";
-          program = script |> pkgs.writeShellScript name |> toString;
+          program = "${program}/bin/${name}";
         };
       host = ./host.json |> builtins.readFile |> builtins.fromJSON;
     in
@@ -146,20 +149,23 @@
               system:
               let
                 pkgs = pkgs-for system;
-                run-as = run-as-on system;
+                runAs = runAsOn system;
               in
               {
                 check-action =
                   ''
-                    set -e
-                    ${pkgs.actionlint}/bin/actionlint --version
-                    ${pkgs.actionlint}/bin/actionlint
-                    ${pkgs.ghalint}/bin/ghalint --version
-                    ${pkgs.ghalint}/bin/ghalint run
-                    ${pkgs.zizmor}/bin/zizmor --version
-                    ${pkgs.zizmor}/bin/zizmor .github/workflows/*.yml
+                    actionlint --version
+                    actionlint
+                    ghalint --version
+                    ghalint run
+                    zizmor --version
+                    zizmor .github/workflows/*.yml
                   ''
-                  |> run-as "check-action";
+                  |> runAs "check-action" [
+                    pkgs.actionlint
+                    pkgs.ghalint
+                    pkgs.zizmor
+                  ];
               }
             )
             |> nixpkgs.lib.genAttrs [
@@ -172,24 +178,47 @@
               system:
               let
                 pkgs = pkgs-for system;
-                run-as = run-as-on system;
+                runAs = runAsOn system;
               in
               {
+                default =
+                  ''
+                    nix run .#sync
+                    nix run .#update
+                  ''
+                  |> runAs "default-script" [
+                    pkgs.nix
+                  ];
+                sync =
+                  ''
+                    nix flake update
+                    nvfetcher
+                    cd config/node2nix
+                    node2nix -i node-packages.json
+                    cd -
+                  ''
+                  |> runAs "sync" [
+                    pkgs.nix
+                    pkgs.nvfetcher
+                    pkgs.node2nix
+                  ];
                 update =
                   ''
-                    set -e
-                    ${pkgs.jq}/bin/jq -n --arg home "$HOME" --arg user "$USER" '{home: $home, user: $user}' > host.json
-                    ${pkgs.git}/bin/git add host.json --force
-                    echo "Updating nvfetcher"
-                    ${pkgs.nvfetcher}/bin/nvfetcher
+                    jq -n --arg home "$HOME" --arg user "$USER" '{home: $home, user: $user}' > host.json
+                    git add host.json --force
                     echo "Updating home-manager"
-                    nix run github:nix-community/home-manager -- switch --flake .#omochice |& ${pkgs.nix-output-monitor}/bin/nom
+                    nix run github:nix-community/home-manager -- switch --flake .#omochice |& nom
                     echo "Updating nix-darwin"
-                    sudo nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice |& ${pkgs.nix-output-monitor}/bin/nom
+                    sudo nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice |& nom
                     echo "Update complete!"
-                    ${pkgs.git}/bin/git reset -- host.json
+                    git reset -- host.json
                   ''
-                  |> run-as "update-script";
+                  |> runAs "update-script" [
+                    pkgs.jq
+                    pkgs.git
+                    pkgs.nix
+                    pkgs.nix-output-monitor
+                  ];
               }
             )
             |> nixpkgs.lib.genAttrs [
