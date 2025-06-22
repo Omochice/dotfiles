@@ -36,16 +36,16 @@
     }@inputs:
     let
       system = "aarch64-darwin";
-      pkgs-for =
+      pkgsFor =
         system:
         import nixpkgs {
           inherit system;
           overlays = [ nur-packages.overlays.default ];
         };
-      pkgs = pkgs-for system;
+      pkgs = pkgsFor system;
       treefmt =
         system:
-        treefmt-nix.lib.evalModule (pkgs-for system) (
+        treefmt-nix.lib.evalModule (pkgsFor system) (
           { ... }:
           {
             settings.global.excludes = [
@@ -98,7 +98,7 @@
       runAsOn =
         system: name: runtimeInputs: text:
         let
-          pkgs = pkgs-for system;
+          pkgs = pkgsFor system;
           program = pkgs.writeShellApplication {
             inherit name runtimeInputs text;
           };
@@ -148,7 +148,7 @@
             (
               system:
               let
-                pkgs = pkgs-for system;
+                pkgs = pkgsFor system;
                 runAs = runAsOn system;
               in
               {
@@ -177,7 +177,7 @@
             (
               system:
               let
-                pkgs = pkgs-for system;
+                pkgs = pkgsFor system;
                 runAs = runAsOn system;
               in
               {
