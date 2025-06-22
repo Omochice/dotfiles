@@ -84,11 +84,6 @@ jobs:
     uses: ./.github/workflows/_check-aqua-installation.yml
     permissions:
       contents: read
-  check-karabiner:
-    needs: path-filter
-    if: needs.path-filter.outputs.karabiner == 'true'
-    uses: ./.github/workflows/_check-karabiner.yml
-    permissions: {}
   status-check:
     timeout-minutes: 30
     runs-on: ubuntu-latest
@@ -97,7 +92,6 @@ jobs:
       - check-actions
       - check-deno
       - check-aqua
-      - check-karabiner
     permissions: {}
     if: failure()
     steps:
