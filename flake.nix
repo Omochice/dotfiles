@@ -108,31 +108,28 @@
         checks = {
           formatting = treefmt.config.build.check self;
         };
-        packages =
-          {
-            homeConfigurations = {
-              omochice = home-manager.lib.homeManagerConfiguration {
-                inherit pkgs;
-                extraSpecialArgs = {
-                  inherit inputs;
-                  inherit (host) user home;
-                };
-                modules = [
-                  ./config/nix/home-manager/home.nix
-                ];
-              };
-            };
-          }
-          // pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
-            darwinConfigurations = {
-              omochice = nix-darwin.lib.darwinSystem {
-                modules = [ ./config/nix/nix-darwin/default.nix ];
-                specialArgs = {
-                  inherit (host) user home;
-                };
+        packages = {
+          darwinConfigurations = pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
+            omochice = nix-darwin.lib.darwinSystem {
+              modules = [ ./config/nix/nix-darwin/default.nix ];
+              specialArgs = {
+                inherit (host) user home;
               };
             };
           };
+          homeConfigurations = {
+            omochice = home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+              extraSpecialArgs = {
+                inherit inputs;
+                inherit (host) user home;
+              };
+              modules = [
+                ./config/nix/home-manager/home.nix
+              ];
+            };
+          };
+        };
         apps = {
           check-action =
             ''
