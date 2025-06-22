@@ -70,8 +70,8 @@
       # keep-sorted end
       # keep-sorted start
       astro-language-server
+      elmPackages.elm-language-server
       gitlab-ci-ls
-      elm-language-server
       gopls
       lua-language-server
       nixd
