@@ -108,7 +108,7 @@
         checks = {
           formatting = treefmt.config.build.check self;
         };
-        packages = {
+        legacyPackages = {
           darwinConfigurations = pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
             omochice = nix-darwin.lib.darwinSystem {
               modules = [ ./config/nix/nix-darwin/default.nix ];
