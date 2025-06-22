@@ -4,6 +4,9 @@
   home,
   ...
 }:
+let
+  nodePkgs = pkgs.callPackage ../../node2nix/default.nix { inherit pkgs; };
+in
 {
   imports = [
     # keep-sorted start
@@ -44,7 +47,6 @@
       cachix
       cargo
       clang-tools
-      claude-code
       curl
       devbox
       docker
@@ -60,6 +62,7 @@
       nix-output-monitor
       nixfmt-rfc-style
       nkf
+      nodePkgs."@anthropic-ai/claude-code"
       nushell
       pandoc
       pnpm

@@ -51,6 +51,7 @@
             settings.global.excludes = [
               "**/aqua.yaml"
               "_sources/**"
+              "config/node2nix/**"
             ];
             programs = {
               # keep-sorted start block=yes
