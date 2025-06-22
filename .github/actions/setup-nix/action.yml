@@ -5,9 +5,6 @@ inputs:
   github-token:
     description: GitHub token for action
     required: true
-  cachix-token:
-    description: Cachix token for action
-    required: true
 
 runs:
   using: composite
