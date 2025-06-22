@@ -18,9 +18,9 @@
     enabled: true,
   },
   "github-actions": {
-    fileMatch: [
-      "^(workflow-templates|\\.(?:github|gitea|forgejo)/workflows)/[^/]+\\.ya?ml$",
-      "(^|/)action\\.ya?ml$",
+    managerFilePatterns: [
+      "/^(workflow-templates|\\.(?:github|gitea|forgejo)/workflows)/[^/]+\\.ya?ml$/",
+      "/(^|/)action\\.ya?ml$/",
       "config/nvim/templates/yaml/base-github*",
     ],
   },
