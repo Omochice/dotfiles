@@ -138,7 +138,7 @@
               ghalint --version
               ghalint run
               zizmor --version
-              zizmor .github/workflows/*.yml
+              zizmor .github/workflows .github/actions
             ''
             |> runAs "check-action" [
               pkgs.actionlint
