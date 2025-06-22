@@ -34,18 +34,14 @@
       flake-utils,
       nur-packages,
     }@inputs:
-    let
-      system = "aarch64-darwin";
-      pkgsFor =
-        system:
-        import nixpkgs {
+    flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = import nixpkgs {
           inherit system;
           overlays = [ nur-packages.overlays.default ];
         };
-      pkgs = pkgsFor system;
-      treefmt =
-        system:
-        treefmt-nix.lib.evalModule (pkgsFor system) (
+        treefmt = treefmt-nix.lib.evalModule pkgs (
           { ... }:
           {
             settings.global.excludes = [
@@ -94,138 +90,105 @@
             };
           }
         );
-      merge-attrs = nixpkgs.lib.foldr (a: b: nixpkgs.lib.attrsets.recursiveUpdate a b) { };
-      runAsOn =
-        system: name: runtimeInputs: text:
-        let
-          pkgs = pkgsFor system;
-          program = pkgs.writeShellApplication {
-            inherit name runtimeInputs text;
+        runAs =
+          name: runtimeInputs: text:
+          let
+            program = pkgs.writeShellApplication {
+              inherit name runtimeInputs text;
+            };
+          in
+          {
+            type = "app";
+            program = "${program}/bin/${name}";
           };
-        in
-        {
-          type = "app";
-          program = "${program}/bin/${name}";
+        host = ./host.json |> builtins.readFile |> builtins.fromJSON;
+      in
+      {
+        formatter = treefmt.config.build.wrapper;
+        checks = {
+          formatting = treefmt.config.build.check self;
         };
-      host = ./host.json |> builtins.readFile |> builtins.fromJSON;
-    in
-    {
-      formatter =
-        (system: (treefmt system).config.build.wrapper)
-        |> nixpkgs.lib.genAttrs [
-          flake-utils.lib.system.x86_64-linux
-          flake-utils.lib.system.aarch64-darwin
-        ];
-      checks =
-        (system: { formatting = (treefmt system).config.build.check self; })
-        |> nixpkgs.lib.genAttrs [
-          flake-utils.lib.system.x86_64-linux
-          flake-utils.lib.system.aarch64-darwin
-        ];
-      darwinConfigurations = {
-        omochice = nix-darwin.lib.darwinSystem {
-          modules = [ ./config/nix/nix-darwin/default.nix ];
-          specialArgs = {
-            inherit (host) user home;
+        packages = {
+          darwinConfigurations = pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
+            omochice = nix-darwin.lib.darwinSystem {
+              modules = [ ./config/nix/nix-darwin/default.nix ];
+              specialArgs = {
+                inherit (host) user home;
+              };
+            };
+          };
+          homeConfigurations = {
+            omochice = home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+              extraSpecialArgs = {
+                inherit inputs;
+                inherit (host) user home;
+              };
+              modules = [
+                ./config/nix/home-manager/home.nix
+              ];
+            };
           };
         };
-      };
-      homeConfigurations = {
-        omochice = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = {
-            inherit inputs;
-            inherit (host) user home;
-          };
-          modules = [
-            ./config/nix/home-manager/home.nix
-          ];
-        };
-      };
-      apps =
-        [
-          (
-            (
-              system:
-              let
-                pkgs = pkgsFor system;
-                runAs = runAsOn system;
-              in
-              {
-                check-action =
-                  ''
-                    actionlint --version
-                    actionlint
-                    ghalint --version
-                    ghalint run
-                    zizmor --version
-                    zizmor .github/workflows/*.yml
-                  ''
-                  |> runAs "check-action" [
-                    pkgs.actionlint
-                    pkgs.ghalint
-                    pkgs.zizmor
-                  ];
+        apps = {
+          check-action =
+            ''
+              actionlint --version
+              actionlint
+              ghalint --version
+              ghalint run
+              zizmor --version
+              zizmor .github/workflows/*.yml
+            ''
+            |> runAs "check-action" [
+              pkgs.actionlint
+              pkgs.ghalint
+              pkgs.zizmor
+            ];
+          default =
+            ''
+              nix run .#sync
+              nix run .#update
+            ''
+            |> runAs "default-script" [
+              pkgs.nix
+            ];
+          sync =
+            ''
+              nix flake update
+              nvfetcher
+              cd config/node2nix
+              node2nix -i node-packages.json
+              cd -
+            ''
+            |> runAs "sync" [
+              pkgs.nix
+              pkgs.nvfetcher
+              pkgs.node2nix
+            ];
+          update =
+            ''
+              jq -n --arg home "$HOME" --arg user "$USER" '{home: $home, user: $user}' > host.json
+              git add host.json --force
+              echo "Updating home-manager"
+              nix run github:nix-community/home-manager -- switch --flake .#omochice |& nom
+              ${
+                ''
+                  echo "Updating nix-darwin"
+                  sudo nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice |& nom
+                ''
+                |> pkgs.lib.strings.optionalString pkgs.stdenv.isDarwin
               }
-            )
-            |> nixpkgs.lib.genAttrs [
-              flake-utils.lib.system.x86_64-linux
-              flake-utils.lib.system.aarch64-darwin
-            ]
-          )
-          (
-            (
-              system:
-              let
-                pkgs = pkgsFor system;
-                runAs = runAsOn system;
-              in
-              {
-                default =
-                  ''
-                    nix run .#sync
-                    nix run .#update
-                  ''
-                  |> runAs "default-script" [
-                    pkgs.nix
-                  ];
-                sync =
-                  ''
-                    nix flake update
-                    nvfetcher
-                    cd config/node2nix
-                    node2nix -i node-packages.json
-                    cd -
-                  ''
-                  |> runAs "sync" [
-                    pkgs.nix
-                    pkgs.nvfetcher
-                    pkgs.node2nix
-                  ];
-                update =
-                  ''
-                    jq -n --arg home "$HOME" --arg user "$USER" '{home: $home, user: $user}' > host.json
-                    git add host.json --force
-                    echo "Updating home-manager"
-                    nix run github:nix-community/home-manager -- switch --flake .#omochice |& nom
-                    echo "Updating nix-darwin"
-                    sudo nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice |& nom
-                    echo "Update complete!"
-                    git reset -- host.json
-                  ''
-                  |> runAs "update-script" [
-                    pkgs.jq
-                    pkgs.git
-                    pkgs.nix
-                    pkgs.nix-output-monitor
-                  ];
-              }
-            )
-            |> nixpkgs.lib.genAttrs [
-              flake-utils.lib.system.aarch64-darwin
-            ]
-          )
-        ]
-        |> merge-attrs;
-    };
+              echo "Update complete!"
+              git reset -- host.json
+            ''
+            |> runAs "update-script" [
+              pkgs.jq
+              pkgs.git
+              pkgs.nix
+              pkgs.nix-output-monitor
+            ];
+        };
+      }
+    );
 }
