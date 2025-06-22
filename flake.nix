@@ -65,10 +65,6 @@
               };
               keep-sorted.enable = true;
               nixfmt.enable = true;
-              pinact = {
-                enable = true;
-                update = false;
-              };
               shfmt.enable = true;
               stylua = {
                 enable = true;
@@ -108,7 +104,7 @@
         checks = {
           formatting = treefmt.config.build.check self;
         };
-        packages = {
+        legacyPackages = {
           darwinConfigurations = pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
             omochice = nix-darwin.lib.darwinSystem {
               modules = [ ./config/nix/nix-darwin/default.nix ];
@@ -138,7 +134,7 @@
               ghalint --version
               ghalint run
               zizmor --version
-              zizmor .github/workflows/*.yml
+              zizmor .github/workflows .github/actions
             ''
             |> runAs "check-action" [
               pkgs.actionlint
