@@ -167,6 +167,16 @@ speedtest=(
 	click_script="~/.config/sketchybar/scripts/speedtest_click.sh"
 )
 
+ccusage=(
+  icon="󰚩"
+  icon.drawing=on
+  label="?"
+  label.drawing=on
+  background.color="${RED}"
+  script="~/.config/skt/ccusage.sh"
+  update_freq=30
+)
+
 sketchybar --message \
   --add item apple left --set apple "${apple[@]}" \
 	--add item apple.shutdown popup.apple --set apple.shutdown "${apple_popup[@]}" "${shutdown[@]}" \
@@ -174,7 +184,7 @@ sketchybar --message \
 	--add item apple.sleep popup.apple --set apple.sleep "${apple_popup[@]}" "${sleep[@]}" \
 	--add item cpu left --set cpu "${cpu[@]}" \
 	--add item ram left --set ram "${ram[@]}" \
-	# --add item speedtest left --set speedtest "${speedtest[@]}"
+	--add item ccusage left --set ccusage "${ccusage[@]}"
 # }}}
 
 # right items {{{
