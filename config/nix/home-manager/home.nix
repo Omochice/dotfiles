@@ -46,6 +46,7 @@ in
       btop
       cachix
       cargo
+      ccusage
       clang-tools
       curl
       devbox
