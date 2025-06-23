@@ -6,3 +6,5 @@
 **/momomo
 **/node_modules
 **/.mise.toml
+
+.claude/**
