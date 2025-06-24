@@ -84,6 +84,10 @@ if_exists = "~/.local/share/pnpm"
 from = "~/.config/aqua/aqua.yaml"
 to = "AQUA_GLOBAL_CONFIG"
 
+[[environments]]
+to = "CLAUDE_CONFIG_DIR"
+from = "~/.config/claude"
+
 [[aliases]]
 from = "exit"
 to = ":q"
