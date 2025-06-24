@@ -691,3 +691,8 @@ on_cmd = [
   "PrtAsk",
 ]
 hooks_file = "$VIMRC_RC_DIR/hooks/parrot.lua"
+
+[[plugins]]
+repo = "https://github.com/monaqa/dial.nvim"
+hooks_file = "$VIMRC_RC_DIR/hooks/dial.lua"
+on_lua = "dial"
