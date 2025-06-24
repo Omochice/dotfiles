@@ -2,13 +2,13 @@ import type {
   ContextBuilder,
   ExtOptions,
   Plugin,
-} from "jsr:@shougo/dpp-vim@4.4.0/types";
+} from "jsr:@shougo/dpp-vim@4.5.0/types";
 import {
   BaseConfig,
   type ConfigReturn,
   type MultipleHook,
-} from "jsr:@shougo/dpp-vim@4.4.0/config";
-import type { Protocol } from "jsr:@shougo/dpp-vim@4.4.0/protocol";
+} from "jsr:@shougo/dpp-vim@4.5.0/config";
+import type { Protocol } from "jsr:@shougo/dpp-vim@4.5.0/protocol";
 import type {
   Ext as LazyExt,
   Params as LazyParams,
