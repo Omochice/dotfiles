@@ -11,6 +11,7 @@ in
   imports = [
     # keep-sorted start
     ../../aqua/default.nix
+    ../../claude/default.nix
     ../../colima/default.nix
     ../../fish/default.nix
     ../../gh/default.nix
