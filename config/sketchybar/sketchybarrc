@@ -247,8 +247,7 @@ sketchybar --message \
 	--add item clock right --set clock "${clock[@]}" --subscribe clock mouse.entered mouse.exited \
 	--add item brightness right --set brightness "${brightness[@]}" \
 	--add item volume right --set volume "${volume[@]}" \
-	--add item battery right --set battery "${battery[@]}" \
-	--add item bluetooth right --set bluetooth "${bluetooth[@]}"
+	--add item battery right --set battery "${battery[@]}"
 # }}}
 
 # vim:ft=bash
