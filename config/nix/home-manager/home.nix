@@ -71,6 +71,7 @@ in
       silicon
       starship
       tldr
+      uv
       yazi
       # keep-sorted end
       # keep-sorted start
