@@ -42,6 +42,7 @@
       "obs"
       "scroll-reverser"
       "slack"
+      "tailscale"
       "utm"
       "visual-studio-code"
       "vivaldi"
