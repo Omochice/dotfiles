@@ -1,4 +1,24 @@
 { lib, pkgs, ... }:
+let
+  runAs =
+    name: runtimeInputs: text:
+    pkgs.writeShellApplication {
+      inherit name runtimeInputs text;
+    };
+  git-dd =
+    ''
+      git branch -vv \
+      | grep ': gone]' \
+      | awk '{print $1}' \
+      | xargs -r git branch -D
+    ''
+    |> runAs "git-dd" [
+      pkgs.git
+      pkgs.gnugrep
+      pkgs.gawk
+      pkgs.findutils
+    ];
+in
 {
   programs.git = {
     enable = true;
@@ -6,14 +26,7 @@
       { path = ./config; }
     ];
     aliases = {
-      dd = ''
-        !f() {
-          ${pkgs.git}/bin/git branch -vv \
-          | ${pkgs.gnugrep}/bin/grep ': gone]' \
-          | ${pkgs.gawk}/bin/awk '{print $1}' \
-          | ${pkgs.findutils}/bin/xargs -r ${pkgs.git}/bin/git branch -D
-        };f
-      '';
+      dd = "!${git-dd}/bin/git-dd";
     };
     ignores = ./ignore |> builtins.readFile |> lib.splitString "\n";
     extraConfig = {
