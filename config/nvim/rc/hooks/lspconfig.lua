@@ -28,6 +28,7 @@ vim.diagnostic.config({
 local lspconfig = require("lspconfig")
 -- keep-sorted start block=yes
 lspconfig.astro.setup({})
+lspconfig.biome.setup({})
 lspconfig.denols.setup(require("vimrc/lsp/denols").config())
 lspconfig.efm.setup(require("vimrc/lsp/efm").config())
 lspconfig.elmls.setup({})
