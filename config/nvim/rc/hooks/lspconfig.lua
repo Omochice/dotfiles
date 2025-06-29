@@ -44,6 +44,7 @@ lspconfig.svelte.setup({})
 lspconfig.taplo.setup(require("vimrc/lsp/taplo").config())
 lspconfig.tinymist.setup({})
 lspconfig.ts_ls.setup(require("vimrc/lsp/tsserver").config())
+lspconfig.typos_lsp.setup({})
 lspconfig.yamlls.setup(require("vimrc/lsp/yamlls").config())
 -- keep-sorted end
 -- }}}

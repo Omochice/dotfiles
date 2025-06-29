@@ -71,6 +71,7 @@ in
       silicon
       starship
       tldr
+      typos
       unar
       uv
       yazi
@@ -86,6 +87,7 @@ in
       svelte-language-server
       tinymist
       typescript-language-server
+      typos-lsp
       vscode-langservers-extracted
       vue-language-server
       yaml-language-server
