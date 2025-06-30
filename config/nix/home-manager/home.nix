@@ -4,9 +4,6 @@
   home,
   ...
 }:
-let
-  nodePkgs = pkgs.callPackage ../../node2nix/default.nix { inherit pkgs; };
-in
 {
   imports = [
     # keep-sorted start
@@ -54,6 +51,7 @@ in
       cargo
       ccusage
       clang-tools
+      claude-code
       curl
       d2
       delta
@@ -90,7 +88,6 @@ in
       nix-output-monitor
       nixfmt-rfc-style
       nkf
-      nodePkgs."@anthropic-ai/claude-code"
       nushell
       pandoc
       pastel

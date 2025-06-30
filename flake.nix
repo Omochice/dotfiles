@@ -47,7 +47,6 @@
             settings.global.excludes = [
               "**/aqua.yaml"
               "_sources/**"
-              "config/node2nix/**"
             ];
             programs = {
               # keep-sorted start block=yes
@@ -153,14 +152,10 @@
             ''
               nix flake update
               nvfetcher
-              cd config/node2nix
-              node2nix -i node-packages.json
-              cd -
             ''
             |> runAs "sync" [
               pkgs.nix
               pkgs.nvfetcher
-              pkgs.node2nix
             ];
           update =
             ''
