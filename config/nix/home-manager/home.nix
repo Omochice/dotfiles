@@ -43,23 +43,49 @@ in
     stateVersion = "24.05";
     packages = with pkgs; [
       # keep-sorted start
+      actionlint
+      asciinema
+      asciinema-agg
+      ast-grep
       awscli2
+      bat
       btop
       cachix
       cargo
       ccusage
       clang-tools
       curl
+      d2
+      delta
       devbox
+      direnv
       docker
+      editorconfig-checker
+      fastfetch
+      fd
       #emacs
       fish
+      fzf
+      gh
+      ghq
+      git-cliff
       git-lfs
+      glab
+      glow
       gnumake
       goose-cli
+      gotools
+      hadolint
+      hyperfine
       imagemagick
+      jnv
+      jq
+      lazydocker
       lazygit
+      lsd
       mise
+      mkcert
+      mmv-go
       neofetch
       nix-output-monitor
       nixfmt-rfc-style
@@ -67,18 +93,27 @@ in
       nodePkgs."@anthropic-ai/claude-code"
       nushell
       pandoc
+      pastel
       pnpm
+      reviewdog
+      ripgrep
+      sd
+      shfmt
       silicon
+      speedtest-cli
       starship
       tldr
+      tokei
       typos
       unar
       uv
+      vim-startuptime
       yazi
       # keep-sorted end
       # keep-sorted start
       astro-language-server
       biome
+      efm-langserver
       elmPackages.elm-language-server
       gitlab-ci-ls
       gopls
