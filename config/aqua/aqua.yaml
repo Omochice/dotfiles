@@ -11,6 +11,5 @@ registries:
   ref: v4.381.0 # renovate: depName=aquaproj/aqua-registry
 packages:
 - name: ollama/ollama@v0.9.2
-- name: itchyny/mmv@v0.1.6
 - name: docker/buildx@v0.25.0
 - name: protocolbuffers/protobuf/protoc@v31.1
