@@ -172,6 +172,7 @@
               }
               echo "Update complete!"
               git reset -- host.json
+              rm host.json
             ''
             |> runAs "update-script" [
               pkgs.jq
