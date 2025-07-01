@@ -188,6 +188,69 @@
         },
         "version": "68d9bf4f4bd4286fccb2d97c81a6493fd04767a9"
     },
+    "gh-fzgist": {
+        "cargoLocks": null,
+        "date": "2021-12-11",
+        "extract": null,
+        "name": "gh-fzgist",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "Omochice",
+            "repo": "gh-fzgist",
+            "rev": "e2d20a91bbd19de1dc1cd8c603b366dd63c92158",
+            "sha256": "sha256-Cweij9Y1qfoqBI8UumTzbMbXDjeqJc3ytISFir7g4Vg=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "e2d20a91bbd19de1dc1cd8c603b366dd63c92158"
+    },
+    "gh-q": {
+        "cargoLocks": null,
+        "date": "2025-03-20",
+        "extract": null,
+        "name": "gh-q",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "kawarimidoll",
+            "repo": "gh-q",
+            "rev": "a312c67b92baefadb07481ef1479c96d91243d41",
+            "sha256": "sha256-cpR4ZxWobr1dyGr+zNr0IUa1yYlZK3sDz4m9LWjkRsc=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "a312c67b92baefadb07481ef1479c96d91243d41"
+    },
+    "gh-userfetch": {
+        "cargoLocks": null,
+        "date": "2021-09-19",
+        "extract": null,
+        "name": "gh-userfetch",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "sheepla",
+            "repo": "gh-userfetch",
+            "rev": "9c90b188f1c58a6a3d6ce5f9220b05b5414b040f",
+            "sha256": "sha256-lLmKUphsH8ByQPqsGrIXYgLlJQntmcqvLDxCnfiXvmk=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "9c90b188f1c58a6a3d6ce5f9220b05b5414b040f"
+    },
     "yazi-theme-catppuccin": {
         "cargoLocks": null,
         "date": "2025-06-06",

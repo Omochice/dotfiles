@@ -109,6 +109,42 @@
     };
     date = "2023-03-16";
   };
+  gh-fzgist = {
+    pname = "gh-fzgist";
+    version = "e2d20a91bbd19de1dc1cd8c603b366dd63c92158";
+    src = fetchFromGitHub {
+      owner = "Omochice";
+      repo = "gh-fzgist";
+      rev = "e2d20a91bbd19de1dc1cd8c603b366dd63c92158";
+      fetchSubmodules = false;
+      sha256 = "sha256-Cweij9Y1qfoqBI8UumTzbMbXDjeqJc3ytISFir7g4Vg=";
+    };
+    date = "2021-12-11";
+  };
+  gh-q = {
+    pname = "gh-q";
+    version = "a312c67b92baefadb07481ef1479c96d91243d41";
+    src = fetchFromGitHub {
+      owner = "kawarimidoll";
+      repo = "gh-q";
+      rev = "a312c67b92baefadb07481ef1479c96d91243d41";
+      fetchSubmodules = false;
+      sha256 = "sha256-cpR4ZxWobr1dyGr+zNr0IUa1yYlZK3sDz4m9LWjkRsc=";
+    };
+    date = "2025-03-20";
+  };
+  gh-userfetch = {
+    pname = "gh-userfetch";
+    version = "9c90b188f1c58a6a3d6ce5f9220b05b5414b040f";
+    src = fetchFromGitHub {
+      owner = "sheepla";
+      repo = "gh-userfetch";
+      rev = "9c90b188f1c58a6a3d6ce5f9220b05b5414b040f";
+      fetchSubmodules = false;
+      sha256 = "sha256-lLmKUphsH8ByQPqsGrIXYgLlJQntmcqvLDxCnfiXvmk=";
+    };
+    date = "2021-09-19";
+  };
   yazi-theme-catppuccin = {
     pname = "yazi-theme-catppuccin";
     version = "1a8c939e47131f2c4bd07a2daea7773c29e2a774";

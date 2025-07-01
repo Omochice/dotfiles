@@ -41,3 +41,15 @@ fetch.github = "catppuccin/bat"
 [zathura-catputtin]
 src.git = "https://github.com/catppuccin/zathura"
 fetch.github = "catppuccin/zathura"
+
+[gh-q]
+src.git = "https://github.com/kawarimidoll/gh-q"
+fetch.github = "kawarimidoll/gh-q"
+
+[gh-fzgist]
+src.git = "https://github.com/Omochice/gh-fzgist"
+fetch.github = "Omochice/gh-fzgist"
+
+[gh-userfetch]
+src.git = "https://github.com/sheepla/gh-userfetch"
+fetch.github = "sheepla/gh-userfetch"
