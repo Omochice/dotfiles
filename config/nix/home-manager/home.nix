@@ -19,6 +19,7 @@
     ../../nix/default.nix
     ../../nushell/default.nix
     ../../nvim/default.nix
+    ../../ollama/default.nix
     ../../sketchybar/default.nix
     ../../starship/default.nix
     ../../wezterm/default.nix
