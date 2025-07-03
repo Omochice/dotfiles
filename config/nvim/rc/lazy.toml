@@ -71,8 +71,6 @@ repo = "https://github.com/easymotion/vim-easymotion"
 hook_add = """
 nmap <Space>j <Plug>(easymotion-j)
 nmap <Space>k <Plug>(easymotion-k)
-nmap <Space>l <Plug>(easymotion-lineforward)
-nmap <Space>h <Plug>(easymotion-linebackward)
 let g:EasyMotion_smartcase = v:true
 let g:EasyMotion_use_smartsign_jp = v:true
 """
@@ -696,3 +694,15 @@ hooks_file = "$VIMRC_RC_DIR/hooks/parrot.lua"
 repo = "https://github.com/monaqa/dial.nvim"
 hooks_file = "$VIMRC_RC_DIR/hooks/dial.lua"
 on_lua = "dial"
+
+[[plugins]]
+repo = "https://github.com/hrsh7th/vim-eft"
+hook_add = """
+nnoremap <Space>l <Plug>(eft-f)
+xnoremap <Space>l <Plug>(eft-f)
+onoremap <Space>l <Plug>(eft-f)
+nnoremap <Space>h <Plug>(eft-F)
+xnoremap <Space>h <Plug>(eft-F)
+onoremap <Space>h <Plug>(eft-F)
+"""
+on_map = { nox = "<Plug>" }
