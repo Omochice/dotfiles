@@ -448,14 +448,8 @@ dockerfile = "nnoremap <buffer><Space>f <Cmd>FiletypeFormat<CR>"
 [[plugins]]
 repo = "https://github.com/voldikss/vim-floaterm"
 hook_add = """
-command! Lazygit FloatermNew --autoclose=2 --autohide=0 --opener=tabe --height=1.0 --width=1.0 --title=lazygit lazygit
-command! Ranger FloatermNew --autoclose=2 --autohide=0 --opener=tabe --height=1.0 --width=1.0 --title=ranger ranger
-command! CreatePR FloatermNew --autoclose=2 --autohide=0 --opener=tabe --height=0.7 --width=0.7 --title=PR gh pr create
-command! CreateIssue FloatermNew --autoclose=2 --autohide=0 --opener=tabe --height=0.7 --width=0.7 --title=Issue gh issue create
+command! Lazygit FloatermNew --autoclose=2 --autohide=0 --opener=tabedit --height=1.0 --width=1.0 --title=lazygit lazygit
 command! Fkill FloatermKill
-" cnoreabbrev pr CreatePR
-" cnoreabbrev issue CreateIssue
-" nnoremap <C-g> <Cmd>Lazygit<CR>
 nnoremap <Space>t <Cmd>FloatermNew<CR>
 """
 on_cmd = ["FloatermNew"]
