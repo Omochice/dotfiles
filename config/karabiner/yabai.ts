@@ -145,6 +145,17 @@ rules.push(
         .to$($("yabai -m window --toggle zoom-fullscreen")),
     ]),
 );
+rules.push(
+  k.rule(`Toggle native fullscreen`)
+    .manipulators([
+      k
+        .map({
+          key_code: "f",
+          modifiers: { mandatory: ["command", "shift"] },
+        })
+        .to$($("yabai -m window --toggle native-fullscreen")),
+    ]),
+);
 
 rules.push(
   k.rule("Toggle current window to floating.")

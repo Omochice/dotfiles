@@ -7,6 +7,7 @@
             "description": "Launch vivaldi",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "w",
                   "modifiers": {
@@ -19,8 +20,7 @@
                   {
                     "shell_command": "open -n -a \"vivaldi\".app"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -28,6 +28,7 @@
             "description": "Left command to alt",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "left_command"
                 },
@@ -35,8 +36,7 @@
                   {
                     "key_code": "left_option"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -44,6 +44,7 @@
             "description": "Eisu to escape",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "japanese_eisuu"
                 },
@@ -51,8 +52,7 @@
                   {
                     "key_code": "escape"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -60,6 +60,7 @@
             "description": "Underscore to backslash",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "international1"
                 },
@@ -67,8 +68,7 @@
                   {
                     "key_code": "international3"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -76,6 +76,7 @@
             "description": "Option+<BS> to <Delete>",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "delete_or_backspace",
                   "modifiers": {
@@ -88,8 +89,7 @@
                   {
                     "key_code": "delete_forward"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -97,6 +97,7 @@
             "description": "Open misson control on Mod + up",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "up_arrow",
                   "modifiers": {
@@ -109,8 +110,7 @@
                   {
                     "shell_command": "open -a \"Mission Control\".app"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -118,14 +118,7 @@
             "description": "Send message by mod+enter same as slack",
             "manipulators": [
               {
-                "conditions": [
-                  {
-                    "bundle_identifiers": [
-                      "^com\\.microsoft\\.teams2$"
-                    ],
-                    "type": "frontmost_application_if"
-                  }
-                ],
+                "type": "basic",
                 "from": {
                   "key_code": "return_or_enter",
                   "modifiers": {
@@ -142,7 +135,14 @@
                     ]
                   }
                 ],
-                "type": "basic"
+                "conditions": [
+                  {
+                    "type": "frontmost_application_if",
+                    "bundle_identifiers": [
+                      "^com\\.microsoft\\.teams2$"
+                    ]
+                  }
+                ]
               }
             ]
           },
@@ -150,14 +150,7 @@
             "description": "Focus URL bar on chrome same as other browser or os",
             "manipulators": [
               {
-                "conditions": [
-                  {
-                    "bundle_identifiers": [
-                      "^com\\.google\\.Chrome"
-                    ],
-                    "type": "frontmost_application_if"
-                  }
-                ],
+                "type": "basic",
                 "from": {
                   "key_code": "l",
                   "modifiers": {
@@ -174,7 +167,14 @@
                     ]
                   }
                 ],
-                "type": "basic"
+                "conditions": [
+                  {
+                    "type": "frontmost_application_if",
+                    "bundle_identifiers": [
+                      "^com\\.google\\.Chrome"
+                    ]
+                  }
+                ]
               }
             ]
           },
@@ -182,6 +182,7 @@
             "description": "Change window focus west. if exists other display on the way, focus it",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "h",
                   "modifiers": {
@@ -194,8 +195,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --focus west || yabai -m display --focus west"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -203,6 +203,7 @@
             "description": "Change window focus south. if exists other display on the way, focus it",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "j",
                   "modifiers": {
@@ -215,8 +216,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --focus south || yabai -m display --focus south"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -224,6 +224,7 @@
             "description": "Change window focus north. if exists other display on the way, focus it",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "k",
                   "modifiers": {
@@ -236,8 +237,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --focus north || yabai -m display --focus north"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -245,6 +245,7 @@
             "description": "Change window focus east. if exists other display on the way, focus it",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "l",
                   "modifiers": {
@@ -257,8 +258,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --focus east || yabai -m display --focus east"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -266,6 +266,7 @@
             "description": "Move window to west. if exists window, move into it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "h",
                   "modifiers": {
@@ -279,8 +280,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/karabiner/queries/move-window.ts west"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -288,6 +288,7 @@
             "description": "Move window to south. if exists window, move into it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "j",
                   "modifiers": {
@@ -301,8 +302,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/karabiner/queries/move-window.ts south"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -310,6 +310,7 @@
             "description": "Move window to north. if exists window, move into it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "k",
                   "modifiers": {
@@ -323,8 +324,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/karabiner/queries/move-window.ts north"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -332,6 +332,7 @@
             "description": "Move window to east. if exists window, move into it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "l",
                   "modifiers": {
@@ -345,8 +346,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/karabiner/queries/move-window.ts east"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -354,6 +354,7 @@
             "description": "Close app and focus other remain app.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "q",
                   "modifiers": {
@@ -367,8 +368,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/karabiner/queries/close-window.ts"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -376,6 +376,7 @@
             "description": "Focus space 1. if not exists it, create untile it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "1",
                   "modifiers": {
@@ -388,8 +389,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 1"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -397,6 +397,7 @@
             "description": "Focus space 2. if not exists it, create untile it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "2",
                   "modifiers": {
@@ -409,8 +410,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 2"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -418,6 +418,7 @@
             "description": "Focus space 3. if not exists it, create untile it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "3",
                   "modifiers": {
@@ -430,8 +431,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 3"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -439,6 +439,7 @@
             "description": "Focus space 4. if not exists it, create untile it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "4",
                   "modifiers": {
@@ -451,8 +452,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 4"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -460,6 +460,7 @@
             "description": "Focus space 5. if not exists it, create untile it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "5",
                   "modifiers": {
@@ -472,8 +473,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 5"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -481,6 +481,7 @@
             "description": "Focus space 6. if not exists it, create untile it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "6",
                   "modifiers": {
@@ -493,8 +494,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 6"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -502,6 +502,7 @@
             "description": "Focus space 7. if not exists it, create untile it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "7",
                   "modifiers": {
@@ -514,8 +515,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 7"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -523,6 +523,7 @@
             "description": "Focus space 8. if not exists it, create untile it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "8",
                   "modifiers": {
@@ -535,8 +536,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 8"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -544,6 +544,7 @@
             "description": "Focus space 9. if not exists it, create untile it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "9",
                   "modifiers": {
@@ -556,8 +557,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-space.ts 9"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -565,6 +565,7 @@
             "description": "Move window to space 1. if not exist, create untile it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "1",
                   "modifiers": {
@@ -578,8 +579,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 1"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -587,6 +587,7 @@
             "description": "Move window to space 2. if not exist, create untile it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "2",
                   "modifiers": {
@@ -600,8 +601,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 2"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -609,6 +609,7 @@
             "description": "Move window to space 3. if not exist, create untile it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "3",
                   "modifiers": {
@@ -622,8 +623,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 3"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -631,6 +631,7 @@
             "description": "Move window to space 4. if not exist, create untile it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "4",
                   "modifiers": {
@@ -644,8 +645,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 4"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -653,6 +653,7 @@
             "description": "Move window to space 5. if not exist, create untile it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "5",
                   "modifiers": {
@@ -666,8 +667,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 5"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -675,6 +675,7 @@
             "description": "Move window to space 6. if not exist, create untile it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "6",
                   "modifiers": {
@@ -688,8 +689,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 6"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -697,6 +697,7 @@
             "description": "Move window to space 7. if not exist, create untile it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "7",
                   "modifiers": {
@@ -710,8 +711,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 7"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -719,6 +719,7 @@
             "description": "Move window to space 8. if not exist, create untile it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "8",
                   "modifiers": {
@@ -732,8 +733,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 8"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -741,6 +741,7 @@
             "description": "Move window to space 9. if not exist, create untile it.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "9",
                   "modifiers": {
@@ -754,8 +755,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/move-space.ts 9"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -763,6 +763,7 @@
             "description": "Focus next space in current display",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "right_arrow",
                   "modifiers": {
@@ -775,8 +776,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-in-display.ts next"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -784,6 +784,7 @@
             "description": "Focus prev space in current display",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "left_arrow",
                   "modifiers": {
@@ -796,8 +797,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A  ~/.config/karabiner/queries/focus-in-display.ts prev"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -805,6 +805,7 @@
             "description": "Format display sizes in current space like vim's <C-w>=.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "equal_sign",
                   "modifiers": {
@@ -817,8 +818,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m space --balance"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -826,6 +826,7 @@
             "description": "Toggle fullscreen",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "f",
                   "modifiers": {
@@ -838,8 +839,29 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --toggle zoom-fullscreen"
                   }
-                ],
-                "type": "basic"
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Toggle native fullscreen",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "f",
+                  "modifiers": {
+                    "mandatory": [
+                      "command",
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --toggle native-fullscreen"
+                  }
+                ]
               }
             ]
           },
@@ -847,6 +869,7 @@
             "description": "Toggle current window to floating.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "spacebar",
                   "modifiers": {
@@ -859,8 +882,7 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --toggle split"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           },
@@ -868,6 +890,7 @@
             "description": "Toggle split way.",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "spacebar",
                   "modifiers": {
@@ -881,12 +904,18 @@
                   {
                     "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;yabai -m window --toggle float && yabai -m window --grid 12:12:1:1:10:10"
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           }
-        ]
+        ],
+        "parameters": {
+          "basic.to_if_alone_timeout_milliseconds": 1000,
+          "basic.to_if_held_down_threshold_milliseconds": 500,
+          "basic.to_delayed_action_delay_milliseconds": 500,
+          "basic.simultaneous_threshold_milliseconds": 50,
+          "mouse_motion_to_scroll.speed": 100
+        }
       },
       "devices": [
         {
