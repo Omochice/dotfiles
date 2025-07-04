@@ -210,8 +210,7 @@ function! s:grep_in_file() abort
   endtry
 endfunction
 
-" FIXME: なんかよくない気がする
-nnoremap F <Cmd>call <SID>grep_in_file()<CR>
+nnoremap <space>f <Cmd>call <SID>grep_in_file()<CR>
 
 " copy buffer command
 command! CopyBuffer %yank
