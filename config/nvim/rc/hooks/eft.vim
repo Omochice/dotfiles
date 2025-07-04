@@ -1,4 +1,6 @@
 " hook_add {{{
+let g:eft_ignorecase = v:true
+
 nnoremap <Space>l <Plug>(eft-f)
 xnoremap <Space>l <Plug>(eft-f)
 onoremap <Space>l <Plug>(eft-f)
