@@ -151,6 +151,8 @@ local function DduHelp()
   })
 end
 
+-- remove lvimgrep mapping
+vimx.keymap.del("n", "<C-p><C-f>")
 vimx.keymap.set("n", prefix .. "<C-f>", function()
   vimx.fn.ddu.start({ sources = {{ name = "line" }} })
 end)
