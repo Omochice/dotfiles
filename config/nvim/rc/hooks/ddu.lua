@@ -154,7 +154,7 @@ end
 -- remove lvimgrep mapping
 vimx.keymap.del("n", "<C-p><C-f>")
 vimx.keymap.set("n", prefix .. "<C-f>", function()
-  vimx.fn.ddu.start({ sources = {{ name = "line" }} })
+  vimx.fn.ddu.start({ sources = { { name = "line" } } })
 end)
 
 vimx.create_command("Dhelp", DduHelp, { nargs = 0 })
