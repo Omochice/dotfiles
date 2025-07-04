@@ -151,6 +151,10 @@ local function DduHelp()
   })
 end
 
+vimx.keymap.set("n", prefix .. "<C-f>", function()
+  vimx.fn.ddu.start({ sources = {{ name = "line" }} })
+end)
+
 vimx.create_command("Dhelp", DduHelp, { nargs = 0 })
 
 vimx.keymap.set("ca", "dhelp", "Dhelp")
