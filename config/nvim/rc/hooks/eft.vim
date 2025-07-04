@@ -1,4 +1,4 @@
-"hook_add {{{
+" hook_add {{{
 nnoremap <Space>l <Plug>(eft-f)
 xnoremap <Space>l <Plug>(eft-f)
 onoremap <Space>l <Plug>(eft-f)
@@ -12,4 +12,4 @@ onoremap f <Plug>(eft-f)
 nnoremap F <Plug>(eft-F)
 xnoremap F <Plug>(eft-F)
 onoremap F <Plug>(eft-F)
-"}}}
+" }}}
