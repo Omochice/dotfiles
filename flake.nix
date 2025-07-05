@@ -22,6 +22,10 @@
       url = "github:Omochice/nur-packages";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mcp-servers-nix = {
+      url = "github:natsukium/mcp-servers-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -33,13 +37,20 @@
       treefmt-nix,
       flake-utils,
       nur-packages,
+      mcp-servers-nix,
     }@inputs:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [ nur-packages.overlays.default ];
+          config = {
+            allowUnfree = true;
+          };
+          overlays = [
+            mcp-servers-nix.overlays.default
+            nur-packages.overlays.default
+          ];
         };
         treefmt = treefmt-nix.lib.evalModule pkgs (
           { ... }:
@@ -96,6 +107,20 @@
             type = "app";
             program = "${program}/bin/${name}";
           };
+        mcpCommands =
+          import ./config/claude/mcp-servers.nix { inherit pkgs; }
+          |> builtins.getAttr "global"
+          |> builtins.mapAttrs (
+            name: value:
+            if value.type == "http" then
+              "claude mcp add --scope user --transport ${value.type} ${name} ${value.url}"
+            else if value.type == "stdio" then
+              "claude mcp add --scope user ${name} -- ${value.command} ${builtins.concatStringsSep " " value.args}"
+            else
+              builtins.throw "Unknown mcp server type: ${value.type}"
+          )
+          |> builtins.attrValues
+          |> builtins.concatStringsSep "\n";
         host = ./host.json |> builtins.readFile |> builtins.fromJSON;
       in
       {
@@ -144,9 +169,15 @@
             ''
               nix run .#sync
               nix run .#update
+              nix run .#mcp-setting
             ''
             |> runAs "default-script" [
               pkgs.nix
+            ];
+          mcp-setting =
+            mcpCommands
+            |> runAs "claude-code-setting-mcp" [
+              pkgs.claude-code
             ];
           sync =
             ''
