@@ -40,11 +40,19 @@ in
   };
   xdg.dataFile."gh/extensions" = {
     source = pkgs.linkFarm "gh-extensions" (
-      gh-extensions
-      |> builtins.map (p: {
-        name = p.name;
-        path = "${p}/bin";
-      })
+      (
+        gh-extensions
+        |> builtins.map (p: {
+          name = p.name;
+          path = "${p}/bin";
+        })
+      )
+      ++ [
+        {
+          name = "gh-dash";
+          path = "${pkgs.gh-dash}/bin";
+        }
+      ]
     );
   };
 }
