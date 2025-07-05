@@ -32,6 +32,7 @@ set smartindent
 set tabstop=2
 set virtualedit=onemore
 set wildmenu
+set scrolloff=3
 
 augroup vimrc#autocmd
   autocmd!
