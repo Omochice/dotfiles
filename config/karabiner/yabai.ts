@@ -1,7 +1,5 @@
 import * as k from "https://deno.land/x/karabinerts@1.31.0/deno.ts";
 
-export const rules: Array<k.Rule | k.RuleBuilder> = [];
-
 function $(cmd: string): string {
   const prefix = "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin";
   return `${prefix};${cmd}`;
@@ -14,7 +12,14 @@ const compass = [
   ["l", "east"],
 ] as const;
 
-rules.push(
+const arrows = [
+  ["right", "next"],
+  ["left", "prev"],
+] as const;
+
+const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"] as const;
+
+export const rules = [
   ...compass.map(([key, way]) => {
     return k.rule(
       `Change window focus ${way}. if exists other display on the way, focus it`,
@@ -27,13 +32,8 @@ rules.push(
           ),
       ]);
   }),
-);
-
-rules.push(
   ...compass.map(([key, way]) => {
-    return k.rule(
-      `Move window to ${way}. if exists window, move into it.`,
-    )
+    return k.rule(`Move window to ${way}. if exists window, move into it.`)
       .manipulators([
         k
           .map({
@@ -45,9 +45,6 @@ rules.push(
           ),
       ]);
   }),
-);
-
-rules.push(
   k.rule("Close app and focus other remain app.")
     .manipulators([
       k
@@ -59,15 +56,8 @@ rules.push(
           $("deno run -A ~/.config/karabiner/queries/close-window.ts"),
         ),
     ]),
-);
-
-const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"] as const;
-
-rules.push(
   ...numbers.map((num) =>
-    k.rule(
-      `Focus space ${num}. if not exists it, create untile it.`,
-    )
+    k.rule(`Focus space ${num}. if not exists it, create untile it.`)
       .manipulators([
         k
           .map({
@@ -79,13 +69,8 @@ rules.push(
           ),
       ])
   ),
-);
-
-rules.push(
   ...numbers.map((num) =>
-    k.rule(
-      `Move window to space ${num}. if not exist, create untile it.`,
-    )
+    k.rule(`Move window to space ${num}. if not exist, create untile it.`)
       .manipulators([
         k
           .map({
@@ -97,14 +82,6 @@ rules.push(
           ),
       ])
   ),
-);
-
-const arrows = [
-  ["right", "next"],
-  ["left", "prev"],
-] as const;
-
-rules.push(
   ...arrows.map(([key, way]) =>
     k.rule(`Focus ${way} space in current display`)
       .manipulators([
@@ -118,12 +95,7 @@ rules.push(
           ),
       ])
   ),
-);
-
-rules.push(
-  k.rule(
-    `Format display sizes in current space like vim's <C-w>=.`,
-  )
+  k.rule(`Format display sizes in current space like vim's <C-w>=.`)
     .manipulators([
       k
         .map({
@@ -132,9 +104,6 @@ rules.push(
         })
         .to$($("yabai -m space --balance")),
     ]),
-);
-
-rules.push(
   k.rule(`Toggle fullscreen`)
     .manipulators([
       k
@@ -144,8 +113,6 @@ rules.push(
         })
         .to$($("yabai -m window --toggle zoom-fullscreen")),
     ]),
-);
-rules.push(
   k.rule(`Toggle native fullscreen`)
     .manipulators([
       k
@@ -155,9 +122,6 @@ rules.push(
         })
         .to$($("yabai -m window --toggle native-fullscreen")),
     ]),
-);
-
-rules.push(
   k.rule("Toggle current window to floating.")
     .manipulators([
       k
@@ -167,9 +131,6 @@ rules.push(
         })
         .to$($("yabai -m window --toggle split")),
     ]),
-);
-
-rules.push(
   k.rule("Toggle split way.")
     .manipulators([
       k
@@ -181,9 +142,6 @@ rules.push(
           $("yabai -m window --toggle float && yabai -m window --grid 12:12:1:1:10:10"),
         ),
     ]),
-);
-
-rules.push(
   k.rule("Move current focused window to new space")
     .manipulators([
       k
@@ -195,4 +153,4 @@ rules.push(
           $(`deno run -A ~/.config/karabiner/queries/move-to-new-space.ts`),
         ),
     ]),
-);
+] as const satisfies Array<k.Rule | k.RuleBuilder>;
