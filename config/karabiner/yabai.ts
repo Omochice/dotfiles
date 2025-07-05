@@ -182,3 +182,17 @@ rules.push(
         ),
     ]),
 );
+
+rules.push(
+  k.rule("Move current focused window to new space")
+    .manipulators([
+      k
+        .map({
+          key_code: "return_or_enter",
+          modifiers: { mandatory: ["command", "shift", "control"] },
+        })
+        .to$(
+          $(`deno run -A ~/.config/karabiner/queries/move-to-new-space.ts`),
+        ),
+    ]),
+);

@@ -907,6 +907,29 @@
                 ]
               }
             ]
+          },
+          {
+            "description": "Move current focused window to new space",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "return_or_enter",
+                  "modifiers": {
+                    "mandatory": [
+                      "command",
+                      "shift",
+                      "control"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin;deno run -A ~/.config/karabiner/queries/move-to-new-space.ts"
+                  }
+                ]
+              }
+            ]
           }
         ],
         "parameters": {
