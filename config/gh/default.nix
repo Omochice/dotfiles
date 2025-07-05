@@ -29,7 +29,7 @@ let
         "nounset"
         "pipefail"
       ],
-      excludeShellChecks ? [],
+      excludeShellChecks ? [ ],
     }:
     (builtins.readFile "${src.src}/${src.pname}")
     |> runAs src.pname {
