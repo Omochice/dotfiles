@@ -693,3 +693,7 @@ on_lua = "dial"
 repo = "https://github.com/hrsh7th/vim-eft"
 hooks_file = "$VIMRC_RC_DIR/hooks/eft.vim"
 on_map = { nox = "<Plug>" }
+
+[[plugins]]
+repo = "https://github.com/kevinhwang91/nvim-bqf"
+on_ft = "qf"
