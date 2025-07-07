@@ -47,4 +47,16 @@ require("dial.config").augends:register_group({
     }),
   },
 })
+require("dial.config").augends:on_filetype({
+  markdown = {
+    augend.integer.alias.decimal,
+    augend.integer.alias.hex,
+    augend.constant.new({
+      elements = { "- [ ]", "- [x]" },
+      word = false,
+      cyclic = true,
+      match_before_cursor = true,
+    }),
+  },
+})
 -- }}}
