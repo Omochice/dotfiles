@@ -26,6 +26,7 @@
     ../../yabai/default.nix
     ../../yazi/default.nix
     ../../zathura/default.nix
+    ../../zk/default.nix
     ../../zoxide/default.nix
     # keep-sorted end
     # ../../macskk/default.nix
