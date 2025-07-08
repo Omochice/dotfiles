@@ -8,7 +8,7 @@
 #   - all
 registries:
 - type: standard
-  ref: v4.383.0 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.384.0 # renovate: depName=aquaproj/aqua-registry
 packages:
 - name: docker/buildx@v0.25.0
 - name: protocolbuffers/protobuf/protoc@v31.1
