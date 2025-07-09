@@ -7,5 +7,11 @@
       args = [ ];
       env = { };
     };
+    playwright = {
+      type = "stdio";
+      command = "${pkgs.playwright-mcp}/bin/mcp-server-playwright";
+      args = [ ];
+      env = { };
+    };
   };
 }
