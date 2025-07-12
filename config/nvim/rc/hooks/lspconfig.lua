@@ -47,5 +47,6 @@ lspconfig.tinymist.setup({})
 lspconfig.ts_ls.setup(require("vimrc/lsp/tsserver").config())
 lspconfig.typos_lsp.setup({})
 lspconfig.yamlls.setup(require("vimrc/lsp/yamlls").config())
+lspconfig.zk.setup(require("vimrc/lsp/zk").config())
 -- keep-sorted end
 -- }}}
