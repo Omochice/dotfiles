@@ -227,7 +227,8 @@ repo = "https://github.com/mattn/vim-maketable"
 on_cmd = "MakeTable"
 
 [[plugins]]
-repo = "https://github.com/previm/previm"
+repo = "https://github.com/Omochice/previm"
+rev = "update-assets"
 on_cmd = "PrevimOpen"
 hook_add = """
 let g:previm_wsl_mode = has('wsl')
