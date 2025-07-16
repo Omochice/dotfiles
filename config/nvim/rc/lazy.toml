@@ -163,6 +163,7 @@ depends = ["vim-lsp"]
 on_cmd = "Vista"
 hook_add = """
 let g:vista_default_executive = has('nvim') ? 'nvim_lsp' : 'vim_lsp'
+let g:vista_echo_cursor = v:false
 """
 
 [[plugins]]
