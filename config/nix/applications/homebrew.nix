@@ -8,14 +8,13 @@
     };
     taps = [
       # keep-sorted start
-      "aquaproj/aqua"
       "felixkratz/formulae"
       "koekeishiya/formulae"
       # keep-sorted end
     ];
     brews = [
       # keep-sorted start
-      "aquaproj/aqua/aqua"
+      "aqua"
       "cmake"
       "colima"
       "felixkratz/formulae/sketchybar"
