@@ -28,7 +28,7 @@ jobs:
           persist-credentials: false
       - uses: aquaproj/aqua-installer@d1fe50798dbadd4eb5b98957290ca175f6b4870f # v4.0.2
         with:
-          aqua_version: v2.53.4
+          aqua_version: v2.53.5
       - uses: jdx/mise-action@bfb9fa0b029db830a8c570757cee683df207a6c5 # v2.4.0
       - name: check tools can install
         run: aqua install --all
