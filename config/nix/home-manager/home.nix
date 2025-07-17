@@ -60,6 +60,7 @@
       devbox
       direnv
       docker
+      docker-buildx
       editorconfig-checker
       fastfetch
       fd
