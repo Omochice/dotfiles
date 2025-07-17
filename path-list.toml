@@ -81,10 +81,6 @@ to = "PNPM_HOME"
 if_exists = "~/.local/share/pnpm"
 
 [[environments]]
-from = "~/.config/aqua/aqua.yaml"
-to = "AQUA_GLOBAL_CONFIG"
-
-[[environments]]
 to = "CLAUDE_CONFIG_DIR"
 from = "~/.config/claude"
 
@@ -103,13 +99,11 @@ to = "open"
 shell = "nu"
 
 [[aliases]]
-depends = "aqua"
 from = "lsd --tree"
 to = "tree"
 if_executable = "lsd"
 
 [[aliases]]
-depends = "aqua"
 from = "lsd"
 to = "ls"
 if_executable = "lsd"
