@@ -347,6 +347,10 @@ require("nvim-treesitter.configs").setup({
 """
 
 [[plugins]]
+repo = "https://github.com/andersevenrud/nvim_context_vt"
+on_source = "nvim-treesitter"
+
+[[plugins]]
 repo = "https://github.com/yuki-yano/vim-operator-replace"
 depends = "vim-operator-user"
 on_map = { n = "<Plug>", x = "<Plug>" }
