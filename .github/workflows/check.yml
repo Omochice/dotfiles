@@ -78,7 +78,6 @@ jobs:
       - check-format
       - check-actions
       - check-deno
-      - check-aqua
     permissions: {}
     if: failure()
     steps:
