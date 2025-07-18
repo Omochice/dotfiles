@@ -14,7 +14,6 @@ jobs:
     outputs:
       actions: ${{steps.changes.outputs.actions}}
       deno: ${{steps.changes.outputs.deno}}
-      aqua: ${{steps.changes.outputs.aqua}}
       karabiner: ${{steps.changes.outputs.karabiner}}
     runs-on: ubuntu-latest
     permissions: {}
@@ -40,11 +39,6 @@ jobs:
               - config/nvim-dark/**/*.ts
               - config/skhd/queries/*.ts
               - .github/workflows/_check-deno.yml
-              - .github/workflows/push.yml
-            aqua:
-              - config/aqua/aqua.yaml
-              - config/mise/config.toml
-              - .github/workflows/_check-aqua-installation.yml
               - .github/workflows/push.yml
             karabiner:
               - config/karabiner/mod.ts
@@ -75,12 +69,6 @@ jobs:
     needs: path-filter
     if: needs.path-filter.outputs.deno == 'true'
     uses: ./.github/workflows/_check-deno.yml
-    permissions:
-      contents: read
-  check-aqua:
-    needs: path-filter
-    if: needs.path-filter.outputs.aqua == 'true'
-    uses: ./.github/workflows/_check-aqua-installation.yml
     permissions:
       contents: read
   status-check:
