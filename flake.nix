@@ -113,9 +113,15 @@
           |> builtins.mapAttrs (
             name: value:
             if value.type == "http" then
-              "claude mcp add --scope user --transport ${value.type} ${name} ${value.url}"
+              ''
+                claude mcp remove --scope user ${name} || true
+                claude mcp add --scope user --transport ${value.type} ${name} ${value.url}
+              ''
             else if value.type == "stdio" then
-              "claude mcp add --scope user ${name} -- ${value.command} ${builtins.concatStringsSep " " value.args}"
+              ''
+                claude mcp remove --scope user ${name} || true
+                claude mcp add --scope user ${name} -- ${value.command} ${builtins.concatStringsSep " " value.args}
+              ''
             else
               builtins.throw "Unknown mcp server type: ${value.type}"
           )
