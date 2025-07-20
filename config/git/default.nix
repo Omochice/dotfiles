@@ -32,5 +32,6 @@ in
     extraConfig = {
       commit.template = ./gitmessage |> toString;
     };
+    lfs.enable = true;
   };
 }
