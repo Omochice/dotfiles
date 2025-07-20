@@ -9,6 +9,7 @@
     # keep-sorted start
     ../../claude/default.nix
     ../../colima/default.nix
+    ../../direnv/default.nix
     ../../fish/default.nix
     ../../gh/default.nix
     ../../git/default.nix
