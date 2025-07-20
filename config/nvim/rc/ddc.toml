@@ -103,15 +103,18 @@ call popup_preview#enable()
 on_source = "ddc.vim"
 if = "!has('nvim')"
 
-# [[plugins]]
-# repo = "matsui54/denops-signature_help"
-# hook_add = """
-# let g:signature_help_config = #{ style: 'labelOnly' }
-# """
-# hook_source = """
-# call signature_help#enable()
-# """
-# on_source = "ddc.vim"
+[[plugins]]
+repo = "https://github.com/matsui54/denops-signature_help"
+hook_add = """
+let g:signature_help_config = #{
+      \\ contentsStyle: "full",
+      \\ viewStyle: "floating"
+      \\ }
+"""
+hook_source = """
+call signature_help#enable()
+"""
+on_source = "ddc.vim"
 
 [[plugins]]
 repo = "https://github.com/uga-rosa/ddc-previewer-floating"
