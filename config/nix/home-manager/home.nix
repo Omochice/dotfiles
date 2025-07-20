@@ -73,6 +73,7 @@
       glab
       glow
       gnumake
+      gnupg1
       goose-cli
       gotools
       hadolint
@@ -99,6 +100,7 @@
       sd
       shfmt
       silicon
+      sops
       speedtest-cli
       starship
       tldr
