@@ -107,6 +107,7 @@
       tldr
       tokei
       typos
+      typstyle
       unar
       uv
       vim-startuptime
