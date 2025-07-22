@@ -43,6 +43,7 @@
     packages = with pkgs; [
       # keep-sorted start
       actionlint
+      age
       asciinema
       asciinema-agg
       ast-grep
