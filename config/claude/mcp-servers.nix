@@ -13,5 +13,9 @@
       args = [ ];
       env = { };
     };
+    deepwiki-mcp = {
+      type = "http";
+      url = "https://mcp.deepwiki.com/mcp";
+    };
   };
 }
