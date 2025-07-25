@@ -125,6 +125,7 @@
       nixd
       pyright
       svelte-language-server
+      taplo
       tinymist
       typescript-language-server
       typos-lsp
