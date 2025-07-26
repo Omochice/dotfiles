@@ -14,8 +14,8 @@ spec-driven development is a development method consisting of five phases:
 
 - The user gives Claude Code an overview of the tasks they want to perform
 - In this phase, run !`mkdir -p ./.cckiro/specs`
-    - create a directory with that name, considering the appropriate spec name from the task summary in `./cckiro/specs`
-    - For example, if you want to create an article component, create a directory named `./cckiro/specs/create-article-component`
+    - create a directory with that name, considering the appropriate spec name from the task summary in `./.cckiro/specs`
+    - For example, if you want to create an article component, create a directory named `./.cckiro/specs/create-article-component`
 - When creating the following files, create it in this directory
 
 ### 2. Requirements phase
