@@ -19,7 +19,6 @@
       "colima"
       "felixkratz/formulae/sketchybar"
       "gettext"
-      "git-svn"
       "koekeishiya/formulae/yabai"
       "libtool"
       "ninja"
