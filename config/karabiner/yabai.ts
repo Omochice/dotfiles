@@ -1,4 +1,4 @@
-import * as k from "https://deno.land/x/karabinerts@1.31.0/deno.ts";
+import * as k from "https://deno.land/x/karabinerts@1.32.0/deno.ts";
 
 function $(cmd: string): string {
   const prefix = "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin";
