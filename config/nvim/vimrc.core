@@ -211,6 +211,7 @@ function! s:grep_in_file() abort
   endtry
 endfunction
 
+" NOTE: this will override by ddu with line source
 nnoremap <C-p><C-f> <Cmd>call <SID>grep_in_file()<CR>
 
 " copy buffer command
