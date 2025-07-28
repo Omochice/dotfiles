@@ -10,6 +10,7 @@ local eslint = {
   },
 }
 
+---@type vim.lsp.Config
 local M = {
   init_options = {
     documentFormatting = true,

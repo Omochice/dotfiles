@@ -17,7 +17,7 @@ function M.on_attach(name, callback)
   })
 end
 
----@param ... string[]
+---@param ... string
 function M.root_pattern(...)
   local markers = ...
   ---@param bufnr integer

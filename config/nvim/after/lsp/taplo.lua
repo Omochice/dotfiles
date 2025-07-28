@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 local M = {
   workspace_config = {
     formatter = {

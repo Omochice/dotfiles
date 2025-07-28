@@ -1,11 +1,12 @@
 local helper = require("vimrc/lsp-helper")
 
+---@type vim.lsp.Config
 local M = {
   cmd = { "deno", "lsp" },
   root_dir = function(bufnr, callback)
     local node = helper.root_pattern("package.json", "node_modules")(bufnr)
     if node ~= nil then
-      return nil
+      return
     end
     local deno = helper.root_pattern("deno.json", "deno.jsonc")(bufnr)
     if deno ~= nil then

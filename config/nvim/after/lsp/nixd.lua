@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 local M = {
   cmd = { "nixd" },
   filetypes = { "nix" },

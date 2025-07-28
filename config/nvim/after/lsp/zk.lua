@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 local M = {}
 
 require("vimrc/lsp-helper").on_attach("zk", function()
