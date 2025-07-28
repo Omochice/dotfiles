@@ -1,5 +1,3 @@
-local M = {}
-
 local eslint = {
   prefix = "eslint",
   lintSource = "efm/eslint",
@@ -12,18 +10,16 @@ local eslint = {
   },
 }
 
-function M.config()
-  return {
-    init_options = {
-      documentFormatting = true,
-      documentRangeFormatting = true,
-      codeAction = true,
-    },
-    filetypes = { "typescript" },
-    settings = {
-      typescript = { eslint },
-    },
-  }
-end
+local M = {
+  init_options = {
+    documentFormatting = true,
+    documentRangeFormatting = true,
+    codeAction = true,
+  },
+  filetypes = { "typescript" },
+  settings = {
+    typescript = { eslint },
+  },
+}
 
 return M

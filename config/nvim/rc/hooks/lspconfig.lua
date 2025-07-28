@@ -25,28 +25,28 @@ vim.diagnostic.config({
 -- }}}
 
 -- lua_source {{{
-local lspconfig = require("lspconfig")
--- keep-sorted start block=yes
-lspconfig.astro.setup({})
-lspconfig.biome.setup({})
-lspconfig.denols.setup(require("vimrc/lsp/denols").config())
-lspconfig.efm.setup(require("vimrc/lsp/efm").config())
-lspconfig.elmls.setup({})
-lspconfig.gitlab_ci_ls.setup({})
-lspconfig.gopls.setup({})
-lspconfig.jsonls.setup({})
-lspconfig.lua_ls.setup(require("vimrc/lsp/lua_ls").config())
-lspconfig.nixd.setup(require("vimrc/lsp/nixd").config())
-lspconfig.nushell.setup({})
-lspconfig.pyright.setup({})
-lspconfig.rust_analyzer.setup({})
-lspconfig.sourcekit.setup({})
-lspconfig.svelte.setup({})
-lspconfig.taplo.setup(require("vimrc/lsp/taplo").config())
-lspconfig.tinymist.setup({})
-lspconfig.ts_ls.setup(require("vimrc/lsp/tsserver").config())
-lspconfig.typos_lsp.setup({})
-lspconfig.yamlls.setup(require("vimrc/lsp/yamlls").config())
-lspconfig.zk.setup(require("vimrc/lsp/zk").config())
--- keep-sorted end
+vim.lsp.enable({
+  -- keep-sorted strat
+  "biome",
+  "denols",
+  "efm",
+  "elmls",
+  "gitlab_ci_ls",
+  "gopls",
+  "jsonls",
+  "lua_ls",
+  "nixd",
+  "nushell",
+  "pyright",
+  "rust_analyzer",
+  "sourcekit",
+  "svelte",
+  "taplo",
+  "tinymist",
+  "ts_ls",
+  "typos_lsp",
+  "yamlls",
+  "zk",
+  -- keep-sorted
+})
 -- }}}
