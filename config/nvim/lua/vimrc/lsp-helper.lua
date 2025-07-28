@@ -17,4 +17,21 @@ function M.on_attach(name, callback)
   })
 end
 
+---@param ... string[]
+function M.root_pattern(...)
+  local markers = ...
+  ---@param bufnr integer
+  return function(bufnr)
+    local path = vim.fs.dirname(vim.fs.normalize(vim.api.nvim_buf_get_name(bufnr)))
+    local founds = vim.fs.find(markers, {
+      upward = true,
+      path = path,
+    })
+    if #founds > 0 then
+      return founds[1]
+    end
+    return nil
+  end
+end
+
 return M
