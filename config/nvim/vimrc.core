@@ -226,13 +226,6 @@ let g:did_load_filetypes = has('nvim')
 
 const g:filetype_m = 'objc'
 
-" FIXME: BufReadだと2回発火する?
-" FIXME: ファイラ経由で発火すると無限に呼び出されている?
-"   reproduce:
-"     $ mkdir /tmp/sample && touch /tmp/sample/a.js /tmp/sample/a.ts
-"     $ vim /tmp/sample
-"     :Fern .
-"     and open a.js
 autocmd vimrc#autocmd FileType javascript call s:open_it_really()
 
 function! s:open_it_really() abort
