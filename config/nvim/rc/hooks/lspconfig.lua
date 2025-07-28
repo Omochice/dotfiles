@@ -26,7 +26,7 @@ vim.diagnostic.config({
 
 -- lua_source {{{
 vim.lsp.enable({
-  -- keep-sorted strat
+  -- keep-sorted start
   "biome",
   "denols",
   "efm",
