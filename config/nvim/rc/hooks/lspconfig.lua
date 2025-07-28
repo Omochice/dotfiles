@@ -47,6 +47,6 @@ vim.lsp.enable({
   "typos_lsp",
   "yamlls",
   "zk",
-  -- keep-sorted
+  -- keep-sorted end
 })
 -- }}}
