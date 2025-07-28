@@ -192,7 +192,7 @@ endfunction
 autocmd vimrc#autocmd CmdLineEnter * ++once call <SID>set_rg()
 
 function! s:grep_in_file() abort
-  let l:query = input('grep: ')
+  const l:query = input('grep: ')
   if empty(l:query)
     echohl WarningText
     echomsg 'vimgrep is canceled'
@@ -235,13 +235,14 @@ const g:filetype_m = 'objc'
 autocmd vimrc#autocmd FileType javascript call s:open_it_really()
 
 function! s:open_it_really() abort
-  let l:current_bufnr = bufnr()
-  let l:tsfile = $'{expand('%:p:r')}.ts'
-  if filewritable(l:tsfile)
-    if confirm($'Exists {fnamemodify(l:tsfile, ':t')}. Open it?', "&Yes\n&No\n", 1) ==# 1
-      execute 'edit' l:tsfile
-      execute 'bwipeout' l:current_bufnr
-    endif
+  const l:current_bufnr = bufnr()
+  const l:tsfile = $'{expand('%:p:r')}.ts'
+  if !filewritable(l:tsfile)
+    return
+  endif
+  if confirm($'Exists {fnamemodify(l:tsfile, ':t')}. Open it?', "&Yes\n&No\n", 1) ==# 1
+    execute 'edit' l:tsfile
+    execute 'bwipeout' l:current_bufnr
   endif
 endfunction
 
@@ -276,7 +277,7 @@ function s:auto_mkdir(dir, force) abort
   const l:mes = $'"{a:dir}" does not exist. Create?'
   if (a:force || confirm(l:mes, "&Yes\n&No", 1) ==# 1)
     " NOTE: original idea from: https://github.com/kat0h/dotfiles/blob/7c371cd16f39e66f0960d3c847085ff64d19881d/dot_vim%2Futils.vim#L8
-    let l:dir = has('iconv') ? iconv(a:dir, &encoding, &termencoding) : a:dir
+    const l:dir = has('iconv') ? iconv(a:dir, &encoding, &termencoding) : a:dir
     call mkdir(l:dir, 'p')
   endif
 endfunction
