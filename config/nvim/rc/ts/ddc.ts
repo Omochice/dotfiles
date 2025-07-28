@@ -13,6 +13,14 @@ const filetypePatches = [
   [["markdown"], {
     sources: ["file", "around", "buffer", "rg"],
   }],
+  [["typst"], {
+    sourceOptions: {
+      _: {
+        // NOTE: typst can use hyphen as identifiers
+        keywordPattern: "[a-zA-Z_-]+",
+      },
+    },
+  }],
   [["gitcommit"], {
     sources: ["file", "around", "buffer", "rg"],
     sourceOptions: {
