@@ -69,8 +69,8 @@ repo = "https://github.com/kana/vim-repeat"
 [[plugins]]
 repo = "https://github.com/easymotion/vim-easymotion"
 hook_add = """
-nmap <Space>j <Plug>(easymotion-j)
-nmap <Space>k <Plug>(easymotion-k)
+nnoremap <Space>j <Plug>(easymotion-j)
+nnoremap <Space>k <Plug>(easymotion-k)
 let g:EasyMotion_smartcase = v:true
 let g:EasyMotion_use_smartsign_jp = v:true
 """
@@ -84,8 +84,8 @@ on_func = "searchx"
 [[plugins]]
 repo = "https://github.com/haya14busa/vim-asterisk"
 hook_add = """
-nmap * <Plug>(asterisk-z*)
-xmap * <Plug>(asterisk-z*)
+nnoremap * <Plug>(asterisk-z*)
+xnoremap * <Plug>(asterisk-z*)
 """
 on_map = { n = "<Plug>" }
 
@@ -223,7 +223,7 @@ depends = ["open-browser.vim"]
 [[plugins]]
 repo = "https://github.com/tyru/open-browser.vim"
 hook_add = """
-nmap gx <Plug>(openbrowser-open)
+nnoremap gx <Plug>(openbrowser-open)
 """
 on_map = { n = "<Plug>(openbrowser" }
 
@@ -456,14 +456,14 @@ on_func = ["partedit#start"]
 repo = "https://github.com/Omochice/vim-operator-partedit"
 depends = ["vim-operator-user", "vim-partedit"]
 hook_add = """
-nmap qe <Plug>(operator-partedit-start)
-xmap qe <Plug>(operator-partedit-start)
+nnoremap qe <Plug>(operator-partedit-start)
+xnoremap qe <Plug>(operator-partedit-start)
 """
 on_map = { x = "<Plug>", n = "<Plug>" }
 [plugins.ftplugin]
 markdown = """
-nmap <buffer> qe <Plug>(operator-partedit-codeblock)
-xmap <buffer> qe <Plug>(operator-partedit-codeblock)
+nnoremap <buffer> qe <Plug>(operator-partedit-codeblock)
+xnoremap <buffer> qe <Plug>(operator-partedit-codeblock)
 """
 
 [[plugins]]
