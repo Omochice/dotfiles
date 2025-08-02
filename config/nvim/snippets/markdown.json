@@ -1,62 +1,4 @@
 {
-  "marp's yaml option": {
-    "prefix": "marp.bgse",
-    "body": [
-      "---",
-      "marp: true",
-      "paginate: true",
-      "theme: bgse",
-      "size: 4:3",
-      "---",
-      "$1"
-    ]
-  },
-  "reveal.js's yaml option": {
-    "prefix": "reveal",
-    "body": [
-      "---",
-      "theme: simple",
-      "transition: 'slide'",
-      "slideNumber: true",
-      "enableTitleFooter: false",
-      "---",
-      "$1"
-    ]
-  },
-  "marp's lead class setting": {
-    "prefix": [
-      "class.lead",
-      "lead"
-    ],
-    "body": [
-      "<!-- _class: lead -->",
-      "$1"
-    ]
-  },
-  "marp's title": {
-    "prefix": [
-      "class.title",
-      "title"
-    ],
-    "body": [
-      "<!-- _class: title -->",
-      "$1"
-    ],
-    "description": "title"
-  },
-  "gh-page header": {
-    "prefix": "gh-pages",
-    "body": [
-      "---",
-      "layout: post",
-      "title: \"$1\"",
-      "category: \"\"",
-      "excerpt: \"\"",
-      "---",
-      "",
-      "# {{ page.title }}"
-    ]
-  },
   "link template": {
     "prefix": "link",
     "body": [
@@ -73,50 +15,11 @@
     ],
     "description": "markdown image snippet"
   },
-  "grid": {
-    "prefix": [
-      "grid",
-      "row"
-    ],
-    "body": [
-      "<div class=\"row\">",
-      "<div class=\"six columns\">",
-      "",
-      "${1:left}",
-      "",
-      "</div>",
-      "<div class=\"six columns\">",
-      "",
-      "${2:right}",
-      "",
-      "</div>",
-      "</div>"
-    ],
-    "description": "grid design"
-  },
   "today": {
     "prefix": "today",
     "body": [
       "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE"
     ],
     "description": "today"
-  },
-  "div": {
-    "prefix": "div",
-    "body": [
-      "<div $1>",
-      "",
-      "${2:body}",
-      "",
-      "</div>"
-    ],
-    "description": "div tag"
-  },
-  "link": {
-    "prefix": "link",
-    "body": [
-      "[$1]()"
-    ],
-    "description": "link"
   }
 }

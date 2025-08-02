@@ -20,8 +20,12 @@
     ],
     "description": "main function"
   },
-  "func": {
-    "prefix": "func",
+  "function": {
+    "prefix": [
+      "def",
+      "fn",
+      "func"
+    ],
     "body": [
       "${1:<return-type>} ${2:<function>}(int argc, char *argv[]) {",
       "\t$0",
@@ -47,23 +51,15 @@
     ],
     "description": "if"
   },
-  "print": {
+  "echo": {
     "prefix": [
-      "printf"
+      "echo",
+      "debug"
     ],
     "body": [
-      "printf(\"%${1:<type>}\\n\", ${2:<variable>});"
+      "printf(\"%s\\n\", ${1:<variable>});"
     ],
-    "description": "for print debugging"
-  },
-  "else": {
-    "prefix": "else",
-    "body": [
-      "else {",
-      "\t$0",
-      "}"
-    ],
-    "description": "else statement"
+    "description": "print debug snippet"
   },
   "struct": {
     "prefix": [

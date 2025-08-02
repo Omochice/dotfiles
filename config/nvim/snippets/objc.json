@@ -1,5 +1,16 @@
 {
-  "for of": {
+  "for": {
+    "prefix": [
+      "for"
+    ],
+    "body": [
+      "for (${1:<type>} *${2:<var>} = ${3:<from>}; ${2:<var>} < ${4:<to>}; ${2:<var>}++) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "for loop"
+  },
+  "for-range": {
     "prefix": [
       "forof"
     ],
@@ -8,14 +19,26 @@
       "\t$0",
       "}"
     ],
-    "description": "for of"
+    "description": "for range loop"
   },
-  "log": {
-    "prefix": "nslog",
+  "if": {
+    "prefix": "if",
     "body": [
-      "NSLog(@\"%@$2\", ${1:<var>});"
+      "if (${1:<condition>}) {",
+      "\t$0",
+      "}"
     ],
-    "description": "nslog"
+    "description": "if statement"
+  },
+  "echo": {
+    "prefix": [
+      "echo",
+      "debug"
+    ],
+    "body": [
+      "NSLog(@\"%@$1\", ${2:<var>});"
+    ],
+    "description": "print debug snippet"
   },
   "class interface": {
     "prefix": [

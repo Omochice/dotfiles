@@ -17,6 +17,15 @@
     ],
     "description": "for statement"
   },
+  "for-range": {
+    "prefix": "forr",
+    "body": [
+      "for s:${1:i} in range(${2:start}, ${3:end})",
+      "\t${4:body}",
+      "endfor"
+    ],
+    "description": "for range statement"
+  },
   "function": {
     "prefix": "function",
     "body": [

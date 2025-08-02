@@ -13,7 +13,8 @@
       "implicit none",
       "$3",
       "end function ${1:name}"
-    ]
+    ],
+    "description": "Fortran function definition"
   },
   "program": {
     "prefix": "prog",
@@ -41,6 +42,24 @@
       "  $2",
       "end subroutine ${1:name}"
     ]
+  },
+  "for": {
+    "prefix": "for",
+    "body": [
+      "do ${1:i} = ${2:start}, ${3:end}, ${4:step}",
+      "\t$5",
+      "end do"
+    ],
+    "description": "Fortran for loop"
+  },
+  "for-range": {
+    "prefix": "forr",
+    "body": [
+      "do ${1:i} = ${2:start}, ${3:end}",
+      "\t$4",
+      "end do"
+    ],
+    "description": "Fortran for range loop"
   },
   "do": {
     "prefix": "do",
@@ -70,5 +89,5 @@
       "  $1",
       "end block"
     ]
-  }
+  },
 }

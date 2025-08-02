@@ -1,4 +1,58 @@
 {
+  "main": {
+    "prefix": "main",
+    "body": [
+      "public static void main(String[] args) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "main function"
+  },
+  "function": {
+    "prefix": "func",
+    "body": [
+      "${1:<return-type>} ${2:<function-name>}(${3:<args>}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "function definition"
+  },
+  "if": {
+    "prefix": "if",
+    "body": [
+      "if (${1:<condition>}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "if statement"
+  },
+  "for": {
+    "prefix": "for",
+    "body": [
+      "for (int ${1:i} = 0; ${1:i} < ${2:count}; ${1:i}++) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "for loop"
+  },
+  "for-range": {
+    "prefix": "forr",
+    "body": [
+      "for (int ${1:i} = ${2:start}; ${1:i} < ${3:end}; ${1:i}++) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "for range loop"
+  },
+  "echo": {
+    "prefix": [
+      "echo"
+    ],
+    "body": [
+      "System.out.println(\"${1:variable}\");"
+    ],
+    "description": "print debug snippet"
+  },
   "debug-log": {
     "prefix": "debug",
     "body": [

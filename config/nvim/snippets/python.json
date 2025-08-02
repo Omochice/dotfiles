@@ -1,44 +1,9 @@
 {
-  "shebang": {
-    "prefix": "shebang",
-    "body": [
-      "#!/usr/bin/env python3",
-      "$1"
-    ]
-  },
   "main function": {
     "prefix": "main",
     "body": [
       "if __name__ == \"__main__\":",
       "    $1"
-    ]
-  },
-  "pathlib import": {
-    "prefix": "pathlib",
-    "body": [
-      "from pathlib import Path",
-      "$1"
-    ]
-  },
-  "numpy import": {
-    "prefix": "numpy",
-    "body": [
-      "import numpy as np",
-      "$1"
-    ]
-  },
-  "matplotlib import": {
-    "prefix": "matplotlib",
-    "body": [
-      "import matplotlib.pyplot as plt",
-      "$1"
-    ]
-  },
-  "pandas import": {
-    "prefix": "pandas",
-    "body": [
-      "import pandas as pd",
-      "$1"
     ]
   },
   "parent working directory": {
@@ -52,8 +17,35 @@
     ],
     "description": "show PWD"
   },
-  "print debug": {
-    "prefix": "debug",
+  "for loop": {
+    "prefix": "for",
+    "body": [
+      "for ${1:item} in ${2:iterable}:",
+      "    $0"
+    ],
+    "description": "for loop"
+  },
+  "for-range": {
+    "prefix": "forr",
+    "body": [
+      "for ${1:item} in range(${2:start}, ${3:end}):",
+      "    $0"
+    ],
+    "description": "for range loop"
+  },
+  "if": {
+    "prefix": "if",
+    "body": [
+      "if ${1:condition}:",
+      "    $0"
+    ],
+    "description": "if statement"
+  },
+  "echo": {
+    "prefix": [
+      "echo",
+      "debug"
+    ],
     "body": [
       "print(f\"{$1=}\")"
     ],

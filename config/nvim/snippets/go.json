@@ -1,63 +1,66 @@
 {
-  "Println": {
-    "prefix": "fmt",
-    "body": [
-      "fmt.Println($1)"
-    ]
-  },
   "main": {
     "prefix": "main",
     "body": [
-      "package main;",
-      "",
-      "import \"fmt\";",
-      "",
       "func main() {",
-      "  $1",
-      "};"
-    ]
-  },
-  "error handling": {
-    "prefix": [
-      "if",
-      "iferr"
+      "\t$0",
+      "}"
     ],
+    "description": "main function"
+  },
+  "function": {
+    "prefix": "fn",
+    "body": [
+      "func ${1:name}(${2:args}) ${3:void} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "function template"
+  },
+  "if": {
+    "prefix": "if",
+    "body": [
+      "if ${1:condition} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "if statement"
+  },
+  "for": {
+    "prefix": "for",
+    "body": [
+      "for ${1:item} := range ${2:items} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "for loop"
+  },
+  "for-range": {
+    "prefix": "forr",
+    "body": [
+      "for ${1:i} := ${2:start}; ${1:i} < ${3:end}; ${1:i}++ {",
+      "\t$0",
+      "}"
+    ],
+    "description": "for range loop"
+  },
+  "echo": {
+    "prefix": [
+      "echo",
+      "debug"
+    ],
+    "body": [
+      "fmt.Println(${1:variable})"
+    ],
+    "description": "print debug snippet"
+  },
+  "if-error": {
+    "prefix": "iferr",
     "body": [
       "if err != nil {",
       "\t${1:return err}",
       "}"
-    ]
-  },
-  "for-range": {
-    "prefix": [
-      "forof"
     ],
-    "body": [
-      "for i, ${1:v} := range $2 {",
-      "  $3",
-      "}"
-    ],
-    "description": "for-range"
-  },
-  "for-loop": {
-    "prefix": "for",
-    "body": [
-      "for ${1:i} := 0; $1${2:expr}; $1++ {",
-      "  $3",
-      "}"
-    ],
-    "description": "for-loop"
-  },
-  "define func": {
-    "prefix": [
-      "def",
-      "func"
-    ],
-    "body": [
-      "func ${1:name}(${2:arg} ${3:argType}) ${4:returnType} {",
-      "\t$0",
-      "}"
-    ],
-    "description": "define function"
+    "description": "if error check"
   }
 }

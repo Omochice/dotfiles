@@ -1,12 +1,48 @@
 {
-  "shebang": {
-    "prefix": "shebang",
+  "function": {
+    "prefix": "function",
     "body": [
-      "#!/usr/bin/env bash",
-      "",
-      "set -ue",
-      "$1"
+      "function ${1:name}() {",
+      "\t$0",
+      "}"
     ],
-    "description": "shebang"
+    "description": "function definition"
+  },
+  "for loop": {
+    "prefix": "for",
+    "body": [
+      "for ${1:item} in ${2:iterable}; do",
+      "\t$0",
+      "done"
+    ],
+    "description": "for loop"
+  },
+  "for-range": {
+    "prefix": "forr",
+    "body": [
+      "for i in $(seq ${1:start} ${2:end}); do",
+      "\t$0",
+      "done"
+    ],
+    "description": "for range loop"
+  },
+  "if": {
+    "prefix": "if",
+    "body": [
+      "if [ ${1:condition} ]; then",
+      "\t$0",
+      "fi"
+    ],
+    "description": "if statement"
+  },
+  "echo": {
+    "prefix": [
+      "echo",
+      "debug"
+    ],
+    "body": [
+      "echo \"${1:variable}\""
+    ],
+    "description": "print debug snippet"
   }
 }

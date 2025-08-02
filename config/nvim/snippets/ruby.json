@@ -3,45 +3,58 @@
     "prefix": "main",
     "body": [
       "if \\$0 == __FILE__",
-      "  $1",
+      "\t$1",
       "end"
     ]
   },
-  "require": {
-    "prefix": "require",
-    "body": [
-      "require \"$1\""
-    ],
-    "description": "require"
-  },
-  "require_relative": {
-    "prefix": "require_relative",
-    "body": [
-      "require_relative \"$1\""
-    ],
-    "description": "require_relative"
-  },
-  "yard document": {
+  "function": {
     "prefix": [
-      "yard",
-      "description"
+      "def",
+      "fn",
+      "func"
     ],
     "body": [
-      "# ${1:abstract}",
-      "# @param  [${2:type}] ${3:description}",
-      "# @return [${4:type}] ${5:description}"
+      "def ${1:name}(${2:args})",
+      "\t$3",
+      "end"
     ],
-    "description": "description for yard"
+    "description": "function definition"
   },
-  "Bio::FlatFile.open": {
+  "if": {
+    "prefix": "if",
+    "body": [
+      "if ${1:condition}",
+      "\t$2",
+      "end"
+    ],
+    "description": "if statement"
+  },
+  "for": {
+    "prefix": "for",
+    "body": [
+      "for ${1:item} in ${2:iterable}",
+      "\t$3",
+      "end"
+    ],
+    "description": "for loop"
+  },
+  "for-range": {
+    "prefix": "forr",
+    "body": [
+      "for ${1:item} in ${2:start}..${3:end}",
+      "\t$4",
+      "end"
+    ],
+    "description": "for range loop"
+  },
+  "echo": {
     "prefix": [
-      "Bio",
-      "gbkopen",
-      "fastaopen"
+      "echo",
+      "debug"
     ],
     "body": [
-      "Bio::FlatFile.auto(${1:filename}).each_entry do $2"
+      "puts \"#{${1:variable}}\""
     ],
-    "description": "open genbank / fasta etc.."
+    "description": "print debug snippet"
   }
 }

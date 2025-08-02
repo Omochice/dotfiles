@@ -1,87 +1,58 @@
 {
-  "for range": {
+  "main": {
+    "prefix": "main",
+    "body": [
+      "if (import.meta.main) {",
+      "\t$1",
+      "}"
+    ],
+    "description": "main function"
+  },
+  "function": {
+    "prefix": "fn",
+    "body": [
+      "function ${1:name}(${2:args}): ${3:void} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "function template"
+  },
+  "for": {
     "prefix": "for",
     "body": [
-      "for (let ${1:i} = 0; ${1:i} ${2:< expr}; ${1:i}++) {",
-      "\t$3",
+      "for (const ${1:item} of ${2:items}) {",
+      "\t$0",
       "}"
     ],
-    "description": "for range"
+    "description": "for loop"
   },
-  "for of": {
-    "prefix": "forof",
+  "for-range": {
+    "prefix": "forr",
     "body": [
-      "for (const $1 of $2) {",
-      "\t$3",
+      "for (let ${1:i} = ${2:start}; ${1:i} < ${3:end}; ${1:i}++) {",
+      "\t$0",
       "}"
     ],
-    "description": "for of"
-  },
-  "console.log": {
-    "prefix": [
-      "log",
-      "echo",
-      "console.log"
-    ],
-    "body": [
-      "console.log(${1:object})"
-    ],
-    "description": "console.log"
+    "description": "for range loop"
   },
   "if": {
     "prefix": "if",
     "body": [
       "if (${1:condition}) {",
-      "\t$2",
+      "\t$0",
       "}"
     ],
     "description": "if statement"
   },
-  "arrow function": {
+  "echo": {
     "prefix": [
-      "arrow",
-      "lambda"
+      "echo",
+      "debug"
     ],
     "body": [
-      "(${1:arg}) => {$1$2}"
+      "console.log(`{$1=}`)"
     ],
-    "description": "arrow function"
-  },
-  "async function": {
-    "prefix": "async",
-    "body": [
-      "async function ${1:name}(${2:args}): Promise<${3:return}> {",
-      "\t${4:body}",
-      "}"
-    ],
-    "description": "async function"
-  },
-  "test": {
-    "prefix": "test",
-    "body": [
-      "Deno.test({",
-      "\tname: ${1:name},",
-      "\tfn: () => {",
-      "\t\t$2",
-      "\t}",
-      "})"
-    ],
-    "description": "Deno.test"
-  },
-  "typedoc": {
-    "prefix": ["typedoc", "jsdoc"],
-    "body": [
-      "/**",
-      " * $1",
-      " *",
-      " * @param${2: }",
-      " * @return${3: }",
-      " * @example",
-      " * ```ts",
-      " * ```",
-      " */"
-    ],
-    "description": "typedoc template"
+    "description": "print debug snippet"
   },
   "enum": {
     "prefix": "enum",
