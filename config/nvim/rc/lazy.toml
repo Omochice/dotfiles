@@ -245,12 +245,10 @@ on_cmd = [
 hook_source = """
 function! s:reading_copy(line1, line2) abort
   " NOTE: 4 is ['next', {owner}, {repo}, {branch}]
-  let l:file = expand('%')->substitute('readingvimrc://\\([^/]\\{1,\\}/\\)\\{4\\}', '', '')
-  if a:line1 == a:line2
-    let l:line = printf('L%d', a:line1)
-  else
-    let l:line = printf('L%d+%d', a:line1, a:line2 - a:line1)
-  endif
+  const l:file = expand('%')->substitute('readingvimrc://\\([^/]\\{1,\\}/\\)\\{4\\}', '', '')
+  const l:line = a:line1 == a:line2
+        \\ ? printf('L%d', a:line1)
+        \\ : printf('L%d+%d', a:line1, a:line2 - a:line1)
   call setreg(v:register, input('', printf('%s#%s ', l:file, l:line)))
 endfunction
 
