@@ -147,7 +147,6 @@ o = "<Plug>(textobj-sandwich"
 
 [[plugins]]
 repo = "https://github.com/uga-rosa/contextment.vim"
-# repo = "~/Toy/contextment.vim"
 hooks_file = "$VIMRC_RC_DIR/hooks/contextment.lua"
 depends = ["context_filetype.vim"]
 on_map = { nxo = "<Plug>" }
@@ -199,14 +198,6 @@ on_cmd = ["QuickRun"]
 repo = "https://github.com/lambdalisue/vim-quickrun-neovim-job"
 on_source = "vim-quickrun"
 
-# [[plugins]]
-# repo = "Omochice/TeXTable.vim"
-# on_cmd = "TeXTable"
-
-# [[plugins]]
-# repo = "Omochice/TeXOutline.vim"
-# on_cmd = "TeXOutline"
-
 [[plugins]]
 repo = "https://github.com/ntpeters/vim-better-whitespace"
 hook_add = """
@@ -214,14 +205,6 @@ let g:better_whitespace_enabled = !has('nvim')
 let g:strip_whitespace_on_save = v:false
 """
 on_cmd = ["StripWhitespace", "StripWhitespaceOnChangedLines"]
-
-[[plugins]]
-repo = "https://github.com/heavenshell/vim-pydocstring"
-build = "make install"
-hook_add = """
-let g:pydocstring_formatter = 'google'
-"""
-on_cmd = ["Pydocstring", "PydocstringFormat"]
 
 [[plugins]]
 repo = "https://github.com/mattn/vim-maketable"
@@ -243,10 +226,6 @@ hook_add = """
 nmap gx <Plug>(openbrowser-open)
 """
 on_map = { n = "<Plug>(openbrowser" }
-
-[[plugins]]
-repo = "https://github.com/ap/vim-css-color"
-on_ft = ["css", "scss", "vue"]
 
 [[plugins]]
 repo = "https://github.com/pechorin/any-jump.vim"
