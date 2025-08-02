@@ -117,7 +117,6 @@
       # keep-sorted start
       astro-language-server
       biome
-      efm-langserver
       elmPackages.elm-language-server
       gitlab-ci-ls
       gopls

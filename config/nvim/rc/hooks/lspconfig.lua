@@ -29,7 +29,6 @@ vim.lsp.enable({
   -- keep-sorted start
   "biome",
   "denols",
-  "efm",
   "elmls",
   "gitlab_ci_ls",
   "gopls",
