@@ -300,6 +300,7 @@ if = "has('nvim')"
 on_event = ["BufRead", "BufNewFile"]
 hook_post_update = "TSUpdate"
 hooks_file = "$VIMRC_RC_DIR/hooks/treesitter.lua"
+rev = "main"
 
 [[plugins]]
 repo = "https://github.com/nvim-treesitter/playground"
