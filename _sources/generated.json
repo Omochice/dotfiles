@@ -274,7 +274,7 @@
     },
     "zathura-catputtin": {
         "cargoLocks": null,
-        "date": "2024-04-04",
+        "date": "2025-08-03",
         "extract": null,
         "name": "zathura-catputtin",
         "passthru": null,
@@ -286,11 +286,11 @@
             "name": null,
             "owner": "catppuccin",
             "repo": "zathura",
-            "rev": "0adc53028d81bf047461bc61c43a484d11b15220",
-            "sha256": "sha256-/vD/hOi6KcaGyAp6Az7jL5/tQSGRzIrf0oHjAJf4QbI=",
+            "rev": "9f29c2c1622c70436f0e0b98fea9735863596c1e",
+            "sha256": "sha256-upyfc4OSx9xKUoM/JdRfuXiw38ffoSB/Utm2jpyXgy8=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "0adc53028d81bf047461bc61c43a484d11b15220"
+        "version": "9f29c2c1622c70436f0e0b98fea9735863596c1e"
     }
 }

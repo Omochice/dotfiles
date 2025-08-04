@@ -159,14 +159,14 @@
   };
   zathura-catputtin = {
     pname = "zathura-catputtin";
-    version = "0adc53028d81bf047461bc61c43a484d11b15220";
+    version = "9f29c2c1622c70436f0e0b98fea9735863596c1e";
     src = fetchFromGitHub {
       owner = "catppuccin";
       repo = "zathura";
-      rev = "0adc53028d81bf047461bc61c43a484d11b15220";
+      rev = "9f29c2c1622c70436f0e0b98fea9735863596c1e";
       fetchSubmodules = false;
-      sha256 = "sha256-/vD/hOi6KcaGyAp6Az7jL5/tQSGRzIrf0oHjAJf4QbI=";
+      sha256 = "sha256-upyfc4OSx9xKUoM/JdRfuXiw38ffoSB/Utm2jpyXgy8=";
     };
-    date = "2024-04-04";
+    date = "2025-08-03";
   };
 }
