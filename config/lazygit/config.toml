@@ -4,6 +4,7 @@
 mouseEvents = false
 timeFormat = "2006-01-02"
 shortTimeFormat = "15:04:05"
+useHunkModeInStagingView = false
 
 [keybinding]
 
