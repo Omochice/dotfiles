@@ -1,5 +1,13 @@
 ---@type vim.lsp.Config
-local M = {}
+local M = {
+  root_dir = function(bufnr, callback)
+    local root = require("vimrc/lsp-helper").root_pattern(".zk")(bufnr)
+    if root == nil then
+      return
+    end
+    callback(vim.fs.dirname(root))
+  end,
+}
 
 require("vimrc/lsp-helper").on_attach("zk", function()
   local win = vim.api.nvim_get_current_win()
