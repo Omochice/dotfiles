@@ -19,12 +19,12 @@ const s:default_provider = 'ollama'
 function s:list_providers(...) abort
   return s:providers->keys()
 endfunction
-function s:start_chat(line1, line2, ...) abort
+function s:start_chat(range, line1, line2, ...) abort
   const original_bufnr = bufnr()
   const original_filetype = getbufvar(original_bufnr, '&filetype')
   const provider = s:providers[get(a:000, 0, s:default_provider)]
   const reltime = reltime()->reltimestr()
-  const lines = a:line1 ==# a:line2
+  const lines = a:range ==# 0
         \ ? []
         \ : [
         \   '',
@@ -57,7 +57,7 @@ function s:start_chat(line1, line2, ...) abort
         \   },
         \ })
 endfunction
-command! -range -nargs=? -complete=customlist,<SID>list_providers Hey call <SID>start_chat(<line1>, <line2>, <f-args>)
+command! -range -nargs=? -complete=customlist,<SID>list_providers Hey call <SID>start_chat(<range>, <line1>, <line2>, <f-args>)
 cnoreabbrev hey Hey
 augroup tataku_chat
   autocmd!
