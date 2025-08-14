@@ -2,10 +2,15 @@
 {
   xdg.configFile = {
     "claude/settings.json".text =
-      ./settings.json
-      |> builtins.readFile
-      |> builtins.fromJSON
-      |> pkgs.lib.attrsets.filterAttrs (k: _: k != "$schema")
+      {
+        # TODO: use home-manager module instead
+        includeCoAuthoredBy = false;
+        statusLine = {
+          type = "command";
+          command = "${pkgs.ccusage}/bin/ccusage statusline";
+          padding = 0;
+        };
+      }
       |> builtins.toJSON;
     "claude/CLAUDE.md".source = ./CLAUDE.md;
     "claude/commands".source = ./commands;
