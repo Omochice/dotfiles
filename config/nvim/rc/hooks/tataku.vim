@@ -1,9 +1,9 @@
 " hook_add {{{
 const s:providers = #{
       \ ollama: #{
-      \   name: "ollama",
+      \   name: 'ollama',
       \   options : #{
-      \     model : "qwen3:32b",
+      \     model : 'gpt-oss:20b',
       \   },
       \ },
       \ bedrock: #{
