@@ -38,7 +38,7 @@ vimx.create_autocmd("LspAttach", {
       vimx.fn.ddc.map.manual_complete({ sources = sources.lsp })
     end, { buffer = true })
   end,
-  group = vimx.create_augroup("vimrc#ddc-omni", {
+  group = vimx.create_augroup("vimrc.ddc-omni", {
     clear = true,
   }),
 })

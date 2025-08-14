@@ -8,7 +8,7 @@ endfunction
 
 let g:is_node_project = v:false
 
-augroup myvimrc#is_node_project#internal
+augroup myvimrc.is_node_project.internal
   autocmd!
   autocmd BufEnter * call <SID>is_node_project(fnamemodify(expand('%'), ':p:h'))
 augroup END

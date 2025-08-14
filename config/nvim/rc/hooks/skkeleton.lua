@@ -6,7 +6,7 @@ vimx.keymap.set({ "i", "c" }, "<C-j>", "<Plug>(skkeleton-enable)")
 -- lua_source {{{
 local vimx = require("artemis")
 
-local augroup = vimx.create_augroup("vimrc#skkeleton", {
+local augroup = vimx.create_augroup("vimrc.skkeleton", {
   clear = true,
 })
 

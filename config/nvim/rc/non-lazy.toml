@@ -17,7 +17,7 @@ function s:disable_bgcolor() abort
   highlight WinBar ctermbg=NONE guibg=NONE
 endfunction
 
-augroup vimrc#colorsetting
+augroup vimrc.colorsetting
   autocmd!
   autocmd ColorScheme * call timer_start(0, { -> s:disable_bgcolor() })
   autocmd VimEnter * nested colorscheme sonokai

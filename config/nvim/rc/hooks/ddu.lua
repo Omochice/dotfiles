@@ -168,7 +168,7 @@ vim.keymap.del("n", "grn")
 --- }}}
 vimx.create_autocmd("LspAttach", {
   pattern = "*",
-  group = vimx.create_augroup("vimrc#ddu#lsp", { clear = true }),
+  group = vimx.create_augroup("vimrc.ddu.lsp", { clear = true }),
   callback = function()
     vimx.keymap.set("n", "gr", function()
       vimx.fn.ddu.start({

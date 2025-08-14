@@ -12,7 +12,7 @@ end
 vimx.create_autocmd("VimResized", {
   pattern = "*",
   callback = resize,
-  group = vimx.create_augroup("myvimrc#ddc-preview", { clear = true }),
+  group = vimx.create_augroup("myvimrc.ddc-preview", { clear = true }),
 })
 
 resize()

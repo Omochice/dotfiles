@@ -34,12 +34,12 @@ set virtualedit=onemore
 set wildmenu
 set scrolloff=3
 
-augroup vimrc#autocmd
+augroup vimrc.autocmd
   autocmd!
 augroup END
 
 " ref: https://zenn.dev/hokorobi/articles/98f79339d7d114
-autocmd vimrc#autocmd BufEnter * if getfsize(@%) > 1024 * 1000 | setlocal syntax=OFF | endif
+autocmd vimrc.autocmd BufEnter * if getfsize(@%) > 1024 * 1000 | setlocal syntax=OFF | endif
 
 if has('nvim')
   set wildmode=full
@@ -147,11 +147,11 @@ if has('nvim')
   " tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
   tnoremap <ESC> <C-\><C-n>
   " feed insert mode when move terminal window
-  autocmd vimrc#autocmd TermOpen * startinsert
-  autocmd vimrc#autocmd TermOpen * setlocal nonumber
-  autocmd vimrc#autocmd WinEnter * if &buftype ==# 'terminal' | startinsert | endif
+  autocmd vimrc.autocmd TermOpen * startinsert
+  autocmd vimrc.autocmd TermOpen * setlocal nonumber
+  autocmd vimrc.autocmd WinEnter * if &buftype ==# 'terminal' | startinsert | endif
   " auto close
-  autocmd vimrc#autocmd TermClose * call feedkeys('\<CR>')
+  autocmd vimrc.autocmd TermClose * call feedkeys('\<CR>')
   " helper commands
   command! Vterm vertical botright vnew term://${SHELL}
   command! Hterm botright new term://${SHELL}
@@ -159,7 +159,7 @@ if has('nvim')
 else
   " Vim terminal settings
   tnoremap <ESC> <C-w>N
-  autocmd vimrc#autocmd TerminalOpen * setlocal nonumber
+  autocmd vimrc.autocmd TerminalOpen * setlocal nonumber
   " helper commands
   command! Vterm vertical botright vnew | terminal ++curwin
   command! Hterm botright new | terminal ++curwin
@@ -177,8 +177,8 @@ if has('gui_running')
   set guioptions-=T
 else
   set t_Co=256
-  autocmd vimrc#autocmd VimEnter * map <Nul> <C-Space>
-  autocmd vimrc#autocmd VimEnter * map! <Nul> <C-Space>
+  autocmd vimrc.autocmd VimEnter * map <Nul> <C-Space>
+  autocmd vimrc.autocmd VimEnter * map! <Nul> <C-Space>
 endif
 
 " use ripgrep
@@ -189,7 +189,7 @@ function! s:set_rg() abort
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endfunction
-autocmd vimrc#autocmd CmdLineEnter * ++once call <SID>set_rg()
+autocmd vimrc.autocmd CmdLineEnter * ++once call <SID>set_rg()
 
 function! s:grep_in_file() abort
   const l:query = input('grep: ')
@@ -226,7 +226,7 @@ let g:did_load_filetypes = has('nvim')
 
 const g:filetype_m = 'objc'
 
-autocmd vimrc#autocmd FileType javascript call s:open_it_really()
+autocmd vimrc.autocmd FileType javascript call s:open_it_really()
 
 function! s:open_it_really() abort
   const l:current_bufnr = bufnr()
@@ -260,7 +260,7 @@ call digraph_setlist([
 
 " NOTE: from https://github.com/thinca/config/dotfiles/dot.vim/vimrc
 " auto mkdir
-autocmd vimrc#autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+autocmd vimrc.autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
 function s:auto_mkdir(dir, force) abort
   if &l:buftype !=# '' || bufname('%') =~# '^[^:]\+://'
     return

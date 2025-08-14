@@ -58,7 +58,7 @@ vimx.g.lightline = vimx.dict({
     -- recording = get_recording,
   },
 })
-local group = vimx.create_augroup("vimrc#lightline-update-highlight", { clear = true })
+local group = vimx.create_augroup("vimrc.lightline-update-highlight", { clear = true })
 vimx.create_autocmd("ColorScheme", {
   pattern = "*",
   group = group,

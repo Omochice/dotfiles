@@ -1,6 +1,6 @@
 set nocompatible
 
-augroup omochice#vimrc
+augroup omochice.vimrc
   autocmd!
 augroup END
 
@@ -43,11 +43,11 @@ if s:dpp_base->dpp#min#load_state()
   \ | echohl NONE
   \ | call dpp#make_state(s:dpp_base, '~/.config/nvim/rc/ts/dpp.ts')
 else
-  autocmd omochice#vimrc BufWritePost *.lua,*.vim,*.toml,*.ts,vimrc,.vimrc
+  autocmd omochice.vimrc BufWritePost *.lua,*.vim,*.toml,*.ts,vimrc,.vimrc
         \ call dpp#check_files()
 
   " Check new plugins
-  autocmd omochice#vimrc BufWritePost *.toml
+  autocmd omochice.vimrc BufWritePost *.toml
         \ : if !dpp#sync_ext_action('installer', 'getNotInstalled')->empty()
         \ |  call dpp#async_ext_action('installer', 'install')
         \ | endif
@@ -55,7 +55,7 @@ endif
 
 command! DppCache call dpp#make_state(s:dpp_base, '~/.config/nvim/rc/ts/dpp.ts')
 
-autocmd omochice#vimrc User Dpp:makeStatePost
+autocmd omochice.vimrc User Dpp:makeStatePost
       \ : echohl WarningMsg
       \ | echomsg 'dpp make_state() is done'
       \ | echohl NONE
