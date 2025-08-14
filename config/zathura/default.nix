@@ -6,7 +6,7 @@ in
   programs.zathura = {
     enable = true;
     extraConfig = ''
-      include ${plugins.zathura-catputtin.src}/src/catppuccin-latte
+      include ${plugins.zathura-catputtin.src}/themes/catppuccin-latte
     '';
     mappings = {
       d = "scroll half-down";
