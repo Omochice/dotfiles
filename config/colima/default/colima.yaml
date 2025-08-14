@@ -3,8 +3,9 @@
 cpu: 4
 
 # Size of the disk in GiB to be allocated to the virtual machine.
-# NOTE: changing this has no effect after the virtual machine has been created.
-# Default: 60
+# NOTE: value can only be increased after virtual machine has been created.
+#
+# Default: 100
 disk: 200
 
 # Size of the memory in GiB to be allocated to the virtual machine.
@@ -12,10 +13,14 @@ disk: 200
 memory: 16
 
 # Architecture of the virtual machine (x86_64, aarch64, host).
+#
+# NOTE: value cannot be changed after virtual machine is created.
 # Default: host
 arch: aarch64
 
 # Container runtime to be used (docker, containerd).
+#
+# NOTE: value cannot be changed after virtual machine is created.
 # Default: docker
 runtime: docker
 
@@ -29,20 +34,22 @@ kubernetes:
   # Enable kubernetes.
   # Default: false
   enabled: false
-
+  
   # Kubernetes version to use.
   # This needs to exactly match a k3s version https://github.com/k3s-io/k3s/releases
   # Default: latest stable release
-  version: ""
-
+  version: v1.33.3+k3s1
+  
   # Additional args to pass to k3s https://docs.k3s.io/cli/server
   # Default: traefik is disabled
-  k3sArgs: []
+  k3sArgs:
+    - --disable=traefik
 
 # Auto-activate on the Host for client access.
 # Setting to true does the following on startup
 #  - sets as active Docker context (for Docker runtime).
 #  - sets as active Kubernetes context (if Kubernetes is enabled).
+#  - sets as active Incus remote (for Incus runtime).
 # Default: true
 autoActivate: true
 
@@ -52,7 +59,7 @@ network:
   # NOTE: this is currently macOS only and ignored on Linux.
   # Default: false
   address: true
-
+  
   # Custom DNS resolvers for the virtual machine.
   #
   # EXAMPLE
@@ -60,7 +67,7 @@ network:
   #
   # Default: []
   dns: []
-
+  
   # DNS hostnames to resolve to custom targets using the internal resolver.
   # This setting has no effect if a custom DNS resolver list is supplied above.
   # It does not configure the /etc/hosts files of any machine or container.
@@ -70,6 +77,14 @@ network:
   # dnsHosts:
   #   example.com: 1.2.3.4
   dnsHosts: {}
+  
+  # Replicate host IP addresses in the VM. This enables port forwarding to specific
+  # host IP addresses.
+  #   e.g. `docker run --port 10.0.1.2:8080:8080 alpine` would only forward to the
+  #   specified IP address.
+  #
+  # Default: false
+  hostAddresses: false
 
 # ===================================================================== #
 # ADVANCED CONFIGURATION
@@ -103,12 +118,21 @@ docker: {}
 #
 # vz is macOS virtualization framework and requires macOS 13
 #
+# NOTE: value cannot be changed after virtual machine is created.
 # Default: qemu
 vmType: vz
 
 # Utilise rosetta for amd64 emulation (requires m1 mac and vmType `vz`)
 # Default: false
 rosetta: true
+
+# Enable foreign architecture emulation via binfmt (e.g. amd64 on arm64, arm64 on amd64)
+# Default: true
+binfmt: true
+
+# Enable nested virtualization for the virtual machine (requires m3 mac and vmType `vz`)
+# Default: false
+nestedVirtualization: false
 
 # Volume mount driver for the virtual machine (virtiofs, 9p, sshfs).
 #
@@ -119,6 +143,7 @@ rosetta: true
 # sshfs is faster than 9p but the least reliable of the options (when there are lots
 # of concurrent reads or writes).
 #
+# NOTE: value cannot be changed after virtual machine is created.
 # Default: virtiofs (for vz), sshfs (for qemu)
 mountType: virtiofs
 
@@ -152,9 +177,15 @@ cpuType: ""
 provision: []
 
 # Modify ~/.ssh/config automatically to include a SSH config for the virtual machine.
-# SSH config will still be generated in ~/.colima/ssh_config regardless.
+# SSH config will still be generated in $COLIMA_HOME/ssh_config regardless.
 # Default: true
 sshConfig: false
+
+# The port number for the SSH server for the virtual machine.
+# When set to 0, a random available port is used.
+#
+# Default: 0
+sshPort: 0
 
 # Configure volume mounts for the virtual machine.
 # Colima mounts user's home directory by default to provide a familiar
@@ -170,6 +201,14 @@ sshConfig: false
 # Colima default behaviour: $HOME and /tmp/colima are mounted as writable.
 # Default: []
 mounts: []
+
+# Specify a custom disk image for the virtual machine.
+# When not specified, Colima downloads an appropriate disk image from Github at
+# https://github.com/abiosoft/colima-core/releases.
+# The file path to a custom disk image can be specified to override the behaviour.
+#
+# Default: ""
+diskImage: ""
 
 # Environment variables for the virtual machine.
 #

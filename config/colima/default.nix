@@ -1,6 +1,8 @@
-{ ... }:
+{ config, ... }:
 {
   xdg.configFile = {
-    "colima/default.yaml".source = ./default.yaml;
+    "colima/default/colima.yaml".source =
+      "${config.home.homeDirectory}/dotfiles/config/colima/default/colima.yaml"
+      |> config.lib.file.mkOutOfStoreSymlink;
   };
 }
