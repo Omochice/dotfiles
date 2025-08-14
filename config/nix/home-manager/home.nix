@@ -44,6 +44,7 @@
       # keep-sorted start
       actionlint
       age
+      ansifilter
       asciinema
       asciinema-agg
       ast-grep
