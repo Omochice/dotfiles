@@ -104,7 +104,7 @@ reset()
 vimx.create_autocmd("VimResized", {
   pattern = "*",
   callback = reset,
-  group = vimx.create_augroup("tataku-setting", { clear = true }),
+  group = vimx.create_augroup("vimrc.tataku-setting", { clear = true }),
 })
 
 vimx.g.tataku_enable_operator = true

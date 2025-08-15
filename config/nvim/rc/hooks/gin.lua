@@ -7,7 +7,7 @@ vimx.keymap.set("n", prefix .. "<C-b>", "<Cmd>GinBranch<CR>")
 vimx.keymap.set("n", prefix .. "<C-l>", "<Cmd>GinLog<CR>")
 vimx.create_autocmd("BufWinLeave", {
   pattern = "ginstatus://*",
-  group = vimx.create_augroup("myvimrc.gin", {
+  group = vimx.create_augroup("vimrc.gin", {
     clear = true,
   }),
   callback = function()

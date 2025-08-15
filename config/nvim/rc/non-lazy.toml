@@ -28,7 +28,7 @@ augroup END
 repo = "https://github.com/catppuccin/vim"
 name = "catpuccin"
 hook_add = """
-augroup erace-cursorline
+augroup vimrc.erace-cursorline
   autocmd!
 "  autocmd ColorScheme * highlight CursorLine guisp=NONE guifg=NONE guibg=NONE ctermfg=NONE ctermbg=NONE gui=NONE cterm=NONE
 augroup END

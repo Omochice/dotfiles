@@ -1,6 +1,6 @@
 local M = {}
 
-local group = vim.api.nvim_create_augroup("lsp-helper", { clear = true })
+local group = vim.api.nvim_create_augroup("vimrc.lsp-helper", { clear = true })
 
 ---@param name string|nil LSP name
 ---@param callback fun(client: vim.lsp.Client, bufnr: integer)
