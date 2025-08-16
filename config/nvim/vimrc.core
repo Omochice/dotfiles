@@ -2,11 +2,13 @@
 " user settings
 syntax on
 filetype plugin indent on
-set encoding=utf-8
+" keep-sorted start sticky_prefixes="
 set autoindent
 set autoread
 set backspace=indent,eol,start
 set completeopt=menuone,noselect,preview
+set directory=$XDG_CACHE_HOME/vim,$HOME/.cache/vim
+set encoding=utf-8
 set expandtab
 set hlsearch
 set ignorecase
@@ -17,22 +19,22 @@ set laststatus=2
 set mouse=
 set nobackup
 set nocursorline
-set swapfile
-set directory=$XDG_CACHE_HOME/vim,$HOME/.cache/vim
+set nonumber
 " Use screenkey to show them
 set noshowcmd
 set nowrap
 set nowrapscan
 set nowritebackup
-set nonumber
+set scrolloff=3
 set shiftwidth=2
-set signcolumn=yes
 set showmatch
+set signcolumn=yes
 set smartindent
+set swapfile
 set tabstop=2
 set virtualedit=onemore
 set wildmenu
-set scrolloff=3
+" keep-sorted end
 
 augroup vimrc.core.autocmd
   autocmd!
