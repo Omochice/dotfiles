@@ -228,20 +228,6 @@ let g:did_load_filetypes = has('nvim')
 
 const g:filetype_m = 'objc'
 
-autocmd vimrc.core.autocmd FileType javascript call s:open_it_really()
-
-function! s:open_it_really() abort
-  const l:current_bufnr = bufnr()
-  const l:tsfile = $'{expand('%:p:r')}.ts'
-  if !filewritable(l:tsfile)
-    return
-  endif
-  if confirm($'Exists {fnamemodify(l:tsfile, ':t')}. Open it?', "&Yes\n&No\n", 1) ==# 1
-    execute 'edit' l:tsfile
-    execute 'bwipeout' l:current_bufnr
-  endif
-endfunction
-
 " Digraph
 " NOTE: ref: https://qiita.com/monaqa/items/dcd43a53d3040293142a
 nnoremap fj f<C-k>j
