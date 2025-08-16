@@ -161,7 +161,7 @@ if has('nvim')
 else
   " Vim terminal settings
   tnoremap <ESC> <C-w>N
-  autocmd vimrc.aucore.autocmd TerminalOpen * setlocal nonumber
+  autocmd vimrc.core.autocmd TerminalOpen * setlocal nonumber
   " helper commands
   command! Vterm vertical botright vnew | terminal ++curwin
   command! Hterm botright new | terminal ++curwin
