@@ -198,6 +198,7 @@
             ''
               jq -n --arg home "$HOME" --arg user "$USER" '{home: $home, user: $user}' > host.json
               git add host.json --force
+              trap 'git reset -- host.json && rm host.json' EXIT
               echo "Updating home-manager"
               nix run github:nix-community/home-manager -- switch --flake .#omochice |& nom
               ${
@@ -208,8 +209,6 @@
                 |> pkgs.lib.strings.optionalString pkgs.stdenv.isDarwin
               }
               echo "Update complete!"
-              git reset -- host.json
-              rm host.json
             ''
             |> runAs "update-script" [
               pkgs.jq
