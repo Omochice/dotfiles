@@ -112,15 +112,10 @@
           |> builtins.getAttr "global"
           |> builtins.mapAttrs (
             name: value:
-            if value.type == "http" then
+            if value.type == "http" || value.type == "stdio" then
               ''
                 claude mcp remove --scope user ${name} || true
-                claude mcp add --scope user --transport ${value.type} ${name} ${value.url}
-              ''
-            else if value.type == "stdio" then
-              ''
-                claude mcp remove --scope user ${name} || true
-                claude mcp add --scope user ${name} -- ${value.command} ${builtins.concatStringsSep " " value.args}
+                claude mcp add-json --scope user ${name} '${value |> builtins.toJSON}'
               ''
             else
               builtins.throw "Unknown mcp server type: ${value.type}"
