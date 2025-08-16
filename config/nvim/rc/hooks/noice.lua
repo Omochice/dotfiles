@@ -1,7 +1,3 @@
--- lua_add {{{
-vim.opt.cmdheight = 0
--- }}}
-
 -- lua_source {{{
 require("noice").setup({
   -- you can enable a preset for easier configuration
