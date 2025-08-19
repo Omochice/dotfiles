@@ -15,6 +15,10 @@
   },
   nix: {
     enabled: true,
+    managerFilePatterns: [
+      "flake.nix",
+      "flake.lock",
+    ],
   },
   "github-actions": {
     managerFilePatterns: [
