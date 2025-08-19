@@ -121,6 +121,7 @@
       elmPackages.elm-language-server
       gitlab-ci-ls
       gopls
+      ls-lint
       lua-language-server
       nixd
       pyright
