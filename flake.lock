@@ -29,7 +29,7 @@
         "narHash": "sha256-XVsragfuN8A/tMiPToejH7RofH15toeIGhlXraX+yBo=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "bf450a0844e80e6aa22652d3f3728f20cd974527",
+        "rev": "c613ac14f5600033bf84ae75c315d5ce24a0229b",
         "type": "github"
       },
       "original": {
