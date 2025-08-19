@@ -26,6 +26,10 @@
       url = "github:natsukium/mcp-servers-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-doom-emacs-unstraightened = {
+      url = "github:marienz/nix-doom-emacs-unstraightened";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -38,6 +42,7 @@
       flake-utils,
       nur-packages,
       mcp-servers-nix,
+      nix-doom-emacs-unstraightened,
     }@inputs:
     flake-utils.lib.eachDefaultSystem (
       system:
@@ -146,6 +151,7 @@
                 inherit (host) user home;
               };
               modules = [
+                nix-doom-emacs-unstraightened.homeModule
                 ./config/nix/home-manager/home.nix
               ];
             };
