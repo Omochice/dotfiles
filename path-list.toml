@@ -306,3 +306,7 @@ command = "mise activate fish | source"
 if_executable = "mise"
 shell = "fish"
 depends = ["brew"]
+
+[[environments]]
+from = "true"
+to = "DEVBOX_NO_PROMPT"
