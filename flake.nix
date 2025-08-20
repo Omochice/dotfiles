@@ -63,6 +63,8 @@
             settings.global.excludes = [
               "**/aqua.yaml"
               "_sources/**"
+              # It will update by colima when `colima start`
+              "config/colima/**.yaml"
             ];
             programs = {
               # keep-sorted start block=yes
