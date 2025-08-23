@@ -341,39 +341,6 @@ repo = "https://github.com/mattn/vim-treesitter"
 build = "cd server && go build"
 if = "!has('nvim')"
 
-# [[plugins]]
-# repo = "christoomey/vim-tmux-navigator"
-# hook_add = """
-# let g:tmux_navigator_no_mappings = v:true
-# " nnoremap
-# nnoremap <silent> <M-h> <Cmd>TmuxNavigateLeft<CR>
-# nnoremap <silent> <M-j> <Cmd>TmuxNavigateDown<CR>
-# nnoremap <silent> <M-k> <Cmd>TmuxNavigateUp<CR>
-# nnoremap <silent> <M-l> <Cmd>TmuxNavigateRight<CR>
-# " xnoremap
-# xnoremap <silent> <M-h> <Cmd>TmuxNavigateLeft<CR>
-# xnoremap <silent> <M-j> <Cmd>TmuxNavigateDown<CR>
-# xnoremap <silent> <M-k> <Cmd>TmuxNavigateUp<CR>
-# xnoremap <silent> <M-l> <Cmd>TmuxNavigateRight<CR>
-# " lnoremap
-# lnoremap <silent> <M-h> <Cmd>TmuxNavigateLeft<CR>
-# lnoremap <silent> <M-j> <Cmd>TmuxNavigateDown<CR>
-# lnoremap <silent> <M-k> <Cmd>TmuxNavigateUp<CR>
-# lnoremap <silent> <M-l> <Cmd>TmuxNavigateRight<CR>
-# " tnoremap
-# tnoremap <silent> <M-h> <Cmd>TmuxNavigateLeft<CR>
-# tnoremap <silent> <M-j> <Cmd>TmuxNavigateDown<CR>
-# tnoremap <silent> <M-k> <Cmd>TmuxNavigateUp<CR>
-# tnoremap <silent> <M-l> <Cmd>TmuxNavigateRight<CR>
-# """
-# on_cmd = [
-#     "TmuxNavigateLeft",
-#     "TmuxNavigateDown",
-#     "TmuxNavigateUp",
-#     "TmuxNavigateRight",
-# ]
-# if = "has('wsl')"
-
 [[plugins]]
 repo = "https://github.com/machakann/vim-vimhelplint"
 on_cmd = ["VimhelpLint"]
