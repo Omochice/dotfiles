@@ -649,7 +649,11 @@ repo = "https://github.com/kevinhwang91/nvim-bqf"
 lua_source = """
 require("bqf").setup({
   preview = {
-    auto_preview = false
+    auto_preview = true
+  },
+  func_map = {
+    open = '<CR>',
+    ptoggleauto = 'P',
   },
 })
 """
