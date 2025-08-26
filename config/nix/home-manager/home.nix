@@ -90,7 +90,6 @@
       mise
       mkcert
       mmv-go
-      neofetch
       nix-output-monitor
       nixfmt-rfc-style
       nkf
