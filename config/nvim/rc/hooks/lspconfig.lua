@@ -28,6 +28,7 @@ vim.diagnostic.config({
 vim.lsp.enable({
   -- keep-sorted start
   "biome",
+  "clangd",
   "denols",
   "elmls",
   "gitlab_ci_ls",
