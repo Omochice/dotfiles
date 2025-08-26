@@ -10,7 +10,7 @@
     ../../claude/default.nix
     ../../colima/default.nix
     ../../direnv/default.nix
-    ../../doom/default.nix
+    # ../../doom/default.nix
     ../../fish/default.nix
     ../../gh/default.nix
     ../../git/default.nix
