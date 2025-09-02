@@ -652,8 +652,11 @@ require("bqf").setup({
     auto_preview = true
   },
   func_map = {
-    open = '<CR>',
-    ptoggleauto = 'P',
+    open = "<CR>",
+    ptoggleauto = "P",
+    tabt = "",
+    tabb = "",
+    tabc = "",
   },
 })
 """
