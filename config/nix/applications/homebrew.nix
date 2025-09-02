@@ -47,6 +47,7 @@
       "vysor"
       "wezterm@nightly"
       "windows-app"
+      "xcodes"
       "zoom"
       # keep-sorted end
     ];
