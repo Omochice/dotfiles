@@ -17,7 +17,7 @@ import type {
   Ext as TomlExt,
   Params as TomlParams,
   Toml as DppToml,
-} from "jsr:@shougo/dpp-ext-toml@1.3.0";
+} from "jsr:@shougo/dpp-ext-toml@2.0.1";
 import type { Denops } from "jsr:@denops/std@7.6.0";
 
 type ConfigArgument = {
