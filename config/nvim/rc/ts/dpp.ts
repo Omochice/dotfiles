@@ -12,7 +12,7 @@ import type { Protocol } from "jsr:@shougo/dpp-vim@4.7.0/protocol";
 import type {
   Ext as LazyExt,
   Params as LazyParams,
-} from "jsr:@shougo/dpp-ext-lazy@1.5.0";
+} from "jsr:@shougo/dpp-ext-lazy@2.0.1";
 import type {
   Ext as TomlExt,
   Params as TomlParams,
