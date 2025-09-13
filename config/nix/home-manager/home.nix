@@ -13,6 +13,7 @@
     # ../../doom/default.nix
     ../../fish/default.nix
     ../../gh/default.nix
+    ../../gh-triage/default.nix
     ../../git/default.nix
     ../../glab-cli/default.nix
     ../../karabiner/default.nix

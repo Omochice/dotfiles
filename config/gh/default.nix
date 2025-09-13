@@ -88,6 +88,10 @@ let
       name = "gh-dash";
       path = "${pkgs.gh-dash}/bin";
     }
+    {
+      name = "gh-triage";
+      path = "${pkgs.gh-triage}/bin";
+    }
   ];
 in
 {
