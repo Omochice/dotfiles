@@ -18,7 +18,7 @@ import type {
   Params as TomlParams,
   Toml as DppToml,
 } from "jsr:@shougo/dpp-ext-toml@2.0.1";
-import type { Denops } from "jsr:@denops/std@7.6.0";
+import type { Denops } from "jsr:@denops/std@8.0.0";
 
 type ConfigArgument = {
   denops: Denops;
