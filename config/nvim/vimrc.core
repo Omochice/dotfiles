@@ -47,7 +47,6 @@ if has('nvim')
   set wildmode=full
   set wildoptions+=pum
   set cmdheight=0
-  set laststatus=3
 else
   set wildmode=longest,full
   if has('patch-8.2.4325')
