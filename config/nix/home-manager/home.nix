@@ -125,6 +125,7 @@
       lua-language-server
       nixd
       pyright
+      stylua
       svelte-language-server
       taplo
       tinymist
