@@ -96,7 +96,7 @@ export class Config extends BaseConfig {
       sourceOptions: {
         _: {
           ignoreCase: true,
-          matchers: ["matcher_fzf"],
+          matchers: ["matcher_substring"],
         },
       },
       sourceParams: {
