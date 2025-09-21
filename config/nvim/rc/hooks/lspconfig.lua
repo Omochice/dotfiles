@@ -40,6 +40,7 @@ vim.lsp.enable({
   "pyright",
   "rust_analyzer",
   "sourcekit",
+  "stylua",
   "svelte",
   "taplo",
   "tinymist",
