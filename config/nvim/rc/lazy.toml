@@ -137,6 +137,11 @@ on_source = "nvim-lspconfig"
 hooks_file = "$VIMRC_RC_DIR/hooks/nvim-navic.lua"
 
 [[plugins]]
+repo = "https://github.com/lewis6991/hover.nvim"
+on_source = "nvim-lspconfig"
+hooks_file = "$VIMRC_RC_DIR/hooks/hover.lua"
+
+[[plugins]]
 repo = "https://github.com/machakann/vim-sandwich"
 hooks_file = "$VIMRC_RC_DIR/hooks/sandwich.lua"
 depends = "vim-textobj-user"
