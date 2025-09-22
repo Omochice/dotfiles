@@ -279,6 +279,7 @@ vimx.g["context_filetype#ignore_patterns"] = {
 [[plugins]]
 repo = "https://github.com/nvim-treesitter/nvim-treesitter"
 if = "has('nvim')"
+rev = "main"
 on_event = ["BufRead", "BufNewFile"]
 hook_post_update = "TSUpdate"
 hooks_file = "$VIMRC_RC_DIR/hooks/treesitter.lua"
@@ -289,8 +290,9 @@ on_source = "nvim-treesitter"
 
 [[plugins]]
 repo = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
+rev = "main"
 on_source = "nvim-treesitter"
-# Use upper case for treesitter, it prevent to confuse at Vim's one.
+hooks_file = "$VIMRC_RC_DIR/hooks/nvim-treesitter-textobjects.lua"
 
 [[plugins]]
 repo = "https://github.com/nvim-treesitter/nvim-treesitter-context"
@@ -321,10 +323,8 @@ if = false
 repo = "https://github.com/Omochice/nvim-tree-docs"
 on_source = "nvim-treesitter"
 lua_source = """
-require("nvim-treesitter.configs").setup({
-  tree_docs = {
-    enable = false,
-  },
+require("nvim-tree-docs").setup({
+  disable_default_mappings = false,
 })
 """
 
