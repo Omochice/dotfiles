@@ -56,3 +56,11 @@ on_source = "skkeleton"
 hook_add = """
 let g:lightline_skk_announce = v:false
 """
+
+[[plugins]]
+repo = "https://github.com/lambdalisue/nvim-aibo"
+on_cmd = "Aibo"
+source_lua = """
+require("aibo").setup()
+"""
+depends = ["denops.vim"]
