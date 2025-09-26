@@ -71,8 +71,8 @@ repo = "https://github.com/easymotion/vim-easymotion"
 hook_add = """
 nnoremap <Space>j <Plug>(easymotion-j)
 nnoremap <Space>k <Plug>(easymotion-k)
-let g:EasyMotion_smartcase = v:true
-let g:EasyMotion_use_smartsign_jp = v:true
+const g:EasyMotion_smartcase = v:true
+const g:EasyMotion_use_smartsign_jp = v:true
 """
 on_map = { n = "<Plug>" }
 
@@ -121,7 +121,7 @@ if = "!has('nvim')"
 [[plugins]]
 repo = "https://github.com/mattn/vim-lsp-settings"
 hook_add = """
-let g:lsp_settings_enable_suggestions = v:false
+const g:lsp_settings_enable_suggestions = v:false
 """
 on_source = "vim-lsp"
 
@@ -166,8 +166,8 @@ repo = "https://github.com/liuchengxu/vista.vim"
 depends = ["vim-lsp"]
 on_cmd = "Vista"
 hook_add = """
-let g:vista_default_executive = has('nvim') ? 'nvim_lsp' : 'vim_lsp'
-let g:vista_echo_cursor = v:false
+const g:vista_default_executive = has('nvim') ? 'nvim_lsp' : 'vim_lsp'
+const g:vista_echo_cursor = v:false
 """
 
 [[plugins]]
@@ -188,7 +188,7 @@ nnoremap <C-e> <Cmd>WinResizerStartResize<CR>
 nnoremap <expr><C-w><C-w> <SID>number_of_non_float() > 2
     \\ ? '<cmd>WinResizerStartFocus<CR>'
     \\ : '<C-w><C-w>'
-let g:winresizer_vert_resize = 3
+const g:winresizer_vert_resize = 3
 """
 on_cmd = ["WinResizerStartResize", "WinResizerStartFocus"]
 
@@ -206,8 +206,8 @@ on_source = "vim-quickrun"
 [[plugins]]
 repo = "https://github.com/ntpeters/vim-better-whitespace"
 hook_add = """
-let g:better_whitespace_enabled = !has('nvim')
-let g:strip_whitespace_on_save = v:false
+const g:better_whitespace_enabled = !has('nvim')
+const g:strip_whitespace_on_save = v:false
 """
 on_cmd = ["StripWhitespace", "StripWhitespaceOnChangedLines"]
 
@@ -220,8 +220,8 @@ repo = "https://github.com/Omochice/previm"
 rev = "update-assets"
 on_cmd = "PrevimOpen"
 hook_add = """
-let g:previm_wsl_mode = has('wsl')
-let g:previm_show_header = v:false
+const g:previm_wsl_mode = has('wsl')
+const g:previm_show_header = v:false
 """
 depends = ["open-browser.vim"]
 
@@ -235,7 +235,7 @@ on_map = { n = "<Plug>(openbrowser" }
 [[plugins]]
 repo = "https://github.com/pechorin/any-jump.vim"
 hook_add = """
-let g:any_jump_disable_default_keybindings = v:true
+const g:any_jump_disable_default_keybindings = v:true
 """
 on_cmd = ["AnyJump", "AnyJumpVisual", "AnyJumpBack", "AnyJumpLastResults"]
 
@@ -263,7 +263,7 @@ command! -range ReadingVimrcCopy call <SID>reading_copy(<line1>, <line2>)
 [[plugins]]
 repo = "https://github.com/lambdalisue/vim-suda"
 hook_add = """
-let g:suda_smart_edit = v:true
+const g:suda_smart_edit = v:true
 """
 on_event = "BufRead"
 
@@ -358,10 +358,10 @@ nnoremap <silent><buffer><Space>d <Cmd>VimhelpLint!<CR>
 repo = "https://github.com/mattn/vim-sonictemplate"
 on_cmd = ["Template"]
 hook_add = """
-let g:sonictemplate_vim_template_dir = $'{g:config_dir}/templates'
-let g:sonictemplate_key = ''
-let g:sonictemplate_intelligent_key = ''
-let g:sonictemplate_postfix_key = ''
+const g:sonictemplate_vim_template_dir = $'{g:config_dir}/templates'
+const g:sonictemplate_key = ''
+const g:sonictemplate_intelligent_key = ''
+const g:sonictemplate_postfix_key = ''
 """
 
 [[plugins]]
@@ -418,7 +418,7 @@ on_cmd = ["Vitalize"]
 [[plugins]]
 repo = "https://github.com/thinca/vim-partedit"
 hook_add = """
-let g:partedit#opener = 'vsplit'
+const g:partedit#opener = 'vsplit'
 """
 on_func = ["partedit#start"]
 
@@ -448,8 +448,8 @@ on_source = "fern.vim"
 [[plugins]]
 repo = "https://github.com/lambdalisue/fern-renderer-nerdfont.vim"
 hook_add = """
-let g:fern#renderer = "nerdfont"
-let g:fern#renderer#nerdfont#indent_markers = 1
+const g:fern#renderer = "nerdfont"
+const g:fern#renderer#nerdfont#indent_markers = 1
 """
 on_source = "fern.vim"
 
@@ -484,10 +484,10 @@ inoremap <expr><C-x><C-j> "\\<C-g>u" .. <SID>expand_snippets()
 repo = "https://github.com/Omochice/yank-remote-url.vim"
 # repo = "~/Toy/yank-remote-url.vim"
 hook_add = """
-let g:yank_remote_url#enable_cache = v:true
-let g:yank_remote_url#use_direct_hash = v:true
-let g:yank_remote_url#remote_name = 'origin'
-let g:yank_remote_url#_debug = v:false
+const g:yank_remote_url#enable_cache = v:true
+const g:yank_remote_url#use_direct_hash = v:true
+const g:yank_remote_url#remote_name = 'origin'
+const g:yank_remote_url#_debug = v:false
 nnoremap <Space>gy <Cmd>YankRemoteURL<CR>
 """
 on_cmd = "YankRemoteURL"

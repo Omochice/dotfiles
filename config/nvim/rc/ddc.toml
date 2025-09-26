@@ -106,7 +106,7 @@ if = "!has('nvim')"
 [[plugins]]
 repo = "https://github.com/matsui54/denops-signature_help"
 hook_add = """
-let g:signature_help_config = #{
+const g:signature_help_config = #{
       \\ contentsStyle: "full",
       \\ viewStyle: "floating"
       \\ }
