@@ -279,7 +279,6 @@ vimx.g["context_filetype#ignore_patterns"] = {
 [[plugins]]
 repo = "https://github.com/nvim-treesitter/nvim-treesitter"
 if = "has('nvim')"
-rev = "main"
 on_event = ["BufRead", "BufNewFile"]
 hook_post_update = "TSUpdate"
 hooks_file = "$VIMRC_RC_DIR/hooks/treesitter.lua"
