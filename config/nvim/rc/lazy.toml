@@ -283,9 +283,6 @@ on_event = ["BufRead", "BufNewFile"]
 hook_post_update = "TSUpdate"
 hooks_file = "$VIMRC_RC_DIR/hooks/treesitter.lua"
 
-[[plugins]]
-repo = "https://github.com/nvim-treesitter/playground"
-on_source = "nvim-treesitter"
 
 [[plugins]]
 repo = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
