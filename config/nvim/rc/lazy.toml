@@ -188,7 +188,7 @@ nnoremap <C-e> <Cmd>WinResizerStartResize<CR>
 nnoremap <expr><C-w><C-w> <SID>number_of_non_float() > 2
     \\ ? '<cmd>WinResizerStartFocus<CR>'
     \\ : '<C-w><C-w>'
-const g:winresizer_vert_resize = 3
+let g:winresizer_vert_resize = 3
 """
 on_cmd = ["WinResizerStartResize", "WinResizerStartFocus"]
 
