@@ -11,7 +11,7 @@ require("nvim-treesitter.configs").setup({
     end)
     return not ok
   end,
-  ignore_install = { "phpdoc", "help" },
+  ignore_install = { "phpdoc", "help", "ipkg" },
   playground = {
     enable = true,
   },
