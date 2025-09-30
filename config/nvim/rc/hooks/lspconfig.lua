@@ -24,6 +24,7 @@ vim.diagnostic.config({
 -- lua_source {{{
 vim.lsp.enable({
   -- keep-sorted start
+  "astro",
   "biome",
   "clangd",
   "denols",
