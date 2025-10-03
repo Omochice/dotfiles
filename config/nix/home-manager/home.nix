@@ -65,6 +65,7 @@
       direnv
       docker
       docker-buildx
+      duckdb
       editorconfig-checker
       fastfetch
       fd
