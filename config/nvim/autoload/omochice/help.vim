@@ -4,7 +4,7 @@ function! s:padding(text, width) abort
   if strwidth(l:text) >= a:width
     return l:text
   endif
-  return ' '->repeat(a:width - strwidth(l:text) - 1) .. l:text
+  return ' '->repeat(a:width - strwidth(l:text)) .. l:text
 endfunction
 
 " Align the text after the first word to the right
