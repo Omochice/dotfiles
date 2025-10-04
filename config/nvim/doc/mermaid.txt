@@ -1,0 +1,126 @@
+*mermaid.txt*                       Generate diagrams from markdown-like text.
+
+==============================================================================
+CONTENTS                                                    *mermaid-contents*
+
+FlowChart		|mermaid-flowchart|
+	Nodes		|mermaid-flowchart-nodes|
+	Edges		|mermaid-flowchart-edges|
+Sequence Diagram	|mermaid-sequence|
+Class Diagram		|mermaid-class|
+State Diagram		|mermaid-state|
+Git Graph Diagram	|mermaid-git-graph|
+Architecture Diagram	|mermaid-architecture|
+
+==============================================================================
+FlowChart                                                  *mermaid-flowchart*
+
+See details: https://mermaid.js.org/syntax/flowchart.html
+
+>mermaid
+	graph LR
+	    A[Square Rect] -- Link text --> B((Circle))
+	    A --> C(Round Rect)
+	    B --> D{Rhombus}
+	    C --> D
+<
+
+------------------------------------------------------------------------------
+Nodes                                                *mermaid-flowchart-nodes*
+                                         *mermaid-flowchart-well-known-shapes*
+
+│Shape            │Syntax      │
+├─────────────────┼────────────┤
+│Round edge       │ `()`         │
+│Stadium shape    │ `([])`       │
+│Subroutine shape │ `[[]]`       │
+│Cylindrical shape│ `[()]`       │
+│Circle           │ `(())`       │
+│Asymmetric shape │ `>]`         │
+│Rhombus          │ `{}`         │
+│Hexagon          │ `{{}}`       │
+│Parallelogram    │ `[//]`, `[\\]` │
+│Trapezoid        │ `[/\]`, `[\/]` │
+│Double circle    │ `((()))`     │
+
+You can specify more shape with like: `A@{ shape: rect }`
+
+See https://mermaid.js.org/syntax/flowchart.html#complete-list-of-new-shapes
+
+------------------------------------------------------------------------------
+Edges                                                *mermaid-flowchart-edges*
+
+│Edge          │Syntax                                               │
+├──────────────┼─────────────────────────────────────────────────────┤
+│Allow         │ `A-->B`                                               │
+│Open link     │ `A---B`                                               │
+│With Text     │ `A-- This is the text! ---B`, `A---|This is the text|B` │
+│Dotted link   │ `A-.->B`                                              │
+│Thick link    │ `A==>B`                                               │
+│Invisible link│ `A~~~B`                                               │
+
+You can chain the nodes like:
+
+>mermaid
+	flowchart LR
+	    A -- text --> B -- text2 --> C
+<
+
+Fork:
+
+>mermaid
+	flowchart TB
+	    A & B--> C & D
+<
+
+If you want to orderling, use `---->` like edge.
+
+>mermaid
+	flowchart TD
+	    A[Start] --> B{Is it?}
+	    B -->|Yes| C[OK]
+	    C --> D[Rethink]
+	    D --> B
+	    B ---->|No| E[End]
+<
+
+------------------------------------------------------------------------------
+Grouping                                           *mermaid-flowchart-groupng*
+
+You can group the flowchart by using `subgraph` keyword.
+
+>mermaid
+	flowchart TB
+	    c1-->a2
+	    subgraph one
+	    a1-->a2
+	    end
+	    subgraph two
+	    b1-->b2
+	    end
+	    subgraph three
+	    c1-->c2
+	    end
+	    one --> two
+	    three --> two
+	    two --> c2
+<
+
+==============================================================================
+Sequence Diagram                                            *mermaid-sequence*
+
+==============================================================================
+Class Diagram                                                  *mermaid-class*
+
+==============================================================================
+State Diagram                                                  *mermaid-state*
+
+==============================================================================
+Git Graph Diagram                                          *mermaid-git-graph*
+
+==============================================================================
+Architecture Diagram                                    *mermaid-architecture*
+
+
+==============================================================================
+vim:tw=78:ts=8:noet:ft=help:norl:
