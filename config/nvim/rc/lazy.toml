@@ -206,8 +206,8 @@ on_source = "vim-quickrun"
 [[plugins]]
 repo = "https://github.com/ntpeters/vim-better-whitespace"
 hook_add = """
-const g:better_whitespace_enabled = !has('nvim')
-const g:strip_whitespace_on_save = v:false
+let g:better_whitespace_enabled = !has('nvim')
+let g:strip_whitespace_on_save = v:false
 """
 on_cmd = ["StripWhitespace", "StripWhitespaceOnChangedLines"]
 
