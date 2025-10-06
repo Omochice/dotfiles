@@ -75,6 +75,7 @@
       ghq
       git-cliff
       git-lfs
+      github-copilot-cli
       glab
       glow
       gnumake
