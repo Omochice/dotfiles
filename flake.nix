@@ -176,7 +176,6 @@
             ];
           default =
             ''
-              nix run .#sync
               nix run .#update
               nix run .#mcp-setting
             ''
