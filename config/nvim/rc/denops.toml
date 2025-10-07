@@ -60,7 +60,5 @@ let g:lightline_skk_announce = v:false
 [[plugins]]
 repo = "https://github.com/lambdalisue/nvim-aibo"
 on_cmd = "Aibo"
-source_lua = """
-require("aibo").setup()
-"""
+hooks_file = "$VIMRC_RC_DIR/hooks/aibo.lua"
 depends = ["denops.vim"]
