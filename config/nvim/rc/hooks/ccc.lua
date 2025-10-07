@@ -11,7 +11,16 @@ ccc.setup({
       palette = {},
       default_color = "#db7093",
       enable = true,
-      disable = { "floaterm", "help", "ddu-ff" },
+      disable = function(bufnr)
+        if vim.bo[bufnr].buftype == "terminal" then
+          return true
+        end
+        local filetype = vim.bo[bufnr].filetype
+        if vim.iter({ "floaterm", "help", "ddu-ff" }):find(filetype) ~= nil then
+          return true
+        end
+        return false
+      end,
     }),
   },
 })
