@@ -149,10 +149,7 @@ if has('nvim')
   " neovim terminal settings
   " tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
   tnoremap <ESC> <C-\><C-n>
-  " feed insert mode when move terminal window
-  autocmd vimrc.core.autocmd TermOpen * startinsert
   autocmd vimrc.core.autocmd TermOpen * setlocal nonumber
-  autocmd vimrc.core.autocmd WinEnter * if &buftype ==# 'terminal' | startinsert | endif
   " auto close
   autocmd vimrc.core.autocmd TermClose * call feedkeys('\<CR>')
   " helper commands
