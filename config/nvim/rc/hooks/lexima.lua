@@ -13,6 +13,7 @@ local vimx = require("artemis")
 local ft = {
   -- keep-sorted start
   fish = "fish",
+  help = "help",
   html = { "html", "htmldjango", "vue" },
   java = "java",
   js = { "javascript", "typescript" },
@@ -180,6 +181,8 @@ local rules = {
     input = [['<CR><Tab>]], -- NOTE: need ' to escape into quoted
     input_after = [[<CR>']],
   },
+  -- help
+  { filetype = ft.help, char = char.cr, at = [[^\s*>\w*\%#]], input = char.cr, input_after = [[<CR><]] },
 }
 
 for _, rule in ipairs(rules) do
