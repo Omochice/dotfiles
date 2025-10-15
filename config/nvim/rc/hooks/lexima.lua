@@ -11,21 +11,23 @@ vimx.g.lexima_ctrlh_as_backspace = true
 local vimx = require("artemis")
 
 local ft = {
+  -- keep-sorted start
+  fish = "fish",
+  html = { "html", "htmldjango", "vue" },
+  java = "java",
   js = { "javascript", "typescript" },
+  lua = "lua",
   md = { "markdown", "text", "gitcommit" },
+  nix = "nix",
+  pod = "pod",
+  py = "python",
+  react = { "typescriptreact" },
   ruby = "ruby",
   sh = { "sh", "zsh", "bash" },
-  fish = "fish",
-  py = "python",
-  html = { "html", "htmldjango", "vue" },
   tex = { "latex", "tex" },
   uml = { "plantuml" },
-  react = { "typescriptreact" },
-  lua = "lua",
-  java = "java",
-  pod = "pod",
   vim = "vim",
-  nix = "nix",
+  -- keep-sorted end
 }
 
 local char = {
