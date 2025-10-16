@@ -29,19 +29,19 @@ See details: https://mermaid.js.org/syntax/flowchart.html
 Nodes                                                *mermaid-flowchart-nodes*
                                          *mermaid-flowchart-well-known-shapes*
 
-│Shape            │Syntax      │
-├─────────────────┼────────────┤
-│Round edge       │ `()`         │
-│Stadium shape    │ `([])`       │
-│Subroutine shape │ `[[]]`       │
-│Cylindrical shape│ `[()]`       │
-│Circle           │ `(())`       │
-│Asymmetric shape │ `>]`         │
-│Rhombus          │ `{}`         │
-│Hexagon          │ `{{}}`       │
-│Parallelogram    │ `[//]`, `[\\]` │
-│Trapezoid        │ `[/\]`, `[\/]` │
-│Double circle    │ `((()))`     │
+| Shape             | Syntax      |
+| ----------------- | ------------|
+| Round edge        | `()`         │
+| Stadium shape     | `([])`       │
+| Subroutine shape  | `[[]]`       │
+| Cylindrical shape | `[()]`       │
+| Circle            | `(())`       │
+| Asymmetric shape  | `>]`         │
+| Rhombus           | `{}`         │
+| Hexagon           | `{{}}`       │
+| Parallelogram     | `[//]`, `[\\]` │
+| Trapezoid         | `[/\]`, `[\/]` │
+| Double circle     | `((()))`     │
 
 You can specify more shape with like: `A@{ shape: rect }`
 
@@ -50,14 +50,14 @@ See https://mermaid.js.org/syntax/flowchart.html#complete-list-of-new-shapes
 ------------------------------------------------------------------------------
 Edges                                                *mermaid-flowchart-edges*
 
-│Edge          │Syntax                                               │
-├──────────────┼─────────────────────────────────────────────────────┤
-│Allow         │ `A-->B`                                               │
-│Open link     │ `A---B`                                               │
-│With Text     │ `A-- This is the text! ---B`, `A---|This is the text|B` │
-│Dotted link   │ `A-.->B`                                              │
-│Thick link    │ `A==>B`                                               │
-│Invisible link│ `A~~~B`                                               │
+| Edge           | Syntax                                              |
+| -------------- | --------------------------------------------------- |
+| Allow          | `A-->B`                                               |
+| Open link      | `A---B`                                               |
+| With Text      | `A-- This is the text! ---B`, `A---|This is the text|B` |
+| Dotted link    | `A-.->B`                                              |
+| Thick link     | `A==>B`                                               |
+| Invisible link | `A~~~B`                                               |
 
 You can chain the nodes like:
 
