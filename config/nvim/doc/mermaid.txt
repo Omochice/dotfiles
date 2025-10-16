@@ -29,19 +29,19 @@ See details: https://mermaid.js.org/syntax/flowchart.html
 Nodes                                                *mermaid-flowchart-nodes*
                                          *mermaid-flowchart-well-known-shapes*
 
-| Shape             | Syntax      |
-| ----------------- | ------------|
-| Round edge        | `()`         │
-| Stadium shape     | `([])`       │
-| Subroutine shape  | `[[]]`       │
-| Cylindrical shape | `[()]`       │
-| Circle            | `(())`       │
-| Asymmetric shape  | `>]`         │
-| Rhombus           | `{}`         │
-| Hexagon           | `{{}}`       │
-| Parallelogram     | `[//]`, `[\\]` │
-| Trapezoid         | `[/\]`, `[\/]` │
-| Double circle     | `((()))`     │
+| Shape             | Syntax     |
+| ----------------- | ---------- |
+| Round edge        | `()`         |
+| Stadium shape     | `([])`       |
+| Subroutine shape  | `[[]]`       |
+| Cylindrical shape | `[()]`       |
+| Circle            | `(())`       |
+| Asymmetric shape  | `>]`         |
+| Rhombus           | `{}`         |
+| Hexagon           | `{{}}`       |
+| Parallelogram     | `[//]`, `[\\]` |
+| Trapezoid         | `[/\]`, `[\/]` |
+| Double circle     | `((()))`     |
 
 You can specify more shape with like: `A@{ shape: rect }`
 
