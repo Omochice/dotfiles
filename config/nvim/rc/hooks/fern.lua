@@ -4,10 +4,7 @@ vimx.g["fern#disable_default_mappings"] = true
 vimx.g["fern#default_hidden"] = true
 vimx.keymap.set("ca", "fe", "Fern .")
 vimx.keymap.set("ca", "fep", "Fern . -reveal=%")
-vimx.create_command("TFern", function()
-  vimx.cmd("tabnew")
-  vimx.cmd("Fern .")
-end, { bang = true })
+vimx.create_command("TFern", "Fern. -reveal=% -opener=tabedit", { bang = true })
 vimx.keymap.set("ca", "tf", "TFern")
 vimx.keymap.set("n", ";;", "<Cmd>Fern . -reveal=% -drawer -toggle<CR>")
 -- }}}
@@ -37,9 +34,11 @@ vimx.keymap.set("n", "<CR>", function()
   )
 end, { buffer = true, expr = true })
 vimx.keymap.set("n", "<Plug>(fern-action-open-here-in-oil)", function()
-  vim.cmd([[ let g:_tmp_fern_oil = fern#helper#new().sync.get_cursor_node()._path->fnamemodify(':h') ]])
-  require("oil").open_float(vim.g["_tmp_fern_oil"])
-  vim.cmd([[ unlet g:_tmp_fern_oil ]])
+  local ok, node = pcall(vim.api.nvim_eval, "fern#helper#new().sync.get_cursor_node()")
+  if not ok then
+    return
+  end
+  require("oil").open_float(vim.fn.fnamemodify(node._path, ":h"))
 end)
 vimx.keymap.set("n", "I", "<Plug>(fern-action-open-here-in-oil)", { buffer = true })
 -- }}}
