@@ -7,6 +7,7 @@ end)
 
 -- lua_source {{{
 require("oil").setup({
+  default_file_explorer = false,
   use_default_keymaps = false,
   view_options = {
     show_hidden = true,
