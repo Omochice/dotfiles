@@ -202,7 +202,11 @@
               git add host.json --force
               trap 'git reset -- host.json && rm host.json' EXIT
               echo "Updating home-manager"
-              nix run github:nix-community/home-manager -- switch --flake .#omochice |& nom
+              if test -n "$\{CI:-\}"; then
+                nix run github:nix-community/home-manager -- switch --flake .#omochice -b backup
+              else
+                nix run github:nix-community/home-manager -- switch --flake .#omochice -b backup |& nom
+              fi
               ${
                 ''
                   echo "Updating nix-darwin"

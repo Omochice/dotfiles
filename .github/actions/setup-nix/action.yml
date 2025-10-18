@@ -5,6 +5,9 @@ inputs:
   github-token:
     description: GitHub token for action
     required: true
+  cachix:
+    description: Install cachix
+    default: "true"
 
 runs:
   using: composite
@@ -17,5 +20,6 @@ runs:
           experimental-features = nix-command flakes pipe-operators
           access-tokens = github.com=${{ inputs.github-token }}
     - uses: cachix/cachix-action@0fc020193b5a1fa3ac4575aa3a7d3aa6a35435ad # v16
+      if: ${{ inputs.cachix == 'true' }}
       with:
         name: omochice
