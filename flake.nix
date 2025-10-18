@@ -206,14 +206,14 @@
                 nix run github:nix-community/home-manager -- switch --flake .#omochice -b backup
               else
                 nix run github:nix-community/home-manager -- switch --flake .#omochice -b backup |& nom
+                ${
+                  ''
+                    echo "Updating nix-darwin"
+                    sudo nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice |& nom
+                  ''
+                  |> pkgs.lib.strings.optionalString pkgs.stdenv.isDarwin
+                }
               fi
-              ${
-                ''
-                  echo "Updating nix-darwin"
-                  sudo nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice |& nom
-                ''
-                |> pkgs.lib.strings.optionalString pkgs.stdenv.isDarwin
-              }
               echo "Update complete!"
             ''
             |> runAs "update-script" [

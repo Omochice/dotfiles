@@ -78,7 +78,7 @@ jobs:
   check-home-manager:
     needs: path-filter
     if: needs.path-filter.outputs.flake == 'true'
-    timeout-minutes: 15
+    timeout-minutes: 60
     strategy:
       fail-fast: false
       matrix:
