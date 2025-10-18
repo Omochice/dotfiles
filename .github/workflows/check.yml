@@ -90,6 +90,7 @@ jobs:
         uses: ./.github/actions/setup-nix
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          cachix: false
       - run: nix run .#update
   status-check:
     timeout-minutes: 5
