@@ -79,7 +79,13 @@ jobs:
     needs: path-filter
     if: needs.path-filter.outputs.flake == 'true'
     timeout-minutes: 15
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu
+          - macos
+    runs-on: ${{ matrix.os }}-latest
     permissions: {}
     steps:
       - name: checkout
