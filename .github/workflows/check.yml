@@ -10,11 +10,12 @@ permissions: {}
 
 jobs:
   path-filter:
-    timeout-minutes: 30
+    timeout-minutes: 5
     outputs:
       actions: ${{steps.changes.outputs.actions}}
       deno: ${{steps.changes.outputs.deno}}
       karabiner: ${{steps.changes.outputs.karabiner}}
+      flake: ${{steps.changes.outputs.flake}}
     runs-on: ubuntu-latest
     permissions: {}
     steps:
@@ -44,6 +45,9 @@ jobs:
               - config/karabiner/mod.ts
               - .github/workflows/_check-karabiner.yml
               - .github/workflows/push.yml
+            flake:
+              - flake.nix
+              - flake.lock
   check-format:
     timeout-minutes: 5
     name: Check code format
@@ -71,13 +75,30 @@ jobs:
     uses: ./.github/workflows/_check-deno.yml
     permissions:
       contents: read
+  check-home-manager:
+    needs: path-filter
+    if: needs.path-filter.outputs.flake == 'true'
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: checkout
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - name: setup nix
+        uses: ./.github/actions/setup-nix
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: nix run .#update
   status-check:
-    timeout-minutes: 30
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     needs:
       - check-format
       - check-actions
       - check-deno
+      - check-home-manager
     permissions: {}
     if: failure()
     steps:
