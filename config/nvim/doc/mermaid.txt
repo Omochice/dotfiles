@@ -109,6 +109,171 @@ You can group the flowchart by using `subgraph` keyword.
 ==============================================================================
 Sequence Diagram                                            *mermaid-sequence*
 
+See details: https://mermaid.js.org/syntax/sequenceDiagram.html
+
+>mermaid
+	sequenceDiagram
+	    participant Alice
+	    participant Bob
+	    Alice->>Bob: Hello Bob, how are you?
+	    Bob-->>Alice: Great!
+	    Alice-)Bob: See you later!
+<
+
+------------------------------------------------------------------------------
+Participants                                   *mermaid-sequence-participants*
+
+You can define participants with `participant` or `actor` keyword.
+
+>mermaid
+	sequenceDiagram
+	    participant A as Alice
+	    actor J as Bob
+	    A->>J: Hello Bob, how are you?
+	    J->>A: Great!
+<
+
+| node        | syntax                                      |
+| ----------- | ------------------------------------------- |
+| Paticipant  | `participant`                                 |
+| Actor       | `actor`                                       |
+| Boundary    | `participant Alice@{ "type": "boundary" }`    |
+| Control     | `participant Alice@{ "type": "control" }`     |
+| Entity      | `participant Alice@{ "type": "entity" }`      |
+| Database    | `participant Alice@{ "type": "database" }`    |
+| Collections | `participant Alice@{ "type": "collections" }` |
+| Queue       | `participant Alice@{ "type": "queue" }`       |
+
+
+------------------------------------------------------------------------------
+Messages                                           *mermaid-sequence-messages*
+
+| Arrow type                  | Syntax |
+| --------------------------- | ------ |
+| Solid line                  | `->`     |
+| Dotted line                 | `-->`    |
+| Solid line with arrowhead   | `->>`    |
+| Dotted line with arrowhead  | `-->>`   |
+| Solid line with cross       | `-x`     |
+| Dotted line with cross      | `--x`    |
+| Solid line with open arrow  | `-)`     |
+| Dotted line with open arrow | `--)`    |
+
+------------------------------------------------------------------------------
+Activations                                     *mermaid-sequence-activations*
+
+You can activate/deactivate participants using `activate` and `deactivate`.
+
+>mermaid
+	sequenceDiagram
+	    Alice->>Bob: Hello Bob, how are you?
+	    activate Bob
+	    Bob-->>Alice: Great!
+	    deactivate Bob
+<
+
+Or use shorthand `+` / `-` suffix:
+
+>mermaid
+	sequenceDiagram
+	    Alice->>+Bob: Hello Bob, how are you?
+	    Bob-->>-Alice: Great!
+<
+
+------------------------------------------------------------------------------
+Grouping                                           *mermaid-sequence-grouping*
+
+You can group the actors using `box` keyword.
+
+If you omit color, the group will be filled transparent.
+
+>mermaid
+	sequenceDiagram
+	    box Purple Alice & Bob
+	        participant A
+	        participant J
+	    end
+	    box Another Group
+	        participant B
+	        participant C
+	    end
+	    A->>J: Hello Bob, how are you?
+	    J->>A: Great!
+	    A->>B: Hello Bob, how is Charley?
+	    B->>C: Hello Charley, how are you?
+<
+
+------------------------------------------------------------------------------
+Notes                                                 *mermaid-sequence-notes*
+
+Add notes with `Note [right of|left of|over] [Actor]: Text`
+
+>mermaid
+	sequenceDiagram
+	    participant Bob
+	    Note right of Bob: Text in note
+	    Note over Alice,Bob: A typical interaction
+<
+
+------------------------------------------------------------------------------
+LineBreak                                         *mermaid-sequence-linebreak*
+
+Break the line with a `<br/>` word.
+
+>mermaid
+	sequenceDiagram
+	    Alice->>Bob: Hello Bob are you?
+	    Note over Alice,Bob A typical interaction<br/>But now in two lines
+<
+
+------------------------------------------------------------------------------
+Loops                                                 *mermaid-sequence-loops*
+
+Loop the statements with a `loop` word.
+
+
+>mermaid
+	sequenceDiagram
+	    Alice->Bob: Hello Bob, how are you?
+	    loop Every minute
+	        Bob-->Alice: Great!
+	    end
+<
+
+------------------------------------------------------------------------------
+Alt/Else/Opt                                       *mermaid-sequence-alt-else*
+
+If you want to branch the process, use `alt`, `else` or `opt`.
+
+>mermaid
+	sequenceDiagram
+	    Alice->>Bob: Hello Bob, how are you?
+	    alt is sick
+	        Bob->>Alice: Not so good :(
+	    else is well
+	        Bob->>Alice: Feeling fresh like a daisy
+	    end
+	    opt Extra response
+	        Bob->>Alice: Thanks for asking
+	    end
+<
+
+------------------------------------------------------------------------------
+Parallel                                           *mermaid-sequence-parallel*
+
+`par` word possible to show actions that are happening in parallel.
+
+>mermaid
+	sequenceDiagram
+	    par Alice to Bob
+	        Alice->>Bob: Hello guys!
+	    and Alice to Carol
+	        Alice->>Carol: Hello guys!
+	    end
+	    Bob-->>Alice: Hi Alice!
+	    Carol-->>Alice: Hi Alice!
+<
+
 ==============================================================================
 Class Diagram                                                  *mermaid-class*
 
