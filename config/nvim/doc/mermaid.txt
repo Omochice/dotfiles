@@ -93,13 +93,13 @@ You can group the flowchart by using `subgraph` keyword.
 	flowchart TB
 	    c1-->a2
 	    subgraph one
-	    a1-->a2
+	        a1-->a2
 	    end
 	    subgraph two
-	    b1-->b2
+	        b1-->b2
 	    end
 	    subgraph three
-	    c1-->c2
+	        c1-->c2
 	    end
 	    one --> two
 	    three --> two
@@ -277,14 +277,300 @@ Parallel                                           *mermaid-sequence-parallel*
 ==============================================================================
 Class Diagram                                                  *mermaid-class*
 
+See details: https://mermaid.js.org/syntax/classDiagram.html
+
+>mermaid
+	classDiagram
+	    Animal <|-- Duck
+	    Animal <|-- Fish
+	    Animal <|-- Zebra
+	    Animal : +int age
+	    Animal : +String gender
+	    Animal: +isMammal()
+	    Animal: +mate()
+	    class Duck{
+	        +String beakColor
+	        +swim()
+	        +quack()
+	    }
+	    class Fish{
+	        -int sizeInFeet
+	        -canEat()
+	    }
+	    class Zebra{
+	        +bool is_wild
+	        +run()
+	    }
+<
+
+------------------------------------------------------------------------------
+Visibility                                            *mermaid-class-visibility*
+
+│Visibility│Symbol│
+├──────────┼──────┤
+│Public    │ `+`    │
+│Private   │ `-`    │
+│Protected │ `#`    │
+│Package/Internal│ `~` │
+
+------------------------------------------------------------------------------
+Relationships                                      *mermaid-class-relationships*
+
+│Relationship│Syntax │
+├────────────┼───────┤
+│Inheritance │ `<|--`  │
+│Composition │ `*--`   │
+│Aggregation │ `o--`   │
+│Association │ `-->`   │
+│Link (Solid)│ `--`    │
+│Dependency  │ `..>`   │
+│Realization │ `..|>`  │
+│Link (Dashed)│ `..`   │
+
+You can add labels to relationships:
+
+>mermaid
+	classDiagram
+	    classA --|> classB : Inheritance
+	    classC --* classD : Composition
+	    classE --o classF : Aggregation
+	    classG --> classH : Association
+<
+
+------------------------------------------------------------------------------
+Cardinality/Multiplicity                         *mermaid-class-cardinality*
+
+│Multiplicity│Syntax     │
+├────────────┼───────────┤
+│0 or 1      │ `0..1`      │
+│Exactly 1   │ `1`         │
+│0 or more   │ `*`         │
+│1 or more   │ `1..*`      │
+│n           │ `n`         │
+│n to m      │ `n..m`      │
+
+>mermaid
+	classDiagram
+	    Customer "1" --> "*" Ticket
+	    Student "1" --> "1..*" Course
+	    Galaxy --> "many" Star : Contains
+<
+
 ==============================================================================
 State Diagram                                                  *mermaid-state*
+
+See details: https://mermaid.js.org/syntax/stateDiagram.html
+
+>mermaid
+	stateDiagram-v2
+	    [*] --> Still
+	    Still --> [*]
+	    Still --> Moving
+	    Moving --> Still
+	    Moving --> Crash
+	    Crash --> [*]
+<
+
+------------------------------------------------------------------------------
+Composite States                                       *mermaid-state-composite*
+
+You can define nested states:
+
+>mermaid
+	stateDiagram-v2
+	    [*] --> First
+	    state First {
+	        [*] --> second
+	        second --> [*]
+	    }
+<
+
+------------------------------------------------------------------------------
+Choice/Fork/Join                                    *mermaid-state-choice-fork*
+
+Choice (conditional):
+
+>mermaid
+	stateDiagram-v2
+	    state if_state <<choice>>
+	    [*] --> IsPositive
+	    IsPositive --> if_state
+	    if_state --> False: if n < 0
+	    if_state --> True : if n >= 0
+<
+
+Fork/Join (parallel):
+
+>mermaid
+	stateDiagram-v2
+	    state fork_state <<fork>>
+	      [*] --> fork_state
+	      fork_state --> State2
+	      fork_state --> State3
+
+	      state join_state <<join>>
+	      State2 --> join_state
+	      State3 --> join_state
+	      join_state --> State4
+	      State4 --> [*]
+<
+
+------------------------------------------------------------------------------
+Notes                                                      *mermaid-state-notes*
+
+>mermaid
+	stateDiagram-v2
+	    State1: The state with a note
+	    note right of State1
+	        Important information! You can write
+	        notes.
+	    end note
+	    State1 --> State2
+	    note left of State2 : This is the note to the left.
+<
 
 ==============================================================================
 Git Graph Diagram                                          *mermaid-git-graph*
 
+See details: https://mermaid.js.org/syntax/gitgraph.html
+
+>mermaid
+	gitGraph
+	    commit
+	    commit
+	    branch develop
+	    checkout develop
+	    commit
+	    commit
+	    checkout main
+	    merge develop
+	    commit
+<
+
+------------------------------------------------------------------------------
+Commit with Tags                                      *mermaid-git-graph-commit*
+
+You can add tags and messages to commits:
+
+>mermaid
+	gitGraph
+	    commit id: "Initial commit"
+	    commit id: "Add feature" tag: "v1.0"
+	    branch develop
+	    commit id: "Work in progress"
+	    checkout main
+	    commit id: "Hotfix" type: HIGHLIGHT
+<
+
+Commit types: `NORMAL`, `REVERSE`, `HIGHLIGHT`
+
+------------------------------------------------------------------------------
+Branches                                             *mermaid-git-graph-branches*
+
+>mermaid
+	gitGraph
+	    commit
+	    branch hotfix
+	    checkout hotfix
+	    commit
+	    branch develop
+	    checkout develop
+	    commit id:"ash" tag:"abc"
+	    branch featureA
+	    checkout featureA
+	    commit type:HIGHLIGHT
+	    checkout main
+	    merge hotfix
+	    checkout develop
+	    merge featureA
+<
+
+------------------------------------------------------------------------------
+Cherry Pick                                       *mermaid-git-graph-cherry-pick*
+
+>mermaid
+	gitGraph
+	    commit id: "A"
+	    branch develop
+	    commit id: "B"
+	    checkout main
+	    commit id: "C"
+	    checkout develop
+	    cherry-pick id: "C"
+	    commit id: "D"
+<
+
 ==============================================================================
 Architecture Diagram                                    *mermaid-architecture*
+
+See details: https://mermaid.js.org/syntax/architecture.html
+
+>mermaid
+	architecture-beta
+	    service api(server)[API Server]
+	    service db(database)[Database]
+	    service cache(disk)[Cache]
+
+	    api:R --> L:db
+	    api:R --> L:cache
+<
+
+------------------------------------------------------------------------------
+Services                                         *mermaid-architecture-services*
+
+Service types and icons:
+
+│Type      │Icon                              │
+├──────────┼──────────────────────────────────┤
+│server    │Server icon                       │
+│database  │Database icon                     │
+│disk      │Disk/storage icon                 │
+│cloud     │Cloud icon                        │
+│internet  │Internet/globe icon               │
+
+>mermaid
+	architecture-beta
+	    service web(cloud)[Web Service]
+	    service api(server)[API]
+	    service storage(database)[Storage]
+
+	    web:R --> L:api
+	    api:B --> T:storage
+<
+
+------------------------------------------------------------------------------
+Groups                                             *mermaid-architecture-groups*
+
+You can group services together:
+
+>mermaid
+	architecture-beta
+	    group frontend[Frontend]
+	    service web(server)[Web Server] in frontend
+	    service cdn(cloud)[CDN] in frontend
+
+	    group backend[Backend]
+	    service api(server)[API] in backend
+	    service db(database)[Database] in backend
+
+	    web:R --> L:api
+	    api:R --> L:db
+<
+
+------------------------------------------------------------------------------
+Edges                                               *mermaid-architecture-edges*
+
+Edge directions: `L` (Left), `R` (Right), `T` (Top), `B` (Bottom)
+
+>mermaid
+	architecture-beta
+	    service frontend(server)[Frontend]
+	    service backend(server)[Backend]
+	    service db(database)[Database]
+
+	    frontend:R --> L:backend
+	    backend:B --> T:db
+<
 
 
 ==============================================================================
