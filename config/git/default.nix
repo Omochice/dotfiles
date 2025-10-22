@@ -28,13 +28,13 @@ in
     includes = [
       { path = ./config; }
     ];
-    aliases = {
-      dd = "!${git-dd}/bin/git-dd";
-    };
-    ignores = ./ignore |> builtins.readFile |> lib.splitString "\n";
-    extraConfig = {
+    settings = {
+      aliases = {
+        dd = "!${git-dd}/bin/git-dd";
+      };
       commit.template = ./gitmessage |> toString;
     };
+    ignores = ./ignore |> builtins.readFile |> lib.splitString "\n";
     lfs.enable = true;
   };
 }
