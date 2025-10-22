@@ -189,13 +189,9 @@
             ];
           sync =
             ''
-              nix flake update
               nvfetcher
             ''
-            |> runAs "sync" [
-              pkgs.nix
-              pkgs.nvfetcher
-            ];
+            |> runAs "sync" [ pkgs.nvfetcher ];
           update =
             ''
               jq -n --arg home "$HOME" --arg user "$USER" '{home: $home, user: $user}' > host.json

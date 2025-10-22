@@ -8,7 +8,75 @@ on:
 permissions: {}
 
 jobs:
-  update:
+  list-inputs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      matrix: ${{ steps.list-inputs.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-nix
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          matrix=$(nix eval --impure --json --expr "builtins.attrNames (builtins.getFlake (toString ./.)).inputs")
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+        id: list-inputs
+
+  update-flake-inputs:
+    needs: list-inputs
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        input-name: ${{ fromJSON(needs.list-inputs.outputs.matrix) }}
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+      - name: Get token
+        id: app-token
+        uses: actions/create-github-app-token@67018539274d69449ef7c02e8e71183d1719ab42 # v2.1.4
+        with:
+          private-key: ${{ secrets.RENOVATE_PRIVATE_KEY }}
+          app-id: ${{ secrets.RENOVATE_APP_ID }}
+          owner: ${{ github.repository_owner }}
+          repositories: |
+            dotfiles
+          permission-contents: write
+          permission-issues: write
+          permission-pull-requests: write
+      - uses: ./.github/actions/setup-nix
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update ${{ matrix.input-name }}
+        id: update
+        run: |
+          nix flake update "$TARGET"
+          if git diff --quiet flake.lock _sources; then
+            echo "updated=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "updated=true" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          TARGET: ${{ matrix.input-name }}
+      - name: Create Pull Request
+        if: steps.update.outputs.updated == 'true'
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          commit-message: "chore: update ${{ matrix.input-name }}"
+          title: "chore: update ${{ matrix.input-name }}"
+          body: "Automated update of flake.lock"
+          add-paths: |
+            flake.lock
+            _sources/*
+          branch: update-flake-lock-${{ matrix.input-name }}
+
+  update-nvfetcher:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -30,11 +98,11 @@ jobs:
       - uses: ./.github/actions/setup-nix
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Update flake.lock
+      - name: Update nvfetcher
         id: update
         run: |
           nix run .#sync
-          if git diff --quiet flake.lock _sources; then
+          if git diff --quiet _sources; then
             echo "updated=false" >> "$GITHUB_OUTPUT"
           else
             echo "updated=true" >> "$GITHUB_OUTPUT"
@@ -44,10 +112,8 @@ jobs:
         uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
         with:
           token: ${{ steps.app-token.outputs.token }}
-          commit-message: "chore: update flake.lock"
-          title: "chore: update flake.lock"
-          body: "Automated update of flake.lock"
+          commit-message: "chore: update nvfetcher files"
+          title: "chore: update nvfetcher files"
           add-paths: |
-            flake.lock
             _sources/*
-          branch: update-flake-lock
+          branch: update-nvfetcher
