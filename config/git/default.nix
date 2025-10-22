@@ -29,7 +29,7 @@ in
       { path = ./config; }
     ];
     settings = {
-      aliases = {
+      alias = {
         dd = "!${git-dd}/bin/git-dd";
       };
       commit.template = ./gitmessage |> toString;
