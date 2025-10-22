@@ -72,7 +72,7 @@ jobs:
           add-paths: |
             flake.lock
             _sources/*
-          branch: update-flake-lock-${input-name}
+          branch: update-flake-lock-${{ matrix.input-name }}
 
   update-nvfetcher:
     runs-on: ubuntu-latest
