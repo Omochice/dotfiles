@@ -55,12 +55,14 @@ jobs:
       - name: Update ${{ matrix.input-name }}
         id: update
         run: |
-          nix flake update ${{ matrix.input-name }}
+          nix flake update "$TARGET"
           if git diff --quiet flake.lock _sources; then
             echo "updated=false" >> "$GITHUB_OUTPUT"
           else
             echo "updated=true" >> "$GITHUB_OUTPUT"
           fi
+        env:
+          TARGET: ${{ matrix.input-name }}
       - name: Create Pull Request
         if: steps.update.outputs.updated == 'true'
         uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
