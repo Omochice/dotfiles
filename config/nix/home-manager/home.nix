@@ -82,6 +82,7 @@
       gnupg1
       goose-cli
       gotools
+      graphviz
       hadolint
       hyperfine
       imagemagick
