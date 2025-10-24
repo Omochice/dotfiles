@@ -4,13 +4,27 @@
 CONTENTS                                                    *mermaid-contents*
 
 FlowChart		|mermaid-flowchart|
-	Nodes		|mermaid-flowchart-nodes|
-	Edges		|mermaid-flowchart-edges|
+	Node		|mermaid-flowchart-node|
+	Edge		|mermaid-flowchart-edge|
+	Grouping	|mermaid-flowchart-grouping|
 Sequence Diagram	|mermaid-sequence|
+	Participant	|mermaid-sequence-participant|
+	Message		|mermaid-sequence-message|
+	Activation	|mermaid-sequence-activation|
+	Grouping	|mermaid-sequence-grouping|
+	Note		|mermaid-sequence-note|
+	Linebreak	|mermaid-sequence-linebreak|
+	Loops		|mermaid-sequence-loop|
+	Alt/Edge/Opt	|mermaid-sequence-alt-else|
+	Parallel	|mermaid-sequence-parallel|
 Class Diagram		|mermaid-class|
 State Diagram		|mermaid-state|
 Git Graph Diagram	|mermaid-git-graph|
 Architecture Diagram	|mermaid-architecture|
+	Syntax		|mermaid-architecture-syntax|
+	Group		|mermaid-architecture-group|
+	Service		|mermaid-architecture-service|
+	Edge		|mermaid-architecture-edge|
 
 ==============================================================================
 FlowChart                                                  *mermaid-flowchart*
@@ -26,8 +40,8 @@ See details: https://mermaid.js.org/syntax/flowchart.html
 <
 
 ------------------------------------------------------------------------------
-Nodes                                                *mermaid-flowchart-nodes*
-                                         *mermaid-flowchart-well-known-shapes*
+Node                                                  *mermaid-flowchart-node*
+                                          *mermaid-flowchart-well-known-shape*
 
 | Shape             | Syntax     |
 | ----------------- | ---------- |
@@ -48,7 +62,7 @@ You can specify more shape with like: `A@{ shape: rect }`
 See https://mermaid.js.org/syntax/flowchart.html#complete-list-of-new-shapes
 
 ------------------------------------------------------------------------------
-Edges                                                *mermaid-flowchart-edges*
+Edge                                                  *mermaid-flowchart-edge*
 
 | Edge           | Syntax                                              |
 | -------------- | --------------------------------------------------- |
@@ -121,7 +135,7 @@ See details: https://mermaid.js.org/syntax/sequenceDiagram.html
 <
 
 ------------------------------------------------------------------------------
-Participants                                   *mermaid-sequence-participants*
+Participant                                     *mermaid-sequence-participant*
 
 You can define participants with `participant` or `actor` keyword.
 
@@ -146,7 +160,7 @@ You can define participants with `participant` or `actor` keyword.
 
 
 ------------------------------------------------------------------------------
-Messages                                           *mermaid-sequence-messages*
+Message                                             *mermaid-sequence-message*
 
 | Arrow type                  | Syntax |
 | --------------------------- | ------ |
@@ -160,7 +174,7 @@ Messages                                           *mermaid-sequence-messages*
 | Dotted line with open arrow | `--)`    |
 
 ------------------------------------------------------------------------------
-Activations                                     *mermaid-sequence-activations*
+Activation                                       *mermaid-sequence-activation*
 
 You can activate/deactivate participants using `activate` and `deactivate`.
 
@@ -204,7 +218,7 @@ If you omit color, the group will be filled transparent.
 <
 
 ------------------------------------------------------------------------------
-Notes                                                 *mermaid-sequence-notes*
+Note                                                   *mermaid-sequence-note*
 
 Add notes with `Note [right of|left of|over] [Actor]: Text`
 
@@ -227,7 +241,7 @@ Break the line with a `<br/>` word.
 <
 
 ------------------------------------------------------------------------------
-Loops                                                 *mermaid-sequence-loops*
+Loop                                                   *mermaid-sequence-loop*
 
 Loop the statements with a `loop` word.
 
@@ -308,7 +322,7 @@ The building blocks of an architecture are `groups`, `services`, `edges`, and
 `junctions`.
 
 ------------------------------------------------------------------------------
-Group                                    *mermaid-architecture-syntax-group*
+Group                                             *mermaid-architecture-group*
 
 The syntax for declaring a group is:
 
@@ -326,7 +340,7 @@ This means that creates a group identified as `public_api`, uses the icon
 `cloud`, and has the title `Public API`.
 
 ------------------------------------------------------------------------------
-Service                                *mermaid-architecture-syntax-service*
+Service                                         *mermaid-architecture-service*
 
 The syntax for declaring service is:
 
@@ -355,7 +369,7 @@ If you want to use some service logos, you need to register them.
 - https://icon-sets.iconify.design/
 
 ------------------------------------------------------------------------------
-Edge                                        *mermaid-architecture-syntax-edge*
+Edge                                               *mermaid-architecture-edge*
 
 The syntax for declaring an edge is:
 
@@ -379,6 +393,9 @@ Use `{group}`, for pulling out a edge from a group to another group or serlice.
 
 	server{group}:B --> T:subnet{group}
 <
+
+------------------------------------------------------------------------------
+Junction                                       *mermaid-architecture-junction*
 
 `junction` are a special type of node.
 
