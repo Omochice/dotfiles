@@ -310,3 +310,7 @@ depends = ["brew"]
 [[environments]]
 from = "true"
 to = "DEVBOX_NO_PROMPT"
+
+[[environments]]
+from = "true"
+to = "devbox_no_prompt"
