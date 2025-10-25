@@ -8,7 +8,7 @@ Claude Code will perform spec-driven development.
 
 ## What is spec-driven development?
 
-spec-driven development is a development method consisting of five phases:
+spec-driven development is a development method consisting of six phases:
 
 ### 1. Preparation phase
 
@@ -17,6 +17,9 @@ spec-driven development is a development method consisting of five phases:
     - create a directory with that name, considering the appropriate spec name from the task summary in `./.cckiro/specs`
     - For example, if you want to create an article component, create a directory named `./.cckiro/specs/create-article-component`
 - When creating the following files, create it in this directory
+- Execute `git commit` the created spec file with `chore(spec):` prefix
+    - Commit additional changes when the spec is changed as requested by the user
+    - Please commit with the same prefix when adding or updating files in the following phases
 
 ### 2. Requirements phase
 
@@ -34,12 +37,17 @@ spec-driven development is a development method consisting of five phases:
 
 ### 4. Implementation Planning Phase
 
-- Claude Code creates an "implementation plan file" to implement the design described in the "Design File".
+- Claude Code creates an "implementation plan file" to implement the design described in the "Design File"
 - Claude Code presents the user with an "implementation plan file" and asks if there are any issues
 - User checks the "Implementation Plan File" and feeds back to Claude Code if there is a problem
-- Repeated modifications to the "requirement file" until the user checks the "implementation plan file" and answers that there are no issues.
+- Repeated modifications to the "requirement file" until the user checks the "implementation plan file" and answers that there are no issues
 
 ### 5. Implementation phase
 
 - Claude Code starts implementation based on the "Implementation Plan File"
-- When implementing, please follow the contents listed in the "requirements file" and "design file" while implementing the system.
+- When implementing, please follow the contents listed in the "requirements file" and "design file" while implementing the system
+
+### 6. Clean up phase
+
+- Confirm with the user that the work is complete and meets the requirements
+- If the user determines that there is no problem, delete the corresponding file in `./.cckiro/specs` and execute `git commit` with the prefix `chore(spec):`
