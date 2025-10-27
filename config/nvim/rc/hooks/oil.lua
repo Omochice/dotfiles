@@ -15,8 +15,13 @@ require("oil").setup({
   keymaps = {
     ["q"] = "actions.close",
     ["<CR>"] = "actions.select",
-    ["l"] = "actions.select",
-    ["h"] = "actions.parent",
+    ["<S-CR>"] = "actions.parent",
+    ["<BS>"] = "actions.parent",
+  },
+  float = {
+    border = "single",
+    max_width = 0.8,
+    max_height = 0.8,
   },
 })
 require("oil-nerdfont").setup()
