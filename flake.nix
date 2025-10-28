@@ -198,18 +198,14 @@
               git add host.json --force
               trap 'git reset -- host.json && rm host.json' EXIT
               echo "Updating home-manager"
-              if test -n "$\{CI:-\}"; then
-                nix run github:nix-community/home-manager -- switch --flake .#omochice -b backup
-              else
-                nix run github:nix-community/home-manager -- switch --flake .#omochice -b backup |& nom
-                ${
-                  ''
-                    echo "Updating nix-darwin"
-                    sudo nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice |& nom
-                  ''
-                  |> pkgs.lib.strings.optionalString pkgs.stdenv.isDarwin
-                }
-              fi
+              nix run github:nix-community/home-manager -- switch --flake .#omochice -b backup |& nom
+              ${
+                ''
+                  echo "Updating nix-darwin"
+                  sudo nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice |& nom
+                ''
+                |> pkgs.lib.strings.optionalString pkgs.stdenv.isDarwin
+              }
               echo "Update complete!"
             ''
             |> runAs "update-script" [
@@ -217,6 +213,18 @@
               pkgs.git
               pkgs.nix
               pkgs.nix-output-monitor
+            ];
+          install-check =
+            ''
+              jq -n --arg home "$HOME" --arg user "$USER" '{home: $home, user: $user}' > host.json
+              git add host.json --force
+              trap 'git reset -- host.json && rm host.json' EXIT
+              nix run github:nix-community/home-manager -- switch --flake .#omochice -b backup
+            ''
+            |> runAs "update-script" [
+              pkgs.jq
+              pkgs.git
+              pkgs.nix
             ];
         };
       }

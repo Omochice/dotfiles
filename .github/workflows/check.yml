@@ -97,7 +97,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           cachix: false
-      - run: nix run .#update
+      - run: nix run .#install-check
   status-check:
     timeout-minutes: 5
     runs-on: ubuntu-latest
