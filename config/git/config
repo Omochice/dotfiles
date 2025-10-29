@@ -23,7 +23,6 @@
       while [ $# -gt 0 ]; do s=\"$s $1\"; shift; done;\
       gh issue $s; }; f"
     root = !pwd
-    pull = pull --prune
 
 [commit]
     verbose = true
@@ -41,7 +40,6 @@
 
 [fetch]
   prune = true
-  pruneTags = true
 
 [ghq]
   root = "~/.cache/dpp/repos"
