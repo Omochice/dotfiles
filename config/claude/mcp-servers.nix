@@ -18,6 +18,15 @@
       args = [ ];
       env = { };
     };
+    glab-mcp = {
+      type = "stdio";
+      command = "${pkgs.glab}/bin/glab";
+      args = [
+        "mcp"
+        "serve"
+      ];
+      env = { };
+    };
     playwright = {
       type = "stdio";
       command = "${pkgs.playwright-mcp}/bin/mcp-server-playwright";
