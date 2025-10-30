@@ -12,6 +12,12 @@
       type = "http";
       url = "https://mcp.deepwiki.com/mcp";
     };
+    git-mcp = {
+      type = "stdio";
+      command = "${pkgs.mcp-server-git}/bin/mcp-server-git";
+      args = [ ];
+      env = { };
+    };
     playwright = {
       type = "stdio";
       command = "${pkgs.playwright-mcp}/bin/mcp-server-playwright";
