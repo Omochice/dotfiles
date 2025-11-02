@@ -95,6 +95,7 @@ let
   ];
 in
 {
+  programs.gh.gitCredentialHelper.enable = true;
   xdg.configFile = {
     "gh/config.yml".source = ./config.yml;
   };
