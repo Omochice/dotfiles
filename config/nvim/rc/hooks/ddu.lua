@@ -43,13 +43,12 @@ vimx.keymap.set("n", prefix .. "<C-l>", function()
   vimx.fn.ddu.start({
     ui = "ff",
     sources = { {
-      name = "rg",
+      name = "line",
       options = { marcher = {} },
     } },
     uiParams = {
       ff = { ignoreEmpty = false },
     },
-    volatile = true,
   })
 end)
 
