@@ -297,6 +297,73 @@ State Diagram                                                  *mermaid-state*
 Git Graph Diagram                                          *mermaid-git-graph*
 
 ==============================================================================
+Mindmap                                                      *mermaid-mindmap*
+
+See details: https://mermaid.js.org/syntax/mindmap.html
+
+>mermaid
+	mindmap
+	  root((mindmap))
+	    Origins
+	      Long history
+	      ::icon(fa fa-book)
+	      Popularisation
+	        British popular psychology author Tony Buzan
+	    Research
+	      On effectiveness<br/>and features
+	      On Automatic creation
+	        Uses
+	            Creative techniques
+	            Strategic planning
+	            Argument mapping
+	    Tools
+	      Pen and paper
+	      Mermaid
+<
+
+------------------------------------------------------------------------------
+Syntax                                                *mermaid-mindmap-syntax*
+
+The syntax for creating Mindmaps is relies on indentation for setting the
+levels in the hierarchy.
+
+>mermaid
+	mindmap
+	    Root
+	        A
+	            B
+	            C
+<
+
+The node can be form like `id[label]`.
+
+markdown works on its.
+
+>mermaid
+	mindmap
+	    id1["`**Root** with
+	a second line
+	Unicode works too: 🤓`"]
+	      id2["`*very long text* that wraps to a new line`"]
+	      id3[Regular labels still works]
+<
+
+------------------------------------------------------------------------------
+Node                                                    *mermaid-mindmap-node*
+
+Node of mindmap can be specified some shapes.
+
+| node           | syntax        |
+| -------------- | ------------- |
+| Square         | `id[label]`     |
+| Rounded square | `id(label)`     |
+| Circle         | `id((label))`   |
+| Bang           | `id))label((`   |
+| Cloud          | `id)label(`     |
+| Hexagon        | `id{{label}}`   |
+| Default        | `id`            |
+
+==============================================================================
 Architecture Diagram                                    *mermaid-architecture*
 
 See details: https://mermaid.js.org/syntax/architecture.html
@@ -399,7 +466,7 @@ Junction                                       *mermaid-architecture-junction*
 
 `junction` are a special type of node.
 
-This make a connection like 
+This make a connection like
 >
 	  c
 	a + b
