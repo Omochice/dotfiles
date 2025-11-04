@@ -99,7 +99,7 @@ If you want to orderling, use `---->` like edge.
 <
 
 ------------------------------------------------------------------------------
-Grouping                                           *mermaid-flowchart-groupng*
+Grouping                                          *mermaid-flowchart-grouping*
 
 You can group the flowchart by using `subgraph` keyword.
 
@@ -149,7 +149,7 @@ You can define participants with `participant` or `actor` keyword.
 
 | node        | syntax                                      |
 | ----------- | ------------------------------------------- |
-| Paticipant  | `participant`                                 |
+| Participant | `participant`                                 |
 | Actor       | `actor`                                       |
 | Boundary    | `participant Alice@{ "type": "boundary" }`    |
 | Control     | `participant Alice@{ "type": "control" }`     |
