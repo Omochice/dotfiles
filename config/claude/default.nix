@@ -10,6 +10,10 @@
           command = "${pkgs.ccusage}/bin/ccusage statusline";
           padding = 0;
         };
+        sandbox = {
+          enabled = true;
+          autoAllowBashIfSandboxed = true;
+        };
       }
       |> builtins.toJSON;
     "claude/CLAUDE.md".source = ./CLAUDE.md;
