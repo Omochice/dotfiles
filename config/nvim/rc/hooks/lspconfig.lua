@@ -1,4 +1,5 @@
 -- lua_add {{{
+vim.lsp.inlay_hint.enable(true)
 require("vimrc/lsp-helper").on_attach(nil, function()
   local opts = { buffer = true }
   vim.keymap.set("n", "<Space>f", vim.lsp.buf.format, opts)
