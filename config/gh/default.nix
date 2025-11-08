@@ -95,11 +95,15 @@ let
   ];
 in
 {
+  # keep-sorted start block=yes
+  programs.gh.enable = true;
   programs.gh.gitCredentialHelper.enable = true;
-  xdg.configFile = {
-    "gh/config.yml".source = ./config.yml;
-  };
+  programs.gh.settings.editor = "nvim";
+  programs.gh.settings.git_protocol = "https";
+  programs.gh.settings.prompt = "enabled";
+  programs.gh.settings.version = "1";
   xdg.dataFile."gh/extensions" = {
     source = pkgs.linkFarm "gh-extensions" (shell-extensions ++ native-extensions);
   };
+  # keep-sorted end
 }
