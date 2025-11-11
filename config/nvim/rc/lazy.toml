@@ -2,6 +2,16 @@
 repo = "https://github.com/kana/vim-textobj-user"
 
 [[plugins]]
+repo = "https://github.com/kana/vim-textobj-entire"
+depends = "vim-textobj-user"
+lua_add = """
+local vimx = require("artemis")
+vimx.keymap.set({ "x", "o" }, "ae", "<Plug>(textobj-entire-a)")
+vimx.keymap.set({ "x", "o" }, "ie", "<Plug>(textobj-entire-i)")
+"""
+on_map = { x = "<Plug>", o = "<Plug>" }
+
+[[plugins]]
 repo = "https://github.com/kana/vim-textobj-line"
 depends = "vim-textobj-user"
 lua_add = """
