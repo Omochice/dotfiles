@@ -517,6 +517,10 @@ on_event = ["BufRead", "BufNewFile"]
 [[plugins]]
 repo = "https://github.com/thinca/vim-qfreplace"
 on_cmd = "Qfreplace"
+[plugins.ftplugin]
+qf = """
+nnoremap <buffer><nowait> i <Cmd>Qfreplace<CR>
+"""
 
 [[plugins]]
 repo = "https://github.com/rcarriga/nvim-notify"
