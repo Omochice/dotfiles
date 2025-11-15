@@ -294,3 +294,6 @@ nnoremap <Plug>(vimrc-gt)T gT<Plug>(vimrc-gt)
 " https://github.com/monaqa/dotfiles/blob/fc484c3f84394ffb8ee66d32a73ec01152d9183e/.config/nvim/lua/rc/keymap.lua#L45
 " fold without this context
 nnoremap z= zMzv
+
+nnoremap [b <Cmd>bnext<CR>
+nnoremap ]b <Cmd>bprevious<CR>
