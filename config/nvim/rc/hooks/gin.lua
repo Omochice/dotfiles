@@ -41,6 +41,7 @@ vimx.keymap.set("n", "<Space>", function()
 end, { buffer = true, nowait = true, expr = true })
 vimx.keymap.set("n", "cc", "<Cmd>Gin commit<CR>", { buffer = true })
 vimx.keymap.set("n", "P", "<Cmd>Gin push<CR>", { buffer = true })
+vimx.keymap.set("n", "<CR>", "<Plug>(gin-action-patch)", { buffer = true })
 
 --- Get winid by filetype
 --- @param filetype string the name of filetype
