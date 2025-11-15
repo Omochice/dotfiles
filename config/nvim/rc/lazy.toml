@@ -140,6 +140,7 @@ repo = "https://github.com/neovim/nvim-lspconfig"
 on_lua = "lspconfig"
 hooks_file = "$VIMRC_RC_DIR/hooks/lspconfig.lua"
 if = "has('nvim')"
+on_event = ["FileType"]
 
 [[plugins]]
 repo = "https://github.com/SmiteshP/nvim-navic"
