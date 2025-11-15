@@ -30,8 +30,6 @@ vimx.bo.buflisted = false
 
 -- lua_gin-status {{{
 local vimx = require("artemis")
-vimx.keymap.set("n", "h", "<Plug>(gin-action-stage)", { buffer = true })
-vimx.keymap.set("n", "l", "<Plug>(gin-action-unstage)", { buffer = true })
 vimx.keymap.set("n", "<Space>", function()
   if string.sub(vimx.fn.getline("."), 2, 2) ~= " " then
     return "<Plug>(gin-action-stage)"
