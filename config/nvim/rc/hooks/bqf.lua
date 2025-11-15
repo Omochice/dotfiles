@@ -1,0 +1,37 @@
+--- lua_source {{{
+require("bqf").setup({
+  preview = {
+    auto_preview = true,
+  },
+  func_map = {
+    open = "<CR>",
+    openc = "",
+    drop = "",
+    split = "",
+    vsplit = "",
+    tab = "",
+    tabb = "",
+    tabc = "",
+    tabdrop = "",
+    ptogglemode = "p",
+    ptoggleitem = "",
+    ptoggleauto = "",
+    pscrollup = "",
+    pscrolldown = "",
+    pscrollorig = "",
+    prevfile = "",
+    nextfile = "",
+    prevhist = "",
+    nexthist = "",
+    lastleave = "",
+    stoggleup = "<S-Tab>",
+    stoggledown = "<Tab>",
+    stogglevm = "",
+    stogglebuf = "",
+    sclear = "",
+    filter = "",
+    filterr = "",
+    fzffilter = "",
+  },
+})
+--- }}}
