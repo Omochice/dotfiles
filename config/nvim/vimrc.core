@@ -85,12 +85,6 @@ endif
 inoremap <C-f> <C-g>U<Right>
 inoremap <C-b> <C-g>U<Left>
 
-" move UP/DOWN at fold context as same as displayed
-nnoremap j gj
-nnoremap k gk
-xnoremap j gj
-xnoremap k gk
-
 nnoremap Q <Cmd>copen<CR>
 
 " easy force write/quit
@@ -122,10 +116,14 @@ noremap! <Down> <nop>
 noremap! <Up> <nop>
 noremap! <Right> <nop>
 
-nnoremap J gj
+nnoremap <expr> j v:count ==# 0 ? 'gj' : 'j'
+xnoremap <expr> j v:count ==# 0 ? 'gj' : 'j'
+nnoremap <expr> k v:count ==# 0 ? 'gk' : 'k'
+xnoremap <expr> k v:count ==# 0 ? 'gk' : 'k'
 nnoremap gj J
+xnoremap gj J
+nnoremap J gj
 xnoremap J gj
-xnoremap K gk
 
 " from other resource, vim.jp etc..
 nnoremap <silent> <ESC><ESC> <Cmd>nohlsearch<CR>
