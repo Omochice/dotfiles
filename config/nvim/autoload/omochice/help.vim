@@ -30,7 +30,7 @@ function! s:right_align(text, width) abort
 endfunction
 
 " Right align the selected lines with |textwidth| (default: 78)
-function! omochice#help#right_aligh(line1, line2) abort
+function! omochice#help#right_align(line1, line2) abort
   const l:bufnr = bufnr('%')
   const l:textwidth = &textwidth > 0 ? &textwidth : 78
   const l:start = a:line1 < a:line2 ? a:line1 : a:line2
