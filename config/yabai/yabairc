@@ -48,7 +48,6 @@ yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^System Information$" manage=off
 yabai -m rule --add app="^Finder" manage=off
 # yabai -m rule --add app="^UTM" manage=off
-yabai -m rule --add title="^システム環境設定$" manage=off # why I cannot use "system Preferences"???
-yabai -m rule --add title="Bluetooth" manage=off # why I cannot use "system Preferences"???
+yabai -m rule --add app="^システム設定$" manage=off
 
 echo "yabai configuration loaded.."
