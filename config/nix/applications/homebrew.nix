@@ -26,7 +26,7 @@
       # keep-sorted end
     ];
     casks = [
-      # keep-sorted start
+      # keep-sorted start block=yes
       "alt-tab"
       "android-studio"
       "crystalfetch"
@@ -49,6 +49,10 @@
       "windows-app"
       "xcodes"
       "zoom"
+      {
+        name = "lambdalisue/arto/arto";
+        args.no_quarantine = true;
+      }
       # keep-sorted end
     ];
   };

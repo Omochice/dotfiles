@@ -43,8 +43,10 @@
       yabai -m rule --add app="^System Information$" manage=off
       yabai -m rule --add app="^Finder" manage=off
       # yabai -m rule --add app="^UTM" manage=off
-      yabai -m rule --add title="^システム環境設定$" manage=off # why I cannot use "system Preferences"???
-      yabai -m rule --add title="Bluetooth" manage=off # why I cannot use "system Preferences"???
+      yabai -m rule --add app="^システム設定$" manage=off
+      # Arto open `tao window` for background process, it should not be tiled.
+      # if specify `app="^Arto$"` too, Arto and tao window will be floating.
+      yabai -m rule --add title="^tao window$" manage=off
     '';
   };
 }
