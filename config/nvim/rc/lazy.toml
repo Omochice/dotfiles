@@ -670,6 +670,7 @@ require("bqf").setup({
   func_map = {
     open = "<CR>",
     ptoggleauto = "p",
+    tab = "",
     tabt = "",
     tabb = "",
     tabc = "",
