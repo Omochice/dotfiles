@@ -53,3 +53,7 @@ fetch.github = "Omochice/gh-fzgist"
 [gh-userfetch]
 src.git = "https://github.com/sheepla/gh-userfetch"
 fetch.github = "sheepla/gh-userfetch"
+
+[claude-skill-ast-grep]
+src.git = "https://github.com/ast-grep/claude-skill"
+fetch.github = "ast-grep/claude-skill"

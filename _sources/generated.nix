@@ -13,6 +13,18 @@
     };
     date = "2025-06-29";
   };
+  claude-skill-ast-grep = {
+    pname = "claude-skill-ast-grep";
+    version = "727b2052cfbd1cf0efecbe259ad37e29fedcd94f";
+    src = fetchFromGitHub {
+      owner = "ast-grep";
+      repo = "claude-skill";
+      rev = "727b2052cfbd1cf0efecbe259ad37e29fedcd94f";
+      fetchSubmodules = false;
+      sha256 = "sha256-T0Rl5F4EUjcH8Zt+r665zkztFiJSSsAopgccgD43X3k=";
+    };
+    date = "2025-11-16";
+  };
   fish-autols = {
     pname = "fish-autols";
     version = "6d704c0e33522335539bf6844ce9f7009b2ee6a2";
