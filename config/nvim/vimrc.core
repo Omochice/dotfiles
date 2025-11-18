@@ -124,6 +124,7 @@ nnoremap gj J
 xnoremap gj J
 nnoremap J gj
 xnoremap J gj
+xnoremap K gk
 
 " from other resource, vim.jp etc..
 nnoremap <silent> <ESC><ESC> <Cmd>nohlsearch<CR>
