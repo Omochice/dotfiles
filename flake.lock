@@ -84,11 +84,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1763403887,
-        "narHash": "sha256-re5JOoHIhwbuW94qsP0SkStgEGbF59TGjOVre2GYir4=",
+        "lastModified": 1763772973,
+        "narHash": "sha256-B3x7jEvbXBX1kuNly2/6Tl5LluBTPUgPUoxx6P8Vino=",
         "owner": "natsukium",
         "repo": "mcp-servers-nix",
-        "rev": "9651d9ae85524ec2784717273facaf131ba3e4c7",
+        "rev": "54fea116f2f66796321327135fa9e7b5f2398729",
         "type": "github"
       },
       "original": {
