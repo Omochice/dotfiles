@@ -22,7 +22,7 @@
     },
     "claude-skill-ast-grep": {
         "cargoLocks": null,
-        "date": "2025-11-16",
+        "date": "2025-11-23",
         "extract": null,
         "name": "claude-skill-ast-grep",
         "passthru": null,
@@ -34,12 +34,12 @@
             "name": null,
             "owner": "ast-grep",
             "repo": "claude-skill",
-            "rev": "727b2052cfbd1cf0efecbe259ad37e29fedcd94f",
-            "sha256": "sha256-T0Rl5F4EUjcH8Zt+r665zkztFiJSSsAopgccgD43X3k=",
+            "rev": "d46b7d0cd238000e35bfcd57aa95edb3ed6a573c",
+            "sha256": "sha256-LCI06qz9skVqSsXc88djK6YixABB+GnvoZcSce1m5Aw=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "727b2052cfbd1cf0efecbe259ad37e29fedcd94f"
+        "version": "d46b7d0cd238000e35bfcd57aa95edb3ed6a573c"
     },
     "fish-autols": {
         "cargoLocks": null,
