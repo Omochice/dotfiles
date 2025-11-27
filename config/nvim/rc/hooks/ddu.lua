@@ -167,6 +167,26 @@ vimx.create_command("Dhelp", DduHelp, { nargs = 0 })
 
 vimx.keymap.set("ca", "dhelp", "Dhelp")
 
+vimx.create_command("LiveGrep", function()
+  vimx.fn.ddu.start({
+    sources = {
+      {
+        name = "rg",
+        options = {
+          matchers = {},
+          volatile = true,
+        },
+      },
+    },
+    uiParams = {
+      ff = {
+        ignoreEmpty = false,
+        autoResize = false,
+      },
+    },
+  })
+end, { nargs = 0 })
+
 -- DONT MAP DEFAULTLY {{{
 vim.keymap.del("n", "grr")
 vim.keymap.del("n", "gra")
