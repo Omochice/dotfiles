@@ -51,15 +51,15 @@
   };
   fish-catputtin = {
     pname = "fish-catputtin";
-    version = "6a85af2ff722ad0f9fbc8424ea0a5c454661dfed";
+    version = "af622a6e247806f6260c00c6d261aa22680e5201";
     src = fetchFromGitHub {
       owner = "catppuccin";
       repo = "fish";
-      rev = "6a85af2ff722ad0f9fbc8424ea0a5c454661dfed";
+      rev = "af622a6e247806f6260c00c6d261aa22680e5201";
       fetchSubmodules = false;
-      sha256 = "sha256-Oc0emnIUI4LV7QJLs4B2/FQtCFewRFVp7EDv8GawFsA=";
+      sha256 = "sha256-KD/sWXSXYVlV+n7ft4vKFYpIMBB3PSn6a6jz+ZIMZvQ=";
     };
-    date = "2025-03-01";
+    date = "2025-11-28";
   };
   fish-direnv = {
     pname = "fish-direnv";
