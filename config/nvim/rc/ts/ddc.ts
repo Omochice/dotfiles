@@ -13,6 +13,13 @@ const filetypePatches = [
   [["markdown"], {
     sources: ["file", "around", "buffer", "rg"],
   }],
+  [["go"], {
+    sourceOptions: {
+      _: {
+        keywordPattern: "[:keyword:.]",
+      },
+    },
+  }],
   [["typst"], {
     sourceOptions: {
       _: {
