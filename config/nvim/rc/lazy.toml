@@ -449,16 +449,17 @@ hooks_file = "$VIMRC_RC_DIR/hooks/fern.lua"
 on_cmd = "Fern"
 
 [[plugins]]
+repo = "https://github.com/lambdalisue/vim-fern-renderer-nerdfont"
+depends = ["vim-nerdfont"]
+on_source = "fern.vim"
+
+[[plugins]]
 repo = "https://github.com/lambdalisue/fern-hijack.vim"
 on_source = "fern.vim"
 
 [[plugins]]
-repo = "https://github.com/lambdalisue/fern-renderer-nerdfont.vim"
-hook_add = """
-const g:fern#renderer = "nerdfont"
-const g:fern#renderer#nerdfont#indent_markers = 1
-"""
-on_source = "fern.vim"
+repo = "https://github.com/lambdalisue/vim-glyph-palette"
+on_func = "glyph_palette#apply"
 
 [[plugins]]
 repo = "https://github.com/mattn/emmet-vim"

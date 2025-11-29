@@ -2,6 +2,7 @@
 local vimx = require("artemis")
 vimx.g["fern#disable_default_mappings"] = true
 vimx.g["fern#default_hidden"] = true
+vimx.g["fern#renderer"] = "nerdfont"
 vimx.keymap.set("ca", "fe", "Fern .")
 vimx.keymap.set("ca", "fep", "Fern . -reveal=%")
 vimx.create_command("TFern", "Fern. -reveal=% -opener=tabedit", { bang = true })
@@ -41,4 +42,5 @@ vimx.keymap.set("n", "<Plug>(fern-action-open-here-in-oil)", function()
   require("oil").open_float(vim.fn.fnamemodify(node._path, ":h"))
 end)
 vimx.keymap.set("n", "I", "<Plug>(fern-action-open-here-in-oil)", { buffer = true })
+vimx.fn.glyph_palette.apply()
 -- }}}
