@@ -39,6 +39,7 @@
       "mtgto/macskk/macskk"
       "obs"
       "scroll-reverser"
+      "shottr"
       "slack"
       "tailscale"
       "utm"
