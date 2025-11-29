@@ -34,13 +34,5 @@ vimx.keymap.set("n", "<CR>", function()
     "<Plug>(fern-action-collapse)"
   )
 end, { buffer = true, expr = true })
-vimx.keymap.set("n", "<Plug>(fern-action-open-here-in-oil)", function()
-  local ok, node = pcall(vim.api.nvim_eval, "fern#helper#new().sync.get_cursor_node()")
-  if not ok then
-    return
-  end
-  require("oil").open_float(vim.fn.fnamemodify(node._path, ":h"))
-end)
-vimx.keymap.set("n", "I", "<Plug>(fern-action-open-here-in-oil)", { buffer = true })
 vimx.fn.glyph_palette.apply()
 -- }}}

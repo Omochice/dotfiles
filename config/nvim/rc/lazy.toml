@@ -607,16 +607,6 @@ repo = "https://github.com/Shougo/cmdline.vim"
 on_func = "cmdline"
 
 [[plugins]]
-repo = "https://github.com/stevearc/oil.nvim"
-on_lua = ["oil"]
-hooks_file = "$VIMRC_RC_DIR/hooks/oil.lua"
-
-[[plugins]]
-repo = "https://github.com/Omochice/oil-nerdfont"
-on_lua = "oil-nerdfont"
-depends = ["oil.nvim", "vim-nerdfont"]
-
-[[plugins]]
 repo = "https://github.com/folke/zen-mode.nvim"
 on_lua = "zen-mode"
 on_cmd = "ZenMode"
@@ -665,3 +655,10 @@ on_map = { nox = "<Plug>" }
 repo = "https://github.com/kevinhwang91/nvim-bqf"
 hooks_file = "$VIMRC_RC_DIR/hooks/bqf.lua"
 on_ft = "qf"
+
+[[plugins]]
+repo = "https://github.com/A7Lavinraj/fyler.nvim"
+on_lua = "fyler"
+on_cmd = "Fyler"
+hooks_file = "$VIMRC_RC_DIR/hooks/fyler.lua"
+depends = ["vim-nerdfont", "vim-glyph-palette"]
