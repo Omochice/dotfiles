@@ -143,6 +143,10 @@ if = "has('nvim')"
 on_event = ["FileType"]
 
 [[plugins]]
+repo = "https://github.com/b0o/SchemaStore.nvim"
+on_lua = "schemastore"
+
+[[plugins]]
 repo = "https://github.com/SmiteshP/nvim-navic"
 on_source = "nvim-lspconfig"
 hooks_file = "$VIMRC_RC_DIR/hooks/nvim-navic.lua"

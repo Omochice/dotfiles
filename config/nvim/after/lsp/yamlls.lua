@@ -3,6 +3,7 @@ local M = {
   settings = {
     yaml = {
       keyOrdering = false,
+      schemas = require("schemastore").yaml.schemas(),
     },
   },
 }
