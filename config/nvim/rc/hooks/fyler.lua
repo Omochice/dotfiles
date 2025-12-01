@@ -16,6 +16,14 @@ require("fyler").setup({
         ["<C-t>"] = "SelectTab",
         ["#"] = "CollapseAll",
         ["<BS>"] = "CollapseNode",
+
+        -- [[disable defaults]]
+        q = false,
+        ["|"] = false,
+        ["-"] = false,
+        ["^"] = false,
+        ["="] = false,
+        ["."] = false,
       },
     },
   },
