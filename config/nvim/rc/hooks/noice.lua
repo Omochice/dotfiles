@@ -10,9 +10,9 @@ require("noice").setup({
   },
   messages = {
     enabled = true,
-    view = "mini",
-    view_error = "mini",
-    view_warn = "mini",
+    view = "notify",
+    view_error = "notify",
+    view_warn = "notify",
     view_history = "messages",
     view_search = "virtualtext",
   },
