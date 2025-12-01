@@ -92,6 +92,10 @@ let
       name = "gh-triage";
       path = "${pkgs.gh-triage}/bin";
     }
+    {
+      name = "gh-dep";
+      path = "${pkgs.gh-dep}/bin";
+    }
   ];
 in
 {
