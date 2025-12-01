@@ -15,7 +15,17 @@ require("fyler").setup({
         ["<CR>"] = "Select",
         ["<C-t>"] = "SelectTab",
         ["#"] = "CollapseAll",
-        ["<BS>"] = "CollapseNode",
+        zc = "CollapseNode",
+        zM = "CollapseAll",
+        za = function(finder)
+          -- Toggle node
+          local entry = finder:cursor_node_entry()
+          if entry:is_directory() then
+            finder:exec_action("n_select")
+          else
+            finder:exec_action("n_collapse_node")
+          end
+        end,
 
         -- [[disable defaults]]
         q = false,
