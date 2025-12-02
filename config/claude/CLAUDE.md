@@ -35,7 +35,7 @@ The original version is [rfc2119](https://www.ietf.org/rfc/rfc2119.txt).
 
 ## Language Requirements
 
-- All documentation, comments, and commit messages MUST be written in English
+- All documentation, comments, and commit messages MUST be written in English unless specified by the user or spec
 
 ## Commit message Requirements
 
