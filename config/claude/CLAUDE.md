@@ -30,6 +30,8 @@ The original version is [rfc2119](https://www.ietf.org/rfc/rfc2119.txt).
 - Comments SHOULD explain WHY NOT an alternative approach was chosen, rather than WHAT the code does
 - Test code SHOULD clearly describe WHAT is being tested
 - Commit messages MUST include WHY the change was made
+- All public APIs MUST have language-specific documentation
+    - e.g. jsdoc for typescript
 
 ## Language Requirements
 
