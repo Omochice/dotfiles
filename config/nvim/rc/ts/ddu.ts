@@ -135,7 +135,7 @@ export class Config extends BaseConfig {
           ? {
             endpoint: ensure(Deno.env.get("REDMINE_ENDPOINT"), is.String),
             apiKey: ensure(Deno.env.get("REDMINE_APIKEY"), is.String),
-            onlyAsignedTo: "me",
+            onlyAssignedTo: "me",
           }
           : {},
         git_diff: {},
