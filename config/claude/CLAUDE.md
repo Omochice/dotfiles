@@ -51,8 +51,9 @@ The original version is [rfc2119](https://www.ietf.org/rfc/rfc2119.txt).
     ```
 
 - Commit type MUST be one of follows:
-    - `build`: Changes that affect the build system or external dependencies
+    - `build`: Changes that affect the build system
     - `ci`: Changes to our CI configuration files and scripts
+    - `chore`: Changes tool configuration or external dependencies
     - `docs`: Documentation only changes
     - `feat`: A new feature
     - `fix`: A bug fix
@@ -60,3 +61,5 @@ The original version is [rfc2119](https://www.ietf.org/rfc/rfc2119.txt).
     - `refactor`: A code change that neither fixes a bug nor adds a feature
     - `style`: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
     - `test`: Adding missing tests or correcting existing tests
+- Commits SHOULD be decided based on how users are affected by the diff
+    - For example, MUST NOT make decisions such as using `fix` because you are asked to modify the code
