@@ -5,7 +5,6 @@ let g:loaded_getscriptPlugin   = v:true
 let g:loaded_gzip              = v:true
 let g:loaded_gtags             = v:true
 let g:loaded_gtags_cscope      = v:true
-let g:loaded_man               = v:true
 let g:loaded_matchit           = v:true
 let g:loaded_matchparen        = v:true
 let g:loaded_netrwFileHandlers = v:true

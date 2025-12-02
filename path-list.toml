@@ -314,3 +314,7 @@ to = "DEVBOX_NO_PROMPT"
 [[environments]]
 from = "true"
 to = "devbox_no_prompt"
+
+[[environments]]
+from = "nvim +Man!"
+to = "MANPAGER"
