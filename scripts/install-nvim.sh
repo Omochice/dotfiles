@@ -26,6 +26,7 @@ index 8e850f4cd3..c6e714b879 100644
  end
 EOF
 # }}}
+trap 'git reset --hard HEAD' EXIT
 
 make clean
 make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX=$install_to install
@@ -56,5 +57,3 @@ fi
 if [ -f /usr/share/nvim/archlinux.vim ]; then
   rm /usr/share/nvim/archlinux.vim
 fi
-
-git reset --hard HEAD
