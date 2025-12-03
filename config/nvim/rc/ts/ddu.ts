@@ -81,6 +81,7 @@ export class Config extends BaseConfig {
           prompt: ">",
           previewFloating: true,
           previewSplit: "vertical",
+          overwriteStatusline: false,
           startFilter: false,
           floatingBorder: border,
           previewFloatingBorder: "single",
