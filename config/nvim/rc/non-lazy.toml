@@ -38,6 +38,13 @@ augroup END
 repo = "https://github.com/itchyny/lightline.vim"
 hooks_file = "$VIMRC_RC_DIR/hooks/lightline.lua"
 depends = ["vim-nerdfont", 'vim-gitbranch']
+if = "!has('nvim')"
+
+[[plugins]]
+repo = "https://github.com/b0o/incline.nvim"
+hooks_file = "$VIMRC_RC_DIR/hooks/incline.lua"
+depends = ["vim-nerdfont", 'vim-gitbranch', "sonokai"]
+if = "has('nvim')"
 
 [[plugins]]
 repo = "https://github.com/itchyny/vim-gitbranch"
