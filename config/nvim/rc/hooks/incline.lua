@@ -41,10 +41,29 @@ local function get_diagnostic_label(props)
   return label
 end
 
+local well_known_files = {
+  [""] = function()
+    return "[NO FILES]"
+  end,
+  [".git/COMMIT_EDITMSG"] = function()
+    return vim.fn["gitbranch#name"]()
+  end,
+}
+
+--- @param bufnr integer
+local function get_fileinfo(bufnr)
+  local filename = vim.fn.bufname(bufnr)
+  local icon = filename == "" and "" or vim.fn["nerdfont#find"](filename)
+  local convert = well_known_files[filename]
+  if convert == nil then
+    return filename, icon
+  end
+  return convert(), icon
+end
+
 --- @param props Prop
 local function render(props)
-  local filename = vim.fn.bufname(props.buf)
-  local ft_icon = vim.fn["nerdfont#find"](filename)
+  local filename, ft_icon = get_fileinfo(props.buf)
   local is_readonly = vim.bo[props.buf].readonly
   local fg_filename = props.focused and palette.fg or fg_inactive
 
