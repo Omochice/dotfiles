@@ -1,3 +1,10 @@
+-- lua_add {{{
+vim.opt.laststatus = 0
+vim.opt.showtabline = 0
+vim.opt.statusline = " "
+vim.opt.fillchars:append({ stl = "─", stlnc = "─" })
+-- }}}
+
 -- lua_source {{{
 -- NOTE: This configuration is based on https://github.com/izumin5210/dotfiles/blob/15a954676994c3710926d4c9bbf1f635f3a145f4/config/.config/nvim/lua/utils/colors.lua
 local palette = vim

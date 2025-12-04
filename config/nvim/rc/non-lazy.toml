@@ -15,6 +15,7 @@ function s:disable_bgcolor() abort
   highlight Special ctermbg=NONE guibg=NONE
   highlight link TreesitterContext Pmenu
   highlight WinBar ctermbg=NONE guibg=NONE
+  highlight WinBarNC ctermbg=NONE guibg=NONE
 endfunction
 
 augroup vimrc.colorsetting
