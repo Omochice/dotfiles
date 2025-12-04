@@ -58,7 +58,7 @@ local function render(props)
       guifg = fg_filename,
     },
     {
-      filename,
+      vim.fn.pathshorten(filename),
       guifg = fg_filename,
     },
     {
