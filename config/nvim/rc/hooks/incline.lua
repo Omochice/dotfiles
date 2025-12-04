@@ -1,8 +1,13 @@
 -- lua_source {{{
 -- NOTE: This configuration is based on https://github.com/izumin5210/dotfiles/blob/15a954676994c3710926d4c9bbf1f635f3a145f4/config/.config/nvim/lua/utils/colors.lua
-local palette = vim.fn["sonokai#get_palette"](vim.g.sonokai_style, vim.empty_dict())
+local palette = vim
+  .iter(vim.fn["sonokai#get_palette"](vim.g.sonokai_style, vim.empty_dict()))
+  :fold({}, function(acc, key, value)
+    acc[key] = value[1]
+    return acc
+  end)
 -- local fg_active = palette.text
-local fg_inactive = palette.grey_dim[1]
+local fg_inactive = palette.grey_dim
 local icons = { error = "E:", warn = "W:", hint = "H:", info = "I:" }
 
 --- @class Prop
@@ -34,8 +39,7 @@ local function render(props)
   local filename = vim.fn.bufname(props.buf)
   local ft_icon = vim.fn["nerdfont#find"](filename)
   local is_readonly = vim.bo[props.buf].readonly
-  local fg_filename_active = palette.fg[1]
-  local fg_filename = props.focused and fg_filename_active or fg_inactive
+  local fg_filename = props.focused and palette.fg or fg_inactive
 
   return {
     {
@@ -52,7 +56,7 @@ local function render(props)
     },
     {
       vim.bo[props.buf].modified and " +" or "",
-      guifg = props.focused and palette.purple[1] or fg_inactive,
+      guifg = props.focused and palette.purple or fg_inactive,
     },
     { get_diagnostic_label(props) },
   }
@@ -64,7 +68,7 @@ require("incline").setup({
       winblend = 0,
     },
     placement = {
-      horizontal = "left",
+      horizontal = "right",
       vertical = "bottom",
     },
     margin = { horizontal = 0, vertical = 0 },
