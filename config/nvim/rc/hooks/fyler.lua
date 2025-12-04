@@ -44,6 +44,16 @@ require("fyler").setup({
         ["="] = false,
         ["."] = false,
       },
+      win = {
+        kinds = {
+          float = {
+            height = "80%",
+            width = "80%",
+            top = "10%",
+            left = "10%",
+          },
+        },
+      },
     },
   },
 })
