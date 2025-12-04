@@ -11,6 +11,9 @@ require("fyler").setup({
   },
   views = {
     finder = {
+      git_status = {
+        enabled = false,
+      },
       mappings = {
         ["<CR>"] = "Select",
         ["<C-t>"] = "SelectTab",
