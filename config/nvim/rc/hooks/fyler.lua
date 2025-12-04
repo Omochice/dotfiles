@@ -1,10 +1,24 @@
 -- lua_add {{{
 local vimx = require("artemis")
-vimx.keymap.set("n", ";o", function()
+vimx.keymap.set("n", "<Plug>(vimrc-fyler)", "<Nop>")
+vimx.keymap.set("n", ";", "<Plug>(vimrc-fyler)")
+vimx.keymap.set("n", "<Plug>(vimrc-fyler);", function()
   require("fyler").toggle({ kind = "float" })
 end)
 -- }}}
+
 -- lua_source {{{
+
+--- Toggle node
+local function toggle_tree(finder)
+  local entry = finder:cursor_node_entry()
+  if entry:is_directory() then
+    finder:exec_action("n_select")
+  else
+    finder:exec_action("n_collapse_node")
+  end
+end
+
 require("fyler").setup({
   integrations = {
     icon = "vim_nerdfont",
@@ -20,16 +34,8 @@ require("fyler").setup({
         ["#"] = "CollapseAll",
         zc = "CollapseNode",
         zM = "CollapseAll",
-        za = function(finder)
-          -- Toggle node
-          local entry = finder:cursor_node_entry()
-          if entry:is_directory() then
-            finder:exec_action("n_select")
-          else
-            finder:exec_action("n_collapse_node")
-          end
-        end,
-
+        za = toggle_tree,
+        ["<Tab>"] = toggle_tree,
         -- [[disable defaults]]
         q = false,
         ["|"] = false,

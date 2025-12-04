@@ -451,6 +451,7 @@ xnoremap <buffer> qe <Plug>(operator-partedit-codeblock)
 repo = "https://github.com/lambdalisue/vim-fern"
 hooks_file = "$VIMRC_RC_DIR/hooks/fern.lua"
 on_cmd = "Fern"
+if = false
 
 [[plugins]]
 repo = "https://github.com/lambdalisue/vim-fern-renderer-nerdfont"
