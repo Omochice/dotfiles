@@ -73,6 +73,7 @@ require("incline").setup({
   window = {
     options = {
       winblend = 0,
+      filetype = "incline",
     },
     placement = {
       horizontal = "right",
@@ -83,4 +84,8 @@ require("incline").setup({
   },
   render = render,
 })
+-- }}}
+
+-- lua_incline {{{
+vim.fn["glyph_palette#apply"]()
 -- }}}
