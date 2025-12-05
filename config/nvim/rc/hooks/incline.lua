@@ -61,6 +61,17 @@ local function get_fileinfo(bufnr)
   return convert(), icon
 end
 
+---@param props Prop
+local function get_file_highlight(props)
+  if not props.focused then
+    return fg_inactive
+  end
+  if vim.bo[props.buf].modified then
+    return palette.red
+  end
+  return palette.fg
+end
+
 --- @param props Prop
 local function render(props)
   local filename, ft_icon = get_fileinfo(props.buf)
@@ -78,11 +89,7 @@ local function render(props)
     },
     {
       vim.fn.pathshorten(filename),
-      guifg = fg_filename,
-    },
-    {
-      vim.bo[props.buf].modified and " +" or "",
-      guifg = props.focused and palette.purple or fg_inactive,
+      guifg = get_file_highlight(props),
     },
     { get_diagnostic_label(props) },
   }
