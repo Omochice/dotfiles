@@ -1,5 +1,4 @@
 local wezterm = require("wezterm")
-local io = require("io")
 local utils = require("utils")
 
 local fonts = {
@@ -44,7 +43,9 @@ local windows = {
 }
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-  local title = wezterm.truncate_right(utils.get_process_name(tab.active_pane.title), max_width)
+  local cwd = utils.basename(tostring(tab.active_pane.current_working_dir or ""):gsub("^file://", ""))
+  local process = utils.get_process_name(tab.active_pane.title)
+  local title = wezterm.truncate_right(process == "" and cwd or (process .. "/" .. cwd), max_width)
   return {
     { Text = " " .. tab.tab_index + 1 .. ": " .. title .. " " },
   }

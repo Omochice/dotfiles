@@ -20,7 +20,7 @@ function merged(t1, t2) -- from [https://github.com/yutkat/dotfiles/blob/3576916
   return t1
 end
 
-function basename(path)
+function M.basename(path)
   if path == nil then
     return ""
   else
@@ -29,7 +29,7 @@ function basename(path)
 end
 
 function M.get_process_name(p)
-  return basename(string.match(p, "^(.-)%s"))
+  return M.basename(string.match(p, "^(.-)%s"))
 end
 
 function M.is_opened_already()
