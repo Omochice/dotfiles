@@ -12,11 +12,13 @@ jobs:
   path-filter:
     timeout-minutes: 5
     outputs:
+      # keep-sorted start
       actions: ${{steps.changes.outputs.actions}}
       deno: ${{steps.changes.outputs.deno}}
-      karabiner: ${{steps.changes.outputs.karabiner}}
       flake: ${{steps.changes.outputs.flake}}
+      karabiner: ${{steps.changes.outputs.karabiner}}
       renovate: ${{steps.changes.outputs.renovate}}
+      # keep-sorted end
     runs-on: ubuntu-latest
     permissions: {}
     steps:
@@ -120,11 +122,13 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     needs:
-      - check-format
+      # keep-sorted start
       - check-actions
       - check-deno
+      - check-format
       - check-home-manager
       - check-renovate
+      # keep-sorted end
     permissions: {}
     if: failure()
     steps:

@@ -132,34 +132,9 @@
         host = ./host.json |> builtins.readFile |> builtins.fromJSON;
       in
       {
-        formatter = treefmt.config.build.wrapper;
-        checks = {
-          formatting = treefmt.config.build.check self;
-        };
-        legacyPackages = {
-          darwinConfigurations = pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
-            omochice = nix-darwin.lib.darwinSystem {
-              modules = [ ./config/nix/nix-darwin/default.nix ];
-              specialArgs = {
-                inherit (host) user home;
-              };
-            };
-          };
-          homeConfigurations = {
-            omochice = home-manager.lib.homeManagerConfiguration {
-              inherit pkgs;
-              extraSpecialArgs = {
-                inherit inputs;
-                inherit (host) user home;
-              };
-              modules = [
-                nix-doom-emacs-unstraightened.homeModule
-                ./config/nix/home-manager/home.nix
-              ];
-            };
-          };
-        };
+        # keep-sorted start block=yes
         apps = {
+          # keep-sorted start
           check-action =
             ''
               actionlint
@@ -171,19 +146,24 @@
               pkgs.ghalint
               pkgs.zizmor
             ];
-          validate-renovate-config =
-            ''
-              renovate-config-validator --strict renovate.json5
-            ''
-            |> runAs "validate-renovate-config" [
-              pkgs.renovate
-            ];
           default =
             ''
               nix run .#update
               nix run .#mcp-setting
             ''
             |> runAs "default-script" [
+              pkgs.nix
+            ];
+          install-check =
+            ''
+              jq -n --arg home "$HOME" --arg user "$USER" '{home: $home, user: $user}' > host.json
+              git add host.json --force
+              trap 'git reset -- host.json && rm host.json' EXIT
+              nix run github:nix-community/home-manager -- switch --flake .#omochice -b backup
+            ''
+            |> runAs "update-script" [
+              pkgs.jq
+              pkgs.git
               pkgs.nix
             ];
           mcp-setting =
@@ -218,19 +198,43 @@
               pkgs.nix
               pkgs.nix-output-monitor
             ];
-          install-check =
+          validate-renovate-config =
             ''
-              jq -n --arg home "$HOME" --arg user "$USER" '{home: $home, user: $user}' > host.json
-              git add host.json --force
-              trap 'git reset -- host.json && rm host.json' EXIT
-              nix run github:nix-community/home-manager -- switch --flake .#omochice -b backup
+              renovate-config-validator --strict renovate.json5
             ''
-            |> runAs "update-script" [
-              pkgs.jq
-              pkgs.git
-              pkgs.nix
+            |> runAs "validate-renovate-config" [
+              pkgs.renovate
             ];
+          # keep-sorted end
         };
+        checks = {
+          formatting = treefmt.config.build.check self;
+        };
+        formatter = treefmt.config.build.wrapper;
+        legacyPackages = {
+          darwinConfigurations = pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
+            omochice = nix-darwin.lib.darwinSystem {
+              modules = [ ./config/nix/nix-darwin/default.nix ];
+              specialArgs = {
+                inherit (host) user home;
+              };
+            };
+          };
+          homeConfigurations = {
+            omochice = home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+              extraSpecialArgs = {
+                inherit inputs;
+                inherit (host) user home;
+              };
+              modules = [
+                nix-doom-emacs-unstraightened.homeModule
+                ./config/nix/home-manager/home.nix
+              ];
+            };
+          };
+        };
+        # keep-sorted end
       }
     );
 }
