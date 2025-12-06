@@ -127,6 +127,7 @@
       ls-lint
       lua-language-server
       nixd
+      oxlint
       pyright
       stylua
       svelte-language-server

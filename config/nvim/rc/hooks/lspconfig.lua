@@ -36,6 +36,7 @@ vim.lsp.enable({
   "lua_ls",
   "nixd",
   "nushell",
+  "oxlint",
   "pyright",
   "rust_analyzer",
   "sourcekit",
