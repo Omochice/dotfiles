@@ -171,6 +171,13 @@
               pkgs.ghalint
               pkgs.zizmor
             ];
+          validate-renovate-config =
+            ''
+              renovate-config-validator --strict renovate.json5
+            ''
+            |> runAs "validate-renovate-config" [
+              pkgs.renovate
+            ];
           default =
             ''
               nix run .#update

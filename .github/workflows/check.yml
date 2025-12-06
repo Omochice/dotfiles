@@ -16,6 +16,7 @@ jobs:
       deno: ${{steps.changes.outputs.deno}}
       karabiner: ${{steps.changes.outputs.karabiner}}
       flake: ${{steps.changes.outputs.flake}}
+      renovate: ${{steps.changes.outputs.renovate}}
     runs-on: ubuntu-latest
     permissions: {}
     steps:
@@ -48,6 +49,8 @@ jobs:
             flake:
               - flake.nix
               - flake.lock
+            renovate:
+              - renovate.json5
   check-format:
     timeout-minutes: 5
     name: Check code format
@@ -98,6 +101,21 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           cachix: false
       - run: nix run .#install-check
+  check-renovate:
+    needs: path-filter
+    if: needs.path-filter.outputs.renovate == 'true'
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: setup nix
+        uses: ./.github/actions/setup-nix
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: nix run .#validate-renovate-config
   status-check:
     timeout-minutes: 5
     runs-on: ubuntu-latest
@@ -106,6 +124,7 @@ jobs:
       - check-actions
       - check-deno
       - check-home-manager
+      - check-renovate
     permissions: {}
     if: failure()
     steps:
