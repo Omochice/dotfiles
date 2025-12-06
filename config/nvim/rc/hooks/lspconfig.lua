@@ -43,7 +43,7 @@ vim.lsp.enable({
   "svelte",
   "taplo",
   "tinymist",
-  "ts_ls",
+  "tsgo",
   "typos_lsp",
   "yamlls",
   "zk",
