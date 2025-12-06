@@ -162,11 +162,8 @@
         apps = {
           check-action =
             ''
-              actionlint --version
               actionlint
-              ghalint --version
               ghalint run
-              zizmor --version
               zizmor .github/workflows .github/actions
             ''
             |> runAs "check-action" [
