@@ -104,6 +104,7 @@ jobs:
           cachix: false
       - run: nix run .#install-check
   check-renovate:
+    timeout-minutes: 5
     needs: path-filter
     if: needs.path-filter.outputs.renovate == 'true'
     runs-on: ubuntu-latest
