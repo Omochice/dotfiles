@@ -1,8 +1,8 @@
 BASE_DIR:=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
-.PHONY: mac enable-service install-deno enable-catppuccin-theme
+.PHONY: mac enable-service enable-catppuccin-theme
 
-mac: enable-service macskk deno
+mac: enable-service macskk
 
 enable-service: nix-environment
 	/opt/homebrew/bin/brew services start sketchybar
@@ -10,9 +10,6 @@ enable-service: nix-environment
 
 macskk:
 	cp $(BASE_DIR)/config/macskk/kana-rule.conf ~/Library/Containers/net.mtgto.inputmethod.macSKK/Data/Documents/Settings/
-
-deno:
-	curl -fsSL https://deno.land/install.sh | sh
 
 enable-catppuccin-theme:
 	fish -c 'fish_config theme save "Catppuccin Mocha"'

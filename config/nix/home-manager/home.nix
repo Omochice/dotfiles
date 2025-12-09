@@ -9,6 +9,7 @@
     # keep-sorted start
     ../../claude/default.nix
     ../../colima/default.nix
+    ../../deno/default.nix
     ../../direnv/default.nix
     # ../../doom/default.nix
     ../../fish/default.nix
@@ -61,6 +62,7 @@
       curl
       d2
       delta
+      deno
       devbox
       direnv
       docker

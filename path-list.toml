@@ -12,9 +12,6 @@ path = "~/.go/bin"
 path = "~/go/bin"
 
 [[paths]]
-path = "~/.deno/bin"
-
-[[paths]]
 path = "~/.yarn/bin"
 
 [[paths]]
