@@ -5,7 +5,7 @@
     enableScriptingAddition = true;
     config = {
       mouse_follows_focus = "off";
-      focus_follows_mouse = "off";
+      focus_follows_mouse = "autofocus";
       window_origin_display = "default";
       window_placement = "second_child";
       window_topmost = "off";
