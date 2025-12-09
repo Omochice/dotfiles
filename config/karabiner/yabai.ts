@@ -1,7 +1,7 @@
 import * as k from "https://deno.land/x/karabinerts@1.36.0/deno.ts";
 
 function $(cmd: string): string {
-  const prefix = "export PATH=$PATH:/opt/homebrew/bin:$HOME/.deno/bin";
+  const prefix = "export PATH=$PATH:/run/current-system/sw/bin:$HOME/.deno/bin";
   return `${prefix};${cmd}`;
 }
 

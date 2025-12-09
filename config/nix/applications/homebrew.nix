@@ -9,7 +9,6 @@
     taps = [
       # keep-sorted start
       "felixkratz/formulae"
-      "koekeishiya/formulae"
       # keep-sorted end
     ];
     brews = [
@@ -19,7 +18,6 @@
       "colima"
       "felixkratz/formulae/sketchybar"
       "gettext"
-      "koekeishiya/formulae/yabai"
       "libtool"
       "ninja"
       "pkg-config"

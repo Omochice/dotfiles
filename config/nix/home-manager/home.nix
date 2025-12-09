@@ -26,7 +26,6 @@
     ../../sketchybar/default.nix
     ../../starship/default.nix
     ../../wezterm/default.nix
-    ../../yabai/default.nix
     ../../yazi/default.nix
     ../../zathura/default.nix
     ../../zk/default.nix
