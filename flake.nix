@@ -139,11 +139,40 @@
           |> builtins.attrValues
           |> builtins.concatStringsSep "\n";
         host = ./host.json |> builtins.readFile |> builtins.fromJSON;
+        mcp-setting = pkgs.writeShellApplication {
+          name = "mcp-setting";
+          runtimeInputs = [ pkgs.claude-code ];
+          text = mcpCommands;
+        };
+        update = pkgs.writeShellApplication {
+          name = "update";
+          runtimeInputs = [
+            pkgs.jq
+            pkgs.git
+            pkgs.nix-output-monitor
+            home-manager.packages.${system}.home-manager
+            nix-darwin.packages.${system}.darwin-rebuild
+          ];
+          text = ''
+            jq -n --arg home "$HOME" --arg user "$USER" '{home: $home, user: $user}' > host.json
+            git add host.json --force
+            trap 'git reset -- host.json && rm host.json' EXIT
+            echo "Updating home-manager"
+            home-manager switch --flake .#omochice -b backup |& nom
+          ''
+          + (
+            ''
+              echo "Updating nix-darwin"
+              sudo darwin-rebuild switch --flake .#omochice |& nom
+            ''
+            |> pkgs.lib.strings.optionalString pkgs.stdenv.isDarwin
+          );
+        };
       in
       {
         # keep-sorted start block=yes
         apps = {
-          # keep-sorted start
+          # keep-sorted start block=yes
           check-action =
             ''
               actionlint
@@ -157,56 +186,38 @@
             ];
           default =
             ''
-              nix run .#update
-              nix run .#mcp-setting
+              update
+              mcp-setting
             ''
             |> runAs "default-script" [
-              pkgs.nix
+              update
+              mcp-setting
             ];
           install-check =
             ''
               jq -n --arg home "$HOME" --arg user "$USER" '{home: $home, user: $user}' > host.json
               git add host.json --force
               trap 'git reset -- host.json && rm host.json' EXIT
-              nix run github:nix-community/home-manager -- switch --flake .#omochice -b backup
+              home-manager switch --flake .#omochice -b backup
             ''
             |> runAs "update-script" [
               pkgs.jq
               pkgs.git
-              pkgs.nix
+              home-manager.packages.${system}.home-manager
             ];
-          mcp-setting =
-            mcpCommands
-            |> runAs "claude-code-setting-mcp" [
-              pkgs.claude-code
-            ];
+          mcp-setting = {
+            type = "app";
+            program = "${mcp-setting}/bin/mcp-setting";
+          };
           sync =
             ''
               nvfetcher
             ''
             |> runAs "sync" [ pkgs.nvfetcher ];
-          update =
-            ''
-              jq -n --arg home "$HOME" --arg user "$USER" '{home: $home, user: $user}' > host.json
-              git add host.json --force
-              trap 'git reset -- host.json && rm host.json' EXIT
-              echo "Updating home-manager"
-              nix run github:nix-community/home-manager -- switch --flake .#omochice -b backup |& nom
-              ${
-                ''
-                  echo "Updating nix-darwin"
-                  sudo nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice |& nom
-                ''
-                |> pkgs.lib.strings.optionalString pkgs.stdenv.isDarwin
-              }
-              echo "Update complete!"
-            ''
-            |> runAs "update-script" [
-              pkgs.jq
-              pkgs.git
-              pkgs.nix
-              pkgs.nix-output-monitor
-            ];
+          update = {
+            type = "app";
+            program = "${update}/bin/update";
+          };
           validate-renovate-config =
             ''
               renovate-config-validator --strict renovate.json5
