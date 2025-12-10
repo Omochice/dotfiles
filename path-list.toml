@@ -26,10 +26,6 @@ path = "~/.local/nvim/bin"
 if_exists = "~/.local/nvim"
 
 [[paths]]
-label = "aqua"
-path = "$(aqua root-dir)/bin"
-
-[[paths]]
 path = "~/Library/Android/sdk/platform-tools"
 
 [[paths]]
@@ -211,12 +207,6 @@ path = "~/.config/fish/nix.fish"
 if_exists = "~/.nix-profile"
 shell = ["fish"]
 
-[[sources]]
-depends = ["brew"]
-path = "\"$dirname $(dirname $(command -v asdf))/asdf.sh\""
-if_executable = "asdf"
-shell = "bash"
-
 [[executes]]
 label = "brew"
 command = "eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
@@ -258,12 +248,6 @@ if_executable = "glab"
 shell = "bash"
 
 [[executes]]
-depends = "brew"
-command = "starship init fish | source"
-if_executable = "starship"
-shell = "fish"
-
-[[executes]]
 command = "eval $(starship init zsh)"
 if_executable = "starship"
 shell = "zsh"
@@ -281,28 +265,6 @@ shell = "fish"
 [[executes]]
 command = "bindkey -e"
 shell = "zsh"
-
-[[executes]]
-command = "eval \"$(sheldon source)\""
-if_executable = "sheldon"
-shell = "zsh"
-
-[[executes]]
-command = "direnv hook fish | source"
-if_executable = "direnv"
-shell = "fish"
-
-[[executes]]
-command = "zoxide init fish | source"
-if_executable = "zoxide"
-shell = "fish"
-depends = ["brew"]
-
-[[executes]]
-command = "mise activate fish | source"
-if_executable = "mise"
-shell = "fish"
-depends = ["brew"]
 
 [[environments]]
 from = "true"

@@ -19,6 +19,7 @@
     ../../glab-cli/default.nix
     ../../karabiner/default.nix
     ../../lazygit/default.nix
+    ../../mise/default.nix
     ../../nix/default.nix
     ../../nushell/default.nix
     ../../nvim/default.nix
