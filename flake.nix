@@ -151,8 +151,8 @@
             pkgs.git
             pkgs.nix-output-monitor
             home-manager.packages.${system}.home-manager
-            nix-darwin.packages.${system}.darwin-rebuild
-          ];
+          ]
+          ++ (pkgs.lib.optional pkgs.stdenv.isDarwin nix-darwin.packages.${system}.darwin-rebuild);
           text = ''
             jq -n --arg home "$HOME" --arg user "$USER" '{home: $home, user: $user}' > host.json
             git add host.json --force
