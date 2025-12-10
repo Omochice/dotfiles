@@ -17,6 +17,12 @@ in
     settings = {
       experimental-features = "nix-command flakes pipe-operators";
       max-jobs = 8;
+      substituters = [
+        "https://omochice.cachix.org"
+      ];
+      trusted-public-keys = [
+        "omochice.cachix.org-1:d+cdfbGVPgtxxdGSkGf3hhaCdfziMtZ6FSHUWxwUTo8="
+      ];
     };
   };
   # The platform the configuration will be used on.

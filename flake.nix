@@ -3,6 +3,15 @@
 {
   description = "Omochice dotfiles";
 
+  nixConfig = {
+    extra-substituters = [
+      "https://omochice.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "omochice.cachix.org-1:d+cdfbGVPgtxxdGSkGf3hhaCdfziMtZ6FSHUWxwUTo8="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixpkgs-unstable";
     nix-darwin = {
