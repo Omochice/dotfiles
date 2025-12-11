@@ -157,6 +157,18 @@
     };
     date = "2021-09-19";
   };
+  neovim = {
+    pname = "neovim";
+    version = "043f5a291a7cee269a533119bdd300afe339b535";
+    src = fetchFromGitHub {
+      owner = "neovim";
+      repo = "neovim";
+      rev = "043f5a291a7cee269a533119bdd300afe339b535";
+      fetchSubmodules = false;
+      sha256 = "sha256-x96x/pXPOo+SEv9SmzugKcDS45tWsgzBNtGjOMGFens=";
+    };
+    date = "2025-12-20";
+  };
   yazi-theme-catppuccin = {
     pname = "yazi-theme-catppuccin";
     version = "043ffae14e7f7fcc136636d5f2c617b5bc2f5e31";

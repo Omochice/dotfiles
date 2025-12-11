@@ -272,6 +272,27 @@
         },
         "version": "9c90b188f1c58a6a3d6ce5f9220b05b5414b040f"
     },
+    "neovim": {
+        "cargoLocks": null,
+        "date": "2025-12-20",
+        "extract": null,
+        "name": "neovim",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "neovim",
+            "repo": "neovim",
+            "rev": "043f5a291a7cee269a533119bdd300afe339b535",
+            "sha256": "sha256-x96x/pXPOo+SEv9SmzugKcDS45tWsgzBNtGjOMGFens=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "043f5a291a7cee269a533119bdd300afe339b535"
+    },
     "yazi-theme-catppuccin": {
         "cargoLocks": null,
         "date": "2025-08-06",
