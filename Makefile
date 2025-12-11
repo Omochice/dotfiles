@@ -16,7 +16,7 @@ enable-catppuccin-theme:
 
 ~/.config/nix/nix.conf:
 	mkdir -p ~/.config/nix
-	ln -snf $(BASE_DIR)/config/nix/nix.conf ~/.config/nix/nix.conf
+	cp $(BASE_DIR)/config/nix/nix.conf ~/.config/nix/nix.conf
 
 nix-environment: nix-darwin
 
