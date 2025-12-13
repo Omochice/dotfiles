@@ -24,6 +24,7 @@
     ../../nushell/default.nix
     ../../nvim/default.nix
     ../../ollama/default.nix
+    ../../rumdl/default.nix
     ../../sketchybar/default.nix
     ../../starship/default.nix
     ../../wezterm/default.nix
@@ -131,6 +132,7 @@
       nixd
       oxlint
       pyright
+      rumdl
       stylua
       svelte-language-server
       taplo

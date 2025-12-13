@@ -38,6 +38,7 @@ vim.lsp.enable({
   "nushell",
   "oxlint",
   "pyright",
+  "rumdl",
   "rust_analyzer",
   "sourcekit",
   "stylua",
