@@ -75,6 +75,19 @@
               # It will update by colima when `colima start`
               "config/colima/**.yaml"
             ];
+            settings.formatter = {
+              # keep-sorted start block=yes
+              rumdl = {
+                command = "${pkgs.rumdl}/bin/rumdl";
+                options = [
+                  "fmt"
+                  "--config"
+                  (builtins.toString ./config/rumdl/rumdl.toml)
+                ];
+                includes = [ "*.md" ];
+              };
+              # keep-sorted end
+            };
             programs = {
               # keep-sorted start block=yes
               deno = {
