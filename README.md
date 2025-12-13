@@ -26,13 +26,12 @@ I'm using several OSs.
 - Editor: Neovim and Vim
 - Terminal: [Wezterm](https://github.com/wez/wezterm)
 - Screenshot:
-  - [Gyazo-for-Linux](https://github.com/gyazo/Gyazo-for-Linux)
-  - [Gyago-cli](https://github.com/Omochice/gyazo-cli) forked from
-    [here](https://github.com/tomohiro/gyazo-cli)
+    - [Gyazo-for-Linux](https://github.com/gyazo/Gyazo-for-Linux)
+    - [Gyago-cli](https://github.com/Omochice/gyazo-cli) forked from [here](https://github.com/tomohiro/gyazo-cli)
 - Screen Recorder
-  - [giph](https://github.com/phisch/giph)
+    - [giph](https://github.com/phisch/giph)
 - Launcher: rofi
-  - [rofimoji](https://github.com/fdw/rofimoji)
+    - [rofimoji](https://github.com/fdw/rofimoji)
 
 ## CLI
 
@@ -42,8 +41,8 @@ I'm using several OSs.
 ## Misc
 
 - Font:
-  - [yuru7/Firge](https://github.com/yuru7/Firge)
-  - Noto font
+    - [yuru7/Firge](https://github.com/yuru7/Firge)
+    - Noto font
 
 ## Dependency
 
