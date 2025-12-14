@@ -16,18 +16,15 @@ I'm using several OSs.
     - WM: [yabai](https://github.com/koekeishiya/yabai)
     - hotkeys: [karabiner-element](https://github.com/pqrs-org/Karabiner-Elements)
     - Bar: [SketchyBar](https://github.com/FelixKratz/SketchyBar)
-- Windows
-    - OS:( Windows10
-    - WM: [glazewm](https://github.com/glzr-io/glazewm)
-    - hotkeys: [autohotkey](https://github.com/AutoHotkey/AutoHotkey)
 
 ## Apps
 
-- Editor: Neovim and Vim
+- Editor: Neovim
 - Terminal: [Wezterm](https://github.com/wez/wezterm)
 - Screenshot:
     - [Gyazo-for-Linux](https://github.com/gyazo/Gyazo-for-Linux)
     - [Gyago-cli](https://github.com/Omochice/gyazo-cli) forked from [tomohiro/gyazo-cli](https://github.com/tomohiro/gyazo-cli)
+    - [Shotter](https://github.com/Shottr-Mac-Software/Shottr-Mac)
 - Screen Recorder
     - [giph](https://github.com/phisch/giph)
 - Launcher: rofi
@@ -46,9 +43,10 @@ I'm using several OSs.
 
 ## Dependency
 
-- `Deno`
+- `Nix`
 - `Git`
 
 ## Usage
 
-TBD
+1. Install nix
+1. `make`
