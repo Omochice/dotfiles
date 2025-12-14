@@ -67,7 +67,6 @@
       devbox
       direnv
       docker
-      nodejs_24
       docker-buildx
       duckdb
       editorconfig-checker
@@ -101,6 +100,7 @@
       nix-output-monitor
       nixfmt-rfc-style
       nkf
+      nodejs_24
       nushell
       pandoc
       pastel
