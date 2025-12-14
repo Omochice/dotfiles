@@ -6,7 +6,6 @@ mac: enable-service macskk
 
 enable-service: nix-environment
 	/opt/homebrew/bin/brew services start sketchybar
-	/opt/homebrew/bin/yabai --start-service
 
 macskk:
 	cp $(BASE_DIR)/config/macskk/kana-rule.conf ~/Library/Containers/net.mtgto.inputmethod.macSKK/Data/Documents/Settings/
