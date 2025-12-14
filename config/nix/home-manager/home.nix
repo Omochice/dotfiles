@@ -67,6 +67,7 @@
       devbox
       direnv
       docker
+      nodejs_24
       docker-buildx
       duckdb
       editorconfig-checker
