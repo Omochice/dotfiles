@@ -24,9 +24,9 @@ host.json:
 	echo '{"home": "${HOME}", "user": "${USER}"}' > host.json
 
 home-manager: ~/.config/nix/nix.conf host.json
-	nix run github:nix-community/home-manager -- switch --flake .#omochice
+	nix run --extra-experimental-features "nix-commands flakes pipe-operators" .#install-check
 
 nix-darwin: home-manager host.json
 	sudo mv /etc/bashrc /etc/bashrc.before-nix-darwin
 	sudo mv /etc/zshrc /etc/zshrc.before-nix-darwin
-	sudo nix run github:nix-darwin/nix-darwin -- switch --flake .#omochice
+	nix run --extra-experimental-features "nix-command flake pipe-operators"
