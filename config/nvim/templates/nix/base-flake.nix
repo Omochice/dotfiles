@@ -90,20 +90,18 @@
       {
         # keep-sorted start block=yes
         apps = {
-          check-action =
-            ''
-              actionlint
-              ghalint run
-              zizmor .github/workflows .github/actions
-            ''
-            |> runAs "check-action" devPackages.actions;
+          check-action = pkgs.lib.pipe ''
+            actionlint
+            ghalint run
+            zizmor .github
+          '' [ (runAs "check-action" devPackages.actions) ];
         };
         checks = {
           formatting = treefmt.config.build.check self;
         };
-        devShells =
-          devPackages
-          |> pkgs.lib.attrsets.mapAttrs (name: buildInputs: pkgs.mkShell { inherit buildInputs; });
+        devShells = pkgs.lib.pipe devPackages [
+          (pkgs.lib.attrsets.mapAttrs (name: buildInputs: pkgs.mkShell { inherit buildInputs; }))
+        ];
         formatter = treefmt.config.build.wrapper;
         # keep-sorted end
       }
