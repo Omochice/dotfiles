@@ -56,6 +56,15 @@ on_source = "skkeleton"
 hook_add = """
 let g:lightline_skk_announce = v:false
 """
+if = "!has('nvim')"
+
+[[plugins]]
+repo = "https://github.com/delphinus/skkeleton_indicator.nvim"
+on_source = "skkeleton"
+lua_source = """
+require("skkeleton_indicator").setup({ alwaysShown = false })
+"""
+if = "has('nvim')"
 
 [[plugins]]
 repo = "https://github.com/lambdalisue/nvim-aibo"
