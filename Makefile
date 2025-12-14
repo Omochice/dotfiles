@@ -1,8 +1,9 @@
 BASE_DIR:=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
-.PHONY: mac enable-service enable-catppuccin-theme
+.PHONY: mac wsl enable-service enable-catppuccin-theme
 
-mac: enable-service macskk
+mac: enable-service macskk nix-darwin
+wsl: home-manager
 
 enable-service: nix-environment
 	/opt/homebrew/bin/brew services start sketchybar
