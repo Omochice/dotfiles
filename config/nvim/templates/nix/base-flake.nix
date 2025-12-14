@@ -35,11 +35,20 @@
           { ... }:
           {
             settings.global.excludes = [ ];
+            settings.formatter = {
+              # keep-sorted start block=yes
+              rumdl = {
+                command = "${pkgs.rumdl}/bin/rumdl";
+                options = [ "fmt" ];
+                includes = [ "*.md" ];
+              };
+              # keep-sorted end
+            };
             programs = {
               # keep-sorted start block=yes
               keep-sorted.enable = true;
-              mdformat.enable = true;
               nixfmt.enable = true;
+              toml-sort.enable = true;
               yamlfmt = {
                 enable = true;
                 settings = {
