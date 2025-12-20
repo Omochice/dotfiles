@@ -2,29 +2,14 @@
 # original is from Shougo/shougo-s-github/install-nvim
 
 install_to="${HOME}/.local/nvim"
+script_dir="$(cd "$(dirname "$(dirname "${BASH_SOURCE:-$0}")")" && pwd)"
 
 [ -d ${install_to} ] || mkdir -p ${install_to}
 
 git clean -fdx
 
 # patches {{{
-cat <<EOF | git apply
-diff --git a/runtime/lua/vim/_defaults.lua b/runtime/lua/vim/_defaults.lua
-index 8e850f4cd3..c6e714b879 100644
---- a/runtime/lua/vim/_defaults.lua
-+++ b/runtime/lua/vim/_defaults.lua
-@@ -797,10 +797,4 @@ end
- 
- --- Default options
- do
--  --- Default 'grepprg' to ripgrep if available.
--  if vim.fn.executable('rg') == 1 then
--    -- Use -uu to make ripgrep not check ignore files/skip dot-files
--    vim.o.grepprg = 'rg --vimgrep -uu '
--    vim.o.grepformat = '%f:%l:%c:%m'
--  end
- end
-EOF
+cat "$script_dir/pkgs/neovim/patches/delete-rg-executable.patch" | git apply
 # }}}
 trap 'git reset --hard HEAD' EXIT
 
