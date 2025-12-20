@@ -3,8 +3,8 @@
   sources,
 }:
 let
-  neovim-unwrapped-custom = pkgs.neovim-unwrapped.overrideAttrs (old: {
-    pname = "neovim-unwrapped-custom";
+  neovim-unwrapped-omochice = pkgs.neovim-unwrapped.overrideAttrs (old: {
+    pname = "neovim-unwrapped-omochice";
     version = sources.neovim.version;
 
     src = sources.neovim.src;
@@ -13,24 +13,7 @@ let
     doInstallCheck = false;
 
     patches = (old.patches or [ ]) ++ [
-      # Disable default ripgrep integration in grepprg
-      (pkgs.writeText "disable-rg-grepprg.patch" ''
-        diff --git a/runtime/lua/vim/_defaults.lua b/runtime/lua/vim/_defaults.lua
-        index 8e850f4cd3..c6e714b879 100644
-        --- a/runtime/lua/vim/_defaults.lua
-        +++ b/runtime/lua/vim/_defaults.lua
-        @@ -797,10 +797,4 @@ end
-
-         --- Default options
-         do
-        -  --- Default 'grepprg' to ripgrep if available.
-        -  if vim.fn.executable('rg') == 1 then
-        -    -- Use -uu to make ripgrep not check ignore files/skip dot-files
-        -    vim.o.grepprg = 'rg --vimgrep -uu '
-        -    vim.o.grepformat = '%f:%l:%c:%m'
-        -  end
-         end
-      '')
+      ./patches/delete-rg-executable.patch
     ];
 
     postInstall = (old.postInstall or "") + ''
@@ -55,4 +38,4 @@ let
     '';
   });
 in
-neovim-unwrapped-custom
+neovim-unwrapped-omochice
