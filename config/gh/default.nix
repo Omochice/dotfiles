@@ -96,6 +96,10 @@ let
       name = "gh-dep";
       path = "${pkgs.gh-dep}/bin";
     }
+    {
+      name = "gh-markdown-preview";
+      path = "${pkgs.gh-markdown-preview}/bin";
+    }
   ];
 in
 {
