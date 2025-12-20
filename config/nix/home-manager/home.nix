@@ -97,6 +97,7 @@
       mise
       mkcert
       mmv-go
+      neovim-omochice
       nix-output-monitor
       nixfmt-rfc-style
       nkf

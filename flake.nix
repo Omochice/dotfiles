@@ -64,6 +64,7 @@
           overlays = [
             mcp-servers-nix.overlays.default
             nur-packages.overlays.default
+            (final: prev: import ./pkgs/default.nix { pkgs = final; })
           ];
         };
         treefmt = treefmt-nix.lib.evalModule pkgs (

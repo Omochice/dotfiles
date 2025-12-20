@@ -57,3 +57,7 @@ fetch.github = "sheepla/gh-userfetch"
 [claude-skill-ast-grep]
 src.git = "https://github.com/ast-grep/claude-skill"
 fetch.github = "ast-grep/claude-skill"
+
+[neovim]
+src.git = "https://github.com/neovim/neovim"
+fetch.github = "neovim/neovim"
