@@ -46,6 +46,7 @@
     stateVersion = "24.05";
     packages = with pkgs; [
       # keep-sorted start
+      abduco
       actionlint
       age
       ansifilter
