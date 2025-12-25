@@ -25,8 +25,10 @@ require("fyler").setup({
   },
   views = {
     finder = {
-      git_status = {
-        enabled = false,
+      columns = {
+        git = {
+          enabled = false,
+        },
       },
       mappings = {
         ["<CR>"] = "Select",
