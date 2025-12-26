@@ -23,10 +23,10 @@ let
       rm -f $out/share/nvim/runtime/plugin/matchit.vim
       rm -f $out/share/nvim/runtime/plugin/matchparen.vim
       rm -f $out/share/nvim/runtime/plugin/netrwPlugin.vim
-      rm -f $out/share/nvim/runtime/plugin/shada.vim
+      rm -f $out/share/nvim/runtime/plugin/shada.lua
       rm -f $out/share/nvim/runtime/plugin/spellfile.vim
       rm -f $out/share/nvim/runtime/plugin/tarPlugin.vim
-      rm -f $out/share/nvim/runtime/plugin/tohtml.vim
+      rm -f $out/share/nvim/runtime/plugin/tohtml.lua
       rm -f $out/share/nvim/runtime/plugin/tutor.vim
       rm -f $out/share/nvim/runtime/plugin/zipPlugin.vim
 
