@@ -93,8 +93,12 @@ cnoreabbrev ww update!
 cnoreabbrev w update
 
 " easy open memo buffer
-command! Scratch new +set\ buftype=nofile\ filetype=markdown
-cnoreabbrev memo Scratch
+function! s:open_memo(...) abort
+  const l:ft = a:0 ==# 0 ? 'markdown' : a:1
+  execute $'new +set\ buftype=nofile\ filetype={l:ft}'
+endfunction
+command! -nargs=? Memo call <SID>open_memo(<f-args>)
+cnoreabbrev memo Memo
 
 " TODO
 " cnoreabbrev w:q wq
