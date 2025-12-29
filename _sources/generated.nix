@@ -135,15 +135,15 @@
   };
   gh-q = {
     pname = "gh-q";
-    version = "a312c67b92baefadb07481ef1479c96d91243d41";
+    version = "773283dcb8a6c8e9a69e3120209001b2c45db9d1";
     src = fetchFromGitHub {
       owner = "kawarimidoll";
       repo = "gh-q";
-      rev = "a312c67b92baefadb07481ef1479c96d91243d41";
+      rev = "773283dcb8a6c8e9a69e3120209001b2c45db9d1";
       fetchSubmodules = false;
-      sha256 = "sha256-cpR4ZxWobr1dyGr+zNr0IUa1yYlZK3sDz4m9LWjkRsc=";
+      sha256 = "sha256-PysnahUuNK4obmrRxl/uOnmPwhEcbXCt2Wj7OlFoAvQ=";
     };
-    date = "2025-03-20";
+    date = "2025-12-29";
   };
   gh-userfetch = {
     pname = "gh-userfetch";
@@ -159,15 +159,15 @@
   };
   neovim = {
     pname = "neovim";
-    version = "922816877febf397fe854f01d8013a510d73f1d2";
+    version = "ddd6ac508360111fb04991916432e5baac440213";
     src = fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "922816877febf397fe854f01d8013a510d73f1d2";
+      rev = "ddd6ac508360111fb04991916432e5baac440213";
       fetchSubmodules = false;
-      sha256 = "sha256-L+qNcfd/nVIc9a1HF44pTYT3TytNBBPlR4dea7Mdvn4=";
+      sha256 = "sha256-ZwJLPBLARxSeYxGzM5x4y9KEx9eHxyMEKGfpw5dfG3M=";
     };
-    date = "2025-12-27";
+    date = "2025-12-29";
   };
   yazi-theme-catppuccin = {
     pname = "yazi-theme-catppuccin";
