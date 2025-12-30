@@ -232,7 +232,7 @@
     },
     "gh-q": {
         "cargoLocks": null,
-        "date": "2025-03-20",
+        "date": "2025-12-29",
         "extract": null,
         "name": "gh-q",
         "passthru": null,
@@ -244,12 +244,12 @@
             "name": null,
             "owner": "kawarimidoll",
             "repo": "gh-q",
-            "rev": "a312c67b92baefadb07481ef1479c96d91243d41",
-            "sha256": "sha256-cpR4ZxWobr1dyGr+zNr0IUa1yYlZK3sDz4m9LWjkRsc=",
+            "rev": "773283dcb8a6c8e9a69e3120209001b2c45db9d1",
+            "sha256": "sha256-PysnahUuNK4obmrRxl/uOnmPwhEcbXCt2Wj7OlFoAvQ=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "a312c67b92baefadb07481ef1479c96d91243d41"
+        "version": "773283dcb8a6c8e9a69e3120209001b2c45db9d1"
     },
     "gh-userfetch": {
         "cargoLocks": null,
@@ -274,7 +274,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2025-12-27",
+        "date": "2025-12-29",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -286,12 +286,12 @@
             "name": null,
             "owner": "neovim",
             "repo": "neovim",
-            "rev": "922816877febf397fe854f01d8013a510d73f1d2",
-            "sha256": "sha256-L+qNcfd/nVIc9a1HF44pTYT3TytNBBPlR4dea7Mdvn4=",
+            "rev": "ddd6ac508360111fb04991916432e5baac440213",
+            "sha256": "sha256-ZwJLPBLARxSeYxGzM5x4y9KEx9eHxyMEKGfpw5dfG3M=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "922816877febf397fe854f01d8013a510d73f1d2"
+        "version": "ddd6ac508360111fb04991916432e5baac440213"
     },
     "yazi-theme-catppuccin": {
         "cargoLocks": null,
