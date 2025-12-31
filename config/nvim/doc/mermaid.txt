@@ -20,6 +20,11 @@ Sequence Diagram	|mermaid-sequence|
 Class Diagram		|mermaid-class|
 State Diagram		|mermaid-state|
 Git Graph Diagram	|mermaid-git-graph|
+	Type		|mermaid-git-graph-type|
+	Tag		|mermaid-git-graph-tag|
+	Branch		|mermaid-git-graph-branch|
+	Cherry Pick	|mermaid-git-graph-cherry-pick|
+	Option		|mermaid-git-graph-option|
 Architecture Diagram	|mermaid-architecture|
 	Syntax		|mermaid-architecture-syntax|
 	Group		|mermaid-architecture-group|
@@ -295,6 +300,119 @@ State Diagram                                                  *mermaid-state*
 
 ==============================================================================
 Git Graph Diagram                                          *mermaid-git-graph*
+
+See details: https://mermaid.js.org/syntax/gitgraph.html
+
+>mermaid
+	gitGraph
+		commit
+		commit
+		branch develop
+		checkout develop
+		commit
+		commit
+		checkout main
+		merge develop
+		commit
+		commit
+<
+
+------------------------------------------------------------------------------
+Type                                                    mermaid-git-graph-type
+
+You can specify `type:`.
+
+- `NORMAL`
+- `REVERSE`
+- `HIGHLIGHT`
+
+If you didnt specify any type, same as specifying `NORMAL`.
+
+>mermaid
+	gitGraph
+		commit id: "Normal" type: NORMAL
+		commit
+		commit id: "Reverse" type: REVERSE
+		commit id: "Highlight" type: HIGHLIGHT
+<
+
+------------------------------------------------------------------------------
+Tag                                                      mermaid-git-graph-tag
+
+If you tag the commit, use `tag:`
+
+>mermaid
+	gitGraph
+		commit
+		commit tag: "v1.0.0"
+<
+
+------------------------------------------------------------------------------
+Branch                                                mermaid-git-graph-branch
+
+You can checkout branches by `branch`, `checkout`, `switch`, `merge`.
+
+>mermiad
+	gitGraph
+		commit
+		branch develop
+		commit
+		checkout main
+		commit
+		merge develop
+		commit
+<
+
+------------------------------------------------------------------------------
+Cherry Pick                                      mermaid-git-graph-cherry-pick
+
+>mermaid
+	gitGraph
+		commit id: "initialize"
+		branch develop
+		branch release
+		commit id: "A"
+		checkout main
+		commit id: "ONE"
+		checkout develop
+		commit id: "B"
+		checkout main
+		merge develop id:"MERGE"
+		commit id: "TWO"
+		checkout release
+		cherry-pick id: "MERGE" parent:"B"
+		commit id: "THREE"
+		checkout develop
+		commit id: "C"
+<
+
+------------------------------------------------------------------------------
+Option                                                mermaid-git-graph-option
+
+You can specify some options to change behavior.
+
+>typescript
+	interface GitGraphDiagramConfig {
+		/** whether to use absolute path to show arrow */
+		arrowMarkerAbsolute?: boolean;
+		/** The amount of padding around the diagram */
+		diagramPadding?: number;
+		/** The name of the default/root branch */
+		mainBranchName?: string;
+		/** Position of the main branch in the list of branches */
+		mainBranchOrder?: number;
+		/** Whether to show the commits from the parent as same level */
+		parallelCommits?: boolean;
+		/** Whether to rotate the commit label */
+		rotateCommitLabel?: boolean;
+		/** Whether to show the branches in the diagram */
+		showBranches?: boolean;
+		/** Whether to show the labels in the diagram */
+		showCommitLabel?: boolean;
+		/** Margin top for the text over the diagram */
+		titleTopMargin?: number;
+	}
+<
 
 ==============================================================================
 Mindmap                                                      *mermaid-mindmap*
