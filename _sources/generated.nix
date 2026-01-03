@@ -51,15 +51,15 @@
   };
   fish-catputtin = {
     pname = "fish-catputtin";
-    version = "af622a6e247806f6260c00c6d261aa22680e5201";
+    version = "2c7edbb1ef5640cb4ef387647a53327149e51e80";
     src = fetchFromGitHub {
       owner = "catppuccin";
       repo = "fish";
-      rev = "af622a6e247806f6260c00c6d261aa22680e5201";
+      rev = "2c7edbb1ef5640cb4ef387647a53327149e51e80";
       fetchSubmodules = false;
-      sha256 = "sha256-KD/sWXSXYVlV+n7ft4vKFYpIMBB3PSn6a6jz+ZIMZvQ=";
+      sha256 = "sha256-Wy034oQuQXftG1TRzXyfEZO+8eAHTHQpUA6pXczIcE0=";
     };
-    date = "2025-11-28";
+    date = "2025-12-31";
   };
   fish-direnv = {
     pname = "fish-direnv";
@@ -135,15 +135,15 @@
   };
   gh-q = {
     pname = "gh-q";
-    version = "773283dcb8a6c8e9a69e3120209001b2c45db9d1";
+    version = "d2d2e466c63a074fdf7e731a1f0d807d239f0a6b";
     src = fetchFromGitHub {
       owner = "kawarimidoll";
       repo = "gh-q";
-      rev = "773283dcb8a6c8e9a69e3120209001b2c45db9d1";
+      rev = "d2d2e466c63a074fdf7e731a1f0d807d239f0a6b";
       fetchSubmodules = false;
-      sha256 = "sha256-PysnahUuNK4obmrRxl/uOnmPwhEcbXCt2Wj7OlFoAvQ=";
+      sha256 = "sha256-jRg8Pbs45UmIuejnrrBxlqvs9p3yN4LO37dK0Mo2ACA=";
     };
-    date = "2025-12-29";
+    date = "2025-12-30";
   };
   gh-userfetch = {
     pname = "gh-userfetch";
@@ -159,27 +159,27 @@
   };
   neovim = {
     pname = "neovim";
-    version = "ddd6ac508360111fb04991916432e5baac440213";
+    version = "3621af9b970c80d2a6ff36569d7495391599c334";
     src = fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "ddd6ac508360111fb04991916432e5baac440213";
+      rev = "3621af9b970c80d2a6ff36569d7495391599c334";
       fetchSubmodules = false;
-      sha256 = "sha256-ZwJLPBLARxSeYxGzM5x4y9KEx9eHxyMEKGfpw5dfG3M=";
+      sha256 = "sha256-aqaVRbpWaOK0vJa0pRfZs1dUUq5isgjXk1KBlQ7R1AE=";
     };
-    date = "2025-12-29";
+    date = "2026-01-03";
   };
   yazi-theme-catppuccin = {
     pname = "yazi-theme-catppuccin";
-    version = "043ffae14e7f7fcc136636d5f2c617b5bc2f5e31";
+    version = "fc69d6472d29b823c4980d23186c9c120a0ad32c";
     src = fetchFromGitHub {
       owner = "catppuccin";
       repo = "yazi";
-      rev = "043ffae14e7f7fcc136636d5f2c617b5bc2f5e31";
+      rev = "fc69d6472d29b823c4980d23186c9c120a0ad32c";
       fetchSubmodules = false;
-      sha256 = "sha256-zkL46h1+U9ThD4xXkv1uuddrlQviEQD3wNZFRgv7M8Y=";
+      sha256 = "sha256-Og33IGS9pTim6LEH33CO102wpGnPomiperFbqfgrJjw=";
     };
-    date = "2025-08-06";
+    date = "2025-12-29";
   };
   zathura-catputtin = {
     pname = "zathura-catputtin";
