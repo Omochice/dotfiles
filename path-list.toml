@@ -3,27 +3,7 @@ label = "local-bin"
 path = "~/.local/bin"
 
 [[paths]]
-path = "/usr/local/go/bin"
-
-[[paths]]
-path = "~/.go/bin"
-
-[[paths]]
-path = "~/go/bin"
-
-[[paths]]
-path = "~/.yarn/bin"
-
-[[paths]]
-path = "~/.cargo/bin"
-
-[[paths]]
 path = "~/.local/share/pnpm"
-
-[[paths]]
-label = "nvim"
-path = "~/.local/nvim/bin"
-if_exists = "~/.local/nvim"
 
 [[paths]]
 path = "~/Library/Android/sdk/platform-tools"
@@ -32,13 +12,13 @@ path = "~/Library/Android/sdk/platform-tools"
 path = "~/.nix-profile/bin"
 
 [[aliases]]
-depends = ["local-bin", "nvim"]
+depends = ["local-bin"]
 from = "nvim"
 to = "vim"
 if_executable = "nvim"
 
 [[environments]]
-depends = ["local-bin", "nvim"]
+depends = ["local-bin"]
 from = "nvim"
 to = "EDITOR"
 if_executable = "nvim"
