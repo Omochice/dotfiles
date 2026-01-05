@@ -49,6 +49,7 @@ jobs:
               - .github/workflows/_check-karabiner.yml
               - .github/workflows/push.yml
             flake:
+              - _sources/*
               - flake.nix
               - flake.lock
             renovate:
