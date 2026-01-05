@@ -1,15 +1,18 @@
-diff --git a/runtime/lua/vim/_defaults.lua b/runtime/lua/vim/_defaults.lua
-index 8e850f4cd3..c6e714b879 100644
---- a/runtime/lua/vim/_defaults.lua
-+++ b/runtime/lua/vim/_defaults.lua
-@@ -797,10 +797,4 @@ end
- 
- --- Default options
- do
+diff --git a/runtime/lua/vim/_core/defaults.lua b/runtime/lua/vim/_core/defaults.lua
+index a971dca16a..d26d832995 100644
+--- a/runtime/lua/vim/_core/defaults.lua
++++ b/runtime/lua/vim/_core/defaults.lua
+@@ -976,13 +976,3 @@ do
+     })
+   end
+ end
+-
+---- Default options
+-do
 -  --- Default 'grepprg' to ripgrep if available.
 -  if vim.fn.executable('rg') == 1 then
 -    -- Use -uu to make ripgrep not check ignore files/skip dot-files
 -    vim.o.grepprg = 'rg --vimgrep -uu '
 -    vim.o.grepformat = '%f:%l:%c:%m'
 -  end
- end
+-end
