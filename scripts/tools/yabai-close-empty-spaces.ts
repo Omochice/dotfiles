@@ -1,5 +1,5 @@
 import { Command } from "jsr:@cliffy/command@1.0.0-rc.8";
-import { $ } from "jsr:@david/dax@0.44.1";
+import { $ } from "jsr:@david/dax@0.44.2";
 import {
   $array,
   $boolean,
