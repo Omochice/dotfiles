@@ -111,7 +111,6 @@
       ripgrep
       sd
       shfmt
-      silicon
       sops
       speedtest-cli
       starship
