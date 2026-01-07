@@ -85,7 +85,7 @@
     },
     "fish-catputtin": {
         "cargoLocks": null,
-        "date": "2026-01-04",
+        "date": "2026-01-06",
         "extract": null,
         "name": "fish-catputtin",
         "passthru": null,
@@ -97,12 +97,12 @@
             "name": null,
             "owner": "catppuccin",
             "repo": "fish",
-            "rev": "151fc14cf21e5bd0ea335e475fc14de1b500d4f5",
-            "sha256": "sha256-k/mMqdRrHa6C2j8CmYwjZ52XL8FOsYkHkKYM9VIhcT8=",
+            "rev": "521560ce2075ca757473816aa31914215332bac9",
+            "sha256": "sha256-5CXdzym6Vp+FbKTVBtVdWoh3dODudADIzOLXIyIIxgQ=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "151fc14cf21e5bd0ea335e475fc14de1b500d4f5"
+        "version": "521560ce2075ca757473816aa31914215332bac9"
     },
     "fish-direnv": {
         "cargoLocks": null,
@@ -274,7 +274,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2026-01-04",
+        "date": "2026-01-07",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -286,12 +286,12 @@
             "name": null,
             "owner": "neovim",
             "repo": "neovim",
-            "rev": "f6ca9262b89c945883ae9bcf46035bfa1ea51bde",
-            "sha256": "sha256-G4gfMQwtDbQDhrgUNY5ltj9yiktnDkJHWrRzf/A4vY4=",
+            "rev": "7500f76e613154e72e9238d174c8ee4cfccdc305",
+            "sha256": "sha256-2bBIByf/LvSPZhhtWhMFKrr16Bzd0Nv/RK3FbJdpA8M=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "f6ca9262b89c945883ae9bcf46035bfa1ea51bde"
+        "version": "7500f76e613154e72e9238d174c8ee4cfccdc305"
     },
     "yazi-theme-catppuccin": {
         "cargoLocks": null,
