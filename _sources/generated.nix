@@ -51,15 +51,15 @@
   };
   fish-catputtin = {
     pname = "fish-catputtin";
-    version = "151fc14cf21e5bd0ea335e475fc14de1b500d4f5";
+    version = "521560ce2075ca757473816aa31914215332bac9";
     src = fetchFromGitHub {
       owner = "catppuccin";
       repo = "fish";
-      rev = "151fc14cf21e5bd0ea335e475fc14de1b500d4f5";
+      rev = "521560ce2075ca757473816aa31914215332bac9";
       fetchSubmodules = false;
-      sha256 = "sha256-k/mMqdRrHa6C2j8CmYwjZ52XL8FOsYkHkKYM9VIhcT8=";
+      sha256 = "sha256-5CXdzym6Vp+FbKTVBtVdWoh3dODudADIzOLXIyIIxgQ=";
     };
-    date = "2026-01-04";
+    date = "2026-01-06";
   };
   fish-direnv = {
     pname = "fish-direnv";
@@ -159,15 +159,15 @@
   };
   neovim = {
     pname = "neovim";
-    version = "f6ca9262b89c945883ae9bcf46035bfa1ea51bde";
+    version = "7500f76e613154e72e9238d174c8ee4cfccdc305";
     src = fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "f6ca9262b89c945883ae9bcf46035bfa1ea51bde";
+      rev = "7500f76e613154e72e9238d174c8ee4cfccdc305";
       fetchSubmodules = false;
-      sha256 = "sha256-G4gfMQwtDbQDhrgUNY5ltj9yiktnDkJHWrRzf/A4vY4=";
+      sha256 = "sha256-2bBIByf/LvSPZhhtWhMFKrr16Bzd0Nv/RK3FbJdpA8M=";
     };
-    date = "2026-01-04";
+    date = "2026-01-07";
   };
   yazi-theme-catppuccin = {
     pname = "yazi-theme-catppuccin";
