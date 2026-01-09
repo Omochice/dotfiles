@@ -1,2 +1,21 @@
+[global]
+line-length = 0
+
+[MD004]
+style = "dash"
+
 [MD007]
 indent = 4
+
+[MD049]
+style = "underscore"
+
+[MD050]
+style = "asterisk"
+
+[MD055]
+style = "leading-and-trailing"
+
+[MD060]
+enabled = true
+style = "aligned"
