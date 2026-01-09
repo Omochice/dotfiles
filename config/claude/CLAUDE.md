@@ -32,6 +32,10 @@ The original version is [rfc2119](https://www.ietf.org/rfc/rfc2119.txt).
 - Commit messages MUST include WHY the change was made
 - All public APIs MUST have language-specific documentation
     - e.g. jsdoc for typescript
+- Comments MUST be meanfull
+    - comments that are obvious when looking at the code
+    - Don't write comments that explain steps like `// Arrange`, `// Act`, `// Assert`
+    - Instead of dividing the file contents with comments, you SHOULD consider whether it can be achieved in another way, such as dividing the code into separate files
 
 ## Language Requirements
 
