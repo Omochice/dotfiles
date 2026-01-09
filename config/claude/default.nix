@@ -23,6 +23,7 @@ in
           enabled = true;
           autoAllowBashIfSandboxed = true;
         };
+        model = "opusplan";
       }
       |> builtins.toJSON;
     "claude/CLAUDE.md".source = ./CLAUDE.md;
