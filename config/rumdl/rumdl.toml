@@ -7,6 +7,9 @@ style = "dash"
 [MD007]
 indent = 4
 
+[MD041]
+enabled = false
+
 [MD049]
 style = "underscore"
 
