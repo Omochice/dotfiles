@@ -100,7 +100,7 @@
       mmv-go
       neovim-omochice
       nix-output-monitor
-      nixfmt-rfc-style
+      nixfmt
       nkf
       nodejs_24
       nushell
