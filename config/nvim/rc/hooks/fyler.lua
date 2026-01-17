@@ -29,6 +29,9 @@ require("fyler").setup({
         git = {
           enabled = false,
         },
+        diagnostic = {
+          enabled = false,
+        },
       },
       mappings = {
         ["<CR>"] = "Select",
