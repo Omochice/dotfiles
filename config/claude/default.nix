@@ -7,6 +7,8 @@ let
     |> lib.attrsets.mapAttrs' (
       name: value: lib.attrsets.nameValuePair (lib.strings.removePrefix prefix name) value
     );
+  anthropic-skills =
+    pkgs.callPackage ../../_sources/generated.nix { } |> builtins.getAttr "anthropic-skills";
 in
 {
   xdg.configFile = {
@@ -29,5 +31,6 @@ in
     "claude/CLAUDE.md".source = ./CLAUDE.md;
     "claude/commands".source = ./commands;
     "claude/skill/ast-grep".source = "${plugins.ast-grep.src}/ast-grep";
+    "claude/skill/skill-creator".source = "${anthropic-skills.src}/skills/skill-creator";
   };
 }

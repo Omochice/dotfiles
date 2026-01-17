@@ -1,4 +1,25 @@
 {
+    "anthropic-skills": {
+        "cargoLocks": null,
+        "date": "2025-12-20",
+        "extract": null,
+        "name": "anthropic-skills",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "anthropics",
+            "repo": "skills",
+            "rev": "69c0b1a0674149f27b61b2635f935524b6add202",
+            "sha256": "sha256-pllFZoWRdtLliz/5pLWks0V9nKFMzeWoRcmFgu2UWi8=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "69c0b1a0674149f27b61b2635f935524b6add202"
+    },
     "bat-theme-catppuccin": {
         "cargoLocks": null,
         "date": "2025-06-29",
@@ -274,7 +295,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2026-01-16",
+        "date": "2026-01-17",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -286,12 +307,12 @@
             "name": null,
             "owner": "neovim",
             "repo": "neovim",
-            "rev": "dde914f9260b08272f0914908717bbd6fc417699",
-            "sha256": "sha256-I9MOtRYDDUBp3Uy6Bh+ei19dvjGn0fe6Wk0nP65Z4S4=",
+            "rev": "e51f5e17e18429b847be4e0d99698727dec47ca9",
+            "sha256": "sha256-j/NgL+zRSfJa/hTdvRkWdc9kUUhq908mlFdrVvkBYTE=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "dde914f9260b08272f0914908717bbd6fc417699"
+        "version": "e51f5e17e18429b847be4e0d99698727dec47ca9"
     },
     "yazi-theme-catppuccin": {
         "cargoLocks": null,
