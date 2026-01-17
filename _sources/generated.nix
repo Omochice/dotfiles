@@ -171,13 +171,13 @@
   };
   neovim = {
     pname = "neovim";
-    version = "e51f5e17e18429b847be4e0d99698727dec47ca9";
+    version = "a5e5ec8910ea35ebb86dcba7f58333d9d4caca47";
     src = fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "e51f5e17e18429b847be4e0d99698727dec47ca9";
+      rev = "a5e5ec8910ea35ebb86dcba7f58333d9d4caca47";
       fetchSubmodules = false;
-      sha256 = "sha256-j/NgL+zRSfJa/hTdvRkWdc9kUUhq908mlFdrVvkBYTE=";
+      sha256 = "sha256-qnBvj3GvyF757Z8qJLjcVk/NW5p1wldeLHLdQPbehOM=";
     };
     date = "2026-01-17";
   };
