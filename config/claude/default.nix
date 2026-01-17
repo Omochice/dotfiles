@@ -11,26 +11,50 @@ let
     pkgs.callPackage ../../_sources/generated.nix { } |> builtins.getAttr "anthropic-skills";
 in
 {
-  xdg.configFile = {
-    "claude/settings.json".text =
-      {
-        # TODO: use home-manager module instead
-        includeCoAuthoredBy = false;
-        statusLine = {
-          type = "command";
-          command = "${pkgs.ccusage}/bin/ccusage statusline";
-          padding = 0;
-        };
-        sandbox = {
-          enabled = true;
-          autoAllowBashIfSandboxed = true;
-        };
-        model = "opusplan";
-      }
-      |> builtins.toJSON;
-    "claude/CLAUDE.md".source = ./CLAUDE.md;
-    "claude/commands".source = ./commands;
-    "claude/skill/ast-grep".source = "${plugins.ast-grep.src}/ast-grep";
-    "claude/skill/skill-creator".source = "${anthropic-skills.src}/skills/skill-creator";
+  programs.my-claude-code = {
+    enable = true;
+    package = pkgs.claude-code;
+    memory.source = ./CLAUDE.md;
+    settings = {
+      includeCoAuthoredBy = false;
+      statusLine = {
+        type = "command";
+        command = "${pkgs.ccusage}/bin/ccusage statusline";
+        padding = 0;
+      };
+      sandbox = {
+        enabled = true;
+        autoAllowBashIfSandboxed = true;
+      };
+      model = "opusplan";
+    };
+    commandsDir = ./commands;
+    skills = {
+      # keep-sorted start
+      ast-grep = "${plugins.ast-grep.src}/ast-grep/skills/ast-grep/";
+      review-pr = builtins.readFile ./skills/review-pr.md;
+      skill-creator = "${anthropic-skills.src}/skills/skill-creator/";
+      # keep-sorted end
+    };
+    mcpServers = {
+      # keep-sorted start block=yes
+      context7 = {
+        type = "stdio";
+        command = "${pkgs.context7-mcp}/bin/context7-mcp";
+      };
+      deepwiki-mcp = {
+        type = "http";
+        url = "https://mcp.deepwiki.com/mcp";
+      };
+      git-mcp = {
+        type = "stdio";
+        command = "${pkgs.mcp-server-git}/bin/mcp-server-git";
+      };
+      playwright = {
+        type = "stdio";
+        command = "${pkgs.playwright-mcp}/bin/mcp-server-playwright";
+      };
+      # keep-sorted end
+    };
   };
 }

@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ../modules/home-manager/my-claude-code.nix
     # keep-sorted start
     ../../claude/default.nix
     ../../colima/default.nix
@@ -60,7 +61,6 @@
       cargo
       ccusage
       clang-tools
-      claude-code
       curl
       d2
       delta

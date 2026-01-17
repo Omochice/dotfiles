@@ -137,27 +137,7 @@
             type = "app";
             program = "${program}/bin/${name}";
           };
-        mcpCommands =
-          import ./config/claude/mcp-servers.nix { inherit pkgs; }
-          |> builtins.getAttr "global"
-          |> builtins.mapAttrs (
-            name: value:
-            if value.type == "http" || value.type == "stdio" then
-              ''
-                claude mcp remove --scope user ${name} || true
-                claude mcp add-json --scope user ${name} '${value |> builtins.toJSON}'
-              ''
-            else
-              builtins.throw "Unknown mcp server type: ${value.type}"
-          )
-          |> builtins.attrValues
-          |> builtins.concatStringsSep "\n";
         host = ./host.json |> builtins.readFile |> builtins.fromJSON;
-        mcp-setting = pkgs.writeShellApplication {
-          name = "mcp-setting";
-          runtimeInputs = [ pkgs.claude-code ];
-          text = mcpCommands;
-        };
         update = pkgs.writeShellApplication {
           name = "update";
           runtimeInputs = [
@@ -198,15 +178,10 @@
               pkgs.ghalint
               pkgs.zizmor
             ];
-          default =
-            ''
-              update
-              mcp-setting
-            ''
-            |> runAs "default-script" [
-              update
-              mcp-setting
-            ];
+          default = {
+            type = "app";
+            program = "${update}/bin/update";
+          };
           install-check =
             ''
               jq -n --arg home "$HOME" --arg user "$USER" '{home: $home, user: $user}' > host.json
@@ -219,10 +194,6 @@
               pkgs.git
               home-manager.packages.${system}.home-manager
             ];
-          mcp-setting = {
-            type = "app";
-            program = "${mcp-setting}/bin/mcp-setting";
-          };
           sync =
             ''
               nvfetcher
