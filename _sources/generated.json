@@ -295,7 +295,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2026-01-17",
+        "date": "2026-01-18",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -307,12 +307,12 @@
             "name": null,
             "owner": "neovim",
             "repo": "neovim",
-            "rev": "a5e5ec8910ea35ebb86dcba7f58333d9d4caca47",
-            "sha256": "sha256-qnBvj3GvyF757Z8qJLjcVk/NW5p1wldeLHLdQPbehOM=",
+            "rev": "f36dd7557a98e2071f607b0859ccc632b58ccc87",
+            "sha256": "sha256-uBKhJzwdbewAvYTn+Eq3sQt8Y8Kj1zvuX47mqx8nb0Q=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "a5e5ec8910ea35ebb86dcba7f58333d9d4caca47"
+        "version": "f36dd7557a98e2071f607b0859ccc632b58ccc87"
     },
     "yazi-theme-catppuccin": {
         "cargoLocks": null,
