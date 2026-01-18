@@ -307,12 +307,12 @@
             "name": null,
             "owner": "neovim",
             "repo": "neovim",
-            "rev": "e51f5e17e18429b847be4e0d99698727dec47ca9",
-            "sha256": "sha256-j/NgL+zRSfJa/hTdvRkWdc9kUUhq908mlFdrVvkBYTE=",
+            "rev": "a5e5ec8910ea35ebb86dcba7f58333d9d4caca47",
+            "sha256": "sha256-qnBvj3GvyF757Z8qJLjcVk/NW5p1wldeLHLdQPbehOM=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "e51f5e17e18429b847be4e0d99698727dec47ca9"
+        "version": "a5e5ec8910ea35ebb86dcba7f58333d9d4caca47"
     },
     "yazi-theme-catppuccin": {
         "cargoLocks": null,
