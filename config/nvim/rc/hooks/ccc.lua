@@ -16,8 +16,10 @@ ccc.setup({
           return true
         end
         local filetype = vim.bo[bufnr].filetype
-        if vim.iter({ "floaterm", "help", "ddu-ff" }):find(filetype) ~= nil then
-          return true
+        for _, ft in ipairs({ "floaterm", "help", "ddu-ff", "aibo-console" }) do
+          if vim.startswith(filetype, ft) then
+            return true
+          end
         end
         return false
       end,
