@@ -27,7 +27,7 @@ require("fyler").setup({
     finder = {
       columns = {
         git = {
-          enabled = false,
+          enabled = true,
         },
         diagnostic = {
           enabled = false,
