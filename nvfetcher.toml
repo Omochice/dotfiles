@@ -62,6 +62,6 @@ fetch.github = "ast-grep/claude-skill"
 src.git = "https://github.com/neovim/neovim"
 fetch.github = "neovim/neovim"
 
-[anthropic-skills]
+[anthropics-skills]
 src.git = "https://github.com/anthropics/skills"
 fetch.github = "anthropics/skills"

@@ -1,9 +1,9 @@
 {
-    "anthropic-skills": {
+    "anthropics-skills": {
         "cargoLocks": null,
         "date": "2025-12-20",
         "extract": null,
-        "name": "anthropic-skills",
+        "name": "anthropics-skills",
         "passthru": null,
         "pinned": false,
         "src": {
@@ -295,7 +295,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2026-01-19",
+        "date": "2026-01-20",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -307,12 +307,12 @@
             "name": null,
             "owner": "neovim",
             "repo": "neovim",
-            "rev": "8bdfd286e5846325bf51e12f116ec56d38eaa212",
-            "sha256": "sha256-URcbrmLfPoOjgKXafCu4EIZM6cKywQaR83tf2wHQ5a0=",
+            "rev": "a9271f927ff60cadf91bb17286698ceb26eeaa44",
+            "sha256": "sha256-UGhbA5iFfClg9l4FfZ4tdB4qWgVWlWtHcjU9cDDZBsk=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "8bdfd286e5846325bf51e12f116ec56d38eaa212"
+        "version": "a9271f927ff60cadf91bb17286698ceb26eeaa44"
     },
     "yazi-theme-catppuccin": {
         "cargoLocks": null,

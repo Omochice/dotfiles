@@ -8,7 +8,7 @@ let
       name: value: lib.attrsets.nameValuePair (lib.strings.removePrefix prefix name) value
     );
   anthropic-skills =
-    pkgs.callPackage ../../_sources/generated.nix { } |> builtins.getAttr "anthropic-skills";
+    pkgs.callPackage ../../_sources/generated.nix { } |> builtins.getAttr "anthropics-skills";
 in
 {
   programs.my-claude-code = {
