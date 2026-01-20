@@ -32,6 +32,9 @@ require("fyler").setup({
         diagnostic = {
           enabled = false,
         },
+        permission = {
+          enabled = false,
+        },
       },
       mappings = {
         ["<CR>"] = "Select",
