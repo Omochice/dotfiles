@@ -82,7 +82,7 @@ let
         ];
       }
     ]
-    |> builtins.map (ext: readShellExetension ext);
+    |> map (ext: readShellExetension ext);
   native-extensions = [
     {
       name = "gh-dash";

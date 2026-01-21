@@ -11,10 +11,10 @@ in
     shellAliases =
       ../../path-list.toml
       |> builtins.readFile
-      |> builtins.fromTOML
+      |> fromTOML
       |> builtins.getAttr "aliases"
       |> builtins.filter (item: (isMatchOs item) && (isTargetNushell item))
-      |> builtins.map (item: {
+      |> map (item: {
         name = item.to;
         value = item.from;
       })

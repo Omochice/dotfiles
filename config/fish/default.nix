@@ -17,13 +17,13 @@ let
   path-to-eval = (x: (opt x) + "set --path PATH $PATH ${x.path}");
   eval-to-eval = (x: (opt x) + x.command);
 
-  config = ../../path-list.toml |> builtins.readFile |> builtins.fromTOML;
+  config = ../../path-list.toml |> builtins.readFile |> fromTOML;
   plugins =
     pkgs.callPackage ../../_sources/generated.nix { }
     |> lib.attrsets.filterAttrs (k: v: k |> lib.strings.hasPrefix "fish-")
     |> builtins.attrValues
     |> builtins.filter (x: (builtins.typeOf x) == "set" && x ? "pname")
-    |> builtins.map (x: {
+    |> map (x: {
       name = x.pname |> lib.strings.removePrefix "fish-";
       src = x.src;
     });
@@ -47,11 +47,10 @@ let
     }
   );
 
-  executes = config.executes |> builtins.filter isFishConfig |> builtins.map eval-to-eval;
-  paths = config.paths |> builtins.filter isFishConfig |> builtins.map path-to-eval;
-  environments =
-    config.environments |> builtins.filter isFishConfig |> builtins.map environment-to-eval;
-  sources = config.sources |> builtins.filter isFishConfig |> builtins.map source-to-eval;
+  executes = config.executes |> builtins.filter isFishConfig |> map eval-to-eval;
+  paths = config.paths |> builtins.filter isFishConfig |> map path-to-eval;
+  environments = config.environments |> builtins.filter isFishConfig |> map environment-to-eval;
+  sources = config.sources |> builtins.filter isFishConfig |> map source-to-eval;
   post = [
     "test -e ~/dotfiles/config/fish/config.local.fish && source ~/dotfiles/config/fish/config.local.fish"
   ];
@@ -64,7 +63,7 @@ in
     shellAliases =
       config.aliases
       |> builtins.filter isFishConfig
-      |> builtins.map (x: {
+      |> map (x: {
         name = x.to;
         value = x.from;
       })

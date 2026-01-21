@@ -2,6 +2,6 @@
 {
   programs.lazygit = {
     enable = true;
-    settings = ./config.toml |> (builtins.readFile) |> builtins.fromTOML;
+    settings = ./config.toml |> builtins.readFile |> fromTOML;
   };
 }
