@@ -7,6 +7,7 @@
 {
   imports = [
     ../modules/home-manager/my-claude-code.nix
+    ../modules/home-manager/my-git-wt.nix
     # keep-sorted start
     ../../claude/default.nix
     ../../colima/default.nix
@@ -16,6 +17,7 @@
     ../../fish/default.nix
     ../../gh-triage/default.nix
     ../../gh/default.nix
+    ../../git-wt/default.nix
     ../../git/default.nix
     ../../glab-cli/default.nix
     ../../karabiner/default.nix

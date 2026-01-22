@@ -12,7 +12,7 @@ function f --description="fuzzy moving with ghq"
         return (false)
     end
     set --local roots (ghq root --all)
-    set --local repo (ghq list | fzf --preview "
+    set --local repo (ghq list | string match --invert "*-wt/*" | fzf --preview "
       for root in $roots
         if bat --color=always --plain \$root/{}/README.md 2>/dev/null
           exit

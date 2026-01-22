@@ -80,6 +80,7 @@ in
       fzf_history = ./functions/fzf_history.fish |> parse-fish-function "History with fzf";
       gi = ./functions/gi.fish |> parse-fish-function "git ignore provider";
       mkcd = ./functions/mkcd.fish |> parse-fish-function "mkdir -p && cd";
+      t = ./functions/t.fish |> (parse-fish-function "fuzzy wotktree moving with ghq");
       # keep-sorted end
     };
   };
