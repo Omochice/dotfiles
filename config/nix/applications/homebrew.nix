@@ -47,12 +47,13 @@
       "wezterm@nightly"
       "windows-app"
       "xcodes"
+      "zen"
       "zoom"
+      # keep-sorted end
       {
         name = "lambdalisue/arto/arto";
         args.no_quarantine = true;
       }
-      # keep-sorted end
     ];
   };
 }
