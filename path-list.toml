@@ -39,11 +39,6 @@ to = "BROWSER"
 os = "darwin"
 
 [[environments]]
-from = "wezterm"
-to = "TERMINAL"
-if_executable = "wezterm"
-
-[[environments]]
 from = "~/.config"
 to = "XDG_CONFIG_HOME"
 if_exists = "~/.config"
