@@ -27,15 +27,15 @@
   };
   claude-skill-ast-grep = {
     pname = "claude-skill-ast-grep";
-    version = "d46b7d0cd238000e35bfcd57aa95edb3ed6a573c";
+    version = "577f4d4507678f2c8cee150fae25e6ce309f70b1";
     src = fetchFromGitHub {
       owner = "ast-grep";
       repo = "claude-skill";
-      rev = "d46b7d0cd238000e35bfcd57aa95edb3ed6a573c";
+      rev = "577f4d4507678f2c8cee150fae25e6ce309f70b1";
       fetchSubmodules = false;
-      sha256 = "sha256-LCI06qz9skVqSsXc88djK6YixABB+GnvoZcSce1m5Aw=";
+      sha256 = "sha256-LgGFtPieyKtoru22AhHW8hvkJ8kCHO2Cr8rBOWGuxvY=";
     };
-    date = "2025-11-23";
+    date = "2026-01-21";
   };
   fish-autols = {
     pname = "fish-autols";
@@ -171,15 +171,15 @@
   };
   neovim = {
     pname = "neovim";
-    version = "25ce44845d2adf94dfc91c70eb792a50d8274aa1";
+    version = "34116bbd9b61ec78233b86dcadec6eb5eaf1571d";
     src = fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "25ce44845d2adf94dfc91c70eb792a50d8274aa1";
+      rev = "34116bbd9b61ec78233b86dcadec6eb5eaf1571d";
       fetchSubmodules = false;
-      sha256 = "sha256-pCe5bvBt8VYF/IrDY2RDmA0412YR5Uq0kbYRp/zBI4g=";
+      sha256 = "sha256-xdQLQLmQgnqi6jJMiRlM6DMlZ35DAdVjtFVrVujk0Vc=";
     };
-    date = "2026-01-21";
+    date = "2026-01-22";
   };
   yazi-theme-catppuccin = {
     pname = "yazi-theme-catppuccin";

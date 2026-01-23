@@ -43,7 +43,7 @@
     },
     "claude-skill-ast-grep": {
         "cargoLocks": null,
-        "date": "2025-11-23",
+        "date": "2026-01-21",
         "extract": null,
         "name": "claude-skill-ast-grep",
         "passthru": null,
@@ -55,12 +55,12 @@
             "name": null,
             "owner": "ast-grep",
             "repo": "claude-skill",
-            "rev": "d46b7d0cd238000e35bfcd57aa95edb3ed6a573c",
-            "sha256": "sha256-LCI06qz9skVqSsXc88djK6YixABB+GnvoZcSce1m5Aw=",
+            "rev": "577f4d4507678f2c8cee150fae25e6ce309f70b1",
+            "sha256": "sha256-LgGFtPieyKtoru22AhHW8hvkJ8kCHO2Cr8rBOWGuxvY=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "d46b7d0cd238000e35bfcd57aa95edb3ed6a573c"
+        "version": "577f4d4507678f2c8cee150fae25e6ce309f70b1"
     },
     "fish-autols": {
         "cargoLocks": null,
@@ -295,7 +295,7 @@
     },
     "neovim": {
         "cargoLocks": null,
-        "date": "2026-01-21",
+        "date": "2026-01-22",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -307,12 +307,12 @@
             "name": null,
             "owner": "neovim",
             "repo": "neovim",
-            "rev": "25ce44845d2adf94dfc91c70eb792a50d8274aa1",
-            "sha256": "sha256-pCe5bvBt8VYF/IrDY2RDmA0412YR5Uq0kbYRp/zBI4g=",
+            "rev": "34116bbd9b61ec78233b86dcadec6eb5eaf1571d",
+            "sha256": "sha256-xdQLQLmQgnqi6jJMiRlM6DMlZ35DAdVjtFVrVujk0Vc=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "25ce44845d2adf94dfc91c70eb792a50d8274aa1"
+        "version": "34116bbd9b61ec78233b86dcadec6eb5eaf1571d"
     },
     "yazi-theme-catppuccin": {
         "cargoLocks": null,
