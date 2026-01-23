@@ -53,10 +53,6 @@ from = "~/.local/share/pnpm"
 to = "PNPM_HOME"
 if_exists = "~/.local/share/pnpm"
 
-[[environments]]
-to = "CLAUDE_CONFIG_DIR"
-from = "~/.config/claude"
-
 [[aliases]]
 from = "exit"
 to = ":q"
