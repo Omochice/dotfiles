@@ -314,6 +314,26 @@
         },
         "version": "34116bbd9b61ec78233b86dcadec6eb5eaf1571d"
     },
+    "tani-skills": {
+        "cargoLocks": null,
+        "date": "2026-01-24",
+        "extract": null,
+        "name": "tani-skills",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "08706c0c16e8fea829f85f93c3860f3eba773f68",
+            "sha256": "sha256-eX9jGzt7F3rRgu6ftMTGJm4HLb3IVY5kVUE3ZV6/Hbs=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://git.sr.ht/~tani/skills"
+        },
+        "version": "08706c0c16e8fea829f85f93c3860f3eba773f68"
+    },
     "yazi-theme-catppuccin": {
         "cargoLocks": null,
         "date": "2025-12-29",

@@ -181,6 +181,20 @@
     };
     date = "2026-01-22";
   };
+  tani-skills = {
+    pname = "tani-skills";
+    version = "08706c0c16e8fea829f85f93c3860f3eba773f68";
+    src = fetchgit {
+      url = "https://git.sr.ht/~tani/skills";
+      rev = "08706c0c16e8fea829f85f93c3860f3eba773f68";
+      fetchSubmodules = false;
+      deepClone = false;
+      leaveDotGit = false;
+      sparseCheckout = [ ];
+      sha256 = "sha256-eX9jGzt7F3rRgu6ftMTGJm4HLb3IVY5kVUE3ZV6/Hbs=";
+    };
+    date = "2026-01-24";
+  };
   yazi-theme-catppuccin = {
     pname = "yazi-theme-catppuccin";
     version = "fc69d6472d29b823c4980d23186c9c120a0ad32c";

@@ -65,3 +65,7 @@ fetch.github = "neovim/neovim"
 [anthropics-skills]
 src.git = "https://github.com/anthropics/skills"
 fetch.github = "anthropics/skills"
+
+[tani-skills]
+src.git = "https://git.sr.ht/~tani/skills"
+fetch.git = "https://git.sr.ht/~tani/skills"

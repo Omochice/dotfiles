@@ -9,6 +9,7 @@ let
     );
   anthropic-skills =
     pkgs.callPackage ../../_sources/generated.nix { } |> builtins.getAttr "anthropics-skills";
+  tani-skills = pkgs.callPackage ../../_sources/generated.nix { } |> builtins.getAttr "tani-skills";
 in
 {
   programs.my-claude-code = {
@@ -32,6 +33,7 @@ in
     skills = {
       # keep-sorted start
       ast-grep = "${plugins.ast-grep.src}/ast-grep/skills/ast-grep/";
+      commit = "${tani-skills.src}/commit/";
       review-pr = builtins.readFile ./skills/review-pr.md;
       skill-creator = "${anthropic-skills.src}/skills/skill-creator/";
       # keep-sorted end
