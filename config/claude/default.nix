@@ -29,7 +29,12 @@ in
       };
       model = "opusplan";
     };
-    commandsDir = ./commands;
+    commands = {
+      # keep-sorted start
+      kiro = builtins.readFile ./commands/kiro.md;
+      mr-comments = builtins.readFile ./commands/mr-comments.md;
+      # keep-sorted end
+    };
     skills = {
       # keep-sorted start
       ast-grep = "${plugins.ast-grep.src}/ast-grep/skills/ast-grep/";
