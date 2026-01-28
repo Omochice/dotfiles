@@ -6,9 +6,11 @@
   nixConfig = {
     extra-substituters = [
       "https://omochice.cachix.org"
+      "https://cache.numtide.com"
     ];
     extra-trusted-public-keys = [
       "omochice.cachix.org-1:d+cdfbGVPgtxxdGSkGf3hhaCdfziMtZ6FSHUWxwUTo8="
+      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
     ];
   };
 
@@ -39,6 +41,7 @@
       url = "github:marienz/nix-doom-emacs-unstraightened";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    llm-agents.url = "github:numtide/llm-agents.nix";
   };
 
   outputs =
@@ -52,6 +55,7 @@
       nur-packages,
       mcp-servers-nix,
       nix-doom-emacs-unstraightened,
+      ...
     }@inputs:
     flake-utils.lib.eachDefaultSystem (
       system:

@@ -2,6 +2,7 @@
   pkgs,
   user,
   home,
+  inputs,
   ...
 }:
 {

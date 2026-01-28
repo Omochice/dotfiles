@@ -1,5 +1,11 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 let
+  llm-pkgs = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
   prefix = "claude-skill-";
   plugins =
     pkgs.callPackage ../../_sources/generated.nix { }
@@ -14,13 +20,13 @@ in
 {
   programs.my-claude-code = {
     enable = true;
-    package = pkgs.claude-code;
+    package = llm-pkgs.claude-code;
     memory.source = ./CLAUDE.md;
     settings = {
       includeCoAuthoredBy = false;
       statusLine = {
         type = "command";
-        command = "${pkgs.ccusage}/bin/ccusage statusline";
+        command = "${llm-pkgs.ccusage}/bin/ccusage statusline";
         padding = 0;
       };
       sandbox = {
