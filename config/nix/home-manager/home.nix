@@ -2,8 +2,12 @@
   pkgs,
   user,
   home,
+  inputs,
   ...
 }:
+let
+  llm-pkgs = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
+in
 {
   imports = [
     ../modules/home-manager/my-claude-code.nix
@@ -61,7 +65,6 @@
       btop
       cachix
       cargo
-      ccusage
       clang-tools
       curl
       d2
@@ -96,6 +99,7 @@
       jq
       lazydocker
       lazygit
+      llm-pkgs.ccusage
       lsd
       mise
       mkcert
