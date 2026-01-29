@@ -50,6 +50,7 @@ jobs:
               - .github/workflows/push.yml
             flake:
               - _sources/*
+              - **/*.nix
               - flake.nix
               - flake.lock
             renovate:
