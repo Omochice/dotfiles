@@ -4,12 +4,13 @@
   pkgs,
 }:
 let
+  stdenv = if pkgs.stdenv.isDarwin then pkgs.clangStdenv else pkgs.useMoldLinker pkgs.clangStdenv;
+
   moldRC =
     name: env:
     pkgs.runCommandWith {
-      stdenv = pkgs.useMoldLinker pkgs.clangStdenv;
+      inherit name stdenv;
       runLocal = false;
-      inherit name;
       derivationArgs = env;
     };
   deps =
