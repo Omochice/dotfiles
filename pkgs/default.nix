@@ -10,5 +10,5 @@ let
   };
 in
 {
-  neovim-omochice = pkgs.callPackage ./neovim/default.nix { neovim-src = sources.neovim; };
+  neovim-omochice = pkgs.callPackage ./neovim/default.nix { source = sources.neovim; };
 }
