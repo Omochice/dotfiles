@@ -18,9 +18,9 @@ let
     |> builtins.readFile
     |> lib.strings.splitString "\n"
     |> builtins.filter builtins.isString
-    |> builtins.map (builtins.match "([0-9A-Z_]+)_(URL|SHA256) (.+)")
+    |> map (builtins.match "([0-9A-Z_]+)_(URL|SHA256) (.+)")
     |> builtins.filter builtins.isList
-    |> builtins.map (m: {
+    |> map (m: {
       "${lib.toLower (builtins.elemAt m 0)}" = {
         "${lib.toLower (builtins.elemAt m 1)}" = builtins.elemAt m 2;
       };
@@ -28,7 +28,7 @@ let
     |> builtins.foldl' lib.recursiveUpdate { }
     |> lib.mapAttrs' (
       name: value: {
-        name = "${name}/${builtins.baseNameOf value.url}";
+        name = "${name}/${baseNameOf value.url}";
         value = builtins.fetchurl value;
       }
     )
