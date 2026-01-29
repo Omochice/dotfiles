@@ -16,7 +16,7 @@ let
   deps =
     "${neovim-src}/cmake.deps/deps.txt"
     |> builtins.readFile
-    |> builtins.split "[\n]"
+    |> lib.strings.splitString "\n"
     |> builtins.filter builtins.isString
     |> builtins.map (builtins.match "([0-9A-Z_]+)_(URL|SHA256) (.+)")
     |> builtins.filter builtins.isList
