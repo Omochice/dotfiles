@@ -1,6 +1,6 @@
 {
     "anthropics-skills": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2025-12-20",
         "extract": null,
         "name": "anthropics-skills",
@@ -21,7 +21,7 @@
         "version": "69c0b1a0674149f27b61b2635f935524b6add202"
     },
     "bat-theme-catppuccin": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2025-06-29",
         "extract": null,
         "name": "bat-theme-catppuccin",
@@ -42,7 +42,7 @@
         "version": "6810349b28055dce54076712fc05fc68da4b8ec0"
     },
     "claude-skill-ast-grep": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2026-01-21",
         "extract": null,
         "name": "claude-skill-ast-grep",
@@ -63,7 +63,7 @@
         "version": "577f4d4507678f2c8cee150fae25e6ce309f70b1"
     },
     "fish-autols": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2018-10-09",
         "extract": null,
         "name": "fish-autols",
@@ -84,7 +84,7 @@
         "version": "6d704c0e33522335539bf6844ce9f7009b2ee6a2"
     },
     "fish-balias": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2015-11-12",
         "extract": null,
         "name": "fish-balias",
@@ -105,7 +105,7 @@
         "version": "9fb134c097c0aaec15a5f5c79bca8aa6879b1473"
     },
     "fish-catputtin": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2026-01-06",
         "extract": null,
         "name": "fish-catputtin",
@@ -126,7 +126,7 @@
         "version": "521560ce2075ca757473816aa31914215332bac9"
     },
     "fish-direnv": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2021-01-20",
         "extract": null,
         "name": "fish-direnv",
@@ -147,7 +147,7 @@
         "version": "8e0be51e1ea2e057643b756a9c633d0d057ad9b5"
     },
     "fish-emptyls": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2021-05-29",
         "extract": null,
         "name": "fish-emptyls",
@@ -168,7 +168,7 @@
         "version": "6b97fc65c7da2a3bcb3ea07075d0fcb5cd444fc1"
     },
     "fish-extract": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2016-03-11",
         "extract": null,
         "name": "fish-extract",
@@ -189,7 +189,7 @@
         "version": "5d05f9f15d3be8437880078171d1e32025b9ad9f"
     },
     "fish-fzf-emoji": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2022-12-28",
         "extract": null,
         "name": "fish-fzf-emoji",
@@ -210,7 +210,7 @@
         "version": "7763624950ddf0ae1f1f9559be367f5861183fcc"
     },
     "fish-lazyasdf": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2023-03-16",
         "extract": null,
         "name": "fish-lazyasdf",
@@ -231,7 +231,7 @@
         "version": "68d9bf4f4bd4286fccb2d97c81a6493fd04767a9"
     },
     "gh-fzgist": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2021-12-11",
         "extract": null,
         "name": "gh-fzgist",
@@ -252,7 +252,7 @@
         "version": "e2d20a91bbd19de1dc1cd8c603b366dd63c92158"
     },
     "gh-q": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2025-12-30",
         "extract": null,
         "name": "gh-q",
@@ -273,7 +273,7 @@
         "version": "d2d2e466c63a074fdf7e731a1f0d807d239f0a6b"
     },
     "gh-userfetch": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2021-09-19",
         "extract": null,
         "name": "gh-userfetch",
@@ -294,8 +294,8 @@
         "version": "9c90b188f1c58a6a3d6ce5f9220b05b5414b040f"
     },
     "neovim": {
-        "cargoLocks": null,
-        "date": "2026-01-22",
+        "cargoLock": null,
+        "date": "2026-01-29",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -307,15 +307,15 @@
             "name": null,
             "owner": "neovim",
             "repo": "neovim",
-            "rev": "34116bbd9b61ec78233b86dcadec6eb5eaf1571d",
-            "sha256": "sha256-xdQLQLmQgnqi6jJMiRlM6DMlZ35DAdVjtFVrVujk0Vc=",
+            "rev": "19a3b6778979e0b328f9a791a9f92296fd406690",
+            "sha256": "sha256-j9aX0TJ5rK4v+XupUjbk8WLV0LdFXpyL1hw99oH/1lg=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "34116bbd9b61ec78233b86dcadec6eb5eaf1571d"
+        "version": "19a3b6778979e0b328f9a791a9f92296fd406690"
     },
     "tani-skills": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2026-01-24",
         "extract": null,
         "name": "tani-skills",
@@ -335,7 +335,7 @@
         "version": "08706c0c16e8fea829f85f93c3860f3eba773f68"
     },
     "yazi-theme-catppuccin": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2025-12-29",
         "extract": null,
         "name": "yazi-theme-catppuccin",
@@ -356,7 +356,7 @@
         "version": "fc69d6472d29b823c4980d23186c9c120a0ad32c"
     },
     "zathura-catputtin": {
-        "cargoLocks": null,
+        "cargoLock": null,
         "date": "2025-08-03",
         "extract": null,
         "name": "zathura-catputtin",
