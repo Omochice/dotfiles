@@ -67,5 +67,5 @@ The original version is [rfc2119](https://www.ietf.org/rfc/rfc2119.txt).
     - `refactor`: A code change that neither fixes a bug nor adds a feature
     - `style`: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
     - `test`: Adding missing tests or correcting existing tests
-- Commits SHOULD be decided based on how users are affected by the diff
+- Commits MUST be decided based on how users are affected by the diff
     - For example, MUST NOT make decisions such as using `fix` because you are asked to modify the code
