@@ -662,6 +662,21 @@ hooks_file = "$VIMRC_RC_DIR/hooks/bqf.lua"
 on_ft = "qf"
 
 [[plugins]]
+repo = "https://github.com/Bakudankun/BackAndForward.vim"
+hook_add = """
+let g:backandforward_config = #{
+  \\   define_commands: v:false,
+  \\   auto_map: v:false,
+  \\ }
+nnoremap <Plug>(my-backandforward-pre) <Nop>
+nnoremap g<C-o> <Plug>(backandforward-back)<Plug>(my-backandforward-pre)
+nnoremap g<C-i> <Plug>(backandforward-forward)<Plug>(my-backandforward-pre)
+nnoremap <Plug>(my-backandforward-pre)<C-o> <Plug>(backandforward-back)<Plug>(my-backandforward-pre)
+nnoremap <Plug>(my-backandforward-pre)<C-i> <Plug>(backandforward-forward)<Plug>(my-backandforward-pre)
+"""
+on_map = { n = "<Plug>(backandforward" }
+
+[[plugins]]
 repo = "https://github.com/A7Lavinraj/fyler.nvim"
 on_lua = "fyler"
 on_cmd = "Fyler"
