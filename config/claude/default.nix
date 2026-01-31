@@ -33,7 +33,7 @@ in
         enabled = true;
         autoAllowBashIfSandboxed = true;
       };
-      model = "opusplan";
+      model = "opus";
     };
     commands = {
       # keep-sorted start
