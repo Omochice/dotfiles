@@ -43,6 +43,7 @@ The original version is [rfc2119](https://www.ietf.org/rfc/rfc2119.txt).
 
 ## Commit message Requirements
 
+- Commits MUST be divided into the smallest meaningful units
 - DO NOT staging without specifying a file, such as `git add .`
 - Commit message MUST be the below format:
 
