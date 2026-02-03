@@ -28,6 +28,7 @@ local ft = {
   tex = { "latex", "tex" },
   uml = { "plantuml" },
   vim = "vim",
+  vue = "vue",
   -- keep-sorted end
 }
 
@@ -46,7 +47,13 @@ local rules = {
   { char = "　", at = [[\%#]], input = " " },
   { char = char.bs, at = [[=\%#=]], input = char.bs, delete = 1 },
   -- js/ts
-  { filetype = ft.js, char = char.sp, at = [[^\s*\(}\s*else\s\)\?if\%#\s*$]], input = [[<Space>(]], input_after = ")" },
+  {
+    filetype = ft.js,
+    char = char.sp,
+    at = [[^\s*\(}\s*else\s\)\?if\%#\s*$]],
+    input = [[<Space>(]],
+    input_after = ")",
+  },
   { filetype = ft.js, char = ">", at = [[(\%#)]], input = [[<Right><Space>=><Space>]] },
   { filetype = ft.js, char = "*", at = [[^\s*/\%#]], input = [[*<Space>]], input_after = [[<Space>*/]] },
   { filetype = ft.js, char = "*", at = [[/\*\s\%#]], input = [[<BS>*<Space>]] },
@@ -183,6 +190,8 @@ local rules = {
   },
   -- help
   { filetype = ft.help, char = char.cr, at = [[^\s*>\w*\%#]], input = char.cr, input_after = [[<CR><]] },
+  -- vue
+  { filetype = ft.vue, char = "<", at = [[define\(Emits\|Props\)\%#]], input = "<", input_after = ">" },
 }
 
 for _, rule in ipairs(rules) do
