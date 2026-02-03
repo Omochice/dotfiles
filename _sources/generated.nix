@@ -176,15 +176,15 @@
   };
   neovim = {
     pname = "neovim";
-    version = "1906da52dbc9876046ec9866a5aae25309d7587e";
+    version = "af4115ce2b5ad731cb0fdecd3a44f9cc5a210ebd";
     src = fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "1906da52dbc9876046ec9866a5aae25309d7587e";
+      rev = "af4115ce2b5ad731cb0fdecd3a44f9cc5a210ebd";
       fetchSubmodules = false;
-      sha256 = "sha256-5ElmjkfjNdt8U4+BKjavmJZEcdJsX1U8TTpCE+NdPSc=";
+      sha256 = "sha256-iwBkjooF81qxGdLHSHPHHi8pU6KaBrwj5dJr/QE2cWM=";
     };
-    date = "2026-02-01";
+    date = "2026-02-03";
   };
   tani-skills = {
     pname = "tani-skills";
