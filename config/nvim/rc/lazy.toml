@@ -682,3 +682,8 @@ on_lua = "fyler"
 on_cmd = "Fyler"
 hooks_file = "$VIMRC_RC_DIR/hooks/fyler.lua"
 depends = ["vim-nerdfont", "vim-glyph-palette"]
+
+[[plugins]]
+repo = "https://github.com/arto-app/arto.vim"
+on_cmd = ["Arto", "ArtoVersion"]
+if = "has('mac')"
