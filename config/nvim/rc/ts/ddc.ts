@@ -1,8 +1,8 @@
 import {
   BaseConfig,
   type ConfigArguments,
-} from "jsr:@shougo/ddc-vim@10.1.0/config";
-import type { DdcOptions } from "jsr:@shougo/ddc-vim@10.1.0/types";
+} from "jsr:@shougo/ddc-vim@10.2.0/config";
+import type { DdcOptions } from "jsr:@shougo/ddc-vim@10.2.0/types";
 
 type FiletypePatch = [string[], Partial<DdcOptions>];
 
