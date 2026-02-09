@@ -1,20 +1,14 @@
 -- lua_source {{{
-require("nvim-treesitter.configs").setup({
-  ensure_installed = "all",
-  highlight = {
-    enable = true,
-    disable = { "help" },
-  },
-  disable = function(lang)
-    local ok = pcall(function()
-      vim.treesitter.get_query(lang, "highlights")
-    end)
-    return not ok
+require("nvim-treesitter").setup({})
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("vim-treesitter-start", {}),
+  callback = function(ctx)
+    local ft = vim.bo[ctx.buf].filetype
+    if ft == "help" then
+      return
+    end
+    pcall(vim.treesitter.start)
   end,
-  ignore_install = { "phpdoc", "help", "ipkg" },
-  playground = {
-    enable = true,
-  },
 })
 -- }}}
 
