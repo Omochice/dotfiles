@@ -1,9 +1,9 @@
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   extends: [
-    "github>Omochice/personal-renovate-config",
-    "github>Omochice/renovate-config:deno",
-    "github>Omochice/personal-renovate-config:mise",
+    "github>Omochice/personal-renovate-config#v1.11.1",
+    "github>Omochice/renovate-config:deno#v4.1.0",
+    "github>Omochice/personal-renovate-config:mise#v1.11.1",
     "customManagers:biomeVersions",
   ],
   lockFileMaintenance: {
