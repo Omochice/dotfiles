@@ -1,4 +1,4 @@
-import { Command } from "jsr:@cliffy/command@1.0.0-rc.8";
+import { Command } from "jsr:@cliffy/command@1.0.0";
 
 const command = new Command()
   .name("sample")
