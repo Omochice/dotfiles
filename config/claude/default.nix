@@ -63,6 +63,10 @@ in
         type = "stdio";
         command = "${pkgs.mcp-server-git}/bin/mcp-server-git";
       };
+      perplexity = {
+        type = "stdio";
+        command = "${pkgs.perplexity-mcp}/bin/perplexity-mcp";
+      };
       playwright = {
         type = "stdio";
         command = "${pkgs.playwright-mcp}/bin/mcp-server-playwright";
