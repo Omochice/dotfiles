@@ -53,7 +53,7 @@ in
       # keep-sorted start block=yes
       context7 = {
         type = "stdio";
-        command = "${pkgs.context7-mcp}/bin/context7-mcp";
+        command = lib.getExe pkgs.context7-mcp;
       };
       deepwiki-mcp = {
         type = "http";
@@ -61,15 +61,15 @@ in
       };
       git-mcp = {
         type = "stdio";
-        command = "${pkgs.mcp-server-git}/bin/mcp-server-git";
+        command = lib.getExe pkgs.mcp-server-git;
       };
       perplexity = {
         type = "stdio";
-        command = "${pkgs.perplexity-mcp}/bin/perplexity-mcp";
+        command = lib.getExe pkgs.perplexity-mcp;
       };
       playwright = {
         type = "stdio";
-        command = "${pkgs.playwright-mcp}/bin/mcp-server-playwright";
+        command = lib.getExe pkgs.playwright-mcp;
       };
       # keep-sorted end
     };
