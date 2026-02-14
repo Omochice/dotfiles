@@ -100,6 +100,7 @@ in
       lazydocker
       lazygit
       llm-pkgs.ccusage
+      llm-pkgs.happy-coder
       lsd
       mise
       mkcert
