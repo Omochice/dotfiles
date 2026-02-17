@@ -35,7 +35,10 @@ in
       };
       model = "opus";
       env = {
+        # keep-sorted start
         CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
+        IS_DEMO = "true";
+        # keep-sorted end
       };
     };
     commands = {
