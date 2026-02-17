@@ -34,6 +34,9 @@ in
         autoAllowBashIfSandboxed = true;
       };
       model = "opus";
+      env = {
+        CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
+      };
     };
     commands = {
       # keep-sorted start
