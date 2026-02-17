@@ -26,7 +26,7 @@ in
       includeCoAuthoredBy = false;
       statusLine = {
         type = "command";
-        command = "${llm-pkgs.ccusage}/bin/ccusage statusline";
+        command = "${lib.getExe llm-pkgs.ccusage} statusline";
         padding = 0;
       };
       sandbox = {
