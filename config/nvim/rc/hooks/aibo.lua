@@ -2,7 +2,7 @@
 require("aibo").setup({
   prompt = {
     no_default_mappings = true,
-    on_attach = function(bufnr)
+    on_attach = function(bufnr, info)
       local opts = { buffer = bufnr, nowait = true, silent = true }
       vim.keymap.set({ "n", "i" }, "<C-g><C-o>", "<Plug>(aibo-send)", { buffer = bufnr, nowait = true })
       vim.keymap.set("n", "<CR>", "<Plug>(aibo-submit)", opts)
@@ -15,6 +15,10 @@ require("aibo").setup({
       vim.keymap.set({ "n", "i" }, "<C-l>", "<Plug>(aibo-send)<C-l>", opts)
       vim.keymap.set({ "n", "i" }, "<Down>", "<Plug>(aibo-send)<Down>", opts)
       vim.keymap.set({ "n", "i" }, "<Up>", "<Plug>(aibo-send)<Up>", opts)
+
+      if info.cmd == "duckdb" then
+        vim.bo[bufnr].filetype = "sql"
+      end
     end,
   },
   tools = {
@@ -32,6 +36,15 @@ require("aibo").setup({
         vim.keymap.set({ "n", "i" }, "<C-v>", "<Plug>(aibo-send)<C-v>", opts)
       end,
     },
+    -- FIXME: we want to configure prompt for duckdb here
+    -- duckdb = {
+    -- 	on_attach = function(bufnr, info)
+    -- 		vim.print(bufnr, info)
+    -- 		if info.type == "prompt" then
+    -- 			vim.bo[bufnr].filetype = "sql"
+    -- 		end
+    -- 	end,
+    -- },
   },
 })
 -- }}}
