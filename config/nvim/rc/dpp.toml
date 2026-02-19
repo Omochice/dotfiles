@@ -1,5 +1,6 @@
 [[plugins]]
 repo = "https://github.com/Shougo/dpp.vim"
+rev = "v5.3.0"
 
 [[plugins]]
 repo = "https://github.com/vim-denops/denops.vim"
@@ -9,6 +10,7 @@ repo = "https://github.com/tani/vim-artemis"
 
 [[plugins]]
 repo = "https://github.com/Shougo/dpp-protocol-git"
+rev = "v2.0.0"
 
 [[plugins]]
 repo = "https://github.com/Shougo/dpp-ext-lazy"
@@ -22,3 +24,4 @@ hook_add = """
 command! DppInstall call dpp#async_ext_action('installer', 'install')
 command! DppUpdate call dpp#async_ext_action('installer', 'update')
 """
+rev = "v2.2.0"
