@@ -81,7 +81,7 @@ repo = "https://github.com/easymotion/vim-easymotion"
 hook_add = """
 nnoremap <Space>j <Plug>(easymotion-j)
 nnoremap <Space>k <Plug>(easymotion-k)
-const g:EasyMotion_smartcase = v:true
+let g:EasyMotion_smartcase = v:true
 const g:EasyMotion_use_smartsign_jp = v:true
 """
 on_map = { n = "<Plug>" }
