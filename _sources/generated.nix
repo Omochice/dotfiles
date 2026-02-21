@@ -68,15 +68,15 @@
   };
   fish-catputtin = {
     pname = "fish-catputtin";
-    version = "521560ce2075ca757473816aa31914215332bac9";
+    version = "bc201afe737fa0c8884ffcef206217f8aac88866";
     src = fetchFromGitHub {
       owner = "catppuccin";
       repo = "fish";
-      rev = "521560ce2075ca757473816aa31914215332bac9";
+      rev = "bc201afe737fa0c8884ffcef206217f8aac88866";
       fetchSubmodules = false;
-      sha256 = "sha256-5CXdzym6Vp+FbKTVBtVdWoh3dODudADIzOLXIyIIxgQ=";
+      sha256 = "sha256-jn2YoybaDY2gQgqmVGi9GPeRWn/H6IHnzxi/VcihIYM=";
     };
-    date = "2026-01-06";
+    date = "2026-02-17";
   };
   fish-direnv = {
     pname = "fish-direnv";
@@ -176,15 +176,15 @@
   };
   neovim = {
     pname = "neovim";
-    version = "29a46a11aa0820e4efcad80a2dfb9ca600924f58";
+    version = "9aa936d8929161cba360788c2f9d67b263c8d0b6";
     src = fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "29a46a11aa0820e4efcad80a2dfb9ca600924f58";
+      rev = "9aa936d8929161cba360788c2f9d67b263c8d0b6";
       fetchSubmodules = false;
-      sha256 = "sha256-AvX9xpjcgWCarffnNYvkdVO5HpEPKpnDwDgIHYp93tk=";
+      sha256 = "sha256-If4rwQN9Bin9xRkVsUol+p86PfZ6xjLpCGiscklIpJU=";
     };
-    date = "2026-02-17";
+    date = "2026-02-21";
   };
   tani-skills = {
     pname = "tani-skills";
