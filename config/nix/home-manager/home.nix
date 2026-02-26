@@ -99,6 +99,7 @@ in
       jq
       lazydocker
       lazygit
+      llm-pkgs.agent-browser
       llm-pkgs.ccusage
       llm-pkgs.happy-coder
       lsd
