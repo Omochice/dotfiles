@@ -222,11 +222,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1771853310,
-        "narHash": "sha256-wzR5gUIzSIP12BwmjpQqXIAC4N5FEgXS1J11Xl6CqwU=",
+        "lastModified": 1771903074,
+        "narHash": "sha256-4ZM2IP1LvcOX8Kmi4eGwJCfPwMg/JlXU7+t7uiHok3w=",
         "owner": "Omochice",
         "repo": "nur-packages",
-        "rev": "c2cf064a8f69880bd8c6647e40308fb9069f63bb",
+        "rev": "1ba8b23dc323794ee8a268a84e06e8c84afc7f9e",
         "type": "github"
       },
       "original": {
