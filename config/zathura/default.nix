@@ -12,6 +12,7 @@ in
       d = "scroll half-down";
       u = "scroll half-up";
       "|" = "toggle_page_mode";
+      "@" = "set recolor";
     };
   };
 }
