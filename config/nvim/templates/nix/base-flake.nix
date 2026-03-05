@@ -38,7 +38,7 @@
             settings.formatter = {
               # keep-sorted start block=yes
               rumdl = {
-                command = "${pkgs.rumdl}/bin/rumdl";
+                command = "${pkgs.lib.getExe pkgs.rumdl}";
                 options = [ "fmt" ];
                 includes = [ "*.md" ];
               };
