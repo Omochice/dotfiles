@@ -33,13 +33,33 @@
         };
         treefmt = treefmt-nix.lib.evalModule pkgs (
           { ... }:
+          let
+            rumdlConfig = (pkgs.formats.toml { }).generate "rumdl.toml" {
+              # keep-sorted start
+              MD004.style = "dash";
+              MD007.indent = 4;
+              MD007.style = "fixed";
+              MD041.enabled = false;
+              MD049.style = "underscore";
+              MD050.style = "asterisk";
+              MD055.style = "leading-and-trailing";
+              MD060.enabled = true;
+              MD060.style = "aligned";
+              global.length = 0;
+              # keep-sorted end
+            };
+          in
           {
             settings.global.excludes = [ ];
             settings.formatter = {
               # keep-sorted start block=yes
               rumdl = {
                 command = "${pkgs.lib.getExe pkgs.rumdl}";
-                options = [ "fmt" ];
+                options = [
+                  "fmt"
+                  "--config"
+                  (toString rumdlConfig)
+                ];
                 includes = [ "*.md" ];
               };
               # keep-sorted end
