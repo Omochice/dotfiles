@@ -687,3 +687,10 @@ depends = ["vim-nerdfont", "vim-glyph-palette"]
 repo = "https://github.com/arto-app/arto.vim"
 on_cmd = ["Arto", "ArtoVersion"]
 if = "has('mac')"
+
+[[plugins]]
+repo = "https://github.com/chomosuke/typst-preview.nvim"
+on_cmd = ["TypstPreview"]
+lua_source = """
+require("typst-preview").setup({})
+"""
