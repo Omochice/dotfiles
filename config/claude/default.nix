@@ -47,6 +47,12 @@ in
       mr-comments = builtins.readFile ./commands/mr-comments.md;
       # keep-sorted end
     };
+    rules = {
+      # keep-sorted start
+      commit = builtins.readFile ./rules/commit.md;
+      documentation = builtins.readFile ./rules/documentation.md;
+      # keep-sorted end
+    };
     skills = {
       # keep-sorted start
       ast-grep = "${plugins.ast-grep.src}/ast-grep/skills/ast-grep/";
