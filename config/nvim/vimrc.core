@@ -6,6 +6,7 @@ filetype plugin indent on
 set autoindent
 set autoread
 set backspace=indent,eol,start
+set breakindent
 set completeopt=menuone,noselect,preview
 set directory=$XDG_CACHE_HOME/vim,$HOME/.cache/vim
 set encoding=utf-8
