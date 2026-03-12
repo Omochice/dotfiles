@@ -25,6 +25,7 @@
     ];
     casks = [
       # keep-sorted start block=yes
+      "alacritty"
       "alt-tab"
       "android-studio"
       "crystalfetch"

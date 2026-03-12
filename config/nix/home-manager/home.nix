@@ -13,6 +13,7 @@ in
     ../modules/home-manager/my-claude-code.nix
     ../modules/home-manager/my-git-wt.nix
     # keep-sorted start
+    ../../alacritty/default.nix
     ../../claude/default.nix
     ../../colima/default.nix
     ../../deno/default.nix
@@ -34,6 +35,7 @@ in
     ../../rumdl/default.nix
     ../../sketchybar/default.nix
     ../../starship/default.nix
+    ../../tmux/default.nix
     ../../wezterm/default.nix
     ../../yazi/default.nix
     ../../zathura/default.nix
@@ -149,6 +151,7 @@ in
       taplo
       tinymist
       typescript-go
+      typescript-language-server
       typos-lsp
       vscode-langservers-extracted
       vue-language-server
