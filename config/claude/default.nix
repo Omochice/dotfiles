@@ -50,6 +50,7 @@ in
     rules = {
       # keep-sorted start
       commit = builtins.readFile ./rules/commit.md;
+      conversation = builtins.readFile ./rules/conversation.md;
       documentation = builtins.readFile ./rules/documentation.md;
       # keep-sorted end
     };
