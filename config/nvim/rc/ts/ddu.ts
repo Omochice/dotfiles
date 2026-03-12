@@ -1,7 +1,7 @@
 import {
   BaseConfig,
   type ConfigArguments,
-} from "jsr:@shougo/ddu-vim@11.1.0/config";
+} from "jsr:@shougo/ddu-vim@11.2.0/config";
 import type { Denops } from "jsr:@denops/std@8.2.0";
 import { ensure, is } from "jsr:@core/unknownutil@4.3.0";
 import { columns, lines } from "jsr:@denops/std@8.2.0/option";
