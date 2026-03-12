@@ -132,6 +132,7 @@ in
       unar
       uv
       vim-startuptime
+      xcpretty
       yazi
       # keep-sorted end
       # keep-sorted start
