@@ -68,6 +68,14 @@
                   {
                     "key_code": "international3"
                   }
+                ],
+                "conditions": [
+                  {
+                    "type": "frontmost_application_unless",
+                    "bundle_identifiers": [
+                      "^org.alacritty$"
+                    ]
+                  }
                 ]
               }
             ]

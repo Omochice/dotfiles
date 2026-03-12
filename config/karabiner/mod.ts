@@ -27,7 +27,13 @@ k.writeToProfile("Default profile", [
         .map({ key_code: "japanese_eisuu" })
         .to([{ key_code: "escape" }]),
     ]),
-  k.rule("Underscore to backslash")
+  k.rule(
+    "Underscore to backslash",
+    k
+      .ifApp({
+        bundle_identifiers: ["^org.alacritty$"],
+      }).unless(),
+  )
     .manipulators([
       k
         .map({ key_code: "international1" })
