@@ -19,5 +19,4 @@ jobs:
         uses: ./.github/actions/setup-nix
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: check actions
-        run: nix run .#check-action
+      - run: nix build ".#checks.$(nix eval --impure --raw --expr 'builtins.currentSystem').actions"

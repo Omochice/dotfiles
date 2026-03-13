@@ -70,7 +70,7 @@ jobs:
         uses: ./.github/actions/setup-nix
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: nix flake check
+      - run: nix build ".#checks.$(nix eval --impure --raw --expr 'builtins.currentSystem').formatting"
   check-actions:
     needs: path-filter
     if: needs.path-filter.outputs.actions == 'true'
@@ -121,7 +121,7 @@ jobs:
         uses: ./.github/actions/setup-nix
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: nix run .#validate-renovate-config
+      - run: nix build ".#checks.$(nix eval --impure --raw --expr 'builtins.currentSystem').renovate"
   status-check:
     timeout-minutes: 5
     runs-on: ubuntu-latest

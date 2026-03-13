@@ -171,17 +171,6 @@
         # keep-sorted start block=yes
         apps = {
           # keep-sorted start block=yes
-          check-action =
-            ''
-              actionlint
-              ghalint run
-              zizmor .github/workflows .github/actions
-            ''
-            |> runAs "check-action" [
-              pkgs.actionlint
-              pkgs.ghalint
-              pkgs.zizmor
-            ];
           default = {
             type = "app";
             program = "${update}/bin/update";
@@ -207,17 +196,42 @@
             type = "app";
             program = "${update}/bin/update";
           };
-          validate-renovate-config =
-            ''
-              renovate-config-validator --strict renovate.json5
-            ''
-            |> runAs "validate-renovate-config" [
-              pkgs.renovate
-            ];
           # keep-sorted end
         };
         checks = {
+          # keep-sorted start
+          actions =
+            pkgs.runCommand "check-actions"
+              {
+                buildInputs = with pkgs; [
+                  actionlint
+                  ghalint
+                  zizmor
+                ];
+                src = self;
+              }
+              ''
+                cd $src
+                actionlint .github/**/*.{yaml,yml}
+                ghalint run
+                zizmor .github/workflows .github/actions
+                touch $out
+              '';
           formatting = treefmt.config.build.check self;
+          renovate =
+            pkgs.runCommand "validate-renovate-config"
+              {
+                buildInputs = with pkgs; [
+                  renovate
+                ];
+                src = self;
+              }
+              ''
+                cd $src
+                renovate-config-validator --strict renovate.json5
+                touch $out
+              '';
+          # keep-sorted end
         };
         formatter = treefmt.config.build.wrapper;
         legacyPackages = {
