@@ -26,6 +26,14 @@ with lib;
       '';
     };
 
+    system.defaults.NSGlobalDomain.SLSMenuBarUseBlurredAppearance = mkOption {
+      type = types.nullOr types.bool;
+      default = null;
+      description = ''
+        Whether to make the menu bar background translucent.
+      '';
+    };
+
     system.defaults.NSGlobalDomain.AppleMenuBarVisibleInFullscreen = mkOption {
       type = types.nullOr types.bool;
       default = null;

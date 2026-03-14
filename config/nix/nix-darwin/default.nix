@@ -82,6 +82,7 @@ in
         AppleShowAllFiles = true;
         InitialKeyRepeat = 25;
         KeyRepeat = 2;
+        SLSMenuBarUseBlurredAppearance = true;
         _HIHideMenuBar = true;
         # keep-sorted end
       };
