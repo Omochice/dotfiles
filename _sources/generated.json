@@ -106,7 +106,7 @@
     },
     "fish-catputtin": {
         "cargoLock": null,
-        "date": "2026-02-17",
+        "date": "2026-03-13",
         "extract": null,
         "name": "fish-catputtin",
         "passthru": null,
@@ -118,12 +118,12 @@
             "name": null,
             "owner": "catppuccin",
             "repo": "fish",
-            "rev": "bc201afe737fa0c8884ffcef206217f8aac88866",
-            "sha256": "sha256-jn2YoybaDY2gQgqmVGi9GPeRWn/H6IHnzxi/VcihIYM=",
+            "rev": "5fc5ae9c2ec22eb376cb03ce76f0d262a38960f3",
+            "sha256": "sha256-3KNWYXfOMzZovdjwjBpjSH8cVlD4CO2QmQcCyQE4Dac=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "bc201afe737fa0c8884ffcef206217f8aac88866"
+        "version": "5fc5ae9c2ec22eb376cb03ce76f0d262a38960f3"
     },
     "fish-direnv": {
         "cargoLock": null,
@@ -295,7 +295,7 @@
     },
     "neovim": {
         "cargoLock": null,
-        "date": "2026-03-10",
+        "date": "2026-03-13",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -307,12 +307,12 @@
             "name": null,
             "owner": "neovim",
             "repo": "neovim",
-            "rev": "145548a24ae694ff048b080aa7e8b0329b9c9491",
-            "sha256": "sha256-bFYkbUkmefxobYDIUuzX0il4x+wfbAoeYulrQO+j7N4=",
+            "rev": "fd1e019e90e76bb3f6236210ac6287f3b8d4d47f",
+            "sha256": "sha256-Oj4HMwF261bJCS/zqgmqdxoCBSeEjwghxW+1MA9Ktik=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "145548a24ae694ff048b080aa7e8b0329b9c9491"
+        "version": "fd1e019e90e76bb3f6236210ac6287f3b8d4d47f"
     },
     "tani-skills": {
         "cargoLock": null,
