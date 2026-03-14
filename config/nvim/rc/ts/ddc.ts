@@ -115,6 +115,14 @@ export class Config extends BaseConfig {
           isVolatile: true,
           minAutoCompleteLength: 1,
         },
+        skkeleton_okuri: {
+          mark: "[SKK]",
+          matchers: [],
+          sorters: [],
+          converters: [],
+          isVolatile: true,
+          minAutoCompleteLength: 1,
+        },
       },
       sourceParams: {
         lines: {

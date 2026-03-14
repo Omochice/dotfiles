@@ -59,7 +59,7 @@ vimx.create_autocmd("User", {
   callback = function()
     vimx.b.ddc_dumped = vimx.fn.ddc.custom.get_buffer()
     vimx.fn.ddc.custom.patch_buffer({
-      sources = { "skkeleton" },
+      sources = { "skkeleton", "skkeleton_okuri" },
       sourceOptions = {
         ["_"] = {
           matchers = {},
