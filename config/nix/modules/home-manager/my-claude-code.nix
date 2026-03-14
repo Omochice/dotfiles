@@ -375,8 +375,8 @@ in
   config = lib.mkIf cfg.enable {
     assertions = [
       {
-        assertion = cfg.mcpServers == { } || cfg.package != null;
-        message = "`programs.claude-code.package` cannot be null when `mcpServers` is configured";
+        assertion = cfg.package != null;
+        message = "`programs.claude-code.package` cannot be null";
       }
       {
         assertion = !(cfg.memory.text != null && cfg.memory.source != null);
@@ -413,29 +413,27 @@ in
 
       my-claude-code.finalPackage =
         let
-          makeWrapperArgs = lib.flatten (
-            lib.filter (x: x != [ ]) [
-              (lib.optional (cfg.mcpServers != { }) [
-                "--append-flags"
-                "--mcp-config ${jsonFormat.generate "claude-code-mcp-config.json" { inherit (cfg) mcpServers; }}"
-              ])
-            ]
-          );
+          claudeBin = "${cfg.package}/bin/claude";
 
-          hasWrapperArgs = makeWrapperArgs != [ ];
+          staticMcpArgs = lib.optionalString (cfg.mcpServers != { })
+            ''args+=("--mcp-config" "${jsonFormat.generate "claude-code-mcp-config.json" { inherit (cfg) mcpServers; }}")'';
+
+          wrapper = pkgs.writeShellScriptBin "claude" ''
+            args=()
+            ${staticMcpArgs}
+            if repo_root="$(git rev-parse --show-toplevel 2>/dev/null)"; then
+              if [ -f "$repo_root/.mcp.json" ]; then
+                args+=("--mcp-config" "$repo_root/.mcp.json")
+              fi
+            fi
+            exec ${claudeBin} "''${args[@]}" "$@"
+          '';
         in
-        if hasWrapperArgs then
-          pkgs.symlinkJoin {
-            name = "claude-code";
-            paths = [ cfg.package ];
-            nativeBuildInputs = [ pkgs.makeWrapper ];
-            postBuild = ''
-              wrapProgram $out/bin/claude ${lib.escapeShellArgs makeWrapperArgs}
-            '';
-            inherit (cfg.package) meta;
-          }
-        else
-          cfg.package;
+        pkgs.symlinkJoin {
+          name = "claude-code";
+          paths = [ wrapper cfg.package ];
+          inherit (cfg.package) meta;
+        };
     };
 
     home = {
