@@ -49,67 +49,37 @@ in
     primaryUser = user;
     defaults = {
       # keep-sorted start block=yes case=no
-      CustomUserPreferences = {
-        symbolichotkeys = {
-          AppleSymbolicHotKeys = import ../system/darwin/symbolic-hotkeys.nix;
-        };
-      };
-      dock = {
-        # keep-sorted start
-        autohide = true;
-        mineffect = "scale";
-        no-bouncing = true;
-        orientation = "left";
-        tilesize = 48;
-        # keep-sorted end
-      };
-      finder = {
-        # keep-sorted start
-        AppleShowAllExtensions = true;
-        AppleShowAllFiles = true;
-        ShowPathbar = true;
-        ShowStatusBar = true;
-        # keep-sorted end
-      };
-      NSGlobalDomain = {
-        # keep-sorted start
-        "com.apple.keyboard.fnState" = true;
-        "com.apple.sound.beep.volume" = 0.0;
-        AppleActionOnDoubleClick = "None";
-        AppleMenuBarVisibleInFullscreen = false;
-        AppleMiniaturizeOnDoubleClick = false;
-        AppleShowAllExtensions = true;
-        AppleShowAllFiles = true;
-        InitialKeyRepeat = 25;
-        KeyRepeat = 2;
-        SLSMenuBarUseBlurredAppearance = true;
-        _HIHideMenuBar = true;
-        # keep-sorted end
-      };
-      PowerChime = {
-        # keep-sorted start
-        ChimeOnAllHardware = false;
-        ChimeOnNoHardware = true;
-        # keep-sorted end
-      };
+      CustomUserPreferences.symbolichotkeys.AppleSymbolicHotKeys = import ../system/darwin/symbolic-hotkeys.nix;
+      dock.autohide = true;
+      dock.mineffect = "scale";
+      dock.no-bouncing = true;
+      dock.orientation = "left";
+      dock.tilesize = 48;
+      finder.AppleShowAllExtensions = true;
+      finder.AppleShowAllFiles = true;
+      finder.ShowPathbar = true;
+      finder.ShowStatusBar = true;
+      NSGlobalDomain."com.apple.keyboard.fnState" = true;
+      NSGlobalDomain."com.apple.sound.beep.volume" = 0.0;
+      NSGlobalDomain._HIHideMenuBar = true;
+      NSGlobalDomain.AppleActionOnDoubleClick = "None";
+      NSGlobalDomain.AppleMenuBarVisibleInFullscreen = false;
+      NSGlobalDomain.AppleMiniaturizeOnDoubleClick = false;
+      NSGlobalDomain.AppleShowAllExtensions = true;
+      NSGlobalDomain.AppleShowAllFiles = true;
+      NSGlobalDomain.InitialKeyRepeat = 25;
+      NSGlobalDomain.KeyRepeat = 2;
+      NSGlobalDomain.SLSMenuBarUseBlurredAppearance = true;
+      PowerChime.ChimeOnAllHardware = false;
+      PowerChime.ChimeOnNoHardware = true;
       spaces.spans-displays = false;
-      trackpad = {
-        # keep-sorted start
-        Clicking = true;
-        ForceClick = false;
-        TrackpadMomentumScroll = true;
-        # keep-sorted end
-      };
-      trackpadBluetooth = {
-        TrackpadMomentumScroll = true;
-      };
+      trackpad.Clicking = true;
+      trackpad.ForceClick = false;
+      trackpad.TrackpadMomentumScroll = true;
+      trackpadBluetooth.TrackpadMomentumScroll = true;
       universalaccess.reduceMotion = false;
-      WindowManager = {
-        # keep-sorted start
-        EnableStandardClickToShowDesktop = false;
-        HideDesktop = false;
-        # keep-sorted end
-      };
+      WindowManager.EnableStandardClickToShowDesktop = false;
+      WindowManager.HideDesktop = false;
       # keep-sorted end
     };
   };
