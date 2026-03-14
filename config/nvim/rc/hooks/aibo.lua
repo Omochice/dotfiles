@@ -1,5 +1,7 @@
 -- lua_source {{{
 require("aibo").setup({
+  prompt_blend_insert = 0,
+  prompt_blend_normal = 0,
   prompt = {
     no_default_mappings = true,
     on_attach = function(bufnr, info)
