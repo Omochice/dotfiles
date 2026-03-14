@@ -82,17 +82,6 @@
             };
           }
         );
-        runAs =
-          name: runtimeInputs: text:
-          let
-            program = pkgs.writeShellApplication {
-              inherit name runtimeInputs text;
-            };
-          in
-          {
-            type = "app";
-            program = "${program}/bin/${name}";
-          };
         devPackages = rec {
           # keep-sorted start block=yes
           actions = with pkgs; [
@@ -109,15 +98,40 @@
       in
       {
         # keep-sorted start block=yes
-        apps = {
-          check-action = pkgs.lib.pipe ''
-            actionlint
-            ghalint run
-            zizmor .github
-          '' [ (runAs "check-action" devPackages.actions) ];
-        };
         checks = {
+          # keep-sorted start
+          actions =
+            pkgs.runCommand "check-actions"
+              {
+                buildInputs = with pkgs; [
+                  actionlint
+                  ghalint
+                  zizmor
+                ];
+                src = self;
+              }
+              ''
+                cd $src
+                actionlint .github/**/*.{yaml,yml}
+                ghalint run
+                zizmor .github/workflows .github/actions
+                touch $out
+              '';
           formatting = treefmt.config.build.check self;
+          renovate =
+            pkgs.runCommand "validate-renovate-config"
+              {
+                buildInputs = with pkgs; [
+                  renovate
+                ];
+                src = self;
+              }
+              ''
+                cd $src
+                renovate-config-validator --strict renovate.json5
+                touch $out
+              '';
+          # keep-sorted end
         };
         devShells = pkgs.lib.pipe devPackages [
           (pkgs.lib.attrsets.mapAttrs (name: buildInputs: pkgs.mkShell { inherit buildInputs; }))
