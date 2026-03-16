@@ -47,6 +47,7 @@ vim.lsp.enable({
   "tinymist",
   "tsgo",
   "typos_lsp",
+  "vue_ls",
   "yamlls",
   "zk",
   -- keep-sorted end
