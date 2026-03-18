@@ -415,8 +415,11 @@ in
         let
           claudeBin = "${cfg.package}/bin/claude";
 
-          staticMcpArgs = lib.optionalString (cfg.mcpServers != { })
-            ''args+=("--mcp-config" "${jsonFormat.generate "claude-code-mcp-config.json" { inherit (cfg) mcpServers; }}")'';
+          staticMcpArgs =
+            lib.optionalString (cfg.mcpServers != { })
+              ''args+=("--mcp-config" "${
+                jsonFormat.generate "claude-code-mcp-config.json" { inherit (cfg) mcpServers; }
+              }")'';
 
           wrapper = pkgs.writeShellScriptBin "claude" ''
             args=()
@@ -431,7 +434,10 @@ in
         in
         pkgs.symlinkJoin {
           name = "claude-code";
-          paths = [ wrapper cfg.package ];
+          paths = [
+            wrapper
+            cfg.package
+          ];
           inherit (cfg.package) meta;
         };
     };
