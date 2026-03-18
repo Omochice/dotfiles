@@ -52,6 +52,7 @@ in
       commit = builtins.readFile ./rules/commit.md;
       conversation = builtins.readFile ./rules/conversation.md;
       documentation = builtins.readFile ./rules/documentation.md;
+      temporary-directory = builtins.readFile ./rules/temporary-directory.md;
       # keep-sorted end
     };
     skills = {
