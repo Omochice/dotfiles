@@ -19,7 +19,7 @@ runs:
         extra_nix_config: |
           experimental-features = nix-command flakes pipe-operators
           access-tokens = github.com=${{ inputs.github-token }}
-    - uses: cachix/cachix-action@3ba601ff5bbb07c7220846facfa2cd81eeee15a1 # v16
+    - uses: cachix/cachix-action@1eb2ef646ac0255473d23a5907ad7b04ce94065c # v17
       if: ${{ inputs.cachix == 'true' }}
       with:
         name: omochice
