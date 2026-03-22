@@ -412,34 +412,30 @@ in
       );
 
       my-claude-code.finalPackage =
-        let
-          claudeBin = "${cfg.package}/bin/claude";
+        if cfg.mcpServers == { } then
+          cfg.package
+        else
+          let
+            pluginDir = pkgs.runCommand "claude-code-plugin-dir" { } ''
+              mkdir -p $out/.claude-plugin
+              cat > $out/.claude-plugin/plugin.json <<'MANIFEST'
+              {"name": "my-claude-code"}
+              MANIFEST
+              cp ${jsonFormat.generate "claude-code-mcp-config.json" { inherit (cfg) mcpServers; }} $out/.mcp.json
+            '';
 
-          staticMcpArgs =
-            lib.optionalString (cfg.mcpServers != { })
-              ''args+=("--mcp-config" "${
-                jsonFormat.generate "claude-code-mcp-config.json" { inherit (cfg) mcpServers; }
-              }")'';
-
-          wrapper = pkgs.writeShellScriptBin "claude" ''
-            args=()
-            ${staticMcpArgs}
-            if repo_root="$(git rev-parse --show-toplevel 2>/dev/null)"; then
-              if [ -f "$repo_root/.mcp.json" ]; then
-                args+=("--mcp-config" "$repo_root/.mcp.json")
-              fi
-            fi
-            exec ${claudeBin} "''${args[@]}" "$@"
-          '';
-        in
-        pkgs.symlinkJoin {
-          name = "claude-code";
-          paths = [
-            wrapper
-            cfg.package
-          ];
-          inherit (cfg.package) meta;
-        };
+            wrapper = pkgs.writeShellScriptBin "claude" ''
+              exec ${cfg.package}/bin/claude --plugin-dir ${pluginDir} "$@"
+            '';
+          in
+          pkgs.symlinkJoin {
+            name = "claude-code";
+            paths = [
+              wrapper
+              cfg.package
+            ];
+            inherit (cfg.package) meta;
+          };
     };
 
     home = {
