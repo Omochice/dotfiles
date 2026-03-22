@@ -466,7 +466,9 @@ repo = "https://github.com/lambdalisue/vim-glyph-palette"
 on_func = "glyph_palette#apply"
 
 [[plugins]]
-repo = "https://github.com/mattn/emmet-vim"
+# TODO: when merge PR, change repo to original one
+# repo = "https://github.com/mattn/emmet-vim"
+repo = "https://github.com/Dosx001/emmet-vim"
 hooks_file = "$VIMRC_RC_DIR/hooks/emmet.lua"
 on_map = { i = "<Plug>" }
 
