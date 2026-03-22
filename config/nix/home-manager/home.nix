@@ -126,7 +126,6 @@ in
       starship
       tldr
       tokei
-      tree-sitter
       typos
       typstyle
       unar

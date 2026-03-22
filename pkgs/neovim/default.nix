@@ -5,6 +5,14 @@
 let
   deps = pkgs.callPackage ./deps.nix { neovim-src = source.src; };
   env = if pkgs.stdenv.isDarwin then pkgs.clangStdenv else pkgs.useMoldLinker pkgs.clangStdenv;
+  treesitter-parsers = pkgs.runCommand "treesitter-parsers" {} ''
+    mkdir -p $out
+    for grammar in ${pkgs.lib.concatMapStringsSep " " (g: "${pkgs.neovimUtils.grammarToPlugin g}") pkgs.vimPlugins.nvim-treesitter.allGrammars}; do
+      for so in "$grammar"/parser/*.so; do
+        [ -e "$so" ] && ln -sf "$so" "$out/$(basename "$so")"
+      done
+    done
+  '';
 in
 env.mkDerivation {
   inherit (source) src;
@@ -36,6 +44,11 @@ env.mkDerivation {
 
     # Remove ftplugin.vim if exists
     rm -f $out/share/nvim/runtime/ftplugin.vim
+
+    # Install pre-compiled Tree-sitter parsers
+    for parser in ${treesitter-parsers}/*.so; do
+      ln -sf "$parser" "$out/lib/nvim/parser/$(basename "$parser")"
+    done
 
     # Create vim alias symlink
     ln -s $out/bin/nvim $out/bin/vim
