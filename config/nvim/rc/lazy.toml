@@ -297,7 +297,6 @@ if = "has('nvim')"
 on_event = ["BufRead", "BufNewFile"]
 hooks_file = "$VIMRC_RC_DIR/hooks/treesitter.lua"
 
-
 [[plugins]]
 repo = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
 rev = "main"
@@ -445,21 +444,6 @@ markdown = """
 nnoremap <buffer> qe <Plug>(operator-partedit-codeblock)
 xnoremap <buffer> qe <Plug>(operator-partedit-codeblock)
 """
-
-[[plugins]]
-repo = "https://github.com/lambdalisue/vim-fern"
-hooks_file = "$VIMRC_RC_DIR/hooks/fern.lua"
-on_cmd = "Fern"
-if = false
-
-[[plugins]]
-repo = "https://github.com/lambdalisue/vim-fern-renderer-nerdfont"
-depends = ["vim-nerdfont"]
-on_source = "fern.vim"
-
-[[plugins]]
-repo = "https://github.com/lambdalisue/fern-hijack.vim"
-on_source = "fern.vim"
 
 [[plugins]]
 repo = "https://github.com/lambdalisue/vim-glyph-palette"
@@ -616,36 +600,6 @@ on_func = "cmdline"
 repo = "https://github.com/folke/zen-mode.nvim"
 on_lua = "zen-mode"
 on_cmd = "ZenMode"
-
-[[plugins]]
-repo = "https://github.com/frankroeder/parrot.nvim"
-depends = ["plenary.nvim"]
-on_cmd = [
-  "PrtChatNew",
-  "PrtChatToggle",
-  "PrtChatPaste",
-  "PrtInfo",
-  "PrtContext",
-  "PrtChatFinder",
-  "PrtChatDelete",
-  "PrtChatRespond",
-  "PrtStop",
-  "PrtProvider",
-  "PrtModel",
-  "PrtStatus",
-  "PrtRewrite",
-  "PrtEdit",
-  "PrtAppend",
-  "PrtPrepend",
-  "PrtNew",
-  "PrtEnew",
-  "PrtVnew",
-  "PrtTabnew",
-  "PrtRetry",
-  "PrtImplement",
-  "PrtAsk",
-]
-hooks_file = "$VIMRC_RC_DIR/hooks/parrot.lua"
 
 [[plugins]]
 repo = "https://github.com/monaqa/dial.nvim"
