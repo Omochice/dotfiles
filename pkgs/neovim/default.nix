@@ -5,9 +5,13 @@
 let
   deps = pkgs.callPackage ./deps.nix { neovim-src = source.src; };
   env = if pkgs.stdenv.isDarwin then pkgs.clangStdenv else pkgs.useMoldLinker pkgs.clangStdenv;
-  treesitter-parsers = pkgs.runCommand "treesitter-parsers" {} ''
+  treesitter-parsers = pkgs.runCommand "treesitter-parsers" { } ''
     mkdir -p $out
-    for grammar in ${pkgs.lib.concatMapStringsSep " " (g: "${pkgs.neovimUtils.grammarToPlugin g}") pkgs.vimPlugins.nvim-treesitter.allGrammars}; do
+    for grammar in ${
+      pkgs.lib.concatMapStringsSep " " (
+        g: "${pkgs.neovimUtils.grammarToPlugin g}"
+      ) pkgs.vimPlugins.nvim-treesitter.allGrammars
+    }; do
       for so in "$grammar"/parser/*.so; do
         [ -e "$so" ] && ln -sf "$so" "$out/$(basename "$so")"
       done
