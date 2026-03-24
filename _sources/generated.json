@@ -1,7 +1,7 @@
 {
     "anthropics-skills": {
         "cargoLock": null,
-        "date": "2026-03-06",
+        "date": "2026-03-22",
         "extract": null,
         "name": "anthropics-skills",
         "passthru": null,
@@ -13,12 +13,12 @@
             "name": null,
             "owner": "anthropics",
             "repo": "skills",
-            "rev": "b0cbd3df1533b396d281a6886d5132f623393a9c",
-            "sha256": "sha256-GzNpraXV85qUwyGs5XDe0zHYr2AazqFppWtH9JvO3QE=",
+            "rev": "887114fd09f8f24a7e6c907f9ee505348498ab6a",
+            "sha256": "sha256-QAy9ulbKaK5QWiGiXYsxav+bMhhmqU8pCS7P0fWxLlk=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "b0cbd3df1533b396d281a6886d5132f623393a9c"
+        "version": "887114fd09f8f24a7e6c907f9ee505348498ab6a"
     },
     "bat-theme-catppuccin": {
         "cargoLock": null,
@@ -295,7 +295,7 @@
     },
     "neovim": {
         "cargoLock": null,
-        "date": "2026-03-18",
+        "date": "2026-03-24",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -307,12 +307,12 @@
             "name": null,
             "owner": "neovim",
             "repo": "neovim",
-            "rev": "65e193a425c3010da4db32d3670472064ddd1808",
-            "sha256": "sha256-gZTuudB65aO+okZFkMyWYqYHO3OUvkptqCCQkS3gXbA=",
+            "rev": "b02d1303b80f18f482b9eee94f1f29245c9da69f",
+            "sha256": "sha256-AZ0MijGK+x0O/i12z9OH+zLXp0WLdUw6WbcYbqiamno=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "65e193a425c3010da4db32d3670472064ddd1808"
+        "version": "b02d1303b80f18f482b9eee94f1f29245c9da69f"
     },
     "tani-skills": {
         "cargoLock": null,
