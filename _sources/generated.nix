@@ -8,15 +8,15 @@
 {
   anthropics-skills = {
     pname = "anthropics-skills";
-    version = "b0cbd3df1533b396d281a6886d5132f623393a9c";
+    version = "887114fd09f8f24a7e6c907f9ee505348498ab6a";
     src = fetchFromGitHub {
       owner = "anthropics";
       repo = "skills";
-      rev = "b0cbd3df1533b396d281a6886d5132f623393a9c";
+      rev = "887114fd09f8f24a7e6c907f9ee505348498ab6a";
       fetchSubmodules = false;
-      sha256 = "sha256-GzNpraXV85qUwyGs5XDe0zHYr2AazqFppWtH9JvO3QE=";
+      sha256 = "sha256-QAy9ulbKaK5QWiGiXYsxav+bMhhmqU8pCS7P0fWxLlk=";
     };
-    date = "2026-03-06";
+    date = "2026-03-22";
   };
   bat-theme-catppuccin = {
     pname = "bat-theme-catppuccin";
@@ -176,15 +176,15 @@
   };
   neovim = {
     pname = "neovim";
-    version = "65e193a425c3010da4db32d3670472064ddd1808";
+    version = "b02d1303b80f18f482b9eee94f1f29245c9da69f";
     src = fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "65e193a425c3010da4db32d3670472064ddd1808";
+      rev = "b02d1303b80f18f482b9eee94f1f29245c9da69f";
       fetchSubmodules = false;
-      sha256 = "sha256-gZTuudB65aO+okZFkMyWYqYHO3OUvkptqCCQkS3gXbA=";
+      sha256 = "sha256-AZ0MijGK+x0O/i12z9OH+zLXp0WLdUw6WbcYbqiamno=";
     };
-    date = "2026-03-18";
+    date = "2026-03-24";
   };
   tani-skills = {
     pname = "tani-skills";
