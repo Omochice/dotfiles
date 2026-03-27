@@ -38,6 +38,9 @@ in
       inherit home;
       uid = pkgs.lib.mkDefault 501;
       shell = pkgs.fish;
+      packages = with pkgs; [
+        go-ios
+      ];
     };
     knownUsers = [ user ];
   };
