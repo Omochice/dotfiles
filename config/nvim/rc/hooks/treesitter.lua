@@ -7,6 +7,7 @@ local disabled_filetypes = {
   ["help"] = true,
   ["html"] = true,
   ["json"] = true,
+  ["make"] = true,
   -- keep-sorted end
 }
 vim.api.nvim_create_autocmd("FileType", {
