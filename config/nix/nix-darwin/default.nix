@@ -16,6 +16,7 @@ in
     optimise.automatic = true;
     settings = {
       experimental-features = "nix-command flakes pipe-operators";
+      accept-flake-config = true;
       max-jobs = 8;
       substituters = [
         "https://omochice.cachix.org"
