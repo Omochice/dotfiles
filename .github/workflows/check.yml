@@ -42,12 +42,10 @@ jobs:
               - config/nvim/rc/ts/*.ts
               - config/nvim-dark/**/*.ts
               - config/skhd/queries/*.ts
-              - .github/workflows/_check-deno.yml
-              - .github/workflows/push.yml
+              - .github/workflows/check.yml
             karabiner:
               - config/karabiner/mod.ts
-              - .github/workflows/_check-karabiner.yml
-              - .github/workflows/push.yml
+              - .github/workflows/check.yml
             flake:
               - _sources/*
               - pkgs/**/*.nix
@@ -74,15 +72,41 @@ jobs:
   check-actions:
     needs: path-filter
     if: needs.path-filter.outputs.actions == 'true'
-    uses: ./.github/workflows/_check-actions.yml
-    permissions:
-      contents: read
+    timeout-minutes: 30
+    name: Check GitHub actions
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: setup nix
+        uses: ./.github/actions/setup-nix
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: nix build ".#checks.$(nix eval --impure --raw --expr 'builtins.currentSystem').actions"
   check-deno:
     needs: path-filter
     if: needs.path-filter.outputs.deno == 'true'
-    uses: ./.github/workflows/_check-deno.yml
-    permissions:
-      contents: read
+    timeout-minutes: 5
+    name: Check type
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: setup deno
+        uses: denoland/setup-deno@667a34cdef165d8d2b2e98dde39547c9daac7282 # v2.0.4
+        with:
+          deno-version: rc
+      - name: type check
+        run: deno check scripts/**/*.ts config/nvim/rc/ts/*.ts
+      - name: linting
+        run: deno lint scripts/**/*.ts config/nvim/rc/ts/*.ts
+      - name: testing
+        run: deno test --doc config/nvim/rc/**/*.ts
   check-home-manager:
     needs: path-filter
     if: needs.path-filter.outputs.flake == 'true'
