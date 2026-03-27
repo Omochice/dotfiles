@@ -11,6 +11,9 @@ path = "~/Library/Android/sdk/platform-tools"
 [[paths]]
 path = "~/.nix-profile/bin"
 
+[[paths]]
+path = "~/.moon/bin"
+
 [[aliases]]
 depends = ["local-bin"]
 from = "nvim"
