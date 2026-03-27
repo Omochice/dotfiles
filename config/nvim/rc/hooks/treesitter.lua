@@ -1,10 +1,13 @@
 -- lua_source {{{
 require("nvim-treesitter").setup({})
 local disabled_filetypes = {
-  ["help"] = true,
-  ["json"] = true,
-  ["html"] = true,
+  -- keep-sorted start
+  ["fish"] = true,
   ["gitcommit"] = true,
+  ["help"] = true,
+  ["html"] = true,
+  ["json"] = true,
+  -- keep-sorted end
 }
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("vim-treesitter-start", {}),
