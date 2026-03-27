@@ -18,6 +18,10 @@ in
       experimental-features = "nix-command flakes pipe-operators";
       accept-flake-config = true;
       max-jobs = 8;
+      trusted-users = [
+        "root"
+        user
+      ];
       substituters = [
         "https://omochice.cachix.org"
         "https://cache.numtide.com"
