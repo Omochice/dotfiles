@@ -19,6 +19,7 @@ function f --description="fuzzy moving with ghq"
         end
       end
       echo 'NO README'" --query "$argv[1]")
+    commandline -f repaint
     if test -z "$repo"
         return (false)
     end
