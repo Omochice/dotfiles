@@ -69,3 +69,7 @@ fetch.github = "anthropics/skills"
 [tani-skills]
 src.git = "https://git.sr.ht/~tani/skills"
 fetch.git = "https://git.sr.ht/~tani/skills"
+
+[tree-sitter-moonbit]
+src.git = "https://github.com/moonbitlang/tree-sitter-moonbit"
+fetch.github = "moonbitlang/tree-sitter-moonbit"

@@ -10,5 +10,8 @@ let
   };
 in
 {
-  neovim-omochice = pkgs.callPackage ./neovim/default.nix { source = sources.neovim; };
+  neovim-omochice = pkgs.callPackage ./neovim/default.nix {
+    source = sources.neovim;
+    tree-sitter-moonbit-source = sources.tree-sitter-moonbit;
+  };
 }

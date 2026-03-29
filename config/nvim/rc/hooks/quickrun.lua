@@ -31,6 +31,11 @@ vimx.g.quickrun_config = {
     command = "fennel",
     exec = "%c --compile %s | lua",
   },
+  moonbit = {
+    command = "moon",
+    cmdopt = "run",
+    exec = "%c %o %s",
+  },
 }
 -- }}}
 

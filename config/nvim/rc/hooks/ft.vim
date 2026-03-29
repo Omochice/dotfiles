@@ -118,3 +118,7 @@ inoreabbrev <buffer> :: -->
 setlocal comments=:#
 setlocal commentstring=#%s
 " }}}
+
+" moonbit {{{
+inoreabbrev <buffer>;; ->
+" }}}

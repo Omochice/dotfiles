@@ -1,10 +1,16 @@
 {
   source,
+  tree-sitter-moonbit-source,
   pkgs,
 }:
 let
   deps = pkgs.callPackage ./deps.nix { neovim-src = source.src; };
   env = if pkgs.stdenv.isDarwin then pkgs.clangStdenv else pkgs.useMoldLinker pkgs.clangStdenv;
+  tree-sitter-moonbit = pkgs.tree-sitter.buildGrammar {
+    language = "moonbit";
+    version = tree-sitter-moonbit-source.version;
+    src = tree-sitter-moonbit-source.src;
+  };
   treesitter-parsers = pkgs.runCommand "treesitter-parsers" { } ''
     mkdir -p $out
     for grammar in ${
@@ -15,6 +21,10 @@ let
       for so in "$grammar"/parser/*.so; do
         [ -e "$so" ] && ln -sf "$so" "$out/$(basename "$so")"
       done
+    done
+    # Custom grammars not in nixpkgs
+    for so in "${pkgs.neovimUtils.grammarToPlugin tree-sitter-moonbit}"/parser/*.so; do
+      [ -e "$so" ] && ln -sf "$so" "$out/$(basename "$so")"
     done
   '';
 in
@@ -53,6 +63,9 @@ env.mkDerivation {
     for parser in ${treesitter-parsers}/*.so; do
       ln -sf "$parser" "$out/lib/nvim/parser/$(basename "$parser")"
     done
+
+    # Install Tree-sitter queries for custom grammars
+    cp -r ${pkgs.neovimUtils.grammarToPlugin tree-sitter-moonbit}/queries/moonbit $out/share/nvim/runtime/queries/moonbit
 
     # Create vim alias symlink
     ln -s $out/bin/nvim $out/bin/vim
