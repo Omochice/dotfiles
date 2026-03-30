@@ -77,10 +77,6 @@ in
         type = "stdio";
         command = lib.getExe pkgs.mcp-server-git;
       };
-      perplexity = {
-        type = "stdio";
-        command = lib.getExe pkgs.perplexity-mcp;
-      };
       playwright = {
         type = "stdio";
         command = lib.getExe pkgs.playwright-mcp;
