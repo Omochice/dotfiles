@@ -21,20 +21,23 @@ let
 in
 {
   programs.git = {
+    # keep-sorted start block=yes
     enable = true;
-    package = pkgs.gitFull.override {
-      svnSupport = true;
-    };
+    ignores = ./ignore |> builtins.readFile |> lib.splitString "\n";
     includes = [
       { path = ./config; }
     ];
+    lfs.enable = true;
+    package = pkgs.gitFull.override {
+      svnSupport = true;
+    };
     settings = {
       alias = {
         dd = "!${git-dd}/bin/git-dd";
       };
       commit.template = ./gitmessage |> toString;
     };
-    ignores = ./ignore |> builtins.readFile |> lib.splitString "\n";
-    lfs.enable = true;
+    signing.format = null;
+    # keep-sorted end
   };
 }
