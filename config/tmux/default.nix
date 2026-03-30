@@ -69,6 +69,10 @@ in
       set -g mode-style "bg=${colors.selBg},fg=${colors.selFg}"
       set -g message-style "bg=${colors.bg},fg=${colors.fg}"
       set -g renumber-windows on
+
+      unbind C-b
+      set -g prefix F12
+      unbind F12
     '';
   };
 }
