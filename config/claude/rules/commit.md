@@ -3,6 +3,7 @@
 - Commits MUST be divided into the smallest meaningful units
 - DO NOT staging without specifying a file, such as `git add .`
 - DO NOT use `git commit --amend` for adding existed commit, Use `git commit --fixup`
+    - DO NOT use `git rebase --autosquash`, The command MUST be for human
 - Commit message MUST be the below format:
 
     ```txt

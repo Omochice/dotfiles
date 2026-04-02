@@ -6,6 +6,7 @@
 }:
 let
   llm-pkgs = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
+  guard-and-guide = inputs.guard-and-guide.packages.${pkgs.stdenv.hostPlatform.system};
   prefix = "claude-skill-";
   plugins =
     pkgs.callPackage ../../_sources/generated.nix { }
@@ -16,6 +17,7 @@ let
   anthropic-skills =
     pkgs.callPackage ../../_sources/generated.nix { } |> builtins.getAttr "anthropics-skills";
   tani-skills = pkgs.callPackage ../../_sources/generated.nix { } |> builtins.getAttr "tani-skills";
+  tomlFormat = pkgs.formats.toml { };
 in
 {
   programs.my-claude-code = {
@@ -23,9 +25,20 @@ in
     package = llm-pkgs.claude-code;
     memory.source = ./CLAUDE.md;
     settings = {
-      # keep-sorted start
+      # keep-sorted start block=yes
       env.CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
       env.IS_DEMO = "true";
+      hooks.PreToolUse = [
+        {
+          matcher = "";
+          hooks = [
+            {
+              type = "command";
+              command = "${lib.getExe guard-and-guide.default}";
+            }
+          ];
+        }
+      ];
       includeCoAuthoredBy = false;
       model = "opus";
       plansDirectory = "./.momomo/ai/plans";
@@ -81,4 +94,41 @@ in
       # keep-sorted end
     };
   };
+  xdg.configFile."guard-and-guide/rules.toml".source = builtins.toPath (
+    tomlFormat.generate "rules.toml" {
+      version = 1;
+      rules = [
+        {
+          matcher = "Bash";
+          regex = "\\bgit\\s+push\\b";
+          message = "Use of 'git push' is prohibited. Ask the user to execute it.";
+        }
+        {
+          matcher = "Bash";
+          regex = "\\bgit\\s+add\\s+(-A|--all|\\.($|[ ;|&]))";
+          message = "Do not git-add all files. Specify the files to add.";
+        }
+        {
+          matcher = "Bash";
+          regex = "\\bgit\\s+rebase\\s+.*--autosquash";
+          message = "Do not --autosquash for rebase fixup commits. Ask the user to execute it.";
+        }
+        {
+          matcher = "Bash";
+          regex = "\\bsed\\b";
+          message = "Use of 'sed' is prohibited. Use 'perl' instead. Example: perl -pi -e 's/old/new/g' file.txt";
+        }
+        {
+          matcher = "Bash";
+          regex = "\\bawk\\b";
+          message = "Use of 'awk' is prohibited. Use 'perl' instead. Example: perl -lane 'print $F[0]' file.txt";
+        }
+        {
+          matcher = "Write|Edit";
+          regex = "(pnpm-lock\\.yaml|package\\.json|deno\\.lock|bun\\.lockb?)$";
+          message = "Lock files are read-only. Do not modify them directly.";
+        }
+      ];
+    }
+  );
 }

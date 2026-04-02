@@ -42,6 +42,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     llm-agents.url = "github:numtide/llm-agents.nix";
+    guard-and-guide.url = "github:kawarimidoll/guard-and-guide";
   };
 
   outputs =
