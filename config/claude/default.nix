@@ -23,25 +23,19 @@ in
     package = llm-pkgs.claude-code;
     memory.source = ./CLAUDE.md;
     settings = {
+      # keep-sorted start
       includeCoAuthoredBy = false;
-      statusLine = {
-        type = "command";
-        command = "${lib.getExe llm-pkgs.ccusage} statusline";
-        padding = 0;
-      };
-      sandbox = {
-        enabled = true;
-        autoAllowBashIfSandboxed = true;
-      };
-      showClearContextOnPlanAccept = true;
-      teammateMode= "auto";
       model = "opus";
-      env = {
-        # keep-sorted start
-        CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
-        IS_DEMO = "true";
-        # keep-sorted end
-      };
+      env.CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
+      env.IS_DEMO = "true";
+      sandbox.enabled = true;
+      sandbox.autoAllowBashIfSandboxed = true;
+      showClearContextOnPlanAccept = true;
+      statusLine.type = "command";
+      statusLine.command = "${lib.getExe llm-pkgs.ccusage} statusline";
+      statusLine.padding = 0;
+      teammateMode = "auto";
+      # keep-sorted end
     };
     commands = {
       # keep-sorted start
