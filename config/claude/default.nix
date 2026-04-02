@@ -33,6 +33,7 @@ in
         enabled = true;
         autoAllowBashIfSandboxed = true;
       };
+      showClearContextOnPlanAccept = true;
       model = "opus";
       env = {
         # keep-sorted start
