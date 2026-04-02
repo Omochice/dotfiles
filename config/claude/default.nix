@@ -34,6 +34,7 @@ in
         autoAllowBashIfSandboxed = true;
       };
       showClearContextOnPlanAccept = true;
+      teammateMode= "auto";
       model = "opus";
       env = {
         # keep-sorted start
