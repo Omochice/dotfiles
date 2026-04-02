@@ -24,16 +24,17 @@ in
     memory.source = ./CLAUDE.md;
     settings = {
       # keep-sorted start
-      includeCoAuthoredBy = false;
-      model = "opus";
       env.CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
       env.IS_DEMO = "true";
-      sandbox.enabled = true;
+      includeCoAuthoredBy = false;
+      model = "opus";
+      plansDirectory = "./.momomo/ai/plans";
       sandbox.autoAllowBashIfSandboxed = true;
+      sandbox.enabled = true;
       showClearContextOnPlanAccept = true;
-      statusLine.type = "command";
       statusLine.command = "${lib.getExe llm-pkgs.ccusage} statusline";
       statusLine.padding = 0;
+      statusLine.type = "command";
       teammateMode = "auto";
       # keep-sorted end
     };
