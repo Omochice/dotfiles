@@ -23,4 +23,18 @@
       "config/nvim/templates/yaml/base-github*",
     ],
   },
+  customManagers: [
+    {
+      customType: "jsonata",
+      datasourceTemplate: "npm",
+      depNameTemplate: "@biomejs/biome",
+      fileFormat: "json",
+      managerFilePatterns: [
+        "config/nvim/templates/json/base-biome.json",
+      ],
+      matchStrings: [
+        "{'currentValue': $split($.'$schema', '/')[-2]}",
+      ],
+    },
+  ],
 }
