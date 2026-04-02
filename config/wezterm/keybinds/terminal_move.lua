@@ -31,6 +31,29 @@ local M = {
   { key = "/", mods = "ALT", action = act.Search("CurrentSelectionOrEmptyString") },
   { key = "v", mods = "ALT", action = act.PasteFrom("Clipboard") },
   {
+    key = "y",
+    mods = "ALT",
+    action = wezterm.action_callback(function(window, pane)
+      window:perform_action(act.ActivateCopyMode, pane)
+      window:perform_action(act.CopyMode({ MoveBackwardZoneOfType = "Input" }), pane)
+      window:perform_action(act.CopyMode({ SetSelectionMode = "Cell" }), pane)
+      window:perform_action(act.CopyMode({ MoveForwardZoneOfType = "Prompt" }), pane)
+      window:perform_action(act.CopyMode("MoveUp"), pane)
+      window:perform_action(act.CopyMode("MoveToEndOfLineContent"), pane)
+      window:perform_action(
+        act.Multiple({
+          { CopyTo = "ClipboardAndPrimarySelection" },
+          { Multiple = { "ScrollToBottom", { CopyMode = "Close" } } },
+        }),
+        pane
+      )
+      window:set_right_status("Yanked")
+      wezterm.time.call_after(1, function()
+        window:set_right_status("")
+      end)
+    end),
+  },
+  {
     key = "r",
     mods = "ALT",
     action = act({
