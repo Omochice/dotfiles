@@ -15,9 +15,9 @@ local M = {
   { key = "UpArrow", mods = "ALT", action = act.AdjustPaneSize({ "Up", 3 }) },
   { key = "RightArrow", mods = "ALT", action = act.AdjustPaneSize({ "Right", 3 }) },
   { key = "q", mods = "ALT|SHIFT", action = act.CloseCurrentPane({ confirm = false }) },
-  { key = "q", mods = "ALT", action = "ActivateCopyMode" },
-  { key = "[", mods = "ALT", action = "ActivateCopyMode" },
-  { key = "r", mods = "ALT|SHIFT", action = "ReloadConfiguration" },
+  { key = "q", mods = "ALT", action = act.ActivateCopyMode },
+  { key = "[", mods = "ALT", action = act.ActivateCopyMode },
+  { key = "r", mods = "ALT|SHIFT", action = act.ReloadConfiguration },
   { key = "1", mods = "ALT", action = act.ActivateTab(0) },
   { key = "2", mods = "ALT", action = act.ActivateTab(1) },
   { key = "3", mods = "ALT", action = act.ActivateTab(2) },
@@ -42,8 +42,11 @@ local M = {
       window:perform_action(act.CopyMode("MoveToEndOfLineContent"), pane)
       window:perform_action(
         act.Multiple({
-          { CopyTo = "ClipboardAndPrimarySelection" },
-          { Multiple = { "ScrollToBottom", { CopyMode = "Close" } } },
+          act.CopyTo("ClipboardAndPrimarySelection"),
+          act.Multiple({
+            act.CopyMode("MoveToScrollbackBottom"),
+            act.CopyMode("Close"),
+          }),
         }),
         pane
       )
@@ -56,13 +59,11 @@ local M = {
   {
     key = "r",
     mods = "ALT",
-    action = act({
-      ActivateKeyTable = {
-        name = "resize_pane",
-        one_shot = false,
-        timeout_milliseconds = 3000,
-        replace_current = false,
-      },
+    action = act.ActivateKeyTable({
+      name = "resize_pane",
+      one_shot = false,
+      timeout_milliseconds = 3000,
+      replace_current = false,
     }),
   },
 }

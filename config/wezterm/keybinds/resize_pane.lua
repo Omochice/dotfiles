@@ -11,7 +11,7 @@ local M = {
   { key = "k", action = act.AdjustPaneSize({ "Up", 3 }) },
   { key = "l", action = act.AdjustPaneSize({ "Right", 3 }) },
   -- Cancel the mode by pressing escape
-  { key = "Escape", action = "PopKeyTable" },
+  { key = "Escape", action = act.PopKeyTable },
 }
 
 return M
