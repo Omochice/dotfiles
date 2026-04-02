@@ -31,20 +31,5 @@ function M.get_process_name(p)
   return M.basename(string.match(p, "^(.-)%s"))
 end
 
-function M.is_opened_already()
-  local res = os.capture("ps axh | grep wezterm-gui")
-  return #res > 3
-end
-
-function os.capture(cmd)
-  local f = assert(io.popen(cmd, "r"))
-  local s = assert(f:read("*a"))
-  io.close(f)
-  local outputted = {}
-  for line in string.gmatch(s, "([^\n]*)\n?") do
-    table.insert(outputted, line)
-  end
-  return outputted
-end
 
 return M
