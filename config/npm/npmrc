@@ -1,0 +1,4 @@
+audit = true
+ignore-scripts = true
+min-release-age = 1
+save-exact = true

@@ -29,6 +29,7 @@ in
     ../../lazygit/default.nix
     ../../mise/default.nix
     ../../nix/default.nix
+    ../../npm/default.nix
     ../../nushell/default.nix
     ../../nvim/default.nix
     ../../ollama/default.nix
