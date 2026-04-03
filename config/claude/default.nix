@@ -125,7 +125,7 @@ in
         }
         {
           matcher = "Write|Edit";
-          regex = "(pnpm-lock\\.yaml|package\\.json|deno\\.lock|bun\\.lockb?)$";
+          regex = "(pnpm-lock\\.yaml|package-lock\\.json|deno\\.lock|bun\\.lockb?)$";
           message = "Lock files are read-only. Do not modify them directly.";
         }
       ];
