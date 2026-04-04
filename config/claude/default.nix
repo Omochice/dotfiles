@@ -41,6 +41,7 @@ in
       ];
       includeCoAuthoredBy = false;
       model = "opus";
+      permissions.defaultMode = "bypassPermissions";
       plansDirectory = "./.momomo/ai/plans";
       sandbox.autoAllowBashIfSandboxed = true;
       sandbox.enabled = true;
