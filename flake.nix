@@ -88,7 +88,7 @@
                 options = [
                   "fmt"
                   "--config"
-                  (builtins.toString ./config/rumdl/rumdl.toml)
+                  (toString ./config/rumdl/rumdl.toml)
                 ];
                 includes = [ "*.md" ];
               };
@@ -113,7 +113,7 @@
               shfmt.enable = true;
               stylua = {
                 enable = true;
-                settings = ./config/stylua/stylua.toml |> builtins.readFile |> builtins.fromTOML;
+                settings = ./config/stylua/stylua.toml |> builtins.readFile |> fromTOML;
               };
               taplo = {
                 enable = true;
