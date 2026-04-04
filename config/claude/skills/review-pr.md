@@ -83,11 +83,13 @@ For each approved item:
 
    Commit type SHOULD be determine by user effect.
 
+1. Reply to the original comment thread with `fixed in {commit hash}` where `{commit hash}` is the hash of the commit just created
 1. Mark todo as completed
 1. Move to next item
 
 ### Important Guidelines
 
+- Each issue group MUST be fully resolved (implement, commit, reply) before moving to the next group. Do not process multiple groups in parallel.
 - One commit per issue/comment
 - Never batch multiple fixes in one commit
 - Use conventional commit format
