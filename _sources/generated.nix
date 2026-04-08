@@ -8,15 +8,15 @@
 {
   anthropics-skills = {
     pname = "anthropics-skills";
-    version = "98669c11ca63e9c81c11501e1437e5c47b556621";
+    version = "ca1e7dc13c0ab5e2dfaa6de71991cd951b8f1cf2";
     src = fetchFromGitHub {
       owner = "anthropics";
       repo = "skills";
-      rev = "98669c11ca63e9c81c11501e1437e5c47b556621";
+      rev = "ca1e7dc13c0ab5e2dfaa6de71991cd951b8f1cf2";
       fetchSubmodules = false;
-      sha256 = "sha256-w//9LB1OVG9jlllY+VDse7Js0dn5x6Ys2vPuQACKsTM=";
+      sha256 = "sha256-m2d2noYYLm62j4PKbQguZxy6OjenVM5EEQ8GkNVKFHo=";
     };
-    date = "2026-03-25";
+    date = "2026-04-08";
   };
   bat-theme-catppuccin = {
     pname = "bat-theme-catppuccin";
@@ -176,15 +176,15 @@
   };
   neovim = {
     pname = "neovim";
-    version = "68c26b344ba7618a77f666e1d3f7c09e044c1460";
+    version = "6473d007e7b9f7f14b06190117f0bb0269fa938c";
     src = fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "68c26b344ba7618a77f666e1d3f7c09e044c1460";
+      rev = "6473d007e7b9f7f14b06190117f0bb0269fa938c";
       fetchSubmodules = false;
-      sha256 = "sha256-aXax2y5YG+g05Du+lDU4KSHk4d68tA4ErWeA9ed3360=";
+      sha256 = "sha256-QFIuqwSe8goGQAhDKC0pC2cVpzKMsdiNSGgx4oyOcBc=";
     };
-    date = "2026-04-01";
+    date = "2026-04-08";
   };
   tani-skills = {
     pname = "tani-skills";
@@ -202,15 +202,15 @@
   };
   tree-sitter-moonbit = {
     pname = "tree-sitter-moonbit";
-    version = "fb3634fbcedcc73d2a7b0cb7768d9d9c5367049e";
+    version = "82237f3f508d09fb09668d9885c99a562a756fe0";
     src = fetchFromGitHub {
       owner = "moonbitlang";
       repo = "tree-sitter-moonbit";
-      rev = "fb3634fbcedcc73d2a7b0cb7768d9d9c5367049e";
+      rev = "82237f3f508d09fb09668d9885c99a562a756fe0";
       fetchSubmodules = false;
-      sha256 = "sha256-p0yLwTT/PnE3sJ33aqOn+arfS+RI0jLjp5PpMGli24A=";
+      sha256 = "sha256-xK+v+tc0XRbtYv9e9VNEFo2PITt/0WT2pANtZLerkpc=";
     };
-    date = "2026-03-19";
+    date = "2026-04-07";
   };
   yazi-theme-catppuccin = {
     pname = "yazi-theme-catppuccin";
