@@ -129,6 +129,11 @@ in
           regex = "(pnpm-lock\\.yaml|package-lock\\.json|deno\\.lock|bun\\.lockb?)$";
           message = "Lock files are read-only. Do not modify them directly.";
         }
+        {
+          matcher = "Bash";
+          regex = "^(pip|pip3)\\b";
+          message = "Do not use `pip`, Use uv for installing package isolatly";
+        }
       ];
     }
   );
