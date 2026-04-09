@@ -70,6 +70,7 @@ in
       # keep-sorted start
       ast-grep = "${plugins.ast-grep.src}/ast-grep/skills/ast-grep/";
       commit = "${tani-skills.src}/commit/";
+      create-pr = builtins.readFile ./skills/create-pr.md;
       review-pr = builtins.readFile ./skills/review-pr.md;
       skill-creator = "${anthropic-skills.src}/skills/skill-creator/";
       # keep-sorted end
