@@ -73,6 +73,7 @@ in
       create-pr = builtins.readFile ./skills/create-pr.md;
       review-pr = builtins.readFile ./skills/review-pr.md;
       skill-creator = "${anthropic-skills.src}/skills/skill-creator/";
+      tdd = builtins.readFile ./skills/tdd.md;
       # keep-sorted end
     };
     mcpServers = {
