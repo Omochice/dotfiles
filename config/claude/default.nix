@@ -64,6 +64,7 @@ in
       commit = builtins.readFile ./rules/commit.md;
       conversation = builtins.readFile ./rules/conversation.md;
       documentation = builtins.readFile ./rules/documentation.md;
+      tidy-first = builtins.readFile ./rules/tidy-first.md;
       # keep-sorted end
     };
     skills = {
