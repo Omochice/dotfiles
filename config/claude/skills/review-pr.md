@@ -83,7 +83,7 @@ For each approved item:
 
    Commit type SHOULD be determine by user effect.
 
-1. Reply to the original comment thread with `fixed in {commit hash}` where `{commit hash}` is the hash of the commit just created
+1. Reply to the individual review comment thread using `gh api` (`POST /repos/{owner}/{repo}/pulls/comments/{comment_id}/replies`). The reply body MUST be exactly `fixed in {commit hash}` with no other text.
 1. Mark todo as completed
 1. Move to next item
 
