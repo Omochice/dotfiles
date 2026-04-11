@@ -28,6 +28,7 @@ jobs:
   update-flake-inputs:
     needs: list-inputs
     runs-on: ubuntu-latest
+    environment: renovate
     timeout-minutes: 30
     strategy:
       matrix:
@@ -78,6 +79,7 @@ jobs:
 
   update-nvfetcher:
     runs-on: ubuntu-latest
+    environment: renovate
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
