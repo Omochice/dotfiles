@@ -92,7 +92,6 @@ in
       glow
       gnumake
       gnupg1
-      goose-cli
       gotools
       graphviz
       hadolint
