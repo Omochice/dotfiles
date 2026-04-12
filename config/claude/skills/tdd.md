@@ -26,8 +26,15 @@ Analyze the requested behavior and write a test list to `.momomo/ai/test-list.md
 This phase is purely about understanding **what** the system should do.
 Do not make implementation design decisions here — those belong in the Refactor phase.
 
-Present the test list to the user and wait for confirmation before proceeding.
-The user may add, remove, or reorder items.
+### Review the Test List
+
+Walk through the test list with the user to verify it faithfully captures the requirements. For each item, ask one focused question — for example, whether the described behavior matches the user's intent, whether a boundary case is missing, or whether the priority order is right. Include a brief recommendation with each question so the user has a starting point.
+
+Ask questions one at a time. If a question can be answered by exploring the codebase, explore the codebase instead of asking.
+
+Revise the list based on the user's answers. Continue until the user explicitly approves the test list.
+
+Do not proceed to Phase 2 until the user approves.
 
 ## Phase 2: Red — Write a Failing Test
 
