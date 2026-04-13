@@ -190,7 +190,7 @@
             ];
           sync =
             ''
-              nvfetcher
+              nvfetcher "$@"
             ''
             |> runAs "sync" [ pkgs.nvfetcher ];
           update = {
