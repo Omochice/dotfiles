@@ -77,10 +77,33 @@ jobs:
             _sources/*
           branch: update-flake-lock-${{ matrix.input-name }}
 
+  list-nvfetcher-packages:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      matrix: ${{ steps.list-packages.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-nix
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          cachix: "false"
+      - run: |
+          matrix=$(nix eval --impure --expr 'builtins.attrNames (builtins.fromTOML (builtins.readFile ./nvfetcher.toml))' --json)
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+        id: list-packages
+
   update-nvfetcher:
+    needs: list-nvfetcher-packages
     runs-on: ubuntu-latest
     environment: renovate
     timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        package-name: ${{ fromJSON(needs.list-nvfetcher-packages.outputs.matrix) }}
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
@@ -100,10 +123,19 @@ jobs:
       - uses: ./.github/actions/setup-nix
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Resolve owner/repo
+        id: resolve
+        env:
+          PACKAGE_NAME: ${{ matrix.package-name }}
+        run: |
+          owner_repo=$(jq -r --arg pkg "$PACKAGE_NAME" '.[$pkg].src | "\(.owner)/\(.repo)"' _sources/generated.json)
+          echo "owner-repo=$owner_repo" >> "$GITHUB_OUTPUT"
       - name: Update nvfetcher
         id: update
+        env:
+          PACKAGE_NAME: ${{ matrix.package-name }}
         run: |
-          nix run .#sync
+          nix run .#sync -- --filter "^${PACKAGE_NAME}$" --keep-old
           if git diff --quiet _sources; then
             echo "updated=false" >> "$GITHUB_OUTPUT"
           else
@@ -114,8 +146,8 @@ jobs:
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
           token: ${{ steps.app-token.outputs.token }}
-          commit-message: "chore: update nvfetcher files"
-          title: "chore: update nvfetcher files"
+          commit-message: "chore: update nvfetcher ${{ steps.resolve.outputs.owner-repo }}"
+          title: "chore: update nvfetcher ${{ steps.resolve.outputs.owner-repo }}"
           add-paths: |
             _sources/*
-          branch: update-nvfetcher
+          branch: update-nvfetcher-${{ matrix.package-name }}
