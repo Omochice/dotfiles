@@ -7,9 +7,9 @@
 let
   llm-pkgs = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
   guard-and-guide = inputs.guard-and-guide.packages.${pkgs.stdenv.hostPlatform.system} // {
-    default =
-      inputs.guard-and-guide.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs
-        { doCheck = false; };
+    default = inputs.guard-and-guide.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs {
+      doCheck = false;
+    };
   };
   prefix = "claude-skill-";
   plugins =
