@@ -7,6 +7,7 @@ in
     enable = true;
     extraConfig = ''
       include ${plugins.zathura-catputtin.src}/themes/catppuccin-latte
+      set selection-clipboard clipboard
     '';
     mappings = {
       d = "scroll half-down";
