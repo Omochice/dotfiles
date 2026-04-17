@@ -8,15 +8,15 @@
 {
   anthropics-skills = {
     pname = "anthropics-skills";
-    version = "ca1e7dc13c0ab5e2dfaa6de71991cd951b8f1cf2";
+    version = "2c7ec5e78b8e5d43ea02e90bb8826f6b9f147b0c";
     src = fetchFromGitHub {
       owner = "anthropics";
       repo = "skills";
-      rev = "ca1e7dc13c0ab5e2dfaa6de71991cd951b8f1cf2";
+      rev = "2c7ec5e78b8e5d43ea02e90bb8826f6b9f147b0c";
       fetchSubmodules = false;
-      sha256 = "sha256-m2d2noYYLm62j4PKbQguZxy6OjenVM5EEQ8GkNVKFHo=";
+      sha256 = "sha256-BMgH43diojdUrGC6ivk87eEm2W1yWNuh2fpR9JpbUnE=";
     };
-    date = "2026-04-08";
+    date = "2026-04-16";
   };
   bat-theme-catppuccin = {
     pname = "bat-theme-catppuccin";

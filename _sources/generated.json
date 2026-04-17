@@ -1,7 +1,7 @@
 {
     "anthropics-skills": {
         "cargoLock": null,
-        "date": "2026-04-08",
+        "date": "2026-04-16",
         "extract": null,
         "name": "anthropics-skills",
         "passthru": null,
@@ -13,12 +13,12 @@
             "name": null,
             "owner": "anthropics",
             "repo": "skills",
-            "rev": "ca1e7dc13c0ab5e2dfaa6de71991cd951b8f1cf2",
-            "sha256": "sha256-m2d2noYYLm62j4PKbQguZxy6OjenVM5EEQ8GkNVKFHo=",
+            "rev": "2c7ec5e78b8e5d43ea02e90bb8826f6b9f147b0c",
+            "sha256": "sha256-BMgH43diojdUrGC6ivk87eEm2W1yWNuh2fpR9JpbUnE=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "ca1e7dc13c0ab5e2dfaa6de71991cd951b8f1cf2"
+        "version": "2c7ec5e78b8e5d43ea02e90bb8826f6b9f147b0c"
     },
     "bat-theme-catppuccin": {
         "cargoLock": null,
