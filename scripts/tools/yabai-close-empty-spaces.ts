@@ -1,4 +1,4 @@
-import { Command } from "jsr:@cliffy/command@1.0.0";
+import { Command } from "jsr:@cliffy/command@1.0.1";
 import { $ } from "jsr:@david/dax@0.45.0";
 import {
   $array,
