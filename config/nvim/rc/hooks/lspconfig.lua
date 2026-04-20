@@ -14,6 +14,13 @@ require("vimrc/lsp-helper").on_attach(nil, function()
   vim.keymap.set("n", "]d", function()
     vim.diagnostic.jump({ float = false, count = 1 })
   end, opts)
+
+  vim.keymap.set("n", "<Space>[h", function()
+    vim.lsp.inlay_hint.enable(true, { bufnr = 0 })
+  end)
+  vim.keymap.set("n", "<Space>]h", function()
+    vim.lsp.inlay_hint.enable(false, { bufnr = 0 })
+  end)
 end)
 
 vim.diagnostic.config({
