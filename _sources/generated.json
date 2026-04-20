@@ -295,7 +295,7 @@
     },
     "neovim": {
         "cargoLock": null,
-        "date": "2026-04-16",
+        "date": "2026-04-19",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -307,12 +307,12 @@
             "name": null,
             "owner": "neovim",
             "repo": "neovim",
-            "rev": "f0a8e6f3377c5393859c85cd44c1d2c57e8fe2d2",
-            "sha256": "sha256-PXDarJkdlSTBAQXck0od6sp1vq3kwb5ENGKW55kDju4=",
+            "rev": "f2cc0a249d20462619801a194b67f6ab1d48476c",
+            "sha256": "sha256-k3xVYT9woGd9K9n1jrbCcTSmadHogPD/EApqxX/0dxA=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "f0a8e6f3377c5393859c85cd44c1d2c57e8fe2d2"
+        "version": "f2cc0a249d20462619801a194b67f6ab1d48476c"
     },
     "tani-skills": {
         "cargoLock": null,
