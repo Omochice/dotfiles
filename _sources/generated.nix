@@ -6,18 +6,6 @@
   dockerTools,
 }:
 {
-  anthropics-skills = {
-    pname = "anthropics-skills";
-    version = "2c7ec5e78b8e5d43ea02e90bb8826f6b9f147b0c";
-    src = fetchFromGitHub {
-      owner = "anthropics";
-      repo = "skills";
-      rev = "2c7ec5e78b8e5d43ea02e90bb8826f6b9f147b0c";
-      fetchSubmodules = false;
-      sha256 = "sha256-BMgH43diojdUrGC6ivk87eEm2W1yWNuh2fpR9JpbUnE=";
-    };
-    date = "2026-04-16";
-  };
   bat-theme-catppuccin = {
     pname = "bat-theme-catppuccin";
     version = "6810349b28055dce54076712fc05fc68da4b8ec0";
@@ -30,6 +18,18 @@
     };
     date = "2025-06-29";
   };
+  claude-skill-anthropics = {
+    pname = "claude-skill-anthropics";
+    version = "2c7ec5e78b8e5d43ea02e90bb8826f6b9f147b0c";
+    src = fetchFromGitHub {
+      owner = "anthropics";
+      repo = "skills";
+      rev = "2c7ec5e78b8e5d43ea02e90bb8826f6b9f147b0c";
+      fetchSubmodules = false;
+      sha256 = "sha256-BMgH43diojdUrGC6ivk87eEm2W1yWNuh2fpR9JpbUnE=";
+    };
+    date = "2026-04-16";
+  };
   claude-skill-ast-grep = {
     pname = "claude-skill-ast-grep";
     version = "577f4d4507678f2c8cee150fae25e6ce309f70b1";
@@ -41,6 +41,20 @@
       sha256 = "sha256-LgGFtPieyKtoru22AhHW8hvkJ8kCHO2Cr8rBOWGuxvY=";
     };
     date = "2026-01-21";
+  };
+  claude-skill-tani = {
+    pname = "claude-skill-tani";
+    version = "08706c0c16e8fea829f85f93c3860f3eba773f68";
+    src = fetchgit {
+      url = "https://git.sr.ht/~tani/skills";
+      rev = "08706c0c16e8fea829f85f93c3860f3eba773f68";
+      fetchSubmodules = false;
+      deepClone = false;
+      leaveDotGit = false;
+      sparseCheckout = [ ];
+      sha256 = "sha256-eX9jGzt7F3rRgu6ftMTGJm4HLb3IVY5kVUE3ZV6/Hbs=";
+    };
+    date = "2026-01-24";
   };
   fish-autols = {
     pname = "fish-autols";
@@ -176,29 +190,15 @@
   };
   neovim = {
     pname = "neovim";
-    version = "f2cc0a249d20462619801a194b67f6ab1d48476c";
+    version = "61daad3bbaa30c916ee96dba4747fba3556878e1";
     src = fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "f2cc0a249d20462619801a194b67f6ab1d48476c";
+      rev = "61daad3bbaa30c916ee96dba4747fba3556878e1";
       fetchSubmodules = false;
-      sha256 = "sha256-k3xVYT9woGd9K9n1jrbCcTSmadHogPD/EApqxX/0dxA=";
+      sha256 = "sha256-PeMRSDwDXmaszc1QMk0LOmmH3+5kFA9yt+S0StzgWV0=";
     };
-    date = "2026-04-19";
-  };
-  tani-skills = {
-    pname = "tani-skills";
-    version = "08706c0c16e8fea829f85f93c3860f3eba773f68";
-    src = fetchgit {
-      url = "https://git.sr.ht/~tani/skills";
-      rev = "08706c0c16e8fea829f85f93c3860f3eba773f68";
-      fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sparseCheckout = [ ];
-      sha256 = "sha256-eX9jGzt7F3rRgu6ftMTGJm4HLb3IVY5kVUE3ZV6/Hbs=";
-    };
-    date = "2026-01-24";
+    date = "2026-04-20";
   };
   tree-sitter-moonbit = {
     pname = "tree-sitter-moonbit";

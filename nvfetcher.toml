@@ -62,11 +62,11 @@ fetch.github = "ast-grep/claude-skill"
 src.git = "https://github.com/neovim/neovim"
 fetch.github = "neovim/neovim"
 
-[anthropics-skills]
+[claude-skill-anthropics]
 src.git = "https://github.com/anthropics/skills"
 fetch.github = "anthropics/skills"
 
-[tani-skills]
+[claude-skill-tani]
 src.git = "https://git.sr.ht/~tani/skills"
 fetch.git = "https://git.sr.ht/~tani/skills"
 

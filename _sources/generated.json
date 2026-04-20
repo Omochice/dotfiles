@@ -1,25 +1,4 @@
 {
-    "anthropics-skills": {
-        "cargoLock": null,
-        "date": "2026-04-16",
-        "extract": null,
-        "name": "anthropics-skills",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "anthropics",
-            "repo": "skills",
-            "rev": "2c7ec5e78b8e5d43ea02e90bb8826f6b9f147b0c",
-            "sha256": "sha256-BMgH43diojdUrGC6ivk87eEm2W1yWNuh2fpR9JpbUnE=",
-            "sparseCheckout": [],
-            "type": "github"
-        },
-        "version": "2c7ec5e78b8e5d43ea02e90bb8826f6b9f147b0c"
-    },
     "bat-theme-catppuccin": {
         "cargoLock": null,
         "date": "2025-06-29",
@@ -41,6 +20,27 @@
         },
         "version": "6810349b28055dce54076712fc05fc68da4b8ec0"
     },
+    "claude-skill-anthropics": {
+        "cargoLock": null,
+        "date": "2026-04-16",
+        "extract": null,
+        "name": "claude-skill-anthropics",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "anthropics",
+            "repo": "skills",
+            "rev": "2c7ec5e78b8e5d43ea02e90bb8826f6b9f147b0c",
+            "sha256": "sha256-BMgH43diojdUrGC6ivk87eEm2W1yWNuh2fpR9JpbUnE=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "2c7ec5e78b8e5d43ea02e90bb8826f6b9f147b0c"
+    },
     "claude-skill-ast-grep": {
         "cargoLock": null,
         "date": "2026-01-21",
@@ -61,6 +61,26 @@
             "type": "github"
         },
         "version": "577f4d4507678f2c8cee150fae25e6ce309f70b1"
+    },
+    "claude-skill-tani": {
+        "cargoLock": null,
+        "date": "2026-01-24",
+        "extract": null,
+        "name": "claude-skill-tani",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "08706c0c16e8fea829f85f93c3860f3eba773f68",
+            "sha256": "sha256-eX9jGzt7F3rRgu6ftMTGJm4HLb3IVY5kVUE3ZV6/Hbs=",
+            "sparseCheckout": [],
+            "type": "git",
+            "url": "https://git.sr.ht/~tani/skills"
+        },
+        "version": "08706c0c16e8fea829f85f93c3860f3eba773f68"
     },
     "fish-autols": {
         "cargoLock": null,
@@ -295,7 +315,7 @@
     },
     "neovim": {
         "cargoLock": null,
-        "date": "2026-04-19",
+        "date": "2026-04-20",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -307,32 +327,12 @@
             "name": null,
             "owner": "neovim",
             "repo": "neovim",
-            "rev": "f2cc0a249d20462619801a194b67f6ab1d48476c",
-            "sha256": "sha256-k3xVYT9woGd9K9n1jrbCcTSmadHogPD/EApqxX/0dxA=",
+            "rev": "61daad3bbaa30c916ee96dba4747fba3556878e1",
+            "sha256": "sha256-PeMRSDwDXmaszc1QMk0LOmmH3+5kFA9yt+S0StzgWV0=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "f2cc0a249d20462619801a194b67f6ab1d48476c"
-    },
-    "tani-skills": {
-        "cargoLock": null,
-        "date": "2026-01-24",
-        "extract": null,
-        "name": "tani-skills",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "rev": "08706c0c16e8fea829f85f93c3860f3eba773f68",
-            "sha256": "sha256-eX9jGzt7F3rRgu6ftMTGJm4HLb3IVY5kVUE3ZV6/Hbs=",
-            "sparseCheckout": [],
-            "type": "git",
-            "url": "https://git.sr.ht/~tani/skills"
-        },
-        "version": "08706c0c16e8fea829f85f93c3860f3eba773f68"
+        "version": "61daad3bbaa30c916ee96dba4747fba3556878e1"
     },
     "tree-sitter-moonbit": {
         "cargoLock": null,

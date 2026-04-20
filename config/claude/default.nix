@@ -18,9 +18,6 @@ let
     |> lib.attrsets.mapAttrs' (
       name: value: lib.attrsets.nameValuePair (lib.strings.removePrefix prefix name) value
     );
-  anthropic-skills =
-    pkgs.callPackage ../../_sources/generated.nix { } |> builtins.getAttr "anthropics-skills";
-  tani-skills = pkgs.callPackage ../../_sources/generated.nix { } |> builtins.getAttr "tani-skills";
   tomlFormat = pkgs.formats.toml { };
 in
 {
@@ -76,10 +73,10 @@ in
     skills = {
       # keep-sorted start
       ast-grep = "${plugins.ast-grep.src}/ast-grep/skills/ast-grep/";
-      commit = "${tani-skills.src}/commit/";
+      commit = "${plugins.tani.src}/commit/";
       create-pr = builtins.readFile ./skills/create-pr.md;
       review-pr = builtins.readFile ./skills/review-pr.md;
-      skill-creator = "${anthropic-skills.src}/skills/skill-creator/";
+      skill-creator = "${plugins.anthropics.src}/skills/skill-creator/";
       tdd = builtins.readFile ./skills/tdd.md;
       # keep-sorted end
     };
