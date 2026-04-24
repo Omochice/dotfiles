@@ -1,8 +1,25 @@
+#+title: Doom Emacs Configuration
+
+* Packages
+
+#+begin_src emacs-lisp :tangle packages.el
+;; -*- no-byte-compile: t; -*-
+;;; packages.el
+
+(package! ddskk)
+#+end_src
+
+* Configuration
+
+#+begin_src emacs-lisp :tangle config.el
 ;;; config.el -*- lexical-binding: t; -*-
 
 (setq confirm-kill-emacs nil)
+#+end_src
 
-;; ddskk
+** ddskk
+
+#+begin_src emacs-lisp :tangle config.el
 (setq default-input-method "japanese-skk")
 (setq skk-large-jisyo (expand-file-name "~/.cache/dpp/repos/github.com/skk-dev/dict/SKK-JISYO.L"))
 (setq skk-use-azik t)
@@ -27,3 +44,4 @@
                   ("xxwa" nil ("ヮ" . "ゎ"))
                   ("rr" nil ("レル" . "れる"))
                   ("nn" nil ("ナン" . "なん"))))))
+#+end_src
