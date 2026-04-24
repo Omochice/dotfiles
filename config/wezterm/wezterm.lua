@@ -46,6 +46,13 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   local cwd = utils.basename(tostring(tab.active_pane.current_working_dir or ""):gsub("^file://", ""))
   local process = utils.get_process_name(tab.active_pane.title)
   local title = wezterm.truncate_right(process == "" and cwd or (process .. "/" .. cwd), max_width)
+  if tab.active_pane.is_zoomed then
+    return {
+      { Background = { Color = "#ff6b6b" } },
+      { Foreground = { Color = "#1f1e1c" } },
+      { Text = " " .. tab.tab_index + 1 .. ": [Z] " .. title .. " " },
+    }
+  end
   return {
     { Text = " " .. tab.tab_index + 1 .. ": " .. title .. " " },
   }

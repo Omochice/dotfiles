@@ -15,6 +15,7 @@ local M = {
   { key = "UpArrow", mods = "ALT", action = act.AdjustPaneSize({ "Up", 3 }) },
   { key = "RightArrow", mods = "ALT", action = act.AdjustPaneSize({ "Right", 3 }) },
   { key = "q", mods = "ALT|SHIFT", action = act.CloseCurrentPane({ confirm = false }) },
+  { key = "z", mods = "ALT", action = act.TogglePaneZoomState },
   { key = "q", mods = "ALT", action = act.ActivateCopyMode },
   { key = "[", mods = "ALT", action = act.ActivateCopyMode },
   { key = "r", mods = "ALT|SHIFT", action = act.ReloadConfiguration },
