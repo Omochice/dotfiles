@@ -78,6 +78,7 @@ in
       grill-me = "${plugins.mattpocock.src}/grill-me/";
       review-pr = builtins.readFile ./skills/review-pr.md;
       skill-creator = "${plugins.anthropics.src}/skills/skill-creator/";
+      specified-test = builtins.readFile ./skills/specified-test.md;
       tdd = builtins.readFile ./skills/tdd.md;
       # keep-sorted end
     };
