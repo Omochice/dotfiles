@@ -205,11 +205,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1777111228,
-        "narHash": "sha256-0oeKB8TJswyDMaO/GyToGL00QBgFrHZbN9JlhzdSVSc=",
+        "lastModified": 1777402721,
+        "narHash": "sha256-1UeLWyYQOjY6A27LHOq+R1TxP43yCxcvVfq5rTQvR/4=",
         "owner": "kawarimidoll",
         "repo": "guard-and-guide",
-        "rev": "1e62456cd13ca984b7169162f1a9f8e1783348b1",
+        "rev": "9f9e3ed8708597e3bf31a4abf5b96f09f23c8f0f",
         "type": "github"
       },
       "original": {
