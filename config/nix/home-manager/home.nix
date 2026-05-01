@@ -70,7 +70,6 @@ in
       cargo
       clang-tools
       curl
-      d2
       delta
       deno
       devbox
@@ -92,7 +91,6 @@ in
       glow
       gnumake
       gnupg1
-      gotools
       graphviz
       hadolint
       hyperfine
