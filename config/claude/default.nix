@@ -142,6 +142,11 @@ in
           regex = "^(pip|pip3)\\b";
           message = "Do not use `pip`, Use uv for installing package isolatly";
         }
+        {
+          matcher = "Read|Write|Edit";
+          regex = ".config/glab-cli/config\\.yml$";
+          message = "Do not read glab config file. If failed to access gitlab, ask user to resolve it.";
+        }
       ];
     }
   );
