@@ -1,6 +1,3 @@
-[global]
-line-length = 0
-
 [MD004]
 style = "dash"
 
@@ -23,3 +20,6 @@ style = "leading-and-trailing"
 [MD060]
 enabled = true
 style = "aligned"
+
+[global]
+line-length = 0
