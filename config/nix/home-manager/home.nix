@@ -39,7 +39,7 @@ in
     ../../tmux/default.nix
     ../../wezterm/default.nix
     ../../yazi/default.nix
-    ../../zathura/default.nix
+    # ../../zathura/default.nix
     ../../zk/default.nix
     ../../zoxide/default.nix
     # keep-sorted end
