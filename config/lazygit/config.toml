@@ -1,4 +1,8 @@
-#:schema  https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+# :schema  https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+
+[git.log]
+order = "topo-order"
+showGraph = "always"
 
 [gui]
 mouseEvents = false
@@ -8,9 +12,9 @@ useHunkModeInStagingView = false
 
 [keybinding]
 
-[keybinding.universal]
-toggleRangeSelect = "V"
-
 [keybinding.commits]
 cherryPickCopy = "c"
 pasteCommits = "v"
+
+[keybinding.universal]
+toggleRangeSelect = "V"
