@@ -6,21 +6,15 @@ vim.opt.fillchars:append({ stl = "─", stlnc = "─" })
 -- }}}
 
 -- lua_source {{{
--- FIXME: after solve https://github.com/Shougo/dpp.vim/issues/41 revert this change
-local palette
-local function get_palette()
-  if palette then
-    return palette
-  end
-  palette = vim
-    .iter(vim.fn["sonokai#get_palette"](vim.g.sonokai_style, vim.empty_dict()))
-    :fold({}, function(acc, key, value)
-      acc[key] = value[1]
-      return acc
-    end)
-  return palette
-end
-
+-- NOTE: This configuration is based on https://github.com/izumin5210/dotfiles/blob/15a954676994c3710926d4c9bbf1f635f3a145f4/config/.config/nvim/lua/utils/colors.lua
+local palette = vim
+  .iter(vim.fn["sonokai#get_palette"](vim.g.sonokai_style, vim.empty_dict()))
+  :fold({}, function(acc, key, value)
+    acc[key] = value[1]
+    return acc
+  end)
+-- local fg_active = palette.text
+local fg_inactive = palette.grey_dim
 local icons = { error = "E:", warn = "W:", hint = "H:", info = "I:" }
 
 --- @class Prop
@@ -42,7 +36,7 @@ local function get_diagnostic_label(props)
     end
   end
   if #label > 0 then
-    table.insert(label, 1, { ": ", guifg = get_palette().grey_dim })
+    table.insert(label, 1, { ": ", guifg = fg_inactive })
   end
   return label
 end
@@ -69,27 +63,25 @@ end
 
 ---@param props Prop
 local function get_file_highlight(props)
-  local p = get_palette()
   if not props.focused then
-    return p.grey_dim
+    return fg_inactive
   end
   if vim.bo[props.buf].modified then
-    return p.red
+    return palette.red
   end
-  return p.fg
+  return palette.fg
 end
 
 --- @param props Prop
 local function render(props)
-  local p = get_palette()
   local filename, ft_icon = get_fileinfo(props.buf)
   local is_readonly = vim.bo[props.buf].readonly
-  local fg_filename = props.focused and p.fg or p.grey_dim
+  local fg_filename = props.focused and palette.fg or fg_inactive
 
   return {
     {
       (ft_icon and ft_icon .. " " or ""),
-      guifg = props.focused and fg_filename or p.grey_dim,
+      guifg = props.focused and fg_filename or fg_inactive,
     },
     {
       (is_readonly and "RO " or ""),
