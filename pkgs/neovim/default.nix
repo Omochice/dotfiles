@@ -64,6 +64,9 @@ env.mkDerivation {
       ln -sf "$parser" "$out/lib/nvim/parser/$(basename "$parser")"
     done
 
+    # Install Tree-sitter queries from nvim-treesitter
+    cp -rn ${pkgs.vimPlugins.nvim-treesitter}/runtime/queries/. $out/share/nvim/runtime/queries/
+
     # Install Tree-sitter queries for custom grammars
     cp -r ${pkgs.neovimUtils.grammarToPlugin tree-sitter-moonbit}/queries/moonbit $out/share/nvim/runtime/queries/moonbit
 
