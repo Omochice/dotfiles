@@ -121,3 +121,7 @@ repo = "https://github.com/uga-rosa/ddc-previewer-floating"
 on_source = "ddc.vim"
 hooks_file = "$VIMRC_RC_DIR/hooks/ddc-previewer-floating.lua"
 if = "has('nvim')"
+
+[[plugins]]
+repo = "https://github.com/Omochice/ddc-source-cc_command"
+on_source = "ddc.vim"

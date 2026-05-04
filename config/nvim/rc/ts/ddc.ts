@@ -7,6 +7,9 @@ import type { DdcOptions } from "jsr:@shougo/ddc-vim@10.3.0/types";
 type FiletypePatch = [string[], Partial<DdcOptions>];
 
 const filetypePatches = [
+  [["aibo-prompt.aibo-tool-claude"], {
+    sources: ["cc_command", "file", "around", "buffer", "rg"],
+  }],
   [["vim", "toml"], {
     sources: ["necovim", "lsp", "around", "buffer", "rg"],
   }],
@@ -84,6 +87,11 @@ export class Config extends BaseConfig {
           mark: "[LSP]",
           isVolatile: true,
           forceCompletionPattern: String.raw`\..?|:|->|\w+/`,
+        },
+        cc_command: {
+          mark: "[C.C]",
+          forceCompletionPattern: "/\S*",
+          keywordPattern: "[A-Za-z0-9_-]+",
         },
         file: {
           mark: "[Fil]",
