@@ -43,7 +43,7 @@ jobs:
         uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 # v3.1.1
         with:
           private-key: ${{ secrets.RENOVATE_PRIVATE_KEY }}
-          app-id: ${{ secrets.RENOVATE_APP_ID }}
+          client-id: ${{ vars.RENOVATE_CLIENT_ID }}
           owner: ${{ github.repository_owner }}
           repositories: |
             dotfiles
@@ -113,7 +113,7 @@ jobs:
         uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 # v3.1.1
         with:
           private-key: ${{ secrets.RENOVATE_PRIVATE_KEY }}
-          app-id: ${{ secrets.RENOVATE_APP_ID }}
+          client-id: ${{ vars.RENOVATE_CLIENT_ID }}
           owner: ${{ github.repository_owner }}
           repositories: |
             dotfiles
