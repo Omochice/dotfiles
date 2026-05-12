@@ -147,6 +147,11 @@ in
           regex = ".config/glab-cli/config\\.yml$";
           message = "Do not read glab config file. If failed to access gitlab, ask user to resolve it.";
         }
+        {
+          matcher = "Read|Write|Edit";
+          regex = "\\.envrc$";
+          message = "Do not read credential config file. If failed to access some endpoints, ask user to resolve it.";
+        }
       ];
     }
   );
