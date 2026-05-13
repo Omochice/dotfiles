@@ -44,15 +44,15 @@
   };
   claude-skill-mattpocock = {
     pname = "claude-skill-mattpocock";
-    version = "9fecab929abb904c68ce3366a1781df31ab22832";
+    version = "f304057d61d3df3c9fd992ac2b6e3833cb9325fb";
     src = fetchFromGitHub {
       owner = "mattpocock";
       repo = "skills";
-      rev = "9fecab929abb904c68ce3366a1781df31ab22832";
+      rev = "f304057d61d3df3c9fd992ac2b6e3833cb9325fb";
       fetchSubmodules = false;
-      sha256 = "sha256-nBvVsa8bYeXWQ5t3aGLgAPui685h8nNLqYqIIgi443E=";
+      sha256 = "sha256-jdUTec3217Bc+h5npjKOlIBHp3rhEd/sRKzDV2N7XIc=";
     };
-    date = "2026-05-10";
+    date = "2026-05-12";
   };
   claude-skill-tani = {
     pname = "claude-skill-tani";
