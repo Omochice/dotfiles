@@ -75,7 +75,7 @@ in
       ast-grep = "${plugins.ast-grep.src}/ast-grep/skills/ast-grep/";
       commit = "${plugins.tani.src}/commit/";
       create-pr = builtins.readFile ./skills/create-pr.md;
-      grill-me = "${plugins.mattpocock.src}/grill-me/";
+      grill-me = "${plugins.mattpocock.src}/skills/productivity/grill-me/";
       review-pr = builtins.readFile ./skills/review-pr.md;
       skill-creator = "${plugins.anthropics.src}/skills/skill-creator/";
       specified-test = builtins.readFile ./skills/specified-test.md;
