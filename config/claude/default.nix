@@ -76,6 +76,7 @@ in
       commit = "${plugins.tani.src}/commit/";
       create-pr = builtins.readFile ./skills/create-pr.md;
       grill-me = "${plugins.mattpocock.src}/skills/productivity/grill-me/";
+      retrospective = "${plugins.lacolaco.src}/retrospective/";
       review-pr = builtins.readFile ./skills/review-pr.md;
       skill-creator = "${plugins.anthropics.src}/skills/skill-creator/";
       specified-test = builtins.readFile ./skills/specified-test.md;

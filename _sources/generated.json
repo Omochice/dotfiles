@@ -62,6 +62,27 @@
         },
         "version": "577f4d4507678f2c8cee150fae25e6ce309f70b1"
     },
+    "claude-skill-lacolaco": {
+        "cargoLock": null,
+        "date": "2026-05-14",
+        "extract": null,
+        "name": "claude-skill-lacolaco",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "lacolaco",
+            "repo": "claude-plugins",
+            "rev": "99e85886dfa3e4fcde3f2130c640e3b35d12f27a",
+            "sha256": "sha256-Yxt2zgrg6P7RU2J6fwRQ8XQlGVSKKvMDVW/I5OC81fc=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "99e85886dfa3e4fcde3f2130c640e3b35d12f27a"
+    },
     "claude-skill-mattpocock": {
         "cargoLock": null,
         "date": "2026-05-12",

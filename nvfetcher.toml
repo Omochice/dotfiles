@@ -74,6 +74,10 @@ fetch.git = "https://git.sr.ht/~tani/skills"
 src.git = "https://github.com/mattpocock/skills"
 fetch.github = "mattpocock/skills"
 
+[claude-skill-lacolaco]
+src.git = "https://github.com/lacolaco/claude-plugins"
+fetch.github = "lacolaco/claude-plugins"
+
 [tree-sitter-moonbit]
 src.git = "https://github.com/moonbitlang/tree-sitter-moonbit"
 fetch.github = "moonbitlang/tree-sitter-moonbit"
