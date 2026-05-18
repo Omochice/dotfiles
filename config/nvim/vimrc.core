@@ -1,7 +1,7 @@
 " standalone vimrc
 " user settings
-syntax on
 filetype plugin indent on
+syntax on
 " keep-sorted start sticky_prefixes="
 set autoindent
 set autoread
@@ -226,9 +226,6 @@ command! CopyBuffer %yank
 set shortmess=asTIcF
 
 " filetype settings
-" if nvim then use lua filetype module
-let g:did_load_filetypes = has('nvim')
-
 const g:filetype_m = 'objc'
 
 " Digraph
