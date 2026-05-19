@@ -100,6 +100,10 @@ let
       name = "gh-markdown-preview";
       path = "${pkgs.gh-markdown-preview}/bin";
     }
+    {
+      name = "gh-infra";
+      path = "${pkgs.gh-infra}/bin";
+    }
   ];
 in
 {
