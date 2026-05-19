@@ -97,7 +97,9 @@ Why was this change needed? Why was this approach chosen over alternatives? Writ
 
 ##### Confirmation
 
-lists the verification steps a reviewer should perform to confirm correctness.
+records what the author already verified locally and the observed outcome, not a checklist for reviewers to run.
+Items that were not verified belong in the Limitation section instead.
+If no local verification was performed, state "No local verification was performed."
 
 ##### Limitation
 
