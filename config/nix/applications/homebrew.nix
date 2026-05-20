@@ -47,6 +47,7 @@
       "vysor"
       "wezterm@nightly"
       "windows-app"
+      "wireshark"
       "xcodes-app"
       "zen"
       "zoom"
