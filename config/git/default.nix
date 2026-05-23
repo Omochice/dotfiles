@@ -9,7 +9,7 @@ let
     ''
       git branch -vv \
       | grep ': gone]' \
-      | awk '{print $1}' \
+      | awk '$1 != "+" && $1 != "*" {print $1}' \
       | xargs -r git branch -D
     ''
     |> runAs "git-dd" [
