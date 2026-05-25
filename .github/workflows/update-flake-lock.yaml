@@ -128,7 +128,7 @@ jobs:
         env:
           PACKAGE_NAME: ${{ matrix.package-name }}
         run: |
-          owner_repo=$(jq -r --arg pkg "$PACKAGE_NAME" '.[$pkg].src | "\(.owner)/\(.repo)"' _sources/generated.json)
+          owner_repo=$(jq -r --arg pkg "$PACKAGE_NAME" '.[$pkg].src | if .owner and .repo then "\(.owner)/\(.repo)" else (.url | sub("^https?://"; "")) end' _sources/generated.json)
           echo "owner-repo=$owner_repo" >> "$GITHUB_OUTPUT"
       - name: Update nvfetcher
         id: update
