@@ -27,6 +27,7 @@ in
     memory.source = ./CLAUDE.md;
     settings = {
       # keep-sorted start block=yes
+      enableAllProjectMcpServers = true;
       env.CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
       env.IS_DEMO = "true";
       hooks.PreToolUse = [
