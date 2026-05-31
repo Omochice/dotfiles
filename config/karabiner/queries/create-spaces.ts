@@ -1,4 +1,4 @@
-import { $ } from "jsr:@david/dax@0.46.1";
+import { $ } from "jsr:@david/dax@0.48.2";
 
 export async function createSpaces(times: number): Promise<void> {
   for (let i = 0; i < times; i++) {
