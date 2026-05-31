@@ -19,29 +19,47 @@
 
 ** ddskk
 
+日本語入力には ddskk を用い、AZIK 配列を前提とした設定を行う。
+
+*** 基本設定
+
+入力メソッドを =japanese-skk= とし、大辞書のパス・AZIK 配列・改行時の確定挙動を設定する。=skk-egg-like-newline= は skkeleton の registerConvertResult に相当し、変換確定時の改行挙動を揃える。挿入モードでは =C-j= で SKK モードへ入る。
+
 #+begin_src emacs-lisp :tangle config.el
 (setq default-input-method "japanese-skk")
 (setq skk-large-jisyo (expand-file-name "~/.cache/dpp/repos/github.com/skk-dev/dict/SKK-JISYO.L"))
 (setq skk-use-azik t)
-(setq skk-azik-keyboard-type 'jp)
-(setq skk-egg-like-newline t)           ; registerConvertResult equivalent
-(setq skk-henkan-point-key ":")         ; : を変換ポイントに
+(setq skk-azik-keyboard-type 'jp106)
+(setq skk-egg-like-newline t)
 (map! :i "C-j" #'skk-mode)
+#+end_src
 
-(after! ddskk
-  ;; カスタムかなルール
-  (setq skk-rom-kana-rule-list
-        (append skk-rom-kana-rule-list
-                '(("xx" "x" ("ッ" . "っ"))
-                  ("xxa" nil ("ァ" . "ぁ"))
-                  ("xxi" nil ("ィ" . "ぃ"))
-                  ("xxu" nil ("ゥ" . "ぅ"))
-                  ("xxe" nil ("ェ" . "ぇ"))
-                  ("xxo" nil ("ォ" . "ぉ"))
-                  ("xxya" nil ("ャ" . "ゃ"))
-                  ("xxyu" nil ("ュ" . "ゅ"))
-                  ("xxyo" nil ("ョ" . "ょ"))
-                  ("xxwa" nil ("ヮ" . "ゎ"))
-                  ("rr" nil ("レル" . "れる"))
-                  ("nn" nil ("ナン" . "なん"))))))
+*** AZIK のかな入力規則カスタマイズ
+
+AZIK ロード直後に呼ばれる =skk-azik-load-hook= で、AZIK 既定規則を上書きする。これは skkeleton の register_kanatable と同義の役割を持つ。
+
+=skk-rom-kana-rule-list= は assoc で先勝ちのため、先頭へ挿入することで既定規則を上書きできる。=:= は AZIK 既定の「ー」を上書きし、変換ポイント開始（=Q= と同等）に割り当てる。
+
+=:= を =skk-set-henkan-point-key= や =skk-downcase-alist= には追加しない。これらは送り検出用であり、追加すると促音判定を経て「っ」が挿入されてしまうためである。
+
+最後に =skk-rule-tree= を nil にし、次回 =skk-mode= 起動時に規則を再コンパイルさせる。
+
+#+begin_src emacs-lisp :tangle config.el
+(add-hook 'skk-azik-load-hook
+          (lambda ()
+            (dolist (rule '((":"   nil skk-set-henkan-point-subr)
+                            ("xx"  "x" ("ッ" . "っ"))
+                            ("xxa" nil ("ァ" . "ぁ"))
+                            ("xxi" nil ("ィ" . "ぃ"))
+                            ("xxu" nil ("ゥ" . "ぅ"))
+                            ("xxe" nil ("ェ" . "ぇ"))
+                            ("xxo" nil ("ォ" . "ぉ"))
+                            ("xxya" nil ("ャ" . "ゃ"))
+                            ("xxyu" nil ("ュ" . "ゅ"))
+                            ("xxyo" nil ("ョ" . "ょ"))
+                            ("xxwa" nil ("ヮ" . "ゎ"))
+                            ("rr"  nil ("レル" . "れる"))
+                            ("nn"  nil ("ナン" . "なん"))))
+              (add-to-list 'skk-rom-kana-rule-list rule))
+            (setq skk-rule-tree nil)))
 #+end_src

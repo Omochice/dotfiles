@@ -12,12 +12,12 @@ let
 
   configEl = tangleOrg {
     languages = [ "emacs-lisp" ];
-    processLines = org-babel.excludeHeadlines (org-babel.headlineText "Packages");
+    tangleArg = "config.el";
   };
 
   packagesEl = tangleOrg {
     languages = [ "emacs-lisp" ];
-    processLines = org-babel.excludeHeadlines (org-babel.headlineText "Configuration");
+    tangleArg = "packages.el";
   };
 
   doomDir = pkgs.runCommand "doom-dir" { } ''
