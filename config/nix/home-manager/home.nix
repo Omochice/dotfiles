@@ -57,7 +57,6 @@ in
     packages = with pkgs; [
       # keep-sorted start
       abduco
-      actionlint
       age
       ansifilter
       asciinema
@@ -99,9 +98,7 @@ in
       jq
       lazydocker
       lazygit
-      llm-pkgs.agent-browser
       llm-pkgs.ccusage
-      llm-pkgs.happy-coder
       lsd
       mise
       mkcert
@@ -160,9 +157,7 @@ in
       duckgo
       firge
       firge-nerd
-      ghalint
       ghatm
-      gitlab-ci-verify
       octocov
       pinact
       slack-reminder
