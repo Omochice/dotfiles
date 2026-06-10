@@ -1,6 +1,6 @@
 [env]
 
 [tools]
-python = "3.14.5"
+python = "3.14.6"
 rust = "1.96.0"
 go = "1.26.4"
