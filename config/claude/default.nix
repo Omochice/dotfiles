@@ -42,7 +42,7 @@ in
         }
       ];
       includeCoAuthoredBy = false;
-      model = "opus";
+      model = "fable";
       permissions.defaultMode = "bypassPermissions";
       plansDirectory = "./.momomo/ai/plans";
       remoteControlAtStartup = true;
