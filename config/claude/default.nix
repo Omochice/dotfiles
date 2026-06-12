@@ -145,6 +145,11 @@ in
           message = "Do not use `pip`, Use uv for installing package isolatly";
         }
         {
+          matcher = "Bash";
+          regex = "glab\\s+(variable|var)\\b";
+          message = "Do not read repository variables, If you want to check the variable exists, ask user to check it.";
+        }
+        {
           matcher = "Read|Write|Edit";
           regex = ".config/glab-cli/config\\.yml$";
           message = "Do not read glab config file. If failed to access gitlab, ask user to resolve it.";
