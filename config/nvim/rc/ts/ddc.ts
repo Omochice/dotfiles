@@ -7,7 +7,7 @@ import type { DdcOptions } from "jsr:@shougo/ddc-vim@10.3.0/types";
 type FiletypePatch = [string[], Partial<DdcOptions>];
 
 const filetypePatches = [
-  [["aibo-prompt.aibo-tool-claude"], {
+  [["aibo-prompt.aibo-tool-claude", "markdown.claude"], {
     sources: ["cc_command", "file", "around", "buffer", "rg"],
   }],
   [["vim", "toml"], {

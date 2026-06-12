@@ -33,7 +33,7 @@ require("aibo").setup({
         vim.keymap.set({ "n", "i" }, "<C-->", "<Plug>(aibo-send)<C-_>", opts)
         vim.keymap.set({ "n", "i" }, "<C-v>", "<Plug>(aibo-send)<C-v>", opts)
         if info.type == "prompt" then
-          vim.bo[bufnr].filetype = "markdown"
+          vim.bo[bufnr].filetype = "markdown.claude"
         end
       end,
     },
