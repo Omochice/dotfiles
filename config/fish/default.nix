@@ -73,6 +73,7 @@ in
     functions = {
       # keep-sorted start
       __lazygit = ./functions/__lazygit.fish |> parse-fish-function "Lazygit wrapper";
+      as = ./functions/as.fish |> (parse-fish-function "fuzzy attach to an abduco session");
       f = ./functions/f.fish |> (parse-fish-function "fuzzy moving with ghq");
       fish_user_key_bindings =
         ./functions/fish_user_key_bindings.fish |> parse-fish-function "Key bindings";
