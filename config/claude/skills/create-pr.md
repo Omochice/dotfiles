@@ -83,28 +83,64 @@ feat: add DateRangeFilter component to SearchPage
 
 #### Description
 
+Keep the body short.
+A reviewer should grasp the change in a few seconds, and the diff already carries the line-level detail, so favor brevity over completeness.
+Most PRs/MRs need only a few sentences in total.
+
+Follow these formatting rules so the body renders correctly as Markdown:
+
+- Do not hard-wrap.
+  Never break a single sentence across multiple lines to fit a column width.
+  Markdown collapses such a break into one space, so the wrapping helps no reader and only fights the renderer.
+- Separate each sentence with a blank line so it renders as its own paragraph.
+  Consecutive lines with no blank line between them collapse into a single paragraph, which is rarely what is intended.
+
 Use the following template structure.
+Keep every section, and write each one concisely rather than omitting it.
 
 ##### Summary
 
-provides a concise statement of what this PR/MR changes.
-One or two sentences at most.
+States what this PR/MR changes, in a single sentence.
 
 ##### Details
 
-explains the background and reasoning behind the change.
-Why was this change needed? Why was this approach chosen over alternatives? Write in free-form prose rather than bullet lists.
+Explains why the change was needed and why this approach was chosen over alternatives, in free-form prose rather than bullet lists.
+Keep it to a sentence or two.
 
 ##### Confirmation
 
-records what the author already verified locally and the observed outcome, not a checklist for reviewers to run.
+Records what the author verified locally and the observed outcome, not a checklist for reviewers to run.
 Items that were not verified belong in the Limitation section instead.
 If no local verification was performed, state "No local verification was performed."
 
 ##### Limitation
 
-describes known limitations, edge cases not covered, or follow-up work that remains.
+Describes known limitations, edge cases not covered, or follow-up work that remains.
 If none exist, state "No known limitations."
+
+#### Example body
+
+The following shows the intended length and line-break style, with every section kept and each sentence standing as its own paragraph.
+
+```markdown
+## Summary
+
+Cache the rendered navigation menu so it is built once per request instead of once per component.
+
+## Details
+
+The menu was rebuilt for every sidebar component, which dominated render time on list pages.
+
+Memoizing per request keeps the data fresh across requests while removing the repeated work.
+
+## Confirmation
+
+Ran the page locally and confirmed the menu renders identically with one build per request.
+
+## Limitation
+
+No known limitations.
+```
 
 ### Phase 6: User Confirmation
 
