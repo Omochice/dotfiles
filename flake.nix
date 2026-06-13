@@ -82,19 +82,10 @@
               # It will update by colima when `colima start`
               "config/colima/**.yaml"
             ];
-            settings.formatter = {
-              # keep-sorted start block=yes
-              rumdl = {
-                command = "${pkgs.lib.getExe pkgs.rumdl}";
-                options = [
-                  "fmt"
-                  "--config"
-                  (toString ./config/rumdl/rumdl.toml)
-                ];
-                includes = [ "*.md" ];
-              };
-              # keep-sorted end
-            };
+            settings.formatter.rumdl-format.options = [
+              "--config"
+              (toString ./config/rumdl/rumdl.toml)
+            ];
             programs = {
               # keep-sorted start block=yes
               deno = {
@@ -111,6 +102,7 @@
               };
               keep-sorted.enable = true;
               nixfmt.enable = true;
+              rumdl-format.enable = true;
               shfmt.enable = true;
               stylua = {
                 enable = true;

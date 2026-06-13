@@ -51,23 +51,15 @@
           in
           {
             settings.global.excludes = [ ];
-            settings.formatter = {
-              # keep-sorted start block=yes
-              rumdl = {
-                command = "${pkgs.lib.getExe pkgs.rumdl}";
-                options = [
-                  "fmt"
-                  "--config"
-                  (toString rumdlConfig)
-                ];
-                includes = [ "*.md" ];
-              };
-              # keep-sorted end
-            };
+            settings.formatter.rumdl-format.options = [
+              "--config"
+              (toString rumdlConfig)
+            ];
             programs = {
               # keep-sorted start block=yes
               keep-sorted.enable = true;
               nixfmt.enable = true;
+              rumdl-format.enable = true;
               toml-sort.enable = true;
               yamlfmt = {
                 enable = true;
