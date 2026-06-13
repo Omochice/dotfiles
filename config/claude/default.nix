@@ -19,6 +19,11 @@ let
       name: value: lib.attrsets.nameValuePair (lib.strings.removePrefix prefix name) value
     );
   tomlFormat = pkgs.formats.toml { };
+  statusLineScript = pkgs.writeShellApplication {
+    name = "claude-statusline";
+    runtimeInputs = [ pkgs.jq ];
+    text = builtins.readFile ./statusline.sh;
+  };
 in
 {
   programs.my-claude-code = {
@@ -49,7 +54,7 @@ in
       sandbox.autoAllowBashIfSandboxed = true;
       sandbox.enabled = true;
       showClearContextOnPlanAccept = true;
-      statusLine.command = "${lib.getExe llm-pkgs.ccusage} statusline";
+      statusLine.command = lib.getExe statusLineScript;
       statusLine.padding = 0;
       statusLine.type = "command";
       teammateMode = "auto";
