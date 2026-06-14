@@ -68,17 +68,17 @@
   };
   claude-skill-tani = {
     pname = "claude-skill-tani";
-    version = "08706c0c16e8fea829f85f93c3860f3eba773f68";
+    version = "9d3acf8d309356bbcb1564a7bb50a691ec2bc839";
     src = fetchgit {
       url = "https://git.sr.ht/~tani/skills";
-      rev = "08706c0c16e8fea829f85f93c3860f3eba773f68";
+      rev = "9d3acf8d309356bbcb1564a7bb50a691ec2bc839";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-eX9jGzt7F3rRgu6ftMTGJm4HLb3IVY5kVUE3ZV6/Hbs=";
+      sha256 = "sha256-oH7zx2+4JrAyUcno4DYVBDD41oQChIy96miG/FxRhOk=";
     };
-    date = "2026-01-24";
+    date = "2026-05-16";
   };
   fish-autols = {
     pname = "fish-autols";
