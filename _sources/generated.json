@@ -357,7 +357,7 @@
     },
     "neovim": {
         "cargoLock": null,
-        "date": "2026-06-12",
+        "date": "2026-06-14",
         "extract": null,
         "name": "neovim",
         "passthru": null,
@@ -369,12 +369,12 @@
             "name": null,
             "owner": "neovim",
             "repo": "neovim",
-            "rev": "c622b454b53a5d9edfc6f5ce71806fe8f487677d",
-            "sha256": "sha256-D1KFiTvKMYzPgIhkTzyv04G3RefteW4VgCKoLitQvOY=",
+            "rev": "8b5d80ab44e27c1374d7be8c904e26cf39b66acd",
+            "sha256": "sha256-pcUOaNjOkMSLjVFRyNqQPM6S36Tgnv96WnXkb10h+Ek=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "c622b454b53a5d9edfc6f5ce71806fe8f487677d"
+        "version": "8b5d80ab44e27c1374d7be8c904e26cf39b66acd"
     },
     "tree-sitter-moonbit": {
         "cargoLock": null,
