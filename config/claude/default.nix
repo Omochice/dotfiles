@@ -32,6 +32,8 @@ in
     memory.source = ./CLAUDE.md;
     settings = {
       # keep-sorted start block=yes
+      attribution.commit = "";
+      attribution.pr = "";
       enableAllProjectMcpServers = true;
       env.CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
       env.IS_DEMO = "true";
@@ -46,7 +48,6 @@ in
           ];
         }
       ];
-      includeCoAuthoredBy = false;
       model = "opus";
       permissions.defaultMode = "bypassPermissions";
       plansDirectory = "./.momomo/ai/plans";
