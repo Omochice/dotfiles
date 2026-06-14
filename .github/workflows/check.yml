@@ -16,7 +16,6 @@ jobs:
       actions: ${{steps.changes.outputs.actions}}
       deno: ${{steps.changes.outputs.deno}}
       flake: ${{steps.changes.outputs.flake}}
-      karabiner: ${{steps.changes.outputs.karabiner}}
       renovate: ${{steps.changes.outputs.renovate}}
       # keep-sorted end
     runs-on: ubuntu-latest
@@ -42,9 +41,6 @@ jobs:
               - config/nvim/rc/ts/*.ts
               - config/nvim-dark/**/*.ts
               - config/skhd/queries/*.ts
-              - .github/workflows/check.yml
-            karabiner:
-              - config/karabiner/mod.ts
               - .github/workflows/check.yml
             flake:
               - _sources/*
