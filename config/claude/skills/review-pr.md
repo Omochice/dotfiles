@@ -11,7 +11,26 @@ Systematically review GitHub PR comments, evaluate their validity, and implement
 
 ### Phase 1: Fetch PR Comments
 
-Run `/pr-comments` to fetch review comments from the current branch's PR.
+Fetch review comments from the current branch's PR with the `gh` CLI.
+
+1. Identify the PR for the current branch.
+
+   ```sh
+   gh pr view --json number,url
+   ```
+
+1. Collect the inline review comments.
+
+   ```sh
+   gh api repos/{owner}/{repo}/pulls/{number}/comments
+   ```
+
+1. Collect the review-level and general PR comments.
+
+   ```sh
+   gh api repos/{owner}/{repo}/pulls/{number}/reviews
+   gh pr view {number} --json comments
+   ```
 
 ### Phase 2: Triage Comments
 
@@ -82,7 +101,7 @@ For each approved item:
    ```
 
    Commit type SHOULD be determine by user effect.
-1. Reply to the individual review comment thread using `gh api` (`POST /repos/{owner}/{repo}/pulls/comments/{comment_id}/replies`). The reply body MUST be exactly `fixed in {commit hash}` with no other text.
+1. Reply to the individual review comment thread using `gh api` (`POST /repos/{owner}/{repo}/pulls/comments/{comment_id}/replies`). The reply body MUST be exactly `[Claude Code] fixed in {commit hash}` with no other text. The `[Claude Code]` prefix marks the reply as authored through Claude Code.
 1. Mark todo as completed
 1. Move to next item
 
