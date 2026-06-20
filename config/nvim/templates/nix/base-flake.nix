@@ -45,6 +45,7 @@
               MD055.style = "leading-and-trailing";
               MD060.enabled = true;
               MD060.style = "aligned";
+              MD077.enabled = false;
               global.line_length = 0;
               # keep-sorted end
             };
