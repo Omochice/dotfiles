@@ -7,9 +7,10 @@
       upgrade = true;
     };
     taps = [
-      # keep-sorted start
-      "felixkratz/formulae"
-      # keep-sorted end
+      {
+        name = "felixkratz/formulae";
+        trusted = true;
+      }
     ];
     brews = [
       # keep-sorted start
