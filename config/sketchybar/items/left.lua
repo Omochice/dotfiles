@@ -111,12 +111,7 @@ local ccusage = sbar.add("item", "ccusage", {
 -- Long-bracket string so jq's backslash interpolation needs no escaping.
 local ccusage_filter =
   [[{ cost: .totals.totalCost, daily: .daily[-1].totalCost } | map_values((. * 100 | ceil ) / 100) | "$\(.cost) ($\(.daily)/d)"]]
-local ccusage_command = paths.ccusage
-  .. " --offline --json | "
-  .. paths.jq
-  .. " -r '"
-  .. ccusage_filter
-  .. "'"
+local ccusage_command = paths.ccusage .. " --offline --json | " .. paths.jq .. " -r '" .. ccusage_filter .. "'"
 
 ccusage:subscribe({ "routine", "forced" }, function()
   sbar.exec(ccusage_command, function(out)
