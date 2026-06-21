@@ -8,6 +8,10 @@
     };
     taps = [
       {
+        name = "arto-app/tap";
+        trusted = true;
+      }
+      {
         name = "felixkratz/formulae";
         trusted = true;
       }
@@ -54,7 +58,7 @@
       "zoom"
       # keep-sorted end
       {
-        name = "lambdalisue/arto/arto";
+        name = "arto-app/tap/arto";
         args.no_quarantine = true;
       }
     ];
