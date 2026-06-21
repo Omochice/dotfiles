@@ -1,22 +1,25 @@
 { pkgs, inputs, ... }:
 let
   llm-pkgs = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
+  # SbarLua is a Lua 5.5 C module, so it is bundled into a matching interpreter
+  # whose default search path already resolves require("sketchybar").
+  lua = pkgs.lua5_5.withPackages (_: [ pkgs.sbarlua ]);
 in
 {
   xdg.configFile = {
-    sketchybar = {
-      source = ./.;
-    };
-    "skt/ccusage.sh" = {
-      text = ''
-        #!/usr/bin/env bash
-        set -ue
-        COST="$(${pkgs.lib.getExe llm-pkgs.ccusage} --offline --json \
-          | ${pkgs.lib.getExe pkgs.jq} -r '{ cost: .totals.totalCost, daily: .daily[-1].totalCost } | map_values((. * 100 | ceil ) / 100) | "$\(.cost) ($\(.daily)/d)"')"
-        sketchybar -m --set $NAME label="$COST"
-      '';
+    "sketchybar/sketchybarrc" = {
+      source = pkgs.replaceVars ./sketchybarrc {
+        lua = "${lua}";
+      };
       executable = true;
     };
-
+    "sketchybar/paths.lua".source = pkgs.replaceVars ./paths.lua {
+      ccusage = pkgs.lib.getExe llm-pkgs.ccusage;
+      jq = pkgs.lib.getExe pkgs.jq;
+    };
+    "sketchybar/colors.lua".source = ./colors.lua;
+    "sketchybar/icons.lua".source = ./icons.lua;
+    "sketchybar/init.lua".source = ./init.lua;
+    "sketchybar/items".source = ./items;
   };
 }
