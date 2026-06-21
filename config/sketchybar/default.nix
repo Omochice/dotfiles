@@ -6,7 +6,9 @@ let
   lua = pkgs.lua5_5.withPackages (_: [ pkgs.sbarlua ]);
 in
 {
-  xdg.configFile = {
+  # SbarLua is only available on Darwin, so guard the whole module to keep the
+  # Linux home-manager evaluation (CI) from forcing pkgs.sbarlua.
+  xdg.configFile = pkgs.lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
     "sketchybar/sketchybarrc" = {
       source = pkgs.replaceVars ./sketchybarrc {
         lua = "${lua}";
