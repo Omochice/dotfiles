@@ -10,21 +10,22 @@ let
 
   karabinerJson = pkgs.writeText "karabiner.json" (builtins.toJSON profiles);
 
-  # karabiner-elements rewrites this file at runtime, so it lives outside the
-  # store as a mutable copy rather than a read-only store symlink.
-  configPath = "${config.home.homeDirectory}/dotfiles/config/karabiner/karabiner.json";
+  configDir = "${config.xdg.configHome}/karabiner";
+  jsonPath = "${configDir}/karabiner.json";
 in
 {
-  xdg.configFile = {
-    "karabiner" = {
-      source =
-        "${config.home.homeDirectory}/dotfiles/config/karabiner" |> config.lib.file.mkOutOfStoreSymlink;
-      recursive = true;
-    };
-  };
+  # The generated config invokes these at runtime via
+  # `deno run -A ~/.config/karabiner/queries/...`, so they must exist in the
+  # live config directory. They are immutable, so a read-only store symlink is
+  # enough and keeps the path independent of the repository location.
+  xdg.configFile."karabiner/queries".source = ./queries;
 
+  # karabiner-elements rewrites karabiner.json at runtime, so it must be a
+  # mutable copy in the live config directory rather than a read-only store
+  # symlink.
   home.activation.karabinerJson = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    run cp ${karabinerJson} "${configPath}"
-    run chmod u+w "${configPath}"
+    run mkdir -p ${lib.escapeShellArg configDir}
+    run cp ${karabinerJson} ${lib.escapeShellArg jsonPath}
+    run chmod u+w ${lib.escapeShellArg jsonPath}
   '';
 }
