@@ -59,6 +59,8 @@ in
     primaryUser = user;
     defaults = {
       # keep-sorted start block=yes case=no
+      CustomUserPreferences."com.apple.desktopservices".DSDontWriteNetworkStores = true;
+      CustomUserPreferences."com.apple.desktopservices".DSDontWriteUSBStores = true;
       CustomUserPreferences.symbolichotkeys.AppleSymbolicHotKeys = import ../system/darwin/symbolic-hotkeys.nix;
       dock.autohide = true;
       dock.mineffect = "scale";
