@@ -378,7 +378,7 @@
     },
     "tree-sitter-moonbit": {
         "cargoLock": null,
-        "date": "2026-05-21",
+        "date": "2026-06-12",
         "extract": null,
         "name": "tree-sitter-moonbit",
         "passthru": null,
@@ -390,12 +390,12 @@
             "name": null,
             "owner": "moonbitlang",
             "repo": "tree-sitter-moonbit",
-            "rev": "ebdb3f38d46309a3a7f81c2af357da05ec8a4470",
-            "sha256": "sha256-ZdwmM2PuG2TOtYdKrPRE1iHhaCRhAGuTJo7DNMiNWvM=",
+            "rev": "c76eb43a7ea35de24eec13dee1fe22fadb2533d7",
+            "sha256": "sha256-nPESRI3H9imrmHGonCoS/oPH254G4AJruLhA7wpDmNQ=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "ebdb3f38d46309a3a7f81c2af357da05ec8a4470"
+        "version": "c76eb43a7ea35de24eec13dee1fe22fadb2533d7"
     },
     "yazi-theme-catppuccin": {
         "cargoLock": null,
