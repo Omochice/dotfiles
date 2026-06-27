@@ -49,7 +49,7 @@ in
         }
       ];
       model = "opus";
-      permissions.defaultMode = "bypassPermissions";
+      permissions.defaultMode = "auto";
       plansDirectory = "./.momomo/ai/plans";
       remoteControlAtStartup = true;
       sandbox.autoAllowBashIfSandboxed = true;
