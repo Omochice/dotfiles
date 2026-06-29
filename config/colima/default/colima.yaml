@@ -76,7 +76,7 @@ network:
   # Network mode for the virtual machine (shared, bridged).
   # NOTE: this is currently macOS only and ignored on Linux.
   # Default: shared
-  mode: ""
+  mode: shared
   
   # Network interface to use for bridged mode.
   # This is only used when mode is set to bridged.
@@ -266,6 +266,10 @@ mounts: []
 #
 # Default: ""
 diskImage: ""
+
+# Use the custom disk image even if it does NOT match a supported release image.
+# WARNING: This bypasses validating the image and is a completely unsupported!
+forceDiskImage: false
 
 # Size of the disk in GiB for the root filesystem of the virtual machine.
 # This value is ignored if no runtime is in use. i.e. `none` runtime.
