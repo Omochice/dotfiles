@@ -59,7 +59,6 @@
       # keep-sorted end
       {
         name = "arto-app/tap/arto";
-        args.no_quarantine = true;
       }
     ];
   };
