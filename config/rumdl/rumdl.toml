@@ -21,5 +21,8 @@ style = "leading-and-trailing"
 enabled = true
 style = "aligned"
 
+[MD077]
+enabled = false
+
 [global]
 line-length = 0
