@@ -226,15 +226,15 @@
   };
   tree-sitter-moonbit = {
     pname = "tree-sitter-moonbit";
-    version = "ebdb3f38d46309a3a7f81c2af357da05ec8a4470";
+    version = "c76eb43a7ea35de24eec13dee1fe22fadb2533d7";
     src = fetchFromGitHub {
       owner = "moonbitlang";
       repo = "tree-sitter-moonbit";
-      rev = "ebdb3f38d46309a3a7f81c2af357da05ec8a4470";
+      rev = "c76eb43a7ea35de24eec13dee1fe22fadb2533d7";
       fetchSubmodules = false;
-      sha256 = "sha256-ZdwmM2PuG2TOtYdKrPRE1iHhaCRhAGuTJo7DNMiNWvM=";
+      sha256 = "sha256-nPESRI3H9imrmHGonCoS/oPH254G4AJruLhA7wpDmNQ=";
     };
-    date = "2026-05-21";
+    date = "2026-06-12";
   };
   yazi-theme-catppuccin = {
     pname = "yazi-theme-catppuccin";
