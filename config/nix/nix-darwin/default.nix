@@ -24,7 +24,11 @@ in
       options = "--delete-older-than 14d";
     };
     settings = {
-      experimental-features = "nix-command flakes pipe-operators";
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "pipe-operators"
+      ];
       accept-flake-config = true;
       max-jobs = 8;
       trusted-users = [
