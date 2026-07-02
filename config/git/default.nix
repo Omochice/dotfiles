@@ -35,7 +35,7 @@ in
       alias = {
         dd = "!${git-dd}/bin/git-dd";
       };
-      commit.template = ./gitmessage |> toString;
+      commit.template = "${./gitmessage}";
     };
     signing.format = null;
     # keep-sorted end
