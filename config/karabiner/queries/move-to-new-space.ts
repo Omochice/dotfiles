@@ -1,5 +1,5 @@
 import { ensure, is } from "jsr:@core/unknownutil@4.3.0";
-import { $ } from "jsr:@david/dax@0.48.2";
+import { $ } from "jsr:@david/dax@0.48.4";
 import { okAsync, ResultAsync } from "npm:neverthrow@8.2.0";
 
 if (import.meta.main) {
