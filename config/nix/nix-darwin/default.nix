@@ -14,6 +14,15 @@ in
     enable = true;
     package = pkgs.nix;
     optimise.automatic = true;
+    gc = {
+      automatic = true;
+      interval = {
+        Weekday = 2;
+        Hour = 2;
+        Minute = 0;
+      };
+      options = "--delete-older-than 14d";
+    };
     settings = {
       experimental-features = "nix-command flakes pipe-operators";
       accept-flake-config = true;
