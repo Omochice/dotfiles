@@ -81,6 +81,7 @@ in
       # keep-sorted start
       ast-grep = "${plugins.ast-grep.src}/ast-grep/skills/ast-grep/";
       commit = "${plugins.tani.src}/commit/";
+      copilot-review = builtins.readFile ./skills/copilot-review.md;
       create-pr = builtins.readFile ./skills/create-pr.md;
       grill-me = "${plugins.mattpocock.src}/skills/productivity/grill-me/";
       retrospective = "${plugins.lacolaco.src}/retrospective/";
