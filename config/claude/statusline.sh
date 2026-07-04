@@ -1,6 +1,5 @@
 input=$(cat)
 # display_name is short (e.g. "Opus"); build "Opus 4.8" from model.id instead.
-# 5h/weekly are shown as remaining percentage (100 - used); -1 marks absent.
 IFS=$'\t' read -r model cost ctx h5 week < <(
   printf '%s' "$input" | jq -r '
     [ ( ( (.model.id // "") | ltrimstr("claude-") | split("-") ) as $t
@@ -9,7 +8,7 @@ IFS=$'\t' read -r model cost ctx h5 week < <(
         | if $name == "" then (.model.display_name // "?")
           else $name + (if $ver == "" then "" else " " + $ver end) end ),
       (.cost.total_cost_usd // 0),
-      (.context_window.used_percentage // -1),
+      (.context_window.used_percentage | if . == null then -1 else 100 - . end),
       (.rate_limits.five_hour.used_percentage  | if . == null then -1 else 100 - . end),
       (.rate_limits.seven_day.used_percentage  | if . == null then -1 else 100 - . end)
     ] | @tsv'
