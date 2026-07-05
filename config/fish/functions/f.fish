@@ -1,15 +1,15 @@
 function f --description="fuzzy moving with ghq"
     if ! type ghq 2>&1 >/dev/null
         echo "ghq is not included into PATH"
-        return (false)
+        return 1
     end
     if ! type fzf 2>&1 >/dev/null
         echo "fzf is not included into PATH"
-        return (false)
+        return 1
     end
     if ! type bat 2>&1 >/dev/null
         echo "bat is not included into PATH"
-        return (false)
+        return 1
     end
     set --local roots (ghq root --all)
     set --local repo (ghq list | string match --invert "*-wt/*" | fzf --no-mouse --preview "
@@ -21,15 +21,15 @@ function f --description="fuzzy moving with ghq"
       echo 'NO README'" --query "$argv[1]")
     commandline -f repaint
     if test -z "$repo"
-        return (false)
+        return 1
     end
     for root in $roots
         set --local p "$root"/"$repo"
         if test -d "$p"
             cd "$p"
-            return (true)
+            return 0
         end
     end
     # unreachable because `ghq list` show only repos into `ghq root --all`
-    return (false)
+    return 1
 end
