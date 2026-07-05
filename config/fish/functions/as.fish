@@ -16,7 +16,7 @@ function as --description="fuzzy attach to an abduco session"
         return 1
     end
 
-    set --local picked (printf '%s\n' $rows | fzf --no-sort --height=30%)
+    set --local picked (printf '%s\n' $rows | fzf --no-mouse --no-sort --height=30%)
     if test -z "$picked"
         return 1
     end
