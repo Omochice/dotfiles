@@ -3,7 +3,7 @@ local vimx = require("artemis")
 vimx.keymap.set("n", "<Plug>(vimrc-fyler)", "<Nop>")
 vimx.keymap.set("n", ";", "<Plug>(vimrc-fyler)")
 vimx.keymap.set("n", "<Plug>(vimrc-fyler);", function()
-  require("fyler").toggle({ kind = "float" })
+  require("fyler").toggle({ kind = "floating" })
 end)
 -- }}}
 
@@ -11,62 +11,57 @@ end)
 
 --- Toggle node
 local function toggle_tree(finder)
-  local entry = finder:cursor_node_entry()
-  if entry:is_directory() then
-    finder:exec_action("n_select")
-  else
-    finder:exec_action("n_collapse_node")
+  local node = require("fyler.finder").parse_cursor_line(finder)
+  if not node then
+    return
   end
+  if node.type == "directory" then
+    finder:select()
+  else
+    finder:shrink({ parent = true })
+  end
+end
+
+local function collapse_all(finder)
+  for key in pairs(finder.state.meta) do
+    finder.state.meta[key] = false
+  end
+  finder.state:toggle(finder.state.pseudo_root_path, true)
+  finder:refresh()
 end
 
 require("fyler").setup({
   integrations = {
     icon = "vim_nerdfont",
   },
-  views = {
-    finder = {
-      columns = {
-        git = {
-          enabled = false,
-        },
-        diagnostic = {
-          enabled = false,
-        },
-        permission = {
-          enabled = false,
-        },
-      },
-      mappings = {
-        ["<CR>"] = "Select",
-        ["<C-t>"] = "SelectTab",
-        ["#"] = "CollapseAll",
-        zc = "CollapseNode",
-        zM = "CollapseAll",
-        za = toggle_tree,
-        ["<Tab>"] = toggle_tree,
-        -- [[disable defaults]]
-        q = false,
-        ["|"] = false,
-        ["-"] = false,
-        ["^"] = false,
-        ["="] = false,
-        ["."] = false,
-      },
-      win = {
-        kinds = {
-          float = {
-            height = "80%",
-            width = "80%",
-            top = "10%",
-            left = "10%",
-          },
-        },
-      },
+  kind = "floating",
+  kind_presets = {
+    floating = {
+      height = "80%",
+      width = "80%",
+      row = "center",
+      col = "center",
+    },
+  },
+  mappings = {
+    n = {
+      ["<CR>"] = { action = "select" },
+      ["<C-t>"] = { action = "select", args = { tabedit = true } },
+      ["#"] = { action = collapse_all },
+      zc = { action = "shrink" },
+      zM = { action = collapse_all },
+      za = { action = toggle_tree },
+      ["<Tab>"] = { action = toggle_tree },
+      -- [[disable defaults]]
+      q = { disabled = true },
+      ["-"] = { disabled = true },
+      ["="] = { disabled = true },
+      ["."] = { disabled = true },
     },
   },
 })
 -- }}}
 
--- lua_fyler {{{
+-- lua_fyler_finder {{{
 require("artemis").fn.glyph_palette.apply()
 -- }}}
