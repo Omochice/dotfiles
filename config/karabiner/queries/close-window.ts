@@ -1,6 +1,6 @@
-import { $ } from "jsr:@david/dax@0.48.2";
 import { errAsync, okAsync, ResultAsync } from "npm:neverthrow@8.2.0";
 import { is } from "jsr:@core/unknownutil@4.3.0";
+import { message, messageJson } from "./yabai-client.ts";
 
 const isSpace = is.ObjectOf({
   windows: is.ArrayOf(is.Number),
@@ -8,14 +8,14 @@ const isSpace = is.ObjectOf({
 
 if (import.meta.main) {
   await ResultAsync.fromPromise(
-    $`yabai -m window --close`.quiet(),
-    (cause) => new Error("Failed to exec 'yabai -m window --close'", { cause }),
+    message(["window", "--close"]),
+    (cause) => new Error("Failed to run 'yabai window --close'", { cause }),
   )
     .andThen(() => {
       return ResultAsync.fromPromise(
-        $`yabai -m query --spaces --space`.json(),
+        messageJson(["query", "--spaces", "--space"]),
         (cause) =>
-          new Error("Failed to exec 'yabai -m query --spaces --space'", {
+          new Error("Failed to run 'yabai query --spaces --space'", {
             cause,
           }),
       );
@@ -28,9 +28,9 @@ if (import.meta.main) {
     })
     .andThen((windowId) => {
       return ResultAsync.fromPromise(
-        $`yabai -m window --focus ${windowId}`,
+        message(["window", "--focus", String(windowId)]),
         (cause) =>
-          new Error(`Failed to exec 'yabai -m window --focus ${windowId}'`, {
+          new Error(`Failed to run 'yabai window --focus ${windowId}'`, {
             cause,
           }),
       );

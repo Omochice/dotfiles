@@ -1,6 +1,6 @@
 import { ensure, is } from "jsr:@core/unknownutil@4.3.0";
-import { $ } from "jsr:@david/dax@0.48.2";
 import { ResultAsync } from "npm:neverthrow@8.2.0";
+import { message, messageJson } from "./yabai-client.ts";
 
 const hasId = is.ObjectOf({
   id: is.Number,
@@ -18,11 +18,9 @@ if (import.meta.main) {
   );
 
   await ResultAsync.fromPromise(
-    $`yabai --message query --windows --window`.json(),
+    messageJson(["query", "--windows", "--window"]),
     (cause) =>
-      new Error("Failed to exec 'yabai --message query --windows --window'", {
-        cause,
-      }),
+      new Error("Failed to run 'yabai query --windows --window'", { cause }),
   )
     .andThen((window) => {
       return ResultAsync.fromPromise(
@@ -32,29 +30,25 @@ if (import.meta.main) {
     })
     .andThen(({ id }) => {
       return ResultAsync.fromPromise(
-        $`yabai --message window --swap ${way}`.quiet(),
+        message(["window", "--swap", way]),
         (cause) =>
-          new Error(`Failed to exec 'yabai --message window --swap ${way}'`, {
-            cause,
-          }),
+          new Error(`Failed to run 'yabai window --swap ${way}'`, { cause }),
       )
         .orElse(() =>
           ResultAsync.fromPromise(
-            $`yabai --message window --display ${way}`.quiet(),
+            message(["window", "--display", way]),
             (cause) =>
-              new Error(
-                `Failed to exec 'yabai --message window --display ${way}'`,
-                { cause },
-              ),
+              new Error(`Failed to run 'yabai window --display ${way}'`, {
+                cause,
+              }),
           )
             .andThen(() =>
               ResultAsync.fromPromise(
-                $`yabai --message window ${id} --focus`.quiet(),
+                message(["window", String(id), "--focus"]),
                 (cause) =>
-                  new Error(
-                    `Failed to exec 'yabai --message window ${id} --focus'`,
-                    { cause },
-                  ),
+                  new Error(`Failed to run 'yabai window ${id} --focus'`, {
+                    cause,
+                  }),
               )
             )
         );

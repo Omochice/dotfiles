@@ -1,7 +1,7 @@
-import { $ } from "jsr:@david/dax@0.48.2";
+import { message } from "./yabai-client.ts";
 
 export async function createSpaces(times: number): Promise<void> {
   for (let i = 0; i < times; i++) {
-    await $`yabai -m space --create`;
+    await message(["space", "--create"]);
   }
 }

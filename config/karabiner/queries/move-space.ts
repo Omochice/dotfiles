@@ -1,14 +1,14 @@
 import { ensure, is } from "jsr:@core/unknownutil@4.3.0";
-import { $ } from "jsr:@david/dax@0.48.2";
 import { okAsync, ResultAsync } from "npm:neverthrow@8.2.0";
 import { createSpaces } from "./create-spaces.ts";
+import { message, messageJson } from "./yabai-client.ts";
 
 if (import.meta.main) {
   const spaceId = ensure(Number(Deno.args), is.Number);
 
   await ResultAsync.fromPromise(
-    $`yabai -m query --spaces`.json(),
-    (cause) => new Error("Failed to exec 'yabai -m query --spaces'", { cause }),
+    messageJson(["query", "--spaces"]),
+    (cause) => new Error("Failed to run 'yabai query --spaces'", { cause }),
   )
     .andThen((spaces) => {
       return ResultAsync.fromPromise(
@@ -31,18 +31,18 @@ if (import.meta.main) {
     })
     .andThen(() => {
       return ResultAsync.fromPromise(
-        $`yabai -m window --space ${spaceId}`,
+        message(["window", "--space", String(spaceId)]),
         (cause) =>
-          new Error(`Failed to exec 'yabai -m window --space ${spaceId}'`, {
+          new Error(`Failed to run 'yabai window --space ${spaceId}'`, {
             cause,
           }),
       );
     })
     .andThen(() => {
       return ResultAsync.fromPromise(
-        $`yabai -m space --space ${spaceId}`,
+        message(["space", "--space", String(spaceId)]),
         (cause) =>
-          new Error(`Failed to exec 'yabai -m space --space ${spaceId}'`, {
+          new Error(`Failed to run 'yabai space --space ${spaceId}'`, {
             cause,
           }),
       );

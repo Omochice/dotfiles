@@ -1,7 +1,7 @@
 import { ensure, is } from "jsr:@core/unknownutil@4.3.0";
 import { errAsync, okAsync, ResultAsync } from "npm:neverthrow@8.2.0";
 import { createSpaces } from "./create-spaces.ts";
-import { $ } from "jsr:@david/dax@0.48.2";
+import { message, messageJson } from "./yabai-client.ts";
 
 const isWindow = is.ObjectOf({
   id: is.Number,
@@ -14,18 +14,18 @@ const isWindow = is.ObjectOf({
 if (import.meta.main) {
   const spaceId = ensure(Number(Deno.args[0]), is.Number);
   await ResultAsync.fromPromise(
-    $`yabai -m space --focus ${spaceId}`,
+    message(["space", "--focus", String(spaceId)]),
     (cause) =>
-      new Error(`Failed to exec 'yabai -m space --focus ${spaceId}'`, {
+      new Error(`Failed to run 'yabai space --focus ${spaceId}'`, {
         cause,
       }),
   )
     .then((r) => {
       const a = r.isOk()
         ? ResultAsync.fromPromise(
-          $`yabai -m query --windows`.json(),
+          messageJson(["query", "--windows"]),
           (cause) =>
-            new Error("Failed to exec 'yabai -m query --windows'", { cause }),
+            new Error("Failed to run 'yabai query --windows'", { cause }),
         )
           .andThen((windows) => {
             return ResultAsync.fromPromise(
@@ -46,22 +46,22 @@ if (import.meta.main) {
           })
           .andThen((id) => {
             return ResultAsync.fromPromise(
-              $`yabai -m window --focus ${id}`,
+              message(["window", "--focus", String(id)]),
               (cause) =>
-                new Error(`Failed to exec 'yabai -m window --focus ${id}'`, {
+                new Error(`Failed to run 'yabai window --focus ${id}'`, {
                   cause,
                 }),
             );
           })
         : ResultAsync.fromPromise(
-          $`yabai -m query --spaces`.json(),
+          messageJson(["query", "--spaces"]),
           (cause) =>
-            new Error("Failed to exec 'yabai -m query --spaces'", { cause }),
+            new Error("Failed to run 'yabai query --spaces'", { cause }),
         )
           .andThen((spaces) => {
             return is.Array(spaces)
               ? okAsync(spaces.length)
-              : errAsync("'yabai -m query --spaces' returns non array");
+              : errAsync("'yabai query --spaces' returns non array");
           })
           .andThen((numSpaces) => {
             return ResultAsync.fromPromise(
@@ -71,10 +71,10 @@ if (import.meta.main) {
           })
           .andThen(() => {
             return ResultAsync.fromPromise(
-              $`yabai -m space --focus ${spaceId}`,
+              message(["space", "--focus", String(spaceId)]),
               (cause) =>
                 new Error(
-                  `Failed to exec 'yabai -m space --focus ${spaceId}'`,
+                  `Failed to run 'yabai space --focus ${spaceId}'`,
                   { cause },
                 ),
             );

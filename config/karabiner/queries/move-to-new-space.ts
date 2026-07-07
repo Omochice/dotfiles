@@ -1,11 +1,12 @@
 import { ensure, is } from "jsr:@core/unknownutil@4.3.0";
-import { $ } from "jsr:@david/dax@0.48.2";
 import { okAsync, ResultAsync } from "npm:neverthrow@8.2.0";
+import { message, messageJson } from "./yabai-client.ts";
 
 if (import.meta.main) {
   await ResultAsync.fromPromise(
-    $`yabai -m query --displays --display`.json(),
-    (cause) => new Error("yabai -m query --displays --display", { cause }),
+    messageJson(["query", "--displays", "--display"]),
+    (cause) =>
+      new Error("Failed to run 'yabai query --displays --display'", { cause }),
   )
     .andThen((display) => {
       return ResultAsync.fromPromise(
@@ -22,11 +23,12 @@ if (import.meta.main) {
       );
     })
     .andThen((display) => {
+      const lastSpace = display.spaces.at(-1)!;
       return ResultAsync.fromPromise(
-        $`yabai -m query --spaces --space ${display.spaces.at(-1)!}`.json(),
+        messageJson(["query", "--spaces", "--space", String(lastSpace)]),
         (cause) =>
           new Error(
-            `yabai -m query --spaces --space ${display.spaces.at(-1)!}`,
+            `Failed to run 'yabai query --spaces --space ${lastSpace}'`,
             { cause },
           ),
       ).andThen((spaces) => {
@@ -44,21 +46,20 @@ if (import.meta.main) {
               return okAsync(space.index);
             } else {
               return ResultAsync.fromPromise(
-                $`yabai -m space --create`.text(),
+                message(["space", "--create"]),
                 (cause) =>
-                  new Error(
-                    `yabai -m space --create`,
-                    { cause },
-                  ),
+                  new Error("Failed to run 'yabai space --create'", { cause }),
               )
                 .andThen(() => okAsync(space.index + 1));
             }
           })
           .andThen((index) => {
             return ResultAsync.fromPromise(
-              $`yabai -m window --space ${index}`,
+              message(["window", "--space", String(index)]),
               (cause) =>
-                new Error(`yabai -m window --space ${index}`, { cause }),
+                new Error(`Failed to run 'yabai window --space ${index}'`, {
+                  cause,
+                }),
             );
           });
       });

@@ -1,6 +1,6 @@
-import { $ } from "jsr:@david/dax@0.48.2";
 import { errAsync, okAsync, ResultAsync } from "npm:neverthrow@8.2.0";
 import { ensure, is } from "jsr:@core/unknownutil@4.3.0";
+import { message, messageJson } from "./yabai-client.ts";
 
 const isSpaces = is.ArrayOf(is.ObjectOf({
   "has-focus": is.Boolean,
@@ -11,9 +11,9 @@ const isWay = is.LiteralOneOf(["next", "prev"] as const);
 if (import.meta.main) {
   const way = ensure(Deno.args[0], isWay);
   await ResultAsync.fromPromise(
-    $`yabai -m query --spaces --display`.json(),
+    messageJson(["query", "--spaces", "--display"]),
     (cause) =>
-      new Error("Failed to exec 'yabai -m query --spaces --display'", {
+      new Error("Failed to run 'yabai query --spaces --display'", {
         cause,
       }),
   )
@@ -36,9 +36,9 @@ if (import.meta.main) {
         return okAsync(undefined);
       }
       return ResultAsync.fromPromise(
-        $`yabai -m space --focus ${way}`.quiet(),
+        message(["space", "--focus", way]),
         (cause) =>
-          new Error(`Failed to exec 'yabai -m space --focus ${way}'`, {
+          new Error(`Failed to run 'yabai space --focus ${way}'`, {
             cause,
           }),
       );
