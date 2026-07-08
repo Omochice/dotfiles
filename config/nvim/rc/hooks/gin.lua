@@ -57,6 +57,37 @@ local function get_winid_by_filetype(filetype)
   return nil
 end
 
+--- Show given diff lines in the shared gin-diff window as a scratch buffer.
+--- @param worktree string path to worktree that has the diffs
+--- @param lines string[] the diff text to display
+local function show_scratch_diff(worktree, lines)
+  local status_winid = vimx.fn.win_getid()
+  local winnr = get_winid_by_filetype("gin-diff")
+  if winnr == nil then
+    vimx.cmd("botright vsplit")
+  else
+    vimx.fn.win_gotoid(vimx.fn.win_getid(winnr))
+  end
+  vimx.cmd("enew")
+  vimx.bo.buftype = "nofile"
+  vimx.bo.bufhidden = "wipe"
+  vimx.bo.swapfile = false
+  vimx.fn.setline(1, lines)
+  vimx.bo.modifiable = false
+  vimx.cmd("file " .. vimx.fn.fnameescape("gindiff://" .. worktree))
+  for _, target in ipairs({ "old", "new", "smart" }) do
+    vimx.keymap.set(
+      "n",
+      string.format("<Plug>(gin-diffjump-%s)", target),
+      string.format("<Cmd>call denops#request('gin', 'diff:diffjump:%s', [])<CR>", target),
+      { buffer = true }
+    )
+  end
+  vimx.bo.filetype = "gin-diff"
+  pcall(vim.treesitter.start, vimx.fn.bufnr(), "diff")
+  vimx.fn.win_gotoid(status_winid)
+end
+
 vimx.keymap.set("n", "d", function()
   if vimx.bo.filetype ~= "gin-status" then
     return
@@ -73,18 +104,28 @@ vimx.keymap.set("n", "d", function()
     return
   end
   local diff_type = string.sub(line, 0, 2)
-  -- local is_tracked = string.match(diff_type, "^%?%?") == nil
+  local is_tracked = string.match(diff_type, "^%?%?") == nil
+  if not is_tracked then
+    local worktree = vimx.fn.gin.util.worktree()
+    -- NOTE: gin throw error when exit 1, but comparing new file is only way.
+    -- `git diff --no-index -- /dev/null {target}` exits with 1.
+    local diff = vimx.fn.systemlist({
+      "git",
+      "-C",
+      worktree,
+      "diff",
+      "--no-index",
+      "--no-color",
+      "--",
+      "/dev/null",
+      filename,
+    })
+    show_scratch_diff(worktree, diff)
+    return
+  end
   local is_staged = string.match(diff_type, "^M") ~= nil
   local staged = is_staged and "--staged" or ""
   local winid = get_winid_by_filetype("gin-diff")
-  -- FIXME: I want to show untracked file as all new code
-  -- but, there are some problem:
-  -- 1. gin replace `/dev/null` to relative path
-  --   ref: https://github.com/lambdalisue/gin.vim/blob/5f27fb643056e725476234f27141859415cd31ed/denops/gin/command/diff/command.ts#L36
-  -- 1. Return 1 as status code when exec `git diff -- /dev/null path/to/file`.
-  --    And gin throw if get error code...
-  --   ref: https://github.com/lambdalisue/gin.vim/blob/5f27fb643056e725476234f27141859415cd31ed/denops/gin/git/executor.ts#L85+L87
-  -- local dev_null = is_tracked and "" or "/dev/null"
   if winid == nil then
     local current_winid = vimx.fn.win_getid()
     local cmd = string.format([[GinDiff HEAD %s ++opener=botright\ vsplit -- %s]], staged, filename)
