@@ -17,3 +17,4 @@ let g:loaded_tarPlugin         = v:true
 let g:loaded_tutor_mode_plugin = v:true
 let g:loaded_vimballPlugin     = v:true
 let g:loaded_zipPlugin         = v:true
+let g:loaded_nvim_dir_plugin   = v:true
