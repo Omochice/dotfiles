@@ -33,6 +33,7 @@ in
     ../../nushell/default.nix
     ../../nvim/default.nix
     ../../ollama/default.nix
+    ../../pnpm/default.nix
     ../../rumdl/default.nix
     ../../sketchybar/default.nix
     ../../starship/default.nix
