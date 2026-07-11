@@ -41,7 +41,7 @@ depends = "copilot.lua"
 if = "!exists('$COPILOT_DISABLE')"
 
 [[plugins]]
-repo = "https://github.com/Shougo/ddc-around"
+repo = "https://github.com/Shougo/ddc-source-around"
 on_source = "ddc.vim"
 
 [[plugins]]
@@ -68,7 +68,7 @@ repo = "https://github.com/Shougo/neco-vim"
 on_source = "ddc.vim"
 
 [[plugins]]
-repo = "https://github.com/matsui54/ddc-buffer"
+repo = "https://github.com/matsui54/ddc-source-buffer"
 on_source = "ddc.vim"
 
 [[plugins]]
@@ -80,7 +80,7 @@ repo = "https://github.com/Shougo/ddc-filter-converter_truncate_abbr"
 on_source = "ddc.vim"
 
 [[plugins]]
-repo = "https://github.com/delphinus/ddc-tmux"
+repo = "https://github.com/delphinus/ddc-source-tmux"
 on_source = "ddc.vim"
 
 [[plugins]]
@@ -88,11 +88,11 @@ repo = "https://github.com/tani/ddc-fuzzy"
 on_source = "ddc.vim"
 
 [[plugins]]
-repo = "https://github.com/LumaKernel/ddc-file"
+repo = "https://github.com/LumaKernel/ddc-source-file"
 on_source = "ddc.vim"
 
 [[plugins]]
-repo = "https://github.com/Shougo/ddc-rg"
+repo = "https://github.com/Shougo/ddc-source-rg"
 on_source = "ddc.vim"
 
 [[plugins]]
