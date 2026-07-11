@@ -80,6 +80,8 @@ in
     };
     skills = {
       # keep-sorted start
+      adr = builtins.readFile ./skills/adr.md;
+      adr-update = builtins.readFile ./skills/adr-update.md;
       ast-grep = "${plugins.ast-grep.src}/ast-grep/skills/ast-grep/";
       commit = "${plugins.tani.src}/commit/";
       copilot-review = builtins.readFile ./skills/copilot-review.md;
