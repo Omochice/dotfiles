@@ -49,7 +49,7 @@ in
           ];
         }
       ];
-      model = "opus";
+      model = "opus[1m]";
       permissions.defaultMode = "auto";
       plansDirectory = "./.momomo/ai/plans";
       remoteControlAtStartup = true;
