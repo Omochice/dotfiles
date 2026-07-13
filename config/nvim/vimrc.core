@@ -132,7 +132,9 @@ xnoremap J gj
 xnoremap K gk
 
 " from other resource, vim.jp etc..
-nnoremap <silent> <ESC><ESC> <Cmd>nohlsearch<CR>
+nnoremap <Plug>(vimrc-esc) <nop>
+nnoremap <silent> <ESC> <ESC><Plug>(vimrc-esc)
+nnoremap <silent> <Plug>(vimrc-esc)<ESC> <Cmd>nohlsearch<Bar>silent doautocmd <nomodeline> User EscEsc<CR>
 nnoremap <expr> 0 getline('.')[0 : col('.') - 2] =~# '^\s\+$' ? '0' : '^'
 nnoremap Y y$
 nnoremap <C-s> :<C-u>%substitute@\v@@g<Left><Left><Left>

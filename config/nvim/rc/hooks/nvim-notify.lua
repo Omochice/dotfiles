@@ -57,4 +57,12 @@ require("notify").setup({
     end,
   },
 })
+
+vim.api.nvim_create_autocmd("User", {
+  group = "vimrc.core.autocmd",
+  pattern = "EscEsc",
+  callback = function()
+    require("notify").dismiss({ silent = true, pending = true })
+  end,
+})
 -- }}}
