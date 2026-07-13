@@ -43,7 +43,7 @@
     },
     "claude-skill-ast-grep": {
         "cargoLock": null,
-        "date": "2026-01-21",
+        "date": "2026-07-03",
         "extract": null,
         "name": "claude-skill-ast-grep",
         "passthru": null,
@@ -55,12 +55,12 @@
             "name": null,
             "owner": "ast-grep",
             "repo": "claude-skill",
-            "rev": "577f4d4507678f2c8cee150fae25e6ce309f70b1",
-            "sha256": "sha256-LgGFtPieyKtoru22AhHW8hvkJ8kCHO2Cr8rBOWGuxvY=",
+            "rev": "c2a9bc154f4ffe08b25d28d5e852dfac8c0d0d8a",
+            "sha256": "sha256-awochSE2OupbsmaGx0xc7wHf0ovVMSdtHv4gZAGWOus=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "577f4d4507678f2c8cee150fae25e6ce309f70b1"
+        "version": "c2a9bc154f4ffe08b25d28d5e852dfac8c0d0d8a"
     },
     "claude-skill-lacolaco": {
         "cargoLock": null,
