@@ -52,7 +52,7 @@
       "vysor"
       "wezterm@nightly"
       "windows-app"
-      "wireshark"
+      "wireshark-app"
       "xcodes-app"
       "zen"
       "zoom"
