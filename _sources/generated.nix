@@ -238,15 +238,15 @@
   };
   yazi-theme-catppuccin = {
     pname = "yazi-theme-catppuccin";
-    version = "fc69d6472d29b823c4980d23186c9c120a0ad32c";
+    version = "baaf5d1c9427b836fbefd126aa855f9eab7a9d0d";
     src = fetchFromGitHub {
       owner = "catppuccin";
       repo = "yazi";
-      rev = "fc69d6472d29b823c4980d23186c9c120a0ad32c";
+      rev = "baaf5d1c9427b836fbefd126aa855f9eab7a9d0d";
       fetchSubmodules = false;
-      sha256 = "sha256-Og33IGS9pTim6LEH33CO102wpGnPomiperFbqfgrJjw=";
+      sha256 = "sha256-L6SApM07CSQk0znEsFP8WaxW+ZHcindXo612r1XcwIg=";
     };
-    date = "2025-12-29";
+    date = "2026-06-13";
   };
   zathura-catputtin = {
     pname = "zathura-catputtin";
