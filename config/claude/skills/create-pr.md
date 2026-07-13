@@ -177,4 +177,6 @@ EOF
 
 Add `--draft` to the command if draft mode was requested.
 
+If `includeCoAuthoredBy` or `attribution.pr` has specified, include the trailers.
+
 Report the resulting PR/MR URL to the user.
