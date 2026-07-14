@@ -32,15 +32,15 @@
   };
   claude-skill-ast-grep = {
     pname = "claude-skill-ast-grep";
-    version = "577f4d4507678f2c8cee150fae25e6ce309f70b1";
+    version = "c2a9bc154f4ffe08b25d28d5e852dfac8c0d0d8a";
     src = fetchFromGitHub {
       owner = "ast-grep";
       repo = "claude-skill";
-      rev = "577f4d4507678f2c8cee150fae25e6ce309f70b1";
+      rev = "c2a9bc154f4ffe08b25d28d5e852dfac8c0d0d8a";
       fetchSubmodules = false;
-      sha256 = "sha256-LgGFtPieyKtoru22AhHW8hvkJ8kCHO2Cr8rBOWGuxvY=";
+      sha256 = "sha256-awochSE2OupbsmaGx0xc7wHf0ovVMSdtHv4gZAGWOus=";
     };
-    date = "2026-01-21";
+    date = "2026-07-03";
   };
   claude-skill-lacolaco = {
     pname = "claude-skill-lacolaco";
