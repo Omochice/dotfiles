@@ -87,6 +87,7 @@ in
       copilot-review = builtins.readFile ./skills/copilot-review.md;
       create-pr = builtins.readFile ./skills/create-pr.md;
       grill-me = "${plugins.mattpocock.src}/skills/productivity/grill-me/";
+      grilling = "${plugins.mattpocock.src}/skills/productivity/grilling/";
       retrospective = "${plugins.lacolaco.src}/retrospective/";
       review-pr = builtins.readFile ./skills/review-pr.md;
       skill-creator = "${plugins.anthropics.src}/skills/skill-creator/";
