@@ -88,6 +88,7 @@ in
       create-pr = builtins.readFile ./skills/create-pr.md;
       grill-me = "${plugins.mattpocock.src}/skills/productivity/grill-me/";
       grilling = "${plugins.mattpocock.src}/skills/productivity/grilling/";
+      handoff = "${plugins.mattpocock.src}/skills/productivity/handoff/";
       retrospective = "${plugins.lacolaco.src}/retrospective/";
       review-pr = builtins.readFile ./skills/review-pr.md;
       skill-creator = "${plugins.anthropics.src}/skills/skill-creator/";
