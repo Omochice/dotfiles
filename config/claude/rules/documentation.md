@@ -14,3 +14,11 @@
 ## Language Requirements
 
 - All documentation, comments, and commit messages MUST be written in English unless specified by the user or spec
+
+## Japanese Text
+
+When writing Japanese text, spacing around adjacent alphanumeric characters must be controlled logically rather than by hand.
+
+- You MUST NOT insert spaces before or after alphanumeric characters that are adjacent to Japanese characters
+    - Inserting such spaces manually was long a common practice only because there had been no logical way to control the margin around alphanumeric characters within Japanese text
+    - CSS Text Module Level 4 defines the `text-autospace` property, which provides a logical way to control the margin between Japanese characters and adjacent alphanumeric characters, so manual spacing is no longer warranted
