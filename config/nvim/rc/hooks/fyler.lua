@@ -181,6 +181,12 @@ require("fyler").setup({
       ["."] = { disabled = true },
     },
   },
+  ui = {
+    hidden_items = {
+      switches = {},
+      patterns = { "/node_modules$" },
+    },
+  },
 })
 
 -- The upstream rewrite dropped the size column, so re-add it through
