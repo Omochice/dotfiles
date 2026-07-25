@@ -36,11 +36,13 @@ in
       alias = {
         dd = "!${git-dd}/bin/git-dd";
       };
-      mergiraf = {
-        name = "mergiraf";
-        driver = "${lib.getExe pkgs.mergiraf} merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L";
+      merge = {
+        conflictStyle = "diff3";
+        mergiraf = {
+          name = "mergiraf";
+          driver = "${lib.getExe pkgs.mergiraf} merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L";
+        };
       };
-      conflictStyle = "diff3";
       commit.template = "${./gitmessage}";
     };
     signing.format = null;
