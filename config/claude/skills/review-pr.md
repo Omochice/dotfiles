@@ -127,11 +127,11 @@ outcome. Only inline review comments have a reply thread; the other two sources
 are answered with a new PR comment that quotes the original, because there is no
 threading to identify what is being answered.
 
-| Source                                            | Reply destination                                                                     |
-| ------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Source                                            | Reply destination                                                                      |
+| ------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | Inline review comment (`/pulls/{n}/comments`)     | `gh api -X POST /repos/{owner}/{repo}/pulls/comments/{comment_id}/replies -f body=...` |
-| Review body (`/pulls/{n}/reviews`)                | `gh pr comment {number} --body ...`                                                   |
-| General PR comment (`gh pr view --json comments`) | `gh pr comment {number} --body ...`                                                   |
+| Review body (`/pulls/{n}/reviews`)                | `gh pr comment {number} --body ...`                                                    |
+| General PR comment (`gh pr view --json comments`) | `gh pr comment {number} --body ...`                                                    |
 
 The replies endpoint accepts only inline review comment ids. Passing a review id
 or an issue comment id to it fails, so the id MUST be taken from the same
