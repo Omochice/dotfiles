@@ -32,7 +32,7 @@ in
     memory.source = ./CLAUDE.md;
     settings = {
       # keep-sorted start block=yes
-      advisorModel = "fable";
+      advisorModel = "opus";
       attribution.commit = "";
       attribution.pr = "";
       enableAllProjectMcpServers = true;
