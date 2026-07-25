@@ -81,6 +81,7 @@ in
       conversation = builtins.readFile ./rules/conversation.md;
       documentation = builtins.readFile ./rules/documentation.md;
       simple-not-easy = builtins.readFile ./rules/simple-not-easy.md;
+      sub-agent = builtins.readFile ./rules/sub-agent.md;
       tidy-first = builtins.readFile ./rules/tidy-first.md;
       # keep-sorted end
     };
