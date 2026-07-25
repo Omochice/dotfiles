@@ -155,6 +155,32 @@ in
       '';
     };
 
+    outputStyles = lib.mkOption {
+      type = lib.types.attrsOf (lib.types.either lib.types.lines lib.types.path);
+      default = { };
+      description = ''
+        Custom output styles for Claude Code.
+        The attribute name becomes the output style filename, and the value is either:
+        - Inline content as a string with frontmatter
+        - A path to a file containing the output style content with frontmatter
+        Output styles are stored in .claude/output-styles/ directory.
+      '';
+      example = lib.literalExpression ''
+        {
+          explanatory = '''
+            ---
+            name: explanatory
+            description: Explain the reasoning behind each change
+            keep-coding-instructions: true
+            ---
+
+            Explain why each change was made before showing the diff.
+          ''';
+          teacher = ./output-styles/teacher.md;
+        }
+      '';
+    };
+
     hooks = lib.mkOption {
       type = lib.types.attrsOf lib.types.lines;
       default = { };
@@ -499,6 +525,12 @@ in
         if lib.isPath content then { source = content; } else { text = content; }
       )
     ) cfg.commands
+    // lib.mapAttrs' (
+      name: content:
+      lib.nameValuePair "claude/output-styles/${name}.md" (
+        if lib.isPath content then { source = content; } else { text = content; }
+      )
+    ) cfg.outputStyles
     // lib.mapAttrs' (
       name: content:
       lib.nameValuePair "claude/hooks/${name}" {
