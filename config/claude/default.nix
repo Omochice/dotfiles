@@ -68,6 +68,11 @@ in
       mr-comments = builtins.readFile ./commands/mr-comments.md;
       # keep-sorted end
     };
+    outputStyles = {
+      # keep-sorted start
+      chii = builtins.readFile ./output-styles/chii.md;
+      # keep-sorted end
+    };
     rules = {
       # keep-sorted start
       ai-agent-working-directory = builtins.readFile ./rules/temporary-directory.md;
