@@ -1,9 +1,12 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
+local utils = require("utils")
 
 local M = {
   disable_default_key_bindings = true,
-  keys = require("keybinds.terminal_move"),
+  keys = utils.concatenated({
+    require("keybinds.terminal_move"),
+  }),
 }
 
 M.key_tables = {

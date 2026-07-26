@@ -19,6 +19,16 @@ function M.merged(tables)
   return results
 end
 
+function M.concatenated(lists)
+  local results = {}
+  for i = 1, #lists do
+    for _, item in ipairs(lists[i]) do
+      table.insert(results, item)
+    end
+  end
+  return results
+end
+
 function M.basename(path)
   if path == nil then
     return ""
