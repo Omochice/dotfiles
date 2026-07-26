@@ -6,6 +6,7 @@ local M = {
   disable_default_key_bindings = true,
   keys = utils.concatenated({
     require("keybinds.terminal_move"),
+    require("keybinds.workspace"),
   }),
 }
 
