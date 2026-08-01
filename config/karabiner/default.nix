@@ -6,7 +6,10 @@
 }:
 let
   k = import ./lib.nix { };
-  profiles = import ./profile.nix { inherit k; };
+  profiles = import ./profile.nix {
+    inherit k;
+    inherit pkgs;
+  };
 
   karabinerJson = pkgs.writeText "karabiner.json" (builtins.toJSON profiles);
 

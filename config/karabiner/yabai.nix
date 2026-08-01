@@ -1,13 +1,7 @@
 # yabai window-management bindings, formerly yabai.ts.
-{ k }:
+{ k, pkgs }:
 let
-  # yabai and the deno query scripts are not on karabiner's PATH, so each
-  # command re-exports the locations where nix and deno install their binaries.
-  sh = command: "export PATH=$PATH:/run/current-system/sw/bin:$HOME/.deno/bin;${command}";
-
-  query = script: sh "deno run -A ~/.config/karabiner/queries/${script}";
-  # The space/display queries are invoked with an extra space, kept verbatim.
-  query' = script: sh "deno run -A  ~/.config/karabiner/queries/${script}";
+  query = script: "${pkgs.lib.getExe pkgs.deno} run -A ~/.config/karabiner/queries/${script}";
 
   compass = [
     {
@@ -49,7 +43,8 @@ in
         key_code = key;
         modifiers.mandatory = [ "command" ];
       }
-      |> k.toShell (sh "yabai -m window --focus ${way} || yabai -m display --focus ${way}")
+      |> k.toShell "${pkgs.lib.getExe pkgs.yabai} -m window --focus ${way} || ${pkgs.lib.getExe pkgs.yabai} -m display --focus ${way}"
+
     )
   ]
 ) compass)
@@ -90,7 +85,7 @@ in
         key_code = num;
         modifiers.mandatory = [ "command" ];
       }
-      |> k.toShell (query' "focus-space.ts ${num}")
+      |> k.toShell (query "focus-space.ts ${num}")
     )
   ]
 ) numbers)
@@ -105,7 +100,7 @@ in
           "shift"
         ];
       }
-      |> k.toShell (query' "move-space.ts ${num}")
+      |> k.toShell (query "move-space.ts ${num}")
     )
   ]
 ) numbers)
@@ -117,7 +112,7 @@ in
         key_code = "${key}_arrow";
         modifiers.mandatory = [ "command" ];
       }
-      |> k.toShell (query' "focus-in-display.ts ${way}")
+      |> k.toShell (query "focus-in-display.ts ${way}")
     )
   ]
 ) arrows)
@@ -128,7 +123,7 @@ in
         key_code = "equal_sign";
         modifiers.mandatory = [ "command" ];
       }
-      |> k.toShell (sh "yabai -m space --balance")
+      |> k.toShell "${pkgs.lib.getExe pkgs.yabai} -m space --balance"
     )
   ])
   (k.rule "Toggle fullscreen" [
@@ -137,7 +132,7 @@ in
         key_code = "f";
         modifiers.mandatory = [ "command" ];
       }
-      |> k.toShell (sh "yabai -m window --toggle zoom-fullscreen")
+      |> k.toShell "${pkgs.lib.getExe pkgs.yabai} -m window --toggle zoom-fullscreen"
     )
   ])
   (k.rule "Toggle native fullscreen" [
@@ -149,7 +144,7 @@ in
           "shift"
         ];
       }
-      |> k.toShell (sh "yabai -m window --toggle native-fullscreen")
+      |> k.toShell "${pkgs.lib.getExe pkgs.yabai} -m window --toggle native-fullscreen"
     )
   ])
   (k.rule "Toggle current window to floating." [
@@ -158,7 +153,7 @@ in
         key_code = "spacebar";
         modifiers.mandatory = [ "command" ];
       }
-      |> k.toShell (sh "yabai -m window --toggle split")
+      |> k.toShell "${pkgs.lib.getExe pkgs.yabai} -m window --toggle split"
     )
   ])
   (k.rule "Toggle split way." [
@@ -170,7 +165,8 @@ in
           "shift"
         ];
       }
-      |> k.toShell (sh "yabai -m window --toggle float && yabai -m window --grid 12:12:1:1:10:10")
+      |> k.toShell "${pkgs.lib.getExe pkgs.yabai} -m window --toggle float && ${pkgs.lib.getExe pkgs.yabai} -m window --grid 12:12:1:1:10:10"
+
     )
   ])
   (k.rule "Move current focused window to new space" [
