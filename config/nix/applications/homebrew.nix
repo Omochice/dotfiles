@@ -50,16 +50,19 @@
       "visual-studio-code"
       "vivaldi"
       "vysor"
-      "wezterm@nightly"
       "windows-app"
       "wireshark-app"
       "xcodes-app"
       "zen"
       "zoom"
-      # keep-sorted end
       {
         name = "arto-app/tap/arto";
       }
+      {
+        name = "wezterm@nightly";
+        greedy = true;
+      }
+      # keep-sorted end
     ];
   };
 }
