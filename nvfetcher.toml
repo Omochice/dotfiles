@@ -1,7 +1,3 @@
-[fish-extract]
-src.git = "https://github.com/oh-my-fish/plugin-extract"
-fetch.github = "oh-my-fish/plugin-extract"
-
 [fish-autols]
 src.git = "https://github.com/rstacruz/fish-autols"
 fetch.github = "rstacruz/fish-autols"
@@ -17,10 +13,6 @@ fetch.github = "Omochice/emptyls-fish"
 [fish-fzf-emoji]
 src.git = "https://github.com/Omochice/fzf-emoji.fish"
 fetch.github = "Omochice/fzf-emoji.fish"
-
-[fish-lazyasdf]
-src.git = "https://github.com/Omochice/lazyasdf.fish"
-fetch.github = "Omochice/lazyasdf.fish"
 
 [fish-direnv]
 src.git = "https://github.com/usami-k/fish-direnv"

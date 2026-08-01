@@ -140,18 +140,6 @@
     };
     date = "2021-05-29";
   };
-  fish-extract = {
-    pname = "fish-extract";
-    version = "5d05f9f15d3be8437880078171d1e32025b9ad9f";
-    src = fetchFromGitHub {
-      owner = "oh-my-fish";
-      repo = "plugin-extract";
-      rev = "5d05f9f15d3be8437880078171d1e32025b9ad9f";
-      fetchSubmodules = false;
-      sha256 = "sha256-hFM8uDHDfKBVn4CgRdfRaD0SzmVzOPjfMxU9X6yATzE=";
-    };
-    date = "2016-03-11";
-  };
   fish-fzf-emoji = {
     pname = "fish-fzf-emoji";
     version = "7763624950ddf0ae1f1f9559be367f5861183fcc";
@@ -163,18 +151,6 @@
       sha256 = "sha256-H4Mk2T6RnrxWcG4mKUdaGk/Te0rbbql4Go8uo+aP8UI=";
     };
     date = "2022-12-28";
-  };
-  fish-lazyasdf = {
-    pname = "fish-lazyasdf";
-    version = "68d9bf4f4bd4286fccb2d97c81a6493fd04767a9";
-    src = fetchFromGitHub {
-      owner = "Omochice";
-      repo = "lazyasdf.fish";
-      rev = "68d9bf4f4bd4286fccb2d97c81a6493fd04767a9";
-      fetchSubmodules = false;
-      sha256 = "sha256-1c+RNRpM1RLqxHbVs1Amt4vp66hUnR0R0+0VoP0zSlM=";
-    };
-    date = "2023-03-16";
   };
   gh-fzgist = {
     pname = "gh-fzgist";
