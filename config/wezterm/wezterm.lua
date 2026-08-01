@@ -58,6 +58,10 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   }
 end)
 
+wezterm.on("format-window-title", function()
+  return wezterm.mux.get_active_workspace()
+end)
+
 local others = {
   exit_behavior = "Close",
   use_ime = true,
