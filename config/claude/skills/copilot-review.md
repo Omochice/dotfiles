@@ -2,7 +2,7 @@
 name: copilot-review
 description: |-
     Have the local GitHub Copilot CLI (gpt-5.4) review the current diff, then iterate — Claude proposes fixes, the user approves, fixes are applied, and Copilot re-reviews — until Copilot converges on no findings.
-    Use when the user wants an external Copilot/gpt-5.4 review loop, a second-opinion review that runs to convergence, or says "copilotにレビューさせて".
+disable-model-invocation: true
 ---
 
 # Copilot Review Loop
