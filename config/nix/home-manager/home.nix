@@ -16,7 +16,6 @@ in
     ../../alacritty/default.nix
     ../../claude/default.nix
     ../../colima/default.nix
-    ../../deno/default.nix
     ../../direnv/default.nix
     # ../../doom/default.nix
     ../../fish/default.nix
