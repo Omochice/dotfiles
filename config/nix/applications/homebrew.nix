@@ -39,13 +39,11 @@
       "google-chrome@beta"
       "google-chrome@canary"
       "gyazo"
-      "karabiner-elements"
       "mtgto/macskk/macskk"
       "obs"
       "scroll-reverser"
       "shottr"
       "slack"
-      "tailscale-app"
       "utm"
       "visual-studio-code"
       "vivaldi"
@@ -54,12 +52,23 @@
       "wireshark-app"
       "xcodes-app"
       "zen"
-      "zoom"
       {
         name = "arto-app/tap/arto";
       }
       {
+        name = "karabiner-elements";
+        greedy = true;
+      }
+      {
+        name = "tailscale-app";
+        greedy = true;
+      }
+      {
         name = "wezterm@nightly";
+        greedy = true;
+      }
+      {
+        name = "zoom";
         greedy = true;
       }
       # keep-sorted end
