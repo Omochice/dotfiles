@@ -1,4 +1,4 @@
-import { describe, it } from "jsr:@std/testing@1.0.19/bdd";
+import { describe, it } from "jsr:@std/testing@1.0.20/bdd";
 import { expect } from "jsr:@std/expect@1.0.20";
 
 const add = (lhs: number, rhs: number): number => lhs + rhs;
