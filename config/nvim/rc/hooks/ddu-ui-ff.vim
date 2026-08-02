@@ -1,3 +1,11 @@
+" hook_add {{{
+" NOTE: prevent to attach lsp on preview buffer
+augroup vimrc.ddu-ui-ff
+  autocmd!
+  autocmd BufWinEnter * if bufname()->stridx('ddu-ff:') ==# 0 | setlocal buftype=nofile | endif
+augroup END
+" }}}
+
 " ddu-ff {{{
 setlocal cursorline
 cnoreabbrev <buffer> q call ddu#ui#do_action('quit')
@@ -20,6 +28,6 @@ nnoremap <buffer><nowait> Q <Cmd>call ddu#ui#multi_actions([['clearSelectAllItem
 nnoremap <buffer><nowait> A <Cmd>call ddu#ui#do_action('chooseAction')<CR>
 nnoremap <buffer><nowait> <S-Tab> <Cmd>call ddu#ui#do_action('toggleAllItems')<CR>
 nnoremap <buffer><nowait> <Tab> <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>
-nnoremap <buffer><nowait> p <Cmd>call ddu#ui#do_action('togglePreview')<CR>
+nnoremap <buffer><nowait> p <Cmd>call ddu#ui#do_action('toggleAutoAction')<CR>
 nnoremap <buffer><nowait> q <Cmd>call ddu#ui#do_action('quit')<CR>
 " }}}
