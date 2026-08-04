@@ -93,6 +93,7 @@ in
       commit = "${plugins.tani.src}/commit/";
       copilot-review = builtins.readFile ./skills/copilot-review.md;
       create-pr = builtins.readFile ./skills/create-pr.md;
+      gh-stack = "${pkgs.gh-stack.src}/skills/gh-stack/";
       grill-me = "${plugins.mattpocock.src}/skills/productivity/grill-me/";
       grilling = "${plugins.mattpocock.src}/skills/productivity/grilling/";
       handoff = "${plugins.mattpocock.src}/skills/productivity/handoff/";

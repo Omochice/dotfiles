@@ -104,6 +104,10 @@ let
       name = "gh-infra";
       path = "${pkgs.gh-infra}/bin";
     }
+    {
+      name = "gh-stack";
+      path = "${pkgs.gh-stack}/bin";
+    }
   ];
 in
 {
