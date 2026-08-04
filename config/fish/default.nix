@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   # FIXME: wsl
   os = if pkgs.stdenv.isDarwin then "darwin" else "linux";
@@ -17,7 +22,7 @@ let
   path-to-eval = (x: (opt x) + "set --path PATH $PATH ${x.path}");
   eval-to-eval = (x: (opt x) + x.command);
 
-  config = ../../path-list.toml |> builtins.readFile |> fromTOML;
+  path-list = ../../path-list.toml |> builtins.readFile |> fromTOML;
   plugins =
     pkgs.dotfiles-sources
     |> lib.attrsets.filterAttrs (k: v: k |> lib.strings.hasPrefix "fish-")
@@ -47,12 +52,12 @@ let
     }
   );
 
-  executes = config.executes |> builtins.filter isFishConfig |> map eval-to-eval;
-  paths = config.paths |> builtins.filter isFishConfig |> map path-to-eval;
-  environments = config.environments |> builtins.filter isFishConfig |> map environment-to-eval;
-  sources = config.sources |> builtins.filter isFishConfig |> map source-to-eval;
+  executes = path-list.executes |> builtins.filter isFishConfig |> map eval-to-eval;
+  paths = path-list.paths |> builtins.filter isFishConfig |> map path-to-eval;
+  environments = path-list.environments |> builtins.filter isFishConfig |> map environment-to-eval;
+  sources = path-list.sources |> builtins.filter isFishConfig |> map source-to-eval;
   post = [
-    "test -e ~/dotfiles/config/fish/config.local.fish && source ~/dotfiles/config/fish/config.local.fish"
+    "test -e ${config.my.dotfilesDir}/config/fish/config.local.fish && source ${config.my.dotfilesDir}/config/fish/config.local.fish"
   ];
   interactiveShellInit =
     (executes ++ paths ++ environments ++ sources ++ post) |> lib.strings.concatStringsSep "\n";
@@ -61,7 +66,7 @@ in
   programs.fish = {
     enable = true;
     shellAliases =
-      config.aliases
+      path-list.aliases
       |> builtins.filter isFishConfig
       |> map (x: {
         name = x.to;
@@ -88,9 +93,7 @@ in
   # FIXME: "plugins" seems not create `themes`
   xdg.configFile = {
     "fish/themes/Catppuccin Mocha.theme".source = "${
-      pkgs.dotfiles-sources
-      |> builtins.getAttr "fish-catputtin"
-      |> builtins.getAttr "src"
+      pkgs.dotfiles-sources |> builtins.getAttr "fish-catputtin" |> builtins.getAttr "src"
     }/themes/Catppuccin Mocha.theme";
   };
 }
