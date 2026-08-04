@@ -433,7 +433,7 @@ in
     programs = {
       fish.interactiveShellInit = lib.mkIf cfg.enableFishIntegration (
         lib.mkAfter ''
-          set --export --unpath CLAUDE_CONFIG_DIR ~/.config/claude
+          set --export --unpath CLAUDE_CONFIG_DIR ${config.xdg.configHome}/claude
         ''
       );
 
