@@ -15,8 +15,8 @@ local bars = {
     tab_bar = {
       background = "#000000",
       active_tab = {
-        bg_color = "#81d0c9",
-        fg_color = "#1f1e1c",
+        bg_color = "#77D6E6",
+        fg_color = "#1E1B2B",
         intensity = "Normal",
         underline = "None",
         italic = false,
@@ -26,10 +26,13 @@ local bars = {
   },
 }
 
+local yuzu = wezterm.color.load_base16_scheme(wezterm.config_dir .. "/colors/yuzu.yaml")
+yuzu.background = "#000000"
+
 local colors = {
   window_background_opacity = 0.8,
-  color_scheme = "sonokai",
-  color_scheme_dirs = { "$HOME/.config/wezterm/colors/" },
+  color_schemes = { yuzu = yuzu },
+  color_scheme = "yuzu",
 }
 
 local windows = {
@@ -49,7 +52,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   if tab.active_pane.is_zoomed then
     return {
       { Background = { Color = "#ff6b6b" } },
-      { Foreground = { Color = "#1f1e1c" } },
+      { Foreground = { Color = "#1E1B2B" } },
       { Text = " " .. tab.tab_index + 1 .. ": [Z] " .. title .. " " },
     }
   end
