@@ -34,7 +34,7 @@ in
     };
     settings = {
       alias = {
-        dd = "!${git-dd}/bin/git-dd";
+        dd = "!${lib.getExe git-dd}";
       };
       merge = {
         conflictStyle = "diff3";

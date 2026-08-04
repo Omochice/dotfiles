@@ -15,7 +15,7 @@
       };
       tool = {
         editor = "nvim";
-        fzf-preview = "${pkgs.bat}/bin/bat -p --color always {-1}";
+        fzf-preview = "${pkgs.lib.getExe pkgs.bat} -p --color always {-1}";
       };
     };
   };

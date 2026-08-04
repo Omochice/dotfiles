@@ -451,7 +451,7 @@ in
             '';
 
             wrapper = pkgs.writeShellScriptBin "claude" ''
-              exec ${cfg.package}/bin/claude --plugin-dir ${pluginDir} "$@"
+              exec ${lib.getExe cfg.package} --plugin-dir ${pluginDir} "$@"
             '';
           in
           pkgs.symlinkJoin {
