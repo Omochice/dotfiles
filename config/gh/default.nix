@@ -38,7 +38,7 @@ let
     }
     |> (program: {
       name = program.name;
-      path = "${program}/bin";
+      path = "${lib.getBin program}/bin";
     });
 
   shell-extensions =
@@ -86,27 +86,27 @@ let
   native-extensions = [
     {
       name = "gh-dash";
-      path = "${pkgs.gh-dash}/bin";
+      path = "${lib.getBin pkgs.gh-dash}/bin";
     }
     {
       name = "gh-triage";
-      path = "${pkgs.gh-triage}/bin";
+      path = "${lib.getBin pkgs.gh-triage}/bin";
     }
     {
       name = "gh-dep";
-      path = "${pkgs.gh-dep}/bin";
+      path = "${lib.getBin pkgs.gh-dep}/bin";
     }
     {
       name = "gh-markdown-preview";
-      path = "${pkgs.gh-markdown-preview}/bin";
+      path = "${lib.getBin pkgs.gh-markdown-preview}/bin";
     }
     {
       name = "gh-infra";
-      path = "${pkgs.gh-infra}/bin";
+      path = "${lib.getBin pkgs.gh-infra}/bin";
     }
     {
       name = "gh-stack";
-      path = "${pkgs.gh-stack}/bin";
+      path = "${lib.getBin pkgs.gh-stack}/bin";
     }
   ];
 in
