@@ -5,7 +5,6 @@
   ...
 }:
 let
-  llm-pkgs = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
   guard-and-guide = inputs.guard-and-guide.packages.${pkgs.stdenv.hostPlatform.system} // {
     default = inputs.guard-and-guide.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs {
       doCheck = false;
@@ -13,7 +12,7 @@ let
   };
   prefix = "claude-skill-";
   plugins =
-    pkgs.callPackage ../../_sources/generated.nix { }
+    pkgs.dotfiles-sources
     |> lib.attrsets.filterAttrs (k: v: k |> lib.strings.hasPrefix prefix)
     |> lib.attrsets.mapAttrs' (
       name: value: lib.attrsets.nameValuePair (lib.strings.removePrefix prefix name) value
@@ -28,7 +27,7 @@ in
 {
   programs.my-claude-code = {
     enable = true;
-    package = llm-pkgs.claude-code;
+    package = pkgs.llm-pkgs.claude-code;
     memory.source = ./CLAUDE.md;
     settings = {
       # keep-sorted start block=yes

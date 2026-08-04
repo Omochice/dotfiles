@@ -1,8 +1,7 @@
 { pkgs, lib, ... }:
 let
   extensions =
-    pkgs.callPackage ../../_sources/generated.nix { }
-    |> lib.attrsets.filterAttrs (name: _: name |> lib.strings.hasPrefix "gh-");
+    pkgs.dotfiles-sources |> lib.attrsets.filterAttrs (name: _: name |> lib.strings.hasPrefix "gh-");
   runAs =
     name:
     {

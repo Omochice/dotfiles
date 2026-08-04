@@ -19,7 +19,7 @@ let
 
   config = ../../path-list.toml |> builtins.readFile |> fromTOML;
   plugins =
-    pkgs.callPackage ../../_sources/generated.nix { }
+    pkgs.dotfiles-sources
     |> lib.attrsets.filterAttrs (k: v: k |> lib.strings.hasPrefix "fish-")
     |> builtins.attrValues
     |> builtins.filter (x: (builtins.typeOf x) == "set" && x ? "pname")
@@ -88,7 +88,7 @@ in
   # FIXME: "plugins" seems not create `themes`
   xdg.configFile = {
     "fish/themes/Catppuccin Mocha.theme".source = "${
-      pkgs.callPackage ../../_sources/generated.nix { }
+      pkgs.dotfiles-sources
       |> builtins.getAttr "fish-catputtin"
       |> builtins.getAttr "src"
     }/themes/Catppuccin Mocha.theme";

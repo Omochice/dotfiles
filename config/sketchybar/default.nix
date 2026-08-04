@@ -1,11 +1,9 @@
 {
   pkgs,
   lib,
-  inputs,
   ...
 }:
 let
-  llm-pkgs = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
   # SbarLua is a Lua 5.5 C module, so it is bundled into a matching interpreter
   # whose default search path already resolves require("sketchybar").
   lua = pkgs.lua5_5.withPackages (_: [ pkgs.sbarlua ]);
@@ -20,7 +18,7 @@ in
         executable = true;
       };
       "sketchybar/paths.lua".source = pkgs.replaceVars ./paths.lua {
-        ccusage = pkgs.lib.getExe llm-pkgs.ccusage;
+        ccusage = pkgs.lib.getExe pkgs.llm-pkgs.ccusage;
         jq = pkgs.lib.getExe pkgs.jq;
       };
       "sketchybar/colors.lua".source = ./colors.lua;

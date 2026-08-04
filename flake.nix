@@ -71,6 +71,10 @@
             mcp-servers-nix.overlays.default
             nur-packages.overlays.default
             (final: prev: import ./pkgs/default.nix { pkgs = final; })
+            (final: prev: {
+              llm-pkgs = inputs.llm-agents.packages.${final.stdenv.hostPlatform.system};
+              dotfiles-sources = final.callPackage ./_sources/generated.nix { };
+            })
           ];
         };
         treefmt = treefmt-nix.lib.evalModule pkgs (

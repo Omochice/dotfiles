@@ -2,12 +2,8 @@
   pkgs,
   user,
   home,
-  inputs,
   ...
 }:
-let
-  llm-pkgs = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
-in
 {
   imports = [
     ../modules/home-manager/my-claude-code.nix

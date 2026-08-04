@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  plugins = pkgs.callPackage ../../_sources/generated.nix { };
+  plugins = pkgs.dotfiles-sources;
 in
 {
   programs.zathura = {
