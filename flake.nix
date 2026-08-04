@@ -252,7 +252,6 @@
             omochice = home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
               extraSpecialArgs = {
-                inherit inputs;
                 inherit (host) user home;
               };
               modules = [
