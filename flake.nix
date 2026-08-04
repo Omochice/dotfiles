@@ -74,6 +74,13 @@
             (final: prev: {
               llm-pkgs = inputs.llm-agents.packages.${final.stdenv.hostPlatform.system};
               dotfiles-sources = final.callPackage ./_sources/generated.nix { };
+              guard-and-guide = inputs.guard-and-guide.packages.${final.stdenv.hostPlatform.system} // {
+                default =
+                  inputs.guard-and-guide.packages.${final.stdenv.hostPlatform.system}.default.overrideAttrs
+                    {
+                      doCheck = false;
+                    };
+              };
             })
           ];
         };

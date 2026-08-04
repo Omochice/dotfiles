@@ -1,15 +1,9 @@
 {
   lib,
   pkgs,
-  inputs,
   ...
 }:
 let
-  guard-and-guide = inputs.guard-and-guide.packages.${pkgs.stdenv.hostPlatform.system} // {
-    default = inputs.guard-and-guide.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs {
-      doCheck = false;
-    };
-  };
   prefix = "claude-skill-";
   plugins =
     pkgs.dotfiles-sources
@@ -43,7 +37,7 @@ in
           hooks = [
             {
               type = "command";
-              command = "${lib.getExe guard-and-guide.default}";
+              command = "${lib.getExe pkgs.guard-and-guide.default}";
             }
           ];
         }
