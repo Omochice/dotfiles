@@ -54,6 +54,7 @@ in
       statusLine.padding = 0;
       statusLine.type = "command";
       teammateMode = "auto";
+      worktree.baseRef = "head";
       # keep-sorted end
     };
     commands = {
