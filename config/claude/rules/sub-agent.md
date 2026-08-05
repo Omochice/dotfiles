@@ -15,3 +15,4 @@ After the sub agent writes code, the main agent(which is conversing with the use
 
 Alternatively, when having the sub agent write code, a temporary worktree may be created for the sub agent to perform the `/commit`.
 In this case, the main agent MUST cherry-pick the changes from that worktree and subsequently discard the branch.
+The worktree MUST be created and discarded as described in [worktree](./worktree.md).

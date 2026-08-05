@@ -77,6 +77,7 @@ in
       simple-not-easy = builtins.readFile ./rules/simple-not-easy.md;
       sub-agent = builtins.readFile ./rules/sub-agent.md;
       tidy-first = builtins.readFile ./rules/tidy-first.md;
+      worktree = builtins.readFile ./rules/worktree.md;
       # keep-sorted end
     };
     skills = {
