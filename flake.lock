@@ -367,11 +367,11 @@
     },
     "org-babel": {
       "locked": {
-        "lastModified": 1777311427,
-        "narHash": "sha256-5pUNDxoPEhW0d4aw5UnZiL3JzHbupls14GZwD2q8vLE=",
+        "lastModified": 1781216126,
+        "narHash": "sha256-f1OICjF3pdRb89ackr20ulKJeTfGnQKXns2mgxOxE00=",
         "owner": "emacs-twist",
         "repo": "org-babel",
-        "rev": "bcd049a1a86779c421ab10027f1d4b78363dcc4e",
+        "rev": "e39a14ee977472e15c1c3019b7e00c0da9ecbaa2",
         "type": "github"
       },
       "original": {
