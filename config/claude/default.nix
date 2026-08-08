@@ -45,6 +45,11 @@ in
       model = "opus[1m]";
       outputStyle = "chii";
       permissions.defaultMode = "auto";
+      permissions.deny = [
+        "Read(~/.ssh/**)"
+        "Edit(~/.ssh/**)"
+        "Write(~/.ssh/**)"
+      ];
       plansDirectory = "./.momomo/ai/plans";
       remoteControlAtStartup = true;
       sandbox.autoAllowBashIfSandboxed = true;
@@ -172,6 +177,11 @@ in
         {
           matcher = "Read|Write|Edit";
           regex = "\\.envrc$";
+          message = "Do not read credential config file. If failed to access some endpoints, ask user to resolve it.";
+        }
+        {
+          matcher = "Read|Write|Edit";
+          regex = "\\.ssh";
           message = "Do not read credential config file. If failed to access some endpoints, ask user to resolve it.";
         }
       ];
