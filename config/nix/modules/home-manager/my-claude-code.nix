@@ -466,6 +466,9 @@ in
 
     home = {
       packages = lib.mkIf (cfg.package != null) [ cfg.finalPackage ];
+      sessionVariables = lib.mkIf cfg.enable {
+        CLAUDE_CONFIG_DIR = "${config.xdg.configHome}/claude";
+      };
     };
 
     xdg.configFile = {
