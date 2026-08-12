@@ -48,7 +48,6 @@ in
       permissions.deny = [
         "Read(~/.ssh/**)"
         "Edit(~/.ssh/**)"
-        "Write(~/.ssh/**)"
       ];
       plansDirectory = "./.momomo/ai/plans";
       remoteControlAtStartup = true;
