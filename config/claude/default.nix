@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -19,10 +20,11 @@ let
   };
 in
 {
-  programs.my-claude-code = {
+  programs.claude-code = {
     enable = true;
     package = pkgs.llm-pkgs.claude-code;
-    memory.source = ./CLAUDE.md;
+    configDir = "${config.xdg.configHome}/claude";
+    context = ./CLAUDE.md;
     settings = {
       # keep-sorted start block=yes
       advisorModel = "opus";
@@ -50,7 +52,6 @@ in
         "Edit(~/.ssh/**)"
       ];
       plansDirectory = "./.momomo/ai/plans";
-      remoteControlAtStartup = true;
       sandbox.autoAllowBashIfSandboxed = true;
       sandbox.enabled = true;
       showClearContextOnPlanAccept = true;
