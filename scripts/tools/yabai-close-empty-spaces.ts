@@ -1,5 +1,4 @@
 import { Command } from "jsr:@cliffy/command@1.2.1";
-import { $ } from "jsr:@david/dax@0.48.2";
 import {
   $array,
   $boolean,
@@ -8,6 +7,10 @@ import {
   $string,
   type Infer,
 } from "npm:lizod@0.2.7";
+import {
+  message,
+  messageJson,
+} from "../../config/karabiner/queries/yabai-client.ts";
 
 const isSpace = $object({
   id: $number,
@@ -29,7 +32,7 @@ type Space = Infer<typeof isSpace>;
 async function listEmptyTailSpaces(): Promise<Space[]> {
   const emptySpaces: Space[] = [];
 
-  const spaces = await $`yabai --message query --spaces`.json();
+  const spaces = await messageJson(["query", "--spaces"]);
   const ctx = { errors: [] };
   if (!$array(isSpace)(spaces, ctx)) {
     console.error("err", ctx);
@@ -66,9 +69,9 @@ if (import.meta.main) {
 
   for (const space of emptySpaces) {
     if (options.dryRun) {
-      console.debug(`$ yabai --message space ${space.index} --destroy`);
+      console.debug(`$ yabai -m space ${space.index} --destroy`);
     } else {
-      await $`yabai --message space ${space.index} --destroy`.quiet();
+      await message(["space", String(space.index), "--destroy"]);
     }
   }
 }
