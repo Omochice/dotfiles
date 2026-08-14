@@ -52,6 +52,7 @@ in
         "Edit(~/.ssh/**)"
       ];
       plansDirectory = "./.momomo/ai/plans";
+      remoteControlAtStartup = true;
       sandbox.autoAllowBashIfSandboxed = true;
       sandbox.enabled = true;
       showClearContextOnPlanAccept = true;
