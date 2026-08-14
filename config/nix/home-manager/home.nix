@@ -7,7 +7,6 @@
 {
   imports = [
     ../modules/home-manager/dotfiles-dir.nix
-    ../modules/home-manager/my-claude-code.nix
     ../modules/home-manager/my-git-wt.nix
     # keep-sorted start
     ../../alacritty/default.nix
