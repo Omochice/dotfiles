@@ -190,15 +190,15 @@
   };
   neovim = {
     pname = "neovim";
-    version = "faf8345eef8c9a59f254d3e4bafab1a9c125ee21";
+    version = "0e436350a589a5ac3f40f8a622470fd247e8fd88";
     src = fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "faf8345eef8c9a59f254d3e4bafab1a9c125ee21";
+      rev = "0e436350a589a5ac3f40f8a622470fd247e8fd88";
       fetchSubmodules = false;
-      sha256 = "sha256-SUVxY4Hi/HKhZ1l0Db/3PiScm3MR6rm8JY/WPthB0lM=";
+      sha256 = "sha256-Q3yZhWgudegOtUR/W8hP8IH9QAYx3Ma1p3zBYotx0yM=";
     };
-    date = "2026-08-13";
+    date = "2026-08-16";
   };
   tree-sitter-moonbit = {
     pname = "tree-sitter-moonbit";
