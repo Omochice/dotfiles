@@ -155,7 +155,7 @@
             pkgs.nix-output-monitor
             home-manager.packages.${system}.home-manager
           ]
-          ++ (pkgs.lib.optional pkgs.stdenv.isDarwin nix-darwin.packages.${system}.darwin-rebuild);
+          ++ (pkgs.lib.optional pkgs.stdenv.hostPlatform.isDarwin nix-darwin.packages.${system}.darwin-rebuild);
           text = ''
             jq -n --arg home "$HOME" --arg user "$USER" '{home: $home, user: $user}' > host.json
             git add host.json --force
@@ -168,7 +168,7 @@
               echo "Updating nix-darwin"
               sudo darwin-rebuild switch --flake .#omochice |& nom
             ''
-            |> pkgs.lib.strings.optionalString pkgs.stdenv.isDarwin
+            |> pkgs.lib.strings.optionalString pkgs.stdenv.hostPlatform.isDarwin
           );
         };
       in
@@ -240,7 +240,7 @@
         };
         formatter = treefmt.config.build.wrapper;
         legacyPackages = {
-          darwinConfigurations = pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
+          darwinConfigurations = pkgs.lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
             omochice = nix-darwin.lib.darwinSystem {
               modules = [ ./config/nix/nix-darwin/default.nix ];
               specialArgs = {

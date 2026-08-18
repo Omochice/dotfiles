@@ -4,7 +4,7 @@
   pkgs,
 }:
 let
-  stdenv = if pkgs.stdenv.isDarwin then pkgs.clangStdenv else pkgs.useMoldLinker pkgs.clangStdenv;
+  stdenv = if pkgs.stdenv.hostPlatform.isDarwin then pkgs.clangStdenv else pkgs.useMoldLinker pkgs.clangStdenv;
 
   moldRC =
     name: env:

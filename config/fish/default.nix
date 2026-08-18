@@ -6,7 +6,7 @@
 }:
 let
   # FIXME: wsl
-  os = if pkgs.stdenv.isDarwin then "darwin" else "linux";
+  os = if pkgs.stdenv.hostPlatform.isDarwin then "darwin" else "linux";
   matchOS = (x: !(x ? "os") || x.os == os);
   matchShell = (x: !(x ? "shell") || x.shell == "fish");
   isFishConfig = (x: (matchOS x) && (matchShell x));

@@ -5,7 +5,7 @@
 }:
 let
   deps = pkgs.callPackage ./deps.nix { neovim-src = source.src; };
-  env = if pkgs.stdenv.isDarwin then pkgs.clangStdenv else pkgs.useMoldLinker pkgs.clangStdenv;
+  env = if pkgs.stdenv.hostPlatform.isDarwin then pkgs.clangStdenv else pkgs.useMoldLinker pkgs.clangStdenv;
   tree-sitter-moonbit = pkgs.tree-sitter.buildGrammar {
     language = "moonbit";
     version = tree-sitter-moonbit-source.version;

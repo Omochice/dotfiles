@@ -4,7 +4,7 @@
 }:
 let
   baseHint = {
-    command = if pkgs.stdenv.isDarwin then "open" else "xdg-open";
+    command = if pkgs.stdenv.hostPlatform.isDarwin then "open" else "xdg-open";
     post_processing = true;
     persist = false;
     mouse.enabled = true;
@@ -13,7 +13,7 @@ in
 {
   programs.alacritty = {
     enable = true;
-    package = if pkgs.stdenv.isDarwin then null else pkgs.alacritty;
+    package = if pkgs.stdenv.hostPlatform.isDarwin then null else pkgs.alacritty;
     settings = {
       window.opacity = 0.8;
       window.option_as_alt = "Both";

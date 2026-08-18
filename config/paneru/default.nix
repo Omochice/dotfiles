@@ -8,7 +8,7 @@
     # - [ ] move window to next monitor
     # - [ ] focus other monitor
     enable = false;
-    # enable = pkgs.stdenv.isDarwin;
+    # enable = pkgs.stdenv.hostPlatform.isDarwin;
     settings = {
       options = {
         preset_column_widths = [
