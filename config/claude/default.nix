@@ -27,7 +27,7 @@ in
     context = ./CLAUDE.md;
     settings = {
       # keep-sorted start block=yes
-      advisorModel = "opus";
+      advisorModel = "fable";
       attribution.commit = "";
       attribution.pr = "";
       enableAllProjectMcpServers = true;
