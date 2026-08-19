@@ -25,4 +25,4 @@ require("hover").config({
   title = true,
   mouse_providers = {},
 })
---- }}
+--- }}}
