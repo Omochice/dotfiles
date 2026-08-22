@@ -147,12 +147,22 @@ in
         }
         {
           matcher = "Bash";
-          regex = "\\bsed\\b";
+          regex = "(?:^|[|;&(]\\s*)sed\\s+-n\\b";
+          message = "Use of 'sed' is prohibited. Use the Read tool with offset and limit instead.";
+        }
+        {
+          matcher = "Bash";
+          regex = "(?:^|[|;&(]\\s*)awk\\s+'?\\s*NR\\s*[<>=]";
+          message = "Use of 'awk' is prohibited. Use the Read tool with offset and limit instead.";
+        }
+        {
+          matcher = "Bash";
+          regex = "(?:^|[|;&(]\\s*)sed\\b";
           message = "Use of 'sed' is prohibited. Use 'perl' instead. Example: perl -pi -e 's/old/new/g' file.txt";
         }
         {
           matcher = "Bash";
-          regex = "\\bawk\\b";
+          regex = "(?:^|[|;&(]\\s*)awk\\b";
           message = "Use of 'awk' is prohibited. Use 'perl' instead. Example: perl -lane 'print $F[0]' file.txt";
         }
         {
