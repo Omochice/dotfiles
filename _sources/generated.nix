@@ -20,15 +20,15 @@
   };
   claude-skill-anthropics = {
     pname = "claude-skill-anthropics";
-    version = "f6656c1256d5a8adfa37db9110046ef20bac644c";
+    version = "3b3fad96af16a10759d930941b4520ba0c40edae";
     src = fetchFromGitHub {
       owner = "anthropics";
       repo = "skills";
-      rev = "f6656c1256d5a8adfa37db9110046ef20bac644c";
+      rev = "3b3fad96af16a10759d930941b4520ba0c40edae";
       fetchSubmodules = false;
-      sha256 = "sha256-5/0f5AnGWX3oM+M9Xm/zSmooz11+S1YRdFPmAX+DXi0=";
+      sha256 = "sha256-nVid8vENmLDh7ffDqh+bJbEWtXcVltA0qa2rItmniZM=";
     };
-    date = "2026-08-13";
+    date = "2026-08-21";
   };
   claude-skill-ast-grep = {
     pname = "claude-skill-ast-grep";
