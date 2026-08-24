@@ -342,6 +342,17 @@ repo = "https://github.com/andersevenrud/nvim_context_vt"
 on_source = "nvim-treesitter"
 
 [[plugins]]
+repo = "https://github.com/Omochice/treesitter-cyclomatic-complexity"
+on_source = "nvim-treesitter"
+lua_source = """
+local cc = require("treesitter-cyclomatic-complexity")
+cc.setup({})
+-- The plugin registers its autocmds on setup, so buffers loaded before
+-- nvim-treesitter sourced this plugin would stay blank until reentered.
+cc.refresh()
+"""
+
+[[plugins]]
 repo = "https://github.com/yuki-yano/vim-operator-replace"
 depends = "vim-operator-user"
 on_map = { n = "<Plug>", x = "<Plug>" }
