@@ -68,7 +68,6 @@
       delta
       deno
       devbox
-      direnv
       docker
       docker-buildx
       duckdb
