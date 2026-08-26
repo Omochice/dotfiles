@@ -116,18 +116,6 @@
     };
     date = "2026-03-13";
   };
-  fish-direnv = {
-    pname = "fish-direnv";
-    version = "8e0be51e1ea2e057643b756a9c633d0d057ad9b5";
-    src = fetchFromGitHub {
-      owner = "usami-k";
-      repo = "fish-direnv";
-      rev = "8e0be51e1ea2e057643b756a9c633d0d057ad9b5";
-      fetchSubmodules = false;
-      sha256 = "sha256-Y/tE3xRafOoQxlofSnXA1V7oWOSaO3DCVde9/0O5Esc=";
-    };
-    date = "2021-01-20";
-  };
   fish-emptyls = {
     pname = "fish-emptyls";
     version = "6b97fc65c7da2a3bcb3ea07075d0fcb5cd444fc1";
