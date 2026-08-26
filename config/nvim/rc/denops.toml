@@ -71,3 +71,8 @@ repo = "https://github.com/lambdalisue/nvim-aibo"
 on_cmd = "Aibo"
 hooks_file = "$VIMRC_RC_DIR/hooks/aibo.lua"
 depends = ["denops.vim"]
+
+[[plugins]]
+repo = "https://github.com/lambdalisue/vim-kensaku"
+depends = ["denops.vim"]
+on_func = "kensaku"

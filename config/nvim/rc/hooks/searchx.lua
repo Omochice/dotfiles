@@ -13,7 +13,7 @@ function g:searchx.convert(input) abort
   if a:input !~# '\k'
     return '\V' .. a:input
   endif
-  return join(split(a:input, ' '), '.\{-}')
+  return kensaku#query(a:input)
 endfunction
 ]])
 

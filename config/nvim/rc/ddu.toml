@@ -61,11 +61,6 @@ on_source = "ddu.vim"
 repo = "https://github.com/Shougo/ddu-kind-file"
 on_source = "ddu.vim"
 
-# [[plugins]]
-# repo = "lambdalisue/vim-kensaku"
-# depends = ["denops.vim"]
-# on_source = "denops.vim"
-
 [[plugins]]
 repo = "https://github.com/Omochice/ddu-source-anyjump"
 on_source = "ddu.vim"
