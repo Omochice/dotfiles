@@ -17,6 +17,11 @@ let
   nu_scripts = "${pkgs.nu_scripts}/share/nu_scripts";
 in
 {
+  programs.carapace = {
+    enable = true;
+    enableNushellIntegration = true;
+    enableFishIntegration = false;
+  };
   programs.nushell = {
     enable = true;
     configFile.source = ./config.nu;
@@ -27,6 +32,8 @@ in
       $env.SHELL = "nu"
       $env.PATH = ($env.PATH | append [${sessionPath}])
     '';
+    # External command completion comes from carapace, which nushell asks on
+    # demand, so no completion script has to be parsed at startup.
     extraConfig = ''
       use ${nu_scripts}/themes/nu-themes/catppuccin-mocha.nu
       $env.config.color_config = (catppuccin-mocha)
