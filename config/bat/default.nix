@@ -1,0 +1,4 @@
+{ ... }:
+{
+  home.shellAliases.cat = "bat";
+}

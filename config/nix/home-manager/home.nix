@@ -10,9 +10,14 @@
     ../modules/home-manager/my-git-wt.nix
     # keep-sorted start
     ../../alacritty/default.nix
+    ../../android/default.nix
+    ../../bat/default.nix
     ../../brew/default.nix
+    ../../browser/default.nix
     ../../claude/default.nix
+    ../../clipboard/default.nix
     ../../colima/default.nix
+    ../../devbox/default.nix
     ../../direnv/default.nix
     # ../../doom/default.nix
     ../../fish/default.nix
@@ -23,15 +28,19 @@
     ../../glab-cli/default.nix
     ../../karabiner/default.nix
     ../../lazygit/default.nix
+    ../../lsd/default.nix
     ../../mise/default.nix
+    ../../moon/default.nix
     ../../nix/default.nix
     ../../npm/default.nix
     ../../nushell/default.nix
     ../../nvim/default.nix
     ../../ollama/default.nix
+    ../../paru/default.nix
     ../../pnpm/default.nix
+    ../../power/default.nix
+    ../../ptpython/default.nix
     ../../rumdl/default.nix
-    ../../shell/default.nix
     ../../sketchybar/default.nix
     ../../starship/default.nix
     ../../tmux/default.nix
@@ -52,6 +61,7 @@
     username = user;
     homeDirectory = home;
     stateVersion = "24.05";
+    sessionPath = [ "${home}/.local/bin" ];
     packages = with pkgs; [
       # keep-sorted start
       abduco

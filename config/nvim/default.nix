@@ -11,6 +11,7 @@
     MANPAGER = "nvim +Man!";
   };
   home.shellAliases = {
+    ":q" = "exit";
     vim = "nvim";
     view = "nvim -R";
   };
