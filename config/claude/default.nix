@@ -138,6 +138,11 @@ in
         }
         {
           matcher = "Bash";
+          regex = "\\bgh\\s+stack\\s+(submit|push|merge|unstack|link)\\b";
+          message = "Use of 'gh stack submit/push/merge/unstack/link' is prohibited because it writes to the remote. Ask the user to execute it.";
+        }
+        {
+          matcher = "Bash";
           regex = "\\bgit\\s+add\\s+(-A|--all|\\.($|[ ;|&]))";
           message = "Do not git-add all files. Specify the files to add.";
         }
