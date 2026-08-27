@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   # home-manager has no nushell counterpart of hm-session-vars.sh, so the
   # session variables are loaded here. Values that reference other variables
@@ -9,6 +14,7 @@ let
     |> lib.attrsets.filterAttrs (n: v: !(lib.strings.hasInfix "$" (toString v)));
   sessionPath =
     config.home.sessionPath |> map (p: ''("${p}" | path expand)'') |> lib.strings.concatStringsSep " ";
+  nu_scripts = "${pkgs.nu_scripts}/share/nu_scripts";
 in
 {
   programs.nushell = {
@@ -20,6 +26,10 @@ in
     extraEnv = ''
       $env.SHELL = "nu"
       $env.PATH = ($env.PATH | append [${sessionPath}])
+    '';
+    extraConfig = ''
+      use ${nu_scripts}/themes/nu-themes/catppuccin-mocha.nu
+      $env.config.color_config = (catppuccin-mocha)
     '';
     shellAliases = {
       nu-open = "open";
