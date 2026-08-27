@@ -1,5 +1,4 @@
 dummy
-path-list.local.toml
 config/fish/config.local.fish
 config/karabiner/automatic_backups/*
 result

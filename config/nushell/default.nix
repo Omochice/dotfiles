@@ -1,23 +1,29 @@
-{ pkgs, ... }:
+{ config, lib, ... }:
 let
-  osName = if pkgs.stdenv.hostPlatform.isDarwin then "darwin" else "linux";
-  isTargetNushell = item: if builtins.hasAttr "shell" item then item.shell == "nu" else true;
-  isMatchOs = item: if builtins.hasAttr "os" item then item.os == osName else true;
+  # home-manager has no nushell counterpart of hm-session-vars.sh, so the
+  # session variables are loaded here. Values that reference other variables
+  # use sh expansion syntax, which nushell cannot evaluate, so they are left
+  # to be inherited from the login shell.
+  sessionVariables =
+    config.home.sessionVariables
+    |> lib.attrsets.filterAttrs (n: v: !(lib.strings.hasInfix "$" (toString v)));
+  sessionPath =
+    config.home.sessionPath |> map (p: ''("${p}" | path expand)'') |> lib.strings.concatStringsSep " ";
 in
 {
   programs.nushell = {
     enable = true;
     configFile.source = ./config.nu;
-    shellAliases =
-      ../../path-list.toml
-      |> builtins.readFile
-      |> fromTOML
-      |> builtins.getAttr "aliases"
-      |> builtins.filter (item: (isMatchOs item) && (isTargetNushell item))
-      |> map (item: {
-        name = item.to;
-        value = item.from;
-      })
-      |> builtins.listToAttrs;
+    environmentVariables = sessionVariables;
+    # fzf runs preview commands with `$SHELL -c`, and the previews in
+    # config.nu are written in nushell syntax, so SHELL has to name nu.
+    extraEnv = ''
+      $env.SHELL = "nu"
+      $env.PATH = ($env.PATH | append [${sessionPath}])
+    '';
+    shellAliases = {
+      nu-open = "open";
+      open = "^open";
+    };
   };
 }

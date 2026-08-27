@@ -10,6 +10,7 @@
     ../modules/home-manager/my-git-wt.nix
     # keep-sorted start
     ../../alacritty/default.nix
+    ../../brew/default.nix
     ../../claude/default.nix
     ../../colima/default.nix
     ../../direnv/default.nix
@@ -30,6 +31,7 @@
     ../../ollama/default.nix
     ../../pnpm/default.nix
     ../../rumdl/default.nix
+    ../../shell/default.nix
     ../../sketchybar/default.nix
     ../../starship/default.nix
     ../../tmux/default.nix

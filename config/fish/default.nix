@@ -5,24 +5,6 @@
   ...
 }:
 let
-  # FIXME: wsl
-  os = if pkgs.stdenv.hostPlatform.isDarwin then "darwin" else "linux";
-  matchOS = (x: !(x ? "os") || x.os == os);
-  matchShell = (x: !(x ? "shell") || x.shell == "fish");
-  isFishConfig = (x: (matchOS x) && (matchShell x));
-  opt = (
-    x:
-    (lib.strings.optionalString (x ? "if_exists") "test -e ${x.if_exists} && ")
-    + (lib.strings.optionalString (
-      x ? "if_executable"
-    ) "command -v ${x.if_executable} >/dev/null 2>&1 && ")
-  );
-  source-to-eval = (x: (opt x) + "source ${x.path}");
-  environment-to-eval = (x: (opt x) + "set --export --unpath ${x.to} ${x.from}");
-  path-to-eval = (x: (opt x) + "set --path PATH $PATH ${x.path}");
-  eval-to-eval = (x: (opt x) + x.command);
-
-  path-list = ../../path-list.toml |> builtins.readFile |> fromTOML;
   plugins =
     pkgs.dotfiles-sources
     |> lib.attrsets.filterAttrs (k: v: k |> lib.strings.hasPrefix "fish-")
@@ -51,29 +33,19 @@ let
       body = body;
     }
   );
-
-  executes = path-list.executes |> builtins.filter isFishConfig |> map eval-to-eval;
-  paths = path-list.paths |> builtins.filter isFishConfig |> map path-to-eval;
-  environments = path-list.environments |> builtins.filter isFishConfig |> map environment-to-eval;
-  sources = path-list.sources |> builtins.filter isFishConfig |> map source-to-eval;
-  post = [
-    "test -e ${config.my.dotfilesDir}/config/fish/config.local.fish && source ${config.my.dotfilesDir}/config/fish/config.local.fish"
-  ];
-  interactiveShellInit =
-    (executes ++ paths ++ environments ++ sources ++ post) |> lib.strings.concatStringsSep "\n";
 in
 {
   programs.fish = {
     enable = true;
-    shellAliases =
-      path-list.aliases
-      |> builtins.filter isFishConfig
-      |> map (x: {
-        name = x.to;
-        value = x.from;
-      })
-      |> builtins.listToAttrs;
-    interactiveShellInit = interactiveShellInit;
+    shellAliases = {
+      emoji = "fzf-emoji";
+      today = "date '+%Y-%m-%d'";
+      tomorrow = "date '+%Y-%m-%d' --date '+1 day'";
+    };
+    interactiveShellInit = ''
+      set --export --unpath SHELL fish
+      test -e ${config.my.dotfilesDir}/config/fish/config.local.fish && source ${config.my.dotfilesDir}/config/fish/config.local.fish
+    '';
     plugins = plugins;
     functions = {
       # keep-sorted start
