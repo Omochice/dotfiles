@@ -30,6 +30,8 @@ in
       advisorModel = "fable";
       attribution.commit = "";
       attribution.pr = "";
+      attribution.sessionUrl = false;
+      effortLevel = "medium";
       enableAllProjectMcpServers = true;
       env.CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
       env.IS_DEMO = "true";
@@ -44,7 +46,7 @@ in
           ];
         }
       ];
-      model = "opus[1m]";
+      model = "fable[1m]";
       outputStyle = "chii";
       permissions.defaultMode = "auto";
       permissions.deny = [
