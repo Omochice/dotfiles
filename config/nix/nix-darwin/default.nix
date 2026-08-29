@@ -77,6 +77,8 @@ in
       CustomUserPreferences."com.apple.digihub"."com.apple.digihub.cd.music.appeared".action = 1;
       CustomUserPreferences."com.apple.digihub"."com.apple.digihub.cd.picture.appeared".action = 1;
       CustomUserPreferences."com.apple.digihub"."com.apple.digihub.dvd.video.appeared".action = 1;
+      CustomUserPreferences."com.apple.PowerChime".ChimeOnAllHardware = false;
+      CustomUserPreferences."com.apple.PowerChime".ChimeOnNoHardware = true;
       CustomUserPreferences.symbolichotkeys.AppleSymbolicHotKeys = import ../system/darwin/symbolic-hotkeys.nix;
       dock.autohide = true;
       dock.mineffect = "scale";
@@ -98,13 +100,10 @@ in
       NSGlobalDomain.InitialKeyRepeat = 25;
       NSGlobalDomain.KeyRepeat = 2;
       NSGlobalDomain.SLSMenuBarUseBlurredAppearance = true;
-      PowerChime.ChimeOnAllHardware = false;
-      PowerChime.ChimeOnNoHardware = true;
       spaces.spans-displays = false;
       trackpad.Clicking = true;
       trackpad.ForceClick = false;
       trackpad.TrackpadMomentumScroll = true;
-      trackpadBluetooth.TrackpadMomentumScroll = true;
       universalaccess.reduceMotion = false;
       WindowManager.EnableStandardClickToShowDesktop = false;
       WindowManager.HideDesktop = false;
