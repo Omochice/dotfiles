@@ -34,6 +34,28 @@ require("aibo").setup({
         if info.type == "prompt" then
           vim.bo[bufnr].filetype = "markdown.claude"
         end
+        if info.type == "console" then
+          local hyperlink = require("omochice/term-hyperlink").attach(bufnr)
+          vim.keymap.set("n", "gx", function()
+            if not hyperlink.gx() then
+              vim.api.nvim_feedkeys(
+                vim.api.nvim_replace_termcodes("<Plug>(openbrowser-open)", true, false, true),
+                "m",
+                false
+              )
+            end
+          end, opts)
+          vim.keymap.set("n", "gf", function()
+            if not hyperlink.gf() then
+              vim.cmd("normal! gf")
+            end
+          end, opts)
+          vim.keymap.set("n", "gF", function()
+            if not hyperlink.gF() then
+              vim.cmd("normal! gF")
+            end
+          end, opts)
+        end
       end,
     },
     duckdb = {
