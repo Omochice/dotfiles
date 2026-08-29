@@ -74,6 +74,9 @@ in
       # keep-sorted start block=yes case=no
       CustomUserPreferences."com.apple.desktopservices".DSDontWriteNetworkStores = true;
       CustomUserPreferences."com.apple.desktopservices".DSDontWriteUSBStores = true;
+      CustomUserPreferences."com.apple.digihub"."com.apple.digihub.cd.music.appeared".action = 1;
+      CustomUserPreferences."com.apple.digihub"."com.apple.digihub.cd.picture.appeared".action = 1;
+      CustomUserPreferences."com.apple.digihub"."com.apple.digihub.dvd.video.appeared".action = 1;
       CustomUserPreferences.symbolichotkeys.AppleSymbolicHotKeys = import ../system/darwin/symbolic-hotkeys.nix;
       dock.autohide = true;
       dock.mineffect = "scale";
