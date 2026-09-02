@@ -38,7 +38,6 @@
       "google-chrome"
       "google-chrome@beta"
       "google-chrome@canary"
-      "gyazo"
       "mtgto/macskk/macskk"
       "obs"
       "scroll-reverser"
