@@ -1,0 +1,35 @@
+name: Nix diff
+
+on:
+  pull_request:
+    paths:
+      - flake.nix
+      - flake.lock
+      - _sources/*
+      - pkgs/**/*.nix
+      - config/**/*.nix
+
+permissions: {}
+
+jobs:
+  nix-diff:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-nix
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: natsukium/nix-diff-action@4091452e4c7b3c7ea4ecbaec84be7f0066d810d7 # v1.1.1
+        with:
+          comment-strategy: update
+          attributes: |
+            - displayName: nix-darwin
+              attribute: legacyPackages.aarch64-darwin.darwinConfigurations.omochice.system
+            - displayName: home-manager
+              attribute: legacyPackages.aarch64-darwin.homeConfigurations.omochice.activationPackage
