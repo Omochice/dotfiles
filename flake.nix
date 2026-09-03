@@ -146,7 +146,14 @@
             type = "app";
             program = "${program}/bin/${name}";
           };
-        host = ./host.json |> builtins.readFile |> builtins.fromJSON;
+        host =
+          if builtins.pathExists ./host.json then
+            ./host.json |> builtins.readFile |> builtins.fromJSON
+          else
+            {
+              user = "omochice";
+              home = "/Users/omochice";
+            };
         update = pkgs.writeShellApplication {
           name = "update";
           runtimeInputs = [
