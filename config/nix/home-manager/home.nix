@@ -161,6 +161,7 @@
       # keep-sorted end
       # keep-sorted start
       disable-checkout-persist-credentials
+      dockerfile-pin
       duckgo
       firge
       firge-nerd
