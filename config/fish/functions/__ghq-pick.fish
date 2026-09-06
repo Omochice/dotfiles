@@ -1,0 +1,35 @@
+function __ghq-pick --description="pick a ghq repository with fzf and print its absolute path"
+    if ! type ghq 2>&1 >/dev/null
+        echo "ghq is not included into PATH" >&2
+        return 1
+    end
+    if ! type fzf 2>&1 >/dev/null
+        echo "fzf is not included into PATH" >&2
+        return 1
+    end
+    if ! type bat 2>&1 >/dev/null
+        echo "bat is not included into PATH" >&2
+        return 1
+    end
+    set --local roots (ghq root --all)
+    set --local repo (ghq list | string match --invert "*-wt/*" | fzf --no-mouse --preview "
+      for root in $roots
+        if bat --color=always --plain \$root/{}/README.md 2>/dev/null
+          exit
+        end
+      end
+      echo 'NO README'" --query "$argv[1]")
+    commandline -f repaint
+    if test -z "$repo"
+        return 1
+    end
+    for root in $roots
+        set --local p "$root"/"$repo"
+        if test -d "$p"
+            echo "$p"
+            return 0
+        end
+    end
+    # unreachable because `ghq list` show only repos into `ghq root --all`
+    return 1
+end

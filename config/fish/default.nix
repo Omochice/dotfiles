@@ -49,6 +49,9 @@ in
     plugins = plugins;
     functions = {
       # keep-sorted start
+      __ghq-pick =
+        ./functions/__ghq-pick.fish
+        |> parse-fish-function "pick a ghq repository with fzf and print its absolute path";
       __lazygit = ./functions/__lazygit.fish |> parse-fish-function "Lazygit wrapper";
       as = ./functions/as.fish |> (parse-fish-function "fuzzy attach to an abduco session");
       f = ./functions/f.fish |> (parse-fish-function "fuzzy moving with ghq");
