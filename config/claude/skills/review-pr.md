@@ -1,152 +1,175 @@
 ---
 name: review-pr
-description: Triage PR review comments for validity and implement approved fixes systematically
+description: Triage review comments on a GitHub PR or GitLab MR for validity and implement approved fixes
 ---
 
 # PR Comment Review & Implementation
 
-Systematically review GitHub PR comments, evaluate their validity, and implement approved fixes.
+Review the comments on a GitHub pull request or a GitLab merge request, evaluate their validity, implement approved fixes, and reply with the outcome.
+"PR" below means either.
 
-## Workflow
+The skill runs in rounds of five phases and stops when a round fetches nothing new.
+Nothing is posted publicly before the user has seen the exact text in the Phase 3 table.
 
-### Phase 1: Fetch PR Comments
+## Platform
 
-Fetch review comments from the current branch's PR with the `gh` CLI.
+The platform is decided by the host of the `origin` remote, read with `git remote get-url origin`.
+GitHub uses the `gh` CLI and GitLab uses the `glab` CLI.
 
-1. Identify the PR for the current branch.
+`gh api` expands `{owner}` and `{repo}`, and `glab api` expands `:id`, so those placeholders are written literally.
+
+## Phase 1: Fetch Comments
+
+When the user passes a PR number, use it; otherwise resolve it from the current branch.
+
+### GitHub
+
+GitHub keeps comments in three places, and each is fetched separately.
+
+1. Identify the PR.
 
    ```sh
    gh pr view --json number,url
    ```
 
 1. Collect the inline review comments.
+   `line` is null on an outdated comment and `original_line` locates it; `start_line` marks a range comment; `in_reply_to_id` marks a reply.
 
    ```sh
-   gh api repos/{owner}/{repo}/pulls/{number}/comments
+   gh api repos/{owner}/{repo}/pulls/{number}/comments --paginate \
+     --jq '.[] | {id, user: .user.login, path, line, start_line, original_line, in_reply_to_id, diff_hunk, body}'
    ```
 
-1. Collect the review-level and general PR comments.
+1. Collect the review bodies and the general PR comments.
 
    ```sh
-   gh api repos/{owner}/{repo}/pulls/{number}/reviews
+   gh api repos/{owner}/{repo}/pulls/{number}/reviews --paginate --jq '.[] | {id, user: .user.login, body}'
    gh pr view {number} --json comments
    ```
 
-### Phase 2: Triage Comments
+### GitLab
 
-For each comment, evaluate using these criteria:
+GitLab keeps every comment in a discussion, so one endpoint returns all of them.
 
-#### Validity Criteria
+1. Identify the MR.
+
+   ```sh
+   glab mr view --output json --jq '{iid, web_url}'
+   ```
+
+1. Collect the discussions.
+   `system` notes are activity entries and are dropped; `position` is null on a discussion not attached to the diff; the first note is the original comment and later notes are replies.
+
+   ```sh
+   glab api projects/:id/merge_requests/{iid}/discussions --paginate \
+     --jq '.[] | {id, notes: [.notes[] | select(.system | not) | {id, author: .author.username, body, position: (.position | if . then {new_path, new_line, old_line} else null end)}]} | select(.notes | length > 0)'
+   ```
+
+### Exclusions
+
+A comment is one reviewer finding about this PR, and the API objects do not map onto findings one to one.
+An object that carries no finding (an empty review body, a bot walkthrough, a deployment or CI notice), an object that repeats a finding already triaged (a bot review body restating its own inline comments), and any reply this skill authored (body starting with `[Claude Code]`) are excluded from triage and receive no reply.
+
+## Phase 2: Triage Comments
+
+For each comment, evaluate the following.
 
 1. **Scope Check**
     - Is this feedback about changes in the current PR?
-    - Skip if commenting on unrelated code
+    - A comment with `line` null is outdated, not out of scope; read `diff_hunk` and the current file, because the point often still holds and only the fix changes shape.
+    - A comment on a change already in the branch is Valid with no implementation step, and the reply names the commit that contains the fix.
 
-1. **Knowledge Currency**
-    - Is the feedback based on current best practices?
-    - Check if libraries/APIs mentioned are up-to-date
-    - Verify against official documentation if needed
+1. **Factual Verification**
+    - A claim that is about to be rejected publicly MUST be checked against the code, the tooling, or the live state, not reasoned about: apply the suggested change and run the linter or tests, query the setting the reviewer asserts, or write the test the claim predicts will fail.
 
-1. **Performance Analysis**
-    - Would the suggested change impact performance?
-    - If original is more performant, note this
+### Assessment Values
 
-1. **Codebase Consistency**
-    - Does the suggestion align with existing patterns?
-    - Check naming conventions, file structure, coding style
+A bot reviewer cannot answer a question and is often wrong, so a bot comment is never Questionable and the factual verification above is mandatory for it.
 
-#### Triage Output Format
+- **Valid**: the point holds and should be acted on.
+- **Incorrect**: the point is in scope but factually wrong about the code.
+- **Questionable**: the point may hold but needs a human reviewer's input to decide.
+- **Out of Scope**: the comment is about code this PR does not change.
 
-For each comment, present:
+### Triage Output Format
+
+For each comment, present the following.
 
 - **Comment**: Original feedback text
 - **Author**: Who wrote it
-- **File/Line**: Location of the comment
-- **Assessment**: Valid | Questionable | Out of Scope
-- **Reasoning**: Why this assessment
-- **Proposed Action**: Implement | Discuss with reviewer | Skip
+- **File/Line**: Location of the comment, using `original_line` when `line` is null
+- **Assessment**: Valid | Incorrect | Questionable | Out of Scope
+- **Reasoning**: Why this assessment, including what was run or checked
+- **Proposed Action**: Implement | Implement differently | Discuss with reviewer | Skip
 - **Implementation Plan**: If implementing, how
-- **Reply Draft**: For Discuss and Skip, the exact reply body to be posted
+- **Reply Draft**: For every action other than Implement, the exact reply body to be posted
 
-### Phase 3: User Confirmation
+## Phase 3: User Confirmation
 
-Present a summary table. Every comment gets a reply, so the reply body for
-non-implemented items MUST be visible here before it is posted publicly.
+Present a summary table.
+The table is required even for a single comment.
 
-| #   | Comment Summary | Assessment   | Action    | Reply Draft                   |
-| --- | --------------- | ------------ | --------- | ----------------------------- |
-| 1   | ...             | Valid        | Implement | (commit hash, decided later)  |
-| 2   | ...             | Questionable | Discuss   | `[Claude Code] ...`           |
-| 3   | ...             | Out of Scope | Skip      | `[Claude Code] not fixing: …` |
+| #   | Comment Summary | Assessment   | Action                | Destination   | Reply Draft                                        |
+| --- | --------------- | ------------ | --------------------- | ------------- | -------------------------------------------------- |
+| 1   | ...             | Valid        | Implement             | inline thread | (commit hash, decided later)                       |
+| 2   | ...             | Valid        | Implement differently | inline thread | `[Claude Code] addressed differently in {hash}: …` |
+| 3   | ...             | Questionable | Discuss               | inline thread | `[Claude Code] …?`                                 |
+| 4   | ...             | Incorrect    | Skip                  | PR comment    | `[Claude Code] not fixing: …`                      |
 
-Ask user to:
-
-- Approve the plan as-is
-- Modify specific items
-- Add clarifications
+Ask the user to approve the plan as-is, modify specific items, or add clarifications.
 
 **Do not proceed until user confirms.**
 
-### Phase 4: Implementation
+## Phase 4: Implementation
 
-For each approved item:
+For each approved item, in order:
 
-1. Add to TodoWrite with specific task
-1. Mark as in_progress
-1. Implement the change
-1. Stage only relevant files (never `git add .`)
-1. Commit with message format:
+1. Implement the change.
+1. Run tests if applicable.
+1. Commit, ending the body with the URL of the comment it answers.
+   Several comments that describe one change share one commit.
+1. If implementation reveals issues, pause and discuss.
 
-   ```text
-   refactor: <description>
+The comment URL takes one of these forms.
 
-   <brief explanation of change>
-   ```
+| Platform | URL                                                                                                                                                                                                                      |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| GitHub   | `https://github.com/{owner}/{repo}/pull/{number}#` followed by `discussion_r{comment_id}` for an inline comment, `pullrequestreview-{review_id}` for a review body, or `issuecomment-{comment_id}` for a general comment |
+| GitLab   | `{web_url}#note_{note_id}`                                                                                                                                                                                               |
 
-   Commit type SHOULD be determine by user effect.
-1. Reply to the comment as described in "Replying to Comments". The reply body MUST be exactly `[Claude Code] fixed in {commit hash}` with no other text.
-1. Mark todo as completed
-1. Move to next item
+## Phase 5: Push, Then Reply
 
-### Phase 5: Respond to Non-Implemented Comments
+A reply may name only a hash that is final on the remote, so replies are posted after the push, in a single batch, using the bodies approved in Phase 3.
 
-Comments triaged as Discuss or Skip receive a reply too, so the reviewer learns
-the outcome instead of seeing silence. Post these after Phase 4 finishes, as a
-single batch, using the reply bodies approved in Phase 3.
+1. Ask the user to push with the single word "push".
+1. After the user confirms, post every reply.
 
-- **Discuss with reviewer**: `[Claude Code] {question that asks for the reviewer's input}`
-- **Skip**: `[Claude Code] not fixing: {reason}`
+Every reply starts with `[Claude Code]` and takes the form for its action.
 
-Unlike the fixed reply, these carry the reason as their payload, so text beyond
-the prefix is REQUIRED. A reply MUST NOT be reworded from what Phase 3 approved.
+- **Implement**: `[Claude Code] fixed in {commit hash}` with no other text.
+- **Implement differently**: `[Claude Code] addressed differently in {commit hash}: {what was done, and why not as suggested}`.
+- **Discuss with reviewer**: `[Claude Code] {question that asks for the reviewer's input}`.
+- **Skip**: `[Claude Code] not fixing: {reason}`.
+
+A reply MUST NOT be reworded from what Phase 3 approved beyond filling in placeholders.
+Bodies are written to a file first and posted from it, because shell quoting strips backticks from an inline body.
 
 ### Replying to Comments
 
-The destination depends on where the comment came from, not on its triage
-outcome. Only inline review comments have a reply thread; the other two sources
-are answered with a new PR comment that quotes the original, because there is no
-threading to identify what is being answered.
+The destination depends on where the comment came from, not on its triage outcome.
+On GitHub only inline review comments have a thread; the other two sources are answered with a new PR comment that quotes the original.
+On GitLab every comment belongs to a discussion and the reply goes into it, addressed by the discussion id, not the note id.
 
-| Source                                            | Reply destination                                                                          |
-| ------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Inline review comment (`/pulls/{n}/comments`)     | `gh api -X POST /repos/{owner}/{repo}/pulls/{n}/comments/{comment_id}/replies -f body=...` |
-| Review body (`/pulls/{n}/reviews`)                | `gh pr comment {number} --body ...`                                                        |
-| General PR comment (`gh pr view --json comments`) | `gh pr comment {number} --body ...`                                                        |
+| Platform | Source                                             | Reply destination                                                                                                                   |
+| -------- | -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| GitHub   | Inline review comment (`/pulls/{n}/comments`)      | `gh api -X POST repos/{owner}/{repo}/pulls/{n}/comments/{comment_id}/replies -F body=@{file} --jq '{id, in_reply_to_id, html_url}'` |
+| GitHub   | Review body or general PR comment                  | `gh pr comment {number} --body-file {file}`                                                                                         |
+| GitLab   | Any discussion                                     | `glab api -X POST projects/:id/merge_requests/{iid}/discussions/{discussion_id}/notes -F body=@{file} --jq '{id, body}'`            |
 
-The replies endpoint accepts only inline review comment ids. Passing a review id
-or an issue comment id to it fails, so the id MUST be taken from the same
-response that produced the comment.
+The GitHub replies endpoint accepts only inline review comment ids, so the id MUST be taken from the response that produced the comment.
 
-Every reply body MUST start with the `[Claude Code]` prefix, which marks the
-reply as authored through Claude Code.
+## Rounds
 
-### Important Guidelines
-
-- Every collected comment MUST end with exactly one reply, whether it was implemented or not.
-- Each issue group MUST be fully resolved (implement, commit, reply) before moving to the next group. Do not process multiple groups in parallel.
-- One commit per issue/comment
-- Never batch multiple fixes in one commit
-- Use conventional commit format
-- Reference the original comment in commit body
-- Run tests after each fix if applicable
-- If implementation reveals issues, pause and discuss
+A push triggers bot reviewers again, so after the replies are posted the skill returns to Phase 1.
+The exclusions drop the replies just posted, so anything left is new; if there is any, continue with Phase 2 and number the items after the previous table, otherwise report that and stop.
+A fresh invocation on an already-processed PR is the same round.
