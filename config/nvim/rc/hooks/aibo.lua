@@ -55,6 +55,15 @@ require("aibo").setup({
               vim.cmd("normal! gF")
             end
           end, opts)
+          vim.keymap.set("n", "<C-Enter>", function()
+            local command = vim.api.nvim_get_current_line():match("^%s*!%s+(.-)%s*$")
+            if command == nil then
+              vim.notify("No `! <command>` on the cursor line", vim.log.levels.WARN)
+              return
+            end
+            command = command:gsub("`+$", "")
+            require("aibo").submit("! " .. command, bufnr)
+          end, opts)
         end
       end,
     },
