@@ -38,10 +38,12 @@ in
       substituters = [
         "https://omochice.cachix.org"
         "https://cache.numtide.com"
+        "https://cclens.cachix.org"
       ];
       trusted-public-keys = [
         "omochice.cachix.org-1:d+cdfbGVPgtxxdGSkGf3hhaCdfziMtZ6FSHUWxwUTo8="
         "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+        "cclens.cachix.org-1:0QUNU6PuVyf+yXOvg3n1rd3FksBoB3s3/Jty50iKRNQ="
       ];
     };
   };

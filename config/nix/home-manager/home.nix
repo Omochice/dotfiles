@@ -75,6 +75,7 @@
       btop
       cachix
       cargo
+      cclens
       clang-tools
       curl
       delta

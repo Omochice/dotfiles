@@ -7,10 +7,12 @@
     extra-substituters = [
       "https://omochice.cachix.org"
       "https://cache.numtide.com"
+      "https://cclens.cachix.org"
     ];
     extra-trusted-public-keys = [
       "omochice.cachix.org-1:d+cdfbGVPgtxxdGSkGf3hhaCdfziMtZ6FSHUWxwUTo8="
       "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+      "cclens.cachix.org-1:0QUNU6PuVyf+yXOvg3n1rd3FksBoB3s3/Jty50iKRNQ="
     ];
   };
 
@@ -44,6 +46,7 @@
     llm-agents.url = "github:numtide/llm-agents.nix";
     org-babel.url = "github:emacs-twist/org-babel";
     guard-and-guide.url = "github:kawarimidoll/guard-and-guide";
+    cclens.url = "github:lambdalisue/cclens";
   };
 
   outputs =
@@ -72,6 +75,7 @@
             nur-packages.overlays.default
             (final: prev: import ./pkgs/default.nix { pkgs = final; })
             (final: prev: {
+              cclens = inputs.cclens.packages.${final.stdenv.hostPlatform.system}.default;
               llm-pkgs = inputs.llm-agents.packages.${final.stdenv.hostPlatform.system};
               dotfiles-sources = final.callPackage ./_sources/generated.nix { };
               guard-and-guide = inputs.guard-and-guide.packages.${final.stdenv.hostPlatform.system} // {
