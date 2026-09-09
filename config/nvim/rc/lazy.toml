@@ -528,6 +528,17 @@ if = "has('nvim')"
 on_event = ["BufRead", "BufNewFile"]
 
 [[plugins]]
+repo = "https://github.com/dlyongemallo/diffview-plus.nvim"
+if = "has('nvim')"
+on_cmd = [
+  "DiffviewOpen",
+  "DiffviewFileHistory",
+  "DiffviewDiffDirs",
+  "DiffviewDiffFiles",
+  "DiffviewMergeFiles",
+]
+
+[[plugins]]
 repo = "https://github.com/thinca/vim-qfreplace"
 on_cmd = "Qfreplace"
 [plugins.ftplugin]
