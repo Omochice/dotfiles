@@ -18,6 +18,13 @@ let
     runtimeInputs = [ pkgs.jq ];
     text = builtins.readFile ./statusline.sh;
   };
+
+  stripAcknowledgement =
+    content:
+    let
+      m = builtins.match "([[:space:][:graph:]]*)<!--[[:space:][:graph:]]*-->[[:space:]]*$" content;
+    in
+    if m == null then content else builtins.head m;
 in
 {
   programs.claude-code = {
@@ -98,7 +105,7 @@ in
       create-pr = builtins.readFile ./skills/create-pr.md;
       gh-stack = "${pkgs.gh-stack.src}/skills/gh-stack/";
       grill-me = "${plugins.mattpocock.src}/skills/productivity/grill-me/";
-      grilling = "${plugins.mattpocock.src}/skills/productivity/grilling/";
+      grilling = builtins.readFile ./skills/grilling.md |> stripAcknowledgement;
       handoff = "${plugins.mattpocock.src}/skills/productivity/handoff/";
       retrospective = "${plugins.lacolaco.src}/retrospective/";
       review-pr = builtins.readFile ./skills/review-pr.md;
