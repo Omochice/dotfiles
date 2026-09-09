@@ -68,7 +68,6 @@ in
     commands = {
       # keep-sorted start
       kiro = builtins.readFile ./commands/kiro.md;
-      mr-comments = builtins.readFile ./commands/mr-comments.md;
       # keep-sorted end
     };
     outputStyles = {
