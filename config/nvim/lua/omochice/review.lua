@@ -22,7 +22,7 @@ vim.api.nvim_set_hl(0, "OmochiceReviewSign", { link = "DiagnosticSignInfo", defa
 ---@field body string[]
 ---@field snapshot string[] Lines of the range at the time the comment was written.
 ---@field filetype string
----@field marks table<integer, { first: integer, last: integer, all: integer[] }> Extmark ids per buffer.
+---@field marks table<integer, integer[]> Extmark ids per buffer, one per line of the range.
 ---@field fillers table<integer, integer> Filler extmark ids per opposite-side buffer.
 
 ---@class omochice.review.Session
@@ -49,7 +49,7 @@ vim.api.nvim_set_hl(0, "OmochiceReviewSign", { link = "DiagnosticSignInfo", defa
 ---@class omochice.review.DiffviewView
 ---@field class { name: fun(self: table): string }
 ---@field cur_layout omochice.review.DiffviewLayout|nil
----@field adapter { ctx: { toplevel: string } }
+---@field adapter { ctx: { toplevel: string }, head_rev: fun(self: table): { commit: string }|nil }
 ---@field left table
 ---@field right table
 
@@ -104,25 +104,15 @@ local function side_of(symbol)
   return nil
 end
 
----@param root string
----@return string
-local function head_sha(root)
-  local result = vim.system({ "git", "-C", root, "rev-parse", "HEAD" }, { text = true }):wait()
-  if result.code ~= 0 then
-    return ""
-  end
-  return vim.trim(result.stdout)
-end
-
 ---@param view omochice.review.DiffviewView
 local function open_session(view)
-  local root = view.adapter.ctx.toplevel
+  local head = view.adapter:head_rev()
   session = {
     -- The resolved revs are recorded instead of the user's argument so the file still identifies
     -- the compared trees after `HEAD` or a branch name has moved on.
     range = tostring(view.left) .. ".." .. tostring(view.right),
-    head = head_sha(root),
-    root = root,
+    head = head and head.commit or "",
+    root = view.adapter.ctx.toplevel,
     comments = {},
     next_id = 1,
     overall = {},
@@ -141,8 +131,8 @@ local function marked_range(comment, bufnr)
   if marks == nil or not vim.api.nvim_buf_is_valid(bufnr) then
     return nil, nil
   end
-  local first = vim.api.nvim_buf_get_extmark_by_id(bufnr, NAMESPACE, marks.first, { details = true })
-  local last = vim.api.nvim_buf_get_extmark_by_id(bufnr, NAMESPACE, marks.last, { details = true })
+  local first = vim.api.nvim_buf_get_extmark_by_id(bufnr, NAMESPACE, marks[1], { details = true })
+  local last = vim.api.nvim_buf_get_extmark_by_id(bufnr, NAMESPACE, marks[#marks], { details = true })
   if first[1] == nil or last[1] == nil or first[3].invalid or last[3].invalid then
     return nil, nil
   end
@@ -166,7 +156,7 @@ end
 local function clear_marks(comment)
   for bufnr, marks in pairs(comment.marks) do
     if vim.api.nvim_buf_is_valid(bufnr) then
-      for _, id in ipairs(marks.all) do
+      for _, id in ipairs(marks) do
         pcall(vim.api.nvim_buf_del_extmark, bufnr, NAMESPACE, id)
       end
     end
@@ -217,39 +207,51 @@ local function place_marks(comment, bufnr)
     end
     table.insert(ids, vim.api.nvim_buf_set_extmark(bufnr, NAMESPACE, lnum - 1, 0, opts))
   end
-  comment.marks[bufnr] = { first = ids[1], last = ids[#ids], all = ids }
+  comment.marks[bufnr] = ids
 end
 
--- Neovim offers no API mapping a line to its diff-aligned counterpart, so the counterpart is
--- found by matching screen rows while both windows are scroll-bound. When the line is scrolled
--- out of view the same line number is used, which misaligns only until the next re-render.
----@param from_win integer
+---@param bufnr integer
+---@return string
+local function buffer_text(bufnr)
+  return table.concat(vim.api.nvim_buf_get_lines(bufnr, 0, -1, false), "\n") .. "\n"
+end
+
+---Map a line of `from_buf` to the line of `to_buf` that diff mode aligns it with.
+---@param from_buf integer
 ---@param lnum integer
----@param to_win integer
+---@param to_buf integer
 ---@return integer
-local function aligned_line(from_win, lnum, to_win)
-  local row = vim.fn.screenpos(from_win, lnum, 1).row
-  local to_buf = vim.api.nvim_win_get_buf(to_win)
-  local fallback = math.min(lnum, vim.api.nvim_buf_line_count(to_buf))
-  if row == 0 then
-    return fallback
-  end
-  local top = vim.fn.line("w0", to_win)
-  local bottom = vim.fn.line("w$", to_win)
-  for candidate = top, bottom do
-    if vim.fn.screenpos(to_win, candidate, 1).row == row then
-      return candidate
+local function aligned_line(from_buf, lnum, to_buf)
+  local hunks = vim.diff(buffer_text(from_buf), buffer_text(to_buf), { result_type = "indices" })
+  local delta = 0
+  for _, hunk in ipairs(hunks) do
+    local start_a, count_a, start_b, count_b = hunk[1], hunk[2], hunk[3], hunk[4]
+    if count_a == 0 then
+      if lnum <= start_a then
+        break
+      end
+      delta = delta + count_b
+    else
+      if lnum < start_a then
+        break
+      end
+      if lnum < start_a + count_a then
+        if count_b == 0 then
+          return math.max(1, start_b)
+        end
+        return start_b + math.min(lnum - start_a, count_b - 1)
+      end
+      delta = delta + count_b - count_a
     end
   end
-  return fallback
+  return math.max(1, math.min(lnum + delta, vim.api.nvim_buf_line_count(to_buf)))
 end
 
 ---@param comment omochice.review.Comment
----@param from_win integer
----@param to_win integer
-local function place_filler(comment, from_win, to_win)
-  local to_buf = vim.api.nvim_win_get_buf(to_win)
-  local lnum = aligned_line(from_win, comment.finish, to_win)
+---@param from_buf integer
+---@param to_buf integer
+local function place_filler(comment, from_buf, to_buf)
+  local lnum = aligned_line(from_buf, comment.finish, to_buf)
   local filler = {}
   for _ = 1, #comment.body do
     table.insert(filler, { { "", "OmochiceReviewComment" } })
@@ -281,7 +283,7 @@ local function render(view, comment)
   end
   place_marks(comment, vim.api.nvim_win_get_buf(own_win))
   if other_win ~= nil then
-    place_filler(comment, own_win, other_win)
+    place_filler(comment, vim.api.nvim_win_get_buf(own_win), vim.api.nvim_win_get_buf(other_win))
   end
 end
 
@@ -329,12 +331,8 @@ local function current_context()
   return { view = view, file = file, side = side }
 end
 
----@param range? { [1]: integer, [2]: integer }
 ---@return integer, integer
-local function cursor_or_visual_range(range)
-  if range ~= nil then
-    return math.min(range[1], range[2]), math.max(range[1], range[2])
-  end
+local function cursor_or_visual_range()
   local mode = vim.fn.mode()
   if mode == "v" or mode == "V" or mode == "\22" then
     vim.cmd("normal! \27")
@@ -492,10 +490,8 @@ local function commit_body(view, comment, lines)
   refresh_quickfix()
 end
 
----Add a comment on the cursor line, on the visual selection when called from visual mode,
----or on an explicit line range.
----@param range? { [1]: integer, [2]: integer } Inclusive line range overriding cursor and selection.
-function M.comment(range)
+---Add a comment on the cursor line, or on the visual selection when called from visual mode.
+function M.comment()
   local ctx = current_context()
   if ctx == nil then
     return
@@ -504,7 +500,7 @@ function M.comment(range)
     open_session(ctx.view)
   end
   local current = assert(session)
-  local first, last = cursor_or_visual_range(range)
+  local first, last = cursor_or_visual_range()
   local bufnr = vim.api.nvim_get_current_buf()
   local id = current.next_id
   current.next_id = id + 1
