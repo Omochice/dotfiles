@@ -529,6 +529,7 @@ on_event = ["BufRead", "BufNewFile"]
 
 [[plugins]]
 repo = "https://github.com/dlyongemallo/diffview-plus.nvim"
+hooks_file = "$VIMRC_RC_DIR/hooks/diffview.lua"
 if = "has('nvim')"
 on_cmd = [
   "DiffviewOpen",

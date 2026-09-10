@@ -8,7 +8,7 @@ local BODY_PREFIX = "┃ "
 local INPUT_BUFNAME_PREFIX = "omochicereview://"
 local INPUT_HEIGHT = 10
 
-vim.api.nvim_set_hl(0, "OmochiceReviewComment", { link = "Comment", default = true })
+vim.api.nvim_set_hl(0, "OmochiceReviewComment", { link = "DiagnosticVirtualTextInfo", default = true })
 vim.api.nvim_set_hl(0, "OmochiceReviewSign", { link = "DiagnosticSignInfo", default = true })
 
 ---@alias omochice.review.Side "old"|"new"
@@ -26,7 +26,7 @@ vim.api.nvim_set_hl(0, "OmochiceReviewSign", { link = "DiagnosticSignInfo", defa
 ---@field fillers table<integer, integer> Filler extmark ids per opposite-side buffer.
 
 ---@class omochice.review.Session
----@field args string
+---@field range string `left..right` as diffview resolved it: commit SHAs, `LOCAL`, or `:N` for the index.
 ---@field head string
 ---@field root string
 ---@field comments omochice.review.Comment[]
@@ -95,17 +95,22 @@ local function head_sha(root)
 end
 
 ---@param view DiffView
----@param args string
-local function open_session(view, args)
+local function open_session(view)
   local root = view.adapter.ctx.toplevel
   session = {
-    args = args,
+    -- The resolved revs are recorded instead of the user's argument so the file still identifies
+    -- the compared trees after `HEAD` or a branch name has moved on.
+    range = tostring(view.left) .. ".." .. tostring(view.right),
     head = head_sha(root),
     root = root,
     comments = {},
     next_id = 1,
     overall = {},
   }
+  -- :ReviewDone exists only while a session does, so completion never offers an action that has nothing to close.
+  vim.api.nvim_create_user_command("ReviewDone", function()
+    M.done()
+  end, { desc = "Write the review markdown and close the session" })
 end
 
 ---@param comment omochice.review.Comment
@@ -153,6 +158,17 @@ local function clear_marks(comment)
   end
   comment.marks = {}
   comment.fillers = {}
+end
+
+local function close_session()
+  if session == nil then
+    return
+  end
+  for _, comment in ipairs(session.comments) do
+    clear_marks(comment)
+  end
+  session = nil
+  pcall(vim.api.nvim_del_user_command, "ReviewDone")
 end
 
 ---@param comment omochice.review.Comment
@@ -359,6 +375,10 @@ local function open_input(name, initial, on_write, on_close)
   })
   vim.cmd(string.format("botright %dsplit", INPUT_HEIGHT))
   vim.api.nvim_win_set_buf(0, bufnr)
+  vim.keymap.set("n", "<CR>", "<Cmd>wq<CR>", { buffer = bufnr, nowait = true, desc = "Confirm and close" })
+  if #initial == 0 then
+    vim.cmd("startinsert")
+  end
 end
 
 ---@param comment omochice.review.Comment
@@ -401,19 +421,55 @@ function M.start(args)
   if args == nil or vim.trim(args) == "" then
     args = "HEAD"
   end
-  if session ~= nil then
-    for _, comment in ipairs(session.comments) do
-      clear_marks(comment)
-    end
-    session = nil
-  end
+  close_session()
   vim.cmd("DiffviewOpen " .. args)
   local view = current_view()
   if view == nil then
     notify("diffview did not open", vim.log.levels.ERROR)
     return
   end
-  open_session(view, args)
+  open_session(view)
+end
+
+local QUICKFIX_TITLE = "Review comments"
+
+-- The list is replaced in place when it is already ours so that every confirmed comment does not
+-- push another entry onto the quickfix history.
+local function refresh_quickfix()
+  if session == nil then
+    return
+  end
+  local items = {}
+  for _, comment in ipairs(session.comments) do
+    sync_range(comment)
+    table.insert(items, {
+      filename = vim.fs.joinpath(session.root, comment.path),
+      lnum = comment.start,
+      end_lnum = comment.finish,
+      text = string.format("(%s) %s", comment.side, comment.body[1] or ""),
+    })
+  end
+  local action = vim.fn.getqflist({ title = 0 }).title == QUICKFIX_TITLE and "r" or " "
+  vim.fn.setqflist({}, action, { title = QUICKFIX_TITLE, items = items })
+end
+
+---@param view DiffView
+---@param comment omochice.review.Comment
+---@param lines string[]
+local function commit_body(view, comment, lines)
+  if #lines == 0 then
+    remove_comment(comment)
+    refresh_quickfix()
+    return
+  end
+  comment.body = lines
+  if session ~= nil and not vim.tbl_contains(session.comments, comment) then
+    table.insert(session.comments, comment)
+  end
+  sync_range(comment)
+  clear_marks(comment)
+  render(view, comment)
+  refresh_quickfix()
 end
 
 ---Add a comment on the cursor line, on the visual selection when called from visual mode,
@@ -425,7 +481,7 @@ function M.comment(range)
     return
   end
   if session == nil then
-    open_session(ctx.view, ctx.view.rev_arg or "")
+    open_session(ctx.view)
   end
   local first, last = cursor_or_visual_range(range)
   local bufnr = vim.api.nvim_get_current_buf()
@@ -446,17 +502,7 @@ function M.comment(range)
   }
   local view = ctx.view
   open_input(string.format("comment/%d", id), {}, function(lines)
-    if #lines == 0 then
-      remove_comment(comment)
-      return
-    end
-    comment.body = lines
-    if session ~= nil and not vim.tbl_contains(session.comments, comment) then
-      table.insert(session.comments, comment)
-    end
-    sync_range(comment)
-    clear_marks(comment)
-    render(view, comment)
+    commit_body(view, comment, lines)
   end)
 end
 
@@ -473,34 +519,17 @@ function M.edit()
   end
   local view = ctx.view
   open_input(string.format("comment/%d", comment.id), comment.body, function(lines)
-    if #lines == 0 then
-      remove_comment(comment)
-      return
-    end
-    comment.body = lines
-    sync_range(comment)
-    clear_marks(comment)
-    render(view, comment)
+    commit_body(view, comment, lines)
   end)
 end
 
----Push every comment of the session into the quickfix list and open it.
+---Open the quickfix list holding the session's comments.
 function M.list()
   if session == nil or #session.comments == 0 then
     notify("no comments", vim.log.levels.WARN)
     return
   end
-  local items = {}
-  for _, comment in ipairs(session.comments) do
-    sync_range(comment)
-    table.insert(items, {
-      filename = vim.fs.joinpath(session.root, comment.path),
-      lnum = comment.start,
-      end_lnum = comment.finish,
-      text = string.format("(%s) %s", comment.side, comment.body[1] or ""),
-    })
-  end
-  vim.fn.setqflist({}, " ", { title = "Review comments", items = items })
+  refresh_quickfix()
   vim.cmd("copen")
 end
 
@@ -531,7 +560,7 @@ local function render_markdown()
   local lines = {
     string.format("# Review %s", os.date("!%Y-%m-%dT%H:%M:%SZ")),
     "",
-    string.format("- target: `DiffviewOpen %s`", session.args),
+    string.format("- target: `%s`", session.range),
     string.format("- HEAD: `%s`", session.head),
     "",
   }
@@ -566,10 +595,7 @@ local function finish_session()
     vim.fn.setreg('"', text)
     notify("review written to " .. vim.fn.fnamemodify(path, ":~:."))
   end
-  for _, comment in ipairs(session.comments) do
-    clear_marks(comment)
-  end
-  session = nil
+  close_session()
   pcall(vim.cmd, "DiffviewClose")
 end
 
