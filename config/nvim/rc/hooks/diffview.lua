@@ -14,6 +14,11 @@ local panel_keys = {
 }
 
 require("diffview").setup({
+  view = {
+    cycle_layouts = {
+      default = { "diff2_horizontal", "diff1_inline" },
+    },
+  },
   file_panel = {
     win_config = function()
       if is_landscape() then
