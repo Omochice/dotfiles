@@ -592,7 +592,6 @@ local function finish_session()
     vim.fn.writefile(lines, path)
     local text = table.concat(lines, "\n") .. "\n"
     vim.fn.setreg("+", text)
-    vim.fn.setreg('"', text)
     notify("review written to " .. vim.fn.fnamemodify(path, ":~:."))
   end
   close_session()
