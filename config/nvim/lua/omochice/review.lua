@@ -33,6 +33,26 @@ vim.api.nvim_set_hl(0, "OmochiceReviewSign", { link = "DiagnosticSignInfo", defa
 ---@field next_id integer
 ---@field overall string[]
 
+-- The subset of diffview's objects this module reads. Declared here because diffview is lazily
+-- loaded and its own annotations are not visible to the language server at startup.
+---@class omochice.review.DiffviewFile
+---@field path string Path relative to the repository root.
+---@field symbol string Layout slot: `"a"` for the old side, `"b"` for the new side.
+
+---@class omochice.review.DiffviewWindow
+---@field id integer
+---@field file omochice.review.DiffviewFile|nil
+
+---@class omochice.review.DiffviewLayout
+---@field windows omochice.review.DiffviewWindow[]
+
+---@class omochice.review.DiffviewView
+---@field class { name: fun(self: table): string }
+---@field cur_layout omochice.review.DiffviewLayout|nil
+---@field adapter { ctx: { toplevel: string } }
+---@field left table
+---@field right table
+
 ---@type omochice.review.Session|nil
 local session = nil
 
@@ -42,7 +62,7 @@ local function notify(msg, level)
   vim.notify(msg, level or vim.log.levels.INFO, { title = "review" })
 end
 
----@return DiffView|nil
+---@return omochice.review.DiffviewView|nil
 local function current_view()
   local ok, lib = pcall(require, "diffview.lib")
   if not ok then
@@ -52,12 +72,12 @@ local function current_view()
   if view == nil or view.class == nil or view.class:name() ~= "DiffView" then
     return nil
   end
-  return view --[[@as DiffView]]
+  return view --[[@as omochice.review.DiffviewView]]
 end
 
----@param view DiffView
+---@param view omochice.review.DiffviewView
 ---@param winid integer
----@return vcs.File|nil
+---@return omochice.review.DiffviewFile|nil
 local function window_file(view, winid)
   local layout = view.cur_layout
   if layout == nil then
@@ -94,7 +114,7 @@ local function head_sha(root)
   return vim.trim(result.stdout)
 end
 
----@param view DiffView
+---@param view omochice.review.DiffviewView
 local function open_session(view)
   local root = view.adapter.ctx.toplevel
   session = {
@@ -239,7 +259,7 @@ local function place_filler(comment, from_win, to_win)
   })
 end
 
----@param view DiffView
+---@param view omochice.review.DiffviewView
 ---@param comment omochice.review.Comment
 local function render(view, comment)
   local layout = view.cur_layout
@@ -265,7 +285,7 @@ local function render(view, comment)
   end
 end
 
----@param view DiffView
+---@param view omochice.review.DiffviewView
 local function render_current_entry(view)
   if session == nil or view.cur_layout == nil then
     return
@@ -288,7 +308,7 @@ local function render_current_entry(view)
   end
 end
 
----@return { view: DiffView, file: vcs.File, side: omochice.review.Side }|nil
+---@return { view: omochice.review.DiffviewView, file: omochice.review.DiffviewFile, side: omochice.review.Side }|nil
 local function current_context()
   local view = current_view()
   if view == nil then
@@ -453,7 +473,7 @@ local function refresh_quickfix()
   vim.fn.setqflist({}, action, { title = QUICKFIX_TITLE, items = items })
 end
 
----@param view DiffView
+---@param view omochice.review.DiffviewView
 ---@param comment omochice.review.Comment
 ---@param lines string[]
 local function commit_body(view, comment, lines)
@@ -483,10 +503,11 @@ function M.comment(range)
   if session == nil then
     open_session(ctx.view)
   end
+  local current = assert(session)
   local first, last = cursor_or_visual_range(range)
   local bufnr = vim.api.nvim_get_current_buf()
-  local id = session.next_id
-  session.next_id = id + 1
+  local id = current.next_id
+  current.next_id = id + 1
   ---@type omochice.review.Comment
   local comment = {
     id = id,
