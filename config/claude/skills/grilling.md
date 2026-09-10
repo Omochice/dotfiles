@@ -14,7 +14,7 @@ If a question can be answered by exploring the codebase, explore the codebase in
 Do not act on the plan until the user confirms the understanding is shared.
 
 <!--
-Ackowledgment
+Acknowledgment
 
 This skill is forked from https://github.com/mattpocock/skills/blob/62f43a18177be6ec82da242e59ffbc490a4c22ea/skills/productivity/grill-me/SKILL.md
 License: https://github.com/mattpocock/skills/blob/62f43a18177be6ec82da242e59ffbc490a4c22ea/LICENSE
