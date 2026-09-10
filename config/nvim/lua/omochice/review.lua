@@ -595,7 +595,7 @@ local function finish_session()
     notify("review written to " .. vim.fn.fnamemodify(path, ":~:."))
   end
   close_session()
-  pcall(vim.cmd, "DiffviewClose")
+  pcall(vim.cmd.DiffviewClose)
 end
 
 ---Ask for an overall comment, then write the review markdown, copy it, and close the session.
