@@ -97,7 +97,7 @@ end
 ---@param to_buf integer
 ---@return integer
 function M.aligned_line(from_buf, lnum, to_buf)
-  local hunks = vim.diff(buffer_text(from_buf), buffer_text(to_buf), { result_type = "indices" })
+  local hunks = vim.text.diff(buffer_text(from_buf), buffer_text(to_buf), { result_type = "indices" }) --[[@as integer[][] ]]
   local delta = 0
   for _, hunk in ipairs(hunks) do
     local start_a, count_a, start_b, count_b = hunk[1], hunk[2], hunk[3], hunk[4]
