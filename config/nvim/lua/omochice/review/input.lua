@@ -37,23 +37,32 @@ function M.open(name, initial, on_write, on_close)
     end,
   })
   local origin_win = vim.api.nvim_get_current_win()
-  -- Closing a bottom split lands in whichever window Vim picks; the reviewer expects to be back on the diff.
+  local origin_view = vim.fn.winsaveview()
   vim.api.nvim_create_autocmd("BufWipeout", {
     buffer = bufnr,
     once = true,
     callback = function()
-      vim.schedule(function()
-        if vim.api.nvim_win_is_valid(origin_win) then
-          vim.api.nvim_set_current_win(origin_win)
-        end
-        if on_close ~= nil then
-          on_close()
-        end
-      end)
+      if on_close ~= nil then
+        vim.schedule(on_close)
+      end
     end,
   })
   vim.cmd(string.format("botright %dsplit", HEIGHT))
-  vim.api.nvim_win_set_buf(0, bufnr)
+  local input_win = vim.api.nvim_get_current_win()
+  vim.api.nvim_win_set_buf(input_win, bufnr)
+  -- Vim hands focus to its own choice of window when the split closes (here the file panel), and
+  -- the detour re-syncs the diff windows' scroll; going straight back and restoring the saved view
+  -- keeps the reviewer on the line they were reading.
+  vim.api.nvim_create_autocmd("WinClosed", {
+    pattern = tostring(input_win),
+    once = true,
+    callback = function()
+      if vim.api.nvim_win_is_valid(origin_win) then
+        vim.api.nvim_set_current_win(origin_win)
+        vim.fn.winrestview(origin_view)
+      end
+    end,
+  })
   vim.keymap.set("n", "<CR>", "<Cmd>wq<CR>", { buffer = bufnr, nowait = true, desc = "Confirm and close" })
   if #initial == 0 then
     vim.cmd("startinsert")
