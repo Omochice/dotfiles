@@ -1,0 +1,47 @@
+# Detection-only. Rules whose prh message starts with "possible" are counted by the eval
+# but never block in the Stop hook: they often match legitimate Japanese.
+# Patterns must stay RE2-compatible (no lookaround): the hook matches them with gojq.
+version: 1
+rules:
+  - pattern: /印/
+    expected: 言い換える
+    prh: calque "mark / marker"
+  - pattern: /並[ぶんべ]/
+    expected: 言い換える
+    prh: calque "line up"
+  - pattern: /並び/
+    expected: 言い換える
+    prh: possible calque "line up" (noun, often legitimate)
+  - pattern: /として扱[うわい]/
+    expected: 言い換える
+    prh: calque "treat as"
+  - pattern: /保持(?:する|して|され)/
+    expected: 言い換える
+    prh: calque "hold/keep"
+  - pattern: /提供(?:する|して|され)/
+    expected: 言い換える
+    prh: calque "provide"
+  - pattern: /購読者/
+    expected: オブザーバー / サブスクライバー
+    prh: over-translation of observer/subscriber
+  - pattern: /観察者/
+    expected: オブザーバー
+    prh: over-translation of observer
+  - pattern: /(?:変更|コミット|ブランチ)を押[すし]/
+    expected: プッシュする
+    prh: over-translation of push
+  - pattern: /(?:変更|コミット|ブランチ)を引[くい]/
+    expected: プルする
+    prh: over-translation of pull
+  - pattern: /取ってく[るれ]/
+    expected: フェッチする
+    prh: possible over-translation of fetch
+  - pattern: /併合/
+    expected: マージ
+    prh: over-translation of merge
+  - pattern: /要求(?:が|を|に)/
+    expected: リクエスト
+    prh: possible over-translation of request
+  - pattern: /確定(?:する|して)/
+    expected: コミット
+    prh: possible over-translation of commit

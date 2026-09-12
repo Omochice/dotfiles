@@ -18,6 +18,11 @@ let
     runtimeInputs = [ pkgs.jq ];
     text = builtins.readFile ./statusline.sh;
   };
+  vocabCheck = pkgs.writeShellApplication {
+    name = "chii-vocab-check";
+    runtimeInputs = [ pkgs.gojq ];
+    text = "exec gojq -c --yaml-input --rawfile hook /dev/stdin -f ${./output-styles/chii/vocab-check.jq} ${./output-styles/chii/prh.yaml}";
+  };
 
   stripAcknowledgement =
     content:
@@ -53,6 +58,18 @@ in
           ];
         }
       ];
+      hooks.Stop = [
+        {
+          matcher = "";
+          hooks = [
+            {
+              type = "command";
+              command = lib.getExe vocabCheck;
+              timeout = 10;
+            }
+          ];
+        }
+      ];
       model = "fable[1m]";
       outputStyle = "chii";
       permissions.defaultMode = "auto";
@@ -79,7 +96,7 @@ in
     };
     outputStyles = {
       # keep-sorted start
-      chii = builtins.readFile ./output-styles/chii.md;
+      chii = builtins.readFile ./output-styles/chii/style.md;
       # keep-sorted end
     };
     rules = {
