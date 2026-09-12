@@ -46,6 +46,7 @@ in
       effortLevel = "medium";
       enableAllProjectMcpServers = true;
       env.CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
+      env.CLAUDE_CODE_SUBAGENT_MODEL = "opus[1m]";
       env.IS_DEMO = "true";
       hooks.PreToolUse = [
         {
