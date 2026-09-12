@@ -1,4 +1,16 @@
 {
+  # Disable Show Desktop hotkey on typing F11
+  "36" = {
+    enabled = false;
+    value = {
+      parameters = [
+        65535
+        103
+        8388608
+      ];
+      type = "standard";
+    };
+  };
   # Disable S-Space
   "60" = {
     enabled = false;
