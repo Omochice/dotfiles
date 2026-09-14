@@ -205,6 +205,26 @@
         "type": "github"
       }
     },
+    "git-surgeon": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785095161,
+        "narHash": "sha256-L0i/VJ3yKrA+i51ywqMhgWqSijDU8UbgiB+vE7iTfs8=",
+        "owner": "raine",
+        "repo": "git-surgeon",
+        "rev": "798e80e1410d5927ec84c84a7d4124c405ce6c8e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "raine",
+        "repo": "git-surgeon",
+        "type": "github"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -455,6 +475,7 @@
       "inputs": {
         "cclens": "cclens",
         "flake-utils": "flake-utils_2",
+        "git-surgeon": "git-surgeon",
         "guard-and-guide": "guard-and-guide",
         "home-manager": "home-manager",
         "llm-agents": "llm-agents",

@@ -122,6 +122,7 @@ in
       copilot-review = builtins.readFile ./skills/copilot-review.md;
       create-pr = builtins.readFile ./skills/create-pr.md;
       gh-stack = "${pkgs.gh-stack.src}/skills/gh-stack/";
+      git-surgeon = "${pkgs.git-surgeon.src}/skills/git-surgeon/";
       grill-me = "${plugins.mattpocock.src}/skills/productivity/grill-me/";
       grilling = builtins.readFile ./skills/grilling.md |> stripAcknowledgement;
       handoff = "${plugins.mattpocock.src}/skills/productivity/handoff/";
@@ -153,6 +154,9 @@ in
       # keep-sorted end
     };
   };
+  home.packages = [
+    pkgs.git-surgeon
+  ];
   xdg.configFile."guard-and-guide/rules.toml".source = builtins.toPath (
     tomlFormat.generate "rules.toml" {
       version = 1;
