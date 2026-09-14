@@ -1,8 +1,3 @@
-# actionlint 1.7.12 does not yet recognise GitHub's `$/` self-repository `uses:`
-# syntax and rejects it as a malformed action reference, while zizmor's
-# `self-repository` audit requires that same syntax. Suppress only the false
-# positive so that a genuinely ref-less reference is still reported.
-# Drop this file once rhysd/actionlint#732 is released.
 paths:
   "**/*.{yml,yaml}":
     ignore:
