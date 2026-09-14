@@ -24,32 +24,7 @@ vimx.create_autocmd("User", {
       registerConvertResult = true,
       lowercaseMap = { ["+"] = ";" },
     })
-    vimx.fn.skkeleton.register_kanatable("azik", {
-      l = "disable",
-      la = false,
-      li = false,
-      lu = false,
-      le = false,
-      lo = false,
-      lya = false,
-      lyu = false,
-      lyo = false,
-      [":"] = "henkanPoint",
-      -- NOTE: from https://github.com/NI57721/dotfiles
-      xxa = { "ぁ" },
-      xxi = { "ぃ" },
-      xxu = { "ぅ" },
-      xxe = { "ぇ" },
-      xxo = { "ぉ" },
-      xxya = { "ゃ" },
-      xxyu = { "ゅ" },
-      xxyo = { "ょ" },
-      xxwa = { "ゎ" },
-      -- NOTE: override azik table
-      rr = { "れる" },
-      -- NOTE: my extend table
-      nn = { "なん" },
-    })
+    vimx.fn.skkeleton.register_kanatable("azik", require("vimrc/azik").overrides)
   end,
   group = augroup,
 })
