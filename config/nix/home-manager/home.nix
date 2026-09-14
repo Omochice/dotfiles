@@ -153,8 +153,7 @@
       svelte-language-server
       taplo
       tinymist
-      typescript-go
-      typescript-language-server
+      typescript
       typos-lsp
       vscode-langservers-extracted
       vue-language-server
