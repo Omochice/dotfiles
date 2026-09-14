@@ -143,10 +143,6 @@ in
         type = "http";
         url = "https://mcp.deepwiki.com/mcp";
       };
-      git-mcp = {
-        type = "stdio";
-        command = lib.getExe pkgs.mcp-server-git;
-      };
       playwright = {
         type = "stdio";
         command = lib.getExe pkgs.playwright-mcp;
