@@ -230,7 +230,9 @@
               }
               ''
                 cd $src
-                actionlint .github/**/*.{yaml,yml}
+                # actionlint locates its config from the git repository root, which
+                # this sandboxed source copy does not have, so point at it directly.
+                actionlint -config-file .github/actionlint.yaml .github/**/*.{yaml,yml}
                 ghalint run
                 zizmor .github/workflows .github/actions
                 touch $out

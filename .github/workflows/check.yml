@@ -61,7 +61,7 @@ jobs:
         with:
           persist-credentials: false
       - name: setup nix
-        uses: ./.github/actions/setup-nix
+        uses: $/.github/actions/setup-nix
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - run: nix build ".#checks.$(nix eval --impure --raw --expr 'builtins.currentSystem').formatting"
@@ -78,7 +78,7 @@ jobs:
         with:
           persist-credentials: false
       - name: setup nix
-        uses: ./.github/actions/setup-nix
+        uses: $/.github/actions/setup-nix
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - run: nix build ".#checks.$(nix eval --impure --raw --expr 'builtins.currentSystem').actions"
@@ -121,7 +121,7 @@ jobs:
         with:
           persist-credentials: false
       - name: setup nix
-        uses: ./.github/actions/setup-nix
+        uses: $/.github/actions/setup-nix
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           cachix: false
@@ -138,7 +138,7 @@ jobs:
         with:
           persist-credentials: false
       - name: setup nix
-        uses: ./.github/actions/setup-nix
+        uses: $/.github/actions/setup-nix
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - run: nix build ".#checks.$(nix eval --impure --raw --expr 'builtins.currentSystem').renovate"
