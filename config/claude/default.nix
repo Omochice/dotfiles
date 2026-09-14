@@ -179,6 +179,21 @@ in
         }
         {
           matcher = "Bash";
+          regex = "(?:^|[|;&(]\\s*)git-surgeon\\s+(?:amend|fold)\\b";
+          message = "Use of 'git-surgeon amend/fold' is prohibited because it rewrites an existing commit. Use 'git commit --fixup' instead.";
+        }
+        {
+          matcher = "Bash";
+          regex = "(?:^|[|;&(]\\s*)git-surgeon\\s+discard\\b";
+          message = "Use of 'git-surgeon discard' is prohibited because it destroys working tree changes irreversibly. Ask the user to execute it.";
+        }
+        {
+          matcher = "Bash";
+          regex = "(?:^|[|;&(]\\s*)git-surgeon\\s+update\\b";
+          message = "Use of 'git-surgeon update' is prohibited because git-surgeon is managed by nix.";
+        }
+        {
+          matcher = "Bash";
           regex = "(?:^|[|;&(]\\s*)sed\\s+-n\\b";
           message = "Use of 'sed' is prohibited. Use the Read tool with offset and limit instead.";
         }
