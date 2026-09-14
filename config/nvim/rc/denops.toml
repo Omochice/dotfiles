@@ -75,4 +75,10 @@ depends = ["denops.vim"]
 [[plugins]]
 repo = "https://github.com/lambdalisue/vim-kensaku"
 depends = ["denops.vim"]
+hooks_file = "$VIMRC_RC_DIR/hooks/kensaku.lua"
+# NOTE: sourced on CursorHold as well as on_func because the denops side caches
+# the Migemo instance without guarding concurrent initialization, so a
+# set_roman_table notification racing the first query request can lose the table
+# for the whole session. Sourcing at idle lets initialization finish first.
+on_event = "CursorHold"
 on_func = "kensaku"
