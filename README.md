@@ -13,9 +13,9 @@ I'm using several OSs.
     - Bar: [polybar](https://github.com/polybar/polybar)
 - Mac
     - OS: Mac (Apple Silicon)
-    - WM: [yabai](https://github.com/koekeishiya/yabai)
+    - WM: [OmniWM](https://github.com/BarutSRB/OmniWM)
     - hotkeys: [karabiner-element](https://github.com/pqrs-org/Karabiner-Elements)
-    - Bar: [SketchyBar](https://github.com/FelixKratz/SketchyBar)
+    - Bar: OmniWM's workspace bar / [SketchyBar](https://github.com/FelixKratz/SketchyBar)
 
 ## Apps
 
