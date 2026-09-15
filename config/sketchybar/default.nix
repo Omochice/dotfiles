@@ -20,6 +20,7 @@ in
       "sketchybar/paths.lua".source = pkgs.replaceVars ./paths.lua {
         ccusage = pkgs.lib.getExe pkgs.llm-pkgs.ccusage;
         jq = pkgs.lib.getExe pkgs.jq;
+        omniwmctl = pkgs.lib.getExe' pkgs.omniwm "omniwmctl";
       };
       "sketchybar/colors.lua".source = ./colors.lua;
       "sketchybar/icons.lua".source = ./icons.lua;
