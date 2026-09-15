@@ -7,7 +7,6 @@ in
     ../modules/darwin/default.nix
     ../applications/spotlight.nix
     ../applications/homebrew.nix
-    ../applications/yabai.nix
   ];
   nix = {
     # Auto upgrade nix package and the daemon service.

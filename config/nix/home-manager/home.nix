@@ -36,6 +36,7 @@
     ../../nushell/default.nix
     ../../nvim/default.nix
     ../../ollama/default.nix
+    ../../omniwm/default.nix
     ../../paru/default.nix
     ../../pnpm/default.nix
     ../../power/default.nix

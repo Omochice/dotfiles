@@ -1,12 +1,8 @@
 # Pure karabiner.json content. Kept separate from default.nix so the generated
 # profile is importable and verifiable without home-manager's module arguments.
-{ k, pkgs }:
+{ k }:
 let
   rules = import ./rules.nix { inherit k; };
-  yabai = import ./yabai.nix {
-    inherit k;
-    inherit pkgs;
-  };
 in
 {
   profiles = [
@@ -63,7 +59,7 @@ in
           ];
         }
       ];
-      complex_modifications.rules = rules ++ yabai;
+      complex_modifications.rules = rules;
     }
   ];
 }
