@@ -42,6 +42,12 @@ Pick **one** item from the test list and translate it into an executable test.
 Run the test suite and confirm the new test fails.
 A test that passes immediately means either the behavior already exists or the test is not checking the right thing — investigate before moving on.
 
+### Mark the test as expected to fail
+
+Some test frameworks provide a marker that inverts the verdict of a single test, such as Vitest `test.fails`, Jest `test.failing`, or pytest `@pytest.mark.xfail(strict=True)`.
+Where one exists it MUST be applied after the failure is confirmed and before committing; otherwise the failing test is committed as it is.
+A bare failing test turns the pipeline red at every Red commit, whereas the marker keeps the suite green and still reports an unexpected pass as a failure.
+
 After confirming the failure, commit:
 
 ```text
@@ -53,6 +59,8 @@ test: add failing test for <behavior>
 Write the simplest code that makes the new test pass **and** keeps all existing tests passing.
 Resist the urge to write "clean" or "general" code at this stage — that comes next.
 The goal is a passing test suite as quickly as possible.
+
+Removing the expected-failure marker from Phase 2 is part of this phase, because the marker inverts the verdict and would keep the suite red once the test passes.
 
 Run the full test suite (excluding long-running tests) to verify.
 Then commit:
