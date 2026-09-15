@@ -3,4 +3,5 @@
 return {
   ccusage = "@ccusage@",
   jq = "@jq@",
+  omniwmctl = "@omniwmctl@",
 }
