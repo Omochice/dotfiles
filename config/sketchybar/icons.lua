@@ -5,17 +5,9 @@ return {
   shutdown = "\u{F011}",
   reboot = "\u{F01E}",
   lock = "\u{F456}",
-  cpu = "\u{F4BC}",
-  ram = "\u{F2DB}",
   ccusage = "\u{F06A9}",
   clock = "\u{F017}",
-  brightness = "\u{F00DF}",
-  volume = "\u{F028}",
   battery = "\u{F120F}",
-
-  volume_muted = "\u{EEE8}",
-  volume_high = "\u{F028}",
-  volume_low = "\u{F027}",
 
   battery_charging = {
     [100] = "\u{F17E2}",
@@ -45,19 +37,4 @@ return {
     [0] = "\u{F008E}",
   },
   battery_discharging_default = "\u{F0091}",
-
-  brightness_levels = {
-    [100] = "\u{F5DF}",
-    [90] = "\u{F5DF}",
-    [80] = "\u{F5DF}",
-    [70] = "\u{F5DE}",
-    [60] = "\u{F5DE}",
-    [50] = "\u{F5DE}",
-    [40] = "\u{F5DC}",
-    [30] = "\u{F5DC}",
-    [20] = "\u{F5DC}",
-    [10] = "\u{F5DD}",
-    [0] = "\u{F5DD}",
-  },
-  brightness_default = "\u{F5DD}",
 }
