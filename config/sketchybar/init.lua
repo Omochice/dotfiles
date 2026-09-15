@@ -46,6 +46,5 @@ sbar.default({
   },
 })
 
-require("items.spaces")
 require("items.left")
 require("items.right")

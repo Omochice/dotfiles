@@ -1,6 +1,7 @@
 local sbar = require("sketchybar")
 local colors = require("colors")
 local icons = require("icons")
+local paths = require("paths")
 
 local function band(percent)
   if percent >= 100 then
@@ -24,64 +25,11 @@ clock:subscribe({ "routine", "forced", "mouse.entered", "mouse.exited" }, functi
   clock:set({ label = os.date(format) })
 end)
 
-local brightness = sbar.add("item", "brightness", {
-  position = "right",
-  icon = { string = icons.brightness, drawing = true },
-  label = { string = "?%", drawing = true },
-  background = { color = colors.yellow },
-})
-
-local BRIGHTNESS_TOOL = "~/Tools/brightness/brightness"
-local BRIGHTNESS_STEP = 0.05
-
-brightness:subscribe("mouse.clicked", function(env)
-  local delta = env.BUTTON == "right" and -BRIGHTNESS_STEP or BRIGHTNESS_STEP
-  sbar.exec(BRIGHTNESS_TOOL .. " -l | grep brightness", function(out)
-    local level = tonumber(out:match("brightness%s+([%d%.]+)")) or 0
-    local next_level = level + delta
-    if next_level < 0 then
-      next_level = 0
-    elseif next_level > 1 then
-      next_level = 1
-    end
-    next_level = math.floor(next_level * 100 + 0.5) / 100
-    local percent = math.floor(next_level * 100 + 0.5)
-    sbar.exec(BRIGHTNESS_TOOL .. " -m " .. next_level)
-    brightness:set({
-      label = percent .. "%",
-      icon = { string = icons.brightness_levels[band(percent)] or icons.brightness_default },
-    })
-  end)
-end)
-
-local volume = sbar.add("item", "volume", {
-  position = "right",
-  icon = { string = icons.volume, drawing = true },
-  label = { string = "?%", drawing = true },
-  background = { color = colors.green },
-  update_freq = 5,
-})
-
-volume:subscribe({ "routine", "forced" }, function()
-  sbar.exec("osascript -e 'get volume settings'", function(out)
-    local level = tonumber(out:match("output volume:(%d+)"))
-    local icon
-    if out:match("output muted:true") then
-      icon = icons.volume_muted
-    elseif level and level >= 50 then
-      icon = icons.volume_high
-    else
-      icon = icons.volume_low
-    end
-    volume:set({ icon = { string = icon }, label = (level or 0) .. "%" })
-  end)
-end)
-
 local battery = sbar.add("item", "battery", {
   position = "right",
   icon = { string = icons.battery, drawing = true },
   label = { string = "?%", drawing = true },
-  background = { color = colors.red },
+  background = { color = colors.yellow },
   update_freq = 5,
 })
 
@@ -98,5 +46,24 @@ battery:subscribe({ "routine", "forced" }, function()
       icon = icons.battery_discharging[band(percent)] or icons.battery_discharging_default
     end
     battery:set({ icon = { string = icon }, label = (percent or 0) .. "%" })
+  end)
+end)
+
+local ccusage = sbar.add("item", "ccusage", {
+  position = "right",
+  icon = { string = icons.ccusage, drawing = true },
+  label = { string = "?", drawing = true },
+  background = { color = colors.red },
+  update_freq = 30,
+})
+
+-- Long-bracket string so jq's backslash interpolation needs no escaping.
+local ccusage_filter =
+  [[{ cost: .totals.totalCost, daily: .daily[-1].totalCost } | map_values((. * 100 | ceil ) / 100) | "$\(.cost) ($\(.daily)/d)"]]
+local ccusage_command = paths.ccusage .. " --offline --json | " .. paths.jq .. " -r '" .. ccusage_filter .. "'"
+
+ccusage:subscribe({ "routine", "forced" }, function()
+  sbar.exec(ccusage_command, function(out)
+    ccusage:set({ label = (out:gsub("%s+$", "")) })
   end)
 end)
