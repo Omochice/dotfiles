@@ -16,6 +16,7 @@ jobs:
       actions: ${{steps.changes.outputs.actions}}
       deno: ${{steps.changes.outputs.deno}}
       flake: ${{steps.changes.outputs.flake}}
+      omniwm: ${{steps.changes.outputs.omniwm}}
       renovate: ${{steps.changes.outputs.renovate}}
       # keep-sorted end
     runs-on: ubuntu-latest
@@ -48,6 +49,11 @@ jobs:
               - config/**/*.nix
               - flake.nix
               - flake.lock
+            omniwm:
+              - config/omniwm/*
+              - scripts/tools/omniwm-action-ids.ts
+              - flake.lock
+              - .github/workflows/check.yml
             renovate:
               - renovate.json5
   check-format:
@@ -103,6 +109,30 @@ jobs:
         run: deno lint scripts/**/*.ts config/nvim/rc/ts/*.ts
       - name: testing
         run: deno test --doc config/nvim/rc/**/*.ts
+  check-omniwm:
+    needs: path-filter
+    if: needs.path-filter.outputs.omniwm == 'true'
+    timeout-minutes: 15
+    name: Check OmniWM action ids
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: setup nix
+        uses: $/.github/actions/setup-nix
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: setup deno
+        uses: denoland/setup-deno@22d081ff2d3a40755e97629de92e3bcbfa7cf2ed # v2.0.5
+        with:
+          deno-version: rc
+      - name: check action ids
+        run: |
+          version="$(nix eval --raw --impure --expr \
+            '(builtins.getFlake (toString ./.)).inputs.nixpkgs.legacyPackages.aarch64-darwin.omniwm.version')"
+          deno run --allow-net --allow-read scripts/tools/omniwm-action-ids.ts --version-tag "$version"
   check-home-manager:
     needs: path-filter
     if: needs.path-filter.outputs.flake == 'true'
@@ -151,6 +181,7 @@ jobs:
       - check-deno
       - check-format
       - check-home-manager
+      - check-omniwm
       - check-renovate
       # keep-sorted end
     permissions: {}
