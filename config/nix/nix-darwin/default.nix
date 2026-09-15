@@ -81,7 +81,11 @@ in
       CustomUserPreferences."com.apple.digihub"."com.apple.digihub.dvd.video.appeared".action = 1;
       CustomUserPreferences."com.apple.PowerChime".ChimeOnAllHardware = false;
       CustomUserPreferences."com.apple.PowerChime".ChimeOnNoHardware = true;
-      CustomUserPreferences.symbolichotkeys.AppleSymbolicHotKeys = import ../system/darwin/symbolic-hotkeys.nix;
+      # The domain is "com.apple.symbolichotkeys"; writing to a bare
+      # "symbolichotkeys" only creates a preferences file nothing reads, which
+      # left these declarations inert.
+      CustomUserPreferences."com.apple.symbolichotkeys".AppleSymbolicHotKeys =
+        import ../system/darwin/symbolic-hotkeys.nix;
       dock.autohide = true;
       dock.mineffect = "scale";
       dock.no-bouncing = true;
