@@ -60,9 +60,19 @@ let
     bundleId = "";
     titleRegex = "^tao window$";
   };
+  omniwmctl = lib.getExe' pkgs.omniwm "omniwmctl";
+  gather = pkgs.writeShellApplication {
+    name = "omniwm-gather";
+    runtimeInputs = [ pkgs.deno ];
+    text = ''
+      OMNIWMCTL=${omniwmctl} exec deno run --quiet --no-config \
+        --allow-env=OMNIWMCTL --allow-run=${omniwmctl} ${./gather.ts} "$@"
+    '';
+  };
 in
 {
   config = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
+    home.packages = [ gather ];
     programs.omniwm = {
       enable = true;
       settings = {
