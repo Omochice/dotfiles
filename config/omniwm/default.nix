@@ -6,6 +6,8 @@
 let
   actionIds = builtins.fromJSON (builtins.readFile ./action-ids.json);
 
+  workspaceBarHeight = 32.0;
+
   workspaceNumbers = lib.range 1 9;
 
   workspaceBindings = lib.listToAttrs (
@@ -105,7 +107,7 @@ in
             bottom = 12.0;
             left = 12.0;
             right = 12.0;
-            top = 12.0;
+            top = workspaceBarHeight + 12.0;
           };
         };
 
@@ -172,7 +174,7 @@ in
           backgroundOpacity = 1.0;
           deduplicateAppIcons = true;
           excludedBundleIDs = [ ];
-          height = 32.0;
+          height = workspaceBarHeight;
           hideEmptyWorkspaces = true;
           hideInNativeFullscreen = true;
           iconOverrides = { };
