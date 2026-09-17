@@ -199,7 +199,7 @@ in
           scrollModifierKey = "optionShift";
           scrollSensitivity = 5.0;
           fingerCount = 3;
-          invertDirection = false;
+          invertDirection = true;
           trackpadScrollStyle = "snap";
           workspaceSwipeAxis = "horizontal";
           workspaceSwipeEnabled = false;
