@@ -67,8 +67,11 @@
         }
         |> k.to [
           {
-            key_code = "l";
-            modifiers = [ "command" ];
+            key_code = "f";
+            modifiers = [
+              "command"
+              "option"
+            ];
           }
         ]
       )
