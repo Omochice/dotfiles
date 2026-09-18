@@ -1,4 +1,4 @@
-import { Command } from "jsr:@cliffy/command@1.2.1";
+import { Command } from "jsr:@cliffy/command@1.3.1";
 import {
   $array,
   $boolean,
