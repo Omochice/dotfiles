@@ -1,7 +1,6 @@
 local sbar = require("sketchybar")
 local colors = require("colors")
 local icons = require("icons")
-local paths = require("paths")
 
 local function band(percent)
   if percent >= 100 then
@@ -10,8 +9,6 @@ local function band(percent)
   return math.floor(percent / 10) * 10
 end
 
--- Right-side items are appended right to left, so the declaration order below
--- mirrors the on-screen order from the bar's right edge inward.
 local clock = sbar.add("item", "clock", {
   position = "right",
   icon = { string = icons.clock, drawing = true },
@@ -49,21 +46,61 @@ battery:subscribe({ "routine", "forced" }, function()
   end)
 end)
 
-local ccusage = sbar.add("item", "ccusage", {
+local usage = sbar.add("item", "usage", {
   position = "right",
   icon = { string = icons.ccusage, drawing = true },
   label = { string = "?", drawing = true },
   background = { color = colors.red },
-  update_freq = 30,
+  popup = {
+    background = {
+      color = 0xA0000000,
+      border_width = 2,
+      corner_radius = 3,
+      border_color = colors.red,
+    },
+  },
 })
 
--- Long-bracket string so jq's backslash interpolation needs no escaping.
-local ccusage_filter =
-  [[{ cost: .totals.totalCost, daily: .daily[-1].totalCost } | map_values((. * 100 | ceil ) / 100) | "$\(.cost) ($\(.daily)/d)"]]
-local ccusage_command = paths.ccusage .. " --offline --json | " .. paths.jq .. " -r '" .. ccusage_filter .. "'"
+usage:subscribe("mouse.clicked", function()
+  usage:set({ popup = { drawing = "toggle" } })
+end)
 
-ccusage:subscribe({ "routine", "forced" }, function()
-  sbar.exec(ccusage_command, function(out)
-    ccusage:set({ label = (out:gsub("%s+$", "")) })
-  end)
+local function usage_row(name)
+  return sbar.add("item", name, {
+    position = "popup.usage",
+    drawing = false,
+    label = { drawing = true, align = "left", color = colors.white },
+  })
+end
+
+local five_hour_row = usage_row("usage.five_hour")
+local seven_day_row = usage_row("usage.seven_day")
+
+local function reset_suffix(resets_at)
+  local epoch = tonumber(resets_at or "")
+  if not epoch then
+    return ""
+  end
+  return os.date(" (%m-%d %H:%M)", math.floor(epoch))
+end
+
+local function render_row(row, tag, left, resets_at)
+  local percent = tonumber(left or "")
+  if not percent or percent == -1 then
+    row:set({ drawing = false })
+    return nil
+  end
+  percent = math.floor(percent)
+  row:set({ drawing = true, label = { string = tag .. "  " .. percent .. "%" .. reset_suffix(resets_at) } })
+  return percent
+end
+
+sbar.add("event", "claude_usage")
+
+usage:subscribe("claude_usage", function(env)
+  local five_hour = render_row(five_hour_row, "5h", env.FIVE_HOUR_LEFT, env.FIVE_HOUR_RESETS_AT)
+  render_row(seven_day_row, "7d", env.SEVEN_DAY_LEFT, env.SEVEN_DAY_RESETS_AT)
+  if five_hour then
+    usage:set({ label = "5h " .. five_hour .. "%" })
+  end
 end)

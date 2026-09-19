@@ -37,3 +37,9 @@ if [ "${week%.*}" != "-1" ]; then
   if [ -n "$r" ]; then line="$line | 📅 weekly ${week%.*}% ($r)"; else line="$line | 📅 weekly ${week%.*}%"; fi
 fi
 printf '%s' "$line"
+
+if sketchybar=$(command -v sketchybar 2>/dev/null); then
+  if [ "${h5%.*}" != "-1" ] || [ "${week%.*}" != "-1" ]; then
+    "$sketchybar" --trigger claude_usage FIVE_HOUR_LEFT="$h5" FIVE_HOUR_RESETS_AT="$h5reset" SEVEN_DAY_LEFT="$week" SEVEN_DAY_RESETS_AT="$weekreset" >/dev/null 2>&1 || true
+  fi
+fi
