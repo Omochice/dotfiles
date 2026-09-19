@@ -2,14 +2,24 @@
 
 - Comments MUST be meaningful
 - Comments MUST explain WHY NOT an alternative approach was chosen, rather than WHAT the code does
-- You MUST NOT write comments that merely restate what the code does
-- You MUST NOT write comments that are obvious from reading the code
+- You MUST NOT write comments that merely restate what the code does, including caveats about cases the code already handles and warnings that restate the type signature
+- You MUST NOT write comments that are obvious from reading the code; the code itself SHOULD speak for what it does
+    - When a comment feels necessary to explain WHAT the code does, rename or restructure the code instead
 - You MUST NOT write step-marker comments such as `// Arrange`, `// Act`, `// Assert`
 - Instead of dividing the file contents with comments, you SHOULD consider whether it can be achieved in another way, such as dividing the code into separate files
 - Test code SHOULD clearly describe WHAT is being tested
 - Commit messages MUST include WHY the change was made
+
+## Public API Documentation
+
+The rules above concern comments inside a body of code.
+Documentation attached to a public API is a separate obligation and is required regardless of them.
+
 - All public APIs MUST have language-specific documentation
     - e.g. jsdoc for typescript
+- The description MUST be concise and MUST NOT describe implementation details or restate what the signature already says
+- Parameter documentation MAY be omitted when the parameter name and type make its meaning obvious
+- Return value and thrown error documentation SHOULD be present, except when there is nothing to describe such as a `void` return or a function that never throws
 
 ## Language Requirements
 
