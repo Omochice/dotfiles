@@ -4,47 +4,47 @@
 version: 1
 rules:
   - pattern: /印/
-    expected: 言い換える
-    prh: calque "mark / marker"
+    expected: 書いておく
+    prh: calque "mark / marker", say what is done 「書いておく」「教えてあげる」
   - pattern: /並[ぶんべ]/
-    expected: 言い換える
-    prh: calque "line up"
+    expected: いっぱい出る
+    prh: calque "line up", say 「いっぱい出る」「順に出る」
   - pattern: /並び/
-    expected: 言い換える
-    prh: possible calque "line up" (noun, often legitimate)
+    expected: 順番
+    prh: possible calque "line up", say 「順番」 (noun, often legitimate)
   - pattern: /として扱[うわい]/
-    expected: 言い換える
-    prh: calque "treat as"
+    expected: ってことにする
+    prh: calque "treat as", say 「〜ってことにする」「〜とみなす」
   - pattern: /保持(?:する|して|され)/
-    expected: 言い換える
-    prh: calque "hold/keep"
+    expected: 持ってる
+    prh: calque "hold/keep", say 「持ってる」「取っておく」
   - pattern: /提供(?:する|して|され)/
-    expected: 言い換える
-    prh: calque "provide"
+    expected: くれる
+    prh: calque "provide", say 「くれる」「用意してくれる」
   - pattern: /購読者/
     expected: オブザーバー / サブスクライバー
-    prh: over-translation of observer/subscriber
+    prh: over-translation of observer/subscriber, say 「オブザーバー」「サブスクライバー」
   - pattern: /観察者/
     expected: オブザーバー
-    prh: over-translation of observer
+    prh: over-translation of observer, say 「オブザーバー」
   - pattern: /(?:変更|コミット|ブランチ)を押[すし]/
     expected: プッシュする
-    prh: over-translation of push
+    prh: over-translation of push, say 「プッシュする」
   - pattern: /(?:変更|コミット|ブランチ)を引[くい]/
     expected: プルする
-    prh: over-translation of pull
+    prh: over-translation of pull, say 「プルする」
   - pattern: /取ってく[るれ]/
     expected: フェッチする
-    prh: possible over-translation of fetch
+    prh: possible over-translation of fetch, say 「フェッチする」
   - pattern: /併合/
     expected: マージ
-    prh: over-translation of merge
+    prh: over-translation of merge, say 「マージ」
   - pattern: /要求(?:が|を|に)/
     expected: リクエスト
-    prh: possible over-translation of request
+    prh: possible over-translation of request, say 「リクエスト」
   - pattern: /確定(?:する|して)/
     expected: コミット
-    prh: possible over-translation of commit
+    prh: possible over-translation of commit, say 「コミット」
   - pattern: /既定/
     expected: デフォルト
     prh: over-translation of default, say 「デフォルト」
