@@ -45,3 +45,51 @@ rules:
   - pattern: /確定(?:する|して)/
     expected: コミット
     prh: possible over-translation of commit
+  - pattern: /既定/
+    expected: デフォルト
+    prh: over-translation of default, say 「デフォルト」
+  - pattern: /正本/
+    expected: ほんとの値はこっち
+    prh: calque "source of truth", say 「ほんとの値は、こっち」
+  - pattern: /静かに(?:壊れ|失敗|落ち|止ま|無視|捨て)/
+    expected: 気づかないうちに壊れる
+    prh: calque "silently break", say 「気づかないうちに、壊れる」
+  - pattern: /黙って(?:無視|捨て|落と|スキップ|握り)/
+    expected: エラーも出さずに無視される
+    prh: calque "silently ignored", say 「エラーも出さずに、無視される」
+  - pattern: /静かに/
+    expected: 気づかないうちに
+    prh: possible calque "silently", say 「気づかないうちに」 (fine when it means quiet)
+  - pattern: /[たる]瞬間/
+    expected: したとたん
+    prh: possible calque "the moment", say 「〜したとたん」「〜したら、すぐ」
+  - pattern: /別物/
+    expected: ちがうもの
+    prh: possible AI-era written register, say 「ちがうもの」
+  - pattern: /定石/
+    expected: いつものやり方
+    prh: possible AI-era written register, say 「いつものやり方」
+  - pattern: /定番です/
+    expected: みんなこれ使ってる
+    prh: possible AI-era written register, say 「みんな、これ使ってる」
+  - pattern: /要点/
+    expected: 大事なところ
+    prh: possible AI-era written register, say 「大事なところ」
+  - pattern: /核心/
+    expected: いちばん大事なところ
+    prh: possible AI-era written register, say 「いちばん大事なところ」
+  - pattern: /土台/
+    expected: ベース
+    prh: possible AI-era written register, say 「ベース」「もとになってる」
+  - pattern: /入口/
+    expected: 最初に通るところ
+    prh: possible AI-era written register, say 「最初に通るところ」「ここから入る」
+  - pattern: /線引き/
+    expected: どこで分けるか
+    prh: possible AI-era written register, say 「どこで分けるか」
+  - pattern: /構図/
+    expected: どういう関係か
+    prh: possible AI-era written register, say 「どういう関係か」
+  - pattern: /実測/
+    expected: 実際に測った
+    prh: possible AI-era written register, say 「実際に測ったら」
