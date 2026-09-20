@@ -19,7 +19,7 @@ end
 
 ---@param ... string
 function M.root_pattern(...)
-  local markers = ...
+  local markers = { ... }
   ---@param bufnr integer
   return function(bufnr)
     local path = vim.fs.dirname(vim.fs.normalize(vim.api.nvim_buf_get_name(bufnr)))
@@ -32,6 +32,22 @@ function M.root_pattern(...)
     end
     return nil
   end
+end
+
+---Decide which JavaScript runtime owns the buffer, so that denols and tsc never attach together.
+---@param bufnr integer
+---@return "deno"|"node" runtime
+---@return string root
+function M.detect_js_runtime(bufnr)
+  local deno = vim.fs.root(bufnr, { { "deno.json", "deno.jsonc" } })
+  if deno ~= nil then
+    return "deno", deno
+  end
+  local node = vim.fs.root(bufnr, { { "package.json", "tsconfig.json", "node_modules" } })
+  if node ~= nil then
+    return "node", node
+  end
+  return "deno", vim.fn.getcwd()
 end
 
 return M
