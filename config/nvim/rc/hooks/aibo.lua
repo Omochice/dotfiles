@@ -63,6 +63,7 @@ require("aibo").setup({
             end
             command = command:gsub("`+$", "")
             require("aibo").submit("! " .. command, bufnr)
+            vim.cmd("normal! G")
           end, opts)
         end
       end,
