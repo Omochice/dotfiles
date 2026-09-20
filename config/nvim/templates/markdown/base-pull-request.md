@@ -2,6 +2,8 @@
 
 ## Details
 
+## User Impact
+
 ## Confirmation
 
 ## Limitation

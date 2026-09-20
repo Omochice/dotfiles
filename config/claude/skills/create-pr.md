@@ -107,6 +107,12 @@ States what this PR/MR changes, in a single sentence.
 Explains why the change was needed and why this approach was chosen over alternatives, in free-form prose rather than bullet lists.
 Keep it to a sentence or two.
 
+##### User Impact
+
+Lists what changes for the user once this lands, one bullet per change:
+new, changed, or removed behavior, and any migration step they have to take.
+If nothing visible to the user changes, state "No user-visible impact."
+
 ##### Confirmation
 
 Records what the author verified locally and the observed outcome, not a checklist for reviewers to run.
@@ -132,6 +138,11 @@ Cache the rendered navigation menu so it is built once per request instead of on
 The menu was rebuilt for every sidebar component, which dominated render time on list pages.
 
 Memoizing per request keeps the data fresh across requests while removing the repeated work.
+
+## User Impact
+
+- List pages render faster
+- The menu itself looks and behaves the same
 
 ## Confirmation
 
