@@ -12,7 +12,7 @@
  * tag rather than from a copy, so a newly added action is detected even when it
  * is generated inside a loop.
  */
-import { Command } from "jsr:@cliffy/command@1.2.1";
+import { Command } from "jsr:@cliffy/command@1.3.1";
 
 const CATALOG_PATH = "Sources/OmniWM/Core/Input/ActionCatalog.swift";
 
