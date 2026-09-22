@@ -19,7 +19,7 @@
     ../../colima/default.nix
     ../../devbox/default.nix
     ../../direnv/default.nix
-    # ../../doom/default.nix
+    ../../doom/default.nix
     ../../fish/default.nix
     ../../gh-triage/default.nix
     ../../gh/default.nix

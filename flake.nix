@@ -273,6 +273,7 @@
               inherit pkgs;
               extraSpecialArgs = {
                 inherit (host) user home;
+                inherit inputs;
               };
               modules = [
                 nix-doom-emacs-unstraightened.homeModule
