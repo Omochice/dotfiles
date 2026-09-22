@@ -24,7 +24,15 @@ require("aibo").setup({
       no_default_mappings = true,
       on_attach = function(bufnr, info)
         local opts = { buffer = bufnr, nowait = true, silent = true }
-        vim.keymap.set({ "n", "i" }, "<Tab>", "<Plug>(aibo-send)<Tab>", opts)
+        vim.keymap.set("n", "<Tab>", "<Plug>(aibo-send)<Tab>", opts)
+        vim.keymap.set("i", "<Tab>", function()
+          local ok, suggestion = pcall(require, "copilot.suggestion")
+          if ok and suggestion.is_visible() then
+            suggestion.accept()
+            return
+          end
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>(aibo-send)<Tab>", true, false, true), "m", false)
+        end, opts)
         vim.keymap.set({ "n", "i" }, "<S-Tab>", "<Plug>(aibo-send)<S-Tab>", opts)
         vim.keymap.set({ "n", "i" }, "<F2>", "<Plug>(aibo-send)<F2>", opts)
         vim.keymap.set({ "n", "i" }, "<C-o>", "<Plug>(aibo-send)<C-o>", opts)

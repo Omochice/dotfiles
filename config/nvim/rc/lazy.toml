@@ -583,6 +583,15 @@ require("copilot").setup({
   panel = {
     enabled = false,
   },
+  should_attach = function(bufnr, bufname)
+    if vim.startswith(bufname, "aiboprompt://") then
+      return true
+    end
+    return vim.bo[bufnr].buflisted and vim.bo[bufnr].buftype == ""
+  end,
+  filetypes = {
+    ["markdown.claude"] = true,
+  },
   suggestion = {
     auto_trigger = true,
     keymap = {
