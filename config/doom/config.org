@@ -63,3 +63,276 @@ AZIK ロード直後に呼ばれる =skk-azik-load-hook= で、AZIK 既定規則
               (add-to-list 'skk-rom-kana-rule-list rule))
             (setq skk-rule-tree nil)))
 #+end_src
+
+** evil
+
+evil の挙動は、Neovim の設定に揃える。
+
+*** リーダーキー
+
+Doom のリーダーを =\= へ移し、空いた =SPC= に Neovim の =<Space>= のマップを置く。
+evil-collection に =SPC= を上書きされないよう、除外リストに加える。
+
+#+begin_src emacs-lisp :tangle config.el
+(setq doom-leader-key "\\"
+      doom-localleader-key "\\ m")
+(after! evil-collection
+  (add-to-list 'evil-collection-key-blacklist "SPC"))
+#+end_src
+
+*** オプション
+
+=vimrc.core= の =set= に合わせる。
+Emacs 31 では端末で =xterm-mouse-mode= がデフォルトでオンになるので、明示的に切る。
+
+#+begin_src emacs-lisp :tangle config.el
+(setq evil-search-wrap nil
+      evil-ex-search-case 'insensitive
+      evil-move-beyond-eol t
+      scroll-margin 3
+      display-line-numbers-type nil)
+(remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
+(setq-default tab-width 2)
+(setopt xterm-mouse-mode nil)
+#+end_src
+
+*** 基本のキーマップ
+
+=vimrc.core= のキーマップに合わせる。
+=cw= が単語の末尾で止まるように、レジスタを汚さない =c= を =evil-change-commands= に加える。
+
+=s= と =f= を evil-snipe に取られないよう、evil-snipe は入れない。
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! evil-snipe :disable t)
+#+end_src
+
+#+begin_src emacs-lisp :tangle config.el
+(defun +vimrc--only-indent-before-point-p ()
+  (string-match-p "\\`[ \t]+\\'"
+                  (buffer-substring-no-properties (line-beginning-position) (point))))
+
+(after! evil
+  (evil-define-motion +vimrc/next-line (count)
+    :type line
+    (if count (evil-next-line count) (evil-next-visual-line)))
+
+  (evil-define-motion +vimrc/previous-line (count)
+    :type line
+    (if count (evil-previous-line count) (evil-previous-visual-line)))
+
+  (evil-define-motion +vimrc/beginning-of-line-or-indentation ()
+    :type exclusive
+    (if (+vimrc--only-indent-before-point-p)
+        (evil-beginning-of-line)
+      (evil-first-non-blank)))
+
+  (evil-define-operator +vimrc/delete-char-without-yank (beg end type)
+    :motion evil-forward-char
+    (interactive "<R>")
+    (evil-delete beg end type ?_))
+
+  (evil-define-operator +vimrc/substitute-without-yank (beg end type)
+    :motion evil-forward-char
+    (interactive "<R>")
+    (evil-change beg end type ?_))
+
+  (evil-define-operator +vimrc/change-without-yank (beg end type)
+    (interactive "<R>")
+    (evil-change beg end type ?_))
+  (add-to-list 'evil-change-commands #'+vimrc/change-without-yank)
+
+  (evil-define-command +vimrc/insert (count)
+    (interactive "p")
+    (if (= (line-beginning-position) (line-end-position))
+        (+vimrc--insert-with-indent)
+      (evil-insert count)))
+
+  (evil-define-command +vimrc/append-line (count)
+    (interactive "p")
+    (if (= (line-beginning-position) (line-end-position))
+        (+vimrc--insert-with-indent)
+      (evil-append-line count))))
+
+(defun +vimrc--insert-with-indent ()
+  (evil-insert-state)
+  (indent-according-to-mode))
+
+(defun +vimrc/insert-beginning-of-line-or-indentation ()
+  (interactive)
+  (if (+vimrc--only-indent-before-point-p)
+      (beginning-of-line)
+    (back-to-indentation)))
+
+(defun +vimrc/substitute-in-buffer ()
+  (interactive)
+  (+vimrc--ex-substitute "%"))
+
+(defun +vimrc/substitute-in-region ()
+  (interactive)
+  (+vimrc--ex-substitute "'<,'>"))
+
+(defun +vimrc--ex-substitute (range)
+  (minibuffer-with-setup-hook (lambda () (backward-char 3))
+    (evil-ex (concat range "s@\\v@@g"))))
+
+(defun +vimrc/close-folds-except-cursor ()
+  (interactive)
+  (evil-close-folds)
+  (cl-loop repeat 100
+           while (invisible-p (point))
+           do (evil-open-fold)))
+
+(map! :nv "j"   #'+vimrc/next-line
+      :nv "k"   #'+vimrc/previous-line
+      :nv "gj"  #'evil-join
+      :nv "J"   #'evil-next-visual-line
+      :v  "K"   #'evil-previous-visual-line
+      :n  "x"   #'+vimrc/delete-char-without-yank
+      :n  "s"   #'+vimrc/substitute-without-yank
+      :n  "c"   #'+vimrc/change-without-yank
+      :n  "0"   #'+vimrc/beginning-of-line-or-indentation
+      :n  "i"   #'+vimrc/insert
+      :n  "A"   #'+vimrc/append-line
+      :o  "A"   #'evil-end-of-line
+      :n  "C-s" #'+vimrc/substitute-in-buffer
+      :v  "C-s" #'+vimrc/substitute-in-region
+      :n  "z="  #'+vimrc/close-folds-except-cursor
+      :n  "[b"  #'next-buffer
+      :n  "]b"  #'previous-buffer
+      :i  "C-f" #'forward-char
+      :i  "C-b" #'backward-char
+      :i  "C-a" #'+vimrc/insert-beginning-of-line-or-indentation
+      :i  "C-e" #'end-of-line
+      :nvoi [left]  #'ignore
+      :nvoi [right] #'ignore
+      :nvoi [up]    #'ignore
+      :nvoi [down]  #'ignore)
+#+end_src
+
+*** 全角文字への f
+
+Neovim の =fj= と同じく、 =f= のあとに =j= を打つと、もう1文字読んで digraph で全角文字に変換してから探す。
+Emacs では =fj= をキーに割り当てると =f= 単体が使えなくなるため、 =f= 自体を置きかえる。
+
+#+begin_src emacs-lisp :tangle config.el
+(setq evil-digraphs-table-user
+      '(((?j ?j) . ?j)
+        ((?j ?\() . ?（)
+        ((?j ?\)) . ?）)
+        ((?j ?\[) . ?「)
+        ((?j ?\]) . ?」)
+        ((?j ?,) . ?、)
+        ((?j ?.) . ?。)
+        ((?j ?!) . ?！)
+        ((?j ??) . ?？)
+        ((?j ?~) . ?～)))
+
+(defun +vimrc--read-find-char ()
+  (let ((char (evil-read-key)))
+    (if (eq char ?j)
+        (let ((next (evil-read-key)))
+          (require 'evil-digraphs)
+          (or (evil-digraph (list ?j next)) next))
+      char)))
+
+(after! evil
+  (evil-define-motion +vimrc/find-char (count char)
+    :type inclusive
+    (interactive "<c>" (list (+vimrc--read-find-char)))
+    (evil-find-char count char)))
+
+(map! :nvo "f" #'+vimrc/find-char)
+#+end_src
+
+*** エラー一覧の移動
+
+Neovim の =qn= / =qN= は quickfix を移動し、続けて =n= / =N= を押すとさらに移動する。
+Emacs では =next-error= で同じことをする。
+=q= をプレフィックスにするとマクロの記録ができなくなるため、 =q= のあとのキーが =n= / =N= のときだけ移動し、それ以外はマクロの記録に回す。
+=Q= は quickfix を開く代わりに、 =next-error= の対象バッファを表示する。
+
+#+begin_src emacs-lisp :tangle config.el
+(defvar-keymap +vimrc-next-error-repeat-map
+  "n" #'next-error
+  "N" #'previous-error)
+
+(after! evil
+  (evil-define-command +vimrc/record-macro-or-navigate-errors (register)
+    :keep-visual t
+    :suppress-operator t
+    (interactive
+     (list (unless (and evil-this-macro defining-kbd-macro)
+             (or evil-this-register (evil-read-key)))))
+    (pcase register
+      (?n (next-error)
+          (set-transient-map +vimrc-next-error-repeat-map t))
+      (?N (previous-error)
+          (set-transient-map +vimrc-next-error-repeat-map t))
+      (_ (evil-record-macro register)))))
+
+(defun +vimrc/display-next-error-buffer ()
+  (interactive)
+  (display-buffer (or (next-error-find-buffer)
+                      (user-error "No buffer to navigate errors in"))))
+
+(map! :n "q" #'+vimrc/record-macro-or-navigate-errors
+      :n "Q" #'+vimrc/display-next-error-buffer)
+#+end_src
+
+*** ワークスペースの移動
+
+Neovim の =gt= / =gT= は、続けて =t= / =T= を押すとさらにタブを移動する。
+Doom では =gt= / =gT= がワークスペースの移動なので、そこに同じ繰り返しを付ける。
+
+#+begin_src emacs-lisp :tangle config.el
+(defvar-keymap +vimrc-workspace-repeat-map
+  "t" #'+workspace:switch-next
+  "T" #'+workspace:switch-previous)
+
+(defun +vimrc/switch-workspace-next ()
+  (interactive)
+  (call-interactively #'+workspace:switch-next)
+  (set-transient-map +vimrc-workspace-repeat-map t))
+
+(defun +vimrc/switch-workspace-previous ()
+  (interactive)
+  (call-interactively #'+workspace:switch-previous)
+  (set-transient-map +vimrc-workspace-repeat-map t))
+
+(map! :n "gt" #'+vimrc/switch-workspace-next
+      :n "gT" #'+vimrc/switch-workspace-previous)
+#+end_src
+
+*** Ex コマンド
+
+Neovim と同じく、 =:w= は変更があるときだけ保存し、 =:ww= で強制的に保存、 =:qq= で強制的に閉じる。
+
+#+begin_src emacs-lisp :tangle config.el
+(after! evil
+  (evil-ex-define-cmd "w[rite]" #'evil-update)
+  (evil-ex-define-cmd "ww" #'evil-write)
+  (evil-ex-define-cmd "qq" (cmd! (evil-quit t))))
+#+end_src
+
+*** LSP と git
+
+Neovim の LSP と gitsigns のキーマップに合わせる。
+=gd= は Doom の =+lookup/definition= がすでに LSP を使うため、そのままにする。
+=[d= / =]d= を診断の移動に使うので、hunk の移動は Neovim と同じ =[c= / =]c= に移す。
+
+#+begin_src emacs-lisp :tangle config.el
+(map! :n "SPC f"  #'+format/buffer
+      :n "SPC r"  #'eglot-rename
+      :n "SPC d"  #'flycheck-list-errors
+      :n "SPC D"  #'flycheck-display-error-at-point
+      :n "SPC [h" (cmd! (eglot-inlay-hints-mode +1))
+      :n "SPC ]h" (cmd! (eglot-inlay-hints-mode -1))
+      :n "SPC gm" #'magit-blame-addition
+      :n "SPC gy" #'+vc/browse-at-remote-kill
+      :nv "gr"    #'+lookup/references
+      :m "[d"     #'flycheck-previous-error
+      :m "]d"     #'flycheck-next-error
+      :m "[c"     #'+vc-gutter/previous-hunk
+      :m "]c"     #'+vc-gutter/next-hunk)
+#+end_src
