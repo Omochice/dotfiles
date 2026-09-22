@@ -30,6 +30,11 @@ Architecture Diagram	|mermaid-architecture|
 	Group		|mermaid-architecture-group|
 	Service		|mermaid-architecture-service|
 	Edge		|mermaid-architecture-edge|
+C4 Diagram		|mermaid-c4|
+	Syntax		|mermaid-c4-syntax|
+	Element		|mermaid-c4-element|
+	Relationship	|mermaid-c4-relationship|
+	Boundary	|mermaid-c4-boundary|
 
 ==============================================================================
 FlowChart                                                  *mermaid-flowchart*
@@ -607,6 +612,106 @@ This make a connection like
 	    junctionCenter:R -- L:junctionRight
 	    top_gateway:B -- T:junctionRight
 	    bottom_gateway:T -- B:junctionRight
+<
+
+==============================================================================
+C4 Diagram                                                        *mermaid-c4*
+
+C4 is a model for describing software architecture at four levels of detail:
+Context, Container, Component and Code.
+Mermaid supports the first three as diagram types, plus a Dynamic and a
+Deployment diagram.
+
+See details: https://mermaid.js.org/syntax/c4.html
+
+>mermaid
+	C4Context
+	    title System Context diagram for Internet Banking System
+	    Person(customer, "Customer", "A customer of the bank.")
+	    System(banking, "Internet Banking System", "Lets customers check balances.")
+	    System_Ext(email, "E-mail System", "Sends e-mails to customers.")
+
+	    Rel(customer, banking, "Uses")
+	    Rel(banking, email, "Sends e-mails using")
+<
+
+------------------------------------------------------------------------------
+Syntax                                                     *mermaid-c4-syntax*
+
+The diagram type keyword decides which C4 level is drawn:
+
+| Level     | Keyword       |
+| --------- | ------------- |
+| Context   | `C4Context`     |
+| Container | `C4Container`   |
+| Component | `C4Component`   |
+| Dynamic   | `C4Dynamic`     |
+| Deployment| `C4Deployment`  |
+
+`title` sets the diagram title, and is usually the first line after the
+keyword.
+
+------------------------------------------------------------------------------
+Element                                                   *mermaid-c4-element*
+
+Elements are declared as `Type(id, label, ...)`.
+
+| Element              | Syntax                                          |
+| -------------------- | ------------------------------------------------ |
+| Person               | `Person(id, "label", "description")`              |
+| External person      | `Person_Ext(id, "label", "description")`          |
+| System               | `System(id, "label", "description")`              |
+| External system      | `System_Ext(id, "label", "description")`          |
+| Container            | `Container(id, "label", "technology", "description")` |
+| Component            | `Component(id, "label", "technology", "description")` |
+
+>mermaid
+	C4Container
+	    title Container diagram
+	    Person(customer, "Customer")
+	    Container(web, "Web Application", "Go", "Serves the web UI")
+	    ContainerDb(db, "Database", "PostgreSQL", "Stores account data")
+
+	    Rel(customer, web, "Uses", "HTTPS")
+	    Rel(web, db, "Reads from and writes to", "SQL")
+<
+
+`ContainerDb` and `ComponentDb` draw the shape as a database, the same way
+`_Ext` suffixes draw an external element.
+
+------------------------------------------------------------------------------
+Relationship                                         *mermaid-c4-relationship*
+
+Relationships connect two elements with `Rel(from, to, "label", "technology")`.
+
+| Relationship         | Syntax   |
+| -------------------- | -------- |
+| Default              | `Rel`      |
+| Bidirectional         | `BiRel`    |
+| Back                  | `Rel_Back` |
+| Up/Down/Left/Right   | `Rel_U`, `Rel_D`, `Rel_L`, `Rel_R` |
+
+The `_U`/`_D`/`_L`/`_R` variants only change where the label is placed, not
+which element points at which.
+
+------------------------------------------------------------------------------
+Boundary                                                 *mermaid-c4-boundary*
+
+Group elements with a boundary block, which wraps its contents in `{ }`.
+
+| Boundary            | Syntax                                     |
+| -------------------- | ------------------------------------------- |
+| Enterprise           | `Enterprise_Boundary(id, "label") { ... }`   |
+| System               | `System_Boundary(id, "label") { ... }`       |
+| Container            | `Container_Boundary(id, "label") { ... }`    |
+
+>mermaid
+	C4Context
+	    Person(customer, "Customer")
+	    Enterprise_Boundary(b0, "Bank") {
+	        System(banking, "Internet Banking System")
+	    }
+	    Rel(customer, banking, "Uses")
 <
 
 ==============================================================================
