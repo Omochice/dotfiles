@@ -129,10 +129,12 @@ jobs:
         with:
           deno-version: rc
       - name: check action ids
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           version="$(nix eval --raw --impure --expr \
             '(builtins.getFlake (toString ./.)).inputs.nixpkgs.legacyPackages.aarch64-darwin.omniwm.version')"
-          deno run --allow-net --allow-read scripts/tools/omniwm-action-ids.ts --version-tag "$version"
+          deno run --allow-net --allow-read --allow-env=GITHUB_TOKEN scripts/tools/omniwm-action-ids.ts --version-tag "$version"
   check-home-manager:
     needs: path-filter
     if: needs.path-filter.outputs.flake == 'true'

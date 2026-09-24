@@ -8,17 +8,19 @@
  * nixpkgs unattended, that would first be noticed as keyboard shortcuts having
  * stopped working. Failing here instead keeps the breakage inside the update.
  *
- * The ids are re-derived from OmniWM's own ActionCatalog.swift at the packaged
- * tag rather than from a copy, so a newly added action is detected even when it
- * is generated inside a loop.
+ * The ids are re-derived from OmniWM's own sources at the packaged tag rather
+ * than from a copy, so a newly added action is detected even when it is
+ * generated inside a loop.
  */
 import { Command } from "jsr:@cliffy/command@1.3.1";
 
-const CATALOG_PATH = "Sources/OmniWM/Core/Input/ActionCatalog.swift";
+const CATALOG_DIRECTORY = "Sources/OmniWM/Core/Input";
 
 // `ScratchpadIndex.range` forwards to this file, so the numeric bounds of the
 // scratchpad loop are only resolvable once it is read as well.
 const RANGE_PATHS = ["Sources/OmniWMIPC/ScratchpadSlots.swift"];
+
+const ID_DECLARATION = /\bid(?::|\s*=)\s*"([^"]+)"/;
 
 type Range = { readonly start: number; readonly end: number };
 
@@ -57,7 +59,7 @@ function parseRange(
 }
 
 /**
- * Collect every hotkey action id the given ActionCatalog.swift declares.
+ * Collect every hotkey action id the given Swift source declares.
  *
  * Ids generated inside a `for` loop are expanded over the loop's range; actions
  * marked `visibility: .unassignable` are dropped, because OmniWM excludes them
@@ -82,12 +84,13 @@ export function collectActionIds(
       if (range) loops.push({ variable, range, depth });
     }
 
-    const declaration = line.match(/\bid:\s*"([^"]+)"/);
+    const declaration = line.match(ID_DECLARATION);
     if (declaration) {
       const followUp = lines.slice(index + 1, index + 9);
       const body = followUp.slice(
         0,
-        followUp.findIndex((entry) => /\bid:\s*"/.test(entry)) + 1 || undefined,
+        followUp.findIndex((entry) => ID_DECLARATION.test(entry)) + 1 ||
+          undefined,
       );
       if (!body.some((entry) => entry.includes("visibility: .unassignable"))) {
         for (const id of expand(declaration[1], loops)) ids.add(id);
@@ -123,23 +126,53 @@ function expand(
   );
 }
 
-async function fetchSource(version: string, path: string): Promise<string> {
-  const url =
-    `https://raw.githubusercontent.com/BarutSRB/OmniWM/v${version}/${path}`;
-  const response = await fetch(url);
+async function fetchGitHub(url: string): Promise<Response> {
+  const token = Deno.env.get("GITHUB_TOKEN");
+  const response = await fetch(url, {
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+  });
   if (!response.ok) {
     throw new Error(`Failed to fetch ${url}: ${response.status}`);
   }
+  return response;
+}
+
+async function fetchSource(version: string, path: string): Promise<string> {
+  const response = await fetchGitHub(
+    `https://raw.githubusercontent.com/BarutSRB/OmniWM/v${version}/${path}`,
+  );
   return await response.text();
+}
+
+async function listSwiftFiles(
+  version: string,
+  directory: string,
+): Promise<string[]> {
+  const response = await fetchGitHub(
+    `https://api.github.com/repos/BarutSRB/OmniWM/contents/${directory}?ref=v${version}`,
+  );
+  const entries = await response.json() as { type: string; path: string }[];
+  return entries
+    .filter((entry) => entry.type === "file" && entry.path.endsWith(".swift"))
+    .map((entry) => entry.path);
 }
 
 async function main(version: string, listPath: string): Promise<void> {
   const expected = JSON.parse(await Deno.readTextFile(listPath)) as string[];
-  const catalog = await fetchSource(version, CATALOG_PATH);
+  const catalogs = await Promise.all(
+    (await listSwiftFiles(version, CATALOG_DIRECTORY)).map((path) =>
+      fetchSource(version, path)
+    ),
+  );
   const extra = await Promise.all(
     RANGE_PATHS.map((path) => fetchSource(version, path)),
   );
-  const actual = collectActionIds(catalog, [catalog, ...extra].join("\n"));
+  const declarations = [...catalogs, ...extra].join("\n");
+  const actual = [
+    ...new Set(
+      catalogs.flatMap((catalog) => collectActionIds(catalog, declarations)),
+    ),
+  ].sort();
 
   const missing = actual.filter((id) => !expected.includes(id));
   const retired = expected.filter((id) => !actual.includes(id));
