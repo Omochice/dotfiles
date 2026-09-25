@@ -44,15 +44,15 @@
   };
   claude-skill-lacolaco = {
     pname = "claude-skill-lacolaco";
-    version = "a9a9ca0fcc2d56550b912bf0f34f7285b076d47b";
+    version = "442e94de808fa190fb2fa1b86f7edce00c957f8d";
     src = fetchFromGitHub {
       owner = "lacolaco";
       repo = "claude-plugins";
-      rev = "a9a9ca0fcc2d56550b912bf0f34f7285b076d47b";
+      rev = "442e94de808fa190fb2fa1b86f7edce00c957f8d";
       fetchSubmodules = false;
-      sha256 = "sha256-AMHGnu8Tv7tE7hfu3FlTRXB7Jas6UopFdkBo9wHXxlE=";
+      sha256 = "sha256-YYBMTJL1ahx41NttMSHZkSva7G1uRAM6cMo93EaYS20=";
     };
-    date = "2026-08-26";
+    date = "2026-09-06";
   };
   claude-skill-mattpocock = {
     pname = "claude-skill-mattpocock";
