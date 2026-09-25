@@ -1,45 +1,45 @@
 # keep-sorted start newline_separated=yes
 [alias]
-    st = status
-    co = switch -c
-    cm = commit -m
-    sw = switch
-    cw = switch
-    br = branch
-    unstage = reset HEAD
-    ignore = !"f() { local s=$1; shift; \
-      while [ $# -gt 0 ]; do s=\"$s,$1\"; shift; done;\
-      curl \"https://www.gitignore.io/api/$s\"; }; f"
-    pr = !"f() { local s=$1; shift; \
-      while [ $# -gt 0 ]; do s=\"$s $1\"; shift; done;\
-      gh pr $s; }; f"
-    repo = !"f() { local s=$1; shift; \
-      while [ $# -gt 0 ]; do s=\"$s $1\"; shift; done;\
-      gh repo $s; }; f"
-    gist = !"f() { local s=$1; shift; \
-      while [ $# -gt 0 ]; do s=\"$s $1\"; shift; done;\
-      gh gist $s; }; f"
-    issue = !"f() { local s=$1; shift; \
-      while [ $# -gt 0 ]; do s=\"$s $1\"; shift; done;\
-      gh issue $s; }; f"
-    root = !"f() { \
-      if [ \"$1\" = --wt ]; then \
-        git worktree list --porcelain | head -n 1 | cut -d ' ' -f 2-; \
-      else pwd; fi; }; f"
+  st = status
+  co = switch -c
+  cm = commit -m
+  sw = switch
+  cw = switch
+  br = branch
+  unstage = reset HEAD
+  ignore = !"f() { local s=$1; shift; \
+    while [ $# -gt 0 ]; do s=\"$s,$1\"; shift; done;\
+    curl \"https://www.gitignore.io/api/$s\"; }; f"
+  pr = !"f() { local s=$1; shift; \
+    while [ $# -gt 0 ]; do s=\"$s $1\"; shift; done;\
+    gh pr $s; }; f"
+  repo = !"f() { local s=$1; shift; \
+    while [ $# -gt 0 ]; do s=\"$s $1\"; shift; done;\
+    gh repo $s; }; f"
+  gist = !"f() { local s=$1; shift; \
+    while [ $# -gt 0 ]; do s=\"$s $1\"; shift; done;\
+    gh gist $s; }; f"
+  issue = !"f() { local s=$1; shift; \
+    while [ $# -gt 0 ]; do s=\"$s $1\"; shift; done;\
+    gh issue $s; }; f"
+  root = !"f() { \
+    if [ \"$1\" = --wt ]; then \
+    git worktree list --porcelain | head -n 1 | cut -d ' ' -f 2-; \
+    else pwd; fi; }; f"
 
 [commit]
-    verbose = true
+  verbose = true
 
 [core]
-    editor = "nvim"
-    pager = "delta"
-    autocrlf = input
+  editor = "nvim"
+  pager = "delta"
+  autocrlf = input
 
 [delta]
-    plus-style = syntax "#012800"
-    minus-style = normal "#340001"
-    syntax-theme = Monokai Extended
-    line-numbers = true
+  plus-style = syntax "#012800"
+  minus-style = normal "#340001"
+  syntax-theme = Monokai Extended
+  line-numbers = true
 
 [fetch]
   prune = true
@@ -49,10 +49,10 @@
   root = "~/ghq"
 
 [init]
-    defaultBranch = main
+  defaultBranch = main
 
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
 
 [log]
   date = "format:%F %T%z"
@@ -61,7 +61,7 @@
   autostash = true
 
 [user]
-    useConfigOnly = true
+  useConfigOnly = true
 
 # keep-sorted end
 ; vim:set filetype=gitconfig:
