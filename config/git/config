@@ -22,7 +22,10 @@
     issue = !"f() { local s=$1; shift; \
       while [ $# -gt 0 ]; do s=\"$s $1\"; shift; done;\
       gh issue $s; }; f"
-    root = !pwd
+    root = !"f() { \
+      if [ \"$1\" = --wt ]; then \
+        git worktree list --porcelain | head -n 1 | cut -d ' ' -f 2-; \
+      else pwd; fi; }; f"
 
 [commit]
     verbose = true
