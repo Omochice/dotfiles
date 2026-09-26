@@ -37,5 +37,7 @@ These prohibitions hold in every voice, except where an item states otherwise.
 
 These rules apply to every structured document, whether it is shown on screen or written to a file.
 
-- Every heading MUST be accompanied by body text.
+- Body text under a heading MUST carry information the heading does not already convey, such as rationale or non-obvious premises.
+    - Body text that merely paraphrases the heading MUST NOT be written.
+    - A heading MAY have no body text when a subheading follows it directly.
 - Tables, code blocks, and bullet lists do not count as body text. They must always be referenced from body text.
