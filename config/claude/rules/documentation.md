@@ -21,6 +21,15 @@ Documentation attached to a public API is a separate obligation and is required 
 - Parameter documentation MAY be omitted when the parameter name and type make its meaning obvious
 - Return value and thrown error documentation SHOULD be present, except when there is nothing to describe such as a `void` return or a function that never throws
 
+## Markdown Line Breaks
+
+Line breaks in Markdown source follow sentence boundaries so that a diff shows exactly which sentences changed.
+
+- Each sentence MUST be on its own line
+- A sentence MUST NOT be broken across lines regardless of its length
+- Paragraphs MUST be separated by exactly one blank line
+- In a list item with multiple sentences, each following sentence SHOULD continue on an indented line of its own
+
 ## Language Requirements
 
 - All documentation, comments, and commit messages MUST be written in English unless specified by the user or spec
