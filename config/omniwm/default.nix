@@ -41,10 +41,25 @@ let
     binding = bindings.${id} or "Unassigned";
   }) actionIds;
 
+  monitorAssignments = {
+    "5" = {
+      type = "secondary";
+    };
+    "6" = {
+      type = "secondary";
+    };
+    "7" = {
+      type = "tertiary";
+    };
+    "8" = {
+      type = "tertiary";
+    };
+  };
+
   workspaces = map (n: {
     id = "00000000-0000-4000-8000-00000000000${toString n}";
     name = toString n;
-    monitorAssignment.type = "main";
+    monitorAssignment = monitorAssignments.${toString n} or { type = "main"; };
     layoutType = "niri";
   }) workspaceNumbers;
 
