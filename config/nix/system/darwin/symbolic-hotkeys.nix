@@ -34,6 +34,30 @@
       type = "standard";
     };
   };
+  # Disable area screenshot on S-Mod-4, which omniwm uses for moveToWorkspace
+  "30" = {
+    enabled = false;
+    value = {
+      parameters = [
+        52
+        21
+        1179648
+      ];
+      type = "standard";
+    };
+  };
+  # Disable screenshot toolbar on S-Mod-5, which omniwm uses for moveToWorkspace
+  "184" = {
+    enabled = false;
+    value = {
+      parameters = [
+        53
+        23
+        1179648
+      ];
+      type = "standard";
+    };
+  };
   # Show spotlight on Mod-r
   "64" = {
     enabled = true;
