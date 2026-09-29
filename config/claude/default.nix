@@ -71,7 +71,7 @@ in
           ];
         }
       ];
-      model = "fable[1m]";
+      model = "opus[1m]";
       outputStyle = "chii";
       permissions.defaultMode = "auto";
       permissions.deny = [
