@@ -133,6 +133,7 @@
       typos
       typstyle
       unar
+      upm
       uv
       vim-startuptime
       xcpretty
