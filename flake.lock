@@ -454,11 +454,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1790795175,
-        "narHash": "sha256-8CKGwoyOokbci0Oorr8EirtV/JQut4NtDezBbFk2sVY=",
+        "lastModified": 1791642514,
+        "narHash": "sha256-UCmYETgfeqcoM2tFu5WJJXQV/ERFRjUn7wH4/THFzjg=",
         "owner": "Omochice",
         "repo": "nur-packages",
-        "rev": "0d4a871f0e3030bb5c253d763279b8c630492fc1",
+        "rev": "a2a1d64fe7993c3d85a4af3bf013c3ad6de6680d",
         "type": "github"
       },
       "original": {
