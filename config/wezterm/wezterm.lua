@@ -78,6 +78,10 @@ if wezterm.target_triple:find("windows") then
   others.webgpu_power_preference = "HighPerformance"
 end
 
+if wezterm.target_triple:find("darwin") then
+  others.front_end = "WebGpu"
+end
+
 return utils.merged({
   require("keybinds"),
   fonts,
