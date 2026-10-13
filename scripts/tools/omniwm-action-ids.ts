@@ -45,6 +45,7 @@ function parseRange(
     return { start: 0, end: count - 1 };
   }
   const named = expression.replace(/^[A-Za-z]+\./, "");
+  if (!/^\w+$/.test(named)) return undefined;
   const declaration = declarations.match(
     new RegExp(`\\b${named}\\s*=\\s*(\\d+)\\s*(\\.\\.\\.|\\.\\.<)\\s*(\\d+)`),
   );
@@ -58,19 +59,13 @@ function parseRange(
   return undefined;
 }
 
-/**
- * Collect every hotkey action id the given Swift source declares.
- *
- * Ids generated inside a `for` loop are expanded over the loop's range; actions
- * marked `visibility: .unassignable` are dropped, because OmniWM excludes them
- * from the bindings a settings file may list.
- */
+/** Collect the hotkey action ids an OmniWM settings file must list. */
 export function collectActionIds(
   source: string,
   declarations: string = source,
 ): string[] {
   const lines = source.split("\n");
-  const loops: { variable: string; range: Range; depth: number }[] = [];
+  const loops: { variable: string; range?: Range; depth: number }[] = [];
   const ids = new Set<string>();
   let depth = 0;
 
@@ -81,7 +76,7 @@ export function collectActionIds(
     if (header) {
       const variable = header[1] ?? header[2];
       const range = parseRange(header[3], declarations);
-      if (range) loops.push({ variable, range, depth });
+      loops.push({ variable, range, depth });
     }
 
     const declaration = line.match(ID_DECLARATION);
@@ -109,17 +104,21 @@ export function collectActionIds(
 
 function expand(
   template: string,
-  loops: readonly { variable: string; range: Range }[],
+  loops: readonly { variable: string; range?: Range }[],
 ): string[] {
   const interpolation = template.match(/\\\((\w+)\)/);
   if (!interpolation) return [template];
   const loop = loops.find((entry) => entry.variable === interpolation[1]);
-  if (!loop) {
-    throw new Error(`No loop in scope for interpolated action id: ${template}`);
+  if (!loop) return [];
+  const { range } = loop;
+  if (!range) {
+    throw new Error(
+      `Unresolvable loop range for interpolated action id: ${template}`,
+    );
   }
   const values = Array.from(
-    { length: loop.range.end - loop.range.start + 1 },
-    (_, offset) => loop.range.start + offset,
+    { length: range.end - range.start + 1 },
+    (_, offset) => range.start + offset,
   );
   return values.flatMap((value) =>
     expand(template.replace(/\\\(\w+\)/, String(value)), loops)
