@@ -91,7 +91,7 @@ in
     programs.omniwm = {
       enable = true;
       settings = {
-        schemaVersion = 3;
+        schemaVersion = 4;
 
         general = {
           animationsEnabled = true;
