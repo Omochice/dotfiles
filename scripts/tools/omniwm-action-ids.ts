@@ -45,6 +45,9 @@ function parseRange(
     return { start: 0, end: count - 1 };
   }
   const named = expression.replace(/^[A-Za-z]+\./, "");
+  // The header pattern also captures arbitrary expressions such as
+  // `insertions.sorted(by:`, which would be invalid once embedded in a RegExp.
+  if (!/^\w+$/.test(named)) return undefined;
   const declaration = declarations.match(
     new RegExp(`\\b${named}\\s*=\\s*(\\d+)\\s*(\\.\\.\\.|\\.\\.<)\\s*(\\d+)`),
   );
