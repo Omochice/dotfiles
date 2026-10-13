@@ -45,8 +45,6 @@ function parseRange(
     return { start: 0, end: count - 1 };
   }
   const named = expression.replace(/^[A-Za-z]+\./, "");
-  // The header pattern also captures arbitrary expressions such as
-  // `insertions.sorted(by:`, which would be invalid once embedded in a RegExp.
   if (!/^\w+$/.test(named)) return undefined;
   const declaration = declarations.match(
     new RegExp(`\\b${named}\\s*=\\s*(\\d+)\\s*(\\.\\.\\.|\\.\\.<)\\s*(\\d+)`),
@@ -61,13 +59,7 @@ function parseRange(
   return undefined;
 }
 
-/**
- * Collect every hotkey action id the given Swift source declares.
- *
- * Ids generated inside a `for` loop are expanded over the loop's range; actions
- * marked `visibility: .unassignable` are dropped, because OmniWM excludes them
- * from the bindings a settings file may list.
- */
+/** Collect the hotkey action ids an OmniWM settings file must list. */
 export function collectActionIds(
   source: string,
   declarations: string = source,
@@ -117,10 +109,6 @@ function expand(
   const interpolation = template.match(/\\\((\w+)\)/);
   if (!interpolation) return [template];
   const loop = loops.find((entry) => entry.variable === interpolation[1]);
-  // An id interpolated outside any loop is built on demand from a runtime
-  // value, such as `workspaceNumberSpec` for workspaces beyond the digit keys.
-  // OmniWM only requires the statically registered actions in a settings file,
-  // so these are not part of the list.
   if (!loop) return [];
   const { range } = loop;
   if (!range) {
