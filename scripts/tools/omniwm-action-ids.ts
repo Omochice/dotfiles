@@ -73,7 +73,7 @@ export function collectActionIds(
   declarations: string = source,
 ): string[] {
   const lines = source.split("\n");
-  const loops: { variable: string; range: Range; depth: number }[] = [];
+  const loops: { variable: string; range?: Range; depth: number }[] = [];
   const ids = new Set<string>();
   let depth = 0;
 
@@ -84,7 +84,7 @@ export function collectActionIds(
     if (header) {
       const variable = header[1] ?? header[2];
       const range = parseRange(header[3], declarations);
-      if (range) loops.push({ variable, range, depth });
+      loops.push({ variable, range, depth });
     }
 
     const declaration = line.match(ID_DECLARATION);
@@ -112,17 +112,25 @@ export function collectActionIds(
 
 function expand(
   template: string,
-  loops: readonly { variable: string; range: Range }[],
+  loops: readonly { variable: string; range?: Range }[],
 ): string[] {
   const interpolation = template.match(/\\\((\w+)\)/);
   if (!interpolation) return [template];
   const loop = loops.find((entry) => entry.variable === interpolation[1]);
-  if (!loop) {
-    throw new Error(`No loop in scope for interpolated action id: ${template}`);
+  // An id interpolated outside any loop is built on demand from a runtime
+  // value, such as `workspaceNumberSpec` for workspaces beyond the digit keys.
+  // OmniWM only requires the statically registered actions in a settings file,
+  // so these are not part of the list.
+  if (!loop) return [];
+  const { range } = loop;
+  if (!range) {
+    throw new Error(
+      `Unresolvable loop range for interpolated action id: ${template}`,
+    );
   }
   const values = Array.from(
-    { length: loop.range.end - loop.range.start + 1 },
-    (_, offset) => loop.range.start + offset,
+    { length: range.end - range.start + 1 },
+    (_, offset) => range.start + offset,
   );
   return values.flatMap((value) =>
     expand(template.replace(/\\\(\w+\)/, String(value)), loops)
