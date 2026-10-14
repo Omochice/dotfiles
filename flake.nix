@@ -8,11 +8,13 @@
       "https://omochice.cachix.org"
       "https://cache.numtide.com"
       "https://cclens.cachix.org"
+      "https://nix-cache.natsukium.com"
     ];
     extra-trusted-public-keys = [
       "omochice.cachix.org-1:d+cdfbGVPgtxxdGSkGf3hhaCdfziMtZ6FSHUWxwUTo8="
       "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
       "cclens.cachix.org-1:0QUNU6PuVyf+yXOvg3n1rd3FksBoB3s3/Jty50iKRNQ="
+      "niks3-1:SoIFTPtiPoCW3/OzUkIBKlLG5znMZfbihlr11XAOles="
     ];
   };
 
@@ -51,6 +53,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     cclens.url = "github:lambdalisue/cclens";
+    felis.url = "github:felis-terminal/felis";
   };
 
   outputs =

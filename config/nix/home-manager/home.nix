@@ -20,6 +20,7 @@
     ../../devbox/default.nix
     ../../direnv/default.nix
     ../../doom/default.nix
+    ../../felis/default.nix
     ../../fish/default.nix
     ../../gh-triage/default.nix
     ../../gh/default.nix
@@ -175,5 +176,9 @@
     ];
   };
   programs.home-manager.enable = true;
+  targets.darwin = {
+    linkApps.enable = false;
+    copyApps.enable = pkgs.stdenv.hostPlatform.isDarwin;
+  };
   xdg.enable = true;
 }
