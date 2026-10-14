@@ -15,6 +15,10 @@
         size_px = 20;
       };
       window.opacity = 0.8;
+      cursor = {
+        color = "#EDE7F7";
+        blink = "never";
+      };
       theme = {
         # yuzu theme
         background = "#000000";
