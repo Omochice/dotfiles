@@ -80,6 +80,7 @@ end
 
 if wezterm.target_triple:find("darwin") then
   others.front_end = "WebGpu"
+  fonts.freetype_load_target = "Light"
 end
 
 return utils.merged({
