@@ -23,6 +23,23 @@ let
     runtimeInputs = [ pkgs.gojq ];
     text = "exec gojq -c --yaml-input --rawfile hook /dev/stdin -f ${./output-styles/chii/vocab-check.jq} ${./output-styles/chii/prh.yaml}";
   };
+  localOmm = pkgs.writeShellApplication {
+    name = "omm";
+    # Prevent non-local commands.
+    text = ''
+      case "''${1:-}" in
+        login | logout | link | push | pull | share | org)
+          echo "omm: '$1' is disabled because omm is used only locally" >&2
+          exit 1
+          ;;
+        setup | update)
+          echo "omm: '$1' is disabled because omm and its skills are managed by nix" >&2
+          exit 1
+          ;;
+      esac
+      exec ${lib.getExe pkgs.oh-my-mermaid} "$@"
+    '';
+  };
 
   stripAcknowledgement =
     content:
@@ -126,6 +143,8 @@ in
       grill-me = "${plugins.mattpocock.src}/skills/productivity/grill-me/";
       grilling = builtins.readFile ./skills/grilling.md |> stripAcknowledgement;
       handoff = "${plugins.mattpocock.src}/skills/productivity/handoff/";
+      omm-scan = "${pkgs.oh-my-mermaid.src}/skills/omm-scan/";
+      omm-view = "${pkgs.oh-my-mermaid.src}/skills/omm-view/";
       retrospective = "${plugins.lacolaco.src}/retrospective/";
       review-pr = builtins.readFile ./skills/review-pr.md;
       skill-creator = "${plugins.anthropics.src}/skills/skill-creator/";
@@ -152,6 +171,7 @@ in
   };
   home.packages = [
     pkgs.git-surgeon
+    localOmm
   ];
   xdg.configFile."guard-and-guide/rules.toml".source = builtins.toPath (
     tomlFormat.generate "rules.toml" {
