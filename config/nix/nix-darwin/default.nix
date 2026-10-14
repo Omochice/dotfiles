@@ -6,6 +6,7 @@ in
   imports = [
     ../modules/darwin/default.nix
     ../applications/spotlight.nix
+    ../applications/macskk
     ../applications/homebrew.nix
   ];
   nix = {

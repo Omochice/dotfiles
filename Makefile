@@ -2,14 +2,11 @@ BASE_DIR:=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
 .PHONY: mac wsl enable-service enable-catppuccin-theme
 
-mac: enable-service macskk nix-darwin
+mac: enable-service nix-darwin
 wsl: home-manager
 
 enable-service: nix-environment
 	/opt/homebrew/bin/brew services start sketchybar
-
-macskk:
-	cp $(BASE_DIR)/config/macskk/kana-rule.conf ~/Library/Containers/net.mtgto.inputmethod.macSKK/Data/Documents/Settings/
 
 enable-catppuccin-theme:
 	fish -c 'fish_config theme save "Catppuccin Mocha"'

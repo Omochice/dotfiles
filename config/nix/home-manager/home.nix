@@ -52,7 +52,6 @@
     ../../zk/default.nix
     ../../zoxide/default.nix
     # keep-sorted end
-    # ../../macskk/default.nix
   ];
   nixpkgs = {
     config = {
