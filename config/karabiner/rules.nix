@@ -91,7 +91,6 @@
         }
         |> k.to [ { key_code = "f17"; } ]
       )
-      )
       (
         k.map {
           key_code = "y";
