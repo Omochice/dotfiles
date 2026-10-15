@@ -63,6 +63,7 @@
     homeDirectory = home;
     stateVersion = "24.05";
     sessionPath = [ "${home}/.local/bin" ];
+    sessionVariables.LANG = "en_US.UTF-8";
     packages = with pkgs; [
       # keep-sorted start
       abduco
