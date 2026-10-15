@@ -33,6 +33,11 @@ in
         blink = "never";
       };
       keymap = {
+        "¥" = {
+          kind = "send_string";
+          text = "\\";
+          escapes = "none";
+        };
         "f15" = {
           kind = "pipe";
           source = "last_command";
