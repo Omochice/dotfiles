@@ -33,6 +33,11 @@ in
         blink = "never";
       };
       keymap = {
+        "f15" = {
+          kind = "pipe";
+          source = "last_command";
+          target = "clipboard";
+        };
         "f17" = {
           kind = "run";
           command = [ (lib.getExe pick-session) ];
