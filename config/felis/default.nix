@@ -19,6 +19,19 @@
         color = "#EDE7F7";
         blink = "never";
       };
+      keymap = {
+        "f18" = {
+          kind = "new_session";
+        };
+        "f19" = {
+          kind = "switch_session";
+          to = "next";
+        };
+        "f20" = {
+          kind = "switch_session";
+          to = "previous";
+        };
+      };
       theme = {
         # yuzu theme
         background = "#000000";

@@ -59,6 +59,35 @@
     |> k.ifApp [ "^com\\.microsoft\\.teams2$" ]
   )
   (
+    k.rule "Felis session chords via function keys" [
+      (
+        k.map {
+          key_code = "c";
+          modifiers.mandatory = [ "option" ];
+        }
+        |> k.to [ { key_code = "f18"; } ]
+      )
+      (
+        k.map {
+          key_code = "n";
+          modifiers.mandatory = [ "option" ];
+        }
+        |> k.to [ { key_code = "f19"; } ]
+      )
+      (
+        k.map {
+          key_code = "n";
+          modifiers.mandatory = [
+            "option"
+            "shift"
+          ];
+        }
+        |> k.to [ { key_code = "f20"; } ]
+      )
+    ]
+    |> k.ifApp [ "^com\\.natsukium\\.felis$" ]
+  )
+  (
     k.rule "Focus URL bar on chrome same as other browser or os" [
       (
         k.map {
