@@ -1,14 +1,27 @@
 {
   pkgs,
+  lib,
   inputs,
   ...
 }:
+let
+  felis = inputs.felis.packages.${pkgs.stdenv.hostPlatform.system}.felis;
+  pick-session = pkgs.writeShellApplication {
+    name = "felis-pick-session";
+    runtimeInputs = [
+      felis
+      pkgs.jq
+      pkgs.fzf
+    ];
+    text = builtins.readFile ./pick-session.sh;
+  };
+in
 {
   imports = [ inputs.felis.homeManagerModules.felis ];
 
   programs.felis = {
     enable = true;
-    package = inputs.felis.packages.${pkgs.stdenv.hostPlatform.system}.felis;
+    package = felis;
     settings = {
       font = {
         family = "Firge35Nerd Console";
@@ -20,6 +33,10 @@
         blink = "never";
       };
       keymap = {
+        "f17" = {
+          kind = "run";
+          command = [ (lib.getExe pick-session) ];
+        };
         "f18" = {
           kind = "new_session";
         };

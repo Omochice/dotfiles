@@ -84,6 +84,13 @@
         }
         |> k.to [ { key_code = "f20"; } ]
       )
+      (
+        k.map {
+          key_code = "t";
+          modifiers.mandatory = [ "option" ];
+        }
+        |> k.to [ { key_code = "f17"; } ]
+      )
     ]
     |> k.ifApp [ "^com\\.natsukium\\.felis$" ]
   )
