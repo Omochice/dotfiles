@@ -27,6 +27,13 @@ in
     ignores = ./ignore |> builtins.readFile |> lib.splitString "\n";
     includes = [
       { path = ./config; }
+      {
+        condition = "gitdir:~/ghq/github.com/Omochice/";
+        contents.user = {
+          name = "Omochice";
+          email = "mochice.mls.ntl@gmail.com";
+        };
+      }
     ];
     lfs.enable = true;
     package = pkgs.gitFull.override {
