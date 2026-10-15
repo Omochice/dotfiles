@@ -54,6 +54,10 @@
     };
     cclens.url = "github:lambdalisue/cclens";
     felis.url = "github:felis-terminal/felis";
+    neru = {
+      url = "github:y3owk1n/neru";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

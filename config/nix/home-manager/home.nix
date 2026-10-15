@@ -32,6 +32,7 @@
     ../../lsd/default.nix
     ../../mise/default.nix
     ../../moon/default.nix
+    ../../neru/default.nix
     ../../nix/default.nix
     ../../npm/default.nix
     ../../nushell/default.nix

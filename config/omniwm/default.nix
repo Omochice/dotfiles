@@ -33,7 +33,6 @@ let
     toggleContainerFullPrimarySpan = "Command+F";
     toggleNativeFullscreen = "Shift+Command+F";
     toggleOverview = "Command+Space";
-    toggleFocusedWindowFloating = "Shift+Command+Space";
   };
 
   hotkeys = map (id: {
