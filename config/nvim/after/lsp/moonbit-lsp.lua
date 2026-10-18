@@ -1,8 +1,8 @@
 ---@type vim.lsp.Config
 local M = {
-  cmd = { "moonbit-lsp" },
+  cmd = { "moon", "lsp" },
   filetypes = { "moonbit" },
-  root_markers = { "moon.mod.json", ".git" },
+  root_markers = { "moon.mod.json", ".git", "moon.mod", "moon.work" },
 }
 
 return M
