@@ -7,6 +7,7 @@
     - When a comment feels necessary to explain WHAT the code does, rename or restructure the code instead
 - You MUST NOT write step-marker comments such as `// Arrange`, `// Act`, `// Assert`
 - Instead of dividing the file contents with comments, you SHOULD consider whether it can be achieved in another way, such as dividing the code into separate files
+- Each sentence in a comment MUST start on its own line rather than being packed to fill the line width
 - Test code SHOULD clearly describe WHAT is being tested
 - Commit messages MUST include WHY the change was made
 
