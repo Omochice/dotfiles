@@ -61,6 +61,11 @@ jobs:
             echo "updated=false" >> "$GITHUB_OUTPUT"
           else
             echo "updated=true" >> "$GITHUB_OUTPUT"
+            locked='.nodes[.nodes.root.inputs[env.TARGET]].locked'
+            jq -n -r --arg name "$TARGET" \
+              --argjson old "$(git show HEAD:flake.lock | jq -c "$locked")" \
+              --argjson new "$(jq -c "$locked" flake.lock)" \
+              -f .github/scripts/update-pr-body.jq > "$RUNNER_TEMP/pr-body.md"
           fi
         env:
           TARGET: ${{ matrix.input-name }}
@@ -71,7 +76,7 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
           commit-message: "chore: update ${{ matrix.input-name }}"
           title: "chore: update ${{ matrix.input-name }}"
-          body: "Automated update of flake.lock"
+          body-path: ${{ runner.temp }}/pr-body.md
           add-paths: |
             flake.lock
             _sources/*
@@ -140,6 +145,11 @@ jobs:
             echo "updated=false" >> "$GITHUB_OUTPUT"
           else
             echo "updated=true" >> "$GITHUB_OUTPUT"
+            src='.[env.PACKAGE_NAME].src'
+            jq -n -r --arg name "$PACKAGE_NAME" \
+              --argjson old "$(git show HEAD:_sources/generated.json | jq -c "$src")" \
+              --argjson new "$(jq -c "$src" _sources/generated.json)" \
+              -f .github/scripts/update-pr-body.jq > "$RUNNER_TEMP/pr-body.md"
           fi
       - name: Create Pull Request
         if: steps.update.outputs.updated == 'true'
@@ -148,6 +158,7 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
           commit-message: "chore: update nvfetcher ${{ steps.resolve.outputs.owner-repo }}"
           title: "chore: update nvfetcher ${{ steps.resolve.outputs.owner-repo }}"
+          body-path: ${{ runner.temp }}/pr-body.md
           add-paths: |
             _sources/*
           branch: update-nvfetcher-${{ matrix.package-name }}
