@@ -11,6 +11,8 @@ When doing so, the model selected SHOULD correspond to the difficulty of the tas
 - `sonnet`
 - `haiku`
 
+The `effort` parameter MUST also be passed to match the difficulty, because the sub agent otherwise inherits the session's effort.
+
 After the sub agent writes code, the main agent(which is conversing with the user) MUST be the one to execute the `/commit` command.
 
 Alternatively, when having the sub agent write code, a temporary worktree may be created for the sub agent to perform the `/commit`.
