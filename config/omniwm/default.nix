@@ -109,7 +109,7 @@ in
           followsMouse = false;
           followsWindowToMonitor = false;
           lockModifier = "off";
-          moveMouseToFocusedWindow = false;
+          moveMouseToFocusedWindow = true;
           raiseOnMouseFocus = false;
         };
 
