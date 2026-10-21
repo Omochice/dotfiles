@@ -90,13 +90,13 @@ export class Config extends BaseConfig {
         },
         cc_command: {
           mark: "[C.C]",
-          forceCompletionPattern: "/\S*",
+          forceCompletionPattern: String.raw`/\S*`,
           keywordPattern: "[A-Za-z0-9_-]+",
         },
         file: {
           mark: "[Fil]",
           isVolatile: true,
-          forceCompletionPattern: String.raw`\\S/\\S*`,
+          forceCompletionPattern: String.raw`\S/\S*`,
         },
         rg: {
           mark: "[Rg]",
@@ -133,14 +133,14 @@ export class Config extends BaseConfig {
         },
       },
       sourceParams: {
-        lines: {
+        line: {
           maxSize: 1000,
         },
         lsp: {
           snippetEngine: async (body: string) => {
             await denops.call("vsnip#anonymous", body);
           },
-          enagbleResolveItem: true,
+          enableResolveItem: true,
           enableAdditionalTextEdit: true,
         },
         copilot: {
