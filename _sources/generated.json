@@ -62,6 +62,27 @@
         },
         "version": "6b668aa526afdc623c1a9ed1d6ae920e04a717ad"
     },
+    "claude-skill-claude-plugins-official": {
+        "cargoLock": null,
+        "date": "2026-10-21",
+        "extract": null,
+        "name": "claude-skill-claude-plugins-official",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "anthropics",
+            "repo": "claude-plugins-official",
+            "rev": "af59ee3a1051a29dda4a2e7a2af221aa457ae08b",
+            "sha256": "sha256-I7Ko4Ssksx6mkhej73jihZ3cuHuS7qePfBwpUebwttI=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "af59ee3a1051a29dda4a2e7a2af221aa457ae08b"
+    },
     "claude-skill-lacolaco": {
         "cargoLock": null,
         "date": "2026-08-26",

@@ -162,6 +162,8 @@ in
       enableAllProjectMcpServers = true;
       env.CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
       env.CLAUDE_CODE_SUBAGENT_MODEL = "opus[1m]";
+      # Unlike DISABLE_TELEMETRY, this stops only the plugin's usage counts and leaves Claude Code's own telemetry as it is.
+      env.CODE_MODERNIZATION_TELEMETRY = "0";
       env.IS_DEMO = "true";
       hooks.PreToolUse = [
         {
@@ -225,6 +227,11 @@ in
     commands = {
       # keep-sorted start
       kiro = builtins.readFile ./commands/kiro.md;
+      # keep-sorted end
+    };
+    plugins = {
+      # keep-sorted start
+      code-modernization = "${plugins.claude-plugins-official.src}/plugins/code-modernization";
       # keep-sorted end
     };
     outputStyles = {
