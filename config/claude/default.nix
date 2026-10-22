@@ -214,8 +214,8 @@ in
         }
         {
           matcher = "Bash";
-          regex = "(?:^|[|;&(]\\s*)sed\\s+-n\\b";
-          message = "Use of 'sed' is prohibited. Use the Read tool with offset and limit instead.";
+          regex = "(?:^|[|;&(]\\s*)sed\\s+-n\\s+(?:['\"]\\D|[^\\d'\"]|['\"]?\\d+(?:[^\\d,p]|$|,\\D|,$|,\\d+[^\\dp]|,\\d+$)|\\d+(?:,\\d+)?p[^\\s;|&)]|['\"]\\d+(?:,\\d+)?p(?:[^'\"]|$|['\"][^\\s;|&)]))";
+          message = "Only 'sed -n N,Mp' and 'sed -n Np' are allowed. Use the Read tool with offset and limit instead.";
         }
         {
           matcher = "Bash";
@@ -224,7 +224,7 @@ in
         }
         {
           matcher = "Bash";
-          regex = "(?:^|[|;&(]\\s*)sed\\b";
+          regex = "(?:^|[|;&(]\\s*)sed(?:\\s*$|[^\\s\\w]|\\s+(?:[^\\s-]|-[^n\\s]|-n\\S|-(?:\\s|$)))";
           message = "Use of 'sed' is prohibited. Use 'perl' instead. Example: perl -pi -e 's/old/new/g' file.txt";
         }
         {

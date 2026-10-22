@@ -4,12 +4,14 @@ This document defines how commands passed to the Bash tool are written.
 
 ## Text processing
 
-`sed` and `awk` MUST NOT be used.
+`sed` and `awk` MUST NOT be used, with the single exception below.
 GNU and BSD ship mutually incompatible implementations of both, and a command written against one silently produces different output under the other.
 `perl` has a single implementation, so the same command behaves identically wherever it runs.
 
 This applies to every use, not only to editing a file in place.
-Reading a line range with `sed -n` depends on the same divergent implementations as rewriting a file with `sed -i`, so it is prohibited on the same grounds.
+The exception is printing a line range by number, `sed -n 'N,Mp'` or `sed -n 'Np'`, which MAY be used.
+That form is defined by POSIX and behaves identically under GNU and BSD, so the reason for the prohibition does not reach it.
+Any other script given to `sed -n`, such as a regular expression address or a `~` step, is still prohibited.
 
 The equivalents are the following.
 
