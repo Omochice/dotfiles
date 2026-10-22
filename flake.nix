@@ -47,7 +47,6 @@
     };
     llm-agents.url = "github:numtide/llm-agents.nix";
     org-babel.url = "github:emacs-twist/org-babel";
-    guard-and-guide.url = "github:kawarimidoll/guard-and-guide";
     git-surgeon = {
       url = "github:raine/git-surgeon";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -90,13 +89,6 @@
               llm-pkgs = inputs.llm-agents.packages.${final.stdenv.hostPlatform.system};
               dotfiles-sources = final.callPackage ./_sources/generated.nix { };
               git-surgeon = inputs.git-surgeon.packages.${final.stdenv.hostPlatform.system}.default;
-              guard-and-guide = inputs.guard-and-guide.packages.${final.stdenv.hostPlatform.system} // {
-                default =
-                  inputs.guard-and-guide.packages.${final.stdenv.hostPlatform.system}.default.overrideAttrs
-                    {
-                      doCheck = false;
-                    };
-              };
             })
           ];
         };

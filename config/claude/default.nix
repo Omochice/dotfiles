@@ -12,7 +12,6 @@ let
     |> lib.attrsets.mapAttrs' (
       name: value: lib.attrsets.nameValuePair (lib.strings.removePrefix prefix name) value
     );
-  tomlFormat = pkgs.formats.toml { };
   statusLineScript = pkgs.writeShellApplication {
     name = "claude-statusline";
     runtimeInputs = [ pkgs.jq ];
@@ -22,6 +21,100 @@ let
     name = "chii-vocab-check";
     runtimeInputs = [ pkgs.gojq ];
     text = "exec gojq -c --yaml-input --rawfile hook /dev/stdin -f ${./output-styles/chii/vocab-check.jq} ${./output-styles/chii/prh.yaml}";
+  };
+  guardRules = (pkgs.formats.json { }).generate "guard-rules.json" [
+    {
+      matcher = "Bash";
+      regex = "\\bgit\\s+push\\b";
+      message = "Use of 'git push' is prohibited. Ask the user to execute it.";
+    }
+    {
+      matcher = "Bash";
+      regex = "\\bgh\\s+stack\\s+(submit|push|merge|unstack|link)\\b";
+      message = "Use of 'gh stack submit/push/merge/unstack/link' is prohibited because it writes to the remote. Ask the user to execute it.";
+    }
+    {
+      matcher = "Bash";
+      regex = "\\bgit\\s+add\\s+(-A|--all|\\.($|[ ;|&]))";
+      message = "Do not git-add all files. Specify the files to add.";
+    }
+    {
+      matcher = "Bash";
+      regex = "\\bgit\\s+rebase\\s+.*--autosquash";
+      message = "Do not --autosquash for rebase fixup commits. Ask the user to execute it.";
+    }
+    {
+      matcher = "Bash";
+      regex = "(?:^|[|;&(]\\s*)git-surgeon\\s+(?:amend|fold)\\b";
+      message = "Use of 'git-surgeon amend/fold' is prohibited because it rewrites an existing commit. Use 'git commit --fixup' instead.";
+    }
+    {
+      matcher = "Bash";
+      regex = "(?:^|[|;&(]\\s*)git-surgeon\\s+discard\\b";
+      message = "Use of 'git-surgeon discard' is prohibited because it destroys working tree changes irreversibly. Ask the user to execute it.";
+    }
+    {
+      matcher = "Bash";
+      regex = "(?:^|[|;&(]\\s*)git-surgeon\\s+update\\b";
+      message = "Use of 'git-surgeon update' is prohibited because git-surgeon is managed by nix.";
+    }
+    {
+      matcher = "Bash";
+      regex = "(?:^|[|;&(]\\s*)sed\\s+-n\\s+(?:['\"]\\D|[^\\d'\"]|['\"]?\\d+(?:[^\\d,p]|$|,\\D|,$|,\\d+[^\\dp]|,\\d+$)|\\d+(?:,\\d+)?p[^\\s;|&)]|['\"]\\d+(?:,\\d+)?p(?:[^'\"]|$|['\"][^\\s;|&)]))";
+      message = "Only 'sed -n N,Mp' and 'sed -n Np' are allowed. Use the Read tool with offset and limit instead.";
+    }
+    {
+      matcher = "Bash";
+      regex = "(?:^|[|;&(]\\s*)awk\\s+'?\\s*NR\\s*[<>=]";
+      message = "Use of 'awk' is prohibited. Use the Read tool with offset and limit instead.";
+    }
+    {
+      matcher = "Bash";
+      regex = "(?:^|[|;&(]\\s*)sed(?:\\s*$|[^\\s\\w]|\\s+(?:[^\\s-]|-[^n\\s]|-n\\S|-(?:\\s|$)))";
+      message = "Use of 'sed' is prohibited. Use 'perl' instead. Example: perl -pi -e 's/old/new/g' file.txt";
+    }
+    {
+      matcher = "Bash";
+      regex = "(?:^|[|;&(]\\s*)awk\\b";
+      message = "Use of 'awk' is prohibited. Use 'perl' instead. Example: perl -lane 'print $F[0]' file.txt";
+    }
+    {
+      matcher = "Write|Edit";
+      regex = "(pnpm-lock\\.yaml|package-lock\\.json|deno\\.lock|bun\\.lockb?)$";
+      message = "Lock files are read-only. Do not modify them directly.";
+    }
+    {
+      matcher = "Bash";
+      regex = "^(pip|pip3)\\b";
+      message = "Do not use `pip`, Use uv for installing package isolatly";
+    }
+    {
+      matcher = "Bash";
+      regex = "glab\\s+(variable|var)\\b";
+      message = "Do not read repository variables, If you want to check the variable exists, ask user to check it.";
+    }
+    {
+      matcher = "Read|Write|Edit";
+      regex = ".config/glab-cli/config\\.yml$";
+      message = "Do not read glab config file. If failed to access gitlab, ask user to resolve it.";
+    }
+    {
+      matcher = "Read|Write|Edit";
+      regex = "\\.envrc$";
+      message = "Do not read credential config file. If failed to access some endpoints, ask user to resolve it.";
+    }
+    {
+      matcher = "Read|Write|Edit";
+      regex = "\\.ssh";
+      message = "Do not read credential config file. If failed to access some endpoints, ask user to resolve it.";
+    }
+  ];
+  guardHook = pkgs.writeShellApplication {
+    name = "claude-guard";
+    runtimeInputs = [ pkgs.jq ];
+    # gojq cannot be used because its regexp has no lookaround.
+    # jq exits non-zero on a broken rule, and only exit code 2 blocks the tool call, so a broken rule fails closed.
+    text = "jq -c --slurpfile rules ${guardRules} -f ${./guard.jq} || exit 2";
   };
   localOmm = pkgs.writeShellApplication {
     name = "omm";
@@ -71,7 +164,7 @@ in
           hooks = [
             {
               type = "command";
-              command = "${lib.getExe pkgs.guard-and-guide.default}";
+              command = lib.getExe guardHook;
             }
           ];
         }
@@ -173,96 +266,4 @@ in
     pkgs.git-surgeon
     localOmm
   ];
-  xdg.configFile."guard-and-guide/rules.toml".source = builtins.toPath (
-    tomlFormat.generate "rules.toml" {
-      version = 1;
-      rules = [
-        {
-          matcher = "Bash";
-          regex = "\\bgit\\s+push\\b";
-          message = "Use of 'git push' is prohibited. Ask the user to execute it.";
-        }
-        {
-          matcher = "Bash";
-          regex = "\\bgh\\s+stack\\s+(submit|push|merge|unstack|link)\\b";
-          message = "Use of 'gh stack submit/push/merge/unstack/link' is prohibited because it writes to the remote. Ask the user to execute it.";
-        }
-        {
-          matcher = "Bash";
-          regex = "\\bgit\\s+add\\s+(-A|--all|\\.($|[ ;|&]))";
-          message = "Do not git-add all files. Specify the files to add.";
-        }
-        {
-          matcher = "Bash";
-          regex = "\\bgit\\s+rebase\\s+.*--autosquash";
-          message = "Do not --autosquash for rebase fixup commits. Ask the user to execute it.";
-        }
-        {
-          matcher = "Bash";
-          regex = "(?:^|[|;&(]\\s*)git-surgeon\\s+(?:amend|fold)\\b";
-          message = "Use of 'git-surgeon amend/fold' is prohibited because it rewrites an existing commit. Use 'git commit --fixup' instead.";
-        }
-        {
-          matcher = "Bash";
-          regex = "(?:^|[|;&(]\\s*)git-surgeon\\s+discard\\b";
-          message = "Use of 'git-surgeon discard' is prohibited because it destroys working tree changes irreversibly. Ask the user to execute it.";
-        }
-        {
-          matcher = "Bash";
-          regex = "(?:^|[|;&(]\\s*)git-surgeon\\s+update\\b";
-          message = "Use of 'git-surgeon update' is prohibited because git-surgeon is managed by nix.";
-        }
-        {
-          matcher = "Bash";
-          regex = "(?:^|[|;&(]\\s*)sed\\s+-n\\s+(?:['\"]\\D|[^\\d'\"]|['\"]?\\d+(?:[^\\d,p]|$|,\\D|,$|,\\d+[^\\dp]|,\\d+$)|\\d+(?:,\\d+)?p[^\\s;|&)]|['\"]\\d+(?:,\\d+)?p(?:[^'\"]|$|['\"][^\\s;|&)]))";
-          message = "Only 'sed -n N,Mp' and 'sed -n Np' are allowed. Use the Read tool with offset and limit instead.";
-        }
-        {
-          matcher = "Bash";
-          regex = "(?:^|[|;&(]\\s*)awk\\s+'?\\s*NR\\s*[<>=]";
-          message = "Use of 'awk' is prohibited. Use the Read tool with offset and limit instead.";
-        }
-        {
-          matcher = "Bash";
-          regex = "(?:^|[|;&(]\\s*)sed(?:\\s*$|[^\\s\\w]|\\s+(?:[^\\s-]|-[^n\\s]|-n\\S|-(?:\\s|$)))";
-          message = "Use of 'sed' is prohibited. Use 'perl' instead. Example: perl -pi -e 's/old/new/g' file.txt";
-        }
-        {
-          matcher = "Bash";
-          regex = "(?:^|[|;&(]\\s*)awk\\b";
-          message = "Use of 'awk' is prohibited. Use 'perl' instead. Example: perl -lane 'print $F[0]' file.txt";
-        }
-        {
-          matcher = "Write|Edit";
-          regex = "(pnpm-lock\\.yaml|package-lock\\.json|deno\\.lock|bun\\.lockb?)$";
-          message = "Lock files are read-only. Do not modify them directly.";
-        }
-        {
-          matcher = "Bash";
-          regex = "^(pip|pip3)\\b";
-          message = "Do not use `pip`, Use uv for installing package isolatly";
-        }
-        {
-          matcher = "Bash";
-          regex = "glab\\s+(variable|var)\\b";
-          message = "Do not read repository variables, If you want to check the variable exists, ask user to check it.";
-        }
-        {
-          matcher = "Read|Write|Edit";
-          regex = ".config/glab-cli/config\\.yml$";
-          message = "Do not read glab config file. If failed to access gitlab, ask user to resolve it.";
-        }
-        {
-          matcher = "Read|Write|Edit";
-          regex = "\\.envrc$";
-          message = "Do not read credential config file. If failed to access some endpoints, ask user to resolve it.";
-        }
-        {
-          matcher = "Read|Write|Edit";
-          regex = "\\.ssh";
-          message = "Do not read credential config file. If failed to access some endpoints, ask user to resolve it.";
-        }
-      ];
-    }
-  );
 }
