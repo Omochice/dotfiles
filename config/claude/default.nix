@@ -22,10 +22,15 @@ let
     runtimeInputs = [ pkgs.gojq ];
     text = "exec gojq -c --yaml-input --rawfile hook /dev/stdin -f ${./output-styles/chii/vocab-check.jq} ${./output-styles/chii/prh.yaml}";
   };
+  gitArg = "(?:\"[^\"]*\"|'[^']*'|\\S+)";
+  # Global options such as `-C <path>` can sit between git and the subcommand, so matching `git\s+push` alone lets them through.
+  gitCommand =
+    sub:
+    "\\bgit(?:\\s+(?:-[Cc]\\s+${gitArg}|--(?:git-dir|work-tree|namespace)\\s+${gitArg}|-(?!(?:[Cc]|-git-dir|-work-tree|-namespace)(?:\\s|$))\\S+))*\\s+${sub}";
   guardRules = (pkgs.formats.json { }).generate "guard-rules.json" [
     {
       matcher = "Bash";
-      regex = "\\bgit\\s+push\\b";
+      regex = gitCommand "push(?![\\w-])";
       message = "Use of 'git push' is prohibited. Ask the user to execute it.";
     }
     {
@@ -35,12 +40,12 @@ let
     }
     {
       matcher = "Bash";
-      regex = "\\bgit\\s+add\\s+(-A|--all|\\.($|[ ;|&]))";
+      regex = gitCommand "add\\s+(-A|--all|\\.($|[ ;|&]))";
       message = "Do not git-add all files. Specify the files to add.";
     }
     {
       matcher = "Bash";
-      regex = "\\bgit\\s+rebase\\s+.*--autosquash";
+      regex = gitCommand "rebase\\s+.*--autosquash";
       message = "Do not --autosquash for rebase fixup commits. Ask the user to execute it.";
     }
     {
