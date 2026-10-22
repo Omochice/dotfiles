@@ -18,3 +18,7 @@ let g:loaded_tutor_mode_plugin = v:true
 let g:loaded_vimballPlugin     = v:true
 let g:loaded_zipPlugin         = v:true
 let g:loaded_nvim_dir_plugin   = v:true
+let g:loaded_python3_provider  = 0
+let g:loaded_ruby_provider     = 0
+let g:loaded_perl_provider     = 0
+let g:loaded_node_provider     = 0
