@@ -192,6 +192,23 @@ in
       remoteControlAtStartup = true;
       sandbox.autoAllowBashIfSandboxed = true;
       sandbox.enabled = true;
+      sandbox.excludedCommands = [
+        # .git/config is a protected path that allowWrite cannot open, so commands that rewrite it must leave the sandbox
+        "git branch *"
+        "git submodule *"
+        "git switch *"
+        "git worktree *"
+        "git-wt *"
+      ];
+      sandbox.filesystem.allowWrite = [
+        "~/.cache/prek"
+        "~/.local/share/mergiraf"
+      ];
+      sandbox.network.allowUnixSockets = [ "/nix/var/nix/daemon-socket/socket" ];
+      sandbox.network.allowedDomains = [
+        "api.github.com"
+        "github.com"
+      ];
       showClearContextOnPlanAccept = true;
       statusLine.command = lib.getExe statusLineScript;
       statusLine.padding = 0;
