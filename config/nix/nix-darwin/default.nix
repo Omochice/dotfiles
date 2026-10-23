@@ -57,6 +57,10 @@ in
     };
   };
   security.pam.services.sudo_local.touchIdAuth = true;
+  security.pki.caCertificateBlacklist = [
+    "Comodo AAA Services root"
+    "emSign ECC Root CA - G3"
+  ];
   users = {
     users.${user} = {
       inherit home;
