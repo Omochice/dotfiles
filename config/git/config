@@ -57,6 +57,9 @@
 [log]
   date = "format:%F %T%z"
 
+[pull]
+  rebase = true
+
 [rebase]
   autostash = true
 
