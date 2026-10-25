@@ -197,4 +197,12 @@ local rules = {
 for _, rule in ipairs(rules) do
   vimx.fn.lexima.add_rule(rule)
 end
+
+vimx.keymap.set("i", "<C-CR>", "", {
+  expr = true,
+  replace_keycodes = false,
+  callback = function()
+    return vimx.fn.lexima.expand("<CR>", "i")
+  end,
+})
 -- }}}
