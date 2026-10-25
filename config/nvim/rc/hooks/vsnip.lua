@@ -28,19 +28,19 @@ vimx.keymap.set("s", [[<Tab>]], "", {
     return [[<Tab>]]
   end,
 })
-vimx.keymap.set("i", "[[<S-Tab>]]", "", {
+vimx.keymap.set("i", [[<S-Tab>]], "", {
   expr = true,
   callback = function()
     if vimx.fn.vsnip.jumpable(-1) == 1 then
       return [[<Plug>(vsnip-jump-prev)]]
     end
-    return vimx.fn.lexima.expend([[<LT>S-TAB>]], "i")
+    return vimx.fn.lexima.expand([[<LT>S-TAB>]], "i")
   end,
 })
 vimx.keymap.set("s", [[<S-Tab>]], "", {
   expr = true,
   callback = function()
-    if vimx.fn.vsnip.jumpable(1) == 1 then
+    if vimx.fn.vsnip.jumpable(-1) == 1 then
       return [[<Plug>(vsnip-jump-prev)]]
     end
     return [[<S-Tab>]]
