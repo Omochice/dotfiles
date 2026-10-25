@@ -11,6 +11,7 @@ set completeopt=menuone,noselect,preview
 set directory=$XDG_CACHE_HOME/vim,$HOME/.cache/vim
 set encoding=utf-8
 set expandtab
+set fileencodings=ucs-bom,utf-8,cp932,latin1
 set hlsearch
 set ignorecase
 set incsearch
