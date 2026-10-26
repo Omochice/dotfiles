@@ -38,7 +38,7 @@ symbol = "[🌱](green) "
 
 [git_status]
 format = "(\\[ $all_status$ahead_behind\\])"
-conflicted = "[🏳]($red) "
+conflicted = "[🏳](red) "
 ahead = "↑"
 behind = "↓"
 diverged = "😵 "
