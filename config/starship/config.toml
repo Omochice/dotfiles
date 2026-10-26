@@ -4,12 +4,17 @@ add_newline = true
 format = """
 [╭───────────────────→](white) $git_branch$git_commit$git_state$git_status
 [├](white) $username at $hostname in $directory
-[╰─→](white) $character 
+[╰─→](white) $status$character 
 """
 
 [character]
 success_symbol = "\\$"
 error_symbol = "[\\$](red)"
+
+[status]
+format = "[$status]($style) "
+style = "red"
+disabled = false
 
 [username]
 style_user = "yellow"
