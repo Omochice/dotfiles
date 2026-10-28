@@ -22,6 +22,24 @@ let
     runtimeInputs = [ pkgs.gojq ];
     text = "exec gojq -c --yaml-input --rawfile hook /dev/stdin -f ${./output-styles/chii/vocab-check.jq} ${./output-styles/chii/prh.yaml}";
   };
+  felisStatus = pkgs.writeShellApplication {
+    name = "claude-felis-status";
+    runtimeInputs = [
+      pkgs.jq
+      pkgs.gnugrep
+      pkgs.coreutils
+    ];
+    text = builtins.readFile ./felis-status.sh;
+  };
+  felisStatusHook = matcher: args: {
+    inherit matcher;
+    hooks = [
+      {
+        type = "command";
+        command = "${lib.getExe felisStatus} ${args}";
+      }
+    ];
+  };
   gitArg = "(?:\"[^\"]*\"|'[^']*'|\\S+)";
   # Global options such as `-C <path>` can sit between git and the subcommand, so matching `git\s+push` alone lets them through.
   gitCommand =
@@ -165,6 +183,9 @@ in
       # Unlike DISABLE_TELEMETRY, this stops only the plugin's usage counts and leaves Claude Code's own telemetry as it is.
       env.CODE_MODERNIZATION_TELEMETRY = "0";
       env.IS_DEMO = "true";
+      # idle_prompt is left out because it only follows Stop, and turning done into blocked would claim claude needs an answer.
+      hooks.Notification = [ (felisStatusHook "permission_prompt" "blocked permission") ];
+      hooks.PostToolUse = [ (felisStatusHook "" "working") ];
       hooks.PreToolUse = [
         {
           matcher = "";
@@ -175,6 +196,7 @@ in
             }
           ];
         }
+        (felisStatusHook "AskUserQuestion" "blocked question")
       ];
       hooks.Stop = [
         {
@@ -187,7 +209,10 @@ in
             }
           ];
         }
+        (felisStatusHook "" "done")
       ];
+      hooks.StopFailure = [ (felisStatusHook "" "error") ];
+      hooks.UserPromptSubmit = [ (felisStatusHook "" "working") ];
       model = "opus[1m]";
       outputStyle = "chii";
       permissions.defaultMode = "auto";
