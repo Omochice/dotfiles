@@ -93,6 +93,13 @@
       )
       (
         k.map {
+          key_code = "w";
+          modifiers.mandatory = [ "option" ];
+        }
+        |> k.to [ { key_code = "f16"; } ]
+      )
+      (
+        k.map {
           key_code = "y";
           modifiers.mandatory = [ "option" ];
         }

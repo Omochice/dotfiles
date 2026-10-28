@@ -16,6 +16,16 @@ let
     runtimeEnv.SESSION_JQ_LIB = ./jq;
     text = builtins.readFile ./pick-session.sh;
   };
+  pick-waiting = pkgs.writeShellApplication {
+    name = "felis-pick-waiting";
+    runtimeInputs = [
+      felis
+      pkgs.jq
+      pkgs.fzf
+    ];
+    runtimeEnv.SESSION_JQ_LIB = ./jq;
+    text = builtins.readFile ./pick-waiting.sh;
+  };
 in
 {
   imports = [ inputs.felis.homeManagerModules.felis ];
@@ -43,6 +53,10 @@ in
           kind = "pipe";
           source = "last_command";
           target = "clipboard";
+        };
+        "f16" = {
+          kind = "run";
+          command = [ (lib.getExe pick-waiting) ];
         };
         "f17" = {
           kind = "run";
