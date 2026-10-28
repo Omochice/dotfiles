@@ -13,6 +13,7 @@ let
       pkgs.jq
       pkgs.fzf
     ];
+    runtimeEnv.SESSION_JQ_LIB = ./jq;
     text = builtins.readFile ./pick-session.sh;
   };
 in
