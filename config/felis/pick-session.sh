@@ -5,8 +5,7 @@ list_sessions() {
       --arg origin "${FELIS_ORIGIN_SESSION_ID:-}" \
       --arg home "$HOME" \
       'include "session";
-      .sessions[]
-      | select((.exited | not) and .id != $self)
+      live($self)
       | [.id, (if .id == $origin then "*" else " " end), (.cwd // "" | shorten($home))]
       | @tsv'
 }

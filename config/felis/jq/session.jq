@@ -10,3 +10,5 @@ def shorten($home):
   | to_entries
   | map(.key as $k | if any($keep[]; . == $k) then .value else .value | abbreviate end)
   | join("/");
+
+def live($self): .sessions[] | select((.exited | not) and .id != $self);

@@ -4,8 +4,7 @@ picked=$(
       --arg self "${FELIS_SESSION_ID:-}" \
       --arg home "$HOME" \
       'include "session";
-      [.sessions[]
-        | select((.exited | not) and .id != $self)
+      [live($self)
         | (.program_status | map(select(.state | IN("blocked", "done", "error"))) | first) as $status
         | select($status != null)
         | {id, idle: (.idle_seconds // 0), cwd: (.cwd // ""), $status}]
