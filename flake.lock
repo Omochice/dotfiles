@@ -43,11 +43,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1792231472,
-        "narHash": "sha256-frBdSlj3LToboaYmWH934/qjcPxzb74hnXky111Ve0U=",
+        "lastModified": 1792829207,
+        "narHash": "sha256-oOY8dx8pvhebaxO0mELOCc+uSMYH2BWKug5cLQGkK10=",
         "owner": "lambdalisue",
         "repo": "cclens",
-        "rev": "408c64102a4ce0a9876eb40c355cac364defc279",
+        "rev": "39cadc2d22522c09a99010659155393361780695",
         "type": "github"
       },
       "original": {
