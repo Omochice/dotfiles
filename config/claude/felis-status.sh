@@ -14,11 +14,12 @@ while :; do
   pid=$ppid
 done
 
-transcript=$(jq --raw-output '.transcript_path // ""')
-
 # working never reaches the picker, and PostToolUse fires on every tool call, so the transcript is read only for the states that do.
-if [[ $state != working && -r $transcript ]]; then
-  grep --extended-regexp '^\{"type":"(custom|ai)-title"' "$transcript" || true
+if [[ $state != working ]]; then
+  transcript=$(jq --raw-output '.transcript_path // ""')
+  if [[ -r $transcript ]]; then
+    grep --extended-regexp '^\{"type":"(custom|ai)-title"' "$transcript" || true
+  fi
 fi |
   jq --raw-output --join-output --slurp --arg state "$state" --arg kind "$kind" '
     # The transcript layout is undocumented, so a title that cannot be found is left out rather than failing the report.
