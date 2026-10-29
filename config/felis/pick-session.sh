@@ -21,6 +21,8 @@ picked=$(
     fzf --delimiter '\t' --with-nth 2.. \
       --header 'enter: switch / ctrl-x: kill' \
       --preview 'felis sessions capture {1}' \
+      --with-shell "$BASH -c" \
+      --bind 'start,resize:transform:if (( FZF_COLUMNS < FZF_LINES * 2 )); then echo "change-preview-window(down)"; else echo "change-preview-window(right)"; fi' \
       --bind "ctrl-x:execute-silent(felis sessions kill {1})+reload($0 --list)"
 ) || exit 0
 

@@ -13,7 +13,9 @@ picked=$(
       | @tsv' |
     fzf --delimiter '\t' --with-nth 2.. \
       --header 'enter: switch' \
-      --preview 'felis sessions capture {1}'
+      --preview 'felis sessions capture {1}' \
+      --with-shell "$BASH -c" \
+      --bind 'start,resize:transform:if (( FZF_COLUMNS < FZF_LINES * 2 )); then echo "change-preview-window(down)"; else echo "change-preview-window(right)"; fi'
 ) || exit 0
 
 IFS=$'\t' read -r id _ <<<"$picked"
