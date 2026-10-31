@@ -74,13 +74,13 @@ vimx.keymap.set("n", prefix .. "<C-d>", function()
     sources = {
       {
         name = "git_diff",
-        uiParams = {
-          ff = { ignoreEmpty = false },
-        },
         options = {
           path = vimx.fn.expand("%:p"),
         },
       },
+    },
+    uiParams = {
+      ff = { ignoreEmpty = false },
     },
   })
 end)
