@@ -200,7 +200,7 @@ in
 
         workspaceBar = {
           enabled = true;
-          backgroundOpacity = 1.0;
+          backgroundOpacity = 0.1;
           deduplicateAppIcons = true;
           excludedBundleIDs = [ ];
           height = workspaceBarHeight;
