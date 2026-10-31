@@ -109,14 +109,14 @@ def --env t [] {
 }
 
 def as [] {
-  let rows = (abduco | complete | get stdout | lines | skip 1 | where ($it | str trim | is-not-empty))
-  if ($rows | is-empty) {
-    print "no abduco session"
+  let names = (zmx list --short | complete | get stdout | lines | where ($it | str trim | is-not-empty))
+  if ($names | is-empty) {
+    print "no zmx session"
     return
   }
-  let picked = ($rows | str join "\n" | fzf --no-mouse --no-sort --height=30% | str trim)
+  let picked = ($names | str join "\n" | fzf --no-mouse --no-sort --height=30% | str trim)
   if ($picked | is-empty) { return }
-  abduco -a ($picked | split row "\t" | last)
+  zmx attach $picked
 }
 
 def gi [] {

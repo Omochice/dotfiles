@@ -1,6 +1,6 @@
-function as --description="fuzzy attach to an abduco session"
-    if not type abduco >/dev/null 2>&1
-        command echo "need abduco"
+function as --description="fuzzy attach to a zmx session"
+    if not type zmx >/dev/null 2>&1
+        command echo "need zmx"
         return 1
     end
     if not type fzf >/dev/null 2>&1
@@ -8,19 +8,16 @@ function as --description="fuzzy attach to an abduco session"
         return 1
     end
 
-    # abduco prints a header line followed by tab-separated session rows
-    # whose last field is the session name; drop the header before picking.
-    set --local rows (abduco 2>/dev/null | tail -n +2 | string match -vr '^\s*$')
-    if test -z "$rows"
-        command echo "no abduco session"
+    set --local names (zmx list --short 2>/dev/null | string match -vr '^\s*$')
+    if test -z "$names"
+        command echo "no zmx session"
         return 1
     end
 
-    set --local picked (printf '%s\n' $rows | fzf --no-mouse --no-sort --height=30%)
+    set --local picked (printf '%s\n' $names | fzf --no-mouse --no-sort --height=30%)
     if test -z "$picked"
         return 1
     end
 
-    set --local name (string split \t -- $picked)[-1]
-    abduco -a $name
+    zmx attach $picked
 end

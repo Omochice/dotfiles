@@ -67,7 +67,6 @@
     sessionVariables.LANG = "en_US.UTF-8";
     packages = with pkgs; [
       # keep-sorted start
-      abduco
       age
       ansifilter
       asciinema
@@ -140,6 +139,7 @@
       vim-startuptime
       xcpretty
       yazi
+      zmx
       # keep-sorted end
       # keep-sorted start
       astro-language-server

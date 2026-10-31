@@ -53,9 +53,9 @@ in
         ./functions/__ghq-pick.fish
         |> parse-fish-function "pick a ghq repository with fzf and print its absolute path";
       __lazygit = ./functions/__lazygit.fish |> parse-fish-function "Lazygit wrapper";
-      as = ./functions/as.fish |> (parse-fish-function "fuzzy attach to an abduco session");
+      as = ./functions/as.fish |> (parse-fish-function "fuzzy attach to a zmx session");
       f = ./functions/f.fish |> (parse-fish-function "fuzzy moving with ghq");
-      fa = ./functions/fa.fish |> parse-fish-function "open an abduco session in a ghq repository";
+      fa = ./functions/fa.fish |> parse-fish-function "open a zmx session in a ghq repository";
       fish_user_key_bindings =
         ./functions/fish_user_key_bindings.fish |> parse-fish-function "Key bindings";
       fzf-select = ./functions/fzf-select.fish |> parse-fish-function "Select file with fzf";
