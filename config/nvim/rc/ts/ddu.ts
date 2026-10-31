@@ -175,17 +175,18 @@ export class Config extends BaseConfig {
         },
       },
     });
-    await group(denops, "vimrc#ddu", (helper) => {
-      const id = register(denops, async () => {
-        await updateState(denops);
-        contextBuilder.patchGlobal({
-          uiParams: { ff: calcSize(state) },
-        });
+    const resizeCallbackId = register(denops, async () => {
+      await updateState(denops);
+      contextBuilder.patchGlobal({
+        uiParams: { ff: calcSize(state) },
       });
+    });
+    await group(denops, "vimrc#ddu", (helper) => {
+      helper.remove("*");
       helper.define(
         "WinResized",
         "*",
-        `call denops#notify("${denops.name}", "${id}", [])`,
+        `call denops#notify("${denops.name}", "${resizeCallbackId}", [])`,
       );
     });
   }
