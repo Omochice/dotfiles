@@ -31,6 +31,12 @@ in
             }
             {
               from = {
+                key_code = "japanese_kana";
+              };
+              to = [ { key_code = "right_shift"; } ];
+            }
+            {
+              from = {
                 key_code = "left_command";
               };
               to = [ { key_code = "left_option"; } ];
