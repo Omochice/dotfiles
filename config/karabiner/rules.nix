@@ -16,13 +16,9 @@
   (k.rule "Eisu to escape" [
     (k.map { key_code = "japanese_eisuu"; } |> k.to [ { key_code = "escape"; } ])
   ])
-  (
-    k.rule "Underscore to backslash" [
-      (k.map { key_code = "international1"; } |> k.to [ { key_code = "international3"; } ])
-    ]
-    |> k.ifApp [ "^org.alacritty$" ]
-    |> k.unless
-  )
+  (k.rule "Underscore to backslash" [
+    (k.map { key_code = "international1"; } |> k.to [ { key_code = "international3"; } ])
+  ])
   (k.rule "Option+<BS> to <Delete>" [
     (
       k.map {

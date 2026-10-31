@@ -442,12 +442,6 @@ in
         treatFirstCharacterAsMarkedText = false;
       }
       {
-        bundleIdentifier = "org.alacritty";
-        insertBlankString = true;
-        showMarkerWhenEmpty = false;
-        treatFirstCharacterAsMarkedText = false;
-      }
-      {
         bundleIdentifier = "co.zeit.hyper";
         insertBlankString = false;
         showMarkerWhenEmpty = false;

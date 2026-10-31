@@ -9,7 +9,6 @@
     ../modules/home-manager/dotfiles-dir.nix
     ../modules/home-manager/my-git-wt.nix
     # keep-sorted start
-    ../../alacritty/default.nix
     ../../android/default.nix
     ../../bat/default.nix
     ../../brew/default.nix
