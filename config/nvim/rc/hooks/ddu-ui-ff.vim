@@ -9,7 +9,7 @@ augroup END
 " ddu-ff {{{
 setlocal cursorline
 cnoreabbrev <buffer> q call ddu#ui#do_action('quit')
-nnoremap <C-w><C-w> <C-w><C-w>
+nnoremap <buffer> <C-w><C-w> <C-w><C-w>
 
 function s:open_or_expand()
   if b:ddu_ui_item->get('isTree', v:false)
