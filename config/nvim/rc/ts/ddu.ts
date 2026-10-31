@@ -115,9 +115,6 @@ export class Config extends BaseConfig {
           ],
         },
         rg: {
-          rg: {
-            matchers: ["converter_display_word", "matcher_fuzzy"],
-          },
           args: ["--json", "--ignore-case"],
         },
         mru: {
