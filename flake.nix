@@ -167,23 +167,17 @@
           runtimeInputs = [
             pkgs.jq
             pkgs.git
-            pkgs.nix-output-monitor
-            home-manager.packages.${system}.home-manager
-          ]
-          ++ (pkgs.lib.optional pkgs.stdenv.hostPlatform.isDarwin
-            nix-darwin.packages.${system}.darwin-rebuild
-          );
+            pkgs.nh
+          ];
           text = ''
             jq -n --arg home "$HOME" --arg user "$USER" '{home: $home, user: $user}' > host.json
             git add host.json --force
             trap 'git reset -- host.json && rm host.json' EXIT
-            echo "Updating home-manager"
-            home-manager switch --flake .#omochice -b backup |& nom
+            nh home switch . --configuration omochice --backup-extension backup
           ''
           + (
             ''
-              echo "Updating nix-darwin"
-              sudo darwin-rebuild switch --flake .#omochice |& nom
+              nh darwin switch . --hostname omochice
             ''
             |> pkgs.lib.strings.optionalString pkgs.stdenv.hostPlatform.isDarwin
           );
