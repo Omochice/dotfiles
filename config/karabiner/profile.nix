@@ -19,8 +19,7 @@ in
         {
           identifiers = {
             is_keyboard = true;
-            product_id = 834;
-            vendor_id = 1452;
+            is_built_in_keyboard = true;
           };
           simple_modifications = [
             {
