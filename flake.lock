@@ -508,11 +508,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1791902210,
-        "narHash": "sha256-Zn8G8SJ7cGR5qJ0kyYVpQuKdEldy8oryy2MTVnyO2dc=",
+        "lastModified": 1793413373,
+        "narHash": "sha256-76mBUQFx8gj2p67r2tDbyVMz1O/g7Z7BDhMlvzTdKKg=",
         "owner": "Omochice",
         "repo": "nur-packages",
-        "rev": "24fc7a9e84f81bb106d6c91cbe806ae4b1b4d1b8",
+        "rev": "b22956db3c156e25f34df6f6ec813bc57906f549",
         "type": "github"
       },
       "original": {
@@ -649,11 +649,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786901030,
-        "narHash": "sha256-WSFCsDSE5ffgD2MqzkM2CYjeFiKhRF/dJUN8uedb6YE=",
+        "lastModified": 1791885023,
+        "narHash": "sha256-C3alQ2MEt0zVrUSho5NUDo3jmhbff72++bfwoqT9Omo=",
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "rev": "27b3b12a8e6375f28ebe122f07d230ca5459bbfa",
+        "rev": "0d6d739a833ba9a9c93034862e4a7b061a062a1c",
         "type": "github"
       },
       "original": {
