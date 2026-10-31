@@ -184,7 +184,7 @@ export class Config extends BaseConfig {
     await group(denops, "vimrc#ddu", (helper) => {
       helper.remove("*");
       helper.define(
-        "WinResized",
+        "VimResized",
         "*",
         `call denops#notify("${denops.name}", "${resizeCallbackId}", [])`,
       );
