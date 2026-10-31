@@ -26,10 +26,6 @@ on_source = "ddu.vim"
 depends = ["vim-mr"]
 
 [[plugins]]
-repo = "https://github.com/lambdalisue/vim-mr"
-on_func = ["mr#mru#list", "mr#mrr#list", "mr#mrw#list"]
-
-[[plugins]]
 repo = "https://github.com/shun/ddu-source-buffer"
 on_source = "ddu.vim"
 

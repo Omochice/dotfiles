@@ -101,3 +101,6 @@ hook_add = """
 inoremap <C-;> <Plug>(dmacro-play-macro)
 nnoremap <C-;> <Plug>(dmacro-play-macro)
 """
+
+[[plugins]]
+repo = "https://github.com/lambdalisue/vim-mr"
