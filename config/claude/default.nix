@@ -296,6 +296,7 @@ in
       review-pr = builtins.readFile ./skills/review-pr.md;
       skill-creator = "${plugins.anthropics.src}/skills/skill-creator/";
       specified-test = builtins.readFile ./skills/specified-test.md;
+      take-git = builtins.readFile ./skills/take-git.md |> stripAcknowledgement;
       tdd = builtins.readFile ./skills/tdd.md;
       # keep-sorted end
     };
