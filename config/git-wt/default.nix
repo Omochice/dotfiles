@@ -2,7 +2,7 @@
 {
   programs.my-git-wt = {
     enable = true;
-    package = pkgs.git-wt;
+    package = pkgs.nur.git-wt;
     enableFishIntegration = true;
   };
 }

@@ -11,7 +11,7 @@ in
 {
   options.programs.my-git-wt = {
     enable = lib.mkEnableOption "Enable My git-wt program.";
-    package = lib.mkPackageOption pkgs "git-wt" { nullable = true; };
+    package = lib.mkPackageOption pkgs [ "nur" "git-wt" ] { nullable = true; };
     enableFishIntegration = lib.hm.shell.mkFishIntegrationOption { inherit config; };
     settings = lib.mkOption {
       inherit (jsonFormat) type;

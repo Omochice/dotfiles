@@ -46,7 +46,7 @@ let
         src = extensions.gh-q;
         depends = [
           pkgs.gh
-          pkgs.ghq
+          pkgs.nur.ghq
           pkgs.fzf
           pkgs.coreutils
         ];
@@ -89,11 +89,11 @@ let
     }
     {
       name = "gh-triage";
-      path = "${lib.getBin pkgs.gh-triage}/bin";
+      path = "${lib.getBin pkgs.nur.gh-triage}/bin";
     }
     {
       name = "gh-dep";
-      path = "${lib.getBin pkgs.gh-dep}/bin";
+      path = "${lib.getBin pkgs.nur.gh-dep}/bin";
     }
     {
       name = "gh-markdown-preview";
@@ -101,7 +101,7 @@ let
     }
     {
       name = "gh-infra";
-      path = "${lib.getBin pkgs.gh-infra}/bin";
+      path = "${lib.getBin pkgs.nur.gh-infra}/bin";
     }
     {
       name = "gh-stack";

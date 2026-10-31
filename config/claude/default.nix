@@ -153,7 +153,7 @@ let
           exit 1
           ;;
       esac
-      exec ${lib.getExe pkgs.oh-my-mermaid} "$@"
+      exec ${lib.getExe pkgs.nur.oh-my-mermaid} "$@"
     '';
   };
 
@@ -290,8 +290,8 @@ in
       grill-me = "${plugins.mattpocock.src}/skills/productivity/grill-me/";
       grilling = builtins.readFile ./skills/grilling.md |> stripAcknowledgement;
       handoff = "${plugins.mattpocock.src}/skills/productivity/handoff/";
-      omm-scan = "${pkgs.oh-my-mermaid.src}/skills/omm-scan/";
-      omm-view = "${pkgs.oh-my-mermaid.src}/skills/omm-view/";
+      omm-scan = "${pkgs.nur.oh-my-mermaid.src}/skills/omm-scan/";
+      omm-view = "${pkgs.nur.oh-my-mermaid.src}/skills/omm-view/";
       retrospective = "${plugins.lacolaco.src}/retrospective/";
       review-pr = builtins.readFile ./skills/review-pr.md;
       skill-creator = "${plugins.anthropics.src}/skills/skill-creator/";
@@ -303,7 +303,7 @@ in
       # keep-sorted start block=yes
       context7 = {
         type = "stdio";
-        command = lib.getExe pkgs.context7-mcp;
+        command = lib.getExe pkgs.mcp.context7-mcp;
       };
       deepwiki-mcp = {
         type = "http";
@@ -311,7 +311,7 @@ in
       };
       playwright = {
         type = "stdio";
-        command = lib.getExe pkgs.playwright-mcp;
+        command = lib.getExe pkgs.mcp.playwright-mcp;
       };
       # keep-sorted end
     };

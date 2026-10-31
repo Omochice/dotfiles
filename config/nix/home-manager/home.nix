@@ -91,7 +91,6 @@
       fish
       fzf
       gh
-      ghq
       git-cliff
       git-lfs
       github-copilot-cli
@@ -106,7 +105,6 @@
       jnv
       jq
       lazydocker
-      lazygit
       llm-pkgs.ccusage
       lsd
       mise
@@ -117,6 +115,19 @@
       nixfmt
       nkf
       nodejs_24
+      nur.disable-checkout-persist-credentials
+      nur.dockerfile-pin
+      nur.duckgo
+      nur.firge
+      nur.firge-nerd
+      nur.ghatm
+      nur.ghq
+      nur.lazygit
+      nur.octocov
+      nur.pinact
+      nur.slack-reminder
+      nur.upm
+      nur.vim-startuptime
       nushell
       pandoc
       pastel
@@ -133,9 +144,7 @@
       typos
       typstyle
       unar
-      upm
       uv
-      vim-startuptime
       xcpretty
       yazi
       zmx
@@ -144,11 +153,11 @@
       astro-language-server
       biome
       elmPackages.elm-language-server
-      gitlab-ci-ls
       gopls
       ls-lint
       lua-language-server
       nixd
+      nur.gitlab-ci-ls
       oxlint
       pyright
       rumdl
@@ -161,17 +170,6 @@
       vscode-langservers-extracted
       vue-language-server
       yaml-language-server
-      # keep-sorted end
-      # keep-sorted start
-      disable-checkout-persist-credentials
-      dockerfile-pin
-      duckgo
-      firge
-      firge-nerd
-      ghatm
-      octocov
-      pinact
-      slack-reminder
       # keep-sorted end
     ];
   };

@@ -81,8 +81,8 @@
             allowUnfree = true;
           };
           overlays = [
-            mcp-servers-nix.overlays.default
-            nur-packages.overlays.default
+            (final: prev: { mcp = mcp-servers-nix.overlays.default final prev; })
+            (final: prev: { nur = import nur-packages { pkgs = prev; }; })
             (final: prev: import ./pkgs/default.nix { pkgs = final; })
             (final: prev: {
               cclens = inputs.cclens.packages.${final.stdenv.hostPlatform.system}.default;
@@ -221,7 +221,7 @@
               {
                 buildInputs = with pkgs; [
                   actionlint
-                  ghalint
+                  nur.ghalint
                   zizmor
                 ];
                 src = self;
