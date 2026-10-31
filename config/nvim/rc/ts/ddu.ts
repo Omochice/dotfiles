@@ -32,8 +32,10 @@ type DduSize = {
 };
 
 const updateState = async (denops: Denops) => {
-  state.lines = await lines.get(denops);
-  state.columns = await columns.get(denops);
+  [state.lines, state.columns] = await Promise.all([
+    lines.get(denops),
+    columns.get(denops),
+  ]);
 };
 
 const calcSize = (size: Size): DduSize => {
