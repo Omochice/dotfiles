@@ -301,3 +301,13 @@ nnoremap z= zMzv
 
 nnoremap [b <Cmd>bnext<CR>
 nnoremap ]b <Cmd>bprevious<CR>
+
+" https://zenn.dev/vim_jp/articles/2024-10-07-vim-insert-uppercase
+function s:toupper_prev_word()
+  let col = getpos('.')[2]
+  return getline('.')[0:col-1]
+        \ ->matchstr('\v<(\k(<)@!)*$')
+        \ ->toupper()
+endfunction
+
+inoremap <expr> <C-l> "<C-w>" .. <SID>toupper_prev_word()
