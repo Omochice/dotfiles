@@ -44,7 +44,7 @@ vimx.keymap.set("n", prefix .. "<C-l>", function()
     ui = "ff",
     sources = { {
       name = "line",
-      options = { marcher = {} },
+      options = { matchers = {} },
     } },
     uiParams = {
       ff = { ignoreEmpty = false },
