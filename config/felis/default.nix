@@ -26,6 +26,11 @@ let
     runtimeEnv.SESSION_JQ_LIB = ./jq;
     text = builtins.readFile ./pick-waiting.sh;
   };
+  new-session = pkgs.writeShellApplication {
+    name = "felis-new-session";
+    runtimeInputs = [ felis ];
+    text = builtins.readFile ./new-session.sh;
+  };
 in
 {
   imports = [ inputs.felis.homeManagerModules.felis ];
@@ -63,7 +68,9 @@ in
           command = [ (lib.getExe pick-session) ];
         };
         "f18" = {
-          kind = "new_session";
+          kind = "run";
+          background = true;
+          command = [ (lib.getExe new-session) ];
         };
         "f19" = {
           kind = "switch_session";
