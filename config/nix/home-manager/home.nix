@@ -8,6 +8,7 @@
   imports = [
     ../modules/home-manager/dotfiles-dir.nix
     ../modules/home-manager/my-git-wt.nix
+    ../modules/home-manager/my-jj.nix
     # keep-sorted start
     ../../android/default.nix
     ../../bat/default.nix
@@ -26,6 +27,7 @@
     ../../git-wt/default.nix
     ../../git/default.nix
     ../../glab-cli/default.nix
+    ../../jj/default.nix
     ../../karabiner/default.nix
     ../../lazygit/default.nix
     ../../lsd/default.nix
