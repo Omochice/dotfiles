@@ -12,7 +12,7 @@ cnoreabbrev <buffer> q call ddu#ui#do_action('quit')
 nnoremap <buffer> <C-w><C-w> <C-w><C-w>
 
 function s:open_or_expand()
-  if b:ddu_ui_item->get('isTree', v:false)
+  if get(b:, 'ddu_ui_item', {})->get('isTree', v:false)
     call ddu#ui#do_action('expandItem', #{ mode: 'toggle' })
   else
     call ddu#ui#do_action('itemAction')
