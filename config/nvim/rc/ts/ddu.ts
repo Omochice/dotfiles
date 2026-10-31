@@ -119,11 +119,8 @@ export class Config extends BaseConfig {
         rg: {
           args: ["--json", "--ignore-case"],
         },
-        mru: {
-          mr: {
-            kind: "mrw",
-            current: true,
-          },
+        mr: {
+          kind: "mrw",
         },
         anyjump_definition: {
           removeCommentsFromResults: true,
