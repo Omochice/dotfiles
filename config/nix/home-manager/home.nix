@@ -86,7 +86,6 @@
       docker
       docker-buildx
       duckdb
-      editorconfig-checker
       fastfetch
       fd
       fish
@@ -100,7 +99,6 @@
       gnumake
       gnupg1
       graphviz
-      hadolint
       hyperfine
       imagemagick
       jnv
@@ -124,29 +122,23 @@
       nur.ghatm
       nur.ghq
       nur.lazygit
-      nur.octocov
       nur.pinact
       nur.slack-reminder
       nur.upm
       nur.vim-startuptime
       nushell
-      pandoc
       pastel
       pnpm
-      reviewdog
       ripgrep
       sd
-      shfmt
       sops
       speedtest-cli
       starship
       tldr
       tokei
       typos
-      typstyle
       unar
       uv
-      xcpretty
       yazi
       zmx
       # keep-sorted end
