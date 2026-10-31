@@ -30,7 +30,7 @@ let
     "switchWorkspace.next" = "Command+Right Arrow";
     closeFocusedWindow = "Shift+Command+Q";
     balanceSizes = "Command+Equal";
-    toggleContainerFullPrimarySpan = "Command+F";
+    cycleSizeForward = "Command+F";
     toggleNativeFullscreen = "Shift+Command+F";
     toggleOverview = "Command+Space";
   };
@@ -137,7 +137,12 @@ in
 
         niri = {
           alwaysCenterSingleColumn = false;
-          centerFocusedColumn = "never";
+          centerFocusedColumn = "onOverflow";
+          containerPrimarySpanPresets = [
+            1.0
+            0.8
+            0.5
+          ];
           infiniteLoop = false;
           singleWindowFit = "fill";
           visibleContainerCount = 2;
