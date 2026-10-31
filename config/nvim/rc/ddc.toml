@@ -80,10 +80,6 @@ repo = "https://github.com/Shougo/ddc-filter-converter_truncate_abbr"
 on_source = "ddc.vim"
 
 [[plugins]]
-repo = "https://github.com/delphinus/ddc-source-tmux"
-on_source = "ddc.vim"
-
-[[plugins]]
 repo = "https://github.com/tani/ddc-fuzzy"
 on_source = "ddc.vim"
 
