@@ -192,6 +192,5 @@ export class Config extends BaseConfig {
         `call denops#notify("${denops.name}", "${id}", [])`,
       );
     });
-    return Promise.resolve();
   }
 }
