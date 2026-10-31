@@ -141,7 +141,7 @@ local function DduHelp()
       name = "help",
     } },
     sourceOptions = {
-      rg = {
+      help = {
         matchers = {
           "matcher_fzf",
         },
