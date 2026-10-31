@@ -14,6 +14,8 @@
     [optional footer(s)]
     ```
 
+- Scope MUST be attached only when more than half of the last 10 non-bot commits have one
+    - The scope MUST name the area the diff changes, even when no past commit uses that name
 - Commit type MUST be one of follows:
     - `build`: Changes that affect the build system
     - `ci`: Changes to our CI configuration files and scripts
