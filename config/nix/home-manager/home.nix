@@ -31,7 +31,6 @@
     ../../karabiner/default.nix
     ../../lazygit/default.nix
     ../../lsd/default.nix
-    ../../mise/default.nix
     ../../moon/default.nix
     ../../neru/default.nix
     ../../nix/default.nix
@@ -76,7 +75,6 @@
       bat
       btop
       cachix
-      cargo
       cclens
       clang-tools
       curl
@@ -98,6 +96,7 @@
       glow
       gnumake
       gnupg1
+      go
       graphviz
       hyperfine
       imagemagick
@@ -130,6 +129,7 @@
       pastel
       pnpm
       ripgrep
+      rustup
       sd
       sops
       speedtest-cli

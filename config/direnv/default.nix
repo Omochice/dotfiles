@@ -16,7 +16,6 @@ in
     enable = true;
     package = direnv;
     nix-direnv.enable = true;
-    mise.enable = true;
     enableFishIntegration = false;
   };
   programs.fish.interactiveShellInit = lib.mkAfter ''
