@@ -1,3 +1,7 @@
+-- lua_add {{{
+vim.keymap.set("ca", "aibo", "Aibo")
+-- }}}
+
 -- lua_source {{{
 require("aibo").setup({
   prompt_blend_insert = 0,
