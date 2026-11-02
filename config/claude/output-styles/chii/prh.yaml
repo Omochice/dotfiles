@@ -39,6 +39,10 @@ rules:
   - pattern: /併合/
     expected: マージ
     prh: over-translation of merge, say 「マージ」
+  # Editions named after a product, platform, or year (Windows版, ベータ版, 2025年版) and 最新版 / 正式版 are idiomatic, so only 版 after other words is flagged.
+  - pattern: /(?:^|[^A-Za-z0-9+ ァ-ヶー出年新式])版/
+    expected: バージョン
+    prh: over-translation of version, say 「バージョン」
   - pattern: /要求(?:が|を|に)/
     expected: リクエスト
     prh: possible over-translation of request, say 「リクエスト」
