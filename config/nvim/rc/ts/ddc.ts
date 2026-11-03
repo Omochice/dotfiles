@@ -19,7 +19,7 @@ const filetypePatches = [
   [["go"], {
     sourceOptions: {
       _: {
-        keywordPattern: "[:keyword:.]",
+        keywordPattern: "[[:keyword:].]*",
       },
     },
   }],
