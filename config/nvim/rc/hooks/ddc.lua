@@ -48,4 +48,15 @@ vimx.create_autocmd("LspAttach", {
 local vimx = require("artemis")
 vimx.fn.ddc.custom.load_config(vimx.fn.expand("$VIMRC_RC_DIR/ts/ddc.ts"))
 vimx.fn.ddc.enable()
+local function replay_insert_enter_missed_while_loading()
+  if vimx.fn.mode():sub(1, 1) == "i" then
+    vimx.fn.ddc.on_event("InsertEnter")
+  end
+end
+vimx.create_autocmd("User", {
+  pattern = "DenopsPluginPost:ddc",
+  once = true,
+  callback = replay_insert_enter_missed_while_loading,
+  group = vimx.create_augroup("vimrc.ddc-replay-insert-enter", { clear = true }),
+})
 -- }}}
