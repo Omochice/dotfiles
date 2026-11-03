@@ -69,7 +69,7 @@ Describe what changes for the user, not the internal implementation detail.
 Use conventional commit types (`feat`, `fix`, `refactor`, `build`, `ci`, `chore`, `docs`, `perf`, `style`, `test`).
 Keep it under 70 characters.
 
-**Example:**
+Example:
 
 ```text
 feat: allow filtering search results by date range

@@ -49,7 +49,7 @@ Proposed | Accepted
 
 ## Decision Drivers *(options form)*
 
-* **<Driver>**: <what this decision must satisfy>
+- <Driver>: <what this decision must satisfy>
 
 ## Considered Options *(options form)*
 
@@ -57,10 +57,12 @@ Proposed | Accepted
 
 <Concrete illustration of the option, ideally a code or output example.>
 
-**Pros:**
+#### Pros
+
 - ...
 
-**Cons:**
+#### Cons
+
 - ...
 
 ## Decision
@@ -69,20 +71,27 @@ Proposed | Accepted
 
 ### 1. <Sub-decision>
 
-**Change from**: <before, as code>
-**Change to**: <after, as code>
+#### Change from
 
-**Rationale**: <why this specific choice, not a restatement of the change>
+<before, as code>
+
+#### Change to
+
+<after, as code>
+
+#### Rationale
+
+<why this specific choice, not a restatement of the change>
 
 ## Consequences
 
 ### Positive
 
-1. **<Benefit>**: <explanation>
+- <Benefit>: <explanation>
 
 ### Negative
 
-1. **<Cost>**: <explanation>
+- <Cost>: <explanation>
 
 ### Mitigations
 
@@ -102,7 +111,7 @@ Rules:
 
 - The title names the decision, not the problem ("Node.js TypeScript Type Stripping Migration", not "Build is slow").
 - `Proposed` before the work happens, `Accepted` once in effect — never any other initial status.
-- Split a multi-part Decision into numbered subsections, each with its own before/after and `**Rationale**:` explaining why this alternative won, never what the code does.
+- Split a multi-part Decision into numbered subsections, each with its own before/after and `#### Rationale` explaining why this alternative won, never what the code does.
 - Consequences need real negatives — every decision costs something — each paired with a mitigation.
 - Prefer concrete artifacts (before/after code, failing output, exact config) over prose.
 - Plain prose; no RFC 2119 keywords (MUST, SHOULD, MAY) — an ADR is a record, not a specification.

@@ -24,9 +24,9 @@ Any new ADR created below follows the existing naming, numbering, and directory 
 
 Ask one question: **if a reader followed the old ADR today, would they go wrong?**
 
-- **Not wrong** — only the lifecycle moved → _Case A: lifecycle update_
-- **Partially wrong** — the decision stands, specific sub-decisions changed → _Case B: design evolution_
-- **Wholly wrong** — the decision should no longer be followed → _Case C: supersession_
+- Not wrong: only the lifecycle moved → _Case A: lifecycle update_
+- Partially wrong: the decision stands, specific sub-decisions changed → _Case B: design evolution_
+- Wholly wrong: the decision should no longer be followed → _Case C: supersession_
 
 If unclear, ask the user; the three cases produce very different edits.
 
@@ -44,11 +44,17 @@ No new ADR, no other edits — knowledge gained during implementation that chang
     ```markdown
     ### 1. <What changed>
 
-    **Original Design (ADR-MMM)**: <as originally recorded>
+    #### Original Design (ADR-MMM)
 
-    **Revised Design**: <as implemented or now intended>
+    <as originally recorded>
 
-    **Rationale**: <why the revision won — what the original design missed>
+    #### Revised Design
+
+    <as implemented or now intended>
+
+    #### Rationale
+
+    <why the revision won — what the original design missed>
     ```
 
 3. Mark the old ADR: keep its Status value and append the back-link, e.g. `Accepted (refined by [ADR-NNN](./adr-NNN-<slug>.md))`.
