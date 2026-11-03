@@ -5,6 +5,9 @@ style = "dash"
 indent = 4
 style = "fixed"
 
+[MD036]
+punctuation = ".,;!?"
+
 [MD041]
 enabled = false
 
