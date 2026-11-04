@@ -13,7 +13,8 @@ picked=$(
       | @tsv' |
     fzf --delimiter '\t' --with-nth 2.. \
       --header 'enter: switch' \
-      --preview 'felis sessions capture {1}' \
+      --preview 'felis sessions capture {1} | perl -0777 -pe "s/\s+\z/\n/"' \
+      --preview-window follow \
       --with-shell "$BASH -c" \
       --bind 'start,resize:transform:if (( FZF_COLUMNS < FZF_LINES * 2 )); then echo "change-preview-window(down)"; else echo "change-preview-window(right)"; fi'
 ) || exit 0

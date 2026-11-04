@@ -12,6 +12,7 @@ let
       felis
       pkgs.jq
       pkgs.fzf
+      pkgs.perl
     ];
     runtimeEnv.SESSION_JQ_LIB = ./jq;
     text = builtins.readFile ./pick-session.sh;
@@ -22,6 +23,7 @@ let
       felis
       pkgs.jq
       pkgs.fzf
+      pkgs.perl
     ];
     runtimeEnv.SESSION_JQ_LIB = ./jq;
     text = builtins.readFile ./pick-waiting.sh;
