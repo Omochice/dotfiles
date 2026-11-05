@@ -1,7 +1,6 @@
 -- lua_source {{{
--- A terminal cell is about twice as tall as it is wide.
 local function is_landscape()
-  return vim.o.columns > vim.o.lines * 2
+  return require("omochice.aspect").is_landscape(vim.o.columns, vim.o.lines)
 end
 
 local actions = require("diffview.actions")
