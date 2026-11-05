@@ -58,7 +58,16 @@ git diff <base>...HEAD
 
 For large diffs, read `--stat` first and selectively inspect the most significant files rather than loading the entire diff at once.
 
-### Phase 5: Generate Title and Description
+### Phase 5: Verify
+
+Carry out every verification the change calls for that the available environment allows, such as running the changed command or checking the changed behavior by hand.
+A verification that was possible but skipped is unfinished work, not something to disclose in the description, so do it instead of writing the PR/MR around it.
+
+Note each verification that cannot be performed and its reason, because the Limitation section reports them.
+
+If a verification reveals a problem, report it to the user and stop.
+
+### Phase 6: Generate Title and Description
 
 #### Title
 
@@ -98,6 +107,9 @@ Follow these formatting rules so the body renders correctly as Markdown:
 Use the following template structure.
 Keep every section, and write each one concisely rather than omitting it.
 
+Do not add caveats or disclaimers that tell the reviewer nothing they need to act on.
+Test counts, passing tests or lints, and anything else CI already guarantees are redundant with the CI result.
+
 ##### Summary
 
 States what this PR/MR changes, in a single sentence.
@@ -115,18 +127,22 @@ If nothing visible to the user changes, state "No user-visible impact."
 
 ##### Confirmation
 
-Records what the author verified locally and the observed outcome, not a checklist for reviewers to run.
-Items that were not verified belong in the Limitation section instead.
-If no local verification was performed, state "No local verification was performed."
+Records what the author verified that CI cannot, such as manually checked behavior, and the observed outcome, not a checklist for reviewers to run.
+If there is nothing beyond what CI covers, state "None."
 
 ##### Limitation
 
-Describes known limitations, edge cases not covered, or follow-up work that remains.
+Describes known limitations of the change itself, edge cases not covered, or follow-up work that remains.
+Anything the code structurally cannot guarantee belongs here, such as behavior that depends on external state or a race the design does not prevent.
+A verification that could not be performed belongs here together with the reason, such as a required resource being unavailable (hardware, credentials, an external service) or the change targeting an OS other than the one available.
+Never list a verification that was possible but skipped.
 If none exist, state "No known limitations."
 
-#### Example body
+#### Example bodies
 
-The following shows the intended length and line-break style, with every section kept and each sentence standing as its own paragraph.
+The following examples show the intended length and line-break style, with every section kept and each sentence standing as its own paragraph.
+
+The first example has behavior to check by hand and no limitations.
 
 ```markdown
 ## Summary
@@ -153,7 +169,33 @@ Ran the page locally and confirmed the menu renders identically with one build p
 No known limitations.
 ```
 
-### Phase 6: User Confirmation
+The second example has nothing to verify beyond CI, and reports a verification that the available OS cannot perform.
+
+```markdown
+## Summary
+
+Read the config file from `$XDG_CONFIG_HOME` on Linux instead of a hard-coded `~/.config`.
+
+## Details
+
+Users who set `$XDG_CONFIG_HOME` had their config ignored.
+
+Falling back to `~/.config` only when the variable is unset matches the XDG Base Directory Specification.
+
+## User Impact
+
+- The config file is found under `$XDG_CONFIG_HOME` when the variable is set
+
+## Confirmation
+
+None.
+
+## Limitation
+
+The Linux code path could not be run because only macOS was available.
+```
+
+### Phase 7: User Confirmation
 
 Present all of the following to the user before proceeding:
 
@@ -166,7 +208,7 @@ Present all of the following to the user before proceeding:
 Do not proceed until the user explicitly confirms.
 The user may request modifications to the title, description, base branch, or draft setting.
 
-### Phase 7: Create PR/MR
+### Phase 8: Create PR/MR
 
 For GitHub:
 
