@@ -181,9 +181,23 @@ repo = "https://github.com/liuchengxu/vista.vim"
 depends = ["vim-lsp"]
 on_cmd = "Vista"
 hook_add = """
-let g:vista_default_executive = has('nvim') ? 'nvim_lsp' : 'vim_lsp'
+let g:vista_default_executive = 'vim_lsp'
 let g:vista_echo_cursor = v:false
 """
+if = "!has('nvim')"
+
+[[plugins]]
+repo = "https://github.com/stevearc/aerial.nvim"
+on_cmd = [
+  "AerialToggle",
+  "AerialOpen",
+  "AerialOpenAll",
+  "AerialNavToggle",
+  "AerialNavOpen",
+]
+on_lua = "aerial"
+hooks_file = "$VIMRC_RC_DIR/hooks/aerial.lua"
+if = "has('nvim')"
 
 [[plugins]]
 repo = "https://github.com/simeji/winresizer"
