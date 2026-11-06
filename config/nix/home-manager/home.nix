@@ -10,6 +10,7 @@
     ../modules/home-manager/my-git-wt.nix
     ../modules/home-manager/my-jj.nix
     # keep-sorted start
+    ../../adroit/default.nix
     ../../android/default.nix
     ../../bat/default.nix
     ../../brew/default.nix
