@@ -111,6 +111,7 @@
       neovim-omochice
       nh
       nix-output-monitor
+      nix-search-cli
       nixfmt
       nkf
       nodejs_24
