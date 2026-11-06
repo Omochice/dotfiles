@@ -106,7 +106,7 @@
     },
     "claude-skill-mattpocock": {
         "cargoLock": null,
-        "date": "2026-10-08",
+        "date": "2026-10-31",
         "extract": null,
         "name": "claude-skill-mattpocock",
         "passthru": null,
@@ -118,12 +118,12 @@
             "name": null,
             "owner": "mattpocock",
             "repo": "skills",
-            "rev": "b0618bc436ad893b3c5e84e55fba86586d34a404",
-            "sha256": "sha256-1QwFBwG+gORvDvW4HM0LrZlHZKmKtWr7pUHU0MAXF2Y=",
+            "rev": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+            "sha256": "sha256-3vhd77xfZjKUYJsIwPFevIZPUAzUgZXr0RYj5NQrBwk=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "b0618bc436ad893b3c5e84e55fba86586d34a404"
+        "version": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
     },
     "claude-skill-tani": {
         "cargoLock": null,
