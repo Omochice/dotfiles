@@ -109,6 +109,7 @@
       mkcert
       mmv-go
       neovim-omochice
+      nh
       nix-output-monitor
       nixfmt
       nkf
