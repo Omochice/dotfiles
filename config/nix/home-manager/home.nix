@@ -141,6 +141,7 @@
       typos
       unar
       uv
+      xleak
       yazi
       zmx
       # keep-sorted end
