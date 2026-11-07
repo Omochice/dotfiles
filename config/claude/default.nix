@@ -302,6 +302,16 @@ in
     };
     mcpServers = {
       # keep-sorted start block=yes
+      adrs = {
+        type = "stdio";
+        command = lib.getExe pkgs.adrs;
+        # Write tools are left out because create_adr cannot set a status and always writes Proposed, which the adr skill never uses.
+        args = [
+          "mcp"
+          "serve"
+          "--read-only"
+        ];
+      };
       context7 = {
         type = "stdio";
         command = lib.getExe pkgs.mcp.context7-mcp;
@@ -318,6 +328,7 @@ in
     };
   };
   home.packages = [
+    pkgs.adrs
     pkgs.git-surgeon
     localOmm
   ];
