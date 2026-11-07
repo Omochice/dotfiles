@@ -66,3 +66,5 @@ tags
 
 .momomo
 **/.claude/settings.local.json
+
+.playwright-mcp/
