@@ -20,11 +20,12 @@ It must be self-contained and honest about trade-offs.
 - Prefer concrete artifacts (before/after code, failing output, exact config) over prose.
 - Write plain prose without RFC 2119 keywords (MUST, SHOULD, MAY), because an ADR is a record, not a specification.
 - Write in English unless existing ADRs use another language.
-- Link related ADRs relatively (`[ADR-003](./adr-003-....md)`).
+- Link related ADRs relatively (`[3. Use PostgreSQL](0003-use-postgresql.md)`).
+  Supersedes and amends links in the Status section are written by `adrs`, never by hand.
 
 ## Changing an existing ADR
 
 - The body of an existing ADR (Context, Decision, Consequences) is immutable once written.
   Later understanding goes into a new ADR, never edited into the old one.
-- The only line that may change is Status, which is lifecycle metadata, not part of the record.
+- The only section that may change is Status, which is lifecycle metadata, not part of the record.
 - Never delete or renumber ADR files.

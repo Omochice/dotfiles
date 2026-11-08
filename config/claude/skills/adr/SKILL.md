@@ -9,106 +9,52 @@ description: |
 # Writing an Architecture Decision Record
 
 How the content of an ADR is written is defined by the ADR rule, which loads when an ADR file is read.
+Numbering, file names, links between ADRs, and structural checks are left to the `adrs` CLI, so they are never written by hand.
 
 ## 1. Gather the decision
 
-Make sure the conversation or diff at hand can fill every section of the skeleton below: the triggering force (Context), what was decided (Decision), which alternatives were rejected and why (Considered Options), and what gets worse (Consequences).
+Make sure the conversation or diff at hand can fill every section of [template.md](template.md): the triggering force (Context), what was decided (Decision), which alternatives were rejected and why (Alternatives Considered), and what gets worse (Consequences).
 Ask the user for anything missing — a fabricated rationale is worse than no ADR, because future readers will trust it.
 
-## 2. Determine location and number
+## 2. Locate the ADR directory
 
 ```bash
-fd -i 'adr' docs/ 2>/dev/null || ls docs/adr/ 2>/dev/null || ls docs/ 2>/dev/null
+adrs config
 ```
 
-If ADRs exist, follow their naming, numbering, and directory convention exactly (read a recent one to match style) and take the next number.
-Otherwise create `docs/adr-001-<kebab-case-slug>.md`.
+`adrs` finds the directory from `adrs.toml`, `.adrs.toml`, or `.adr-dir`, and falls back to `doc/adr`.
+When ADRs already live in another directory such as `docs/adr` and none of those files exists, prefix every `adrs` command with `ADR_DIRECTORY=<dir>`.
+When existing ADRs are not named `NNNN-slug.md`, stop and ask the user, because `adrs` cannot number them.
+When no ADR exists yet, run `adrs init`.
 
 ## 3. Choose the shape
 
-Include `Decision Drivers` and `Considered Options` only when multiple alternatives were genuinely evaluated — the rejected options are the most valuable part, because they prevent the same evaluation from being redone.
-When one clear force drove the decision (e.g. a forced migration), skip both sections; empty options are noise.
+Keep `Decision Drivers` and `Alternatives Considered` only when multiple alternatives were genuinely evaluated — the rejected options are the most valuable part, because they prevent the same evaluation from being redone.
+When one clear force drove the decision (e.g. a forced migration), delete both sections; empty options are noise.
+The heading is `Alternatives Considered`, not `Considered Options`, because `adrs doctor` takes `Considered Options` as a sign of MADR and then demands MADR's sections.
 
-## 4. Write the ADR
+## 4. Create and write the ADR
 
-ALWAYS use this skeleton (sections marked _(options form)_ only when alternatives were evaluated):
-
-```markdown
-# ADR-NNN: <Decision Title>
-
-## Status
-
-Proposed | Accepted
-
-## Context
-
-<What situation and forces led to this decision. State the problem concretely;
- include failing output, code, or links where they make the force tangible.>
-
-## Decision Drivers *(options form)*
-
-- <Driver>: <what this decision must satisfy>
-
-## Considered Options *(options form)*
-
-### Option 1: <Name>
-
-<Concrete illustration of the option, ideally a code or output example.>
-
-#### Pros
-
-- ...
-
-#### Cons
-
-- ...
-
-## Decision
-
-<What we will do, stated in the future or present tense ("We will ...").>
-
-### 1. <Sub-decision>
-
-#### Change from
-
-<before, as code>
-
-#### Change to
-
-<after, as code>
-
-#### Rationale
-
-<why this specific choice, not a restatement of the change>
-
-## Consequences
-
-### Positive
-
-- <Benefit>: <explanation>
-
-### Negative
-
-- <Cost>: <explanation>
-
-### Mitigations
-
-- <How each negative consequence is contained>
-
-## Implementation Notes
-
-<Optional: constraints for whoever implements this — what must be tested,
- what must stay backward compatible.>
-
-## References
-
-- <Optional: links to discussions, issues, related ADRs, prior art>
+```bash
+adrs new --template ${CLAUDE_SKILL_DIR}/template.md --status <Proposed|Accepted> --no-edit "<Decision Title>"
 ```
 
+When the adr-update skill hands over a supersession, also pass `--supersedes <M>`, which links both ADRs and marks the old one `Superseded`.
 Use `Proposed` before the work happens and `Accepted` once in effect, never any other initial status.
+Pass `--status` and `--no-edit` every time, because `adrs` 0.13.0 ignores `default_status` and `no_edit` from the global config and would otherwise write `Proposed` and open an editor.
+`adrs new` prints the created path; Read that file, then replace every placeholder in angle brackets.
 Each numbered Decision subsection carries its own before/after.
 
 ## 5. Review before presenting
 
-Reread as a reader with no access to this conversation: does the Context alone explain why doing nothing was unacceptable, is every rationale a "why" rather than a "what", and are the negatives honest?
-Fix what fails, then present the file path and a one-paragraph summary of the recorded decision.
+```bash
+adrs doctor --warnings-as-errors
+```
+
+Fix every problem reported for the new ADR rather than ignoring the rule.
+ADR014 catches only some unfilled placeholders, so also search the new file for a leftover placeholder in angle brackets.
+Problems in other ADRs are reported to the user and left as they are, because their bodies are immutable.
+Then reread as a reader with no access to this conversation: does the Context alone explain why doing nothing was unacceptable, is every rationale a "why" rather than a "what", and are the negatives honest?
+Fix what fails.
+When the ADR directory has a table of contents generated by `adrs generate toc`, regenerate it.
+Present the file path and a one-paragraph summary of the recorded decision.
