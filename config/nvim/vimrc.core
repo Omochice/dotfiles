@@ -30,8 +30,8 @@ set nowrapscan
 set nowritebackup
 set scrolloff=3
 set shiftwidth=2
-set showmatch
 set showbreak=↪
+set showmatch
 set signcolumn=yes
 set smartindent
 set swapfile
