@@ -41,7 +41,6 @@ adrs new --template ${CLAUDE_SKILL_DIR}/template.md --status Accepted --no-edit 
 ```
 
 When the adr-update skill hands over a supersession, also pass `--supersedes <M>`, which links both ADRs and marks the old one `Superseded`.
-Pass `--status Accepted` and `--no-edit` every time, because `adrs` 0.13.0 ignores `default_status` and `no_edit` from the global config and would otherwise write `Proposed` and open an editor.
 `adrs new` prints the created path; Read that file, then replace every placeholder in angle brackets.
 
 ## 5. Offer a test that guards the decision
