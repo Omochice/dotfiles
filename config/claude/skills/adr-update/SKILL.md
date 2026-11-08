@@ -1,8 +1,8 @@
 ---
 name: adr-update
 description: |
-    Update an existing Architecture Decision Record (ADR) in the t-wada style: accept a proposed ADR, record a design evolution, or supersede a decision whose premise no longer holds.
-    Use when the user wants to change an ADR that already exists — "update the ADR", "ADRを更新して", "mark ADR-003 as accepted", "supersede ADR-002", "the implementation diverged from the ADR" — or after a migration or policy change invalidates a recorded decision.
+    Update an existing Architecture Decision Record (ADR) in the t-wada style: deprecate a decision, record a design evolution, or supersede a decision whose premise no longer holds.
+    Use when the user wants to change an ADR that already exists — "update the ADR", "ADRを更新して", "deprecate ADR-003", "supersede ADR-002", "the implementation diverged from the ADR" — or after a migration or policy change invalidates a recorded decision.
     Writing an ADR for a brand-new decision is the adr skill's job.
 ---
 
@@ -26,19 +26,20 @@ Read the target ADR before classifying the change.
 
 Ask one question: **if a reader followed the old ADR today, would they go wrong?**
 
-- Not wrong: only the lifecycle moved → _Case A: lifecycle update_
+- Not wrong, but no longer recommended and not replaced → _Case A: deprecation_
 - Partially wrong: the decision stands, specific sub-decisions changed → _Case B: design evolution_
 - Wholly wrong: the decision should no longer be followed → _Case C: supersession_
 
 If unclear, ask the user; the three cases produce very different edits.
 
-### Case A: Lifecycle update
+### Case A: Deprecation
 
 ```bash
-adrs status <N> <accepted|deprecated>
+adrs status <N> deprecated
 ```
 
 No new ADR, no other edits — knowledge gained during implementation that changes a design choice is Case B, not an edit to Context or Decision.
+An ADR that still says `Proposed` was merged before the convention dropped that status; change it with `adrs status <N> accepted` only after the user confirms the decision is in effect.
 
 ### Case B: Design evolution
 
@@ -48,7 +49,7 @@ adrs new --template ${CLAUDE_SKILL_DIR}/design-evolution.md --status Accepted --
 
 `--link` writes `Amends` into the new ADR and `Amended by` into the old ADR's Status, and the old ADR keeps its status value.
 Not `Superseded`, because the old ADR is still the primary record of the overall decision.
-Read the created file and replace every placeholder in angle brackets, recording each change as its own numbered subsection under Decision, with concrete code where it makes the change tangible.
+Read the created file and replace every placeholder in angle brackets, recording each change as its own numbered subsection under Decision, at the same granularity the ADR rule asks of any Decision.
 
 ### Case C: Supersession
 
@@ -61,6 +62,8 @@ Its Context explains which premise no longer holds.
 - Every premise change (Case B or C) links both directions: the new ADR references the old one, and the old ADR's Status links forward.
   The forward link is what saves a reader who lands on the old ADR via search from following a stale decision.
 - In the old ADR, only `adrs` touches the Status section; if the diff shows changes anywhere else, undo them.
+- A test named after the old ADR follows the case: Case A and Case C delete it, and Case B updates it to check the revised guarantee.
+  Case C offers a new test for the new ADR in the same way the adr skill does.
 - The project's existing structural conventions win over the templates above when they differ.
 
 ## Review before presenting

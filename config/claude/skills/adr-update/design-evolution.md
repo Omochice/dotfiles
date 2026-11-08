@@ -29,6 +29,24 @@ Date: {{ date }}
 
 <why the revision won, and what the original design missed>
 
+### Not Decided Here
+
+- <What this revision leaves open>: <where it will be decided>
+
 ## Consequences
 
-<What becomes easier or harder because of the revision.>
+### Positive
+
+- <Benefit>: <explanation>
+
+### Negative
+
+- <Cost>: <explanation>
+
+### Mitigations
+
+- <The behavior that contains each cost>
+
+## References
+
+- <Optional: external discussions, related ADRs, prior art>

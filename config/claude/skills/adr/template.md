@@ -11,25 +11,21 @@ Date: {{ date }}
 
 ## Context
 
-<What situation and forces led to this decision. State the problem concretely; include failing output or code where it makes the force tangible.>
-
-## Decision Drivers
-
-- <Driver>: <what this decision must satisfy>
+<The force that made doing nothing unacceptable, as it happened in this project, and what the decision has to satisfy.>
 
 ## Alternatives Considered
 
 ### Option 1: <Name>
 
-<Concrete illustration of the option, ideally a code or output example.>
+<What the option is, with a short example when it makes the option tangible.>
 
 #### Pros
 
-- ...
+- <Pro>
 
 #### Cons
 
-- ...
+- <Con>
 
 ## Decision
 
@@ -37,17 +33,15 @@ Date: {{ date }}
 
 ### 1. <Sub-decision>
 
-#### Change from
-
-<before, as code>
-
-#### Change to
-
-<after, as code>
+<What this part of the decision is, at a granularity that survives a change of implementation.>
 
 #### Rationale
 
-<why this specific choice, not a restatement of the change>
+<Why this choice won over the alternatives, not a restatement of the choice.>
+
+### Not Decided Here
+
+- <What this ADR leaves open>: <where it will be decided>
 
 ## Consequences
 
@@ -61,12 +55,8 @@ Date: {{ date }}
 
 ### Mitigations
 
-- <How each negative consequence is contained>
-
-## Implementation Notes
-
-<Optional: constraints for whoever implements this, such as what must be tested or what must stay backward compatible.>
+- <The behavior that contains each cost>
 
 ## References
 
-- <Optional: links to discussions, issues, related ADRs, prior art>
+- <Optional: external discussions, related ADRs, prior art>
