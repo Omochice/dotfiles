@@ -8,8 +8,7 @@ description: |
 
 # Writing an Architecture Decision Record
 
-An ADR captures one decision for a future reader who was not there when it was made.
-It must be self-contained and honest about trade-offs.
+How the content of an ADR is written is defined by the ADR rule, which loads when an ADR file is read.
 
 ## 1. Gather the decision
 
@@ -24,7 +23,6 @@ fd -i 'adr' docs/ 2>/dev/null || ls docs/adr/ 2>/dev/null || ls docs/ 2>/dev/nul
 
 If ADRs exist, follow their naming, numbering, and directory convention exactly (read a recent one to match style) and take the next number.
 Otherwise create `docs/adr-001-<kebab-case-slug>.md`.
-Write in English unless existing ADRs use another language.
 
 ## 3. Choose the shape
 
@@ -107,15 +105,8 @@ Proposed | Accepted
 - <Optional: links to discussions, issues, related ADRs, prior art>
 ```
 
-Rules:
-
-- The title names the decision, not the problem ("Node.js TypeScript Type Stripping Migration", not "Build is slow").
-- `Proposed` before the work happens, `Accepted` once in effect — never any other initial status.
-- Split a multi-part Decision into numbered subsections, each with its own before/after and `#### Rationale` explaining why this alternative won, never what the code does.
-- Consequences need real negatives — every decision costs something — each paired with a mitigation.
-- Prefer concrete artifacts (before/after code, failing output, exact config) over prose.
-- Plain prose; no RFC 2119 keywords (MUST, SHOULD, MAY) — an ADR is a record, not a specification.
-- Link related ADRs relatively (`[ADR-003](./adr-003-....md)`).
+Use `Proposed` before the work happens and `Accepted` once in effect, never any other initial status.
+Each numbered Decision subsection carries its own before/after.
 
 ## 5. Review before presenting
 

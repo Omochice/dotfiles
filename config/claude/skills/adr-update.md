@@ -9,8 +9,7 @@ description: |
 # Updating an Architecture Decision Record
 
 An ADR is a historical record.
-The body of an existing ADR (Context, Decision, Consequences) is immutable once written — later understanding goes into a new ADR, never edited into the old one.
-The only line that may change is Status, which is lifecycle metadata, not part of the record.
+Which parts of an existing ADR may change, and how any ADR is written, is defined by the ADR rule, which loads when an ADR file is read.
 
 ## 1. Locate and read the target ADR
 
@@ -72,8 +71,6 @@ No new ADR, no other edits — knowledge gained during implementation that chang
 - Every premise change (Case B or C) produces exactly two edits: the new ADR references the old one, and the old ADR's Status links forward.
   The forward link is what saves a reader who lands on the old ADR via search from following a stale decision.
 - In the old ADR, touch only the Status line; if the diff shows changes anywhere else, undo them.
-- Never delete or renumber ADR files.
-- Write new ADRs in English unless existing ADRs use another language, in plain prose without RFC 2119 keywords.
 - The project's existing structural conventions win over the templates above when they differ.
 
 ## Review before presenting

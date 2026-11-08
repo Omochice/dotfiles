@@ -266,6 +266,7 @@ in
     };
     rules = {
       # keep-sorted start
+      adr = builtins.readFile ./rules/adr.md;
       ai-agent-working-directory = builtins.readFile ./rules/temporary-directory.md;
       commit = builtins.readFile ./rules/commit.md;
       conversation = builtins.readFile ./rules/conversation.md;
