@@ -27,6 +27,7 @@ Everything in it has to stay true for as long as the decision holds, so anything
   A short example that shows the policy may stay; function names, constants, type definitions, and config values do not.
 - Split a multi-part Decision into numbered subsections, each with its own `#### Rationale` explaining why this alternative won, never what the code does.
 - Decision ends with `### Not Decided Here`, which names what this ADR leaves open and where that will be decided.
+  When the decision leaves nothing open, the section says `Nothing.` so that a reader can tell the scope was considered.
 - Consequences need real negatives, because every decision costs something, and each is paired with a mitigation.
 - A mitigation is described by the behavior that contains the cost (e.g. "startup fails when a migration is pending"), never by a test file or a function name, because those change more often than the decision.
 - Write plain prose without RFC 2119 keywords (MUST, SHOULD, MAY), because an ADR is a record, not a specification.
