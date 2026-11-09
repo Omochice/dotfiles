@@ -97,7 +97,7 @@
       glow
       gnumake
       gnupg1
-      go
+      go_latest
       graphviz
       hyperfine
       imagemagick
@@ -115,7 +115,7 @@
       nix-search-cli
       nixfmt
       nkf
-      nodejs_24
+      nodejs_latest
       nur.disable-checkout-persist-credentials
       nur.dockerfile-pin
       nur.duckgo
