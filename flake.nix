@@ -196,12 +196,12 @@
               jq -n --arg home "$HOME" --arg user "$USER" '{home: $home, user: $user}' > host.json
               git add host.json --force
               trap 'git reset -- host.json && rm host.json' EXIT
-              home-manager switch --flake .#omochice -b backup
+              nh home switch . --configuration omochice --backup-extension backup
             ''
             |> runAs "update-script" [
               pkgs.jq
               pkgs.git
-              home-manager.packages.${system}.home-manager
+              pkgs.nh
             ];
           sync =
             ''
