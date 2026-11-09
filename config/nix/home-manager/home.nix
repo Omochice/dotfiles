@@ -104,14 +104,12 @@
       jnv
       jq
       lazydocker
-      llm-pkgs.ccusage
       lsd
       mise
       mkcert
       mmv-go
       neovim-omochice
       nh
-      nix-output-monitor
       nix-search-cli
       nixfmt
       nkf
