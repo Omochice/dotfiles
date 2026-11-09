@@ -122,6 +122,7 @@
       nur.ghatm
       nur.ghq
       nur.lazygit
+      nur.nyctereutes
       nur.pinact
       nur.slack-reminder
       nur.upm
