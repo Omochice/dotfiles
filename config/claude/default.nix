@@ -172,7 +172,7 @@ in
     context = ./CLAUDE.md;
     settings = {
       # keep-sorted start block=yes
-      advisorModel = "fable";
+      advisorModel = "claude-fable-5-2";
       attribution.commit = "";
       attribution.pr = "";
       attribution.sessionUrl = false;
