@@ -5,10 +5,10 @@ picked=$(
       --arg home "$HOME" \
       'include "session";
       [live($self)
-        | (.program_status | map(select(.state | IN("blocked", "done", "error"))) | first) as $status
+        | (.program_status | map(select(.state | IN("blocked", "done", "error", "working"))) | first) as $status
         | select($status != null)
         | {id, idle: (.idle_seconds // 0), cwd: (.cwd // ""), $status}]
-      | sort_by((if .status.state == "blocked" then 0 else 1 end), -.idle)[]
+      | sort_by(({blocked: 0, working: 2}[.status.state] // 1), -.idle)[]
       | [.id, (.status.state | . + " " * (7 - length)), (.cwd | shorten($home)), (.status.title // "")]
       | @tsv' |
     fzf --delimiter '\t' --with-nth 2.. \
