@@ -14,13 +14,8 @@ while :; do
   pid=$ppid
 done
 
-# working never reaches the picker, and PostToolUse fires on every tool call, so the transcript is read only for the states that do.
-if [[ $state != working ]]; then
-  transcript=$(jq --raw-output '.transcript_path // ""')
-  if [[ -r $transcript ]]; then
-    grep --extended-regexp '^\{"type":"(custom|ai)-title"' "$transcript" || true
-  fi
-fi |
+# felis replaces the whole record on every report, so a working report without the title would erase it from the picker.
+{ grep --extended-regexp '^\{"type":"(custom|ai)-title"' "$(jq --raw-output '.transcript_path // ""')" 2>/dev/null || true; } |
   jq --raw-output --join-output --slurp --arg state "$state" --arg kind "$kind" '
     ((map(select(.type == "custom-title") | .customTitle) | last)
       // (map(select(.type == "ai-title") | .aiTitle) | last)) as $title
