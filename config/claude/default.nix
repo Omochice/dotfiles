@@ -219,6 +219,9 @@ in
       permissions.deny = [
         "Read(~/.ssh/**)"
         "Edit(~/.ssh/**)"
+        "Read(~/.config/gh/hosts.yml)"
+        "Read(~/.config/glab-cli/config.yml)"
+        "Read(~/.moon/credentials.json)"
       ];
       plansDirectory = "./.momomo/ai/plans";
       remoteControlAtStartup = true;
