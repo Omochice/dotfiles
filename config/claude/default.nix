@@ -236,6 +236,7 @@ in
         "git-wt *"
       ];
       sandbox.filesystem.allowWrite = [
+        "~/.cache/nix"
         "~/.cache/prek"
         "~/.local/share/mergiraf"
       ];
