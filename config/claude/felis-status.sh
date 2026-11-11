@@ -22,7 +22,6 @@ if [[ $state != working ]]; then
   fi
 fi |
   jq --raw-output --join-output --slurp --arg state "$state" --arg kind "$kind" '
-    # The transcript layout is undocumented, so a title that cannot be found is left out rather than failing the report.
     ((map(select(.type == "custom-title") | .customTitle) | last)
       // (map(select(.type == "ai-title") | .aiTitle) | last)) as $title
     | ["state=\($state)", "app=claude"]
