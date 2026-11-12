@@ -71,7 +71,7 @@
       ansifilter
       asciinema
       asciinema-agg
-      ast-grep
+      ast-grep-omochice
       awscli2
       bat
       btop

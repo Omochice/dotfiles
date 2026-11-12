@@ -1,17 +1,12 @@
 {
   source,
-  tree-sitter-moonbit-source,
+  tree-sitter-moonbit,
   pkgs,
 }:
 let
   deps = pkgs.callPackage ./deps.nix { neovim-src = source.src; };
   env =
     if pkgs.stdenv.hostPlatform.isDarwin then pkgs.clangStdenv else pkgs.useMoldLinker pkgs.clangStdenv;
-  tree-sitter-moonbit = pkgs.tree-sitter.buildGrammar {
-    language = "moonbit";
-    version = tree-sitter-moonbit-source.version;
-    src = tree-sitter-moonbit-source.src;
-  };
   treesitter-parsers = pkgs.runCommand "treesitter-parsers" { } ''
     mkdir -p $out
     for grammar in ${
