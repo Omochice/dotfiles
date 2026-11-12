@@ -46,6 +46,7 @@ in
         size_px = 20;
       };
       window.opacity = 0.8;
+      clipboard.osc_52 = "system";
       cursor = {
         color = "#EDE7F7";
         blink = "never";

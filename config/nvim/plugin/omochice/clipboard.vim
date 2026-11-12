@@ -6,7 +6,20 @@ let g:loaded_omochice_clipboard = v:true
 let s:save_cpo = &cpo
 set cpo&vim
 
-if has('mac')
+if has('nvim') && !empty($SSH_TTY)
+  " Terminals commonly refuse OSC 52 reads.
+  lua << EOF
+  local osc52 = require("vim.ui.clipboard.osc52")
+  local function paste()
+    return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
+  end
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = { ["+"] = osc52.copy("+"), ["*"] = osc52.copy("*") },
+    paste = { ["+"] = paste, ["*"] = paste },
+  }
+EOF
+elseif has('mac')
   let g:clipboard = #{
     \   name: 'pbcopy',
     \   copy: {
