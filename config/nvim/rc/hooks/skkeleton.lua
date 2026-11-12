@@ -13,13 +13,17 @@ local augroup = vimx.create_augroup("vimrc.skkeleton", {
 vimx.create_autocmd("User", {
   pattern = "skkeleton-initialize-pre",
   callback = function()
-    local dictPath = vimx.fn.dpp.get("dict").path
     vimx.fn.skkeleton.azik.add_table("jis")
     vimx.fn.skkeleton.config({
       kanaTable = "azik",
       globalDictionaries = {
-        dictPath .. "/SKK-JISYO.L",
+        vim.fs.joinpath(vim.fn.stdpath("data"), "skk", "SKK-JISYO.L"),
       },
+      -- NOTE: macSKK is sandboxed and only reads its own container, so skkeleton points there instead of the reverse.
+      userDictionary = vimx.fn.has("mac") == 1 and vim.fs.joinpath(
+        vim.env.HOME,
+        "Library/Containers/net.mtgto.inputmethod.macSKK/Data/Documents/Dictionaries/skk-jisyo.utf8"
+      ) or nil,
       immediatelyCancel = false,
       registerConvertResult = true,
       lowercaseMap = { ["+"] = ";" },

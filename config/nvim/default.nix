@@ -1,5 +1,7 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
+  # skkeleton reads it from stdpath("data"), which the out-of-store Lua config can name without Nix.
+  xdg.dataFile."nvim/skk/SKK-JISYO.L".source = pkgs.skk-jisyo-l-utf8;
   xdg.configFile = {
     "vim/vimrc" = {
       source = ./vimrc.core;

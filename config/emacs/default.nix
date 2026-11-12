@@ -6,15 +6,10 @@
 let
   org-babel = inputs.org-babel.lib;
 
-  # nskk has no option for the dictionary coding and misdetects the EUC-JP original.
-  skkJisyoL = pkgs.runCommand "SKK-JISYO.L.utf8" { nativeBuildInputs = [ pkgs.nkf ]; } ''
-    nkf -w ${pkgs.skkDictionaries.l}/share/skk/SKK-JISYO.L > $out
-  '';
-
   tangle =
     tangleArg:
     pkgs.writeText tangleArg (
-      builtins.replaceStrings [ "@skkJisyoL@" ] [ "${skkJisyoL}" ] (
+      builtins.replaceStrings [ "@skkJisyoL@" ] [ "${pkgs.skk-jisyo-l-utf8}" ] (
         org-babel.tangleOrgBabel {
           languages = [ "emacs-lisp" ];
           inherit tangleArg;

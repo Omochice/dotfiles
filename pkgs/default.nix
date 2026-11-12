@@ -14,4 +14,5 @@ in
     source = sources.neovim;
     tree-sitter-moonbit-source = sources.tree-sitter-moonbit;
   };
+  skk-jisyo-l-utf8 = pkgs.callPackage ./skk-jisyo-l-utf8/default.nix { };
 }

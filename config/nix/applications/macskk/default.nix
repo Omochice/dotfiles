@@ -1,6 +1,7 @@
-{ specialArgs, ... }:
+{ pkgs, specialArgs, ... }:
 let
   inherit (specialArgs) user home;
+  skkJisyoL = pkgs.callPackage ../../../../pkgs/skk-jisyo-l-utf8/default.nix { };
   documents = "${home}/Library/Containers/net.mtgto.inputmethod.macSKK/Data/Documents";
   # NSEvent.ModifierFlags
   modifier = {
@@ -32,6 +33,8 @@ in
     if [ -d "${documents}" ]; then
       sudo --user=${user} -- mkdir -p "${documents}/Settings"
       sudo --user=${user} -- install -m 0644 ${./kana-rule.conf} "${documents}/Settings/kana-rule.conf"
+      sudo --user=${user} -- mkdir -p "${documents}/Dictionaries"
+      sudo --user=${user} -- install -m 0644 ${skkJisyoL} "${documents}/Dictionaries/SKK-JISYO.L"
     fi
   '';
   system.defaults.CustomUserPreferences."net.mtgto.inputmethod.macSKK" = {
@@ -89,7 +92,7 @@ in
     dictionaries = [
       {
         enabled = true;
-        encoding = 3;
+        encoding = 4;
         filename = "SKK-JISYO.L";
         saveToUserDict = true;
         type = "traditional";
