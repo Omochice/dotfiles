@@ -1,0 +1,525 @@
+#+title: Emacs Configuration
+
+* 起動前
+
+#+begin_src emacs-lisp :tangle early-init.el
+;;; early-init.el -*- lexical-binding: t; -*-
+
+(push '(menu-bar-lines . 0) default-frame-alist)
+(push '(tool-bar-lines . 0) default-frame-alist)
+(push '(vertical-scroll-bars) default-frame-alist)
+#+end_src
+
+* 基本設定
+
+#+begin_src emacs-lisp :tangle init.el
+;;; init.el -*- lexical-binding: t; -*-
+
+(setq confirm-kill-emacs nil
+      inhibit-startup-screen t
+      make-backup-files nil
+      create-lockfiles nil)
+(load-theme 'modus-vivendi t)
+(electric-pair-mode 1)
+(savehist-mode 1)
+(recentf-mode 1)
+(save-place-mode 1)
+(which-key-mode 1)
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+#+end_src
+
+* evil
+
+evil の挙動は、Neovim の設定に揃える。
+
+** 本体
+
+evil-collection に =SPC= を上書きされないよう、除外リストに加える。
+evil-collection の unimpaired は =[b= / =]b= を Neovim の設定と逆向きに割り当てるため、使わない。
+
+#+begin_src emacs-lisp :tangle init.el
+(use-package evil
+  :init
+  (setq evil-want-keybinding nil
+        evil-want-C-u-scroll t
+        evil-want-Y-yank-to-eol t
+        evil-undo-system 'undo-redo
+        evil-search-module 'evil-search
+        evil-ex-search-vim-style-regexp t
+        evil-symbol-word-search t
+        evil-insert-state-cursor 'bar)
+  :config
+  (evil-mode 1))
+
+(use-package evil-collection
+  :after evil
+  :init
+  (setq evil-collection-key-blacklist '("SPC")
+        evil-collection-want-unimpaired-p nil)
+  :config
+  (evil-collection-init))
+#+end_src
+
+** Neovim に組み込みの操作
+
+Neovim が標準で持つ =gc= のコメント操作とビジュアル選択の =*= 、 vim-textobj-indent の =ii= / =ai= を補う。
+vim-sandwich の代わりに evil-surround を使う。
+
+#+begin_src emacs-lisp :tangle init.el
+(use-package evil-surround
+  :after evil
+  :config
+  (global-evil-surround-mode 1))
+
+(use-package evil-nerd-commenter
+  :after evil
+  :config
+  (evil-define-key* '(normal visual) 'global
+    "gc" #'evilnc-comment-operator))
+
+(use-package evil-visualstar
+  :after evil
+  :config
+  (global-evil-visualstar-mode 1))
+
+(use-package evil-indent-plus
+  :after evil
+  :config
+  (evil-indent-plus-default-bindings))
+#+end_src
+
+** オプション
+
+=vimrc.core= の =set= に合わせる。
+Emacs 31 では端末で =xterm-mouse-mode= がデフォルトでオンになるので、明示的に切る。
+
+#+begin_src emacs-lisp :tangle init.el
+(setq evil-search-wrap nil
+      evil-ex-search-case 'insensitive
+      evil-move-beyond-eol t
+      scroll-margin 3)
+(setq-default tab-width 2)
+(setopt xterm-mouse-mode nil)
+#+end_src
+
+** 基本のキーマップ
+
+=vimrc.core= のキーマップに合わせる。
+=cw= が単語の末尾で止まるように、レジスタを汚さない =c= を =evil-change-commands= に加える。
+
+#+begin_src emacs-lisp :tangle init.el
+(defun +vimrc--only-indent-before-point-p ()
+  (string-match-p "\\`[ \t]+\\'"
+                  (buffer-substring-no-properties (line-beginning-position) (point))))
+
+(defun +vimrc--insert-with-indent ()
+  (evil-insert-state)
+  (indent-according-to-mode))
+
+(with-eval-after-load 'evil
+  (evil-define-motion +vimrc/next-line (count)
+    :type line
+    (if count (evil-next-line count) (evil-next-visual-line)))
+
+  (evil-define-motion +vimrc/previous-line (count)
+    :type line
+    (if count (evil-previous-line count) (evil-previous-visual-line)))
+
+  (evil-define-motion +vimrc/beginning-of-line-or-indentation ()
+    :type exclusive
+    (if (+vimrc--only-indent-before-point-p)
+        (evil-beginning-of-line)
+      (evil-first-non-blank)))
+
+  (evil-define-operator +vimrc/delete-char-without-yank (beg end type)
+    :motion evil-forward-char
+    (interactive "<R>")
+    (evil-delete beg end type ?_))
+
+  (evil-define-operator +vimrc/substitute-without-yank (beg end type)
+    :motion evil-forward-char
+    (interactive "<R>")
+    (evil-change beg end type ?_))
+
+  (evil-define-operator +vimrc/change-without-yank (beg end type)
+    (interactive "<R>")
+    (evil-change beg end type ?_))
+  (add-to-list 'evil-change-commands #'+vimrc/change-without-yank)
+
+  (evil-define-command +vimrc/insert (count)
+    (interactive "p")
+    (if (= (line-beginning-position) (line-end-position))
+        (+vimrc--insert-with-indent)
+      (evil-insert count)))
+
+  (evil-define-command +vimrc/append-line (count)
+    (interactive "p")
+    (if (= (line-beginning-position) (line-end-position))
+        (+vimrc--insert-with-indent)
+      (evil-append-line count))))
+
+(defun +vimrc/insert-beginning-of-line-or-indentation ()
+  (interactive)
+  (if (+vimrc--only-indent-before-point-p)
+      (beginning-of-line)
+    (back-to-indentation)))
+
+(defun +vimrc/substitute-in-buffer ()
+  (interactive)
+  (+vimrc--ex-substitute "%"))
+
+(defun +vimrc/substitute-in-region ()
+  (interactive)
+  (+vimrc--ex-substitute "'<,'>"))
+
+(defun +vimrc--ex-substitute (range)
+  (minibuffer-with-setup-hook (lambda () (backward-char 3))
+    (evil-ex (concat range "s@\\v@@g"))))
+
+(defun +vimrc/close-folds-except-cursor ()
+  (interactive)
+  (evil-close-folds)
+  (cl-loop repeat 100
+           while (invisible-p (point))
+           do (evil-open-fold)))
+
+(with-eval-after-load 'evil
+  (evil-define-key* '(normal visual) 'global
+    "j"  #'+vimrc/next-line
+    "k"  #'+vimrc/previous-line
+    "gj" #'evil-join
+    "J"  #'evil-next-visual-line)
+  (evil-define-key* 'visual 'global
+    "K"          #'evil-previous-visual-line
+    (kbd "C-s")  #'+vimrc/substitute-in-region)
+  (evil-define-key* 'normal 'global
+    "x"          #'+vimrc/delete-char-without-yank
+    "s"          #'+vimrc/substitute-without-yank
+    "c"          #'+vimrc/change-without-yank
+    "0"          #'+vimrc/beginning-of-line-or-indentation
+    "i"          #'+vimrc/insert
+    "A"          #'+vimrc/append-line
+    (kbd "C-s")  #'+vimrc/substitute-in-buffer
+    "z="         #'+vimrc/close-folds-except-cursor
+    "[b"         #'next-buffer
+    "]b"         #'previous-buffer)
+  (evil-define-key* 'operator 'global
+    "A" #'evil-end-of-line)
+  (evil-define-key* 'insert 'global
+    (kbd "C-f") #'forward-char
+    (kbd "C-b") #'backward-char
+    (kbd "C-a") #'+vimrc/insert-beginning-of-line-or-indentation
+    (kbd "C-e") #'end-of-line)
+  (evil-define-key* '(normal visual operator insert) 'global
+    [left]  #'ignore
+    [right] #'ignore
+    [up]    #'ignore
+    [down]  #'ignore))
+#+end_src
+
+** 全角文字への f
+
+Neovim の =fj= と同じく、 =f= のあとに =j= を打つと、もう1文字読んで digraph で全角文字に変換してから探す。
+Emacs では =fj= をキーに割り当てると =f= 単体が使えなくなるため、 =f= 自体を置きかえる。
+
+#+begin_src emacs-lisp :tangle init.el
+(setq evil-digraphs-table-user
+      '(((?j ?j) . ?j)
+        ((?j ?\() . ?（)
+        ((?j ?\)) . ?）)
+        ((?j ?\[) . ?「)
+        ((?j ?\]) . ?」)
+        ((?j ?,) . ?、)
+        ((?j ?.) . ?。)
+        ((?j ?!) . ?！)
+        ((?j ??) . ?？)
+        ((?j ?~) . ?～)))
+
+(defun +vimrc--read-find-char ()
+  (let ((char (evil-read-key)))
+    (if (eq char ?j)
+        (let ((next (evil-read-key)))
+          (require 'evil-digraphs)
+          (or (evil-digraph (list ?j next)) next))
+      char)))
+
+(with-eval-after-load 'evil
+  (evil-define-motion +vimrc/find-char (count char)
+    :type inclusive
+    (interactive "<c>" (list (+vimrc--read-find-char)))
+    (evil-find-char count char))
+  (evil-define-key* '(normal visual operator) 'global
+    "f" #'+vimrc/find-char))
+#+end_src
+
+** エラー一覧の移動
+
+Neovim の =qn= / =qN= は quickfix を移動し、続けて =n= / =N= を押すとさらに移動する。
+Emacs では =next-error= で同じことをする。
+=q= をプレフィックスにするとマクロの記録ができなくなるため、 =q= のあとのキーが =n= / =N= のときだけ移動し、それ以外はマクロの記録に回す。
+=Q= は quickfix を開く代わりに、 =next-error= の対象バッファを表示する。
+
+#+begin_src emacs-lisp :tangle init.el
+(defvar-keymap +vimrc-next-error-repeat-map
+  "n" #'next-error
+  "N" #'previous-error)
+
+(defun +vimrc/display-next-error-buffer ()
+  (interactive)
+  (display-buffer (or (next-error-find-buffer)
+                      (user-error "No buffer to navigate errors in"))))
+
+(with-eval-after-load 'evil
+  (evil-define-command +vimrc/record-macro-or-navigate-errors (register)
+    :keep-visual t
+    :suppress-operator t
+    (interactive
+     (list (unless (and evil-this-macro defining-kbd-macro)
+             (or evil-this-register (evil-read-key)))))
+    (pcase register
+      (?n (next-error)
+          (set-transient-map +vimrc-next-error-repeat-map t))
+      (?N (previous-error)
+          (set-transient-map +vimrc-next-error-repeat-map t))
+      (_ (evil-record-macro register))))
+  (evil-define-key* 'normal 'global
+    "q" #'+vimrc/record-macro-or-navigate-errors
+    "Q" #'+vimrc/display-next-error-buffer))
+#+end_src
+
+** タブの移動
+
+Neovim の =gt= / =gT= は、続けて =t= / =T= を押すとさらにタブを移動する。
+Emacs のタブは =tab-bar= なので、その移動に同じ繰り返しを付ける。
+
+#+begin_src emacs-lisp :tangle init.el
+(defvar-keymap +vimrc-tab-repeat-map
+  "t" #'tab-bar-switch-to-next-tab
+  "T" #'tab-bar-switch-to-prev-tab)
+
+(defun +vimrc/switch-tab-next ()
+  (interactive)
+  (tab-bar-switch-to-next-tab)
+  (set-transient-map +vimrc-tab-repeat-map t))
+
+(defun +vimrc/switch-tab-previous ()
+  (interactive)
+  (tab-bar-switch-to-prev-tab)
+  (set-transient-map +vimrc-tab-repeat-map t))
+
+(with-eval-after-load 'evil
+  (evil-define-key* 'normal 'global
+    "gt" #'+vimrc/switch-tab-next
+    "gT" #'+vimrc/switch-tab-previous))
+#+end_src
+
+** Ex コマンド
+
+Neovim と同じく、 =:w= は変更があるときだけ保存し、 =:ww= で強制的に保存、 =:qq= で強制的に閉じる。
+
+#+begin_src emacs-lisp :tangle init.el
+(defun +vimrc/force-quit ()
+  (interactive)
+  (evil-quit t))
+
+(with-eval-after-load 'evil
+  (evil-ex-define-cmd "w[rite]" #'evil-update)
+  (evil-ex-define-cmd "ww" #'evil-write)
+  (evil-ex-define-cmd "qq" #'+vimrc/force-quit))
+#+end_src
+
+** LSP と git
+
+Neovim の LSP と gitsigns のキーマップに合わせる。
+=gd= は evil の =evil-goto-definition= が xref 経由で eglot を使うため、そのままにする。
+=[d= / =]d= を診断の移動に使うので、hunk の移動は Neovim と同じ =[c= / =]c= に移す。
+
+#+begin_src emacs-lisp :tangle init.el
+(defun +vimrc/enable-inlay-hints ()
+  (interactive)
+  (eglot-inlay-hints-mode 1))
+
+(defun +vimrc/disable-inlay-hints ()
+  (interactive)
+  (eglot-inlay-hints-mode -1))
+
+(with-eval-after-load 'evil
+  (evil-define-key* 'normal 'global
+    (kbd "SPC f")    #'eglot-format-buffer
+    (kbd "SPC r")    #'eglot-rename
+    (kbd "SPC d")    #'flymake-show-buffer-diagnostics
+    (kbd "SPC D")    #'display-local-help
+    (kbd "SPC [ h")  #'+vimrc/enable-inlay-hints
+    (kbd "SPC ] h")  #'+vimrc/disable-inlay-hints
+    (kbd "SPC g m")  #'magit-blame-addition
+    (kbd "SPC g y")  #'browse-at-remote-kill)
+  (evil-define-key* '(normal visual) 'global
+    "gr" #'xref-find-references)
+  (evil-define-key* 'motion 'global
+    "[d" #'flymake-goto-prev-error
+    "]d" #'flymake-goto-next-error
+    "[c" #'diff-hl-previous-hunk
+    "]c" #'diff-hl-next-hunk))
+#+end_src
+
+* ddskk
+
+日本語入力には ddskk を用い、AZIK 配列を前提とした設定を行う。
+
+** 基本設定
+
+入力メソッドを =japanese-skk= とし、大辞書のパス・AZIK 配列・改行時の確定挙動を設定する。=skk-egg-like-newline= は skkeleton の registerConvertResult に相当し、変換確定時の改行挙動を揃える。挿入モードでは =C-j= で SKK モードへ入る。
+
+#+begin_src emacs-lisp :tangle init.el
+(setq default-input-method "japanese-skk")
+(setq skk-large-jisyo (expand-file-name "~/.cache/dpp/repos/github.com/skk-dev/dict/SKK-JISYO.L"))
+(setq skk-use-azik t)
+(setq skk-azik-keyboard-type 'jp106)
+(setq skk-egg-like-newline t)
+(with-eval-after-load 'evil
+  (evil-define-key* 'insert 'global (kbd "C-j") #'skk-mode))
+#+end_src
+
+** AZIK のかな入力規則カスタマイズ
+
+AZIK ロード直後に呼ばれる =skk-azik-load-hook= で、AZIK 既定規則を上書きする。これは skkeleton の register_kanatable と同義の役割を持つ。
+
+=skk-rom-kana-rule-list= は assoc で先勝ちのため、先頭へ挿入することで既定規則を上書きできる。=:= は AZIK 既定の「ー」を上書きし、変換ポイント開始（=Q= と同等）に割り当てる。
+
+=:= を =skk-set-henkan-point-key= や =skk-downcase-alist= には追加しない。これらは送り検出用であり、追加すると促音判定を経て「っ」が挿入されてしまうためである。
+
+最後に =skk-rule-tree= を nil にし、次回 =skk-mode= 起動時に規則を再コンパイルさせる。
+
+#+begin_src emacs-lisp :tangle init.el
+(add-hook 'skk-azik-load-hook
+          (lambda ()
+            (dolist (rule '((":"   nil skk-set-henkan-point-subr)
+                            ("xx"  "x" ("ッ" . "っ"))
+                            ("xxa" nil ("ァ" . "ぁ"))
+                            ("xxi" nil ("ィ" . "ぃ"))
+                            ("xxu" nil ("ゥ" . "ぅ"))
+                            ("xxe" nil ("ェ" . "ぇ"))
+                            ("xxo" nil ("ォ" . "ぉ"))
+                            ("xxya" nil ("ャ" . "ゃ"))
+                            ("xxyu" nil ("ュ" . "ゅ"))
+                            ("xxyo" nil ("ョ" . "ょ"))
+                            ("xxwa" nil ("ヮ" . "ゎ"))
+                            ("rr"  nil ("レル" . "れる"))
+                            ("nn"  nil ("ナン" . "なん"))))
+              (add-to-list 'skk-rom-kana-rule-list rule))
+            (setq skk-rule-tree nil)))
+#+end_src
+
+* 補完
+
+ミニバッファは vertico、バッファ内は corfu で補完する。
+Emacs 31 は端末でも child frame を使えるので、 corfu-terminal はそれがない Emacs のときだけ使う。
+
+#+begin_src emacs-lisp :tangle init.el
+(use-package vertico
+  :config
+  (vertico-mode 1))
+
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless basic)
+        completion-category-overrides '((file (styles basic partial-completion)))))
+
+(use-package marginalia
+  :config
+  (marginalia-mode 1))
+
+(use-package consult
+  :bind
+  (([remap switch-to-buffer] . consult-buffer)
+   ([remap yank-pop] . consult-yank-pop)
+   ([remap goto-line] . consult-goto-line)))
+
+(use-package corfu
+  :init
+  (setq corfu-auto t)
+  :config
+  (global-corfu-mode 1))
+
+(use-package corfu-terminal
+  :unless (featurep 'tty-child-frames)
+  :after corfu
+  :config
+  (corfu-terminal-mode 1))
+#+end_src
+
+* git
+
+端末では fringe がないため、 diff-hl は GUI でも margin に出して表示を揃える。
+
+#+begin_src emacs-lisp :tangle init.el
+(use-package magit
+  :defer t)
+
+(use-package diff-hl
+  :demand t
+  :hook
+  (magit-post-refresh . diff-hl-magit-post-refresh)
+  :config
+  (global-diff-hl-mode 1)
+  (diff-hl-margin-mode 1))
+#+end_src
+
+* 言語
+
+eglot と flymake は組み込みだが、キーマップから呼ぶコマンドの一部が autoload されていないため、ここで登録する。
+
+#+begin_src emacs-lisp :tangle init.el
+(use-package eglot
+  :commands (eglot-rename eglot-format-buffer eglot-inlay-hints-mode))
+
+(use-package flymake
+  :commands (flymake-goto-next-error flymake-goto-prev-error flymake-show-buffer-diagnostics))
+
+(use-package markdown-mode
+  :defer t)
+#+end_src
+
+* TRAMP
+
+ファイル単位の lock と auto-save をリモートでは行わず、 ssh ではプロセスを直接起動して速くする。
+
+#+begin_src emacs-lisp :tangle init.el
+(setq remote-file-name-inhibit-locks t
+      remote-file-name-inhibit-auto-save-visited t)
+(with-eval-after-load 'tramp
+  (connection-local-set-profile-variables
+   'remote-direct-async-process
+   '((tramp-direct-async-process . t)))
+  (connection-local-set-profiles
+   '(:application tramp :protocol "ssh")
+   'remote-direct-async-process))
+#+end_src
+
+* 端末
+
+=emacs -nw= で使うための設定を置く。
+daemon は GUI と端末のフレームを同時に持つため、起動時に =display-graphic-p= で分けず、端末だけで効くパッケージに任せる。
+
+クリップボードは Neovim と同じく、手元では =pbcopy= などのコマンドを使い、 SSH の先では OSC 52 で書き込む。
+
+#+begin_src emacs-lisp :tangle init.el
+(use-package evil-terminal-cursor-changer
+  :after evil
+  :config
+  (evil-terminal-cursor-changer-activate))
+
+(use-package kkp
+  :config
+  (global-kkp-mode 1))
+
+(use-package xclip
+  :unless (getenv "SSH_TTY")
+  :config
+  (xclip-mode 1))
+
+(use-package clipetty
+  :if (getenv "SSH_TTY")
+  :config
+  (global-clipetty-mode 1))
+#+end_src

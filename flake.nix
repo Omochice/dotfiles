@@ -41,10 +41,6 @@
       url = "github:natsukium/mcp-servers-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-doom-emacs-unstraightened = {
-      url = "github:marienz/nix-doom-emacs-unstraightened";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     llm-agents.url = "github:numtide/llm-agents.nix";
     org-babel.url = "github:emacs-twist/org-babel";
     git-surgeon = {
@@ -53,6 +49,7 @@
     };
     cclens.url = "github:lambdalisue/cclens";
     felis.url = "github:felis-terminal/felis";
+    neomacs.url = "github:eval-exec/neomacs";
     neru = {
       url = "github:y3owk1n/neru";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -69,7 +66,6 @@
       flake-utils,
       nur-packages,
       mcp-servers-nix,
-      nix-doom-emacs-unstraightened,
       ...
     }@inputs:
     flake-utils.lib.eachDefaultSystem (
@@ -269,7 +265,6 @@
                 inherit inputs;
               };
               modules = [
-                nix-doom-emacs-unstraightened.homeModule
                 ./config/nix/home-manager/home.nix
               ];
             };
