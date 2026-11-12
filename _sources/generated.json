@@ -22,7 +22,7 @@
     },
     "claude-skill-anthropics": {
         "cargoLock": null,
-        "date": "2026-10-05",
+        "date": "2026-11-06",
         "extract": null,
         "name": "claude-skill-anthropics",
         "passthru": null,
@@ -34,12 +34,12 @@
             "name": null,
             "owner": "anthropics",
             "repo": "skills",
-            "rev": "683bc88e56f3e09ba94f7055977f3d3aa499f202",
-            "sha256": "sha256-APw+xMKqRvkLnuQxttiyyIeylrIMSxZovQnw3xEl1C4=",
+            "rev": "2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+            "sha256": "sha256-dRCZrNarCCJFuvATgfW6qmwwVS5HGFXNVGOhbVZd7LA=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "683bc88e56f3e09ba94f7055977f3d3aa499f202"
+        "version": "2c5958ecac7cee2b583967a2c4981d0f4a75c579"
     },
     "claude-skill-ast-grep": {
         "cargoLock": null,
