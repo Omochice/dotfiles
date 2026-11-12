@@ -10,6 +10,25 @@
 (push '(vertical-scroll-bars) default-frame-alist)
 #+end_src
 
+** 起動の高速化
+
+[[https://www.takeokunn.org/posts/permanent/20221217132815-emacs_more_faster/][Emacsを世界最速級で起動する方法]] に倣い、起動中だけ GC とファイル名ハンドラーの照合を止める。
+しきい値を大きいままにすると、起動後の GC が一度に多くを回収して止まる時間が長くなるため、起動後に元へ戻す。
+起動中にパッケージが足したハンドラーを失わないよう、ハンドラーは上書きせずにまぜて戻す。
+
+#+begin_src emacs-lisp :tangle early-init.el
+(let ((saved-gc-cons-threshold gc-cons-threshold)
+      (saved-file-name-handler-alist file-name-handler-alist))
+  (setq gc-cons-threshold (* 128 1024 1024)
+        file-name-handler-alist nil)
+  (add-hook 'emacs-startup-hook
+            (lambda ()
+              (setq gc-cons-threshold saved-gc-cons-threshold
+                    file-name-handler-alist
+                    (delete-dups (append file-name-handler-alist
+                                         saved-file-name-handler-alist))))))
+#+end_src
+
 * 基本設定
 
 #+begin_src emacs-lisp :tangle init.el
@@ -362,52 +381,104 @@ Neovim の LSP と gitsigns のキーマップに合わせる。
     "]c" #'diff-hl-next-hunk))
 #+end_src
 
-* ddskk
+* nskk
 
-日本語入力には ddskk を用い、AZIK 配列を前提とした設定を行う。
+日本語入力には nskk を用い、AZIK 配列を前提とした設定を行う。
+ddskk は neomacs の =emacsPackagesFor= でパッケージを組み立てる途中で文字コードを問い合わせて止まるため、使わない。
 
 ** 基本設定
 
-入力メソッドを =japanese-skk= とし、大辞書のパス・AZIK 配列・改行時の確定挙動を設定する。=skk-egg-like-newline= は skkeleton の registerConvertResult に相当し、変換確定時の改行挙動を揃える。挿入モードでは =C-j= で SKK モードへ入る。
+大辞書には、Nix で UTF-8 に変換した SKK-JISYO.L を使う。
+=@skkJisyoL@= は、tangle するときに Nix がそのパスへ置き換える。
+有効にした直後からかな入力できるよう、初期モードはひらがなにする。
 
 #+begin_src emacs-lisp :tangle init.el
-(setq default-input-method "japanese-skk")
-(setq skk-large-jisyo (expand-file-name "~/.cache/dpp/repos/github.com/skk-dev/dict/SKK-JISYO.L"))
-(setq skk-use-azik t)
-(setq skk-azik-keyboard-type 'jp106)
-(setq skk-egg-like-newline t)
+(use-package nskk
+  :commands nskk-mode
+  :config
+  (setopt nskk-dict-system-dictionary-files '("@skkJisyoL@")
+          nskk-converter-romaji-style 'azik
+          nskk-azik-keyboard-type 'jp106
+          nskk-state-default-mode 'hiragana))
+#+end_src
+
+挿入モードの =C-j= は、nskk が無効なら有効にし、有効なら =nskk-kakutei= で確定する。
+evil の挿入モードのキーマップは nskk のキーマップより優先されるため、確定もこのコマンドで受け持つ。
+
+#+begin_src emacs-lisp :tangle init.el
+(defun my/nskk-enable-or-kakutei ()
+  "Enable nskk in the current buffer, or commit when it is already enabled."
+  (interactive)
+  (if (bound-and-true-p nskk-mode)
+      (nskk-kakutei)
+    (nskk-mode 1)))
+
 (with-eval-after-load 'evil
-  (evil-define-key* 'insert 'global (kbd "C-j") #'skk-mode))
+  (evil-define-key* 'insert 'global (kbd "C-j") #'my/nskk-enable-or-kakutei))
+#+end_src
+
+** 辞書の先読み
+
+nskk は最初に有効にしたときに辞書をまとめて読むため、最初の =C-j= に 2 秒ほどかかる。
+起動を待たせないよう、起動後に手が止まったところで、使い捨てのバッファで一度有効にして辞書を読んでおく。
+辞書を読んだあとは、有効にするのにかかる時間が 40ms ほどになる。
+アイドルタイマーは起動が終わるまで動かないため、=emacs-startup-hook= で包まなくてよい。
+
+#+begin_src emacs-lisp :tangle init.el
+(run-with-idle-timer 1 nil
+                     (lambda ()
+                       (with-temp-buffer
+                         (nskk-mode 1))))
 #+end_src
 
 ** AZIK のかな入力規則カスタマイズ
 
-AZIK ロード直後に呼ばれる =skk-azik-load-hook= で、AZIK 既定規則を上書きする。これは skkeleton の register_kanatable と同義の役割を持つ。
-
-=skk-rom-kana-rule-list= は assoc で先勝ちのため、先頭へ挿入することで既定規則を上書きできる。=:= は AZIK 既定の「ー」を上書きし、変換ポイント開始（=Q= と同等）に割り当てる。
-
-=:= を =skk-set-henkan-point-key= や =skk-downcase-alist= には追加しない。これらは送り検出用であり、追加すると促音判定を経て「っ」が挿入されてしまうためである。
-
-最後に =skk-rule-tree= を nil にし、次回 =skk-mode= 起動時に規則を再コンパイルさせる。
+=nskk-converter-user-rules= は AZIK の規則より優先されるため、ここに足した規則で既定の規則を上書きできる。
+=xxa= から =xxo= の小書きのかなは nskk の AZIK に最初からあるため、足りない拗音と「ゎ」だけを足す。
+=nn= は、skkeleton の設定に揃えて「なん」にする。
 
 #+begin_src emacs-lisp :tangle init.el
-(add-hook 'skk-azik-load-hook
-          (lambda ()
-            (dolist (rule '((":"   nil skk-set-henkan-point-subr)
-                            ("xx"  "x" ("ッ" . "っ"))
-                            ("xxa" nil ("ァ" . "ぁ"))
-                            ("xxi" nil ("ィ" . "ぃ"))
-                            ("xxu" nil ("ゥ" . "ぅ"))
-                            ("xxe" nil ("ェ" . "ぇ"))
-                            ("xxo" nil ("ォ" . "ぉ"))
-                            ("xxya" nil ("ャ" . "ゃ"))
-                            ("xxyu" nil ("ュ" . "ゅ"))
-                            ("xxyo" nil ("ョ" . "ょ"))
-                            ("xxwa" nil ("ヮ" . "ゎ"))
-                            ("rr"  nil ("レル" . "れる"))
-                            ("nn"  nil ("ナン" . "なん"))))
-              (add-to-list 'skk-rom-kana-rule-list rule))
-            (setq skk-rule-tree nil)))
+(with-eval-after-load 'nskk
+  (setopt nskk-converter-user-rules '(("xxya" . "ゃ")
+                                      ("xxyu" . "ゅ")
+                                      ("xxyo" . "ょ")
+                                      ("xxwa" . "ゎ")
+                                      ("rr" . "れる")
+                                      ("nn" . "なん"))))
+#+end_src
+
+ただし nskk は、=n= に続く =n= を規則より先に =nn-double= と分類して「ん」を出すため、規則だけでは =nn= が効かない。
+分類する内部関数に advice を足し、=nn= を規則の結果で変換させる。
+内部関数に頼るため、nskk の更新で関数名や分類の名前が変わると効かなくなる。
+
+#+begin_src emacs-lisp :tangle init.el
+(defun my/nskk-prefer-user-nn-rule (classify char last-buf-char result)
+  "Let the user rule for nn win over the built-in nn handling of nskk."
+  (let ((class (funcall classify char last-buf-char result)))
+    (if (eq class 'nn-double)
+        'match
+      class)))
+
+(with-eval-after-load 'nskk
+  (advice-add 'nskk--classify-romaji-input :around #'my/nskk-prefer-user-nn-rule))
+#+end_src
+
+=:= は AZIK 既定の「ー」をやめ、skkeleton の henkanPoint と同じ sticky shift に割り当てる。
+何もないときに押すと読みを始め、読みの途中で押すと送りがなを区切る。
+nskk の規則はかなの文字列しか返せないため、規則ではなくキーマップで割り当てる。
+sticky shift は =nskk-handle-semicolon-key= にあるが、AZIK では「っ」の入力になるため、標準のローマ字のつもりで呼び出す。
+このコマンドは押した時点のローマ字の方式を見て動きを決めるため、それに頼っている。
+=Q= と同じ処理にすると、読みの途中で押したときに入力が崩れる。
+
+#+begin_src emacs-lisp :tangle init.el
+(defun my/nskk-set-henkan-point ()
+  "Act as sticky shift regardless of the AZIK style."
+  (interactive)
+  (let ((nskk-converter-romaji-style 'standard))
+    (nskk-handle-semicolon-key)))
+
+(with-eval-after-load 'nskk
+  (keymap-set nskk-mode-map ":" #'my/nskk-set-henkan-point))
 #+end_src
 
 * 補完

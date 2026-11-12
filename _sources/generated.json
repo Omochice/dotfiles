@@ -334,6 +334,27 @@
         },
         "version": "d175a05e0d24b2796f9624f8b6965d690394116e"
     },
+    "nskk": {
+        "cargoLock": null,
+        "date": "2026-09-13",
+        "extract": null,
+        "name": "nskk",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "takeokunn",
+            "repo": "nskk.el",
+            "rev": "48e14d430ac744d1a5bbc9ac94a22dee78590cd4",
+            "sha256": "sha256-9R7re7ByJR6gG1Np5JNmqNrigrJ11NBiumHr4NzW22U=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "48e14d430ac744d1a5bbc9ac94a22dee78590cd4"
+    },
     "tree-sitter-moonbit": {
         "cargoLock": null,
         "date": "2026-07-22",

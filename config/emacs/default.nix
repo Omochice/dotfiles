@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   inputs,
   ...
@@ -8,24 +6,42 @@
 let
   org-babel = inputs.org-babel.lib;
 
+  # nskk has no option for the dictionary coding and misdetects the EUC-JP original.
+  skkJisyoL = pkgs.runCommand "SKK-JISYO.L.utf8" { nativeBuildInputs = [ pkgs.nkf ]; } ''
+    nkf -w ${pkgs.skkDictionaries.l}/share/skk/SKK-JISYO.L > $out
+  '';
+
   tangle =
     tangleArg:
     pkgs.writeText tangleArg (
-      org-babel.tangleOrgBabel {
-        languages = [ "emacs-lisp" ];
-        inherit tangleArg;
-      } (builtins.readFile ./config.org)
+      builtins.replaceStrings [ "@skkJisyoL@" ] [ "${skkJisyoL}" ] (
+        org-babel.tangleOrgBabel {
+          languages = [ "emacs-lisp" ];
+          inherit tangleArg;
+        } (builtins.readFile ./config.org)
+      )
     );
+
+  nskk =
+    epkgs:
+    let
+      source = pkgs.dotfiles-sources.nskk;
+    in
+    epkgs.trivialBuild {
+      pname = "nskk";
+      version = "0-unstable-${source.date}";
+      src = "${source.src}/src";
+    };
 
   packages =
     epkgs: with epkgs; [
+      (nskk epkgs)
       # keep-sorted start
       browse-at-remote
       clipetty
       consult
       corfu
       corfu-terminal
-      ddskk
       diff-hl
       evil
       evil-collection
@@ -43,26 +59,13 @@ let
       xclip
       # keep-sorted end
     ];
-
-  # emacsPackagesFor would byte-compile every package with neomacs, which fails on ddskk.
-  neomacs =
-    let
-      siteLisp = "${config.programs.emacs.finalPackage.deps}/share/emacs/site-lisp";
-    in
-    pkgs.writeShellScriptBin "neomacs" ''
-      export emacsWithPackages_siteLisp=${siteLisp}
-      export EMACSLOADPATH=${siteLisp}:''${EMACSLOADPATH-}
-      exec ${lib.getExe inputs.neomacs.packages.${pkgs.stdenv.hostPlatform.system}.neomacs} "$@"
-    '';
 in
 {
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs;
+    package = inputs.neomacs.packages.${pkgs.stdenv.hostPlatform.system}.neomacs;
     extraPackages = packages;
   };
-
-  home.packages = [ neomacs ];
 
   xdg.configFile = {
     "emacs/early-init.el".source = tangle "early-init.el";

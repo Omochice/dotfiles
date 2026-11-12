@@ -200,6 +200,18 @@
     };
     date = "2026-11-09";
   };
+  nskk = {
+    pname = "nskk";
+    version = "48e14d430ac744d1a5bbc9ac94a22dee78590cd4";
+    src = fetchFromGitHub {
+      owner = "takeokunn";
+      repo = "nskk.el";
+      rev = "48e14d430ac744d1a5bbc9ac94a22dee78590cd4";
+      fetchSubmodules = false;
+      sha256 = "sha256-9R7re7ByJR6gG1Np5JNmqNrigrJ11NBiumHr4NzW22U=";
+    };
+    date = "2026-09-13";
+  };
   tree-sitter-moonbit = {
     pname = "tree-sitter-moonbit";
     version = "5435c307c6cf2ef0d508a99047b06f35a4308444";
