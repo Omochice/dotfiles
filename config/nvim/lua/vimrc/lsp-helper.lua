@@ -39,15 +39,26 @@ end
 ---@return "deno"|"node" runtime
 ---@return string root
 function M.detect_js_runtime(bufnr)
-  local deno = vim.fs.root(bufnr, { { "deno.json", "deno.jsonc" } })
+  local boundary = vim.fs.root(bufnr, ".git")
+  ---@param markers string[]
+  ---@return string|nil
+  local function find_root(markers)
+    local root = vim.fs.root(bufnr, { markers })
+    if root ~= nil and (boundary == nil or vim.fs.relpath(boundary, root) ~= nil) then
+      return root
+    end
+    return nil
+  end
+
+  local deno = find_root({ "deno.json", "deno.jsonc" })
   if deno ~= nil then
     return "deno", deno
   end
-  local node = vim.fs.root(bufnr, { { "package.json", "tsconfig.json", "node_modules" } })
+  local node = find_root({ "package.json", "tsconfig.json", "node_modules" })
   if node ~= nil then
     return "node", node
   end
-  return "deno", vim.fn.getcwd()
+  return "deno", boundary or vim.fn.getcwd()
 end
 
 return M
