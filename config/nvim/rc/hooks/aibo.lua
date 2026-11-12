@@ -43,11 +43,38 @@ require("aibo").setup({
         vim.keymap.set({ "n", "i" }, "<C-t>", "<Plug>(aibo-send)<C-t>", opts)
         vim.keymap.set({ "n", "i" }, "<C-_>", "<Plug>(aibo-send)<C-_>", opts)
         vim.keymap.set({ "n", "i" }, "<C-->", "<Plug>(aibo-send)<C-_>", opts)
+
         if info.type == "prompt" then
           vim.bo[bufnr].filetype = "markdown.claude"
         end
         if info.type == "console" then
           local hyperlink = require("omochice/term-hyperlink").attach(bufnr)
+          -- Read at keypress rather than at attach, because the tool can change its own directory (e.g. a worktree).
+          ---@return string|nil
+          local function tool_cwd()
+            local ok, pid = pcall(vim.fn.jobpid, vim.b[bufnr].terminal_job_id)
+            if not ok then
+              return nil
+            end
+            local result = vim.system({ "lsof", "-a", "-p", tostring(pid), "-d", "cwd", "-Fn" }):wait()
+            if result.code ~= 0 then
+              return nil
+            end
+            return result.stdout:match("\nn([^\n]+)")
+          end
+          ---@param with string
+          local function open(with)
+            local original = vim.bo[bufnr].path
+            local cwd = tool_cwd()
+            if cwd then
+              vim.bo[bufnr].path = vim.fn.escape(cwd, " ,\\") .. "," .. original
+            end
+            local ok, err = pcall(vim.api.nvim_cmd, { cmd = "normal", args = { with }, bang = true }, {})
+            vim.bo[bufnr].path = original
+            if not ok then
+              error(err, 0)
+            end
+          end
           vim.keymap.set("n", "gx", function()
             if not hyperlink.gx() then
               vim.api.nvim_feedkeys(
@@ -59,12 +86,12 @@ require("aibo").setup({
           end, opts)
           vim.keymap.set("n", "gf", function()
             if not hyperlink.gf() then
-              vim.cmd("normal! gf")
+              open("gf")
             end
           end, opts)
           vim.keymap.set("n", "gF", function()
             if not hyperlink.gF() then
-              vim.cmd("normal! gF")
+              open("gF")
             end
           end, opts)
           ---@param text string
