@@ -8,6 +8,7 @@ local M = {}
 ---@class omochice.geometridae.Motion
 ---@field cells fun(dir: 1|-1): fun(): omochice.geometridae.Cell? walks away from the cursor
 ---@field mark_jump boolean
+---@field wise fun(dir: 1|-1): string keys forcing the motion type under an operator, such as "V" for linewise
 
 ---@param name string
 ---@return omochice.geometridae.Motion
@@ -70,6 +71,44 @@ function M.jump(name, dir)
   end
   if motion.mark_jump and vim.fn.mode() == "n" then
     vim.cmd("normal! m'")
+  end
+  vim.api.nvim_win_set_cursor(0, { target.lnum, target.col })
+end
+
+---Builds the keys for an operator-pending mapping with `expr`.
+---@param name string module name under omochice.geometridae
+---@param dir 1|-1
+---@return string
+function M.operator(name, dir)
+  local motion = motion_of(name)
+  local char = read_char()
+  -- Escaping here cancels the operator, which a motion that leaves the cursor in place cannot do.
+  if not char then
+    return "<Esc>"
+  end
+  if not locate(motion, dir, char) then
+    return FAIL
+  end
+  -- Embedding the character instead of reading it in apply lets `.` replay the edit without asking again.
+  local bytes = table.concat({ char:byte(1, -1) }, ",")
+  return ("%s<Cmd>lua require('omochice.geometridae').apply(%q, %d, string.char(%s))<CR>"):format(
+    motion.wise(dir),
+    name,
+    dir,
+    bytes
+  )
+end
+
+---Moves the cursor for the motion an operator acts on.
+---@param name string module name under omochice.geometridae
+---@param dir 1|-1
+---@param char string
+function M.apply(name, dir, char)
+  local target = locate(motion_of(name), dir, char)
+  if not target then
+    -- The operator runs right after this command returns, so only an error, not FAIL fed after it, aborts it when `.` replays it where no candidate is left.
+    vim.api.nvim_echo({ { "geometridae: no candidate" } }, false, { err = true })
+    return
   end
   vim.api.nvim_win_set_cursor(0, { target.lnum, target.col })
 end

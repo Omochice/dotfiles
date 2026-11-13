@@ -35,6 +35,9 @@ end
 ---@type omochice.geometridae.Motion
 return {
   mark_jump = true,
+  wise = function()
+    return "V"
+  end,
   cells = function(dir)
     local vcol = vim.fn.virtcol(".", true)[1]
     local next_line = unfolded_lines(vim.fn.line("."), dir)

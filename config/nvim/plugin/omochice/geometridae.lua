@@ -14,7 +14,10 @@ for _, motion in ipairs(motions) do
   vim.keymap.set({ "n", "x" }, plug, function()
     require("omochice.geometridae").jump(motion.name, motion.dir)
   end, { desc = motion.desc })
+  vim.keymap.set("o", plug, function()
+    return require("omochice.geometridae").operator(motion.name, motion.dir)
+  end, { expr = true, desc = motion.desc })
 end
 
-vim.keymap.set({ "n", "x" }, "<Space>j", "<Plug>(geometridae-j)")
-vim.keymap.set({ "n", "x" }, "<Space>k", "<Plug>(geometridae-k)")
+vim.keymap.set({ "n", "x", "o" }, "<Space>j", "<Plug>(geometridae-j)")
+vim.keymap.set({ "n", "x", "o" }, "<Space>k", "<Plug>(geometridae-k)")
