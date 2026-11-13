@@ -77,16 +77,6 @@ repo = "https://github.com/kana/vim-operator-user"
 repo = "https://github.com/kana/vim-repeat"
 
 [[plugins]]
-repo = "https://github.com/easymotion/vim-easymotion"
-hook_add = """
-nnoremap <Space>j <Plug>(easymotion-j)
-nnoremap <Space>k <Plug>(easymotion-k)
-let g:EasyMotion_smartcase = v:true
-const g:EasyMotion_use_smartsign_jp = v:true
-"""
-on_map = { n = "<Plug>" }
-
-[[plugins]]
 repo = "https://github.com/hrsh7th/vim-searchx"
 hooks_file = "$VIMRC_RC_DIR/hooks/searchx.lua"
 on_func = "searchx"
