@@ -12,8 +12,8 @@
 
 ** 起動の高速化
 
-[[https://www.takeokunn.org/posts/permanent/20221217132815-emacs_more_faster/][Emacsを世界最速級で起動する方法]] に倣い、起動中だけ GC とファイル名ハンドラーの照合を止める。
-しきい値を大きいままにすると、起動後の GC が一度に多くを回収して止まる時間が長くなるため、起動後に元へ戻す。
+[[https://www.takeokunn.org/posts/permanent/20221217132815-emacs_more_faster/][Emacsを世界最速級で起動する方法]] に倣い、起動中だけGCとファイル名ハンドラーの照合を止める。
+しきい値を大きいままにすると、起動後のGCが一度に多くを回収して止まる時間が長くなるため、起動後に元へ戻す。
 起動中にパッケージが足したハンドラーを失わないよう、ハンドラーは上書きせずにまぜて戻す。
 
 #+begin_src emacs-lisp :tangle early-init.el
@@ -49,12 +49,12 @@
 
 * evil
 
-evil の挙動は、Neovim の設定に揃える。
+evilの挙動は、Neovimの設定に揃える。
 
 ** 本体
 
-evil-collection に =SPC= を上書きされないよう、除外リストに加える。
-evil-collection の unimpaired は =[b= / =]b= を Neovim の設定と逆向きに割り当てるため、使わない。
+evil-collectionに =SPC= を上書きされないよう、除外リストに加える。
+evil-collectionのunimpairedは =[b= / =]b= をNeovimの設定と逆向きに割り当てるため、使わない。
 
 #+begin_src emacs-lisp :tangle init.el
 (use-package evil
@@ -79,10 +79,10 @@ evil-collection の unimpaired は =[b= / =]b= を Neovim の設定と逆向き�
   (evil-collection-init))
 #+end_src
 
-** Neovim に組み込みの操作
+** Neovimに組み込みの操作
 
-Neovim が標準で持つ =gc= のコメント操作とビジュアル選択の =*= 、 vim-textobj-indent の =ii= / =ai= を補う。
-vim-sandwich の代わりに evil-surround を使う。
+Neovimが標準で持つ =gc= のコメント操作とビジュアル選択の =*= 、vim-textobj-indentの =ii= / =ai= を補う。
+vim-sandwichの代わりにevil-surroundを使う。
 
 #+begin_src emacs-lisp :tangle init.el
 (use-package evil-surround
@@ -110,7 +110,7 @@ vim-sandwich の代わりに evil-surround を使う。
 ** オプション
 
 =vimrc.core= の =set= に合わせる。
-Emacs 31 では端末で =xterm-mouse-mode= がデフォルトでオンになるので、明示的に切る。
+Emacs 31では端末で =xterm-mouse-mode= がデフォルトでオンになるので、明示的に切る。
 
 #+begin_src emacs-lisp :tangle init.el
 (setq evil-search-wrap nil
@@ -236,10 +236,10 @@ Emacs 31 では端末で =xterm-mouse-mode= がデフォルトでオンになる
     [down]  #'ignore))
 #+end_src
 
-** 全角文字への f
+** 全角文字へのf
 
-Neovim の =fj= と同じく、 =f= のあとに =j= を打つと、もう1文字読んで digraph で全角文字に変換してから探す。
-Emacs では =fj= をキーに割り当てると =f= 単体が使えなくなるため、 =f= 自体を置きかえる。
+Neovimの =fj= と同じく、 =f= のあとに =j= を打つと、もう1文字読んでdigraphで全角文字に変換してから探す。
+Emacsでは =fj= をキーに割り当てると =f= 単体が使えなくなるため、 =f= 自体を置きかえる。
 
 #+begin_src emacs-lisp :tangle init.el
 (setq evil-digraphs-table-user
@@ -273,10 +273,10 @@ Emacs では =fj= をキーに割り当てると =f= 単体が使えなくなる
 
 ** エラー一覧の移動
 
-Neovim の =qn= / =qN= は quickfix を移動し、続けて =n= / =N= を押すとさらに移動する。
-Emacs では =next-error= で同じことをする。
+Neovimの =qn= / =qN= はquickfixを移動し、続けて =n= / =N= を押すとさらに移動する。
+Emacsでは =next-error= で同じことをする。
 =q= をプレフィックスにするとマクロの記録ができなくなるため、 =q= のあとのキーが =n= / =N= のときだけ移動し、それ以外はマクロの記録に回す。
-=Q= は quickfix を開く代わりに、 =next-error= の対象バッファを表示する。
+=Q= はquickfixを開く代わりに、 =next-error= の対象バッファを表示する。
 
 #+begin_src emacs-lisp :tangle init.el
 (defvar-keymap +vimrc-next-error-repeat-map
@@ -308,8 +308,8 @@ Emacs では =next-error= で同じことをする。
 
 ** タブの移動
 
-Neovim の =gt= / =gT= は、続けて =t= / =T= を押すとさらにタブを移動する。
-Emacs のタブは =tab-bar= なので、その移動に同じ繰り返しを付ける。
+Neovimの =gt= / =gT= は、続けて =t= / =T= を押すとさらにタブを移動する。
+Emacsのタブは =tab-bar= なので、その移動に同じ繰り返しを付ける。
 
 #+begin_src emacs-lisp :tangle init.el
 (defvar-keymap +vimrc-tab-repeat-map
@@ -332,9 +332,9 @@ Emacs のタブは =tab-bar= なので、その移動に同じ繰り返しを付
     "gT" #'+vimrc/switch-tab-previous))
 #+end_src
 
-** Ex コマンド
+** Exコマンド
 
-Neovim と同じく、 =:w= は変更があるときだけ保存し、 =:ww= で強制的に保存、 =:qq= で強制的に閉じる。
+Neovimと同じく、 =:w= は変更があるときだけ保存し、 =:ww= で強制的に保存、 =:qq= で強制的に閉じる。
 
 #+begin_src emacs-lisp :tangle init.el
 (defun +vimrc/force-quit ()
@@ -347,11 +347,11 @@ Neovim と同じく、 =:w= は変更があるときだけ保存し、 =:ww= で
   (evil-ex-define-cmd "qq" #'+vimrc/force-quit))
 #+end_src
 
-** LSP と git
+** LSPとgit
 
-Neovim の LSP と gitsigns のキーマップに合わせる。
-=gd= は evil の =evil-goto-definition= が xref 経由で eglot を使うため、そのままにする。
-=[d= / =]d= を診断の移動に使うので、hunk の移動は Neovim と同じ =[c= / =]c= に移す。
+NeovimのLSPとgitsignsのキーマップに合わせる。
+=gd= はevilの =evil-goto-definition= がxref経由でeglotを使うため、そのままにする。
+=[d= / =]d= を診断の移動に使うので、hunkの移動はNeovimと同じ =[c= / =]c= に移す。
 
 #+begin_src emacs-lisp :tangle init.el
 (defun +vimrc/enable-inlay-hints ()
@@ -383,13 +383,13 @@ Neovim の LSP と gitsigns のキーマップに合わせる。
 
 * nskk
 
-日本語入力には nskk を用い、AZIK 配列を前提とした設定を行う。
-ddskk は neomacs の =emacsPackagesFor= でパッケージを組み立てる途中で文字コードを問い合わせて止まるため、使わない。
+日本語入力にはnskkを用い、AZIK配列を前提とした設定を行う。
+ddskkはneomacsの =emacsPackagesFor= でパッケージを組み立てる途中で文字コードを問い合わせて止まるため、使わない。
 
 ** 基本設定
 
-大辞書には、Nix で UTF-8 に変換した SKK-JISYO.L を使う。
-=@skkJisyoL@= は、tangle するときに Nix がそのパスへ置き換える。
+大辞書には、NixでUTF-8に変換したSKK-JISYO.Lを使う。
+=@skkJisyoL@= は、tangleするときにNixがそのパスへ置き換える。
 有効にした直後からかな入力できるよう、初期モードはひらがなにする。
 
 #+begin_src emacs-lisp :tangle init.el
@@ -402,8 +402,8 @@ ddskk は neomacs の =emacsPackagesFor= でパッケージを組み立てる途
           nskk-state-default-mode 'hiragana))
 #+end_src
 
-挿入モードの =C-j= は、nskk が無効なら有効にし、有効なら =nskk-kakutei= で確定する。
-evil の挿入モードのキーマップは nskk のキーマップより優先されるため、確定もこのコマンドで受け持つ。
+挿入モードの =C-j= は、nskkが無効なら有効にし、有効なら =nskk-kakutei= で確定する。
+evilの挿入モードのキーマップはnskkのキーマップより優先されるため、確定もこのコマンドで受け持つ。
 
 #+begin_src emacs-lisp :tangle init.el
 (defun my/nskk-enable-or-kakutei ()
@@ -419,10 +419,10 @@ evil の挿入モードのキーマップは nskk のキーマップより優先
 
 ** 辞書の先読み
 
-nskk は最初に有効にしたときに辞書をまとめて読むため、最初の =C-j= に 2 秒ほどかかる。
+nskkは最初に有効にしたときに辞書をまとめて読むため、最初の =C-j= に2秒ほどかかる。
 起動を待たせないよう、起動後に手が止まったところで、使い捨てのバッファで一度有効にして辞書を読んでおく。
-辞書を読んだあとは、有効にするのにかかる時間が 40ms ほどになる。
-アイドルタイマーは起動が終わるまで動かないため、=emacs-startup-hook= で包まなくてよい。
+辞書を読んだあとは、有効にするのにかかる時間が40msほどになる。
+アイドルタイマーは起動が終わるまで動かないため、 =emacs-startup-hook= で包まなくてよい。
 
 #+begin_src emacs-lisp :tangle init.el
 (run-with-idle-timer 1 nil
@@ -431,11 +431,11 @@ nskk は最初に有効にしたときに辞書をまとめて読むため、最
                          (nskk-mode 1))))
 #+end_src
 
-** AZIK のかな入力規則カスタマイズ
+** AZIKのかな入力規則カスタマイズ
 
-=nskk-converter-user-rules= は AZIK の規則より優先されるため、ここに足した規則で既定の規則を上書きできる。
-=xxa= から =xxo= の小書きのかなは nskk の AZIK に最初からあるため、足りない拗音と「ゎ」だけを足す。
-=nn= は、skkeleton の設定に揃えて「なん」にする。
+=nskk-converter-user-rules= はAZIKの規則より優先されるため、ここに足した規則で既定の規則を上書きできる。
+=xxa= から =xxo= の小書きのかなはnskkのAZIKに最初からあるため、足りない拗音と「ゎ」だけを足す。
+=nn= は、skkeletonの設定に揃えて「なん」にする。
 
 #+begin_src emacs-lisp :tangle init.el
 (with-eval-after-load 'nskk
@@ -447,9 +447,9 @@ nskk は最初に有効にしたときに辞書をまとめて読むため、最
                                       ("nn" . "なん"))))
 #+end_src
 
-ただし nskk は、=n= に続く =n= を規則より先に =nn-double= と分類して「ん」を出すため、規則だけでは =nn= が効かない。
-分類する内部関数に advice を足し、=nn= を規則の結果で変換させる。
-内部関数に頼るため、nskk の更新で関数名や分類の名前が変わると効かなくなる。
+ただしnskkは、 =n= に続く =n= を規則より先に =nn-double= と分類して「ん」を出すため、規則だけでは =nn= が効かない。
+分類する内部関数にadviceを足し、 =nn= を規則の結果で変換させる。
+内部関数に頼るため、nskkの更新で関数名や分類の名前が変わると効かなくなる。
 
 #+begin_src emacs-lisp :tangle init.el
 (defun my/nskk-prefer-user-nn-rule (classify char last-buf-char result)
@@ -463,10 +463,10 @@ nskk は最初に有効にしたときに辞書をまとめて読むため、最
   (advice-add 'nskk--classify-romaji-input :around #'my/nskk-prefer-user-nn-rule))
 #+end_src
 
-=:= は AZIK 既定の「ー」をやめ、skkeleton の henkanPoint と同じ sticky shift に割り当てる。
+=:= はAZIK既定の「ー」をやめ、skkeletonのhenkanPointと同じsticky shiftに割り当てる。
 何もないときに押すと読みを始め、読みの途中で押すと送りがなを区切る。
-nskk の規則はかなの文字列しか返せないため、規則ではなくキーマップで割り当てる。
-sticky shift は =nskk-handle-semicolon-key= にあるが、AZIK では「っ」の入力になるため、標準のローマ字のつもりで呼び出す。
+nskkの規則はかなの文字列しか返せないため、規則ではなくキーマップで割り当てる。
+sticky shiftは =nskk-handle-semicolon-key= にあるが、AZIKでは「っ」の入力になるため、標準のローマ字のつもりで呼び出す。
 このコマンドは押した時点のローマ字の方式を見て動きを決めるため、それに頼っている。
 =Q= と同じ処理にすると、読みの途中で押したときに入力が崩れる。
 
@@ -483,8 +483,8 @@ sticky shift は =nskk-handle-semicolon-key= にあるが、AZIK では「っ」
 
 * 補完
 
-ミニバッファは vertico、バッファ内は corfu で補完する。
-Emacs 31 は端末でも child frame を使えるので、 corfu-terminal はそれがない Emacs のときだけ使う。
+ミニバッファはvertico、バッファ内はcorfuで補完する。
+Emacs 31は端末でもchild frameを使えるので、corfu-terminalはそれがないEmacsのときだけ使う。
 
 #+begin_src emacs-lisp :tangle init.el
 (use-package vertico
@@ -521,7 +521,7 @@ Emacs 31 は端末でも child frame を使えるので、 corfu-terminal はそ
 
 * git
 
-端末では fringe がないため、 diff-hl は GUI でも margin に出して表示を揃える。
+端末ではfringeがないため、diff-hlはGUIでもmarginに出して表示を揃える。
 
 #+begin_src emacs-lisp :tangle init.el
 (use-package magit
@@ -538,7 +538,7 @@ Emacs 31 は端末でも child frame を使えるので、 corfu-terminal はそ
 
 * 言語
 
-eglot と flymake は組み込みだが、キーマップから呼ぶコマンドの一部が autoload されていないため、ここで登録する。
+eglotとflymakeは組み込みだが、キーマップから呼ぶコマンドの一部がautoloadされていないため、ここで登録する。
 
 #+begin_src emacs-lisp :tangle init.el
 (use-package eglot
@@ -553,7 +553,7 @@ eglot と flymake は組み込みだが、キーマップから呼ぶコマン�
 
 * TRAMP
 
-ファイル単位の lock と auto-save をリモートでは行わず、 ssh ではプロセスを直接起動して速くする。
+ファイル単位のlockとauto-saveをリモートでは行わず、sshではプロセスを直接起動して速くする。
 
 #+begin_src emacs-lisp :tangle init.el
 (setq remote-file-name-inhibit-locks t
@@ -570,9 +570,9 @@ eglot と flymake は組み込みだが、キーマップから呼ぶコマン�
 * 端末
 
 =emacs -nw= で使うための設定を置く。
-daemon は GUI と端末のフレームを同時に持つため、起動時に =display-graphic-p= で分けず、端末だけで効くパッケージに任せる。
+daemonはGUIと端末のフレームを同時に持つため、起動時に =display-graphic-p= で分けず、端末だけで効くパッケージに任せる。
 
-クリップボードは Neovim と同じく、手元では =pbcopy= などのコマンドを使い、 SSH の先では OSC 52 で書き込む。
+クリップボードはNeovimと同じく、手元では =pbcopy= などのコマンドを使い、SSHの先ではOSC 52で書き込む。
 
 #+begin_src emacs-lisp :tangle init.el
 (use-package evil-terminal-cursor-changer
