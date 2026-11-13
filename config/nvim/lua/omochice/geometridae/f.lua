@@ -1,3 +1,36 @@
+---@param text string?
+---@return boolean
+local function alpha(text)
+  return text ~= nil and text:match("^%a$") ~= nil
+end
+
+---@param text string?
+---@return boolean
+local function upper(text)
+  return text ~= nil and text:match("^%u$") ~= nil
+end
+
+---@param text string?
+---@return boolean
+local function blank(text)
+  return text ~= nil and text:match("^%s$") ~= nil
+end
+
+---Reports whether a character sits where vim-eft hints, such as the head or tail of a word.
+---@param prev string?
+---@param text string
+---@param next string?
+---@return boolean
+local function at_boundary(prev, text, next)
+  return prev == nil
+    or next == nil
+    or (not alpha(prev) and alpha(text))
+    or (alpha(text) and not alpha(next))
+    or (not upper(prev) and upper(text))
+    or (not blank(text) and not alpha(text))
+    or (not blank(prev) and blank(text))
+end
+
 ---Searches the characters on the cursor line before or after the cursor.
 ---@type omochice.geometridae.Motion
 return {
@@ -28,7 +61,7 @@ return {
       if not text then
         return nil
       end
-      return { lnum = lnum, col = starts[i] - 1, text = text }
+      return { lnum = lnum, col = starts[i] - 1, text = text, hint = at_boundary(chars[i - 1], text, chars[i + 1]) }
     end
   end,
 }
