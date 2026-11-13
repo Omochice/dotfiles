@@ -190,15 +190,15 @@
   };
   neovim = {
     pname = "neovim";
-    version = "d175a05e0d24b2796f9624f8b6965d690394116e";
+    version = "49b853fb327f5f6b5c1bdb38d2e3b8026a4124eb";
     src = fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "d175a05e0d24b2796f9624f8b6965d690394116e";
+      rev = "49b853fb327f5f6b5c1bdb38d2e3b8026a4124eb";
       fetchSubmodules = false;
-      sha256 = "sha256-7s8aMPHBZHqImfmy0HRQFf1JzyklydrqHub9Vniuzv8=";
+      sha256 = "sha256-lXrG8WXu2nlQCyLjrWaZpAmyvAcUHg3odyHWGkyGz/Q=";
     };
-    date = "2026-11-09";
+    date = "2026-11-13";
   };
   nskk = {
     pname = "nskk";
