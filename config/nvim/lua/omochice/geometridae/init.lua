@@ -4,6 +4,7 @@ local M = {}
 ---@field lnum integer
 ---@field col integer 0-based byte column
 ---@field text string
+---@field land omochice.geometridae.Cell? where the cursor goes instead when the cell matches, as t does
 
 ---@class omochice.geometridae.Motion
 ---@field cells fun(dir: 1|-1): fun(): omochice.geometridae.Cell? walks away from the cursor
@@ -45,7 +46,7 @@ local function locate(motion, dir, char)
     if matches(cell.text, char) then
       count = count - 1
       if count == 0 then
-        return cell
+        return cell.land or cell
       end
     end
   end
