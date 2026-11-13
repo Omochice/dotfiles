@@ -47,6 +47,16 @@
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 #+end_src
 
+** C-hをBSにする
+
+端末と同じく =C-h= で1文字消せるよう、 =C-h= を =DEL= に読み替える。
+挿入モードだけでなく、ミニバッファやisearch、nskkの読みの入力でも同じように消せるよう、キーマップごとに割り当てず =key-translation-map= で読み替える。
+ヘルプは =F1= から開く。
+
+#+begin_src emacs-lisp :tangle init.el
+(keymap-set key-translation-map "C-h" "DEL")
+#+end_src
+
 * evil
 
 evilの挙動は、Neovimの設定に揃える。
