@@ -41,6 +41,10 @@ let
         "" | -h | --help | -V | --version)
           exec "$real" "$@"
           ;;
+        # A top-level option may come before the subcommand, and an explicit config or policy leaves nothing for the wrapper to add.
+        -c | -c?* | --config | --config=* | --custom-languages | --custom-languages=*)
+          exec "$real" "$@"
+          ;;
         -*)
           subcommand=run
           ;;
