@@ -123,7 +123,7 @@ let
     }
     {
       matcher = "Read|Write|Edit";
-      regex = "\\.envrc$";
+      regex = "\\.envrc\\.local$";
       message = "Do not read credential config file. If failed to access some endpoints, ask user to resolve it.";
     }
     {
