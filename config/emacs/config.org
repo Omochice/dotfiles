@@ -346,15 +346,26 @@ Emacsのタブは =tab-bar= なので、その移動に同じ繰り返しを付�
 
 Neovimと同じく、 =:w= は変更があるときだけ保存し、 =:ww= で強制的に保存、 =:qq= で強制的に閉じる。
 
+=:h= は、Neovimと同じく引数の名前のヘルプを開き、引数がなければヘルプの一覧を出す。
+evilは =:help= を持たず、同じ名前のEmacsの =help= を呼ぶため、引数を渡せない。
+関数と変数のどちらの名前でも開けるよう、 =describe-symbol= を使う。
+
 #+begin_src emacs-lisp :tangle init.el
 (defun +vimrc/force-quit ()
   (interactive)
   (evil-quit t))
 
 (with-eval-after-load 'evil
+  (evil-define-command +vimrc/help (topic)
+    (interactive "<a>")
+    (if topic
+        (describe-symbol (or (intern-soft topic)
+                             (user-error "No help for %s" topic)))
+      (help-for-help)))
   (evil-ex-define-cmd "w[rite]" #'evil-update)
   (evil-ex-define-cmd "ww" #'evil-write)
-  (evil-ex-define-cmd "qq" #'+vimrc/force-quit))
+  (evil-ex-define-cmd "qq" #'+vimrc/force-quit)
+  (evil-ex-define-cmd "h[elp]" #'+vimrc/help))
 #+end_src
 
 ** LSPとgit
