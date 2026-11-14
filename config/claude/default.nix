@@ -226,6 +226,8 @@ in
       plansDirectory = "./.momomo/ai/plans";
       remoteControlAtStartup = true;
       sandbox.autoAllowBashIfSandboxed = true;
+      # Some binaries like gh-cli fails TLS verification with "x509: OSStatus -26276"
+      sandbox.enableWeakerNetworkIsolation = true;
       sandbox.enabled = true;
       sandbox.excludedCommands = [
         # .git/config is a protected path that allowWrite cannot open, so commands that rewrite it must leave the sandbox
