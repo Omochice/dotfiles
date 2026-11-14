@@ -35,13 +35,7 @@ git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null
 If this fails, fall back to checking whether `main` or `master` exists on the remote.
 If still ambiguous, ask the user.
 
-### Phase 3: Verify Remote Branch
-
-Confirm that the current branch has been pushed to the remote.
-
-```bash
-git ls-remote --heads origin $(git branch --show-current)
-```
+### Phase 3: Verify New Commits
 
 Verify the branch has commits ahead of the base branch.
 If there are no new commits, inform the user and stop.
@@ -208,7 +202,26 @@ Present all of the following to the user before proceeding:
 Do not proceed until the user explicitly confirms.
 The user may request modifications to the title, description, base branch, or draft setting.
 
-### Phase 8: Create PR/MR
+### Phase 8: Verify Remote Branch
+
+Confirm that the current branch has been pushed to the remote.
+This check comes after the user confirms the title and description, because the push is needed only for creating the PR/MR and the wording can be settled without it.
+
+```bash
+git ls-remote --heads origin $(git branch --show-current)
+```
+
+If the output is empty, the branch does not exist on the remote.
+Do not push it yourself, because pushing publishes the branch and is the user's decision.
+Instead, ask the user to push it by typing the command with the `!` prefix, filling in the actual branch name, so that it runs in this session and its output lands in the conversation:
+
+```text
+! git push -u origin <branch>
+```
+
+Wait for the push to complete, then run the check again before continuing.
+
+### Phase 9: Create PR/MR
 
 For GitHub:
 
