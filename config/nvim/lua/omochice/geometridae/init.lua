@@ -75,11 +75,12 @@ end
 ---@param motion omochice.geometridae.Motion
 ---@param dir 1|-1
 local function show_hints(motion, dir)
-  if vim.fn.reg_executing() ~= "" then
+  if vim.fn.reg_executing() ~= "" or vim.fn.getchar(1) ~= 0 then
     return
   end
+  local highlight_group_name = "GeometridaeChar"
   -- Linking on every call instead of once survives a colorscheme change clearing the group.
-  vim.api.nvim_set_hl(0, "GeometridaeChar", { default = true, link = "IncSearch" })
+  vim.api.nvim_set_hl(0, highlight_group_name, { default = true, link = "IncSearch" })
   local count = vim.v.count1
   local seen = {}
   for cell in candidates(motion, dir) do
@@ -96,7 +97,7 @@ local function show_hints(motion, dir)
     if reached and cell.hint ~= false then
       vim.api.nvim_buf_set_extmark(0, ns, cell.lnum - 1, cell.col, {
         end_col = cell.col + #cell.text,
-        hl_group = "GeometridaeChar",
+        hl_group = highlight_group_name,
       })
     end
   end
