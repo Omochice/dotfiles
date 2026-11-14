@@ -192,7 +192,7 @@
               jq -n --arg home "$HOME" --arg user "$USER" '{home: $home, user: $user}' > host.json
               git add host.json --force
               trap 'git reset -- host.json && rm host.json' EXIT
-              nh home switch . --configuration omochice --backup-extension backup
+              nh home switch . --configuration omochice --backup-extension backup "$@"
             ''
             |> runAs "update-script" [
               pkgs.jq

@@ -157,7 +157,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           cachix: false
-      - run: nix run .#install-check
+      - run: nix run .#install-check -- --no-nom
   check-renovate:
     timeout-minutes: 5
     needs: path-filter
