@@ -20,6 +20,22 @@ local function motion_of(name)
   return require("omochice.geometridae." .. name)
 end
 
+---Walks the cells of a motion whose character a single keystroke can type.
+---@param motion omochice.geometridae.Motion
+---@param dir 1|-1
+---@return fun(): omochice.geometridae.Cell?
+local function candidates(motion, dir)
+  local next_cell = motion.cells(dir)
+  return function()
+    for cell in next_cell do
+      -- A multibyte character such as Japanese needs an input method to type, so hinting or counting it only gets in the way.
+      if #cell.text == 1 then
+        return cell
+      end
+    end
+  end
+end
+
 ---@return string?
 local function read_char()
   local ok, char = pcall(vim.fn.getcharstr)
@@ -45,7 +61,7 @@ end
 ---@return omochice.geometridae.Cell?
 local function locate(motion, dir, char)
   local count = vim.v.count1
-  for cell in motion.cells(dir) do
+  for cell in candidates(motion, dir) do
     if matches(cell.text, char) then
       count = count - 1
       if count == 0 then
@@ -66,7 +82,7 @@ local function show_hints(motion, dir)
   vim.api.nvim_set_hl(0, "GeometridaeChar", { default = true, link = "IncSearch" })
   local count = vim.v.count1
   local seen = {}
-  for cell in motion.cells(dir) do
+  for cell in candidates(motion, dir) do
     -- An uppercase cell is also reached by typing itself, which smartcase counts apart from the lowercase key.
     local keys = { cell.text:lower() }
     if keys[1] ~= cell.text then
