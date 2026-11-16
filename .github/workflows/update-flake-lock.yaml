@@ -56,7 +56,13 @@ jobs:
       - name: Update ${{ matrix.input-name }}
         id: update
         run: |
-          nix flake update "$TARGET"
+          if [ "$TARGET" = neomacs ]; then
+            # The tip of main usually has no upstream cache, and building neomacs from source exceeds the CI timeout.
+            rev=$(gh run list --repo eval-exec/neomacs --workflow cachix-main.yml --branch main --status success --limit 1 --json headSha --jq '.[0].headSha')
+            nix flake lock --override-input neomacs "github:eval-exec/neomacs/$rev"
+          else
+            nix flake update "$TARGET"
+          fi
           if git diff --quiet flake.lock _sources; then
             echo "updated=false" >> "$GITHUB_OUTPUT"
           else
@@ -69,6 +75,7 @@ jobs:
           fi
         env:
           TARGET: ${{ matrix.input-name }}
+          GH_TOKEN: ${{ github.token }}
       - name: Create Pull Request
         if: steps.update.outputs.updated == 'true'
         uses: peter-evans/create-pull-request@3ffccacd46053766916f087ce41d627c0b8cf2d1 # v8.1.3
