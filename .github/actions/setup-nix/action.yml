@@ -19,6 +19,8 @@ runs:
         extra_nix_config: |
           experimental-features = nix-command flakes pipe-operators
           access-tokens = github.com=${{ inputs.github-token }}
+          extra-substituters = https://eval-exec.cachix.org
+          extra-trusted-public-keys = eval-exec.cachix.org-1:xvopUI7X7+Vt1gaSsWJ0PQFPP66vs8v5iIaz6boxf64=
     - uses: cachix/cachix-action@38b082610b782e7e93e209c35fd730d399dee866 # v17
       if: ${{ inputs.cachix == 'true' }}
       with:
