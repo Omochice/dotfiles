@@ -37,6 +37,10 @@ in
 {
   imports = [ inputs.felis.homeManagerModules.felis ];
 
+  targets.darwin.defaults."com.natsukium.felis" = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
+    AppleFontSmoothing = 0;
+  };
+
   programs.felis = {
     enable = true;
     package = felis;
