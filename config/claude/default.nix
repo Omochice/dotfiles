@@ -297,6 +297,7 @@ in
       grill-me = "${plugins.mattpocock.src}/skills/productivity/grill-me/";
       grilling = builtins.readFile ./skills/grilling.md |> stripAcknowledgement;
       handoff = "${plugins.mattpocock.src}/skills/productivity/handoff/";
+      modern-web-guidance = "${pkgs.nur.modern-web-guidance}/share/modern-web-guidance/skill/";
       omm-scan = "${pkgs.nur.oh-my-mermaid.src}/skills/omm-scan/";
       omm-view = "${pkgs.nur.oh-my-mermaid.src}/skills/omm-view/";
       retrospective = "${plugins.lacolaco.src}/retrospective/";
