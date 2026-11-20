@@ -56,6 +56,7 @@
             };
           in
           {
+            projectRootFile = "flake.nix";
             settings.global.excludes = [ ];
             settings.formatter.rumdl-format.options = [
               "--config"

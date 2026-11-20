@@ -96,6 +96,7 @@
         treefmt = treefmt-nix.lib.evalModule pkgs (
           { ... }:
           {
+            projectRootFile = "flake.nix";
             settings.global.excludes = [
               "**/aqua.yaml"
               "_sources/**"
