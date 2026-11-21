@@ -26,5 +26,8 @@ return {
     rr = { "れる" },
     -- NOTE: my extend table
     nn = { "なん" },
+    -- NOTE: https://github.com/kawarimidoll/dotfiles/blob/2717d76e8cb77886b8e97ae0a874b4efff3dade7/.vim/ready.vim#L226-L227
+    dx = { "でした" },
+    mx = { "ました" },
   },
 }
