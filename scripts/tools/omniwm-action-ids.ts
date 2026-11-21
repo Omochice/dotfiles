@@ -16,11 +16,63 @@ import { Command } from "jsr:@cliffy/command@1.3.1";
 
 const CATALOG_DIRECTORY = "Sources/OmniWM/Core/Input";
 
-// `ScratchpadIndex.range` forwards to this file, so the numeric bounds of the
-// scratchpad loop are only resolvable once it is read as well.
-const DECLARATION_PATHS = ["Sources/OmniWMIPC/ScratchpadSlots.swift"];
+// `ScratchpadIndex.range` forwards to ScratchpadSlots.swift, so the numeric
+// bounds of the scratchpad loop are only resolvable once it is read as well.
+// IPCModels.swift declares the enums whose raw values complete some action ids.
+const DECLARATION_PATHS = [
+  "Sources/OmniWMIPC/ScratchpadSlots.swift",
+  "Sources/OmniWMIPC/IPCModels.swift",
+];
 
-const ID_DECLARATION = /\bid(?::|\s*=)\s*"([^"]+)"/;
+// An identifier is only taken when a `static let` string constant resolves it;
+// any other identifier, such as `id: id` or a parameter type, is not an action id.
+const ID_DECLARATION =
+  /\bid(?::|\s*=)\s*(?:"([^"]+)"(?:\s*\+\s*(\w+))?|([A-Za-z_]\w*)\s*,)/;
+
+/** Raw values of a `String`-backed enum declared in `declarations`. */
+function enumRawValues(
+  name: string,
+  declarations: string,
+): string[] | undefined {
+  const body = declarations.match(
+    new RegExp(
+      `\\benum\\s+${name}\\s*:\\s*String\\b[^{]*\\{([\\s\\S]*?)\\n\\}`,
+    ),
+  );
+  if (!body) return undefined;
+  return body[1].split("\n")
+    .map((line) => line.match(/^\s*case\s+(.+)$/)?.[1])
+    .filter((cases) => cases !== undefined)
+    .flatMap((cases) => cases.split(","))
+    .map((entry) => {
+      const [name, raw] = entry.split("=").map((part) => part.trim());
+      return raw === undefined ? name : raw.replace(/^"|"$/g, "");
+    });
+}
+
+function resolveTemplates(
+  declaration: RegExpMatchArray,
+  extended: string | undefined,
+  declarations: string,
+): string[] {
+  const [, literal, suffix, identifier] = declaration;
+  if (identifier !== undefined) {
+    const constant = declarations.match(
+      new RegExp(`\\bstatic\\s+let\\s+${identifier}\\s*=\\s*"([^"]+)"`),
+    );
+    return constant ? [constant[1]] : [];
+  }
+  if (suffix === undefined) return [literal];
+  const values = suffix === "rawValue" && extended !== undefined
+    ? enumRawValues(extended, declarations)
+    : undefined;
+  if (!values) {
+    throw new Error(
+      `Unresolvable action id expression: "${literal}" + ${suffix}`,
+    );
+  }
+  return values.map((value) => literal + value);
+}
 
 type Range = { readonly start: number; readonly end: number };
 
@@ -69,7 +121,10 @@ export function collectActionIds(
   const ids = new Set<string>();
   let depth = 0;
 
+  let extended: string | undefined;
+
   for (const [index, line] of lines.entries()) {
+    extended = line.match(/^extension\s+(\w+)/)?.[1] ?? extended;
     const header = line.match(
       /for\s+(?:\(\s*(\w+)\s*,[^)]*\)|(\w+))\s+in\s+(.+?)\s*\{/,
     );
@@ -88,7 +143,15 @@ export function collectActionIds(
           undefined,
       );
       if (!body.some((entry) => entry.includes("visibility: .unassignable"))) {
-        for (const id of expand(declaration[1], loops)) ids.add(id);
+        for (
+          const template of resolveTemplates(
+            declaration,
+            extended,
+            declarations,
+          )
+        ) {
+          for (const id of expand(template, loops)) ids.add(id);
+        }
       }
     }
 
