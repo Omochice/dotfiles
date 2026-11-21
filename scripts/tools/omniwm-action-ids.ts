@@ -18,7 +18,7 @@ const CATALOG_DIRECTORY = "Sources/OmniWM/Core/Input";
 
 // `ScratchpadIndex.range` forwards to this file, so the numeric bounds of the
 // scratchpad loop are only resolvable once it is read as well.
-const RANGE_PATHS = ["Sources/OmniWMIPC/ScratchpadSlots.swift"];
+const DECLARATION_PATHS = ["Sources/OmniWMIPC/ScratchpadSlots.swift"];
 
 const ID_DECLARATION = /\bid(?::|\s*=)\s*"([^"]+)"/;
 
@@ -164,7 +164,7 @@ async function main(version: string, listPath: string): Promise<void> {
     ),
   );
   const extra = await Promise.all(
-    RANGE_PATHS.map((path) => fetchSource(version, path)),
+    DECLARATION_PATHS.map((path) => fetchSource(version, path)),
   );
   const declarations = [...catalogs, ...extra].join("\n");
   const actual = [
