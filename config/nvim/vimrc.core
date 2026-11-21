@@ -159,8 +159,12 @@ if has('nvim')
   " tnoremap <C-w><C-w> <C-\><C-n><C-w><C-w>
   tnoremap <ESC> <C-\><C-n>
   autocmd vimrc.core.autocmd TermOpen * setlocal nonumber
-  " auto close
-  autocmd vimrc.core.autocmd TermClose * call feedkeys('\<CR>')
+  function! s:dismiss_exited_terminal(bufnr, timer) abort
+    if bufnr() == a:bufnr && mode() ==# 't'
+      call feedkeys("\<CR>", 'n')
+    endif
+  endfunction
+  autocmd vimrc.core.autocmd TermClose * call timer_start(0, funcref('s:dismiss_exited_terminal', [str2nr(expand('<abuf>'))]))
   " helper commands
   command! Vterm vertical botright vnew term://${SHELL}
   command! Hterm botright new term://${SHELL}
