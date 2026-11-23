@@ -104,6 +104,7 @@
       jnv
       jq
       lazydocker
+      llm-pkgs.terminal-browser
       lsd
       mise
       mkcert
