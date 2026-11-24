@@ -49,9 +49,15 @@ let
 in
 moldRC "neovim-deps"
   {
-    buildInputs = [ pkgs.cmake ];
+    buildInputs = [
+      pkgs.cmake
+      pkgs.zig
+    ]
+    # zig archives libghostty-vt with Apple's libtool on darwin.
+    ++ lib.optional stdenv.hostPlatform.isDarwin pkgs.cctools;
   }
   ''
+    export ZIG_GLOBAL_CACHE_DIR=$TMPDIR/zig-cache
     cp -a ${buildpath}/* .
     mkdir -p .deps/build
     cp -a ${deps} .deps/build/downloads
