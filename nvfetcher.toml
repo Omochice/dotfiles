@@ -47,7 +47,7 @@ src.git = "https://github.com/ast-grep/claude-skill"
 fetch.github = "ast-grep/claude-skill"
 
 [neovim]
-src.git = "https://github.com/neovim/neovim"
+src.cmd = "git ls-remote https://github.com/neovim/neovim refs/pull/39773/head | cut -f1"
 fetch.github = "neovim/neovim"
 
 [claude-skill-anthropics]
