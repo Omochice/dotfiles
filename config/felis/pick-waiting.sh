@@ -4,14 +4,22 @@ picked=$(
       --arg self "${FELIS_SESSION_ID:-}" \
       --arg home "$HOME" \
       'include "session";
-      [live($self)
-        | (.program_status | map(select(.state | IN("blocked", "done", "error", "working"))) | first) as $status
+      # sgr is an ANSI palette index rather than a hex color so that the felis theme decides the actual shade.
+      {
+        blocked: {rank: 0, sgr: 33},
+        done: {rank: 1, sgr: 32},
+        error: {rank: 1, sgr: 31},
+        working: {rank: 2, sgr: 34}
+      } as $states
+      | [live($self)
+        | (.program_status | map(select($states[.state])) | first) as $status
         | select($status != null)
         | {id, idle: (.idle_seconds // 0), cwd: (.cwd // ""), $status}]
-      | sort_by(({blocked: 0, working: 2}[.status.state] // 1), -.idle)[]
-      | [.id, (.status.state | . + " " * (7 - length)), (.cwd | shorten($home)), (.status.title // "")]
+      | sort_by($states[.status.state].rank, -.idle)[]
+      | .status.state as $state
+      | [.id, "\u001b[\($states[$state].sgr)m\($state + " " * (7 - ($state | length)))\u001b[0m", (.cwd | shorten($home)), (.status.title // "")]
       | @tsv' |
-    fzf --delimiter '\t' --with-nth 2.. \
+    fzf --ansi --delimiter '\t' --with-nth 2.. \
       --header 'enter: switch' \
       --preview 'felis sessions capture {1} | perl -0777 -pe "s/^~[ \t]*\n//mg; s/\s+\z/\n/"' \
       --preview-window follow \
