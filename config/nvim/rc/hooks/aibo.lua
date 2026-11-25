@@ -21,6 +21,8 @@ require("aibo").setup({
       vim.keymap.set({ "n", "i" }, "<C-l>", "<Plug>(aibo-send)<C-l>", opts)
       vim.keymap.set({ "n", "i" }, "<Down>", "<Plug>(aibo-send)<Down>", opts)
       vim.keymap.set({ "n", "i" }, "<Up>", "<Plug>(aibo-send)<Up>", opts)
+      vim.keymap.set({ "n", "i" }, "<Left>", "<Plug>(aibo-send)<Left>", opts)
+      vim.keymap.set({ "n", "i" }, "<Right>", "<Plug>(aibo-send)<Right>", opts)
     end,
   },
   tools = {
@@ -43,6 +45,8 @@ require("aibo").setup({
         vim.keymap.set({ "n", "i" }, "<C-t>", "<Plug>(aibo-send)<C-t>", opts)
         vim.keymap.set({ "n", "i" }, "<C-_>", "<Plug>(aibo-send)<C-_>", opts)
         vim.keymap.set({ "n", "i" }, "<C-->", "<Plug>(aibo-send)<C-_>", opts)
+        vim.keymap.set({ "n", "i" }, "<Left>", "<Plug>(aibo-send)<Left>", opts)
+        vim.keymap.set({ "n", "i" }, "<Right>", "<Plug>(aibo-send)<Right>", opts)
 
         if info.type == "prompt" then
           vim.bo[bufnr].filetype = "markdown.claude"
